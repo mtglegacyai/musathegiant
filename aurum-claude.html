@@ -7,7 +7,7 @@
     <meta name="description" content="Unlock autonomous AI-powered crypto trading with Aurum's EX-AI Bot. 24/7 algorithmic trading, institutional-grade risk management, and full flexibility.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* ============================================
@@ -53,11 +53,12 @@
             /* Overlays */
             --overlay-dark: rgba(0, 0, 0, 0.2);
 
-            /* Typography */
-            --font-display: 'Playfair Display', serif;
-            --font-heading: 'Montserrat', sans-serif;
-            --font-body: 'Source Sans 3', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            /* Typography - Single Family (mirrors Aurum's Ufficio system) */
+            --font-primary: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: var(--font-primary);
+            --font-heading: var(--font-primary);
+            --font-body: var(--font-primary);
+            --font-mono: var(--font-primary);
 
             /* Layout */
             --max-width: 1280px;
@@ -82,12 +83,13 @@
         body {
             background-color: var(--bg-page);
             color: var(--text-body);
-            font-family: var(--font-body);
+            font-family: var(--font-primary);
             font-weight: 400;
-            line-height: 1.7;
+            line-height: 1.65;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            font-optical-sizing: auto;
         }
 
         img {
@@ -436,13 +438,14 @@
         }
 
         .hero-title {
-            font-family: var(--font-display);
+            font-family: var(--font-primary);
             font-weight: 700;
             font-size: clamp(2.4rem, 4.8vw, 4rem);
             line-height: 1.1;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
             color: var(--text-heading);
             margin-bottom: 18px;
+            font-optical-sizing: auto;
         }
 
         .hero-title .highlight {
@@ -647,13 +650,14 @@
         }
 
         .section-title {
-            font-family: var(--font-display);
+            font-family: var(--font-primary);
             font-weight: 700;
             font-size: clamp(1.8rem, 3.5vw, 2.7rem);
             line-height: 1.15;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.02em;
             color: var(--text-heading);
             margin-bottom: 14px;
+            font-optical-sizing: auto;
         }
 
         .section-subtitle {
@@ -699,7 +703,7 @@
         }
 
         .credential-tag {
-            font-family: var(--font-mono);
+            font-family: var(--font-primary);
             font-size: 0.7rem;
             font-weight: 500;
             padding: 6px 16px;
@@ -707,7 +711,8 @@
             background: var(--bg-section-alt);
             border: 1px solid rgba(0, 115, 255, 0.15);
             color: var(--blue-primary);
-            letter-spacing: 0.02em;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
 
         .section-cta-wrap {
