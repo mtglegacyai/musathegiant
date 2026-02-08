@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EX-AI BOT | Aurum Partner - AI-Powered Crypto Trading</title>
+    <title>EX-AI BOT | Aurum Partner | AI-Powered Crypto Trading</title>
     <meta name="description" content="Unlock autonomous AI-powered crypto trading with Aurum's EX-AI Bot. 24/7 algorithmic trading, institutional-grade risk management, and full flexibility.">
     <link rel="icon" type="image/png" href="https://www.musathegiant.com/images/aurum-trading-bot.png">
     <link rel="apple-touch-icon" href="https://www.musathegiant.com/images/aurum-trading-bot.png">
@@ -282,12 +282,13 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 10px 28px;
+            gap: 10px;
+            padding: 8px 10px 8px 22px;
             border-radius: 50px;
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 0.8rem;
-            letter-spacing: 0.04em;
+            font-family: var(--font-primary);
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.02em;
             color: var(--text-white);
             background: var(--blue-gradient);
             background-size: 200% auto;
@@ -297,9 +298,35 @@
             flex-shrink: 0;
         }
 
+        .btn-join .btn-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .btn-join .btn-circle i {
+            font-size: 0.6rem;
+            color: var(--text-white);
+            transition: transform 0.3s ease;
+        }
+
         .btn-join:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 28px var(--blue-glow-strong);
+        }
+
+        .btn-join:hover .btn-circle {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .btn-join:hover .btn-circle i {
+            transform: translateX(2px);
         }
 
         /* Hamburger */
@@ -512,13 +539,13 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 15px 44px;
+            gap: 14px;
+            padding: 14px 18px 14px 32px;
             border-radius: 50px;
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 0.92rem;
-            letter-spacing: 0.04em;
+            font-family: var(--font-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
             color: var(--text-white);
             background: var(--blue-gradient);
             background-size: 200% auto;
@@ -527,22 +554,48 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        .btn-primary .btn-circle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease, transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .btn-primary .btn-circle i {
+            font-size: 0.75rem;
+            color: var(--text-white);
+            transition: transform 0.3s ease;
+        }
+
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 36px var(--blue-glow-strong);
+        }
+
+        .btn-primary:hover .btn-circle {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .btn-primary:hover .btn-circle i {
+            transform: translateX(2px);
         }
 
         .btn-ghost {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 13px 38px;
+            gap: 14px;
+            padding: 12px 16px 12px 28px;
             border-radius: 50px;
-            font-family: var(--font-heading);
+            font-family: var(--font-primary);
             font-weight: 600;
-            font-size: 0.88rem;
-            letter-spacing: 0.04em;
+            font-size: 0.86rem;
+            letter-spacing: 0.02em;
             color: var(--blue-primary);
             background: transparent;
             border: 2px solid var(--blue-primary);
@@ -550,11 +603,38 @@
             transition: all 0.3s ease;
         }
 
+        .btn-ghost .btn-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0, 115, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease, transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .btn-ghost .btn-circle i {
+            font-size: 0.7rem;
+            color: var(--blue-primary);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
         .btn-ghost:hover {
             background: var(--blue-primary);
             color: var(--text-white);
             box-shadow: 0 8px 28px var(--blue-glow);
             transform: translateY(-2px);
+        }
+
+        .btn-ghost:hover .btn-circle {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-ghost:hover .btn-circle i {
+            color: var(--text-white);
+            transform: translateX(2px);
         }
 
         .scroll-indicator {
@@ -581,10 +661,15 @@
 
         .section-divider::before,
         .section-divider::after {
-            content: '';
+            content: '\2022 \00a0\00a0 \2022 \00a0\00a0 \2022';
             flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border-slider), transparent);
+            font-size: 0.45rem;
+            color: var(--blue-primary);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.3;
         }
 
         .divider-img {
@@ -942,8 +1027,17 @@
         }
 
         .final-cta .btn-primary {
-            padding: 17px 52px;
-            font-size: 1rem;
+            padding: 16px 20px 16px 38px;
+            font-size: 0.95rem;
+        }
+
+        .final-cta .btn-primary .btn-circle {
+            width: 38px;
+            height: 38px;
+        }
+
+        .final-cta .btn-primary .btn-circle i {
+            font-size: 0.85rem;
         }
 
         .final-cta .sub-text {
@@ -1150,7 +1244,7 @@
                     <li><a href="#get-started">Get Started</a></li>
                 </ul>
             </nav>
-            <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join btn-join-desktop" target="_blank" rel="noopener noreferrer">Join Now</a>
+            <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join btn-join-desktop" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
             <div class="hamburger" id="hamburger" aria-label="Toggle Menu" role="button" tabindex="0">
                 <span></span><span></span><span></span>
             </div>
@@ -1164,7 +1258,7 @@
         <a href="#aurum-card" class="mobile-nav-link">Aurum Card</a>
         <a href="#partner-program" class="mobile-nav-link">Partner Program</a>
         <a href="#get-started" class="mobile-nav-link">Get Started</a>
-        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join" target="_blank" rel="noopener noreferrer">Join Now</a>
+        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
     </div>
 
     <main>
@@ -1187,14 +1281,14 @@
                             <li><span class="icon"><i class="fas fa-circle"></i></span> AI-powered 24/7 autonomous trading</li>
                             <li><span class="icon"><i class="fas fa-circle"></i></span> Real-time portfolio monitoring & analytics</li>
                             <li><span class="icon"><i class="fas fa-circle"></i></span> Institutional-grade risk management protocols</li>
-                            <li><span class="icon"><i class="fas fa-circle"></i></span> Withdraw profits anytime - full flexibility</li>
+                            <li><span class="icon"><i class="fas fa-circle"></i></span> Withdraw profits anytime | full flexibility</li>
                         </ul>
                     </div>
                     <div class="hero-image-wrap reveal from-right stagger-3">
                         <img src="https://www.musathegiant.com/images/aurum-bot.png" alt="Aurum EX-AI Trading Bot - Autonomous AI crypto trading system" loading="lazy">
                     </div>
                     <div class="hero-cta-wrap reveal stagger-5">
-                        <a href="#get-started" class="btn-primary"><i class="fas fa-robot"></i> Try EX-AI BOT</a>
+                        <a href="#get-started" class="btn-primary">Try EX-AI BOT <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -1214,7 +1308,7 @@
                 <div class="section-grid img-left">
                     <div class="section-text-col">
                         <div class="section-eyebrow reveal stagger-1">Leadership & Vision</div>
-                        <h2 class="section-title reveal stagger-2">Meet Bryan Benson - CEO of Aurum Foundation</h2>
+                        <h2 class="section-title reveal stagger-2">Meet Bryan Benson: CEO of Aurum Foundation</h2>
                         <p class="section-subtitle reveal stagger-3">
                             A visionary Web3 expert with over 27 years of experience who previously led Binance's expansion in Latin America. At Aurum, Bryan drives strategic growth and builds solutions that bridge traditional and decentralized finance.
                         </p>
@@ -1236,7 +1330,7 @@
                         </div>
                     </div>
                     <div class="section-cta-wrap reveal stagger-6">
-                        <a href="#about" class="btn-ghost"><i class="fas fa-arrow-right"></i> Learn More About Aurum</a>
+                        <a href="#about" class="btn-ghost">Learn More About Aurum <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -1255,7 +1349,7 @@
                 <div class="section-grid">
                     <div class="section-text-col">
                         <div class="section-eyebrow reveal stagger-1">Spend Your Crypto</div>
-                        <h2 class="section-title reveal stagger-2">The Aurum Card - Your Crypto, Everywhere</h2>
+                        <h2 class="section-title reveal stagger-2">The Aurum Card | Your Crypto, Everywhere</h2>
                         <p class="section-subtitle reveal stagger-3">
                             Bridge your crypto holdings to everyday spending. Pay online, in-store, or withdraw cash at ATMs worldwide with the Aurum premium debit card.
                         </p>
@@ -1270,7 +1364,7 @@
                         <img src="https://www.musathegiant.com/images/aurum-cards.png" alt="Aurum crypto debit cards with global spending capabilities" loading="lazy">
                     </div>
                     <div class="section-cta-wrap reveal stagger-5">
-                        <a href="#aurum-card" class="btn-primary"><i class="fas fa-credit-card"></i> Order Now</a>
+                        <a href="#aurum-card" class="btn-primary">Order Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -1289,7 +1383,7 @@
                 <div class="section-grid img-left">
                     <div class="section-text-col">
                         <div class="section-eyebrow reveal stagger-1">Build Your Network</div>
-                        <h2 class="section-title reveal stagger-2">The Aurum Partner Program - Earn While You Share</h2>
+                        <h2 class="section-title reveal stagger-2">The Aurum Partner Program | Earn While You Share</h2>
                         <p class="section-subtitle reveal stagger-3">
                             Unlock additional income streams by sharing the Aurum ecosystem with others. A transparent, multi-tier commission structure rewards you for growing the community.
                         </p>
@@ -1306,7 +1400,7 @@
                         </div>
                     </div>
                     <div class="section-cta-wrap reveal stagger-5">
-                        <a href="#get-started" class="btn-primary"><i class="fas fa-rocket"></i> Get Started</a>
+                        <a href="#get-started" class="btn-primary">Get Started <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -1419,7 +1513,7 @@
                     Join thousands of partners building wealth with Aurum's AI-powered ecosystem. Start your journey today and unlock the future of autonomous finance.
                 </p>
                 <div class="reveal stagger-3">
-                    <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-bolt"></i> JOIN NOW</a>
+                    <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                 </div>
                 <p class="sub-text reveal stagger-4">
                     Free account <span>&#8226;</span> No credit card required <span>&#8226;</span> Start in minutes
@@ -1470,9 +1564,9 @@
             </div>
             <div class="footer-bottom">
                 <p class="disclaimer">
-                    <strong>Disclaimer:</strong> This website is an independent Aurum Foundation affiliate partner site operated by MTG. It is NOT owned, operated, or endorsed by Aurum Foundation. Nothing on this website constitutes financial, investment, or legal advice. All information is provided for educational and informational purposes only. Cryptocurrency and trading involve significant risk - you may lose some or all of your investment. Past performance does not guarantee future results. Always do your own research (DYOR) and consult a qualified financial advisor before making any investment decisions.
+                    <strong>Disclaimer:</strong> This website is an independent Aurum Foundation affiliate partner site operated by MTG. It is NOT owned, operated, or endorsed by Aurum Foundation. Nothing on this website constitutes financial, investment, or legal advice. All information is provided for educational and informational purposes only. Cryptocurrency and trading involve significant risk; you may lose some or all of your investment. Past performance does not guarantee future results. Always do your own research (DYOR) and consult a qualified financial advisor before making any investment decisions.
                 </p>
-                <p class="copyright">&copy; 2026 MTG - The Digital Architect | Built with <span class="heart">&hearts;</span> by MTG | Not affiliated with Aurum Foundation</p>
+                <p class="copyright">&copy; 2026 MTG &bull; The Digital Architect | Built with <span class="heart">&hearts;</span> by MTG | Not affiliated with Aurum Foundation</p>
             </div>
         </div>
     </footer>
