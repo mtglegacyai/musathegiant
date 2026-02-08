@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX-AI BOT | Aurum Partner - AI-Powered Crypto Trading</title>
+    <meta name="description" content="Unlock autonomous AI-powered crypto trading with Aurum's EX-AI Bot. 24/7 algorithmic trading, institutional-grade risk management, and full flexibility.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ============================================
+           ROOT DESIGN SYSTEM
+           ============================================ */
+        :root {
+            --bg-deep: #0a0a0a;
+            --bg-rich: #0d0d0d;
+            --bg-charcoal: #1a1a1a;
+            --bg-navy: #0c0f1a;
+            --bg-darkest: #050505;
+
+            --gold-primary: #c9a84c;
+            --gold-bright: #d4af37;
+            --gold-light: #e8d48b;
+            --gold-deep: #b8860b;
+            --gold-gradient: linear-gradient(135deg, #c9a84c 0%, #f0d78c 50%, #c9a84c 100%);
+            --gold-gradient-hover: linear-gradient(135deg, #d4af37 0%, #fff4c4 50%, #d4af37 100%);
+            --gold-text-gradient: linear-gradient(90deg, #c9a84c, #f0d78c, #c9a84c);
+
+            --text-white: #ffffff;
+            --text-soft: #e0e0e0;
+            --text-muted: #8a8a8a;
+            --text-light: #b0b0b0;
+
+            --border-subtle: rgba(201, 168, 76, 0.15);
+            --glass-overlay: rgba(10, 10, 10, 0.95);
+            --glow-gold: rgba(201, 168, 76, 0.3);
+            --glow-gold-soft: rgba(201, 168, 76, 0.08);
+
+            --font-display: 'Playfair Display', serif;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Source Sans 3', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --max-width: 1280px;
+            --section-padding: clamp(60px, 10vw, 120px);
+            --nav-height: 75px;
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-soft);
+            font-family: var(--font-body);
+            font-weight: 400;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 clamp(20px, 4vw, 40px);
+        }
+
+        /* ============================================
+           KEYFRAME ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(201, 168, 76, 0.4); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes chevron-bounce {
+            0%, 100% { transform: translateY(0) translateX(-50%); opacity: 0.6; }
+            50% { transform: translateY(10px) translateX(-50%); opacity: 1; }
+        }
+
+        @keyframes goldLine {
+            from { width: 0; }
+            to { width: 40px; }
+        }
+
+        @keyframes particle-float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        /* ============================================
+           SCROLL REVEAL SYSTEM
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.from-left {
+            transform: translateX(-60px);
+        }
+
+        .reveal.from-right {
+            transform: translateX(60px);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0) translateX(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            z-index: 1000;
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .nav.scrolled {
+            background-color: var(--glass-overlay);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 var(--border-subtle);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 clamp(20px, 4vw, 40px);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .nav-logo-text {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 0.04em;
+            line-height: 1;
+        }
+
+        .nav-logo-text .gold {
+            background: var(--gold-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-logo-text .white {
+            color: var(--text-white);
+        }
+
+        .nav-logo-tag {
+            font-family: var(--font-heading);
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: clamp(16px, 2.5vw, 32px);
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-light);
+            position: relative;
+            padding: 4px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold-primary);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .btn-join {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--bg-deep);
+            background: var(--gold-gradient);
+            background-size: 200% auto;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: shimmer 3s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        .btn-join:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.35);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--gold-primary);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(5, 5, 5, 0.97);
+            z-index: 1050;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold-primary);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: var(--nav-height);
+            background: linear-gradient(180deg, var(--bg-navy) 0%, var(--bg-deep) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 70% 50%, rgba(201, 168, 76, 0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Tech grid overlay */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(201, 168, 76, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 168, 76, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        /* Gold particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            animation: particle-float linear infinite;
+            opacity: 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 55fr 45fr;
+            gap: clamp(30px, 5vw, 60px);
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            padding: clamp(40px, 6vw, 80px) 0;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-heading);
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold-primary);
+            margin-bottom: 20px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--gold-primary);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--text-white);
+            margin-bottom: 20px;
+        }
+
+        .hero-title .highlight {
+            background: var(--gold-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: var(--text-soft);
+            margin-bottom: 32px;
+            max-width: 520px;
+        }
+
+        .hero-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .hero-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        .hero-features li .icon {
+            color: var(--gold-primary);
+            font-size: 0.7rem;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .hero-image-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-image-wrap img {
+            max-width: 100%;
+            max-height: 480px;
+            object-fit: contain;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 60px rgba(201, 168, 76, 0.15));
+        }
+
+        .hero-image-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 30px;
+            background: radial-gradient(ellipse, rgba(201, 168, 76, 0.2), transparent 70%);
+            filter: blur(15px);
+        }
+
+        .hero-cta-wrap {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Primary CTA button */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 48px;
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--bg-deep);
+            background: var(--gold-gradient);
+            background-size: 200% auto;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(201, 168, 76, 0.4);
+            background: var(--gold-gradient-hover);
+            background-size: 200% auto;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        /* Ghost / Outlined CTA */
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gold-primary);
+            background: transparent;
+            border: 1.5px solid var(--gold-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ghost:hover {
+            background: var(--gold-primary);
+            color: var(--bg-deep);
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: chevron-bounce 2s ease-in-out infinite;
+            color: var(--gold-primary);
+            font-size: 1.3rem;
+            opacity: 0.6;
+            z-index: 5;
+        }
+
+        /* ============================================
+           SECTION DIVIDER
+           ============================================ */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 0;
+            position: relative;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+        }
+
+        .divider-img {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold-primary);
+            margin: 0 30px;
+            animation: pulse-glow 3s ease-in-out infinite, float 5s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        /* ============================================
+           CONTENT SECTIONS (shared)
+           ============================================ */
+        .content-section {
+            padding: var(--section-padding) 0;
+        }
+
+        .content-section.alt-bg {
+            background-color: var(--bg-rich);
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(30px, 5vw, 80px);
+            align-items: center;
+        }
+
+        .section-grid.img-left .section-image-col {
+            order: -1;
+        }
+
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-eyebrow::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--gold-primary);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            color: var(--text-white);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-body);
+            font-weight: 300;
+            font-size: 1.05rem;
+            color: var(--text-soft);
+            margin-bottom: 28px;
+            max-width: 520px;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        .feature-list li .icon {
+            color: var(--gold-primary);
+            font-size: 0.65rem;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+
+        /* Credential pills */
+        .credential-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .credential-tag {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            padding: 6px 16px;
+            border-radius: 50px;
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            color: var(--gold-light);
+            letter-spacing: 0.02em;
+        }
+
+        .section-cta-wrap {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        /* Section image styling */
+        .section-image-col {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .section-image-col img {
+            max-width: 100%;
+            border-radius: 12px;
+            transition: transform 0.4s ease;
+        }
+
+        .section-image-col.card-style img {
+            filter: drop-shadow(0 15px 40px rgba(201, 168, 76, 0.12));
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .section-image-col.card-style:hover img {
+            transform: perspective(800px) rotateY(-5deg) rotateX(3deg);
+            filter: drop-shadow(0 20px 50px rgba(201, 168, 76, 0.2));
+        }
+
+        .section-image-col .img-frame {
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-image-col .img-frame img {
+            border-radius: 10px;
+        }
+
+        .section-image-col .img-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), transparent 60%);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: var(--bg-charcoal);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            border-color: var(--gold-primary);
+        }
+
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.05), transparent 70%);
+        }
+
+        .play-btn {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .play-btn i {
+            color: var(--bg-deep);
+            font-size: 1.2rem;
+            margin-left: 3px;
+        }
+
+        .video-placeholder:hover .play-btn {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(201, 168, 76, 0.4);
+        }
+
+        /* ============================================
+           FAQ SECTION
+           ============================================ */
+        .faq-section {
+            padding: var(--section-padding) 0;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .faq-header .section-eyebrow {
+            justify-content: center;
+        }
+
+        .faq-header .section-eyebrow::before {
+            display: none;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-subtle);
+            overflow: hidden;
+        }
+
+        .faq-item:first-child {
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 0;
+            cursor: pointer;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-white);
+            transition: color 0.3s ease;
+            gap: 20px;
+        }
+
+        .faq-question:hover {
+            color: var(--gold-primary);
+        }
+
+        .faq-question .toggle-icon {
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--gold-primary);
+        }
+
+        .faq-item.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-item.active {
+            border-left: 3px solid var(--gold-primary);
+            padding-left: 20px;
+            margin-left: -20px;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding-bottom: 22px;
+        }
+
+        .faq-answer p {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .faq-more {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .faq-more a {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gold-primary);
+            letter-spacing: 0.03em;
+            transition: color 0.3s ease;
+        }
+
+        .faq-more a:hover {
+            color: var(--gold-light);
+        }
+
+        /* ============================================
+           FINAL CTA SECTION
+           ============================================ */
+        .final-cta {
+            padding: var(--section-padding) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .final-cta .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 16px;
+        }
+
+        .final-cta .section-subtitle {
+            max-width: 600px;
+            margin: 0 auto 36px;
+            text-align: center;
+        }
+
+        .final-cta .btn-primary {
+            padding: 18px 56px;
+            font-size: 1.05rem;
+        }
+
+        .final-cta .sub-text {
+            margin-top: 18px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .final-cta .sub-text span {
+            margin: 0 8px;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background-color: var(--bg-darkest);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+        }
+
+        .footer-brand .nav-logo {
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .tag {
+            font-family: var(--font-heading);
+            font-size: 0.72rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 320px;
+        }
+
+        .footer-heading {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-white);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .social-icons a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--gold-primary);
+            color: var(--bg-deep);
+            border-color: var(--gold-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(201, 168, 76, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-subtle);
+            padding: 24px 0;
+        }
+
+        .disclaimer {
+            font-family: var(--font-body);
+            font-weight: 300;
+            font-size: 0.72rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            max-width: 960px;
+        }
+
+        .disclaimer strong {
+            color: #777;
+        }
+
+        .copyright {
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .copyright .heart {
+            color: var(--gold-primary);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav .btn-join-desktop {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-subtitle {
+                max-width: 100%;
+            }
+
+            .hero-features {
+                align-items: center;
+            }
+
+            .hero-image-wrap img {
+                max-height: 340px;
+            }
+
+            .section-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section-grid.img-left .section-image-col {
+                order: 0;
+            }
+
+            .section-subtitle {
+                max-width: 100%;
+            }
+
+            .feature-list {
+                align-items: center;
+            }
+
+            .credential-tags {
+                justify-content: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                max-width: 100%;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+
+            .nav-logo {
+                align-items: center;
+            }
+
+            .section-eyebrow {
+                justify-content: center;
+            }
+
+            .hero-eyebrow {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2rem, 7vw, 2.8rem);
+            }
+
+            .section-title {
+                font-size: clamp(1.6rem, 5vw, 2.2rem);
+            }
+
+            .btn-primary {
+                padding: 14px 36px;
+                font-size: 0.85rem;
+            }
+
+            .btn-ghost {
+                padding: 12px 32px;
+                font-size: 0.82rem;
+            }
+
+            .divider-img {
+                width: 65px;
+                height: 65px;
+            }
+
+            .faq-item.active {
+                margin-left: 0;
+                padding-left: 16px;
+            }
+
+            .footer-bottom {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --section-padding: 50px;
+            }
+
+            .hero-features li {
+                font-size: 0.88rem;
+            }
+
+            .credential-tag {
+                font-size: 0.68rem;
+                padding: 5px 12px;
+            }
+
+            .final-cta .btn-primary {
+                padding: 16px 40px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         NAVIGATION
+         ============================================ -->
+    <header class="nav" id="navbar" role="banner">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo" aria-label="EX-AI BOT Home">
+                <span class="nav-logo-text"><span class="gold">EX-AI</span> <span class="white">BOT</span></span>
+                <span class="nav-logo-tag">Aurum Partner</span>
+            </a>
+
+            <nav aria-label="Main Navigation">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#ex-ai-bot">EX-AI Bot</a></li>
+                    <li><a href="#aurum-card">Aurum Card</a></li>
+                    <li><a href="#partner-program">Partner Program</a></li>
+                    <li><a href="#get-started">Get Started</a></li>
+                </ul>
+            </nav>
+
+            <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join btn-join-desktop" target="_blank" rel="noopener noreferrer">Join Now</a>
+
+            <div class="hamburger" id="hamburger" aria-label="Toggle Menu" role="button" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#ex-ai-bot" class="mobile-nav-link">EX-AI Bot</a>
+        <a href="#aurum-card" class="mobile-nav-link">Aurum Card</a>
+        <a href="#partner-program" class="mobile-nav-link">Partner Program</a>
+        <a href="#get-started" class="mobile-nav-link">Get Started</a>
+        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join" target="_blank" rel="noopener noreferrer">Join Now</a>
+    </div>
+
+    <main>
+        <!-- ============================================
+             HERO SECTION
+             ============================================ -->
+        <section class="hero" id="ex-ai-bot" aria-label="EX-AI Bot Hero">
+            <div class="particles" id="particles"></div>
+
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-eyebrow reveal stagger-1">AI-Powered Trading</div>
+                        <h1 class="hero-title reveal stagger-2">
+                            Unlock the Future of <span class="highlight">Autonomous</span> Crypto Trading
+                        </h1>
+                        <p class="hero-subtitle reveal stagger-3">
+                            Let Aurum's EX-AI Bot work for you around the clock. Advanced AI analyzes the market, executes trades, and grows your portfolio while you focus on what matters most.
+                        </p>
+                        <ul class="hero-features reveal stagger-4">
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> AI-powered 24/7 autonomous trading</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Real-time portfolio monitoring & analytics</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Institutional-grade risk management protocols</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Withdraw profits anytime - full flexibility</li>
+                        </ul>
+                    </div>
+
+                    <div class="hero-image-wrap reveal from-right stagger-3">
+                        <img src="https://www.musathegiant.com/images/aurum-bot.png" alt="Aurum EX-AI Trading Bot - Autonomous AI crypto trading system" loading="lazy">
+                    </div>
+
+                    <div class="hero-cta-wrap reveal stagger-5">
+                        <a href="#get-started" class="btn-primary">
+                            <i class="fas fa-robot"></i> Try EX-AI BOT
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator" aria-hidden="true">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider reveal">
+            <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum" class="divider-img" loading="lazy">
+        </div>
+
+        <!-- ============================================
+             CEO INTRO SECTION
+             ============================================ -->
+        <section class="content-section alt-bg" id="about" aria-label="About Aurum CEO">
+            <div class="container">
+                <div class="section-grid img-left">
+                    <div class="section-text-col">
+                        <div class="section-eyebrow reveal stagger-1">Leadership & Vision</div>
+                        <h2 class="section-title reveal stagger-2">Meet Bryan Benson - CEO of Aurum Foundation</h2>
+                        <p class="section-subtitle reveal stagger-3">
+                            A visionary Web3 expert with over 27 years of experience who previously led Binance's expansion in Latin America. At Aurum, Bryan drives strategic growth and builds solutions that bridge traditional and decentralized finance.
+                        </p>
+                        <ul class="feature-list reveal stagger-4">
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Globally recognized fintech and Web3 leader</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> 25+ member team of industry professionals</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Three international licenses secured</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Featured in Forbes, Binance News, Benzinga</li>
+                        </ul>
+                        <div class="credential-tags reveal stagger-5">
+                            <span class="credential-tag">27+ Years Experience</span>
+                            <span class="credential-tag">Ex-Binance</span>
+                            <span class="credential-tag">Web3 Pioneer</span>
+                        </div>
+                    </div>
+
+                    <div class="section-image-col reveal from-left stagger-2">
+                        <div class="video-placeholder">
+                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="section-cta-wrap reveal stagger-6">
+                        <a href="#about" class="btn-ghost">
+                            <i class="fas fa-arrow-right"></i> Learn More About Aurum
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider reveal">
+            <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum" class="divider-img" loading="lazy">
+        </div>
+
+        <!-- ============================================
+             AURUM CARD SECTION
+             ============================================ -->
+        <section class="content-section" id="aurum-card" aria-label="Aurum Card">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="section-text-col">
+                        <div class="section-eyebrow reveal stagger-1">Spend Your Crypto</div>
+                        <h2 class="section-title reveal stagger-2">The Aurum Card - Your Crypto, Everywhere</h2>
+                        <p class="section-subtitle reveal stagger-3">
+                            Bridge your crypto holdings to everyday spending. Pay online, in-store, or withdraw cash at ATMs worldwide with the Aurum premium debit card.
+                        </p>
+                        <ul class="feature-list reveal stagger-4">
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Virtual & physical crypto debit cards</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Apple Pay & Google Pay integration</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Global ATM withdrawals</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Up to 10% cashback on purchases</li>
+                        </ul>
+                    </div>
+
+                    <div class="section-image-col card-style reveal from-right stagger-2">
+                        <img src="https://www.musathegiant.com/images/aurum-cards.png" alt="Aurum crypto debit cards with global spending capabilities" loading="lazy">
+                    </div>
+
+                    <div class="section-cta-wrap reveal stagger-5">
+                        <a href="#aurum-card" class="btn-primary">
+                            <i class="fas fa-credit-card"></i> Order Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider reveal">
+            <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum" class="divider-img" loading="lazy">
+        </div>
+
+        <!-- ============================================
+             PARTNER PROGRAM SECTION
+             ============================================ -->
+        <section class="content-section alt-bg" id="partner-program" aria-label="Partner Program">
+            <div class="container">
+                <div class="section-grid img-left">
+                    <div class="section-text-col">
+                        <div class="section-eyebrow reveal stagger-1">Build Your Network</div>
+                        <h2 class="section-title reveal stagger-2">The Aurum Partner Program - Earn While You Share</h2>
+                        <p class="section-subtitle reveal stagger-3">
+                            Unlock additional income streams by sharing the Aurum ecosystem with others. A transparent, multi-tier commission structure rewards you for growing the community.
+                        </p>
+                        <ul class="feature-list reveal stagger-4">
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Multi-tier commission structure</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Real-time tracking dashboard</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> No recruitment required to earn</li>
+                            <li><span class="icon"><i class="fas fa-diamond"></i></span> Global community of 18,000+ partners</li>
+                        </ul>
+                    </div>
+
+                    <div class="section-image-col reveal from-left stagger-2">
+                        <div class="video-placeholder">
+                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="section-cta-wrap reveal stagger-5">
+                        <a href="#get-started" class="btn-primary">
+                            <i class="fas fa-rocket"></i> Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider reveal">
+            <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum" class="divider-img" loading="lazy">
+        </div>
+
+        <!-- ============================================
+             FAQ SECTION
+             ============================================ -->
+        <section class="faq-section" id="faq" aria-label="Frequently Asked Questions">
+            <div class="container">
+                <div class="faq-header">
+                    <div class="section-eyebrow reveal">Got Questions?</div>
+                    <h2 class="section-title reveal stagger-1">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="faq-list">
+                    <div class="faq-item reveal stagger-1">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>What is Aurum Foundation?</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Aurum Foundation is an AI-driven fintech ecosystem that combines autonomous trading bots, a Web3 NeoBank, crypto debit cards, and a global partner program into one unified platform. Established in Hong Kong in late 2024, it serves over 18,000 partners worldwide.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal stagger-2">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>What is the EX-AI Trading Bot?</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The EX-AI Bot is an autonomous AI-powered trading system that scans crypto markets 24/7, executing strategic spot trades to generate consistent returns with minimal risk. It uses advanced algorithms and machine learning to adapt to market conditions in real time.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal stagger-3">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>Is Aurum Foundation legitimate?</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Aurum holds three international licenses, manages over $30M in assets, serves 18,000+ partners globally, and has been featured in Forbes, Binance News, Benzinga, and other major publications. The company is led by experienced fintech professionals.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal stagger-4">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>Who is behind Aurum?</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Aurum is led by CEO Bryan Benson, a Web3 veteran with 27+ years of experience and a former Binance executive. The leadership team of 25+ professionals spans financial markets, blockchain technology, AI, and network development.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal stagger-5">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>When was Aurum established?</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Aurum Foundation was established in Hong Kong in late 2024 and has rapidly grown into a globally recognized fintech ecosystem with institutional-grade trading infrastructure and digital banking services.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal stagger-5">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>What is the minimum to get started?</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Account creation is free. A $20 per year subscription unlocks full platform access including AI bot activation. Trading capital is flexible based on your personal investment capacity and risk tolerance.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal stagger-5">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>Do I need to recruit people to earn?</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No. You can earn solely through the EX-AI Bot and other trading tools without recruiting anyone. The Partner Program is completely optional and offers additional commission streams for those who choose to participate.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal stagger-6">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>Can I withdraw my earnings and capital anytime?</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes. Aurum provides flexibility to withdraw profits. Specific terms and processing times apply depending on the product. Check the Aurum Back Office for current withdrawal schedules and thresholds.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal stagger-6">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>What is the minimum withdrawal?</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Withdrawal minimums depend on the specific product and withdrawal method. Consult the Aurum Back Office for current thresholds and processing details.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal stagger-6">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>How do I get started?</span>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Click "Join Now" on this page, create your free account, activate the $20 per year subscription, fund your account, and let the EX-AI Bot begin trading for you. The entire setup takes just minutes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-more reveal">
+                    <a href="#faq">Have more questions? Visit our full FAQ page <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider reveal">
+            <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum" class="divider-img" loading="lazy">
+        </div>
+
+        <!-- ============================================
+             FINAL CTA SECTION
+             ============================================ -->
+        <section class="final-cta" id="get-started" aria-label="Get Started">
+            <div class="container">
+                <h2 class="section-title reveal stagger-1">Ready to Let AI Work For You?</h2>
+                <p class="section-subtitle reveal stagger-2">
+                    Join thousands of partners building wealth with Aurum's AI-powered ecosystem. Start your journey today and unlock the future of autonomous finance.
+                </p>
+                <div class="reveal stagger-3">
+                    <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-bolt"></i> JOIN NOW
+                    </a>
+                </div>
+                <p class="sub-text reveal stagger-4">
+                    Free account <span>&#8226;</span> No credit card required <span>&#8226;</span> Start in minutes
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <span class="nav-logo-text"><span class="gold">EX-AI</span> <span class="white">BOT</span></span>
+                    </div>
+                    <div class="tag">Aurum Affiliate Partner Site</div>
+                    <p>Empowering financial freedom through AI-driven trading and blockchain innovation. This is an independent partner site, not the official Aurum Foundation platform.</p>
+                </div>
+
+                <div class="footer-links-col">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#ex-ai-bot">EX-AI Bot</a></li>
+                        <li><a href="#aurum-card">Aurum Card</a></li>
+                        <li><a href="#partner-program">Partner Program</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#get-started">Get Started</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-connect">
+                    <h3 class="footer-heading">Let's Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/27721714626" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i>&nbsp; WhatsApp</a></li>
+                        <li><a href="https://www.tiktok.com/@musathegiant" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i>&nbsp; TikTok</a></li>
+                        <li><a href="https://www.facebook.com/Musa.TheMTG" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i>&nbsp; Facebook</a></li>
+                        <li><a href="https://www.youtube.com/@MusaTheGiant" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i>&nbsp; YouTube</a></li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="https://wa.me/27721714626" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.tiktok.com/@musathegiant" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/Musa.TheMTG" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/@MusaTheGiant" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="disclaimer">
+                    <strong>Disclaimer:</strong> This website is an independent Aurum Foundation affiliate partner site operated by MTG. It is NOT owned, operated, or endorsed by Aurum Foundation. Nothing on this website constitutes financial, investment, or legal advice. All information is provided for educational and informational purposes only. Cryptocurrency and trading involve significant risk - you may lose some or all of your investment. Past performance does not guarantee future results. Always do your own research (DYOR) and consult a qualified financial advisor before making any investment decisions.
+                </p>
+                <p class="copyright">
+                    &copy; 2026 MTG - The Digital Architect | Built with <span class="heart">&hearts;</span> by MTG | Not affiliated with Aurum Foundation
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // === NAVBAR SCROLL BEHAVIOR ===
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        }, { passive: true });
+
+        // === HAMBURGER MENU ===
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // === SCROLL REVEAL (IntersectionObserver) ===
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // === FAQ ACCORDION ===
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                    faq.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+
+                // Open clicked (if it wasn't already open)
+                if (!isActive) {
+                    item.classList.add('active');
+                    question.setAttribute('aria-expanded', 'true');
+                }
+            });
+
+            // Keyboard accessibility
+            question.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    question.click();
+                }
+            });
+        });
+
+        // === GOLD PARTICLES (Hero) ===
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 15;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.bottom = '-10px';
+            particle.style.width = (Math.random() * 3 + 1) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            particle.style.animationDelay = (Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    </script>
+
+</body>
+</html>
