@@ -149,9 +149,11 @@
             100% { background-position: 200% center; }
         }
 
-        @keyframes chevron-bounce {
-            0%, 100% { transform: translateY(0) translateX(-50%); opacity: 0.5; }
-            50% { transform: translateY(10px) translateX(-50%); opacity: 1; }
+        @keyframes chevron-cascade {
+            0%   { opacity: 0; transform: translateY(-6px); }
+            30%  { opacity: 1; transform: translateY(0); }
+            60%  { opacity: 1; transform: translateY(4px); }
+            100% { opacity: 0; transform: translateY(10px); }
         }
 
         @keyframes particle-drift {
@@ -750,10 +752,30 @@
             bottom: 28px;
             left: 50%;
             transform: translateX(-50%);
-            animation: chevron-bounce 2s ease-in-out infinite;
-            color: var(--blue-primary);
-            font-size: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
             z-index: 5;
+        }
+
+        .scroll-indicator .chevron {
+            color: var(--blue-primary);
+            font-size: 0.85rem;
+            opacity: 0;
+            animation: chevron-cascade 1.8s ease-in-out infinite;
+        }
+
+        .scroll-indicator .chevron:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .scroll-indicator .chevron:nth-child(2) {
+            animation-delay: 0.25s;
+        }
+
+        .scroll-indicator .chevron:nth-child(3) {
+            animation-delay: 0.5s;
         }
 
         /* ============================================
@@ -1404,7 +1426,8 @@
             .footer-bottom { text-align: center; }
 
             /* More breathing room on smaller tablets */
-            .scroll-indicator { bottom: 12px; font-size: 1rem; }
+            .scroll-indicator { bottom: 12px; }
+            .scroll-indicator .chevron { font-size: 0.8rem; }
             .hero-cta-wrap { padding-bottom: 38px; }
 
             /* MOBILE OPT: Ensure footer social icons have proper touch targets */
@@ -1448,7 +1471,8 @@
             .divider-img { width: 50px; height: 50px; margin: 0 16px; }
 
             /* Max breathing room on phones */
-            .scroll-indicator { bottom: 10px; font-size: 0.95rem; }
+            .scroll-indicator { bottom: 10px; }
+            .scroll-indicator .chevron { font-size: 0.75rem; }
             .hero-cta-wrap { padding-bottom: 40px; }
 
             /* MOBILE OPT: FAQ question spacing */
@@ -1551,7 +1575,11 @@
                     </div>
                 </div>
             </div>
-            <div class="scroll-indicator" aria-hidden="true"><i class="fas fa-chevron-down"></i></div>
+            <div class="scroll-indicator" aria-hidden="true">
+                <span class="chevron"><i class="fas fa-chevron-down"></i></span>
+                <span class="chevron"><i class="fas fa-chevron-down"></i></span>
+                <span class="chevron"><i class="fas fa-chevron-down"></i></span>
+            </div>
         </section>
 
         <!-- SECTION DIVIDER -->
