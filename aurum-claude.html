@@ -630,6 +630,7 @@
             grid-column: 1 / -1;
             text-align: center;
             padding-top: 16px;
+            padding-bottom: clamp(60px, 8vw, 40px);
             position: relative;
             z-index: 2;
         }
@@ -1387,6 +1388,10 @@
             .nav-logo { align-items: center; }
             .section-eyebrow { justify-content: center; }
             .hero-eyebrow { justify-content: center; }
+
+            /* Breathing room between CTA and scroll arrow */
+            .scroll-indicator { bottom: 16px; }
+            .hero-cta-wrap { padding-bottom: 70px; }
         }
 
         @media (max-width: 768px) {
@@ -1397,6 +1402,10 @@
             .divider-img { width: 60px; height: 60px; }
             .faq-item.active { margin-left: 0; padding-left: 14px; }
             .footer-bottom { text-align: center; }
+
+            /* More breathing room on smaller tablets */
+            .scroll-indicator { bottom: 12px; font-size: 1rem; }
+            .hero-cta-wrap { padding-bottom: 76px; }
 
             /* MOBILE OPT: Ensure footer social icons have proper touch targets */
             .social-icons a {
@@ -1438,6 +1447,10 @@
             .section-divider { padding: 24px 0; }
             .divider-img { width: 50px; height: 50px; margin: 0 16px; }
 
+            /* Max breathing room on phones */
+            .scroll-indicator { bottom: 10px; font-size: 0.95rem; }
+            .hero-cta-wrap { padding-bottom: 80px; }
+
             /* MOBILE OPT: FAQ question spacing */
             .faq-question {
                 padding: 16px 0;
@@ -1457,6 +1470,9 @@
             .nav-logo-text { font-size: 1.15rem; }
             .mobile-menu { width: 85%; }
             .mobile-menu a { font-size: 1rem; padding: 10px 16px; }
+
+            .scroll-indicator { bottom: 8px; }
+            .hero-cta-wrap { padding-bottom: 84px; }
         }
     </style>
 </head>
@@ -1531,7 +1547,7 @@
                         <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum EX-AI Trading Bot - Autonomous AI crypto trading system" loading="lazy">
                     </div>
                     <div class="hero-cta-wrap reveal stagger-5">
-                        <a href="#get-started" class="btn-primary">Try EX-AI BOT <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
+                        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Try EX-AI BOT <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
