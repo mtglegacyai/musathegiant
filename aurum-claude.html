@@ -509,25 +509,6 @@
             flex-shrink: 0;
         }
 
-        .hero-image-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: transparent;
-        }
-
-        .hero-image-wrap img {
-            max-width: 100%;
-            max-height: 460px;
-            object-fit: contain;
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 15px 40px rgba(0, 115, 255, 0.1));
-            border-radius: 0;
-            background: transparent;
-            mix-blend-mode: multiply;
-        }
-
         .hero-cta-wrap {
             grid-column: 1 / -1;
             text-align: center;
@@ -1185,7 +1166,7 @@
 
             .hero-subtitle { max-width: 100%; }
             .hero-features { align-items: center; }
-            .hero-image-wrap img { max-height: 320px; }
+            .hero .section-image-col img { max-height: 320px; }
 
             .section-grid {
                 grid-template-columns: 1fr;
@@ -1288,7 +1269,7 @@
                             <li><span class="icon"><i class="fas fa-circle"></i></span> Withdraw profits anytime | full flexibility</li>
                         </ul>
                     </div>
-                    <div class="hero-image-wrap reveal from-right stagger-3">
+                    <div class="section-image-col card-style reveal from-right stagger-3">
                         <img src="https://www.musathegiant.com/images/aurum-bot.png" alt="Aurum EX-AI Trading Bot - Autonomous AI crypto trading system" loading="lazy">
                     </div>
                     <div class="hero-cta-wrap reveal stagger-5">
