@@ -449,6 +449,55 @@
             background: rgba(0, 115, 255, 0.06);
         }
 
+        /* MOBILE OPT: Red close button inside mobile menu */
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: rgba(255, 0, 0, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1060;
+            transition: background 0.3s ease, transform 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .mobile-menu-close i {
+            font-size: 1.2rem;
+            color: #FF0000;
+            line-height: 1;
+        }
+
+        .mobile-menu-close:hover,
+        .mobile-menu-close:active {
+            background: rgba(255, 0, 0, 0.15);
+            transform: scale(1.1);
+        }
+
+        /* MOBILE OPT: CTA button inside mobile menu — white text */
+        .mobile-menu .mobile-menu-cta {
+            color: #FFFFFF !important;
+            background: var(--blue-gradient);
+            border-radius: 50px;
+            padding: 12px 16px 12px 24px;
+            gap: 10px;
+            min-height: 48px;
+            width: auto;
+            margin-top: 8px;
+        }
+
+        .mobile-menu .mobile-menu-cta:hover,
+        .mobile-menu .mobile-menu-cta:active {
+            color: #FFFFFF !important;
+            background: var(--blue-gradient-hover);
+        }
+
         /* ============================================
            HERO SECTION
            ============================================ */
@@ -1368,12 +1417,16 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
+        <!-- MOBILE OPT: Red close button inside menu -->
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close Menu">
+            <i class="fas fa-times"></i>
+        </button>
         <a href="#about" class="mobile-nav-link">About</a>
         <a href="#ex-ai-bot" class="mobile-nav-link">EX-AI Bot</a>
         <a href="#aurum-card" class="mobile-nav-link">Aurum Card</a>
         <a href="#partner-program" class="mobile-nav-link">Partner Program</a>
         <a href="#get-started" class="mobile-nav-link">Get Started</a>
-        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
+        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join mobile-menu-cta" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
     </div>
 
     <main>
@@ -1728,6 +1781,10 @@
 
         // Close on overlay tap
         overlay.addEventListener('click', closeMobileMenu);
+
+        // MOBILE OPT: Close on red X button inside menu
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
 
         // Close on nav link tap
         document.querySelectorAll('.mobile-nav-link').forEach(link => {
