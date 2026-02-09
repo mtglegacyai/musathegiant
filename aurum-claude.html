@@ -711,8 +711,8 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            /* MOBILE OPT: White circle background */
-            background: #FFFFFF;
+            /* Circle bg matches the blue button color */
+            background: var(--blue-primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -722,8 +722,8 @@
 
         .btn-ghost .btn-circle i {
             font-size: 0.7rem;
-            /* MOBILE OPT: Arrow matches button color */
-            color: var(--blue-primary);
+            /* Arrow is white */
+            color: #FFFFFF;
             transition: transform 0.3s ease, color 0.3s ease;
         }
 
@@ -743,7 +743,6 @@
             color: var(--blue-primary);
             transform: translateX(2px);
         }
-
         .scroll-indicator {
             position: absolute;
             bottom: 28px;
@@ -957,9 +956,12 @@
         .video-placeholder {
             width: 100%;
             aspect-ratio: 16 / 10;
-            background: var(--glass-bg);
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(0, 115, 255, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(56, 152, 248, 0.05) 0%, transparent 60%),
+                linear-gradient(160deg, rgba(255,255,255,0.95) 0%, rgba(241,248,255,0.9) 100%);
             backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
+            border: 2px solid transparent;
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -967,36 +969,108 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+            /* Gradient border via background-origin trick */
+            background-clip: padding-box;
+            /* Ambient glow — visible by default */
+            box-shadow:
+                0 8px 32px rgba(0, 115, 255, 0.12),
+                0 2px 12px rgba(0, 115, 255, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        /* Animated gradient border ring */
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 22px;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 115, 255, 0.35),
+                rgba(56, 152, 248, 0.15) 25%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(56, 152, 248, 0.15) 75%,
+                rgba(0, 115, 255, 0.35)
+            );
+            background-size: 300% 300%;
+            animation: slideGradient 6s ease infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Shimmer sweep across surface */
+        .video-placeholder::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+                100deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.4) 45%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0.4) 55%,
+                transparent 100%
+            );
+            transform: skewX(-15deg);
+            animation: shimmer 5s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .video-placeholder:hover {
-            border-color: rgba(0, 115, 255, 0.3);
-            box-shadow: 0 8px 32px var(--blue-glow);
+            border-color: rgba(0, 115, 255, 0.4);
+            box-shadow:
+                0 16px 48px rgba(0, 115, 255, 0.22),
+                0 4px 16px rgba(0, 115, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transform: translateY(-4px);
         }
 
         .play-btn {
-            width: 64px;
-            height: 64px;
+            width: 68px;
+            height: 68px;
             border-radius: 50%;
             background: var(--blue-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             z-index: 2;
+            /* Default glow ring around play button */
+            box-shadow:
+                0 0 0 8px rgba(0, 115, 255, 0.1),
+                0 0 0 16px rgba(0, 115, 255, 0.05),
+                0 4px 20px rgba(0, 115, 255, 0.25);
+        }
+
+        /* Pulse ring around play button */
+        .play-btn::before {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 115, 255, 0.2);
+            animation: pulse-glow 3s ease-in-out infinite;
+            pointer-events: none;
         }
 
         .play-btn i {
             color: var(--text-white);
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             margin-left: 3px;
         }
 
         .video-placeholder:hover .play-btn {
-            transform: scale(1.1);
-            box-shadow: 0 0 40px var(--blue-glow-strong);
+            transform: scale(1.12);
+            box-shadow:
+                0 0 0 10px rgba(0, 115, 255, 0.15),
+                0 0 0 20px rgba(0, 115, 255, 0.08),
+                0 8px 40px rgba(0, 115, 255, 0.35);
         }
 
         /* ============================================
