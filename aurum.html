@@ -335,10 +335,7 @@
         }
 
         .btn-join .btn-circle i {
-            font-size: 0.6rem;
-            /* MOBILE OPT: Arrow matches button background color */
-            color: var(--blue-primary);
-            transition: transform 0.3s ease;
+            /* Styled by ANIMATED ARROW CTA SYSTEM */
         }
 
         .btn-join:hover {
@@ -805,10 +802,7 @@
         }
 
         .btn-primary .btn-circle i {
-            font-size: 0.75rem;
-            /* MOBILE OPT: Arrow matches button background color */
-            color: var(--blue-primary);
-            transition: transform 0.3s ease;
+            /* Styled by ANIMATED ARROW CTA SYSTEM */
         }
 
         .btn-primary:hover {
@@ -857,10 +851,7 @@
         }
 
         .btn-ghost .btn-circle i {
-            font-size: 0.7rem;
-            /* Arrow is white */
-            color: #FFFFFF;
-            transition: transform 0.3s ease, color 0.3s ease;
+            /* Styled by ANIMATED ARROW CTA SYSTEM */
         }
 
         .btn-ghost:hover {
@@ -880,54 +871,39 @@
         }
 
         /* ============================================
-           CHEVRON CTA ANIMATION SYSTEM
+           ANIMATED ARROW CTA SYSTEM
            ============================================ */
-        .btn-chevrons {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 0;
-            position: relative;
-        }
-
-        .btn-chevrons i {
+        .btn-circle i {
             opacity: 0;
             animation: chevron-cascade-right 1.4s ease-in-out infinite;
-            line-height: 1;
-            flex-shrink: 0;
         }
 
-        .btn-chevrons i:nth-child(1) { animation-delay: 0s; }
-        .btn-chevrons i:nth-child(2) { animation-delay: 0.2s; margin-left: -3px; }
-        .btn-chevrons i:nth-child(3) { animation-delay: 0.4s; margin-left: -3px; }
-
-        /* btn-primary chevrons (38px circle) */
-        .btn-primary .btn-chevrons i {
-            font-size: 0.45rem;
+        /* btn-primary arrow (38px circle) */
+        .btn-primary .btn-circle i {
+            font-size: 0.75rem;
             color: var(--blue-primary);
         }
 
-        /* btn-join chevrons (38px circle) */
-        .btn-join .btn-chevrons i {
-            font-size: 0.45rem;
+        /* btn-join arrow (38px circle) */
+        .btn-join .btn-circle i {
+            font-size: 0.65rem;
             color: var(--blue-primary);
         }
 
-        /* btn-ghost chevrons (38px circle — white on blue) */
-        .btn-ghost .btn-chevrons i {
-            font-size: 0.45rem;
+        /* btn-ghost arrow (38px circle — white on blue) */
+        .btn-ghost .btn-circle i {
+            font-size: 0.7rem;
             color: #FFFFFF;
         }
 
         /* btn-ghost hover: circle flips to white bg */
-        .btn-ghost:hover .btn-chevrons i {
+        .btn-ghost:hover .btn-circle i {
             color: var(--blue-primary);
         }
 
-        /* final-cta larger circle (38px) */
-        .final-cta .btn-chevrons i {
-            font-size: 0.45rem;
+        /* final-cta larger arrow */
+        .final-cta .btn-primary .btn-circle i {
+            font-size: 0.85rem;
         }
 
         .scroll-indicator {
@@ -1703,7 +1679,7 @@
                     <li><a href="#get-started">Get Started</a></li>
                 </ul>
             </nav>
-            <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join btn-join-desktop" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><span class="btn-chevrons"><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span></span></a>
+            <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join btn-join-desktop" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
             <div class="hamburger" id="hamburger" aria-label="Toggle Menu" role="button" tabindex="0">
                 <span></span><span></span><span></span>
             </div>
@@ -1729,7 +1705,7 @@
         <a href="#aurum-card" class="mobile-nav-link">Aurum Card</a>
         <a href="#partner-program" class="mobile-nav-link">Partner Program</a>
         <a href="#get-started" class="mobile-nav-link">Get Started</a>
-        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join mobile-menu-cta" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><span class="btn-chevrons"><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span></span></a>
+        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join mobile-menu-cta" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
     </div>
 
     <main>
@@ -1759,7 +1735,7 @@
                         <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum EX-AI Trading Bot - Autonomous AI crypto trading system" loading="lazy">
                     </div>
                     <div class="hero-cta-wrap reveal stagger-5">
-                        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Try EX-AI BOT <span class="btn-circle"><span class="btn-chevrons"><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span></span></a>
+                        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Try EX-AI BOT <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -1805,7 +1781,7 @@
                         </div>
                     </div>
                     <div class="section-cta-wrap reveal stagger-6">
-                        <a href="#about" class="btn-ghost">Learn More About Aurum <span class="btn-circle"><span class="btn-chevrons"><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span></span></a>
+                        <a href="#about" class="btn-ghost">Learn More About Aurum <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -1839,7 +1815,7 @@
                         <img src="https://www.musathegiant.com/images/aurum-cards.png" alt="Aurum crypto debit cards with global spending capabilities" loading="lazy">
                     </div>
                     <div class="section-cta-wrap reveal stagger-5">
-                        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Order Now <span class="btn-circle"><span class="btn-chevrons"><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span></span></a>
+                        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Order Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -1875,7 +1851,7 @@
                         </div>
                     </div>
                     <div class="section-cta-wrap reveal stagger-5">
-                        <a href="#get-started" class="btn-primary">Get Started <span class="btn-circle"><span class="btn-chevrons"><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span></span></a>
+                        <a href="#get-started" class="btn-primary">Get Started <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -1988,7 +1964,7 @@
                     Join thousands of partners building wealth with Aurum's AI-powered ecosystem. Start your journey today and unlock the future of autonomous finance.
                 </p>
                 <div class="reveal stagger-3">
-                    <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><span class="btn-chevrons"><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></span></span></a>
+                    <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                 </div>
                 <p class="sub-text reveal stagger-4">
                     Free account <span>&#8226;</span> No credit card required <span>&#8226;</span> Start in minutes
