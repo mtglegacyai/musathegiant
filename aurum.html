@@ -1878,6 +1878,46 @@
            ============================================ */
 
         /* ============================================
+           CEO VIDEO PLAYER
+           Same custom thumbnail + loading + iframe
+           pattern as the about-aurum video.
+           ============================================ */
+
+        #about .video-placeholder {
+            background:
+                radial-gradient(ellipse at 25% 30%, rgba(0, 115, 255, 0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 70%, rgba(56, 152, 248, 0.10) 0%, transparent 55%),
+                linear-gradient(135deg, #0060DD 0%, #0073FF 40%, #3898F8 100%);
+            border-color: rgba(0, 115, 255, 0.25);
+        }
+
+        #about .video-placeholder::before { display: none; }
+        #about .video-placeholder::after { display: none; }
+
+        /* Reuse aurum-thumb, aurum-play-btn, aurum-loading, aurum-iframe-wrap classes */
+        /* All styling inherited from the about-aurum video player CSS above */
+
+        #about .video-placeholder:hover .aurum-play-btn {
+            transform: scale(1.14);
+            background: rgba(255, 255, 255, 0.28);
+            border-color: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.12);
+            animation: none;
+        }
+
+        #about .video-placeholder:hover .aurum-play-btn i {
+            transform: scale(1.1);
+        }
+
+        #about .video-placeholder:hover .aurum-thumb-cta {
+            color: rgba(255, 255, 255, 1);
+        }
+
+        /* ============================================
+           END CEO VIDEO PLAYER
+           ============================================ */
+
+        /* ============================================
            SCROLL TO TOP BUTTON
            Styled to match btn-primary CTA system.
            Appears after scrolling 600px down.
@@ -2153,9 +2193,28 @@
                             <span class="credential-tag">Web3 Pioneer</span>
                         </div>
                     </div>
+                    <!-- CEO VIDEO: Custom thumbnail + lazy YouTube embed -->
                     <div class="section-image-col reveal from-left stagger-2">
-                        <div class="video-placeholder">
-                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                        <div class="video-placeholder" id="ceo-video-player" data-video-id="2JZkWis8dTs">
+
+                            <!-- STATE 1: Custom Thumbnail -->
+                            <div class="aurum-thumb-content" id="ceo-thumb">
+                                <p class="aurum-thumb-headline">He Left Binance to Build Something Bigger. Hear Why.</p>
+                                <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
+                                <span class="aurum-thumb-cta">Watch Bryan's Story</span>
+                            </div>
+
+                            <!-- STATE 2: Loading -->
+                            <div class="aurum-loading" id="ceo-loading">
+                                <div class="aurum-loading-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <p class="aurum-loading-text">Loading Aurum video, please wait...</p>
+                            </div>
+
+                            <!-- STATE 3: YouTube iframe (injected on click) -->
+                            <div class="aurum-iframe-wrap" id="ceo-iframe-wrap"></div>
+
                         </div>
                     </div>
                     <div class="section-cta-wrap reveal stagger-6">
@@ -2538,29 +2597,33 @@
         }
 
         /* ============================================
-           ABOUT AURUM VIDEO PLAYER JS
+           YOUTUBE VIDEO PLAYER SYSTEM
+           Shared system for all custom video players.
            Uses YouTube IFrame API for reliable state
-           detection. Resets to thumbnail on video end
-           before YouTube end-screen can appear.
+           detection. Resets to thumbnail on video end.
            ============================================ */
+
+        // Load YouTube IFrame API once
         (function() {
-            const playerEl = document.getElementById('aurum-video-player');
-            if (!playerEl) return;
-
-            const videoId = playerEl.dataset.videoId;
-            const thumb = document.getElementById('aurum-thumb');
-            const loading = document.getElementById('aurum-loading');
-            const iframeWrap = document.getElementById('aurum-iframe-wrap');
-            let ytPlayer = null;
-            let iframeDiv = null;
-
-            // Load YouTube IFrame API
             var tag = document.createElement('script');
             tag.src = 'https://www.youtube.com/iframe_api';
             var firstScript = document.getElementsByTagName('script')[0];
             firstScript.parentNode.insertBefore(tag, firstScript);
+        })();
 
-            // STATE TRANSITIONS
+        // Reusable video player factory
+        function initAurumVideoPlayer(config) {
+            var playerEl = document.getElementById(config.playerId);
+            if (!playerEl) return;
+
+            var videoId = playerEl.dataset.videoId;
+            var thumb = document.getElementById(config.thumbId);
+            var loading = document.getElementById(config.loadingId);
+            var iframeWrap = document.getElementById(config.iframeWrapId);
+            var ytPlayer = null;
+            var iframeDiv = null;
+            var divId = config.playerId + '-yt';
+
             function showLoading() {
                 thumb.classList.add('hidden');
                 loading.classList.add('active');
@@ -2578,59 +2641,61 @@
                         ytPlayer.destroy();
                         ytPlayer = null;
                     }
-                    if (iframeDiv) {
+                    if (iframeDiv && iframeWrap.contains(iframeDiv)) {
                         iframeWrap.removeChild(iframeDiv);
-                        iframeDiv = null;
                     }
+                    iframeDiv = null;
                     thumb.classList.remove('hidden');
                 }, 400);
             }
 
-            // CLICK HANDLER
+            function createPlayer() {
+                ytPlayer = new YT.Player(divId, {
+                    videoId: videoId,
+                    playerVars: {
+                        autoplay: 1,
+                        rel: 0,
+                        modestbranding: 1,
+                        controls: 1,
+                        showinfo: 0,
+                        fs: 1
+                    },
+                    events: {
+                        onReady: function() {
+                            setTimeout(showVideo, 200);
+                        },
+                        onStateChange: function(e) {
+                            if (e.data === 0) {
+                                resetToThumbnail();
+                            }
+                        }
+                    }
+                });
+            }
+
             playerEl.addEventListener('click', function() {
                 if (iframeWrap.classList.contains('active')) return;
                 if (loading.classList.contains('active')) return;
 
                 showLoading();
 
-                // Create a div for YT.Player to replace
                 iframeDiv = document.createElement('div');
-                iframeDiv.id = 'aurum-yt-player';
+                iframeDiv.id = divId;
                 iframeDiv.style.width = '100%';
                 iframeDiv.style.height = '100%';
                 iframeDiv.style.borderRadius = '20px';
                 iframeWrap.appendChild(iframeDiv);
 
-                // Wait for API to be ready, then create player
-                function createPlayer() {
-                    ytPlayer = new YT.Player('aurum-yt-player', {
-                        videoId: videoId,
-                        playerVars: {
-                            autoplay: 1,
-                            rel: 0,
-                            modestbranding: 1,
-                            controls: 1,
-                            showinfo: 0,
-                            fs: 1
-                        },
-                        events: {
-                            onReady: function() {
-                                setTimeout(showVideo, 200);
-                            },
-                            onStateChange: function(e) {
-                                // 0 = ended: reset to thumbnail instantly
-                                if (e.data === 0) {
-                                    resetToThumbnail();
-                                }
-                            }
-                        }
-                    });
-                }
-
                 if (window.YT && window.YT.Player) {
                     createPlayer();
                 } else {
-                    window.onYouTubeIframeAPIReady = createPlayer;
+                    // Poll until API is ready
+                    var poll = setInterval(function() {
+                        if (window.YT && window.YT.Player) {
+                            clearInterval(poll);
+                            createPlayer();
+                        }
+                    }, 100);
                 }
 
                 // Fallback: if player doesn't fire onReady within 6s
@@ -2640,7 +2705,23 @@
                     }
                 }, 6000);
             });
-        })();
+        }
+
+        // Initialize About Aurum video player
+        initAurumVideoPlayer({
+            playerId: 'aurum-video-player',
+            thumbId: 'aurum-thumb',
+            loadingId: 'aurum-loading',
+            iframeWrapId: 'aurum-iframe-wrap'
+        });
+
+        // Initialize CEO video player
+        initAurumVideoPlayer({
+            playerId: 'ceo-video-player',
+            thumbId: 'ceo-thumb',
+            loadingId: 'ceo-loading',
+            iframeWrapId: 'ceo-iframe-wrap'
+        });
     </script>
 
 </body>
