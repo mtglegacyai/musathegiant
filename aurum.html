@@ -1657,6 +1657,226 @@
             .scroll-indicator { bottom: 8px; }
             .hero-cta-wrap { padding-bottom: 42px; }
         }
+        /* ============================================
+           ABOUT AURUM VIDEO PLAYER
+           Custom thumbnail, loading state, and YouTube
+           integration for the #about-aurum section.
+           ============================================ */
+
+        /* Override default video-placeholder in about-aurum only */
+        #about-aurum .video-placeholder {
+            background:
+                radial-gradient(ellipse at 25% 30%, rgba(0, 115, 255, 0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 70%, rgba(56, 152, 248, 0.10) 0%, transparent 55%),
+                linear-gradient(135deg, #0060DD 0%, #0073FF 40%, #3898F8 100%);
+            border-color: rgba(0, 115, 255, 0.25);
+        }
+
+        #about-aurum .video-placeholder::before { display: none; }
+        #about-aurum .video-placeholder::after { display: none; }
+
+        /* Thumbnail content layer */
+        .aurum-thumb-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            padding: 24px;
+            text-align: center;
+            transition: opacity 0.4s ease;
+        }
+
+        .aurum-thumb-content.hidden { opacity: 0; pointer-events: none; }
+
+        .aurum-thumb-headline {
+            font-family: var(--font-heading);
+            font-size: clamp(1.1rem, 2.8vw, 1.55rem);
+            font-weight: 700;
+            color: var(--text-white);
+            line-height: 1.3;
+            max-width: 420px;
+            margin-bottom: 28px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Glassmorphism play button */
+        .aurum-play-btn {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+            animation: aurum-breathe 3.5s ease-in-out infinite;
+        }
+
+        .aurum-play-btn i {
+            color: var(--text-white);
+            font-size: 1.25rem;
+            margin-left: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Breathing pulse ring */
+        .aurum-play-btn::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            animation: aurum-ring-pulse 3.5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* Outer soft glow ring */
+        .aurum-play-btn::after {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: aurum-ring-pulse 3.5s ease-in-out infinite 0.4s;
+            pointer-events: none;
+        }
+
+        @keyframes aurum-breathe {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12); }
+            50% { transform: scale(1.06); box-shadow: 0 6px 32px rgba(0, 0, 0, 0.18), 0 0 0 6px rgba(255, 255, 255, 0.08); }
+        }
+
+        @keyframes aurum-ring-pulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.08); }
+        }
+
+        /* Hover state */
+        #about-aurum .video-placeholder:hover .aurum-play-btn {
+            transform: scale(1.14);
+            background: rgba(255, 255, 255, 0.28);
+            border-color: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.12);
+            animation: none;
+        }
+
+        #about-aurum .video-placeholder:hover .aurum-play-btn i {
+            transform: scale(1.1);
+        }
+
+        /* CTA micro-text */
+        .aurum-thumb-cta {
+            font-family: var(--font-primary);
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 18px;
+            letter-spacing: 0.03em;
+            transition: color 0.3s ease;
+        }
+
+        #about-aurum .video-placeholder:hover .aurum-thumb-cta {
+            color: rgba(255, 255, 255, 1);
+        }
+
+        /* Loading state */
+        .aurum-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .aurum-loading.active { opacity: 1; pointer-events: auto; }
+
+        .aurum-loading-dots {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .aurum-loading-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            animation: aurum-dot-pulse 1.4s ease-in-out infinite;
+        }
+
+        .aurum-loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .aurum-loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes aurum-dot-pulse {
+            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+            40% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .aurum-loading-text {
+            font-family: var(--font-primary);
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.02em;
+        }
+
+        /* YouTube iframe container */
+        .aurum-iframe-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            border-radius: 20px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .aurum-iframe-wrap.active { opacity: 1; pointer-events: auto; }
+
+        .aurum-iframe-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 20px;
+        }
+
+        /* Responsive adjustments for about-aurum video */
+        @media (max-width: 768px) {
+            .aurum-thumb-headline { font-size: clamp(0.95rem, 3.5vw, 1.2rem); max-width: 300px; margin-bottom: 22px; }
+            .aurum-play-btn { width: 60px; height: 60px; }
+            .aurum-play-btn i { font-size: 1.05rem; }
+            .aurum-thumb-cta { font-size: 0.75rem; margin-top: 14px; }
+            .aurum-loading-text { font-size: 0.78rem; }
+        }
+
+        @media (max-width: 480px) {
+            .aurum-thumb-headline { font-size: clamp(0.85rem, 4vw, 1.05rem); max-width: 260px; margin-bottom: 18px; }
+            .aurum-play-btn { width: 52px; height: 52px; }
+            .aurum-play-btn i { font-size: 0.95rem; }
+            .aurum-play-btn::before { inset: -8px; }
+            .aurum-play-btn::after { inset: -16px; }
+            .aurum-thumb-cta { font-size: 0.7rem; margin-top: 12px; }
+            .aurum-loading-dots span { width: 8px; height: 8px; }
+        }
+
+        /* ============================================
+           END ABOUT AURUM VIDEO PLAYER
+           ============================================ */
+
     </style>
 </head>
 <body>
@@ -1761,10 +1981,28 @@
             <div class="container">
                 <div class="section-grid img-left">
 
-                    <!-- Video Placeholder (matches existing pattern) -->
+                    <!-- ABOUT AURUM VIDEO: Custom thumbnail + lazy YouTube embed -->
                     <div class="section-image-col reveal from-left stagger-2">
-                        <div class="video-placeholder">
-                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                        <div class="video-placeholder" id="aurum-video-player" data-video-id="9unT8NPwjtU">
+
+                            <!-- STATE 1: Custom Thumbnail -->
+                            <div class="aurum-thumb-content" id="aurum-thumb">
+                                <p class="aurum-thumb-headline">Forbes Called It the New Infrastructure of Global Finance</p>
+                                <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
+                                <span class="aurum-thumb-cta">Watch the Overview</span>
+                            </div>
+
+                            <!-- STATE 2: Loading -->
+                            <div class="aurum-loading" id="aurum-loading">
+                                <div class="aurum-loading-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <p class="aurum-loading-text">Loading Aurum video, please wait...</p>
+                            </div>
+
+                            <!-- STATE 3: YouTube iframe (injected on click) -->
+                            <div class="aurum-iframe-wrap" id="aurum-iframe-wrap"></div>
+
                         </div>
                     </div>
 
@@ -2178,6 +2416,87 @@
             p.style.animationDelay = (Math.random() * 10) + 's';
             pc.appendChild(p);
         }
+
+        /* ============================================
+           ABOUT AURUM VIDEO PLAYER JS
+           Handles: thumbnail click > loading state >
+           YouTube iframe inject > ended > reset
+           ============================================ */
+        (function() {
+            const player = document.getElementById('aurum-video-player');
+            if (!player) return;
+
+            const videoId = player.dataset.videoId;
+            const thumb = document.getElementById('aurum-thumb');
+            const loading = document.getElementById('aurum-loading');
+            const iframeWrap = document.getElementById('aurum-iframe-wrap');
+            let iframe = null;
+            let pollTimer = null;
+
+            // STATE TRANSITIONS
+            function showLoading() {
+                thumb.classList.add('hidden');
+                loading.classList.add('active');
+            }
+
+            function showVideo() {
+                loading.classList.remove('active');
+                iframeWrap.classList.add('active');
+            }
+
+            function resetToThumbnail() {
+                iframeWrap.classList.remove('active');
+                if (iframe) {
+                    iframeWrap.removeChild(iframe);
+                    iframe = null;
+                }
+                if (pollTimer) {
+                    clearInterval(pollTimer);
+                    pollTimer = null;
+                }
+                setTimeout(function() {
+                    thumb.classList.remove('hidden');
+                }, 100);
+            }
+
+            // CLICK HANDLER: Inject iframe on demand
+            player.addEventListener('click', function handleClick() {
+                if (iframeWrap.classList.contains('active')) return;
+                if (loading.classList.contains('active')) return;
+
+                showLoading();
+
+                iframe = document.createElement('iframe');
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                iframe.setAttribute('allowfullscreen', '');
+                iframe.setAttribute('loading', 'lazy');
+                iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1&enablejsapi=1';
+
+                iframe.addEventListener('load', function() {
+                    setTimeout(showVideo, 200);
+                });
+
+                iframeWrap.appendChild(iframe);
+
+                // Fallback: if load event doesn't fire within 6s, show anyway
+                setTimeout(function() {
+                    if (!iframeWrap.classList.contains('active')) {
+                        showVideo();
+                    }
+                }, 6000);
+            });
+
+            // Listen for YouTube postMessage to detect video end
+            window.addEventListener('message', function(e) {
+                if (!e.data || typeof e.data !== 'string') return;
+                try {
+                    var data = JSON.parse(e.data);
+                    if (data.event === 'onStateChange' && data.info === 0) {
+                        resetToThumbnail();
+                    }
+                } catch(err) {}
+            });
+        })();
     </script>
 </body>
 </html>
