@@ -1833,81 +1833,25 @@
             letter-spacing: 0.02em;
         }
 
-        /* Full-page backdrop overlay */
-        .aurum-video-backdrop {
-            position: fixed;
+        /* YouTube iframe container */
+        .aurum-iframe-wrap {
+            position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.82);
-            z-index: 9998;
+            z-index: 4;
+            border-radius: 20px;
+            overflow: hidden;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.5s ease;
         }
 
-        .aurum-video-backdrop.active { opacity: 1; pointer-events: auto; }
-
-        /* YouTube iframe container - modal mode */
-        .aurum-iframe-wrap {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.92);
-            width: min(88vw, 960px);
-            aspect-ratio: 16 / 9;
-            z-index: 9999;
-            border-radius: 16px;
-            overflow: hidden;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease, transform 0.4s ease;
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
-        }
-
-        .aurum-iframe-wrap.active {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translate(-50%, -50%) scale(1);
-        }
+        .aurum-iframe-wrap.active { opacity: 1; pointer-events: auto; }
 
         .aurum-iframe-wrap iframe {
             width: 100%;
             height: 100%;
             border: 0;
-            border-radius: 16px;
-        }
-
-        /* Close button */
-        .aurum-video-close {
-            position: fixed;
-            z-index: 10000;
-            top: 12px;
-            right: 12px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--blue-primary);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease, transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 115, 255, 0.3);
-        }
-
-        .aurum-video-close.active { opacity: 1; pointer-events: auto; }
-
-        .aurum-video-close:hover {
-            background: var(--blue-secondary);
-            transform: scale(1.1);
-            box-shadow: 0 6px 24px rgba(0, 115, 255, 0.45);
-        }
-
-        .aurum-video-close i {
-            color: var(--text-white);
-            font-size: 0.9rem;
+            border-radius: 20px;
         }
 
         /* Responsive adjustments for about-aurum video */
@@ -1917,9 +1861,6 @@
             .aurum-play-btn i { font-size: 1.05rem; }
             .aurum-thumb-cta { font-size: 0.75rem; margin-top: 14px; }
             .aurum-loading-text { font-size: 0.78rem; }
-            .aurum-iframe-wrap { width: 94vw; }
-            .aurum-video-close { width: 36px; height: 36px; top: 10px; right: 10px; }
-            .aurum-video-close i { font-size: 0.8rem; }
         }
 
         @media (max-width: 480px) {
@@ -2059,7 +2000,8 @@
                                 <p class="aurum-loading-text">Loading Aurum video, please wait...</p>
                             </div>
 
-                            <!-- STATE 3: YouTube iframe (injected on click, renders as modal) -->
+                            <!-- STATE 3: YouTube iframe (injected on click) -->
+                            <div class="aurum-iframe-wrap" id="aurum-iframe-wrap"></div>
 
                         </div>
                     </div>
@@ -2069,7 +2011,7 @@
                         <div class="section-eyebrow reveal stagger-1">Why Aurum</div>
                         <h2 class="section-title reveal stagger-2"><span class="highlight">One Ecosystem</span> to Spend, Earn, Grow, and Protect Your Wealth</h2>
                         <p class="section-subtitle reveal stagger-3">
-                            Aurum Foundation is a decentralized fintech ecosystem that combines AI algorithmic trading, a Web 3.0 NeoBank, a crypto exchange, premium debit cards, and multiple earning channels into one connected platform. Built over two years with private capital and tested with real money before ever opening to the public, Aurum exists so you never have to leave one ecosystem to manage your entire financial life.
+                            Aurum Foundation is a decentralized AI-fintech ecosystem that combines AI algorithmic trading, a Web 3.0 NeoBank, a crypto exchange, premium debit cards, and multiple earning channels into one connected platform. Built over two years with private capital and tested with real money before ever opening to the public, Aurum exists so you never have to leave one ecosystem to manage your entire financial life.
                         </p>
                         <ul class="feature-list reveal stagger-4">
                             <li><span class="icon"><i class="fas fa-circle"></i></span> Full financial ecosystem | not just a trading bot</li>
@@ -2362,11 +2304,6 @@
     <!-- ============================================
          JAVASCRIPT
          ============================================ -->
-    <!-- ABOUT AURUM VIDEO: Modal overlay, iframe container, close button -->
-    <div class="aurum-video-backdrop" id="aurum-backdrop"></div>
-    <div class="aurum-iframe-wrap" id="aurum-iframe-wrap"></div>
-    <button class="aurum-video-close" id="aurum-close" aria-label="Close video"><i class="fas fa-times"></i></button>
-
     <script>
         /* MOBILE OPT: Dynamic copyright year */
         document.getElementById('copyright-year').textContent = new Date().getFullYear();
@@ -2483,7 +2420,7 @@
         /* ============================================
            ABOUT AURUM VIDEO PLAYER JS
            Handles: thumbnail click > loading state >
-           modal overlay + YouTube iframe > ended/close > reset
+           YouTube iframe inject > ended > reset
            ============================================ */
         (function() {
             const player = document.getElementById('aurum-video-player');
@@ -2493,8 +2430,6 @@
             const thumb = document.getElementById('aurum-thumb');
             const loading = document.getElementById('aurum-loading');
             const iframeWrap = document.getElementById('aurum-iframe-wrap');
-            const backdrop = document.getElementById('aurum-backdrop');
-            const closeBtn = document.getElementById('aurum-close');
             let iframe = null;
 
             // STATE TRANSITIONS
@@ -2505,26 +2440,18 @@
 
             function showVideo() {
                 loading.classList.remove('active');
-                backdrop.classList.add('active');
                 iframeWrap.classList.add('active');
-                closeBtn.classList.add('active');
-                document.body.style.overflow = 'hidden';
             }
 
-            function closeVideo() {
-                closeBtn.classList.remove('active');
+            function resetToThumbnail() {
                 iframeWrap.classList.remove('active');
-                backdrop.classList.remove('active');
-                document.body.style.overflow = '';
-
-                // Wait for fade-out transition, then clean up
+                if (iframe) {
+                    iframeWrap.removeChild(iframe);
+                    iframe = null;
+                }
                 setTimeout(function() {
-                    if (iframe) {
-                        iframeWrap.removeChild(iframe);
-                        iframe = null;
-                    }
                     thumb.classList.remove('hidden');
-                }, 500);
+                }, 100);
             }
 
             // CLICK HANDLER: Inject iframe on demand
@@ -2554,29 +2481,13 @@
                 }, 6000);
             });
 
-            // CLOSE: X button
-            closeBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                closeVideo();
-            });
-
-            // CLOSE: Click backdrop
-            backdrop.addEventListener('click', closeVideo);
-
-            // CLOSE: Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && iframeWrap.classList.contains('active')) {
-                    closeVideo();
-                }
-            });
-
-            // AUTO-CLOSE: Listen for YouTube postMessage to detect video end
+            // Listen for YouTube postMessage to detect video end
             window.addEventListener('message', function(e) {
                 if (!e.data || typeof e.data !== 'string') return;
                 try {
                     var data = JSON.parse(e.data);
                     if (data.event === 'onStateChange' && data.info === 0) {
-                        closeVideo();
+                        resetToThumbnail();
                     }
                 } catch(err) {}
             });
