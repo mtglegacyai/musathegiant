@@ -1917,8 +1917,8 @@
 
         /* Inner white circle matching btn-circle pattern */
         .scroll-to-top .btn-circle {
-            width: 34px;
-            height: 34px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: #FFFFFF;
             display: flex;
@@ -1959,13 +1959,13 @@
         /* Responsive */
         @media (max-width: 768px) {
             .scroll-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
-            .scroll-to-top .btn-circle { width: 30px; height: 30px; }
+            .scroll-to-top .btn-circle { width: 44px; height: 44px; }
             .scroll-to-top .btn-circle i { font-size: 0.7rem; }
         }
 
         @media (max-width: 480px) {
             .scroll-to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
-            .scroll-to-top .btn-circle { width: 28px; height: 28px; }
+            .scroll-to-top .btn-circle { width: 42px; height: 42px; }
         }
         /* ============================================
            END SCROLL TO TOP BUTTON
@@ -2539,18 +2539,26 @@
 
         /* ============================================
            ABOUT AURUM VIDEO PLAYER JS
-           Handles: thumbnail click > loading state >
-           YouTube iframe inject > ended > reset
+           Uses YouTube IFrame API for reliable state
+           detection. Resets to thumbnail on video end
+           before YouTube end-screen can appear.
            ============================================ */
         (function() {
-            const player = document.getElementById('aurum-video-player');
-            if (!player) return;
+            const playerEl = document.getElementById('aurum-video-player');
+            if (!playerEl) return;
 
-            const videoId = player.dataset.videoId;
+            const videoId = playerEl.dataset.videoId;
             const thumb = document.getElementById('aurum-thumb');
             const loading = document.getElementById('aurum-loading');
             const iframeWrap = document.getElementById('aurum-iframe-wrap');
-            let iframe = null;
+            let ytPlayer = null;
+            let iframeDiv = null;
+
+            // Load YouTube IFrame API
+            var tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            var firstScript = document.getElementsByTagName('script')[0];
+            firstScript.parentNode.insertBefore(tag, firstScript);
 
             // STATE TRANSITIONS
             function showLoading() {
@@ -2565,51 +2573,72 @@
 
             function resetToThumbnail() {
                 iframeWrap.classList.remove('active');
-                if (iframe) {
-                    iframeWrap.removeChild(iframe);
-                    iframe = null;
-                }
                 setTimeout(function() {
+                    if (ytPlayer) {
+                        ytPlayer.destroy();
+                        ytPlayer = null;
+                    }
+                    if (iframeDiv) {
+                        iframeWrap.removeChild(iframeDiv);
+                        iframeDiv = null;
+                    }
                     thumb.classList.remove('hidden');
-                }, 100);
+                }, 400);
             }
 
-            // CLICK HANDLER: Inject iframe on demand
-            player.addEventListener('click', function() {
+            // CLICK HANDLER
+            playerEl.addEventListener('click', function() {
                 if (iframeWrap.classList.contains('active')) return;
                 if (loading.classList.contains('active')) return;
 
                 showLoading();
 
-                iframe = document.createElement('iframe');
-                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-                iframe.setAttribute('allowfullscreen', '');
-                iframe.setAttribute('loading', 'lazy');
-                iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1&enablejsapi=1';
+                // Create a div for YT.Player to replace
+                iframeDiv = document.createElement('div');
+                iframeDiv.id = 'aurum-yt-player';
+                iframeDiv.style.width = '100%';
+                iframeDiv.style.height = '100%';
+                iframeDiv.style.borderRadius = '20px';
+                iframeWrap.appendChild(iframeDiv);
 
-                iframe.addEventListener('load', function() {
-                    setTimeout(showVideo, 200);
-                });
+                // Wait for API to be ready, then create player
+                function createPlayer() {
+                    ytPlayer = new YT.Player('aurum-yt-player', {
+                        videoId: videoId,
+                        playerVars: {
+                            autoplay: 1,
+                            rel: 0,
+                            modestbranding: 1,
+                            controls: 1,
+                            showinfo: 0,
+                            fs: 1
+                        },
+                        events: {
+                            onReady: function() {
+                                setTimeout(showVideo, 200);
+                            },
+                            onStateChange: function(e) {
+                                // 0 = ended: reset to thumbnail instantly
+                                if (e.data === 0) {
+                                    resetToThumbnail();
+                                }
+                            }
+                        }
+                    });
+                }
 
-                iframeWrap.appendChild(iframe);
+                if (window.YT && window.YT.Player) {
+                    createPlayer();
+                } else {
+                    window.onYouTubeIframeAPIReady = createPlayer;
+                }
 
-                // Fallback: if load event doesn't fire within 6s, show anyway
+                // Fallback: if player doesn't fire onReady within 6s
                 setTimeout(function() {
                     if (!iframeWrap.classList.contains('active')) {
                         showVideo();
                     }
                 }, 6000);
-            });
-
-            // Listen for YouTube postMessage to detect video end
-            window.addEventListener('message', function(e) {
-                if (!e.data || typeof e.data !== 'string') return;
-                try {
-                    var data = JSON.parse(e.data);
-                    if (data.event === 'onStateChange' && data.info === 0) {
-                        resetToThumbnail();
-                    }
-                } catch(err) {}
             });
         })();
     </script>
