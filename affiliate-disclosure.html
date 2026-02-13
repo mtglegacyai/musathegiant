@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Disclosure | EX-AI BOT | Aurum Partner</title>
+    <meta name="description" content="Affiliate disclosure for MTG Aurum Foundation partner site. Transparency about how we earn commissions.">
+    <link rel="icon" type="image/png" href="https://www.musathegiant.com/images/aurum-trading-bot.png">
+    <link rel="apple-touch-icon" href="https://www.musathegiant.com/images/aurum-trading-bot.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --blue-primary: #0073FF;
+            --blue-secondary: #3898F8;
+            --blue-accent: #2C90FA;
+            --blue-gradient: linear-gradient(99.52deg, #0073FF, #3898F8);
+            --blue-gradient-hover: linear-gradient(99.52deg, #0060DD, #2C90FA);
+            --blue-glow: rgba(0, 115, 255, 0.2);
+            --blue-glow-strong: rgba(0, 115, 255, 0.35);
+            --bg-page: #EEEEEE;
+            --bg-section-alt: #F1F8FF;
+            --bg-white: #FFFFFF;
+            --text-heading: #03030C;
+            --text-body: #464646;
+            --text-nav: #444967;
+            --text-sub: #6C6C6C;
+            --text-white: #FFFFFF;
+            --border-card: #F6F6F6;
+            --glass-bg: rgba(255, 255, 255, 0.3);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-strong: rgba(255, 255, 255, 0.85);
+            --font-primary: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-body);
+            font-family: var(--font-primary);
+            font-size: 16px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: var(--glass-strong); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 115, 255, 0.08);
+            transition: box-shadow 0.4s ease;
+        }
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            padding: 14px 32px; display: flex;
+            align-items: center; justify-content: space-between;
+        }
+        .nav-logo { display: flex; flex-direction: column; text-decoration: none; }
+        .nav-logo-text { font-family: var(--font-primary); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
+        .nav-logo-text .blue { color: var(--blue-primary); }
+        .nav-logo-text .dark { color: var(--text-heading); }
+        .nav-logo-tag { font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-nav); margin-top: -2px; }
+        .nav-links { display: flex; list-style: none; gap: 32px; }
+        .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--text-nav); text-decoration: none; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--blue-primary); }
+        .btn-join {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 10px 14px 10px 22px; border-radius: 50px;
+            font-family: var(--font-primary); font-weight: 600; font-size: 0.78rem;
+            color: var(--text-white); background: var(--blue-gradient);
+            text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-join:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--blue-glow-strong); }
+        .btn-circle {
+            width: 28px; height: 28px; border-radius: 50%; background: #FFF;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .btn-circle i { color: var(--blue-primary); font-size: 0.6rem; }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+        .hamburger span { width: 22px; height: 2px; background: var(--text-heading); border-radius: 2px; }
+
+        /* LEGAL CONTENT */
+        .legal-page { padding: 140px 0 80px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+        .legal-content {
+            max-width: 800px; margin: 0 auto;
+            background: var(--bg-white); border-radius: 20px;
+            padding: 48px 56px; border: 1px solid var(--border-card);
+        }
+        .legal-eyebrow {
+            display: inline-flex; font-size: 0.7rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.04em; color: var(--blue-primary);
+            padding: 6px 16px; border-radius: 50px; background: var(--bg-section-alt);
+            border: 1px solid rgba(0, 115, 255, 0.15); margin-bottom: 16px;
+        }
+        .legal-heading {
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 700;
+            color: var(--text-heading); line-height: 1.15; margin-bottom: 8px;
+        }
+        .legal-updated { font-size: 0.82rem; color: var(--text-sub); margin-bottom: 36px; }
+        .legal-content h2 {
+            font-size: 1.15rem; font-weight: 700; color: var(--text-heading);
+            margin-top: 36px; margin-bottom: 12px;
+        }
+        .legal-content h3 {
+            font-size: 1rem; font-weight: 600; color: var(--text-heading);
+            margin-top: 24px; margin-bottom: 8px;
+        }
+        .legal-content p { margin-bottom: 14px; color: var(--text-body); line-height: 1.75; }
+        .legal-content ul {
+            margin: 0 0 16px 24px; padding: 0;
+        }
+        .legal-content li { margin-bottom: 8px; line-height: 1.7; color: var(--text-body); }
+        .legal-content a { color: var(--blue-primary); text-decoration: none; }
+        .legal-content a:hover { text-decoration: underline; }
+        .legal-content strong { color: var(--text-heading); }
+
+        /* BACK LINK */
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.85rem; font-weight: 500; color: var(--blue-primary);
+            text-decoration: none; margin-bottom: 24px; transition: gap 0.3s ease;
+        }
+        .back-link:hover { gap: 12px; }
+
+        /* FOOTER */
+        
+        .footer {
+            background: var(--blue-gradient);
+            padding: 56px 0 0;
+            color: var(--text-white);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 36px;
+        }
+        .footer .nav-logo-text .blue { color: #FFFFFF; }
+        .footer .nav-logo-text .dark { color: var(--text-white); }
+        .footer .nav-logo-tag { color: rgba(255, 255, 255, 0.7); }
+        .footer-brand .nav-logo { margin-bottom: 14px; }
+        
+        .footer-brand .tag {
+            font-family: var(--font-primary);
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.85);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 10px;
+        }
+        
+        .footer-brand p {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            max-width: 320px;
+        }
+        
+        .footer-heading {
+            font-weight: 600;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-white);
+            margin-bottom: 18px;
+        }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        
+        .footer-links a {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover { color: #FFFFFF; }
+        
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .social-icons a {
+            width: 40px; height: 40px; border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.35); display: flex;
+            align-items: center; justify-content: center;
+            color: rgba(255, 255, 255, 0.8); font-size: 0.95rem;
+            text-decoration: none; transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text-white);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 22px 0;
+        }
+        
+        .disclaimer {
+            font-weight: 300;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            margin-bottom: 14px;
+            max-width: 960px;
+        }
+        .disclaimer strong { color: rgba(255, 255, 255, 0.8); }
+        
+        .copyright {
+            font-size: 0.76rem;
+            color: rgba(255, 255, 255, 0.65);
+        }
+        .legal-footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; margin-bottom: 20px; }
+        .legal-footer-links a { font-size: 0.72rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.3s ease; }
+        .legal.footer-links a:hover { color: #FFFFFF; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .btn-join { display: none; }
+            .hamburger { display: flex; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand p { max-width: 100%; }
+            .social-icons { justify-content: center; }
+            .footer-links { align-items: center; }
+        }
+        @media (max-width: 768px) {
+            .legal-content { padding: 36px 28px; }
+            .legal-heading { font-size: clamp(1.5rem, 5vw, 2rem); }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .legal-content { padding: 28px 20px; }
+            .legal-content h2 { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="nav" role="banner">
+        <div class="nav-inner">
+            <a href="aurum.html" class="nav-logo" aria-label="EX-AI BOT Home">
+                <span class="nav-logo-text"><span class="blue">EX-AI</span> <span class="dark">BOT</span></span>
+                <span class="nav-logo-tag">Aurum Partner</span>
+            </a>
+            <nav aria-label="Main Navigation">
+                <ul class="nav-links">
+                    <li><a href="aurum.html#about">About</a></li>
+                    <li><a href="aurum.html#ex-ai-bot">EX-AI Bot</a></li>
+                    <li><a href="aurum.html#aurum-card">Aurum Card</a></li>
+                    <li><a href="aurum.html#partner-program">Partner Program</a></li>
+                    <li><a href="aurum.html#get-started">Get Started</a></li>
+                </ul>
+            </nav>
+            <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
+            <div class="hamburger" aria-label="Toggle Menu" role="button" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="legal-page">
+            <div class="container">
+                <div class="legal-content">
+                    <a href="aurum.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                    <div class="legal-eyebrow">Legal</div>
+                    <h1 class="legal-heading">Affiliate Disclosure</h1>
+                    <p class="legal-updated">Last Updated: February 2026</p>
+                    
+      <h2>Affiliate Relationship</h2>
+      <p>This website is owned and operated by MTG, an independent affiliate partner of Aurum Foundation. MTG participates in the Aurum Partner Program, which means MTG earns commissions and other financial compensation when visitors take qualifying actions through the affiliate links on this site.</p>
+
+      <h2>How We Earn</h2>
+      <p>When you click on links that direct you to Aurum Foundation's back office, sign-up pages, or product pages (identified by URLs containing "backoffice.aurum.foundation"), these are affiliate tracking links. If you register, deposit funds, activate products, or take other qualifying actions through these links, MTG may receive:</p>
+      <ul>
+        <li>Direct sales commissions on qualifying deposits and activations</li>
+        <li>Team-based commissions through the Aurum Partner Program structure</li>
+        <li>Profit-share bonuses based on network activity</li>
+        <li>Other incentive bonuses as defined by the Aurum Partner Program</li>
+      </ul>
+
+      <h2>What This Means for You</h2>
+      <p>The affiliate relationship does not increase the cost of any product or service you purchase through this site. You pay the same price whether you use our affiliate links or go directly to Aurum Foundation's website. However, you should be aware that MTG has a financial incentive to promote Aurum Foundation's products and services, which may influence the content, recommendations, and opinions expressed on this site.</p>
+
+      <h2>Our Commitment to Transparency</h2>
+      <p>Despite the financial relationship, MTG is committed to providing accurate, honest, and useful information. All claims on this site are sourced from official Aurum Foundation materials, public media coverage, and verified company data. We do not fabricate testimonials, manipulate earnings data, or make guarantees about future results.</p>
+      <p>That said, because of the affiliate relationship, you should treat all content on this site as potentially biased in favor of Aurum Foundation. We encourage you to conduct your own independent research before making any financial decisions.</p>
+
+      <h2>FTC Compliance</h2>
+      <p>This disclosure is provided in accordance with the U.S. Federal Trade Commission (FTC) guidelines on affiliate marketing and endorsements. Similar regulations exist in the UK (ASA), EU, and other jurisdictions. MTG strives to comply with all applicable advertising and disclosure requirements across all regions where this website is accessible.</p>
+
+      <h2>Questions</h2>
+      <p>If you have any questions about our affiliate relationship or this disclosure, please contact us via WhatsApp at +27 72 171 4626 or through any of the social media channels listed in the footer of this site.</p>
+    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <span class="nav-logo-text"><span class="blue">EX-AI</span> <span class="dark">BOT</span></span>
+                    </div>
+                    <div class="tag">Aurum Affiliate Partner Site</div>
+                    <p>Empowering financial freedom through AI-driven trading and blockchain innovation. This is an independent partner site, not the official Aurum Foundation platform.</p>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="aurum.html#about">About</a></li>
+                        <li><a href="aurum.html#ex-ai-bot">EX-AI Bot</a></li>
+                        <li><a href="aurum.html#aurum-card">Aurum Card</a></li>
+                        <li><a href="aurum.html#partner-program">Partner Program</a></li>
+                        <li><a href="aurum.html#faq">FAQ</a></li>
+                        <li><a href="aurum.html#get-started">Get Started</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Let's Connect</h3>
+                    <div class="social-icons">
+                        <a href="https://wa.me/27721714626" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.tiktok.com/@musathegiant" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/Musa.TheMTG" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/@MusaTheGiant" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="legal-footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-use.html">Terms of Use</a>
+                    <a href="risk-disclaimer.html">Risk Disclaimer</a>
+                    <a href="earnings-disclaimer.html">Earnings Disclaimer</a>
+                    <a href="affiliate-disclosure.html">Affiliate Disclosure</a>
+                    <a href="cookie-policy.html">Cookie Policy</a>
+                    <a href="anti-spam-policy.html">Anti-Spam Policy</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="copyright.html">Copyright</a>
+                </div>
+                <p class="disclaimer">
+                    <strong>Disclaimer:</strong> This website is an independent Aurum Foundation affiliate partner site operated by MTG. It is NOT owned, operated, or endorsed by Aurum Foundation. Nothing on this website constitutes financial, investment, or legal advice. All information is provided for educational and informational purposes only. Cryptocurrency and trading involve significant risk; you may lose some or all of your investment. Past performance does not guarantee future results. Always do your own research (DYOR) and consult a qualified financial advisor before making any investment decisions.
+                </p>
+                <p class="copyright">&copy; <span id="copyright-year"></span> MTG &bull; The Digital Architect | Built with <span style="color: #FF0000;">&hearts;</span> by MTG</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
