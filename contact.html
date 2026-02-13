@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | EX-AI BOT | Aurum Partner</title>
+    <title>Contact MTG | EX-AI BOT | Aurum Partner</title>
     <meta name="description" content="Contact MTG, independent Aurum Foundation affiliate partner. Reach out via WhatsApp, social media, or other channels.">
     <link rel="icon" type="image/png" href="https://www.musathegiant.com/images/aurum-trading-bot.png">
     <link rel="apple-touch-icon" href="https://www.musathegiant.com/images/aurum-trading-bot.png">
@@ -224,6 +224,45 @@
         .legal.footer-links a:hover { color: #FFFFFF; }
 
         /* RESPONSIVE */
+        /* SCROLL TO TOP */
+        .scroll-to-top {
+            position: fixed; bottom: 28px; right: 28px;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: var(--blue-gradient); background-size: 200% auto;
+            border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 999; opacity: 0; pointer-events: none;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px var(--blue-glow);
+        }
+        .scroll-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .scroll-to-top:hover { transform: translateY(-3px); box-shadow: 0 12px 36px var(--blue-glow-strong); }
+        .scroll-to-top .btn-circle {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: #FFFFFF; display: flex;
+            align-items: center; justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        .scroll-to-top:hover .btn-circle { transform: scale(1.08); }
+        .scroll-to-top .btn-circle i {
+            color: var(--blue-primary); font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            animation: chevron-cascade-up 1.4s ease-in-out infinite;
+            opacity: 0;
+        }
+        .scroll-to-top:hover .btn-circle i { animation: scroll-top-bounce 0.6s ease infinite; opacity: 1; }
+        @keyframes chevron-cascade-up {
+            0%   { opacity: 0; transform: translateY(6px); }
+            30%  { opacity: 1; transform: translateY(0); }
+            60%  { opacity: 1; transform: translateY(-4px); }
+            100% { opacity: 0; transform: translateY(-10px); }
+        }
+        @keyframes scroll-top-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
         @media (max-width: 1024px) {
             .nav-links { display: none; }
             .btn-join { display: none; }
@@ -234,10 +273,15 @@
             .footer-links { align-items: center; }
         }
         @media (max-width: 768px) {
+            .scroll-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
+            .scroll-to-top .btn-circle { width: 44px; height: 44px; }
+            .scroll-to-top .btn-circle i { font-size: 0.7rem; }
             .legal-content { padding: 36px 28px; }
             .legal-heading { font-size: clamp(1.5rem, 5vw, 2rem); }
         }
         @media (max-width: 480px) {
+            .scroll-to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
+            .scroll-to-top .btn-circle { width: 42px; height: 42px; }
             .container { padding: 0 16px; }
             .legal-content { padding: 28px 20px; }
             .legal-content h2 { font-size: 1.05rem; }
@@ -364,8 +408,28 @@
         </div>
     </footer>
 
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">
+        <span class="btn-circle"><i class="fas fa-arrow-up"></i></span>
+    </button>
+
     <script>
         document.getElementById('copyright-year').textContent = new Date().getFullYear();
+        // Scroll to top
+        (function() {
+            var scrollBtn = document.getElementById("scroll-to-top");
+            if (!scrollBtn) return;
+            window.addEventListener("scroll", function() {
+                if (window.scrollY > 600) {
+                    scrollBtn.classList.add("visible");
+                } else {
+                    scrollBtn.classList.remove("visible");
+                }
+            }, { passive: true });
+            scrollBtn.addEventListener("click", function() {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        })();
     </script>
 </body>
 </html>
