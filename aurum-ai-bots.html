@@ -340,6 +340,58 @@
         .risk-section p { font-family:var(--font-body); font-size:0.9rem; color:var(--text-sub); line-height:1.7; margin-bottom:12px; }
         .risk-section p:last-child { margin-bottom:0; }
 
+        /* Operating Regulations - Structured */
+        .regs-wrap { margin-top:40px; }
+        .regs-header { text-align:center; margin-bottom:28px; }
+        .regs-header h3 { font-family:var(--font-heading); font-weight:700; font-size:clamp(1.4rem,3vw,2rem); color:var(--text-heading); }
+        .regs-header h3 .highlight { color:var(--blue-primary); }
+        .regs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:24px; }
+        .reg-card { background:var(--bg-white); border:1px solid var(--border-card); border-radius:16px; padding:24px 20px; transition:transform 0.3s ease,box-shadow 0.3s ease; }
+        .reg-card:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,115,255,0.08); }
+        .reg-card-header { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+        .reg-card-icon { width:40px; height:40px; border-radius:10px; background:var(--bg-section-alt); border:1px solid rgba(0,115,255,0.1); display:flex; align-items:center; justify-content:center; color:var(--blue-primary); font-size:0.95rem; flex-shrink:0; }
+        .reg-card-header h4 { font-family:var(--font-heading); font-weight:700; font-size:0.92rem; color:var(--text-heading); line-height:1.3; }
+        .reg-card ul { list-style:none; padding:0; margin:0; }
+        .reg-card ul li { font-family:var(--font-body); font-size:0.85rem; color:var(--text-sub); line-height:1.65; padding:5px 0; padding-left:18px; position:relative; }
+        .reg-card ul li::before { content:'\2713'; position:absolute; left:0; color:var(--blue-primary); font-weight:700; font-size:0.78rem; }
+        .reg-note { text-align:center; font-family:var(--font-body); font-size:0.8rem; color:var(--text-sub); margin-top:12px; padding:12px 20px; background:var(--bg-section-alt); border-radius:10px; border:1px solid rgba(0,115,255,0.08); }
+        .reg-note strong { color:var(--text-heading); }
+
+        /* Trust/Achievement Banner */
+        .trust-banner { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin:40px 0 12px; }
+        .trust-item { text-align:center; padding:24px 16px; background:var(--bg-white); border-radius:16px; border:1px solid var(--border-card); transition:transform 0.3s ease,box-shadow 0.3s ease; }
+        .trust-item:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,115,255,0.08); }
+        .trust-number { font-family:var(--font-heading); font-weight:800; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--blue-primary); line-height:1.15; }
+        .trust-label { font-family:var(--font-body); font-size:0.78rem; color:var(--text-sub); margin-top:4px; line-height:1.4; }
+
+        /* Gateway Positioning Box */
+        .gateway-box { background:linear-gradient(135deg,rgba(0,115,255,0.04) 0%,rgba(56,152,248,0.06) 100%); border:1px solid rgba(0,115,255,0.12); border-radius:16px; padding:28px 32px; margin:40px 0 8px; text-align:center; }
+        .gateway-box h3 { font-family:var(--font-heading); font-weight:700; font-size:clamp(1.1rem,2.5vw,1.4rem); color:var(--text-heading); margin-bottom:10px; }
+        .gateway-box h3 .highlight { color:var(--blue-primary); }
+        .gateway-box p { font-family:var(--font-body); font-size:0.92rem; color:var(--text-body); line-height:1.7; max-width:700px; margin:0 auto; }
+
+        /* Compounding Projection */
+        .compound-wrap { margin-top:40px; background:var(--bg-white); border:1px solid var(--border-card); border-radius:16px; overflow:hidden; }
+        .compound-header { background:var(--blue-gradient); padding:20px 28px; }
+        .compound-header h3 { font-family:var(--font-heading); font-weight:700; font-size:clamp(1.1rem,2.5vw,1.5rem); color:var(--text-white); }
+        .compound-header p { font-family:var(--font-body); font-size:0.82rem; color:rgba(255,255,255,0.8); margin-top:4px; }
+        .compound-body { padding:24px 28px; }
+        .compound-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center; }
+        .compound-stats { display:flex; flex-direction:column; gap:16px; }
+        .compound-stat { display:flex; align-items:center; gap:14px; }
+        .compound-stat-icon { width:36px; height:36px; border-radius:10px; background:var(--bg-section-alt); display:flex; align-items:center; justify-content:center; color:var(--blue-primary); font-size:0.85rem; flex-shrink:0; }
+        .compound-stat-text { font-family:var(--font-body); font-size:0.88rem; color:var(--text-body); line-height:1.5; }
+        .compound-stat-text strong { color:var(--text-heading); font-weight:700; }
+        .compound-result { text-align:center; padding:28px 20px; background:linear-gradient(135deg,rgba(0,115,255,0.04),rgba(56,152,248,0.07)); border-radius:14px; border:1px solid rgba(0,115,255,0.1); }
+        .compound-result-label { font-family:var(--font-body); font-size:0.78rem; color:var(--text-sub); text-transform:uppercase; letter-spacing:0.06em; }
+        .compound-result-value { font-family:var(--font-heading); font-weight:800; font-size:clamp(2rem,4vw,2.8rem); color:var(--blue-primary); line-height:1.15; margin:8px 0 4px; }
+        .compound-result-pct { display:inline-block; background:var(--blue-gradient); color:var(--text-white); font-family:var(--font-heading); font-weight:700; font-size:0.85rem; padding:4px 14px; border-radius:50px; margin-top:6px; }
+        .compound-disclaimer { font-family:var(--font-body); font-size:0.76rem; color:var(--text-sub); text-align:center; margin-top:14px; padding-top:14px; border-top:1px solid var(--border-card); }
+
+        /* Section Bridge */
+        .section-bridge { text-align:center; padding:20px 0 0; }
+        .section-bridge p { font-family:var(--font-body); font-size:0.92rem; color:var(--text-sub); line-height:1.65; max-width:640px; margin:0 auto; }
+
         /* ============================================
            FAQ SECTION
            ============================================ */
@@ -435,6 +487,9 @@
             .bot-features-grid { grid-template-columns:repeat(2,1fr); }
             .stat-banner { grid-template-columns:repeat(2,1fr); }
             .perf-grid { grid-template-columns:1fr; }
+            .regs-grid { grid-template-columns:1fr; }
+            .trust-banner { grid-template-columns:repeat(2,1fr); }
+            .compound-grid { grid-template-columns:1fr; }
             .scroll-indicator { bottom:16px; }
             .hero-cta-wrap { padding-bottom:35px; }
         }
@@ -469,6 +524,11 @@
             .final-cta .btn-primary { padding:14px 16px 14px 30px; font-size:0.88rem; }
             .container { padding:0 16px; }
             .final-cta .sub-text span { margin:0 4px; }
+            .trust-banner { grid-template-columns:repeat(2,1fr); gap:12px; }
+            .trust-item { padding:18px 12px; }
+            .gateway-box { padding:22px 18px; }
+            .compound-body { padding:18px 16px; }
+            .reg-card { padding:20px 16px; }
             .section-divider { padding:24px 0; }
             .divider-img { width:50px; height:50px; margin:0 16px; }
             .faq-question { padding:16px 0; font-size:0.9rem; gap:14px; }
@@ -554,13 +614,13 @@
                             Three <span class="highlight">AI-Powered</span> Bots. One Ecosystem.
                         </h1>
                         <p class="hero-subtitle reveal stagger-3">
-                            Aurum offers three distinct AI trading bots, each designed for a different strategy, risk profile, and level of control. Whether you want a hands-off compounding machine, real-time trade visibility, or multi-asset spot trading, there is a bot built for you.
+                            Aurum offers three distinct AI trading bots, each designed for a different strategy, risk profile, and level of control. The EX-AI Bot is where every serious participant begins. EX-AI PRO and Zeus AI Bot extend the ecosystem for active users who want more flexibility. One entry point. Three paths forward.
                         </p>
                         <ul class="hero-features reveal stagger-4">
                             <li><span class="icon"><i class="fas fa-circle"></i></span> EX-AI Bot: Flagship. Avg 17.5% monthly. 2.5+ years of live data.</li>
                             <li><span class="icon"><i class="fas fa-circle"></i></span> EX-AI PRO: Flexible. Up to 10% monthly. No lock-up. Withdraw anytime.</li>
                             <li><span class="icon"><i class="fas fa-circle"></i></span> Zeus AI Bot: Spot trading. Up to 15% monthly. Full real-time visibility.</li>
-                            <li><span class="icon"><i class="fas fa-circle"></i></span> All bots start from just $100. Powered by AI. Backed by 35+ professionals.</li>
+                            <li><span class="icon"><i class="fas fa-circle"></i></span> All bots start from $100. Built by 35+ professionals from Binance, Morgan Stanley, OKX, and IBM.</li>
                         </ul>
                     </div>
                     <div class="section-image-col card-style reveal from-right stagger-3">
@@ -657,6 +717,26 @@
                     </table>
                 </div>
 
+                <!-- TRUST / ACHIEVEMENT BANNER -->
+                <div class="trust-banner">
+                    <div class="trust-item reveal stagger-1">
+                        <div class="trust-number">90M+</div>
+                        <div class="trust-label">USDT in Trading Volume</div>
+                    </div>
+                    <div class="trust-item reveal stagger-2">
+                        <div class="trust-number">50,000+</div>
+                        <div class="trust-label">Clients &amp; Partners</div>
+                    </div>
+                    <div class="trust-item reveal stagger-3">
+                        <div class="trust-number">35+</div>
+                        <div class="trust-label">Professionals on the Team</div>
+                    </div>
+                    <div class="trust-item reveal stagger-4">
+                        <div class="trust-number">36</div>
+                        <div class="trust-label">Months of Live EX-AI Data</div>
+                    </div>
+                </div>
+
                 <div class="section-cta-wrap reveal stagger-5">
                     <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Get Started Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                 </div>
@@ -675,10 +755,10 @@
             <div class="container">
                 <div class="section-grid">
                     <div>
-                        <div class="section-eyebrow reveal stagger-1">Flagship Product</div>
-                        <h2 class="section-title reveal stagger-2">EX-AI Bot: The <span class="highlight">Proven Performer</span></h2>
+                        <div class="section-eyebrow reveal stagger-1">Flagship Product &bull; Start Here</div>
+                        <h2 class="section-title reveal stagger-2">EX-AI Bot: The <span class="highlight">Cornerstone</span> of the Ecosystem</h2>
                         <p class="section-subtitle reveal stagger-3">
-                            The Aurum EX-AI Bot is an advanced, fully autonomous trading system designed to maximize profitability in the cryptocurrency market. It uses AI to analyze real-time data and operates 24/7, executing strategic, low-risk spot trades on your behalf.
+                            The Aurum EX-AI Bot is an advanced, fully autonomous trading system and the foundational starting point for every serious participant. It is the front-end entry product, the primary conversion driver, and the engine behind the entire Aurum ecosystem. Leveraging AI to analyze real-time data, it operates 24/7 executing strategic, low-risk spot trades on your behalf.
                         </p>
                         <ul class="feature-list reveal stagger-4">
                             <li><span class="icon"><i class="fas fa-circle"></i></span> Average monthly return of 17.5% across 36 months of live trading (Feb 2023 to Jan 2026).</li>
@@ -686,6 +766,7 @@
                             <li><span class="icon"><i class="fas fa-circle"></i></span> Advanced risk management protocols that adapt to market changes in real time.</li>
                             <li><span class="icon"><i class="fas fa-circle"></i></span> Profit accrued daily, 7 days a week. Withdrawals processed within 48 hours.</li>
                             <li><span class="icon"><i class="fas fa-circle"></i></span> 8 profit tiers. Start from $100. Higher deposits unlock a larger client share.</li>
+                            <li><span class="icon"><i class="fas fa-circle"></i></span> Unlocks the full Aurum Partner Program: Direct Sales, Team Sales, Legacy Volume, Profitshare, and Compounding.</li>
                         </ul>
                         <div class="credential-tags reveal stagger-5">
                             <span class="credential-tag">2.5+ Years Live Data</span>
@@ -708,6 +789,12 @@
                             <div class="aurum-iframe-wrap" id="neobank-iframe-wrap"></div>
                         </div>
                     </div>
+                </div>
+
+                <!-- WHY START WITH EX-AI BOT -->
+                <div class="gateway-box reveal stagger-1" style="margin-top:48px;">
+                    <h3>Why Every Serious Participant <span class="highlight">Starts With EX-AI Bot</span></h3>
+                    <p>The EX-AI Bot is not just one option among three. It is the logical first step. It is the only bot that unlocks the full Aurum Partner Program (Direct Sales, Team Sales, Legacy Volume, Profitshare, and Compounding). EX-AI PRO requires an active EX-AI deposit to access. If you are choosing one bot to begin with, this is it.</p>
                 </div>
 
                 <!-- EX-AI BOT PROFIT TIERS -->
@@ -739,6 +826,46 @@
                         </table>
                     </div>
                     <p class="reveal stagger-4" style="text-align:center; font-size:0.8rem; color:var(--text-sub); margin-top:12px;">*Estimated returns based on projected 17.5% gross monthly. Actual returns may differ. Past performance does not guarantee future results.</p>
+
+                    <!-- COMPOUNDING PROJECTION EXAMPLE -->
+                    <div class="compound-wrap reveal stagger-5">
+                        <div class="compound-header">
+                            <h3>The Power of Compounding: VIP Tier Example</h3>
+                            <p>What happens when you reinvest your profits every month for 12 months.</p>
+                        </div>
+                        <div class="compound-body">
+                            <div class="compound-grid">
+                                <div class="compound-stats">
+                                    <div class="compound-stat">
+                                        <div class="compound-stat-icon"><i class="fas fa-arrow-right"></i></div>
+                                        <div class="compound-stat-text"><strong>Starting deposit:</strong> 10,000 USDT (VIP Tier)</div>
+                                    </div>
+                                    <div class="compound-stat">
+                                        <div class="compound-stat-icon"><i class="fas fa-percentage"></i></div>
+                                        <div class="compound-stat-text"><strong>Client share:</strong> 85% (14.87% estimated monthly)</div>
+                                    </div>
+                                    <div class="compound-stat">
+                                        <div class="compound-stat-icon"><i class="fas fa-sync-alt"></i></div>
+                                        <div class="compound-stat-text"><strong>Strategy:</strong> Full profit reinvestment (compounding)</div>
+                                    </div>
+                                    <div class="compound-stat">
+                                        <div class="compound-stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                                        <div class="compound-stat-text"><strong>Month 6 balance:</strong> ~22,974 USDT</div>
+                                    </div>
+                                    <div class="compound-stat">
+                                        <div class="compound-stat-icon"><i class="fas fa-chart-line"></i></div>
+                                        <div class="compound-stat-text"><strong>Month 12 balance:</strong> ~52,781 USDT</div>
+                                    </div>
+                                </div>
+                                <div class="compound-result">
+                                    <div class="compound-result-label">Total Income for Year One</div>
+                                    <div class="compound-result-value">42,781 USDT</div>
+                                    <div class="compound-result-pct">427.81% Total Return</div>
+                                </div>
+                            </div>
+                            <div class="compound-disclaimer">*The actual return may differ from the example provided. This projection is based on a consistent 14.87% monthly client return with full compounding. Use the calculator on the Aurum Platform to estimate your own projections.</div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- EX-AI BOT PERFORMANCE DATA -->
@@ -790,13 +917,58 @@
                     </div>
                 </div>
 
-                <!-- EX-AI BOT REGULATIONS -->
-                <div class="risk-section reveal stagger-4" style="margin-top:40px;">
-                    <p><strong>EX-AI Bot Operating Regulations:</strong> 0% deposit fee. 0% activation fee. 1% withdrawal fee (plus blockchain network fee). Profit accrued daily, 7 days a week. Withdrawals available 24/7, processed within 48 hours. Principal withdrawals on the 1st, 10th, and 20th of each month (35% early withdrawal fee in the first year; after one year, no fee). Minimum withdrawal: 25 USDT. Each new reinvestment or top-up starts its own 365-day period.</p>
+                <!-- EX-AI BOT OPERATING REGULATIONS - STRUCTURED -->
+                <div class="regs-wrap">
+                    <div class="regs-header reveal stagger-1">
+                        <h3>EX-AI Bot <span class="highlight">Operating Regulations</span></h3>
+                    </div>
+                    <div class="regs-grid">
+                        <div class="reg-card reveal stagger-2">
+                            <div class="reg-card-header">
+                                <div class="reg-card-icon"><i class="fas fa-coins"></i></div>
+                                <h4>Fees &amp; Costs</h4>
+                            </div>
+                            <ul>
+                                <li>0% deposit fee for main balance</li>
+                                <li>0% activation fee for EX-AI Bot</li>
+                                <li>1% withdrawal fee (plus blockchain network fee)</li>
+                                <li>No hidden charges</li>
+                            </ul>
+                        </div>
+                        <div class="reg-card reveal stagger-3">
+                            <div class="reg-card-header">
+                                <div class="reg-card-icon"><i class="fas fa-chart-line"></i></div>
+                                <h4>Profit &amp; Accrual</h4>
+                            </div>
+                            <ul>
+                                <li>Projected return: up to 17.5% per month</li>
+                                <li>Profit accrued daily, 7 days a week</li>
+                                <li>Activation within 12 to 24 hours of deposit</li>
+                                <li>Profits available for withdrawal 24/7</li>
+                            </ul>
+                        </div>
+                        <div class="reg-card reveal stagger-4">
+                            <div class="reg-card-header">
+                                <div class="reg-card-icon"><i class="fas fa-wallet"></i></div>
+                                <h4>Withdrawals</h4>
+                            </div>
+                            <ul>
+                                <li>Profit withdrawals processed within 48 hours</li>
+                                <li>Minimum withdrawal amount: 25 USDT</li>
+                                <li>Principal available on the 1st, 10th, 20th of each month</li>
+                                <li>35% early withdrawal fee (first year only)</li>
+                                <li>After one year: no principal withdrawal fee</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="reg-note reveal stagger-5">
+                        <strong>Important:</strong> Each new reinvestment or top-up starts its own 365-day period before early-withdrawal fees no longer apply.
+                    </div>
                 </div>
 
                 <div class="section-cta-wrap reveal stagger-5">
                     <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Activate EX-AI Bot <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
+                    <p style="font-family:var(--font-body); font-size:0.8rem; color:var(--text-sub); margin-top:10px;">The logical first step. The gateway to the full ecosystem.</p>
                 </div>
             </div>
         </section>
@@ -811,15 +983,18 @@
              ============================================ -->
         <section class="content-section alt-bg" id="ex-ai-pro" aria-label="EX-AI PRO Bot">
             <div class="container">
-                <div class="section-grid img-left">
+                <div class="section-bridge reveal stagger-1">
+                    <p>Already running the EX-AI Bot? Expand your portfolio with two additional bots designed to complement your flagship position.</p>
+                </div>
+                <div class="section-grid img-left" style="margin-top:32px;">
                     <div class="section-image-col card-style reveal from-left stagger-2">
                         <img src="https://www.musathegiant.com/images/aurum-ex-ai-pro-bot.png" alt="Aurum EX-AI PRO Bot: Advanced trading with full real-time transparency" loading="lazy">
                     </div>
                     <div>
-                        <div class="section-eyebrow reveal stagger-1">For Active EX-AI Users</div>
+                        <div class="section-eyebrow reveal stagger-1">Available to Active EX-AI Users Only</div>
                         <h2 class="section-title reveal stagger-2">EX-AI PRO: More Control. <span class="highlight">More Flexibility.</span></h2>
                         <p class="section-subtitle reveal stagger-3">
-                            EX-AI PRO is the advanced trading solution created exclusively for active EX-AI users who want more control, more flexibility, and more results. It is powered by the same AI-driven performance engine, with one critical difference: full real-time trade visibility and zero lock-up.
+                            EX-AI PRO is the advanced trading solution created exclusively for active EX-AI users who want more control, more flexibility, and more results. It is an upgrade path, not a starting point. Powered by the same AI engine, with one critical difference: full real-time trade visibility and zero lock-up on your principal.
                         </p>
                         <ul class="feature-list reveal stagger-4">
                             <li><span class="icon"><i class="fas fa-circle"></i></span> Up to 10% monthly return. Powered by the same AI engine as EX-AI.</li>
@@ -975,6 +1150,15 @@
                     </div>
                     <div class="faq-item reveal stagger-6">
                         <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>How does compounding work with the EX-AI Bot?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>When you reinvest your monthly profits instead of withdrawing them, your deposit balance grows, and the next month's return is calculated on the larger amount. The Aurum Platform includes a built-in calculator to project returns with or without compounding. For example, a 10,000 USDT VIP deposit compounded for 12 months could grow to approximately 52,781 USDT based on projected returns. Actual results will vary based on market conditions.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal stagger-6">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
                             <span>Who built these bots and how long have they been running?</span>
                             <i class="fas fa-plus toggle-icon"></i>
                         </div>
@@ -991,12 +1175,12 @@
              ============================================ -->
         <section class="final-cta" id="final-cta">
             <div class="container">
-                <h2 class="section-title reveal stagger-1">One Ecosystem. Multiple <span class="highlight">AI-Driven Solutions.</span></h2>
+                <h2 class="section-title reveal stagger-1">One Ecosystem. One <span class="highlight">Logical First Step.</span></h2>
                 <p class="section-subtitle reveal stagger-2">
-                    Three bots. Three strategies. One platform that puts AI to work for your portfolio 24/7. Start with $100, choose your bot, and let the algorithms do what they were built to do.
+                    The EX-AI Bot is the cornerstone. It is the gateway to the full Aurum Partner Program, the foundation for EX-AI PRO access, and the only bot with 36 months of verified trading data. Three bots serve different strategies, but the smart money starts here.
                 </p>
                 <div class="reveal stagger-3">
-                    <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Activate Your Bot Today <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
+                    <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Activate EX-AI Bot Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                 </div>
                 <p class="sub-text reveal stagger-4">
                     $19.99/year access <span>&#8226;</span> $100 minimum <span>&#8226;</span> Partner code: EXTHT1
