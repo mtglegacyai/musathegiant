@@ -349,11 +349,11 @@
         .income-card .income-highlight { display:inline-block; margin-top:12px; font-family:var(--font-heading); font-weight:700; font-size:0.88rem; color:var(--blue-primary); background:var(--bg-section-alt); padding:4px 12px; border-radius:50px; border:1px solid rgba(0,115,255,0.15); }
 
         /* LEGACY LEVELS TABLE */
-        .legacy-table-wrap { overflow-x:auto; margin:32px 0; border-radius:14px; border:1px solid var(--border-card); box-shadow:0 4px 24px rgba(0,115,255,0.06); }
-        .legacy-table { width:100%; border-collapse:collapse; font-family:var(--font-body); font-size:0.84rem; min-width:700px; }
+        .legacy-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:32px 0; border-radius:14px; border:1px solid var(--border-card); box-shadow:0 4px 24px rgba(0,115,255,0.06); }
+        .legacy-table { width:100%; border-collapse:collapse; font-family:var(--font-body); font-size:0.8rem; min-width:520px; }
         .legacy-table thead { background:var(--blue-primary); color:var(--text-white); }
-        .legacy-table th { padding:13px 14px; text-align:left; font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; white-space:nowrap; }
-        .legacy-table td { padding:11px 14px; border-bottom:1px solid var(--border-card); color:var(--text-body); white-space:nowrap; }
+        .legacy-table th { padding:11px 10px; text-align:left; font-weight:600; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.04em; white-space:nowrap; }
+        .legacy-table td { padding:9px 10px; border-bottom:1px solid var(--border-card); color:var(--text-body); white-space:nowrap; font-size:0.79rem; }
         .legacy-table tbody tr:last-child td { border-bottom:none; }
         .legacy-table tbody tr:nth-child(even) { background:var(--bg-section-alt); }
         .legacy-table tbody tr:hover { background:rgba(0,115,255,0.04); }
@@ -492,21 +492,39 @@
             .scroll-to-top { bottom:20px; right:20px; width:44px; height:44px; } .scroll-to-top .btn-circle { width:44px; height:44px; }
             .aurum-thumb-headline { font-size:clamp(0.95rem,3.5vw,1.2rem); max-width:300px; margin-bottom:22px; }
             .aurum-play-btn { width:60px; height:60px; } .aurum-play-btn i { font-size:1.05rem; } .aurum-thumb-cta { font-size:0.75rem; margin-top:14px; }
+            .legacy-table { font-size:0.75rem; min-width:480px; }
+            .legacy-table th { padding:9px 8px; font-size:0.63rem; }
+            .legacy-table td { padding:8px 8px; font-size:0.74rem; }
+            .bonus-grid { grid-template-columns:1fr; }
+            .profit-table-wrap { max-width:100% !important; }
+            .section-grid [style*="align-items:center"] { align-items:flex-start !important; }
         }
         @media (max-width:480px) {
             :root { --section-padding:48px; }
             .hero-eyebrow,.section-eyebrow { font-size:0.66rem; padding:5px 12px; }
             .final-cta .btn-primary { padding:14px 16px 14px 30px; font-size:0.88rem; }
-            .container { padding:0 16px; } .final-cta .sub-text span { margin:0 4px; }
+            .container { padding:0 14px; } .final-cta .sub-text span { margin:0 4px; }
             .section-divider { padding:24px 0; } .divider-img { width:50px; height:50px; margin:0 16px; }
             .faq-question { padding:16px 0; font-size:0.9rem; gap:14px; } .stat-banner { grid-template-columns:1fr 1fr; gap:12px; }
             .scroll-to-top { bottom:16px; right:16px; width:42px; height:42px; } .scroll-to-top .btn-circle { width:42px; height:42px; }
+            .legacy-table { font-size:0.72rem; min-width:440px; }
+            .legacy-table th { padding:8px 6px; font-size:0.6rem; letter-spacing:0.02em; }
+            .legacy-table td { padding:7px 6px; font-size:0.71rem; }
+            .legacy-table-wrap { margin:20px -14px; border-radius:0; border-left:none; border-right:none; }
+            .income-card { padding:22px 18px; }
+            .bonus-card { padding:24px 18px; }
+            .pain-card { padding:20px 16px; }
+            .comparison-table th { padding:10px 8px; font-size:0.62rem; }
+            .comparison-table td { padding:9px 8px; font-size:0.78rem; }
         }
         @media (max-width:380px) {
             .hero-title { font-size:1.7rem; } .hero-subtitle { font-size:0.95rem; }
             .btn-primary { padding:12px 14px 12px 24px; font-size:0.82rem; gap:10px; } .btn-primary .btn-circle { width:34px; height:34px; }
             .btn-ghost { padding:10px 12px 10px 20px; font-size:0.8rem; gap:10px; } .btn-ghost .btn-circle { width:34px; height:34px; }
             .nav-logo-text { font-size:1.15rem; } .mobile-menu { width:72%; padding:85px 16px 28px; } .mobile-menu .mobile-nav-link { font-size:0.88rem; padding:11px 14px; }
+            .legacy-table { font-size:0.68rem; min-width:400px; }
+            .legacy-table th { padding:7px 5px; font-size:0.57rem; }
+            .legacy-table td { padding:6px 5px; font-size:0.67rem; }
         }
     </style>
 </head>
@@ -535,7 +553,7 @@
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close Menu"><i class="fas fa-times"></i></button>
-        <div class="mobile-menu-brand"><span class="brand-text"><span class="blue">AURUM</span> <span class="dark">PARTNER</span></span><span class="brand-tag">By MTG &#128081;</span></div>
+        <div class="mobile-menu-brand"><span class="brand-text"><span class="blue">AURUM</span> <span class="dark">PARTNER</span></span><span class="brand-tag">AURUM PARTNER</span></div>
         <a href="aurum.html" class="mobile-nav-link">Home</a>
         <a href="about-aurum.html" class="mobile-nav-link">About Aurum</a>
         <a href="#income-streams" class="mobile-nav-link">Income Streams</a>
@@ -725,7 +743,7 @@
             <div class="container">
                 <div style="text-align:center; margin-bottom:40px;">
                     <div class="section-eyebrow reveal stagger-1" style="justify-content:center;"><i class="fas fa-ranking-star" style="font-size:0.65rem;"></i> 15 Legacy Levels</div>
-                    <h2 class="section-title reveal stagger-2" style="text-align:center;">From Entry Partner to <span class="highlight">Aurum Alpha</span></h2>
+                    <h2 class="section-title reveal stagger-2" style="text-align:center;">From Nova Partner to <span class="highlight">Aurum Alpha</span></h2>
                     <p class="section-subtitle reveal stagger-3" style="max-width:680px; margin:0 auto; text-align:center;">The 15 Legacy Levels define your commission rates, profitshare percentages, and Extra Bonus amounts. Legacy Volume (LV) equals 40% of total team sales. Every level you advance unlocks higher income across all 6 streams simultaneously.</p>
                 </div>
                 <div class="legacy-table-wrap reveal stagger-4">
@@ -734,7 +752,7 @@
                             <tr>
                                 <th>Legacy Level</th>
                                 <th>Required LV</th>
-                                <th>Total Legacy Volume (in USDT)</th>
+                                <th>Total LV (USDT)</th>
                                 <th>Legacy %</th>
                                 <th>Personal Contribution</th>
                                 <th>Profitshare</th>
