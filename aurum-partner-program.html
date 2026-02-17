@@ -361,6 +361,16 @@
         .bonus-green { color:#00A854; font-weight:700; }
         .level-badge { display:inline-block; padding:2px 10px; border-radius:50px; font-size:0.72rem; font-weight:600; background:var(--bg-section-alt); color:var(--blue-primary); border:1px solid rgba(0,115,255,0.15); }
 
+        /* LEADERSHIP SECTION */
+        .leadership-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+        .leader-card { display:flex; align-items:flex-start; gap:14px; padding:18px 16px; background:var(--bg-section-alt); border-radius:14px; border:1px solid rgba(0,115,255,0.1); }
+        .leader-icon { width:44px; height:44px; min-width:44px; border-radius:12px; background:var(--blue-gradient); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1rem; }
+        .leadership-bubbles { display:flex; flex-direction:column; gap:10px; }
+        .info-bubble { display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--bg-section-alt); border-radius:12px; border:1px solid rgba(0,115,255,0.1); font-family:var(--font-heading); font-size:0.82rem; color:var(--text-body); }
+        @media (max-width:768px) {
+            .leadership-grid { grid-template-columns:1fr; }
+        }
+
         /* STAT BANNER */
         .stat-banner { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin:48px 0 0; }
         .stat-item { text-align:center; padding:28px 16px; background:var(--bg-white); border-radius:18px; border:1px solid var(--border-card); transition:transform 0.3s ease,box-shadow 0.3s ease; }
@@ -941,23 +951,43 @@
                         <div class="stat-label">Income Streams in One Program</div>
                     </div>
                 </div>
-                <div style="margin-top:40px; padding:24px 28px; background:var(--bg-white); border-radius:18px; border:1px solid var(--border-card); display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center;" class="reveal stagger-4">
-                    <div>
-                        <h3 style="font-family:var(--font-heading); font-weight:700; font-size:1.1rem; color:var(--text-heading); margin-bottom:10px;">Leadership With Proven Track Records</h3>
-                        <p style="font-family:var(--font-body); font-size:0.9rem; color:var(--text-sub); line-height:1.7;">CEO Bryan Benson brings 27+ years of Web3 experience and served as Binance's Managing Director for Latin America. Chief Network Development Officer Shane Morand is a globally recognized business leader and master strategist who was part of the core team that scaled an international company from zero to $1B in total sales in under five years, impacting 2.2 million families across 50+ countries. A Napoleon Hill Foundation Gold Medalist, Shane hosts the weekly Aurum Zone 1 calls every Monday. Aurum is licensed in Dubai (Exchange Tower, Business Bay, License #1321058) with offices in Hong Kong and Warsaw, Poland.</p>
-                    </div>
-                    <div style="display:flex; flex-direction:column; gap:12px;">
-                        <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; background:var(--bg-section-alt); border-radius:12px; border:1px solid rgba(0,115,255,0.1);">
-                            <i class="fas fa-building" style="color:var(--blue-primary); font-size:1rem; flex-shrink:0;"></i>
-                            <span style="font-family:var(--font-heading); font-size:0.85rem; color:var(--text-body);">Dubai HQ: Exchange Tower, Business Bay</span>
+                <div style="margin-top:40px;" class="reveal stagger-4">
+                    <div style="background:var(--bg-white); border-radius:18px; border:1px solid var(--border-card); padding:32px 28px;">
+                        <h3 style="font-family:var(--font-heading); font-weight:700; font-size:1.1rem; color:var(--text-heading); margin-bottom:24px; text-align:center; letter-spacing:-0.01em;">Leadership With Proven Track Records</h3>
+                        <div class="leadership-grid">
+                            <!-- Bryan Benson -->
+                            <div class="leader-card">
+                                <div class="leader-icon"><i class="fas fa-user-tie"></i></div>
+                                <div>
+                                    <div style="font-family:var(--font-heading); font-weight:700; font-size:0.95rem; color:var(--text-heading); margin-bottom:3px;">Bryan Benson</div>
+                                    <div style="font-family:var(--font-heading); font-size:0.72rem; color:var(--blue-primary); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;">Chief Executive Officer</div>
+                                    <p style="font-family:var(--font-body); font-size:0.84rem; color:var(--text-sub); line-height:1.65;">Morgan Stanley derivatives trader turned crypto pioneer. Joined Binance in 2019 as Director of Latin America, driving 20% of Binance's global revenue and scaling the region from 80,000 customers to millions. Over 27 years of global Web3 and fintech experience. Became Aurum CEO in April 2024.</p>
+                                </div>
+                            </div>
+                            <!-- Shane Morand -->
+                            <div class="leader-card">
+                                <div class="leader-icon"><i class="fas fa-user-astronaut"></i></div>
+                                <div>
+                                    <div style="font-family:var(--font-heading); font-weight:700; font-size:0.95rem; color:var(--text-heading); margin-bottom:3px;">Shane Morand</div>
+                                    <div style="font-family:var(--font-heading); font-size:0.72rem; color:var(--blue-primary); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;">Chief Network Development Officer</div>
+                                    <p style="font-family:var(--font-body); font-size:0.84rem; color:var(--text-sub); line-height:1.65;">Helped scale a company from zero to $1B in sales in under 5 years, impacting 2.2M families across 50+ countries. Napoleon Hill Foundation Gold Medalist. Hosts the weekly Aurum Zone 1 calls every Monday.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; background:var(--bg-section-alt); border-radius:12px; border:1px solid rgba(0,115,255,0.1);">
-                            <i class="fas fa-certificate" style="color:var(--blue-primary); font-size:1rem; flex-shrink:0;"></i>
-                            <span style="font-family:var(--font-heading); font-size:0.85rem; color:var(--text-body);">Licensed: Dubai #1321058, Poland KRS 0001117211</span>
-                        </div>
-                        <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; background:var(--bg-section-alt); border-radius:12px; border:1px solid rgba(0,115,255,0.1);">
-                            <i class="fas fa-map-pin" style="color:var(--blue-primary); font-size:1rem; flex-shrink:0;"></i>
-                            <span style="font-family:var(--font-heading); font-size:0.85rem; color:var(--text-body);">Global offices: Dubai, Hong Kong, Warsaw</span>
+                        <!-- Info bubbles -->
+                        <div class="leadership-bubbles">
+                            <div class="info-bubble">
+                                <i class="fas fa-building" style="color:var(--blue-primary); font-size:0.9rem; flex-shrink:0;"></i>
+                                <span>Dubai HQ: Exchange Tower, Business Bay</span>
+                            </div>
+                            <div class="info-bubble">
+                                <i class="fas fa-certificate" style="color:var(--blue-primary); font-size:0.9rem; flex-shrink:0;"></i>
+                                <span>Licensed: Dubai #1321058, Poland KRS 0001117211</span>
+                            </div>
+                            <div class="info-bubble">
+                                <i class="fas fa-map-pin" style="color:var(--blue-primary); font-size:0.9rem; flex-shrink:0;"></i>
+                                <span>Global offices: Dubai, Hong Kong, Warsaw</span>
+                            </div>
                         </div>
                     </div>
                 </div>
