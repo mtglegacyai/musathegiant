@@ -505,7 +505,7 @@
         <div class="nav-inner">
             <a href="aurum.html" class="nav-logo" aria-label="EX-AI BOT Home">
                 <span class="nav-logo-text"><span class="blue">AURUM</span> <span class="dark">FOUNDATION</span></span>
-                <span class="nav-logo-tag">Aurum Partner</span>
+                <span class="nav-logo-tag">BY MTG 👑</span>
             </a>
             <nav aria-label="Main Navigation">
                 <ul class="nav-links">
@@ -531,7 +531,7 @@
         <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close Menu"><i class="fas fa-times"></i></button>
         <div class="mobile-menu-brand">
             <span class="brand-text"><span class="blue">AURUM</span> <span class="dark">FOUNDATION</span></span>
-            <span class="brand-tag">Aurum Partner</span>
+            <span class="brand-tag">BY MTG 👑</span>
         </div>
         <a href="aurum.html" class="mobile-nav-link">Home</a>
         <a href="#origin" class="mobile-nav-link">Origin Story</a>
@@ -561,14 +561,25 @@
                             Aurum Foundation is a decentralized fintech ecosystem that combines autonomous AI trading, a Web 3.0 NeoBank, a crypto exchange, Mastercard debit cards, and a multi-tier partner program into one connected platform. Spend, earn, grow, and protect your wealth without ever leaving the ecosystem.
                         </p>
                         <ul class="hero-features reveal stagger-4">
-                            <li><span class="icon"><i class="fas fa-circle"></i></span> 90M+ USDT in trading volume | 50,000+ partners worldwide</li>
+                            <li><span class="icon"><i class="fas fa-circle"></i></span> 90M+ USDT in trading volume | 60,000+ partners worldwide</li>
                             <li><span class="icon"><i class="fas fa-circle"></i></span> AI trading tested 2+ years with founders' own capital</li>
                             <li><span class="icon"><i class="fas fa-circle"></i></span> 35+ professionals from Binance, Morgan Stanley, OKX, IBM</li>
                             <li><span class="icon"><i class="fas fa-circle"></i></span> Start from just $100 | Full ecosystem access for $19.99/year</li>
                         </ul>
                     </div>
-                    <div class="section-image-col card-style reveal from-right stagger-3">
-                        <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum Foundation AI-Fintech Ecosystem" loading="lazy">
+                    <div class="section-image-col reveal from-right stagger-3">
+                        <div class="video-placeholder" id="hero-video-player" data-video-id="yGO5NRg6dtk">
+                            <div class="aurum-thumb-content" id="hero-thumb">
+                                <p class="aurum-thumb-headline">See How Aurum Is Reinventing Wealth With Intelligence</p>
+                                <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
+                                <span class="aurum-thumb-cta">Watch the Overview</span>
+                            </div>
+                            <div class="aurum-loading" id="hero-loading">
+                                <div class="aurum-loading-dots"><span></span><span></span><span></span></div>
+                                <p class="aurum-loading-text">Loading video...</p>
+                            </div>
+                            <div class="aurum-iframe-wrap" id="hero-iframe-wrap"></div>
+                        </div>
                     </div>
                     <div class="hero-cta-wrap reveal stagger-5">
                         <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Start Your Journey <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
@@ -1465,6 +1476,7 @@
         initAurumVideoPlayer({ playerId:'card-video-player', thumbId:'card-thumb', loadingId:'card-loading', iframeWrapId:'card-iframe-wrap' });
         initAurumVideoPlayer({ playerId:'hq-video-player', thumbId:'hq-thumb', loadingId:'hq-loading', iframeWrapId:'hq-iframe-wrap' });
         initAurumVideoPlayer({ playerId:'shane-video-player', thumbId:'shane-thumb', loadingId:'shane-loading', iframeWrapId:'shane-iframe-wrap' });
+        initAurumVideoPlayer({ playerId:'hero-video-player', thumbId:'hero-thumb', loadingId:'hero-loading', iframeWrapId:'hero-iframe-wrap' });
     </script>
 
 </body>
