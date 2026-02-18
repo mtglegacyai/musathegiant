@@ -93,7 +93,7 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Aurum Foundation Partner | MTG",
-        "alternateName": "EX-AI BOT | Aurum Partner",
+        "alternateName": "EX-AI BOT | BY MTG 👑",
         "url": "https://www.musathegiant.com/aurum.html",
         "description": "Independent Aurum Foundation affiliate partner site featuring the EX-AI Bot, NeoBank, Aurum Card, crypto exchange, and partner program information.",
         "publisher": {
@@ -1919,6 +1919,26 @@
         #about-aurum .video-placeholder::before { display: none; }
         #about-aurum .video-placeholder::after { display: none; }
 
+        /* Override default video-placeholder in partner-program section */
+        #partner-program .video-placeholder {
+            background:
+                radial-gradient(ellipse at 25% 30%, rgba(0, 115, 255, 0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 70%, rgba(56, 152, 248, 0.10) 0%, transparent 55%),
+                linear-gradient(135deg, #0060DD 0%, #0073FF 40%, #3898F8 100%);
+            border-color: rgba(0, 115, 255, 0.25);
+        }
+        #partner-program .video-placeholder::before { display: none; }
+        #partner-program .video-placeholder::after { display: none; }
+        #partner-program .video-placeholder:hover .aurum-play-btn {
+            transform: scale(1.14);
+            background: rgba(255, 255, 255, 0.28);
+            border-color: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.12);
+            animation: none;
+        }
+        #partner-program .video-placeholder:hover .aurum-play-btn i { transform: scale(1.1); }
+        #partner-program .video-placeholder:hover .aurum-thumb-cta { color: rgba(255, 255, 255, 1); }
+
         /* Thumbnail content layer */
         .aurum-thumb-content {
             position: absolute;
@@ -2266,7 +2286,7 @@
         <div class="nav-inner">
             <a href="#" class="nav-logo" aria-label="EX-AI BOT Home">
                 <span class="nav-logo-text"><span class="blue">EX-AI</span> <span class="dark">BOT</span></span>
-                <span class="nav-logo-tag">Aurum Partner</span>
+                <span class="nav-logo-tag">BY MTG 👑</span>
             </a>
             <nav aria-label="Main Navigation">
                 <ul class="nav-links">
@@ -2296,7 +2316,7 @@
         <!-- Brand echo -->
         <div class="mobile-menu-brand">
             <span class="brand-text"><span class="blue">EX-AI</span> <span class="dark">BOT</span></span>
-            <span class="brand-tag">Aurum Partner</span>
+            <span class="brand-tag">BY MTG 👑</span>
         </div>
         <a href="#about" class="mobile-nav-link">About</a>
         <a href="#ex-ai-bot" class="mobile-nav-link">EX-AI Bot</a>
@@ -2333,7 +2353,7 @@
                         <img src="https://www.musathegiant.com/images/aurum-ex-ai-bot.png" alt="Aurum EX-AI Trading Bot - Autonomous AI crypto trading system" loading="lazy">
                     </div>
                     <div class="hero-cta-wrap reveal stagger-5">
-                        <a href="about-aurum.html" class="btn-primary">Explore the Ecosystem <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
+                        <a href="https://www.musathegiant.com/aurum-ai-bots" class="btn-primary">Explore Aurum AI Bots <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -2462,7 +2482,7 @@
                         </div>
                     </div>
                     <div class="section-cta-wrap reveal stagger-6">
-                        <a href="https://www.musathegiant.com/about-aurum.html" class="btn-ghost">Learn More About Aurum <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
+                        <a href="https://www.musathegiant.com/about-aurum#leadership" class="btn-ghost">Meet The Aurum Team <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -2496,7 +2516,7 @@
                         <img src="https://www.musathegiant.com/images/aurum-cards.png" alt="Aurum crypto debit cards with global spending capabilities" loading="lazy">
                     </div>
                     <div class="section-cta-wrap reveal stagger-5">
-                        <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Order Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
+                        <a href="https://www.musathegiant.com/aurum-neobank" class="btn-primary">Explore Aurum NeoBank <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -2527,12 +2547,21 @@
                         </ul>
                     </div>
                     <div class="section-image-col reveal from-left stagger-2">
-                        <div class="video-placeholder">
-                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                        <div class="video-placeholder" id="partner-video-player" data-video-id="gvx7drFSwHs">
+                            <div class="aurum-thumb-content" id="partner-thumb">
+                                <p class="aurum-thumb-headline">$1B in Sales. 2.2 Million Families. Now He's Building Aurum.</p>
+                                <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
+                                <span class="aurum-thumb-cta">Hear From Shane Morand</span>
+                            </div>
+                            <div class="aurum-loading" id="partner-loading">
+                                <div class="aurum-loading-dots"><span></span><span></span><span></span></div>
+                                <p class="aurum-loading-text">Loading video...</p>
+                            </div>
+                            <div class="aurum-iframe-wrap" id="partner-iframe-wrap"></div>
                         </div>
                     </div>
                     <div class="section-cta-wrap reveal stagger-5">
-                        <a href="#get-started" class="btn-primary">Get Started <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
+                        <a href="https://www.musathegiant.com/aurum-partner-program" class="btn-primary">Aurum Partner Program <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -2977,6 +3006,13 @@
             thumbId: 'ceo-thumb',
             loadingId: 'ceo-loading',
             iframeWrapId: 'ceo-iframe-wrap'
+        });
+
+        initAurumVideoPlayer({
+            playerId: 'partner-video-player',
+            thumbId: 'partner-thumb',
+            loadingId: 'partner-loading',
+            iframeWrapId: 'partner-iframe-wrap'
         });
     </script>
 
