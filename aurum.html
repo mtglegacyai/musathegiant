@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurum Foundation | EX-AI Bot, Aurum CEO, NeoBank, Partner Program</title>
+    <title>Aurum Foundation | EX-AI Bot, NeoBank, Exchange & Partner Program</title>
     <meta name="description" content="Aurum Foundation: the AI-fintech ecosystem with EX-AI Bot (avg 17.5% monthly over 36 months), Web 3.0 NeoBank, Mastercard debit cards, crypto exchange, and partner program. Led by ex-Binance CEO Bryan Benson. 50,000+ partners. Start from $100.">
     <meta name="keywords" content="Aurum Foundation, Aurum Foundation review, what is Aurum Foundation, EX-AI Bot, Aurum NeoBank, Aurum Card, Aurum Exchange, Aurum partner program, Bryan Benson Aurum, AI crypto trading, best AI trading bot, passive income crypto, Aurum Foundation scam, is Aurum legit, Aurum Foundation Dubai, Aurum Foundation Hong Kong, Aurum Foundation Poland, Aurum affiliate program">
     <meta name="author" content="MTG - Aurum Foundation Affiliate Partner">
@@ -1201,6 +1201,7 @@
            ============================================ */
         .content-section {
             padding: var(--section-padding) 0;
+            scroll-margin-top: calc(var(--nav-height) + 16px);
         }
 
         .content-section.alt-bg {
@@ -1489,6 +1490,7 @@
         .faq-section {
             padding: var(--section-padding) 0;
             background: var(--bg-white);
+            scroll-margin-top: calc(var(--nav-height) + 16px);
         }
 
         .faq-header {
@@ -1592,6 +1594,7 @@
             position: relative;
             overflow: hidden;
             background: linear-gradient(170deg, #F1F8FF 0%, var(--bg-page) 100%);
+            scroll-margin-top: calc(var(--nav-height) + 16px);
         }
 
         .final-cta::before {
@@ -2806,10 +2809,25 @@
         const mobileMenuClose = document.getElementById('mobileMenuClose');
         mobileMenuClose.addEventListener('click', closeMobileMenu);
 
-        // Close on nav link tap
+        // Close on nav link tap — proper scroll with offset for fixed nav
         document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                closeMobileMenu();
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetEl = document.getElementById(targetId);
+                    closeMobileMenu();
+                    if (targetEl) {
+                        setTimeout(() => {
+                            const navHeight = document.getElementById('navbar').offsetHeight;
+                            const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 16;
+                            window.scrollTo({ top: targetPos, behavior: 'smooth' });
+                        }, 350);
+                    }
+                } else {
+                    closeMobileMenu();
+                }
             });
         });
 
