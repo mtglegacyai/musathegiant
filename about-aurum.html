@@ -71,6 +71,7 @@
            ============================================ */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-14px); } }
+        @keyframes divider-float-spin { 0% { transform:translateY(0px) rotate(0deg); } 12% { transform:translateY(-14px) rotate(0deg); } 25% { transform:translateY(0px) rotate(0deg); } 37% { transform:translateY(-14px) rotate(120deg); } 50% { transform:translateY(0px) rotate(240deg); } 62% { transform:translateY(-14px) rotate(360deg); } 75% { transform:translateY(0px) rotate(360deg); } 87% { transform:translateY(-14px) rotate(360deg); } 100% { transform:translateY(0px) rotate(360deg); } }
         @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 15px rgba(0,115,255,0.15); } 50% { box-shadow: 0 0 35px rgba(0,115,255,0.3); } }
         @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
         @keyframes chevron-cascade { 0% { opacity:0; transform:translateY(-6px); } 30% { opacity:1; transform:translateY(0); } 60% { opacity:1; transform:translateY(4px); } 100% { opacity:0; transform:translateY(10px); } }
@@ -213,7 +214,7 @@
            ============================================ */
         .section-divider { display:flex; align-items:center; justify-content:center; padding:40px 0; position:relative; }
         .section-divider::before,.section-divider::after { content:'\2022 \00a0\00a0 \2022 \00a0\00a0 \2022'; flex:1; font-size:0.45rem; color:var(--blue-primary); text-align:center; display:flex; align-items:center; justify-content:center; opacity:0.3; }
-        .divider-img { width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid var(--blue-primary); margin:0 28px; animation:pulse-glow 3s ease-in-out infinite,float 5s ease-in-out infinite; flex-shrink:0; background:var(--bg-white); }
+        .divider-img { width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid var(--blue-primary); margin:0 28px; animation:pulse-glow 3s ease-in-out infinite,divider-float-spin 10s ease-in-out infinite; flex-shrink:0; background:var(--bg-white); }
 
         /* ============================================
            CONTENT SECTIONS
@@ -505,7 +506,7 @@
         <div class="nav-inner">
             <a href="aurum.html" class="nav-logo" aria-label="EX-AI BOT Home">
                 <span class="nav-logo-text"><span class="blue">AURUM</span> <span class="dark">FOUNDATION</span></span>
-                <span class="nav-logo-tag">BY MTG 👑</span>
+                <span class="nav-logo-tag">Aurum Partner</span>
             </a>
             <nav aria-label="Main Navigation">
                 <ul class="nav-links">
@@ -531,7 +532,7 @@
         <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close Menu"><i class="fas fa-times"></i></button>
         <div class="mobile-menu-brand">
             <span class="brand-text"><span class="blue">AURUM</span> <span class="dark">FOUNDATION</span></span>
-            <span class="brand-tag">BY MTG 👑</span>
+            <span class="brand-tag">Aurum Partner</span>
         </div>
         <a href="aurum.html" class="mobile-nav-link">Home</a>
         <a href="#origin" class="mobile-nav-link">Origin Story</a>
@@ -567,19 +568,8 @@
                             <li><span class="icon"><i class="fas fa-circle"></i></span> Start from just $100 | Full ecosystem access for $19.99/year</li>
                         </ul>
                     </div>
-                    <div class="section-image-col reveal from-right stagger-3">
-                        <div class="video-placeholder" id="hero-video-player" data-video-id="yGO5NRg6dtk">
-                            <div class="aurum-thumb-content" id="hero-thumb">
-                                <p class="aurum-thumb-headline">See How Aurum Is Reinventing Wealth With Intelligence</p>
-                                <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
-                                <span class="aurum-thumb-cta">Watch the Overview</span>
-                            </div>
-                            <div class="aurum-loading" id="hero-loading">
-                                <div class="aurum-loading-dots"><span></span><span></span><span></span></div>
-                                <p class="aurum-loading-text">Loading video...</p>
-                            </div>
-                            <div class="aurum-iframe-wrap" id="hero-iframe-wrap"></div>
-                        </div>
+                    <div class="section-image-col card-style reveal from-right stagger-3">
+                        <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum Foundation AI-Fintech Ecosystem" loading="lazy">
                     </div>
                     <div class="hero-cta-wrap reveal stagger-5">
                         <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-primary" target="_blank" rel="noopener noreferrer">Start Your Journey <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
@@ -655,7 +645,7 @@
             <div class="container">
                 <div style="text-align:center; margin-bottom:48px;">
                     <div class="section-eyebrow reveal stagger-1" style="justify-content:center;">Leadership & Vision</div>
-                    <h2 class="section-title reveal stagger-2">They've Built <span class="highlight">Billion-Dollar Legacies.</span> Aurum Is Next.</h2>
+                    <h2 class="section-title reveal stagger-2">The People <span class="highlight">Behind Aurum</span></h2>
                     <p class="section-subtitle reveal stagger-3" style="max-width:680px; margin:0 auto;">
                         Aurum Foundation is led by proven leaders from the world's largest financial and crypto institutions. Their mission: create 1,000 millionaires. 17 have already crossed that milestone. 983 to go.
                     </p>
@@ -1476,7 +1466,6 @@
         initAurumVideoPlayer({ playerId:'card-video-player', thumbId:'card-thumb', loadingId:'card-loading', iframeWrapId:'card-iframe-wrap' });
         initAurumVideoPlayer({ playerId:'hq-video-player', thumbId:'hq-thumb', loadingId:'hq-loading', iframeWrapId:'hq-iframe-wrap' });
         initAurumVideoPlayer({ playerId:'shane-video-player', thumbId:'shane-thumb', loadingId:'shane-loading', iframeWrapId:'shane-iframe-wrap' });
-        initAurumVideoPlayer({ playerId:'hero-video-player', thumbId:'hero-thumb', loadingId:'hero-loading', iframeWrapId:'hero-iframe-wrap' });
     </script>
 
 </body>
