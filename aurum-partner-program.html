@@ -176,6 +176,7 @@
 
         @keyframes fadeInUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
         @keyframes float { 0%,100% { transform:translateY(0px); } 50% { transform:translateY(-14px); } }
+        @keyframes divider-float-spin { 0% { transform:translateY(0px) rotate(0deg); } 12% { transform:translateY(-14px) rotate(0deg); } 25% { transform:translateY(0px) rotate(0deg); } 37% { transform:translateY(-14px) rotate(120deg); } 50% { transform:translateY(0px) rotate(240deg); } 62% { transform:translateY(-14px) rotate(360deg); } 75% { transform:translateY(0px) rotate(360deg); } 87% { transform:translateY(-14px) rotate(360deg); } 100% { transform:translateY(0px) rotate(360deg); } }
         @keyframes pulse-glow { 0%,100% { box-shadow:0 0 15px rgba(0,115,255,0.15); } 50% { box-shadow:0 0 35px rgba(0,115,255,0.3); } }
         @keyframes chevron-cascade { 0% { opacity:0; transform:translateY(-6px); } 30% { opacity:1; transform:translateY(0); } 60% { opacity:1; transform:translateY(4px); } 100% { opacity:0; transform:translateY(10px); } }
         @keyframes chevron-cascade-right { 0% { opacity:0; transform:translateX(-4px); } 30% { opacity:1; transform:translateX(0); } 60% { opacity:1; transform:translateX(3px); } 100% { opacity:0; transform:translateX(7px); } }
@@ -287,7 +288,7 @@
         /* SECTION DIVIDER */
         .section-divider { display:flex; align-items:center; justify-content:center; padding:40px 0; position:relative; }
         .section-divider::before,.section-divider::after { content:'\2022 \00a0\00a0 \2022 \00a0\00a0 \2022'; flex:1; font-size:0.45rem; color:var(--blue-primary); text-align:center; display:flex; align-items:center; justify-content:center; opacity:0.3; }
-        .divider-img { width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid var(--blue-primary); margin:0 28px; animation:pulse-glow 3s ease-in-out infinite,float 5s ease-in-out infinite; flex-shrink:0; background:var(--bg-white); }
+        .divider-img { width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid var(--blue-primary); margin:0 28px; animation:pulse-glow 3s ease-in-out infinite,divider-float-spin 10s ease-in-out infinite; flex-shrink:0; background:var(--bg-white); }
 
         /* SECTIONS */
         .content-section { padding:var(--section-padding) 0; }
@@ -549,7 +550,7 @@
         <div class="nav-inner">
             <a href="aurum.html" class="nav-logo" aria-label="Aurum Foundation Partner Program Home">
                 <span class="nav-logo-text"><span class="blue">AURUM</span> <span class="dark">PARTNER PROGRAM</span></span>
-                <span class="nav-logo-tag">BY MTG 👑</span>
+                <span class="nav-logo-tag">AURUM PARTNER</span>
             </a>
             <nav aria-label="Main Navigation">
                 <ul class="nav-links">
@@ -567,7 +568,7 @@
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close Menu"><i class="fas fa-times"></i></button>
-        <div class="mobile-menu-brand"><span class="brand-text"><span class="blue">PARTNER</span> <span class="dark">PROGRAM</span></span><span class="brand-tag">BY MTG 👑</span></div>
+        <div class="mobile-menu-brand"><span class="brand-text"><span class="blue">PARTNER</span> <span class="dark">PROGRAM</span></span><span class="brand-tag">AURUM PARTNER</span></div>
         <a href="aurum.html" class="mobile-nav-link">Home</a>
         <a href="about-aurum.html" class="mobile-nav-link">About Aurum</a>
         <a href="#income-streams" class="mobile-nav-link">Income Streams</a>
