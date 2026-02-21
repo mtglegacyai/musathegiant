@@ -244,8 +244,9 @@
         .section-image-col { width: 100%; }
         .section-image-col img { width: 100%; border-radius: 20px; }
 
-        .section-divider { text-align: center; padding: 8px 0; }
-        .section-divider .divider-img { max-width: 50px; margin: 0 auto; opacity: 0.35; animation: float 5s ease-in-out infinite; }
+        .section-divider { display:flex; align-items:center; justify-content:center; padding:40px 0; position:relative; }
+        .section-divider::before,.section-divider::after { content:'\2022 \00a0\00a0 \2022 \00a0\00a0 \2022'; flex:1; font-size:0.45rem; color:var(--blue-primary); text-align:center; display:flex; align-items:center; justify-content:center; opacity:0.3; }
+        .divider-img { width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid var(--blue-primary); margin:0 28px; animation:pulse-glow 3s ease-in-out infinite,float 5s ease-in-out infinite; flex-shrink:0; background:var(--bg-white); }
 
         /* STEP CARDS */
         .step-number { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: var(--blue-gradient); color: var(--text-white); font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 4px 16px var(--blue-glow); }
@@ -343,6 +344,7 @@
             .footer-brand p { max-width: 100%; }
             .social-icons { justify-content: center; }
             .footer-links { align-items: center; }
+            .divider-img { width: 60px; height: 60px; }
         }
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -354,6 +356,8 @@
             .social-icons a { width: 44px; height: 44px; font-size: 1rem; }
             .disclaimer { font-size: 0.68rem; padding: 0 8px; }
             .scroll-indicator { bottom: 16px; }
+            .section-divider { padding: 24px 0; }
+            .divider-img { width: 50px; height: 50px; margin: 0 16px; }
         }
         @media (max-width: 480px) {
             .hero-title { font-size: 1.8rem; }
