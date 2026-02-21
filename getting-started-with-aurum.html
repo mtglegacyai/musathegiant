@@ -309,6 +309,24 @@
         .notice-box p { font-size: 0.88rem; color: var(--text-body); line-height: 1.65; }
         .notice-box a { color: var(--blue-primary); font-weight: 600; }
 
+        /* FAQ SECTION */
+        .faq-section { padding:var(--section-padding) 0; background:var(--bg-white); scroll-margin-top:calc(var(--nav-height) + 16px); }
+        .faq-header { text-align:center; margin-bottom:48px; }
+        .faq-header .section-eyebrow { justify-content:center; }
+        .faq-header .section-eyebrow::before { display:none; }
+        .faq-list { max-width:800px; margin:0 auto; }
+        .faq-item { border-bottom:1px solid var(--border-card); overflow:hidden; transition:border-color 0.3s ease; }
+        .faq-item:first-child { border-top:1px solid var(--border-card); }
+        .faq-question { display:flex; align-items:center; justify-content:space-between; padding:20px 0; cursor:pointer; font-family:var(--font-heading); font-weight:600; font-size:0.97rem; color:var(--text-heading-2); transition:color 0.3s ease; gap:20px; }
+        .faq-question:hover { color:var(--blue-primary); }
+        .faq-question .toggle-icon { color:var(--blue-primary); font-size:1.15rem; transition:transform 0.3s ease; flex-shrink:0; }
+        .faq-item.active .faq-question { color:var(--blue-primary); }
+        .faq-item.active .toggle-icon { transform:rotate(45deg); }
+        .faq-item.active { border-left:3px solid var(--blue-primary); padding-left:18px; margin-left:-18px; }
+        .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.4s ease,padding 0.4s ease; }
+        .faq-item.active .faq-answer { max-height:500px; padding-bottom:20px; }
+        .faq-answer p { font-family:var(--font-body); font-weight:400; font-size:0.93rem; color:var(--text-sub); line-height:1.7; }
+
         /* FINAL CTA */
         .final-cta { padding: var(--section-padding) 0; text-align: center; position: relative; overflow: hidden; background: linear-gradient(170deg, #F1F8FF 0%, var(--bg-page) 100%); scroll-margin-top: calc(var(--nav-height) + 16px); }
         .final-cta .section-title { max-width: 600px; margin: 0 auto 16px; }
@@ -376,6 +394,8 @@
             .scroll-indicator { bottom: 16px; }
             .section-divider { padding: 24px 0; }
             .divider-img { width: 50px; height: 50px; margin: 0 16px; }
+            .faq-item.active { margin-left:0; padding-left:14px; }
+            .faq-question { padding:16px 0; font-size:0.9rem; gap:14px; }
         }
         @media (max-width: 480px) {
             .hero-title { font-size: 1.8rem; }
@@ -397,6 +417,26 @@
             .hero-subtitle { font-size: 0.95rem; }
         }
     </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": "How much money do I actually need to get started with Aurum?", "acceptedAnswer": {"@type": "Answer", "text": "$119.99 total. $19.99 for the annual ecosystem membership and $100 minimum USDT deposit to activate the EX-AI Bot. You will also need a small amount of crypto for blockchain transfer fees."}},
+            {"@type": "Question", "name": "How long does the Aurum setup take from start to finish?", "acceptedAnswer": {"@type": "Answer", "text": "Under 30 minutes if you already have a crypto exchange account. Once your USDT reaches your Aurum balance, activating the bot takes under 60 seconds and it begins trading immediately."}},
+            {"@type": "Question", "name": "Is Aurum Foundation safe and legitimate?", "acceptedAnswer": {"@type": "Answer", "text": "Aurum Foundation holds three international licenses, manages over $90 million in assets, serves 60,000+ partners in 100+ countries, and is led by CEO Bryan Benson with 27+ years of experience. The EX-AI Bot has 36+ months of verified trading data."}},
+            {"@type": "Question", "name": "What returns can I expect from the Aurum EX-AI Bot?", "acceptedAnswer": {"@type": "Answer", "text": "The EX-AI Bot has averaged up to 17.5% monthly gross returns across 36 months. Actual net returns depend on your deposit tier (5% to 17.5% monthly). Returns are not guaranteed and vary with market conditions."}},
+            {"@type": "Question", "name": "Can I withdraw my profits and capital from Aurum?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Profits are available for withdrawal 24/7 and processed within 48 hours. Minimum withdrawal is 25 USDT with a 1% fee. Capital can be withdrawn on the 1st, 10th, or 20th of each month."}},
+            {"@type": "Question", "name": "What is compounding in Aurum and should I use it?", "acceptedAnswer": {"@type": "Answer", "text": "Compounding reinvests your daily profits so the bot trades with a larger amount each day. A $1,000 deposit earning 10% monthly without compounding generates $1,200 in a year. With compounding, it could exceed $3,100."}},
+            {"@type": "Question", "name": "Do I need to trade manually with the Aurum EX-AI Bot?", "acceptedAnswer": {"@type": "Answer", "text": "No. The EX-AI Bot is fully autonomous. It scans crypto markets 24/7 and executes trades automatically. You do not need to understand charts or monitor anything."}},
+            {"@type": "Question", "name": "Which crypto exchange should I use to buy USDT for Aurum?", "acceptedAnswer": {"@type": "Answer", "text": "Valr is recommended for African and European users. Kraken is a global alternative. Both are reputable regulated exchanges where you can buy USDT with local currency."}},
+            {"@type": "Question", "name": "Can I use Aurum Foundation from the USA?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but you need a VPN. We recommend Proton VPN (free). Connect to Switzerland or any international server and select U.S.A. Minor Outlying Islands during registration."}},
+            {"@type": "Question", "name": "What happens after I activate the Aurum EX-AI Bot?", "acceptedAnswer": {"@type": "Answer", "text": "The bot starts trading immediately. Enable compounding, check your balance growth daily or weekly, and watch for your first profit accumulation within 24 to 48 hours."}},
+            {"@type": "Question", "name": "Is Aurum Foundation a pyramid scheme or Ponzi?", "acceptedAnswer": {"@type": "Answer", "text": "No. Aurum generates revenue through AI crypto spot trading, NeoBank services, card transaction fees, and exchange operations. The company holds three licenses, has physical headquarters, and you do not need to recruit anyone to earn from the trading bot."}},
+            {"@type": "Question", "name": "Can I lose my investment with Aurum?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All cryptocurrency and trading activities involve risk. Past performance does not guarantee future results. Never invest money you cannot afford to lose. Start with $100 to test the system."}}
+        ]
+    }
+    </script>
 </head>
 <body>
     <header class="nav" id="navbar" role="banner">
@@ -869,6 +909,105 @@
             </div>
         </section>
 
+        <div class="section-divider reveal"><img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum" class="divider-img" loading="lazy"></div>
+
+        <!-- FAQ -->
+        <section class="faq-section" id="faq" aria-label="Frequently Asked Questions">
+            <div class="container">
+                <div class="faq-header">
+                    <div class="section-eyebrow reveal stagger-1"><i class="fas fa-question-circle" style="font-size:0.65rem;"></i> Got Questions?</div>
+                    <h2 class="section-title reveal stagger-2">Everything You Need to Know <span class="highlight">Before You Start</span></h2>
+                    <p class="section-subtitle reveal stagger-3" style="max-width:600px; margin:0 auto;">Real answers to the questions every new member asks. No fluff, no jargon, just clarity so you can start with confidence.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item reveal stagger-1">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>How much money do I actually need to get started?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>$119.99 total to be fully operational. That breaks down to $19.99 for the annual ecosystem membership (unlocks all Aurum products) and $100 minimum USDT deposit to activate the EX-AI Bot. You will also need a small amount of crypto (a few dollars) for blockchain transfer fees. You can add more funds at any time after setup.</p></div>
+                    </div>
+                    <div class="faq-item reveal stagger-2">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>How long does the entire setup take from start to finish?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>Under 30 minutes if you already have a crypto exchange account. If you need to create a new exchange account on Valr or Kraken, add 10 to 15 minutes for verification. Once your USDT reaches your Aurum balance, activating the bot takes under 60 seconds. Your AI bot begins trading immediately.</p></div>
+                    </div>
+                    <div class="faq-item reveal stagger-3">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>Is this safe? How do I know my money won't disappear?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>Aurum Foundation holds three international licenses, manages over $90 million in assets, and serves 60,000+ partners in 100+ countries. The company is led by CEO Bryan Benson, a Web3 veteran with 27+ years of experience and a former Binance executive. The EX-AI Bot has been running live since February 2023, with over 36 months of verified trading data. Withdrawals are processed within 48 hours and are verified on the blockchain. This page includes three live withdrawal proof videos so you can watch real money being withdrawn before you invest a single dollar.</p></div>
+                    </div>
+                    <div class="faq-item reveal stagger-4">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>What returns can I realistically expect from the EX-AI Bot?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>The EX-AI Bot has averaged up to 17.5% monthly gross returns across 36 months of live trading. Some months were higher (23.52% in March 2024), some lower (9.31% in July 2023). Your actual net return depends on your deposit tier, which ranges from 5% to 17.5% monthly. Returns are not guaranteed and vary with market conditions. Never invest more than you can afford to lose, and always do your own research.</p></div>
+                    </div>
+                    <div class="faq-item reveal stagger-4">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>Can I withdraw my profits and my original deposit?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>Yes. Accumulated profits are available for withdrawal 24/7 and processed within 48 hours. The minimum withdrawal is 25 USDT with a 1% processing fee. Your original capital can be withdrawn on the 1st, 10th, or 20th of each month. In the first year there is a 35% early withdrawal fee on principal; after one year, there is no fee. Withdrawals are paid in USDT to your personal crypto wallet.</p></div>
+                    </div>
+                    <div class="faq-item reveal stagger-5">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>What is compounding and should I turn it on?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>Compounding means reinvesting your daily profits back into your trading balance so the bot trades with a larger amount each day. The math is powerful: a $1,000 deposit earning 10% monthly without compounding generates $1,200 in a year. With compounding, that same deposit could exceed $3,100. You can toggle compounding on or off at any time inside your dashboard. Most experienced members leave it on to maximize long-term growth.</p></div>
+                    </div>
+                    <div class="faq-item reveal stagger-5">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>Do I need to trade manually or watch the markets?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>No. That is the entire point of the EX-AI Bot. Once you activate it, the AI scans crypto markets 24/7, executes strategic spot trades, and compounds your profits automatically if you have compounding enabled. You do not need to understand charts, set stop losses, or monitor anything. The bot works while you sleep, eat, and live your life. You can check your dashboard anytime to see your balance growing.</p></div>
+                    </div>
+                    <div class="faq-item reveal stagger-5">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>Which crypto exchange should I use to buy USDT?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>We recommend Valr if it is available in your country (especially for African and European users) or Kraken as a global alternative. Both are reputable, regulated exchanges where you can buy USDT with your local currency via bank transfer or card. Once you own USDT, you transfer it to your Aurum balance using a simple blockchain transaction. The process is covered step by step with video tutorials on this page.</p></div>
+                    </div>
+                    <div class="faq-item reveal stagger-6">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>I'm in the USA. Can I still use Aurum?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>Yes, but you will need a VPN to access the Aurum platform. We recommend Proton VPN (free, no ads). Connect to Switzerland or any international server before registering. When selecting your country during registration, choose "U.S.A. Minor Outlying Islands" from the dropdown. Once registered, you can access your dashboard and withdraw funds normally using the VPN.</p></div>
+                    </div>
+                    <div class="faq-item reveal stagger-6">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>What happens after I activate the bot? What do I do next?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>Once the bot is active, it starts trading immediately. Your next steps are: (1) Enable compounding in your dashboard to maximize returns. (2) Bookmark your backoffice login and check your balance growth daily or weekly. (3) Watch for your first profit accumulation within 24 to 48 hours. (4) Optionally, explore the Aurum Partner Program to earn commissions by sharing the ecosystem with others. You can also add more funds at any time to increase your trading capital.</p></div>
+                    </div>
+                    <div class="faq-item reveal stagger-6">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>Is Aurum Foundation a pyramid scheme or Ponzi?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>No. Aurum Foundation generates revenue through AI-powered crypto spot trading, NeoBank services, crypto card transaction fees, and exchange operations. The EX-AI Bot has 36+ months of verified trading history with publicly auditable results. Withdrawals are processed through blockchain transactions, which are immutable and verifiable by anyone. The company holds three international licenses, has physical headquarters, and is led by known, public figures with verifiable professional histories. You do not need to recruit anyone to earn from the trading bot. Recruitment is optional through the Partner Program.</p></div>
+                    </div>
+                    <div class="faq-item reveal stagger-6">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                            <span>Can I lose my investment?</span>
+                            <i class="fas fa-plus toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer"><p>Yes. All cryptocurrency and trading activities involve risk, and past performance does not guarantee future results. While the EX-AI Bot has a strong 36-month track record, market conditions can change. Never invest money you cannot afford to lose. Start with the $100 minimum if you want to test the system before committing larger amounts. Aurum is transparent about risk, and so are we.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FINAL CTA -->
         <section class="final-cta" id="final-cta">
             <div class="container">
@@ -975,6 +1114,20 @@
         (function() { const scrollBtn = document.getElementById('scroll-to-top'); if (!scrollBtn) return; window.addEventListener('scroll', function() { scrollBtn.classList.toggle('visible', window.scrollY > 600); }, { passive: true }); scrollBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }); })();
 
         const pc = document.getElementById('particles'); for (let i = 0; i < 12; i++) { const p = document.createElement('div'); p.classList.add('particle'); p.style.left = Math.random() * 100 + '%'; p.style.bottom = '-10px'; p.style.width = (Math.random() * 3 + 2) + 'px'; p.style.height = p.style.width; p.style.animationDuration = (Math.random() * 15 + 12) + 's'; p.style.animationDelay = (Math.random() * 10) + 's'; pc.appendChild(p); }
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const wasActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(f => {
+                    f.classList.remove('active');
+                    f.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+                if (!wasActive) { item.classList.add('active'); q.setAttribute('aria-expanded', 'true'); }
+            });
+            q.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); q.click(); } });
+        });
 
         (function() { var tag = document.createElement('script'); tag.src = 'https://www.youtube.com/iframe_api'; var firstScript = document.getElementsByTagName('script')[0]; firstScript.parentNode.insertBefore(tag, firstScript); })();
 
