@@ -1,0 +1,2805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>GitHub Pages Custom Domain Setup 2025 | Free Hosting Guide</title>
+    <meta name="title" content="GitHub Pages Custom Domain Setup 2025 | Free Hosting Guide">
+    <meta name="description" content="Learn how to host your website on GitHub Pages with a custom domain for FREE. Complete step-by-step tutorial with DNS setup, GoDaddy & Namecheap instructions, HTTPS configuration, and troubleshooting. Video tutorials included.">
+    <meta name="keywords" content="GitHub Pages, GitHub Pages custom domain, host website GitHub Pages, GitHub Pages hosting, free website hosting, GitHub Pages tutorial, connect custom domain GitHub Pages, GitHub Pages DNS setup, GoDaddy GitHub Pages, Namecheap GitHub Pages, GitHub Pages HTTPS, free SSL certificate, GitHub Pages A records, GitHub repository hosting, deploy website GitHub, GitHub Pages CNAME, setup DNS GitHub Pages, enable HTTPS GitHub Pages, GitHub Pages configuration, custom domain hosting free, GitHub Pages step by step, GitHub Pages for beginners, GitHub Pages deployment, static site hosting, free domain hosting, GitHub Pages guide, how to use GitHub Pages, GitHub Pages with GoDaddy, GitHub Pages with Namecheap, GitHub hosting tutorial, website deployment GitHub, free web hosting custom domain, GitHub Pages not working, GitHub Pages 404 error, DNS propagation GitHub Pages, troubleshoot GitHub Pages, fix GitHub Pages domain">
+    <meta name="author" content="MTG - Crypto & Web Hosting Expert">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="rating" content="General">
+    <link rel="canonical" href="https://yourdomain.com/github-pages-custom-domain-guide.html">
+    
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yourdomain.com/github-pages-custom-domain-guide.html">
+    <meta property="og:title" content="GitHub Pages Custom Domain Setup 2025 | Free Hosting Tutorial">
+    <meta property="og:description" content="Complete guide to hosting your website on GitHub Pages with custom domain. Includes DNS setup for GoDaddy & Namecheap, HTTPS configuration, video tutorials, and troubleshooting. 100% Free forever!">
+    <meta property="og:image" content="https://yourdomain.com/images/github-pages-guide-thumbnail.jpg">
+    <meta property="og:site_name" content="MTG's Web Hosting Guides">
+    <meta property="article:author" content="MTG">
+    <meta property="article:published_time" content="2025-12-09">
+    <meta property="article:modified_time" content="2025-12-09">
+    <meta property="article:section" content="Web Hosting Tutorials">
+    <meta property="article:tag" content="GitHub Pages">
+    <meta property="article:tag" content="Custom Domain">
+    <meta property="article:tag" content="Free Hosting">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://yourdomain.com/github-pages-custom-domain-guide.html">
+    <meta name="twitter:title" content="GitHub Pages Custom Domain Setup 2025 | Free Hosting Guide">
+    <meta name="twitter:description" content="Step-by-step guide to host your website on GitHub Pages with custom domain. DNS setup, HTTPS, troubleshooting & video tutorials included. 100% Free!">
+    <meta name="twitter:image" content="https://yourdomain.com/images/github-pages-guide-thumbnail.jpg">
+    <meta name="twitter:creator" content="@musathegiant">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#C7F160">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
+    
+    <!-- DNS Prefetch & Preconnect for Performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+    
+    <style>
+        /* ============================================
+           CSS VARIABLES - THEME COLORS
+           ============================================ */
+        :root {
+            /* Primary Colors */
+            --lime-green: #C7F160;
+            --lime-light: #D4EF89;
+            --bright-green: #00FF88;
+            --spotify-green: #1ED760;
+            
+            /* Dark Backgrounds */
+            --black: #000000;
+            --near-black: #0A0A0A;
+            --dark-charcoal: #1A1A1A;
+            --very-dark-gray: #1B1B1B;
+            --near-black-2: #1E1E1E;
+            
+            /* White */
+            --white: #FFFFFF;
+            
+            /* Secondary Colors */
+            --cyan: #00D9FF;
+            --dodger-blue: #1E90FF;
+            --royal-blue: #4169E1;
+            --blue: #2563EB;
+            --light-blue: #3B82F6;
+            --dark-turquoise: #00CED1;
+            
+            /* Purple Family */
+            --purple: #6C63FF;
+            --medium-purple: #7B68EE;
+            --light-purple: #9370DB;
+            
+            /* Alerts */
+            --orange-red: #FF4500;
+            --red: #DC2626;
+            --green: #10B981;
+            
+            /* Gray Scale */
+            --light-gray: #F3F4F6;
+            --lighter-gray: #E5E7EB;
+            --gray: #6B7280;
+            --medium-gray: #4A4A4A;
+            --dark-gray: #333333;
+        }
+        
+        /* ============================================
+           GLOBAL RESET & BASE STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--near-black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        
+        /* Prevent horizontal overflow on all elements */
+        * {
+            max-width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* ============================================
+           NAVIGATION BAR
+           ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--black) 0%, var(--very-dark-gray) 100%);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid var(--lime-green);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--lime-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-logo:hover {
+            color: var(--bright-green);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link:hover {
+            color: var(--lime-green);
+        }
+        
+        .nav-link.active {
+            color: var(--lime-green);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--lime-green);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--lime-green);
+            transition: all 0.3s ease;
+        }
+        
+        /* ============================================
+           MAIN CONTENT WRAPPER
+           ============================================ */
+        main {
+            margin-top: 80px;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+        
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-charcoal) 50%, var(--very-dark-gray) 100%);
+            padding: 4rem 1rem 3rem;
+            text-align: center;
+            border-bottom: 3px solid var(--lime-green);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .hero {
+                padding: 6rem 2rem 4rem;
+            }
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(199,241,96,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--lime-green) 0%, var(--bright-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.3;
+            word-spacing: 0.05em;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--light-gray);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-description {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--lighter-gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            animation: fadeInUp 1.2s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ============================================
+           OVERVIEW SECTION
+           ============================================ */
+        .overview {
+            background: var(--very-dark-gray);
+            padding: 3rem 1rem;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .overview {
+                padding: 4rem 2rem;
+            }
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--lime-green);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--lime-green), transparent);
+        }
+        
+        .achievement-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+        
+        @media (min-width: 600px) {
+            .achievement-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .achievement-cards {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .achievement-card {
+            background: var(--near-black-2);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--dark-gray);
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .achievement-card {
+                padding: 2rem;
+            }
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--lime-green);
+            box-shadow: 0 10px 30px rgba(199, 241, 96, 0.2);
+        }
+        
+        .achievement-card i {
+            font-size: 3rem;
+            color: var(--lime-green);
+            margin-bottom: 1rem;
+        }
+        
+        .achievement-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+        
+        .achievement-card p {
+            color: var(--lighter-gray);
+            font-size: 0.95rem;
+        }
+        
+        /* ============================================
+           STEP SECTIONS
+           ============================================ */
+        .step-section {
+            padding: 3rem 1rem;
+            border-bottom: 1px solid var(--dark-gray);
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .step-section {
+                padding: 4rem 2rem;
+            }
+        }
+        
+        .step-section:nth-child(even) {
+            background: var(--black);
+        }
+        
+        .step-section:nth-child(odd) {
+            background: var(--dark-charcoal);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .step-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--lime-green);
+            line-height: 1;
+            min-width: 80px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--lime-green) 0%, var(--bright-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .step-title-block {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-description {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .step-content {
+            margin-left: 0;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .step-content {
+                margin-left: 100px;
+            }
+        }
+        
+        .step-instructions {
+            background: var(--very-dark-gray);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--lime-green);
+            margin-bottom: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .step-instructions {
+                padding: 2rem;
+            }
+        }
+        
+        .step-instructions ol {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+        
+        .step-instructions li {
+            counter-increment: step-counter;
+            margin-bottom: 1.5rem;
+            padding-left: 3rem;
+            position: relative;
+            color: var(--lighter-gray);
+            font-size: 1.05rem;
+        }
+        
+        .step-instructions li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--lime-green);
+            color: var(--black);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .step-instructions li strong {
+            color: var(--white);
+        }
+        
+        .code-inline {
+            background: var(--black);
+            color: var(--lime-green);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            display: inline-block;
+            max-width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .code-inline {
+                font-size: 0.95rem;
+                word-break: normal;
+            }
+        }
+        
+        /* Callout Boxes */
+        .callout {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid;
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .callout {
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+        }
+        
+        .callout-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .callout-content {
+            flex: 1;
+        }
+        
+        .callout-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .callout.critical {
+            background: rgba(255, 69, 0, 0.1);
+            border-color: var(--orange-red);
+        }
+        
+        .callout.critical .callout-icon {
+            color: var(--orange-red);
+        }
+        
+        .callout.success {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--green);
+        }
+        
+        .callout.success .callout-icon {
+            color: var(--green);
+        }
+        
+        .callout.tip {
+            background: rgba(108, 99, 255, 0.1);
+            border-color: var(--purple);
+        }
+        
+        .callout.tip .callout-icon {
+            color: var(--purple);
+        }
+        
+        .callout.info {
+            background: rgba(0, 217, 255, 0.1);
+            border-color: var(--cyan);
+        }
+        
+        .callout.info .callout-icon {
+            color: var(--cyan);
+        }
+        
+        /* DNS Records Table */
+        .dns-records {
+            background: var(--black);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--lime-green);
+            margin: 2rem 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .dns-records {
+                padding: 2rem;
+            }
+        }
+        
+        .dns-records h4 {
+            color: var(--lime-green);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .ip-addresses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+            width: 100%;
+        }
+        
+        @media (max-width: 480px) {
+            .ip-addresses {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+        }
+        
+        .ip-box {
+            background: var(--very-dark-gray);
+            padding: 1rem 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: var(--lime-green);
+            font-weight: bold;
+            border: 2px solid var(--dark-gray);
+            transition: all 0.3s ease;
+            word-break: break-all;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .ip-box {
+                font-size: 1.1rem;
+                padding: 1rem;
+            }
+        }
+        
+        .ip-box:hover {
+            border-color: var(--lime-green);
+            transform: scale(1.05);
+        }
+        
+        .dns-setup-table {
+            background: var(--very-dark-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 1rem 0;
+            width: 100%;
+        }
+        
+        .dns-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            border-bottom: 1px solid var(--dark-gray);
+        }
+        
+        @media (min-width: 600px) {
+            .dns-row {
+                grid-template-columns: 150px 1fr;
+            }
+            
+            .dns-label {
+                border-bottom: none !important;
+            }
+        }
+        
+        .dns-row:last-child {
+            border-bottom: none;
+        }
+        
+        .dns-label {
+            padding: 1rem;
+            font-weight: bold;
+            color: var(--lime-green);
+            background: var(--near-black-2);
+            border-bottom: 1px solid var(--dark-gray);
+            word-break: break-word;
+        }
+        
+        .dns-value {
+            padding: 1rem;
+            color: var(--lighter-gray);
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* Domain Options Comparison */
+        .domain-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .domain-options {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+        
+        .domain-option {
+            background: var(--very-dark-gray);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--dark-gray);
+            transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .domain-option {
+                padding: 2rem;
+            }
+        }
+        
+        .domain-option:hover {
+            border-color: var(--lime-green);
+            transform: translateY(-5px);
+        }
+        
+        .domain-option h4 {
+            color: var(--lime-green);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .domain-option .example {
+            color: var(--cyan);
+            font-family: 'Courier New', monospace;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .domain-option ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .domain-option li {
+            color: var(--lighter-gray);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .domain-option li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+        }
+        
+        /* ============================================
+           VIDEO TUTORIALS SECTION
+           ============================================ */
+        .video-section {
+            background: var(--black);
+            padding: 3rem 1rem;
+            border-top: 3px solid var(--lime-green);
+            border-bottom: 3px solid var(--lime-green);
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .video-section {
+                padding: 5rem 2rem;
+            }
+        }
+        
+        .video-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--light-gray);
+            font-size: 1rem;
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .video-intro {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .video-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 3rem;
+            }
+        }
+        
+        .video-card {
+            background: linear-gradient(135deg, var(--very-dark-gray) 0%, var(--near-black-2) 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid var(--dark-gray);
+            transition: all 0.4s ease;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--lime-green);
+            box-shadow: 0 20px 50px rgba(199, 241, 96, 0.3);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--dark-charcoal) 0%, var(--very-dark-gray) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .video-thumbnail {
+                height: 220px;
+            }
+        }
+        
+        .video-thumbnail::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="video-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(199,241,96,0.2)"/></pattern></defs><rect width="100" height="100" fill="url(%23video-grid)"/></svg>');
+        }
+        
+        .play-icon {
+            font-size: 4rem;
+            color: var(--lime-green);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover .play-icon {
+            transform: scale(1.2);
+            color: var(--bright-green);
+        }
+        
+        .video-content {
+            padding: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .video-content {
+                padding: 2rem;
+            }
+        }
+        
+        .video-title {
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .video-description {
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .video-platform {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--red);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .watch-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--lime-green) 0%, var(--bright-green) 100%);
+            color: var(--black);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .watch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(199, 241, 96, 0.4);
+            background: linear-gradient(135deg, var(--bright-green) 0%, var(--spotify-green) 100%);
+        }
+        
+        .watch-btn i {
+            margin-right: 0.5rem;
+        }
+        
+        /* ============================================
+           TROUBLESHOOTING SECTION
+           ============================================ */
+        .troubleshooting {
+            background: var(--dark-charcoal);
+            padding: 3rem 1rem;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .troubleshooting {
+                padding: 4rem 2rem;
+            }
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 2rem auto 0;
+        }
+        
+        .faq-item {
+            background: var(--very-dark-gray);
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--dark-gray);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            border-color: var(--lime-green);
+        }
+        
+        .faq-question {
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .faq-question {
+                padding: 1.5rem;
+            }
+        }
+        
+        .faq-question h4 {
+            color: var(--white);
+            font-size: 1rem;
+            flex: 1;
+            padding-right: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .faq-question h4 {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .faq-icon {
+            color: var(--lime-green);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-answer-content {
+            padding: 0 1rem 1rem;
+            color: var(--lighter-gray);
+            line-height: 1.8;
+        }
+        
+        @media (min-width: 768px) {
+            .faq-answer-content {
+                padding: 0 1.5rem 1.5rem;
+            }
+        }
+        
+        .faq-answer-content ul {
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .faq-answer-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        /* Help Contact Box */
+        .help-contact {
+            background: linear-gradient(135deg, var(--very-dark-gray) 0%, var(--near-black-2) 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--lime-green);
+            text-align: center;
+            margin-top: 3rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .help-contact {
+                padding: 2rem;
+            }
+        }
+        
+        .help-contact h3 {
+            color: var(--lime-green);
+            margin-bottom: 1rem;
+        }
+        
+        .help-contact p {
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .help-contact .contact-btn {
+            display: inline-block;
+            background: var(--lime-green);
+            color: var(--black);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .help-contact .contact-btn:hover {
+            background: var(--bright-green);
+            transform: scale(1.05);
+        }
+        
+        /* ============================================
+           SUCCESS CELEBRATION SECTION
+           ============================================ */
+        .success-section {
+            background: linear-gradient(135deg, var(--black) 0%, var(--very-dark-gray) 50%, var(--black) 100%);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-top: 3px solid var(--lime-green);
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .success-section {
+                padding: 5rem 2rem;
+            }
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            color: var(--lime-green);
+            margin-bottom: 2rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .success-section h2 {
+            font-size: 2.5rem;
+            color: var(--lime-green);
+            margin-bottom: 1.5rem;
+        }
+        
+        .success-message {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--light-gray);
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--black);
+            padding: 2rem 1rem 1rem;
+            border-top: 3px solid var(--lime-green);
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            footer {
+                padding: 3rem 2rem 1rem;
+            }
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--lime-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .social-links,
+        .channel-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .social-link,
+        .channel-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+        
+        .social-link:hover,
+        .channel-link:hover {
+            color: var(--lime-green);
+            background: var(--very-dark-gray);
+            transform: translateX(5px);
+        }
+        
+        .social-link i,
+        .channel-link i {
+            font-size: 1.5rem;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .footer-about {
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+        
+        .footer-cta {
+            display: inline-block;
+            background: var(--lime-green);
+            color: var(--black);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-cta:hover {
+            background: var(--bright-green);
+            transform: scale(1.05);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--dark-gray);
+            padding-top: 2rem;
+            text-align: center;
+        }
+        
+        .signature {
+            font-size: 1.2rem;
+            color: var(--lime-green);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .disclaimer {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* ============================================
+           SCROLL TO TOP BUTTON
+           ============================================ */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--lime-green) 0%, var(--bright-green) 100%);
+            color: var(--black);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(199, 241, 96, 0.4);
+        }
+        
+        .scroll-top i {
+            font-size: 1.5rem;
+        }
+        
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        
+        /* Small Mobile Devices */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.75rem;
+                max-width: 100%;
+                line-height: 1.4;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .step-number {
+                font-size: 2.5rem;
+            }
+            
+            .step-title {
+                font-size: 1.5rem;
+            }
+            
+            .callout-icon {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Tablets and Small Screens */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--black);
+                width: 100%;
+                padding: 2rem;
+                transition: left 0.3s ease;
+                border-top: 2px solid var(--lime-green);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+                max-width: 600px;
+                line-height: 1.35;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .step-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .step-number {
+                font-size: 3rem;
+            }
+            
+            .step-title {
+                font-size: 1.75rem;
+            }
+            
+            .step-instructions li {
+                padding-left: 2.5rem;
+                font-size: 1rem;
+            }
+            
+            .step-instructions li::before {
+                width: 1.75rem;
+                height: 1.75rem;
+                font-size: 0.9rem;
+            }
+            
+            .dns-label,
+            .dns-value {
+                font-size: 0.95rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        /* Ensure no element causes horizontal scroll */
+        @media (max-width: 1024px) {
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            table {
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
+            }
+            
+            pre {
+                max-width: 100%;
+                overflow-x: auto;
+            }
+        }
+        
+        /* Large Desktop Screens - Optimize H1 Display */
+        @media (min-width: 1200px) {
+            .hero h1 {
+                font-size: 3.25rem;
+                max-width: 1000px;
+                line-height: 1.35;
+                letter-spacing: -0.02em;
+            }
+        }
+        
+        /* Extra Large Screens - Perfect Balance */
+        @media (min-width: 1600px) {
+            .hero h1 {
+                font-size: 3.5rem;
+                max-width: 1100px;
+                line-height: 1.4;
+            }
+        }
+        
+        /* ============================================
+           PRINT STYLES
+           ============================================ */
+        @media print {
+            .navbar,
+            .scroll-top,
+            .video-section,
+            footer {
+                display: none;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .step-section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         NAVIGATION BAR
+         ============================================ -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <i class="fas fa-crown"></i>
+                <span>MTG's Hosting Guide</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#overview" class="nav-link">Overview</a></li>
+                <li><a href="#step1" class="nav-link">Steps</a></li>
+                <li><a href="#videos" class="nav-link">Videos</a></li>
+                <li><a href="#troubleshooting" class="nav-link">Help</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         MAIN CONTENT
+         ============================================ -->
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>🌐 <strong>Host Your Website on GitHub Pages</strong> with Custom Domain - Complete Free Tutorial</h1>
+                <p class="hero-subtitle">Your Complete Step-by-Step Blueprint</p>
+                <p class="hero-description">
+                    Hey there! I'm MTG 👑, and I'm excited to walk you through this process together. 
+                    If I built or cloned a website for you, this guide will show you exactly how to host it 
+                    under your own custom domain. No stress, no confusion, no technical headaches. 
+                    Just follow along with me, step by step, and you'll be live in no time. Let's grow! 🌱
+                </p>
+            </div>
+        </section>
+
+        <!-- OVERVIEW SECTION -->
+        <section id="overview" class="overview">
+            <div class="container">
+                <h2 class="section-title">What You'll Achieve Today</h2>
+                <div class="achievement-cards">
+                    <div class="achievement-card">
+                        <i class="fas fa-server"></i>
+                        <h3>Free Hosting Forever</h3>
+                        <p>Your website hosted on GitHub Pages at absolutely no cost</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>Custom Domain</h3>
+                        <p>Your own professional domain pointing to your site</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-lock"></i>
+                        <h3>Free SSL Certificate</h3>
+                        <p>Secure HTTPS encryption with that trusty green padlock</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Professional Presence</h3>
+                        <p>A fast, reliable website that's live 24/7 worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 1: PREREQUISITES -->
+        <section id="step1" class="step-section">
+            <div class="container">
+                <div class="step-header">
+                    <div class="step-number">01</div>
+                    <div class="step-title-block">
+                        <h2 class="step-title">What You Need Before Starting</h2>
+                        <p class="step-description">
+                            Before we dive in, let's make sure you have everything ready. 
+                            You only need three simple things to get started.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="step-instructions">
+                        <ol>
+                            <li>
+                                <strong>A Custom Domain</strong><br>
+                                Your website address like <span class="code-inline">yourname.com</span>. 
+                                You can get one from GoDaddy, Namecheap, or any domain registrar. 
+                                Usually costs around $10-15 per year.
+                            </li>
+                            <li>
+                                <strong>A Free GitHub Account</strong><br>
+                                Head over to <span class="code-inline">github.com</span>, sign up, and confirm your email. 
+                                Takes about 2 minutes and costs nothing.
+                            </li>
+                            <li>
+                                <strong>Your Website Files</strong><br>
+                                Either I've sent you a ZIP file with your cloned site, or you have access to 
+                                the GitHub repository with your website files.
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="callout success">
+                        <div class="callout-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="callout-content">
+                            <div class="callout-title">Ready to Go!</div>
+                            Once you have all three items above, you're ready to move forward. 
+                            Let's make this happen!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 2: CREATE REPOSITORY -->
+        <section id="step2" class="step-section">
+            <div class="container">
+                <div class="step-header">
+                    <div class="step-number">02</div>
+                    <div class="step-title-block">
+                        <h2 class="step-title">Create Your GitHub Repository</h2>
+                        <p class="step-description">
+                            Think of a repository (repo for short) as a special folder that holds all your website files. 
+                            Here's exactly how to create one.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="step-instructions">
+                        <ol>
+                            <li>Log in to your GitHub account at <strong>github.com</strong></li>
+                            <li>Look for the green <strong>"New"</strong> button (usually in the top left) and click it</li>
+                            <li>
+                                Choose a simple <strong>Repository name</strong> - something like 
+                                <span class="code-inline">yourname-site</span> or 
+                                <span class="code-inline">my-crypto-site</span>
+                            </li>
+                            <li>Make sure it's set to <strong>Public</strong> (this is required for free GitHub Pages hosting)</li>
+                            <li>Click the green <strong>"Create repository"</strong> button at the bottom</li>
+                        </ol>
+                    </div>
+
+                    <div class="callout success">
+                        <div class="callout-icon"><i class="fas fa-trophy"></i></div>
+                        <div class="callout-content">
+                            <div class="callout-title">Congratulations!</div>
+                            You now have an empty repository where your website will live. 
+                            That was easy, wasn't it? Let's keep this momentum going!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 3: UPLOAD FILES -->
+        <section id="step3" class="step-section">
+            <div class="container">
+                <div class="step-header">
+                    <div class="step-number">03</div>
+                    <div class="step-title-block">
+                        <h2 class="step-title">Upload Your Website Files</h2>
+                        <p class="step-description">
+                            Now we're going to get your website files into GitHub. 
+                            If I sent you a ZIP file, first unzip it on your computer.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="step-instructions">
+                        <ol>
+                            <li>Open your new repository on GitHub (you should already be there)</li>
+                            <li>Click <strong>"Add file"</strong> then select <strong>"Upload files"</strong> from the dropdown</li>
+                            <li>
+                                Drag and drop <strong>ALL</strong> your website files and folders into the upload area 
+                                (or click to browse and select them)
+                            </li>
+                            <li>Scroll down and click the green <strong>"Commit changes"</strong> button</li>
+                        </ol>
+                    </div>
+
+                    <div class="callout critical">
+                        <div class="callout-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div class="callout-content">
+                            <div class="callout-title">CRITICAL: File Structure Matters</div>
+                            Your main file MUST be named <span class="code-inline">index.html</span> and it must be 
+                            in the root (main folder) of your repository. If you have folders like 
+                            <span class="code-inline">/images</span>, <span class="code-inline">/css</span>, 
+                            or <span class="code-inline">/js</span>, upload those exactly as they are.
+                        </div>
+                    </div>
+
+                    <div class="callout success">
+                        <div class="callout-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                        <div class="callout-content">
+                            <div class="callout-title">Files Uploaded Successfully</div>
+                            Your website code is now safely stored on GitHub and ready to be published. 
+                            You're doing great!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 4: ENABLE GITHUB PAGES -->
+        <section id="step4" class="step-section">
+            <div class="container">
+                <div class="step-header">
+                    <div class="step-number">04</div>
+                    <div class="step-title-block">
+                        <h2 class="step-title">Turn On GitHub Pages</h2>
+                        <p class="step-description">
+                            This is where the magic happens! We're going to tell GitHub to publish your site 
+                            and make it accessible to the world.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="step-instructions">
+                        <ol>
+                            <li>In your repository, click on <strong>"Settings"</strong> (it's in the top menu of your repo)</li>
+                            <li>On the left sidebar, scroll down and click <strong>"Pages"</strong> (under "Code and automation")</li>
+                            <li>
+                                Under <strong>"Source"</strong> or <strong>"Build and deployment"</strong>:
+                                <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                                    <li>Select <strong>"Deploy from a branch"</strong></li>
+                                    <li>Choose branch: <span class="code-inline">main</span></li>
+                                    <li>Choose folder: <span class="code-inline">/ (root)</span></li>
+                                </ul>
+                            </li>
+                            <li>Click the <strong>"Save"</strong> button</li>
+                        </ol>
+                    </div>
+
+                    <div class="callout info">
+                        <div class="callout-icon"><i class="fas fa-clock"></i></div>
+                        <div class="callout-content">
+                            <div class="callout-title">Wait 1-2 Minutes...</div>
+                            GitHub is building your site right now. Give it a moment, then refresh the 
+                            Settings → Pages screen. You'll see a green banner with your site URL.
+                        </div>
+                    </div>
+
+                    <div class="callout success">
+                        <div class="callout-icon"><i class="fas fa-link"></i></div>
+                        <div class="callout-content">
+                            <div class="callout-title">Your Temporary Site is Live!</div>
+                            Your site should now be available at something like:<br>
+                            <span class="code-inline">https://yourusername.github.io/yourname-site</span><br><br>
+                            Click that link and test it! If you see your website, you're crushing it! 
+                            Now let's connect your custom domain.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 5: ADD CUSTOM DOMAIN -->
+        <section id="step5" class="step-section">
+            <div class="container">
+                <div class="step-header">
+                    <div class="step-number">05</div>
+                    <div class="step-title-block">
+                        <h2 class="step-title">Connect Your Custom Domain in GitHub</h2>
+                        <p class="step-description">
+                            First, let's decide how you want your domain to work. You have two options, 
+                            and I'll help you understand which one is right for you.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="domain-options">
+                        <div class="domain-option">
+                            <h4>🔷 Option A: Subdomain</h4>
+                            <div class="example">members.yourname.com</div>
+                            <ul>
+                                <li>Easier to set up</li>
+                                <li>Recommended for beginners</li>
+                                <li>Keeps your main domain free for other uses</li>
+                            </ul>
+                        </div>
+                        <div class="domain-option">
+                            <h4>🔷 Option B: Root Domain</h4>
+                            <div class="example">yourname.com</div>
+                            <ul>
+                                <li>Cleaner, more professional look</li>
+                                <li>Requires A records setup</li>
+                                <li>Perfect for primary websites</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step-instructions">
+                        <h3 style="color: var(--lime-green); margin-bottom: 1rem;">Now, add your domain to GitHub:</h3>
+                        <ol>
+                            <li>Stay in <strong>Settings → Pages</strong> in your repository</li>
+                            <li>Find the <strong>"Custom domain"</strong> box</li>
+                            <li>
+                                Type your domain:
+                                <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                                    <li>For subdomain: <span class="code-inline">members.yourname.com</span></li>
+                                    <li>For root domain: <span class="code-inline">yourname.com</span></li>
+                                </ul>
+                            </li>
+                            <li>Click <strong>"Save"</strong></li>
+                        </ol>
+                    </div>
+
+                    <div class="callout tip">
+                        <div class="callout-icon"><i class="fas fa-clipboard-list"></i></div>
+                        <div class="callout-content">
+                            <div class="callout-title">Keep This Page Open!</div>
+                            GitHub will show you which DNS records you need to create. 
+                            Keep this page open - we'll use it in the next step when we configure your domain.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 6: DNS SETUP -->
+        <section id="step6" class="step-section">
+            <div class="container">
+                <div class="step-header">
+                    <div class="step-number">06</div>
+                    <div class="step-title-block">
+                        <h2 class="step-title">Add DNS Records at Your Domain Registrar</h2>
+                        <p class="step-description">
+                            Now we need to tell your domain where to point. Log in to where you bought your domain 
+                            (GoDaddy, Namecheap, etc.) and find the DNS settings. I'll show you exactly what to add.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <!-- SUBDOMAIN SETUP -->
+                    <h3 style="color: var(--cyan); font-size: 1.5rem; margin-bottom: 1.5rem;">
+                        🔷 FOR SUBDOMAIN (like members.yourname.com):
+                    </h3>
+                    
+                    <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                        Add a <strong>CNAME record</strong> with these settings:
+                    </p>
+
+                    <div class="dns-setup-table">
+                        <div class="dns-row">
+                            <div class="dns-label">Type:</div>
+                            <div class="dns-value">CNAME</div>
+                        </div>
+                        <div class="dns-row">
+                            <div class="dns-label">Host/Name:</div>
+                            <div class="dns-value">members <em>(or whatever subdomain you chose)</em></div>
+                        </div>
+                        <div class="dns-row">
+                            <div class="dns-label">Points to/Value:</div>
+                            <div class="dns-value">yourusername.github.io</div>
+                        </div>
+                        <div class="dns-row">
+                            <div class="dns-label">TTL:</div>
+                            <div class="dns-value">1 hour <em>(or leave default)</em></div>
+                        </div>
+                    </div>
+
+                    <!-- ROOT DOMAIN SETUP -->
+                    <h3 style="color: var(--cyan); font-size: 1.5rem; margin: 3rem 0 1.5rem;">
+                        🔷 FOR ROOT DOMAIN (like yourname.com):
+                    </h3>
+                    
+                    <p style="color: var(--light-gray); margin-bottom: 1.5rem;">
+                        This requires <strong>A records</strong> AND optionally a <strong>www CNAME</strong>. 
+                        Here's exactly what to do:
+                    </p>
+
+                    <!-- CRITICAL A RECORDS -->
+                    <div class="dns-records">
+                        <h4>🎯 CRITICAL: GitHub Pages Official A Records</h4>
+                        <p style="color: var(--light-gray); text-align: center; margin-bottom: 1rem;">
+                            For GitHub Pages, these are the <strong>official A records you MUST use</strong>.<br>
+                            Set all four for best performance and reliability:
+                        </p>
+                        <div class="ip-addresses">
+                            <div class="ip-box">185.199.108.153</div>
+                            <div class="ip-box">185.199.109.153</div>
+                            <div class="ip-box">185.199.110.153</div>
+                            <div class="ip-box">185.199.111.153</div>
+                        </div>
+                    </div>
+
+                    <p style="color: var(--light-gray); margin: 2rem 0 1rem;">
+                        <strong>Add them in GoDaddy (or your registrar) like this:</strong>
+                    </p>
+
+                    <div class="dns-setup-table">
+                        <div class="dns-row">
+                            <div class="dns-label">Type:</div>
+                            <div class="dns-value">A</div>
+                        </div>
+                        <div class="dns-row">
+                            <div class="dns-label">Name:</div>
+                            <div class="dns-value">@ <em>(this means root domain)</em></div>
+                        </div>
+                        <div class="dns-row">
+                            <div class="dns-label">Value:</div>
+                            <div class="dns-value">185.199.108.153 <em>(first IP - repeat for all four)</em></div>
+                        </div>
+                        <div class="dns-row">
+                            <div class="dns-label">TTL:</div>
+                            <div class="dns-value">1 hour</div>
+                        </div>
+                    </div>
+
+                    <div class="callout critical">
+                        <div class="callout-icon"><i class="fas fa-redo"></i></div>
+                        <div class="callout-content">
+                            <div class="callout-title">Repeat for All Four IP Addresses</div>
+                            You need to create 4 separate A records, one for each IP address. 
+                            Just change the "Value" field each time. When you're done, you'll have 4 A records total.
+                        </div>
+                    </div>
+
+                    <!-- WWW CNAME -->
+                    <p style="color: var(--light-gray); margin: 2rem 0 1rem;">
+                        <strong>Also, for your www version to work, add this CNAME:</strong>
+                    </p>
+
+                    <div class="dns-setup-table">
+                        <div class="dns-row">
+                            <div class="dns-label">Type:</div>
+                            <div class="dns-value">CNAME</div>
+                        </div>
+                        <div class="dns-row">
+                            <div class="dns-label">Name:</div>
+                            <div class="dns-value">www</div>
+                        </div>
+                        <div class="dns-row">
+                            <div class="dns-label">Value:</div>
+                            <div class="dns-value">your-github-username.github.io</div>
+                        </div>
+                        <div class="dns-row">
+                            <div class="dns-label">TTL:</div>
+                            <div class="dns-value">1 hour</div>
+                        </div>
+                    </div>
+
+                    <div class="callout info">
+                        <div class="callout-icon"><i class="fas fa-save"></i></div>
+                        <div class="callout-content">
+                            <div class="callout-title">Save Your Changes & Be Patient</div>
+                            Make sure to save all your DNS changes! DNS can take anywhere from a few minutes 
+                            to a few hours to update worldwide. Usually it works within an hour, so grab a coffee 
+                            and give it some time. You can check your DNS propagation status at 
+                            <a href="https://dnschecker.org" target="_blank" style="color: var(--cyan);">dnschecker.org</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 7: ENABLE HTTPS -->
+        <section id="step7" class="step-section">
+            <div class="container">
+                <div class="step-header">
+                    <div class="step-number">07</div>
+                    <div class="step-title-block">
+                        <h2 class="step-title">Final Checks and Enable HTTPS</h2>
+                        <p class="step-description">
+                            Now we wait for DNS to propagate and enable secure HTTPS encryption. 
+                            This gives your site that trusty green padlock in the browser!
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="step-content">
+                    <div class="step-instructions">
+                        <ol>
+                            <li>
+                                <strong>Wait 30-60 minutes</strong> for DNS changes to take effect 
+                                (seriously, grab that coffee - you've earned it!)
+                            </li>
+                            <li>Go back to GitHub → Your repo → <strong>Settings → Pages</strong></li>
+                            <li>Refresh the page - you should see a green banner saying your site is live on your custom domain</li>
+                            <li>
+                                Once that appears, check the box that says <strong>"Enforce HTTPS"</strong> 
+                                (this gives you the secure 🔒 padlock)
+                            </li>
+                            <li>If HTTPS isn't available yet, wait another 15 minutes and try again</li>
+                        </ol>
+                    </div>
+
+                    <div class="callout success">
+                        <div class="callout-icon"><i class="fas fa-rocket"></i></div>
+                        <div class="callout-content">
+                            <div class="callout-title">🎉 NOW TEST YOUR DOMAIN!</div>
+                            Open a new browser window and visit:
+                            <ul style="margin-top: 1rem; list-style: none; padding-left: 0;">
+                                <li style="margin: 0.5rem 0;">
+                                    <span class="code-inline">https://yourname.com</span>
+                                </li>
+                                <li style="margin: 0.5rem 0;">
+                                    <span class="code-inline">https://www.yourname.com</span>
+                                </li>
+                                <li style="margin: 0.5rem 0;">
+                                    Or <span class="code-inline">https://members.yourname.com</span> (if using subdomain)
+                                </li>
+                            </ul>
+                            <p style="margin-top: 1rem;">
+                                If you see your website with a 🔒 in the address bar, <strong>YOU DID IT!</strong> 
+                                Your site is now live, secure, and professional!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO TUTORIALS SECTION -->
+        <section id="videos" class="video-section">
+            <div class="container">
+                <h2 class="section-title">📺 Video Tutorials - Watch & Learn</h2>
+                <p class="video-intro">
+                    Sometimes it helps to see someone actually do it. Here are step-by-step video tutorials 
+                    you can follow along with. Choose the one that matches your domain registrar, 
+                    pause after each step, and take your time. There's no rush!
+                </p>
+                
+                <div class="video-grid">
+                    <!-- Video 1 -->
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle play-icon"></i>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-platform">
+                                <i class="fab fa-youtube"></i>
+                                <span>YouTube Tutorial</span>
+                            </div>
+                            <h3 class="video-title">Complete GitHub Pages + Custom Domain Walkthrough</h3>
+                            <p class="video-description">
+                                This comprehensive video walks through the entire process from creating your repo 
+                                to connecting your domain. Perfect for visual learners who want to see every step.
+                            </p>
+                            <a href="https://www.youtube.com/watch?v=e5AwNU3Y2es" target="_blank" rel="noopener noreferrer" class="watch-btn" aria-label="Watch GitHub Pages Custom Domain Tutorial Video">
+                                <i class="fas fa-play"></i> Watch GitHub Pages Tutorial
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle play-icon"></i>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-platform">
+                                <i class="fab fa-youtube"></i>
+                                <span>YouTube Tutorial</span>
+                            </div>
+                            <h3 class="video-title">For GoDaddy Users - Connect Your Domain</h3>
+                            <p class="video-description">
+                                If you bought your domain on GoDaddy, this video shows you exactly where to add 
+                                the DNS records inside your GoDaddy account. Clear, slow-paced, beginner-friendly.
+                            </p>
+                            <a href="https://www.youtube.com/watch?v=CwT2_K3tlZw" target="_blank" rel="noopener noreferrer" class="watch-btn" aria-label="Watch GoDaddy GitHub Pages DNS Setup Tutorial">
+                                <i class="fas fa-play"></i> Watch GoDaddy DNS Setup
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle play-icon"></i>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-platform">
+                                <i class="fab fa-youtube"></i>
+                                <span>YouTube Tutorial</span>
+                            </div>
+                            <h3 class="video-title">For Namecheap Users - DNS Configuration</h3>
+                            <p class="video-description">
+                                Using Namecheap? This video is specifically for you. It shows exactly which A records 
+                                and CNAME to add in Namecheap's interface, then how to test everything.
+                            </p>
+                            <a href="https://www.youtube.com/watch?v=_RpIr6yKcZo" target="_blank" rel="noopener noreferrer" class="watch-btn" aria-label="Watch Namecheap GitHub Pages DNS Configuration Tutorial">
+                                <i class="fas fa-play"></i> Watch Namecheap DNS Setup
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout tip" style="margin-top: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <div class="callout-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="callout-content">
+                        <div class="callout-title">💡 Pro Tip</div>
+                        Watch the video that matches your domain registrar, pause after each step, 
+                        and follow along on your own computer. Take your time - there's no rush! 
+                        You can always pause, rewind, and watch sections multiple times.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TROUBLESHOOTING SECTION -->
+        <section id="troubleshooting" class="troubleshooting">
+            <div class="container">
+                <h2 class="section-title">🔧 Troubleshooting - We've Got You Covered</h2>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>My GitHub URL works but my custom domain doesn't - what's wrong?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>If your GitHub URL (https://yourusername.github.io/yourname-site) works but your custom domain doesn't, the issue is with your DNS records. Here's what to check:</p>
+                                <ul>
+                                    <li><strong>For subdomain:</strong> Did you create a CNAME record (not an A record)?</li>
+                                    <li><strong>For root domain:</strong> Did you add all four A records with the correct IPs?</li>
+                                    <li>Did you type <strong>yourusername.github.io</strong> correctly with no typos?</li>
+                                    <li>Have you waited at least 60 minutes after making DNS changes?</li>
+                                </ul>
+                                <p style="margin-top: 1rem;">DNS propagation can take time. Check your status at <a href="https://dnschecker.org" target="_blank" style="color: var(--cyan);">dnschecker.org</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>My site shows a 404 error - help!</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>A 404 error usually means GitHub can't find your homepage file. Check these things:</p>
+                                <ul>
+                                    <li>Your main file MUST be named <strong>index.html</strong> (all lowercase)</li>
+                                    <li>The index.html file must be in the ROOT of your repository, not in a subfolder</li>
+                                    <li>Go to your repo and verify you can see index.html in the main file list</li>
+                                    <li>Make sure you enabled GitHub Pages from the correct branch (usually "main")</li>
+                                </ul>
+                                <p style="margin-top: 1rem;">If the file is in a subfolder, move it to the root and recommit.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>HTTPS isn't available - what should I do?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>The "Enforce HTTPS" option only appears after your DNS is fully propagated and GitHub has verified your domain. Here's what to do:</p>
+                                <ul>
+                                    <li>Wait at least 60 minutes after adding your custom domain</li>
+                                    <li>Make sure your DNS records are correct and propagated</li>
+                                    <li>Try removing and re-adding your custom domain in GitHub Pages settings</li>
+                                    <li>Refresh the Settings → Pages page - the option should appear within 24 hours</li>
+                                </ul>
+                                <p style="margin-top: 1rem;">Be patient - GitHub needs to provision the SSL certificate, which happens automatically but takes time.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How long does DNS propagation take?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>DNS propagation time varies, but here's what to expect:</p>
+                                <ul>
+                                    <li><strong>Fastest:</strong> 5-15 minutes (if you're lucky!)</li>
+                                    <li><strong>Typical:</strong> 30-60 minutes for most changes</li>
+                                    <li><strong>Maximum:</strong> Up to 24-48 hours in rare cases</li>
+                                </ul>
+                                <p style="margin-top: 1rem;">
+                                    In most cases, your site will work within an hour. You can track propagation status 
+                                    at <a href="https://dnschecker.org" target="_blank" style="color: var(--cyan);">dnschecker.org</a> 
+                                    by entering your domain name.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>Can I use both www and non-www versions of my domain?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Absolutely! If you're using a root domain setup, both versions will work:</p>
+                                <ul>
+                                    <li>The 4 A records handle your root domain (yourname.com)</li>
+                                    <li>The www CNAME record handles the www version (www.yourname.com)</li>
+                                    <li>GitHub Pages automatically redirects between them</li>
+                                </ul>
+                                <p style="margin-top: 1rem;">Just make sure you added both the A records AND the www CNAME as shown in Step 6.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>My site looks broken or images aren't loading - why?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>If your site structure looks wrong or images/styles aren't loading:</p>
+                                <ul>
+                                    <li>Check that all folders (/images, /css, /js) were uploaded to the correct location</li>
+                                    <li>File and folder names are case-sensitive - make sure they match exactly</li>
+                                    <li>Your HTML file paths should be relative (like <code>images/logo.png</code>)</li>
+                                    <li>Avoid absolute paths that point to your computer (like <code>C:/Users/...</code>)</li>
+                                </ul>
+                                <p style="margin-top: 1rem;">Open your browser's Developer Console (F12) to see specific errors about missing files.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Still Need Help? -->
+                <div class="help-contact">
+                    <h3>Still Stuck? I'm Here to Help!</h3>
+                    <p>
+                        If you've tried everything and still can't get it working, don't worry! 
+                        Take screenshots of your GitHub Pages settings and your DNS records, then reach out to me.
+                    </p>
+                    <a href="https://wa.me/27721714626" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                        <i class="fab fa-whatsapp"></i> Contact Me on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUCCESS CELEBRATION -->
+        <section class="success-section">
+            <div class="container">
+                <div class="success-icon">🎉</div>
+                <h2>You're All Set!</h2>
+                <div class="success-message">
+                    <p>
+                        Congratulations! You now have a professional website running on your own custom domain, 
+                        hosted for free on GitHub Pages with secure HTTPS encryption. You should be proud - 
+                        you just accomplished something that intimidates a lot of people.
+                    </p>
+                    <p style="margin-top: 1.5rem;">
+                        Your website is now live 24/7, loads fast worldwide, and costs you nothing to host. 
+                        Plus, whenever you want to update your site, just upload new files to your GitHub repo 
+                        and they'll go live automatically within minutes.
+                    </p>
+                    <p style="margin-top: 1.5rem;">
+                        This is just the beginning of your online success. Keep building, keep growing, and 
+                        remember - every expert was once a beginner who didn't give up. You've got this!
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <!-- About Section -->
+                <div class="footer-section">
+                    <h3>About This Guide</h3>
+                    <div class="footer-about">
+                        <p>
+                            This guide was created with care to help you succeed in getting your website online. 
+                            I've walked countless people through this process, and now it's your turn to shine.
+                        </p>
+                        <a href="#hero" class="footer-cta">Back to Top</a>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="footer-section">
+                    <h3>Connect With Me</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Musa.TheMTG" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://wa.me/27721714626" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@musathegiant" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- YouTube Channels -->
+                <div class="footer-section">
+                    <h3>My YouTube Channels</h3>
+                    <div class="channel-links">
+                        <a href="https://www.youtube.com/@deobankdefiaffiliate" target="_blank" rel="noopener noreferrer" class="channel-link">
+                            <i class="fab fa-youtube"></i>
+                            <span>WeFi DeFi Banking</span>
+                        </a>
+                        <a href="https://www.youtube.com/@TexitCoinTitans" target="_blank" rel="noopener noreferrer" class="channel-link">
+                            <i class="fab fa-youtube"></i>
+                            <span>TexitCoin Titans</span>
+                        </a>
+                        <a href="https://www.youtube.com/@vaultveritas_com" target="_blank" rel="noopener noreferrer" class="channel-link">
+                            <i class="fab fa-youtube"></i>
+                            <span>Veritas Vault</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Explore More -->
+                <div class="footer-section">
+                    <h3>Explore My Other Work</h3>
+                    <div class="footer-about">
+                        <p style="margin-bottom: 1rem;">
+                            Want to explore more opportunities in crypto and DeFi? 
+                            Check out my other projects:
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem; color: var(--lighter-gray);">
+                            <a href="https://www.deobankdefi.com" target="_blank" rel="noopener noreferrer" style="color: var(--cyan); text-decoration: none;">
+                                🏦 deobankdefi.com
+                            </a>
+                            <a href="https://texitcointitans.com" target="_blank" rel="noopener noreferrer" style="color: var(--cyan); text-decoration: none;">
+                                ⛏️ texitcointitans.com
+                            </a>
+                            <a href="https://vaultveritas.com" target="_blank" rel="noopener noreferrer" style="color: var(--cyan); text-decoration: none;">
+                                🔐 vaultveritas.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="signature">
+                    Let's Get This Crypto!<br>
+                    Crypto-Regards, MTG 👑
+                </div>
+                <div class="disclaimer">
+                    Built with ❤️ by MTG 👑 | This guide is for educational purposes only, not financial advice.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         SCROLL TO TOP BUTTON
+         ============================================ -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // ====================================
+        // Mobile Menu Toggle
+        // ====================================
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Animate hamburger
+            const spans = hamburger.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const spans = hamburger.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+
+        // ====================================
+        // Active Navigation Highlighting
+        // ====================================
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ====================================
+        // Scroll to Top Button
+        // ====================================
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ====================================
+        // FAQ Toggle
+        // ====================================
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-answer').style.maxHeight = null;
+            });
+            
+            // Open clicked FAQ if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        }
+
+        // ====================================
+        // Smooth Scroll for All Links
+        // ====================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ====================================
+        // Add Fade-in Animation on Scroll
+        // ====================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe achievement cards and video cards
+        document.querySelectorAll('.achievement-card, .video-card, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // ====================================
+        // Console Message
+        // ====================================
+        console.log('%cBuilt with ❤️ by MTG 👑', 'color: #C7F160; font-size: 20px; font-weight: bold;');
+        console.log('%cLet\'s Get This Crypto!', 'color: #00FF88; font-size: 16px;');
+    </script>
+
+    <!-- ============================================
+         STRUCTURED DATA (JSON-LD) FOR SEO & AI PLATFORMS
+         ============================================ -->
+    
+    <!-- HowTo Schema - Primary Content -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Host Your Website on GitHub Pages with Custom Domain",
+      "description": "Complete step-by-step guide to hosting your website on GitHub Pages with a custom domain for free. Includes DNS configuration, HTTPS setup, and troubleshooting.",
+      "image": "https://yourdomain.com/images/github-pages-guide-thumbnail.jpg",
+      "totalTime": "PT1H30M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "supply": [
+        {
+          "@type": "HowToSupply",
+          "name": "GitHub Account (Free)"
+        },
+        {
+          "@type": "HowToSupply",
+          "name": "Custom Domain ($10-15/year)"
+        },
+        {
+          "@type": "HowToSupply",
+          "name": "Website Files"
+        }
+      ],
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "GitHub"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Domain Registrar (GoDaddy or Namecheap)"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Web Browser"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Gather Prerequisites",
+          "text": "Before starting, ensure you have: a custom domain, a free GitHub account, and your website files ready.",
+          "url": "https://yourdomain.com/github-pages-custom-domain-guide.html#step1"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Create GitHub Repository",
+          "text": "Log in to GitHub, click 'New' button, name your repository, set it to Public, and create the repository.",
+          "url": "https://yourdomain.com/github-pages-custom-domain-guide.html#step2"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Upload Website Files",
+          "text": "In your repository, click 'Add file' then 'Upload files'. Drag and drop all your website files (ensure index.html is in the root) and commit changes.",
+          "url": "https://yourdomain.com/github-pages-custom-domain-guide.html#step3"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Enable GitHub Pages",
+          "text": "Go to repository Settings > Pages. Select 'Deploy from a branch', choose 'main' branch and '/' root folder, then save.",
+          "url": "https://yourdomain.com/github-pages-custom-domain-guide.html#step4"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Add Custom Domain in GitHub",
+          "text": "In Settings > Pages, enter your custom domain (either subdomain like members.yourname.com or root domain like yourname.com) in the Custom domain field and save.",
+          "url": "https://yourdomain.com/github-pages-custom-domain-guide.html#step5"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Configure DNS Records",
+          "text": "Log in to your domain registrar (GoDaddy, Namecheap, etc.). For subdomain: add CNAME record pointing to yourusername.github.io. For root domain: add four A records (185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153) and www CNAME record.",
+          "url": "https://yourdomain.com/github-pages-custom-domain-guide.html#step6"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 7,
+          "name": "Enable HTTPS",
+          "text": "Wait 30-60 minutes for DNS propagation. Return to GitHub Settings > Pages, refresh the page, and enable 'Enforce HTTPS' when available.",
+          "url": "https://yourdomain.com/github-pages-custom-domain-guide.html#step7"
+        }
+      ]
+    }
+    </script>
+
+    <!-- FAQPage Schema - Troubleshooting Section -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "My GitHub URL works but my custom domain doesn't - what's wrong?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If your GitHub URL works but your custom domain doesn't, the issue is with your DNS records. For subdomain: verify you created a CNAME record (not an A record). For root domain: verify you added all four A records with the correct IPs. Ensure you typed yourusername.github.io correctly with no typos. Wait at least 60 minutes after making DNS changes. Check your DNS propagation status at dnschecker.org."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My site shows a 404 error - help!",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 404 error usually means GitHub can't find your homepage file. Your main file MUST be named index.html (all lowercase) and must be in the ROOT of your repository, not in a subfolder. Go to your repo and verify you can see index.html in the main file list. Make sure you enabled GitHub Pages from the correct branch (usually 'main')."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "HTTPS isn't available - what should I do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The 'Enforce HTTPS' option only appears after your DNS is fully propagated and GitHub has verified your domain. Wait at least 60 minutes after adding your custom domain. Make sure your DNS records are correct and propagated. Try removing and re-adding your custom domain in GitHub Pages settings. The option should appear within 24 hours. Be patient - GitHub needs to provision the SSL certificate automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does DNS propagation take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DNS propagation time varies: Fastest: 5-15 minutes, Typical: 30-60 minutes for most changes, Maximum: Up to 24-48 hours in rare cases. In most cases, your site will work within an hour. You can track propagation status at dnschecker.org by entering your domain name."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use both www and non-www versions of my domain?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely! If you're using a root domain setup, both versions will work. The 4 A records handle your root domain (yourname.com), the www CNAME record handles the www version (www.yourname.com), and GitHub Pages automatically redirects between them. Just make sure you added both the A records AND the www CNAME as shown in Step 6."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My site looks broken or images aren't loading - why?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If your site structure looks wrong or images/styles aren't loading: Check that all folders (/images, /css, /js) were uploaded to the correct location. File and folder names are case-sensitive - make sure they match exactly. Your HTML file paths should be relative (like images/logo.png). Avoid absolute paths that point to your computer (like C:/Users/...). Open your browser's Developer Console (F12) to see specific errors about missing files."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- VideoObject Schema - Tutorial Videos -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "VideoObject",
+          "position": 1,
+          "name": "Complete GitHub Pages + Custom Domain Walkthrough",
+          "description": "Comprehensive video walking through the entire process from creating your repo to connecting your domain. Perfect for visual learners who want to see every step.",
+          "thumbnailUrl": "https://i.ytimg.com/vi/e5AwNU3Y2es/maxresdefault.jpg",
+          "uploadDate": "2023-01-01",
+          "contentUrl": "https://www.youtube.com/watch?v=e5AwNU3Y2es",
+          "embedUrl": "https://www.youtube.com/embed/e5AwNU3Y2es"
+        },
+        {
+          "@type": "VideoObject",
+          "position": 2,
+          "name": "For GoDaddy Users - Connect Your Domain",
+          "description": "Step-by-step video showing exactly where to add the DNS records inside your GoDaddy account. Clear, slow-paced, beginner-friendly tutorial.",
+          "thumbnailUrl": "https://i.ytimg.com/vi/CwT2_K3tlZw/maxresdefault.jpg",
+          "uploadDate": "2023-01-01",
+          "contentUrl": "https://www.youtube.com/watch?v=CwT2_K3tlZw",
+          "embedUrl": "https://www.youtube.com/embed/CwT2_K3tlZw"
+        },
+        {
+          "@type": "VideoObject",
+          "position": 3,
+          "name": "For Namecheap Users - DNS Configuration",
+          "description": "Video tutorial specifically for Namecheap users showing exactly which A records and CNAME to add in Namecheap's interface, then how to test everything.",
+          "thumbnailUrl": "https://i.ytimg.com/vi/_RpIr6yKcZo/maxresdefault.jpg",
+          "uploadDate": "2023-01-01",
+          "contentUrl": "https://www.youtube.com/watch?v=_RpIr6yKcZo",
+          "embedUrl": "https://www.youtube.com/embed/_RpIr6yKcZo"
+        }
+      ]
+    }
+    </script>
+
+    <!-- TechArticle Schema - Article Information -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Host Your Website on GitHub Pages with Custom Domain - Complete Free Tutorial",
+      "alternativeHeadline": "GitHub Pages Custom Domain Setup 2025 | Step-by-Step Guide",
+      "image": "https://yourdomain.com/images/github-pages-guide-thumbnail.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "MTG",
+        "url": "https://www.facebook.com/Musa.TheMTG",
+        "sameAs": [
+          "https://www.tiktok.com/@musathegiant",
+          "https://www.youtube.com/@deobankdefi",
+          "https://www.youtube.com/@TexitCoinTitans",
+          "https://www.youtube.com/@vaultveritas_com"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "MTG Web Hosting Guides",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://yourdomain.com/images/mtg-logo.png"
+        }
+      },
+      "datePublished": "2025-12-09",
+      "dateModified": "2025-12-09",
+      "description": "Complete step-by-step guide to hosting your website on GitHub Pages with a custom domain for FREE. Includes DNS setup for GoDaddy & Namecheap, HTTPS configuration, video tutorials, and troubleshooting.",
+      "articleBody": "Learn how to host your website on GitHub Pages with your custom domain completely free. This comprehensive tutorial covers everything from creating a GitHub repository to configuring DNS records, enabling HTTPS, and troubleshooting common issues.",
+      "about": {
+        "@type": "Thing",
+        "name": "GitHub Pages Hosting"
+      },
+      "keywords": "GitHub Pages, custom domain, free hosting, DNS setup, HTTPS, GoDaddy, Namecheap, web hosting tutorial",
+      "proficiencyLevel": "Beginner"
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema - Navigation -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://yourdomain.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Hosting Guides",
+          "item": "https://yourdomain.com/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "GitHub Pages Custom Domain Setup",
+          "item": "https://yourdomain.com/github-pages-custom-domain-guide.html"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Organization Schema - Author/Publisher Information -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "MTG",
+      "alternateName": "Musa The Giant",
+      "description": "Crypto enthusiast and web hosting expert specializing in free hosting solutions and cryptocurrency education.",
+      "url": "https://yourdomain.com",
+      "image": "https://yourdomain.com/images/mtg-avatar.jpg",
+      "sameAs": [
+        "https://www.facebook.com/Musa.TheMTG",
+        "https://wa.me/27721714626",
+        "https://www.tiktok.com/@musathegiant",
+        "https://www.youtube.com/@deobankdefi",
+        "https://www.youtube.com/@TexitCoinTitans",
+        "https://www.youtube.com/@vaultveritas_com",
+        "https://www.deobankdefi.com",
+        "https://texitcointitans.com",
+        "https://vaultveritas.com"
+      ],
+      "knowsAbout": [
+        "GitHub Pages Hosting",
+        "Custom Domain Setup",
+        "DNS Configuration",
+        "Free Web Hosting",
+        "Cryptocurrency",
+        "DeFi",
+        "Web Development"
+      ]
+    }
+    </script>
+</body>
+</html>
