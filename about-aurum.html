@@ -826,9 +826,51 @@
         </div>
 
         <!-- ============================================
+             SECTION: AURUM RWA - REAL WORLD ASSETS
+             ============================================ -->
+        <section class="content-section white-bg" id="rwa" aria-label="Aurum Real World Assets">
+            <div class="container">
+                <div class="section-grid img-left">
+                    <div class="section-image-col reveal from-left stagger-2">
+                        <div class="video-placeholder" id="rwa-video-player" data-video-id="XdwQW8SQDz0">
+                            <div class="aurum-thumb-content" id="rwa-thumb">
+                                <p class="aurum-thumb-headline">Real Estate. Gold. Data Centers. One Click. You Earn. We Handle Everything.</p>
+                                <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
+                                <span class="aurum-thumb-cta">Watch Now</span>
+                            </div>
+                            <div class="aurum-loading" id="rwa-loading">
+                                <div class="aurum-loading-dots"><span></span><span></span><span></span></div>
+                                <p class="aurum-loading-text">Loading video...</p>
+                            </div>
+                            <div class="aurum-iframe-wrap" id="rwa-iframe-wrap"></div>
+                        </div>
+                    </div>
+                    <div class="section-text-col">
+                        <div class="section-eyebrow reveal stagger-1">Aurum RWA</div>
+                        <h2 class="section-title reveal stagger-2">Real World Assets: <span class="highlight">Dubai Real Estate</span> on the Blockchain</h2>
+                        <p class="section-subtitle reveal stagger-3">
+                            Aurum RWA turns premium Dubai real estate properties into tokenized, on-chain assets that generate income within the Aurum ecosystem. Own a fraction of institutional-grade property without brokers, banks, or borders. This is how the next generation builds wealth.
+                        </p>
+                        <ul class="feature-list reveal stagger-4">
+                            <li><span class="icon"><i class="fas fa-circle"></i></span> Tokenized Dubai real estate accessible to anyone, anywhere</li>
+                            <li><span class="icon"><i class="fas fa-circle"></i></span> Fractional ownership removes traditional barriers to entry</li>
+                            <li><span class="icon"><i class="fas fa-circle"></i></span> Income-generating assets integrated into the Aurum ecosystem</li>
+                            <li><span class="icon"><i class="fas fa-circle"></i></span> Blockchain-verified ownership with full transparency</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider reveal">
+            <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum" class="divider-img" loading="lazy">
+        </div>
+
+        <!-- ============================================
              SECTION 5: EX-AI BOT DEEP DIVE
              ============================================ -->
-        <section class="content-section white-bg" id="ex-ai-bot" aria-label="Aurum EX-AI Bot Deep Dive">
+        <section class="content-section alt-bg" id="ex-ai-bot" aria-label="Aurum EX-AI Bot Deep Dive">
             <div class="container">
                 <div style="text-align:center; margin-bottom:40px;">
                     <div class="section-eyebrow reveal stagger-1" style="justify-content:center;">Flagship Product</div>
@@ -909,7 +951,7 @@
         <!-- ============================================
              SECTION 6: NEOBANK & CARD
              ============================================ -->
-        <section class="content-section alt-bg" id="neobank" aria-label="Aurum NeoBank and Card">
+        <section class="content-section white-bg" id="neobank" aria-label="Aurum NeoBank and Card">
             <div class="container">
                 <div style="text-align:center; margin-bottom:40px;">
                     <div class="section-eyebrow reveal stagger-1" style="justify-content:center;">Banking & Spending</div>
@@ -981,7 +1023,7 @@
         <!-- ============================================
              SECTION 7: GLOBAL PRESENCE
              ============================================ -->
-        <section class="content-section white-bg" id="global" aria-label="Aurum Global Presence">
+        <section class="content-section alt-bg" id="global" aria-label="Aurum Global Presence">
             <div class="container">
                 <div class="section-grid img-left">
                     <div class="section-image-col reveal from-left stagger-2">
@@ -1042,7 +1084,7 @@
         <!-- ============================================
              SECTION 8: PARTNER PROGRAM
              ============================================ -->
-        <section class="content-section alt-bg" id="partner-program" aria-label="Aurum Partner Program">
+        <section class="content-section white-bg" id="partner-program" aria-label="Aurum Partner Program">
             <div class="container">
                 <div class="section-grid">
                     <div class="section-text-col">
@@ -1088,7 +1130,7 @@
         <!-- ============================================
              SECTION 9: GETTING STARTED
              ============================================ -->
-        <section class="content-section white-bg" id="get-started" aria-label="Get Started With Aurum">
+        <section class="content-section alt-bg" id="get-started" aria-label="Get Started With Aurum">
             <div class="container">
                 <div style="text-align:center; margin-bottom:40px;">
                     <div class="section-eyebrow reveal stagger-1" style="justify-content:center;">Getting Started</div>
@@ -1135,7 +1177,7 @@
         <!-- ============================================
              SECTION 10: RISK DISCLAIMER
              ============================================ -->
-        <section class="content-section alt-bg" id="risk" aria-label="Risk Disclaimer">
+        <section class="content-section white-bg" id="risk" aria-label="Risk Disclaimer">
             <div class="container">
                 <div style="text-align:center; margin-bottom:32px;">
                     <div class="section-eyebrow reveal stagger-1" style="justify-content:center;">Transparency</div>
@@ -1507,6 +1549,7 @@
 
         // Initialize all 5 video players
         initAurumVideoPlayer({ playerId:'origin-video-player', thumbId:'origin-thumb', loadingId:'origin-loading', iframeWrapId:'origin-iframe-wrap' });
+        initAurumVideoPlayer({ playerId:'rwa-video-player', thumbId:'rwa-thumb', loadingId:'rwa-loading', iframeWrapId:'rwa-iframe-wrap' });
         initAurumVideoPlayer({ playerId:'neobank-video-player', thumbId:'neobank-thumb', loadingId:'neobank-loading', iframeWrapId:'neobank-iframe-wrap' });
         initAurumVideoPlayer({ playerId:'card-video-player', thumbId:'card-thumb', loadingId:'card-loading', iframeWrapId:'card-iframe-wrap' });
         initAurumVideoPlayer({ playerId:'hq-video-player', thumbId:'hq-thumb', loadingId:'hq-loading', iframeWrapId:'hq-iframe-wrap' });
