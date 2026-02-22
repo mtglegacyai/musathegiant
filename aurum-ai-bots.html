@@ -85,10 +85,8 @@
            KEYFRAME ANIMATIONS
            ============================================ */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-14px); } }
         @keyframes divider-float-spin { 0% { transform:translateY(0px) rotate(0deg); } 12% { transform:translateY(-14px) rotate(0deg); } 25% { transform:translateY(0px) rotate(0deg); } 37% { transform:translateY(-14px) rotate(120deg); } 50% { transform:translateY(0px) rotate(240deg); } 62% { transform:translateY(-14px) rotate(360deg); } 75% { transform:translateY(0px) rotate(360deg); } 87% { transform:translateY(-14px) rotate(360deg); } 100% { transform:translateY(0px) rotate(360deg); } }
         @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 15px rgba(0,115,255,0.15); } 50% { box-shadow: 0 0 35px rgba(0,115,255,0.3); } }
-        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
         @keyframes chevron-cascade { 0% { opacity:0; transform:translateY(-6px); } 30% { opacity:1; transform:translateY(0); } 60% { opacity:1; transform:translateY(4px); } 100% { opacity:0; transform:translateY(10px); } }
         @keyframes chevron-cascade-right { 0% { opacity:0; transform:translateX(-4px); } 30% { opacity:1; transform:translateX(0); } 60% { opacity:1; transform:translateX(3px); } 100% { opacity:0; transform:translateX(7px); } }
         @keyframes particle-drift { 0% { transform:translateY(0) translateX(0); opacity:0; } 10% { opacity:0.4; } 90% { opacity:0.4; } 100% { transform:translateY(-100vh) translateX(40px); opacity:0; } }
@@ -99,7 +97,6 @@
         @keyframes chevron-cascade-up { 0% { opacity:0; transform:translateY(6px); } 30% { opacity:1; transform:translateY(0); } 60% { opacity:1; transform:translateY(-4px); } 100% { opacity:0; transform:translateY(-10px); } }
         @keyframes scroll-top-bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
         @keyframes menuLinkSlide { 0% { opacity:0; transform:translateX(24px) scale(0.96); } 100% { opacity:1; transform:translateX(0) scale(1); } }
-        @keyframes countUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 
         /* ============================================
            SCROLL REVEAL SYSTEM
@@ -663,15 +660,37 @@
             </div>
         </section>
 
+        <!-- ============================================
+             FEATURED VIDEO
+             ============================================ -->
+        <section class="content-section alt-bg" id="featured-video" aria-label="Featured Video" style="padding:clamp(40px,6vw,72px) 0;">
+            <div class="container" style="max-width:800px;">
+                <div style="text-align:center;margin-bottom:clamp(20px,3vw,35px);"><div class="section-eyebrow reveal stagger-1" style="justify-content:center;"><i class="fas fa-play-circle" style="font-size:0.65rem;"></i> Featured Video</div></div>
+                <div class="reveal stagger-2">
+                    <div class="video-placeholder" id="featured-video-player" data-video-id="yGO5NRg6dtk">
+                        <div class="aurum-thumb-content" id="featured-thumb">
+                            <p class="aurum-thumb-headline">Real Profits. Real Withdrawals. Watch the Proof.</p>
+                            <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
+                            <span class="aurum-thumb-cta">Watch Now</span>
+                        </div>
+                        <div class="aurum-loading" id="featured-loading">
+                            <div class="aurum-loading-dots"><span></span><span></span><span></span></div>
+                            <p class="aurum-loading-text">Loading video...</p>
+                        </div>
+                        <div class="aurum-iframe-wrap" id="featured-iframe-wrap"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SECTION DIVIDER -->
         <div class="section-divider reveal">
             <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum" class="divider-img" loading="lazy">
         </div>
-
         <!-- ============================================
              SECTION 2: SIDE-BY-SIDE COMPARISON TABLE
              ============================================ -->
-        <section class="content-section alt-bg" id="comparison" aria-label="Compare All Three Aurum AI Bots">
+        <section class="content-section white-bg" id="comparison" aria-label="Compare All Three Aurum AI Bots">
             <div class="container">
                 <div style="text-align:center;">
                     <div class="section-eyebrow reveal stagger-1" style="justify-content:center;">Compare All Three Bots</div>
@@ -776,7 +795,7 @@
         <!-- ============================================
              SECTION 3: EX-AI BOT (FLAGSHIP)
              ============================================ -->
-        <section class="content-section white-bg" id="ex-ai-bot" aria-label="EX-AI Bot Flagship">
+        <section class="content-section alt-bg" id="ex-ai-bot" aria-label="EX-AI Bot Flagship">
             <div class="container">
                 <div class="section-grid">
                     <div>
@@ -1006,7 +1025,7 @@
         <!-- ============================================
              SECTION 4: EX-AI PRO BOT
              ============================================ -->
-        <section class="content-section alt-bg" id="ex-ai-pro" aria-label="EX-AI PRO Bot">
+        <section class="content-section white-bg" id="ex-ai-pro" aria-label="EX-AI PRO Bot">
             <div class="container">
                 <div class="section-bridge reveal stagger-1">
                     <p>Already running the EX-AI Bot? Expand your portfolio with two additional bots designed to complement your flagship position.</p>
@@ -1050,7 +1069,7 @@
         <!-- ============================================
              SECTION 5: ZEUS AI BOT
              ============================================ -->
-        <section class="content-section white-bg" id="zeus-bot" aria-label="Zeus AI Bot">
+        <section class="content-section alt-bg" id="zeus-bot" aria-label="Zeus AI Bot">
             <div class="container">
                 <div class="section-grid">
                     <div>
@@ -1480,6 +1499,7 @@
         }
 
         // Initialize video player
+        initAurumVideoPlayer({ playerId:'featured-video-player', thumbId:'featured-thumb', loadingId:'featured-loading', iframeWrapId:'featured-iframe-wrap' });
         initAurumVideoPlayer({ playerId:'neobank-video-player', thumbId:'neobank-thumb', loadingId:'neobank-loading', iframeWrapId:'neobank-iframe-wrap' });
     </script>
 
