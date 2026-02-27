@@ -1923,28 +1923,200 @@
            integration for the #about-aurum section.
            ============================================ */
 
-        /* Override default video-placeholder in about-aurum only */
+        /* ════════════════════════════════════════════════════
+           AURUM THUMBNAIL SYSTEM — Shared Keyframes
+           ════════════════════════════════════════════════════ */
+
+        /* Trading bots float slowly up/down */
+        @keyframes aurum-bot-float {
+            0%, 100% { transform: translateY(0px)   rotate(0deg);  }
+            33%       { transform: translateY(-9px)  rotate(1.2deg); }
+            66%       { transform: translateY(-4px)  rotate(-0.8deg); }
+        }
+        @keyframes aurum-bot-float-b {
+            0%, 100% { transform: translateY(0px)   rotate(0deg);  }
+            40%       { transform: translateY(-11px) rotate(-1deg); }
+            75%       { transform: translateY(-5px)  rotate(0.9deg); }
+        }
+        /* Gold pulse for accent glows */
+        @keyframes aurum-gold-pulse {
+            0%, 100% { opacity: 0.28; }
+            50%       { opacity: 0.62; }
+        }
+        /* Bar chart grow-in on load */
+        @keyframes aurum-bar-rise {
+            from { transform: scaleY(0); }
+            to   { transform: scaleY(1); }
+        }
+
+        /* ════════════════════════════════════════════════════
+           THUMBNAIL 1 — #about-aurum
+           "Forbes Called It the New Infrastructure of Global Finance"
+           THEME: Ecosystem / Overview
+           ════════════════════════════════════════════════════ */
         #about-aurum .video-placeholder {
             background:
-                radial-gradient(ellipse at 25% 30%, rgba(0, 115, 255, 0.12) 0%, transparent 55%),
-                radial-gradient(ellipse at 75% 70%, rgba(56, 152, 248, 0.10) 0%, transparent 55%),
-                linear-gradient(135deg, #0060DD 0%, #0073FF 40%, #3898F8 100%);
-            border-color: rgba(0, 115, 255, 0.25);
+                /* ── Ascending bar chart (10 bars, left-to-right uptrend) ── */
+                linear-gradient(to top, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.30) 100%)
+                    no-repeat 5%    bottom / 6% 16%,
+                linear-gradient(to top, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.30) 100%)
+                    no-repeat 12.5% bottom / 6% 22%,
+                linear-gradient(to top, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.28) 100%)
+                    no-repeat 20%   bottom / 6% 18%,
+                linear-gradient(to top, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.32) 100%)
+                    no-repeat 27.5% bottom / 6% 30%,
+                linear-gradient(to top, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.30) 100%)
+                    no-repeat 35%   bottom / 6% 25%,
+                linear-gradient(to top, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.35) 100%)
+                    no-repeat 42.5% bottom / 6% 36%,
+                linear-gradient(to top, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.33) 100%)
+                    no-repeat 50%   bottom / 6% 31%,
+                linear-gradient(to top, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.38) 100%)
+                    no-repeat 57.5% bottom / 6% 44%,
+                linear-gradient(to top, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.40) 100%)
+                    no-repeat 65%   bottom / 6% 51%,
+                linear-gradient(to top, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.44) 100%)
+                    no-repeat 72.5% bottom / 6% 60%,
+                /* ── Depth glow orbs ── */
+                radial-gradient(ellipse at 80% 15%, rgba(56,152,248,0.28) 0%, transparent 48%),
+                radial-gradient(ellipse at 15% 80%, rgba(0,80,200,0.22) 0%, transparent 42%),
+                /* ── Rich blue base ── */
+                linear-gradient(145deg, #004FBF 0%, #005FD8 30%, #0073FF 62%, #2C90FA 100%);
+            border-color: rgba(255,255,255,0.22);
+            box-shadow:
+                0 8px 48px rgba(0,115,255,0.40),
+                0 2px 12px rgba(0,0,0,0.18),
+                inset 0 1px 0 rgba(255,255,255,0.28);
         }
 
-        #about-aurum .video-placeholder::before { display: none; }
-        #about-aurum .video-placeholder::after { display: none; }
+        /* Floating trading bots — main element + 5 shadows = 6 bots */
+        #about-aurum .video-placeholder::before {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.20);
+            border: 1.5px solid rgba(255,255,255,0.38);
+            top: 14%;
+            left: 20%;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow:
+                /* bot 2 — larger, top-right area */
+                130px  8px  0  5px rgba(255,255,255,0.13),
+                130px  8px  0  6px rgba(255,255,255,0.06),
+                /* bot 3 — mid-left */
+                -45px 75px  0 -2px rgba(255,255,255,0.16),
+                /* bot 4 — far right mid */
+                205px 82px  0 -3px rgba(255,255,255,0.14),
+                /* bot 5 — lower center */
+                80px  145px 0  2px rgba(255,255,255,0.12),
+                /* bot 6 — upper far right */
+                260px 18px  0 -4px rgba(255,255,255,0.10);
+            animation: aurum-bot-float 9s ease-in-out infinite;
+        }
 
-        /* Override default video-placeholder in partner-program section */
+        /* Gold accent glow — bottom right */
+        #about-aurum .video-placeholder::after {
+            display: block;
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            right: 10%;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(circle, rgba(201,168,76,0.22) 0%, transparent 62%);
+            animation: aurum-gold-pulse 6s ease-in-out infinite;
+        }
+
+        /* ════════════════════════════════════════════════════
+           THUMBNAIL 2 — #partner-program
+           "$1B in Sales. 2.2 Million Families. Now He's Building Aurum."
+           THEME: Opportunity & Partner Program
+           ════════════════════════════════════════════════════ */
         #partner-program .video-placeholder {
             background:
-                radial-gradient(ellipse at 25% 30%, rgba(0, 115, 255, 0.12) 0%, transparent 55%),
-                radial-gradient(ellipse at 75% 70%, rgba(56, 152, 248, 0.10) 0%, transparent 55%),
-                linear-gradient(135deg, #0060DD 0%, #0073FF 40%, #3898F8 100%);
-            border-color: rgba(0, 115, 255, 0.25);
+                /* ── Ascending bar chart — slightly taller peaks, wealth signal ── */
+                linear-gradient(to top, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.28) 100%)
+                    no-repeat 5%    bottom / 6% 12%,
+                linear-gradient(to top, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.28) 100%)
+                    no-repeat 12.5% bottom / 6% 19%,
+                linear-gradient(to top, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.26) 100%)
+                    no-repeat 20%   bottom / 6% 15%,
+                linear-gradient(to top, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.30) 100%)
+                    no-repeat 27.5% bottom / 6% 27%,
+                linear-gradient(to top, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.28) 100%)
+                    no-repeat 35%   bottom / 6% 22%,
+                linear-gradient(to top, rgba(255,255,255,0.17) 0%, rgba(255,255,255,0.33) 100%)
+                    no-repeat 42.5% bottom / 6% 34%,
+                linear-gradient(to top, rgba(255,255,255,0.17) 0%, rgba(255,255,255,0.31) 100%)
+                    no-repeat 50%   bottom / 6% 29%,
+                linear-gradient(to top, rgba(255,255,255,0.19) 0%, rgba(255,255,255,0.36) 100%)
+                    no-repeat 57.5% bottom / 6% 42%,
+                linear-gradient(to top, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.40) 100%)
+                    no-repeat 65%   bottom / 6% 53%,
+                linear-gradient(to top, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.46) 100%)
+                    no-repeat 72.5% bottom / 6% 65%,
+                /* ── Warm gold corner glow — left bottom ── */
+                radial-gradient(ellipse at 8%  90%, rgba(201,168,76,0.18) 0%, transparent 40%),
+                radial-gradient(ellipse at 88% 12%, rgba(56,152,248,0.26) 0%, transparent 45%),
+                /* ── Deep blue base with slight warmth ── */
+                linear-gradient(150deg, #004AB0 0%, #005CD0 28%, #0073FF 58%, #3898F8 100%);
+            border-color: rgba(255,255,255,0.20);
+            box-shadow:
+                0 8px 48px rgba(0,115,255,0.38),
+                0 2px 12px rgba(0,0,0,0.16),
+                inset 0 1px 0 rgba(255,255,255,0.26);
         }
-        #partner-program .video-placeholder::before { display: none; }
-        #partner-program .video-placeholder::after { display: none; }
+
+        #partner-program .video-placeholder::before {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.18);
+            border: 1.5px solid rgba(255,255,255,0.32);
+            top: 18%;
+            left: 72%;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow:
+                /* bot 2 */
+                -170px  12px  0  3px rgba(255,255,255,0.12),
+                -170px  12px  0  4px rgba(255,255,255,0.05),
+                /* bot 3 */
+                  40px  90px  0 -3px rgba(255,255,255,0.15),
+                /* bot 4 */
+                -220px  88px  0  2px rgba(255,255,255,0.11),
+                /* bot 5 */
+                  -80px 150px  0 -2px rgba(255,255,255,0.13),
+                /* bot 6 */
+                  100px  28px  0 -5px rgba(255,255,255,0.16);
+            animation: aurum-bot-float-b 10s ease-in-out infinite;
+        }
+
+        /* Gold radial pulse — bottom left, wealth signal */
+        #partner-program .video-placeholder::after {
+            display: block;
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -20px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(circle, rgba(201,168,76,0.26) 0%, transparent 58%);
+            animation: aurum-gold-pulse 7s ease-in-out infinite 1s;
+        }
         #partner-program .video-placeholder:hover .aurum-play-btn {
             transform: scale(1.14);
             background: rgba(255, 255, 255, 0.28);
@@ -1955,16 +2127,96 @@
         #partner-program .video-placeholder:hover .aurum-play-btn i { transform: scale(1.1); }
         #partner-program .video-placeholder:hover .aurum-thumb-cta { color: rgba(255, 255, 255, 1); }
 
-        /* Override default video-placeholder in featured-video section */
+        /* ════════════════════════════════════════════════════
+           THUMBNAIL 3 — #featured-video
+           "One App. Crypto and Cash. Zero Boundaries."
+           THEME: NeoBank & Cards
+           ════════════════════════════════════════════════════ */
         #featured-video .video-placeholder {
             background:
-                radial-gradient(ellipse at 25% 30%, rgba(0, 115, 255, 0.12) 0%, transparent 55%),
-                radial-gradient(ellipse at 75% 70%, rgba(56, 152, 248, 0.10) 0%, transparent 55%),
-                linear-gradient(135deg, #0060DD 0%, #0073FF 40%, #3898F8 100%);
-            border-color: rgba(0, 115, 255, 0.25);
+                /* ── Ascending bar chart ── */
+                linear-gradient(to top, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.28) 100%)
+                    no-repeat 5%    bottom / 6% 18%,
+                linear-gradient(to top, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.28) 100%)
+                    no-repeat 12.5% bottom / 6% 24%,
+                linear-gradient(to top, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.26) 100%)
+                    no-repeat 20%   bottom / 6% 20%,
+                linear-gradient(to top, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.30) 100%)
+                    no-repeat 27.5% bottom / 6% 32%,
+                linear-gradient(to top, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.28) 100%)
+                    no-repeat 35%   bottom / 6% 26%,
+                linear-gradient(to top, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.34) 100%)
+                    no-repeat 42.5% bottom / 6% 38%,
+                linear-gradient(to top, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.32) 100%)
+                    no-repeat 50%   bottom / 6% 33%,
+                linear-gradient(to top, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.37) 100%)
+                    no-repeat 57.5% bottom / 6% 46%,
+                linear-gradient(to top, rgba(255,255,255,0.21) 0%, rgba(255,255,255,0.41) 100%)
+                    no-repeat 65%   bottom / 6% 54%,
+                linear-gradient(to top, rgba(255,255,255,0.23) 0%, rgba(255,255,255,0.46) 100%)
+                    no-repeat 72.5% bottom / 6% 63%,
+                /* ── Depth glows ── */
+                radial-gradient(ellipse at 85% 18%, rgba(56,152,248,0.30) 0%, transparent 45%),
+                radial-gradient(ellipse at 20% 82%, rgba(0,78,185,0.22) 0%, transparent 42%),
+                /* ── Blue base ── */
+                linear-gradient(155deg, #0052C4 0%, #0068E0 32%, #0073FF 64%, #2C90FA 100%);
+            border-color: rgba(255,255,255,0.24);
+            box-shadow:
+                0 8px 48px rgba(0,115,255,0.42),
+                0 2px 12px rgba(0,0,0,0.16),
+                inset 0 1px 0 rgba(255,255,255,0.30);
         }
-        #featured-video .video-placeholder::before { display: none; }
-        #featured-video .video-placeholder::after { display: none; }
+
+        /* Floating bots — upper-left cluster + scattered */
+        #featured-video .video-placeholder::before {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 11px;
+            height: 11px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.22);
+            border: 1.5px solid rgba(255,255,255,0.40);
+            top: 10%;
+            left: 12%;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow:
+                /* bot 2 */
+                165px  20px  0  4px rgba(255,255,255,0.13),
+                165px  20px  0  5px rgba(255,255,255,0.06),
+                /* bot 3 */
+                 -25px 80px  0 -2px rgba(255,255,255,0.17),
+                /* bot 4 */
+                 210px 95px  0 -3px rgba(255,255,255,0.14),
+                /* bot 5 */
+                  90px 145px  0  2px rgba(255,255,255,0.11),
+                /* bot 6 */
+                 280px 38px  0 -5px rgba(255,255,255,0.09);
+            animation: aurum-bot-float 8s ease-in-out infinite 0.5s;
+        }
+
+        /* Vertical card-edge seam — glowing right edge */
+        #featured-video .video-placeholder::after {
+            display: block;
+            content: '';
+            position: absolute;
+            top: 8%;
+            right: 0;
+            width: 2px;
+            height: 84%;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(
+                180deg,
+                transparent 0%,
+                rgba(255,255,255,0.50) 25%,
+                rgba(255,255,255,0.85) 50%,
+                rgba(255,255,255,0.50) 75%,
+                transparent 100%
+            );
+            box-shadow: 0 0 12px rgba(255,255,255,0.35), 0 0 28px rgba(56,152,248,0.28);
+        }
         #featured-video .video-placeholder:hover .aurum-play-btn {
             transform: scale(1.14);
             background: rgba(255, 255, 255, 0.28);
@@ -2183,16 +2435,97 @@
            pattern as the about-aurum video.
            ============================================ */
 
+        /* ════════════════════════════════════════════════════
+           THUMBNAIL 4 — #about (CEO section)
+           "He Left Binance to Build Something Bigger. Hear Why."
+           THEME: Leadership & Authority
+           ════════════════════════════════════════════════════ */
         #about .video-placeholder {
             background:
-                radial-gradient(ellipse at 25% 30%, rgba(0, 115, 255, 0.12) 0%, transparent 55%),
-                radial-gradient(ellipse at 75% 70%, rgba(56, 152, 248, 0.10) 0%, transparent 55%),
-                linear-gradient(135deg, #0060DD 0%, #0073FF 40%, #3898F8 100%);
-            border-color: rgba(0, 115, 255, 0.25);
+                /* ── Ascending bar chart ── */
+                linear-gradient(to top, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.26) 100%)
+                    no-repeat 5%    bottom / 6% 14%,
+                linear-gradient(to top, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.26) 100%)
+                    no-repeat 12.5% bottom / 6% 21%,
+                linear-gradient(to top, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.24) 100%)
+                    no-repeat 20%   bottom / 6% 17%,
+                linear-gradient(to top, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.28) 100%)
+                    no-repeat 27.5% bottom / 6% 29%,
+                linear-gradient(to top, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.26) 100%)
+                    no-repeat 35%   bottom / 6% 24%,
+                linear-gradient(to top, rgba(255,255,255,0.17) 0%, rgba(255,255,255,0.32) 100%)
+                    no-repeat 42.5% bottom / 6% 35%,
+                linear-gradient(to top, rgba(255,255,255,0.17) 0%, rgba(255,255,255,0.30) 100%)
+                    no-repeat 50%   bottom / 6% 30%,
+                linear-gradient(to top, rgba(255,255,255,0.19) 0%, rgba(255,255,255,0.35) 100%)
+                    no-repeat 57.5% bottom / 6% 43%,
+                linear-gradient(to top, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.39) 100%)
+                    no-repeat 65%   bottom / 6% 50%,
+                linear-gradient(to top, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.43) 100%)
+                    no-repeat 72.5% bottom / 6% 59%,
+                /* ── Central authority spotlight ── */
+                radial-gradient(ellipse at 50% 42%, rgba(255,255,255,0.14) 0%, rgba(56,152,248,0.06) 30%, transparent 55%),
+                radial-gradient(ellipse at 20% 20%, rgba(56,152,248,0.20) 0%, transparent 42%),
+                /* ── Deep authoritative blue ── */
+                linear-gradient(160deg, #004AB2 0%, #005CCE 30%, #0073FF 62%, #2C90FA 100%);
+            border-color: rgba(255,255,255,0.20);
+            box-shadow:
+                0 8px 48px rgba(0,115,255,0.36),
+                0 2px 12px rgba(0,0,0,0.20),
+                inset 0 1px 0 rgba(255,255,255,0.24);
         }
 
-        #about .video-placeholder::before { display: none; }
-        #about .video-placeholder::after { display: none; }
+        /* Floating bots — right-side cluster */
+        #about .video-placeholder::before {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 13px;
+            height: 13px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.19);
+            border: 1.5px solid rgba(255,255,255,0.34);
+            top: 16%;
+            left: 65%;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow:
+                /* bot 2 */
+                -150px  10px  0  3px rgba(255,255,255,0.12),
+                -150px  10px  0  4px rgba(255,255,255,0.05),
+                /* bot 3 */
+                   55px 85px  0 -3px rgba(255,255,255,0.15),
+                /* bot 4 */
+                 -200px 95px  0  2px rgba(255,255,255,0.11),
+                /* bot 5 */
+                  -70px 150px  0 -2px rgba(255,255,255,0.13),
+                /* bot 6 */
+                  120px  30px  0 -5px rgba(255,255,255,0.10);
+            animation: aurum-bot-float 11s ease-in-out infinite 2s;
+        }
+
+        /* Gold authority line — centered horizontal, breathing */
+        #about .video-placeholder::after {
+            display: block;
+            content: '';
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            top: 22%;
+            height: 1px;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(201,168,76,0.18) 8%,
+                rgba(201,168,76,0.65) 50%,
+                rgba(201,168,76,0.18) 92%,
+                transparent 100%
+            );
+            box-shadow: 0 0 10px rgba(201,168,76,0.30), 0 0 24px rgba(201,168,76,0.14);
+            animation: aurum-gold-pulse 5.5s ease-in-out infinite;
+        }
 
         /* Reuse aurum-thumb, aurum-play-btn, aurum-loading, aurum-iframe-wrap classes */
         /* All styling inherited from the about-aurum video player CSS above */
