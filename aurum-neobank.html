@@ -434,6 +434,22 @@
         .final-cta .sub-text { margin-top:16px; font-family:var(--font-body); font-size:0.85rem; color:var(--text-sub); }
         .final-cta .sub-text span { margin:0 8px; }
         .final-cta .btn-row { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+        /* ============================================
+           TESTIMONIALS TEASER RESPONSIVE GRID
+           ============================================ */
+        .teaser-reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(14px, 2vw, 22px);
+            margin-bottom: clamp(28px, 4vw, 44px);
+        }
+        @media (max-width: 768px) {
+            .teaser-reviews-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .teaser-reviews-grid { grid-template-columns: 1fr; }
+        }
+
         .footer { background:var(--blue-gradient); padding:56px 0 0; color:var(--text-white); }
         .footer-grid { display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; padding-bottom:36px; }
         .footer .nav-logo-text .blue { color:#FFFFFF; }
@@ -730,7 +746,7 @@
                     <h2 class="section-title reveal stagger-2">Real Members. Real Cards.<br><span class="highlight">Real Withdrawals.</span></h2>
                     <p class="section-subtitle reveal stagger-3" style="max-width:560px; margin:0 auto;">The Aurum Card isn't a concept. It's in wallets right now. Here's what members say about spending their crypto profits in the real world.</p>
                 </div>
-                <div class="reveal stagger-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2vw,22px); margin-bottom:clamp(28px,4vw,44px);">
+                <div class="teaser-reviews-grid reveal stagger-3">
                     <div style="background:var(--bg-white); border-radius:18px; padding:clamp(18px,2.5vw,26px); border:1px solid var(--border-card); box-shadow:0 2px 16px rgba(0,0,0,0.04); display:flex; flex-direction:column; gap:12px;">
                         <div style="display:flex; gap:4px;"><i class="fas fa-star" style="color:#00B67A; font-size:0.8rem;"></i><i class="fas fa-star" style="color:#00B67A; font-size:0.8rem;"></i><i class="fas fa-star" style="color:#00B67A; font-size:0.8rem;"></i><i class="fas fa-star" style="color:#00B67A; font-size:0.8rem;"></i><i class="fas fa-star" style="color:#00B67A; font-size:0.8rem;"></i></div>
                         <p style="font-family:var(--font-body); font-size:0.88rem; color:var(--text-body); line-height:1.6; flex:1;">"Having the Aurum card means my crypto profits are instantly spendable. This is the future of money, and I'm already living it right now."</p>
