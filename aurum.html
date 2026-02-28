@@ -1658,6 +1658,22 @@
         /* ============================================
            FOOTER
            ============================================ */
+        /* ============================================
+           TESTIMONIALS TEASER RESPONSIVE GRID
+           ============================================ */
+        .teaser-reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(14px, 2vw, 22px);
+            margin-bottom: clamp(28px, 4vw, 48px);
+        }
+        @media (max-width: 768px) {
+            .teaser-reviews-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .teaser-reviews-grid { grid-template-columns: 1fr; }
+        }
+
         .footer {
             background: var(--blue-gradient);
             padding: 56px 0 0;
@@ -2834,7 +2850,7 @@
                 </div>
 
                 <!-- 3 Review Cards -->
-                <div class="reveal stagger-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2vw,22px); margin-bottom:clamp(28px,4vw,48px);">
+                <div class="teaser-reviews-grid reveal stagger-3">
 
                     <!-- Card 1 -->
                     <div style="background:var(--bg-white); border-radius:18px; padding:clamp(18px,2.5vw,26px); border:1px solid var(--border-card); box-shadow:0 2px 16px rgba(0,0,0,0.04); display:flex; flex-direction:column; gap:12px;">
