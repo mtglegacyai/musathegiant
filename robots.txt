@@ -1,0 +1,90 @@
+# robots.txt — musathegiant.com
+# MTG 👑 | The Digital Architect
+# Generated: 2026-03-01
+# Upload to: https://www.musathegiant.com/robots.txt
+
+# ============================================================
+# ALLOW ALL MAJOR SEARCH ENGINE CRAWLERS
+# ============================================================
+
+User-agent: *
+Allow: /
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /images/
+
+User-agent: Googlebot-Video
+Allow: /
+
+# Bing / Microsoft
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+
+# ============================================================
+# AI SEARCH CRAWLERS — EXPLICITLY ALLOWED FOR AI CITATION
+# ============================================================
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Common Crawl (used by many AI training datasets)
+User-agent: CCBot
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+# ============================================================
+# SITEMAP REFERENCE
+# ============================================================
+
+Sitemap: https://www.musathegiant.com/sitemap.xml
+
+# ============================================================
+# NOTES
+# No pages are blocked — all Aurum content is public and
+# should be indexed by all search engines and AI tools.
+# ============================================================

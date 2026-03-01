@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ============================================================
+       sitemap.xml — musathegiant.com Aurum Foundation Section
+       MTG 👑 | The Digital Architect
+       Generated: 2026-03-01
+       Upload to: https://www.musathegiant.com/sitemap.xml
+       ============================================================ -->
+
+  <!-- 1. Hub Page — Highest Priority -->
+  <url>
+    <loc>https://www.musathegiant.com/aurum.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.musathegiant.com/images/aurum-ex-ai-bot.png</image:loc>
+      <image:title>Aurum Foundation EX-AI Bot — AI-Powered Autonomous Crypto Trading</image:title>
+      <image:caption>Aurum Foundation: AI trading, NeoBank, crypto cards and 6 income streams. Start from $100.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 2. AI Bots Page -->
+  <url>
+    <loc>https://www.musathegiant.com/aurum-ai-bots.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.musathegiant.com/images/aurum-bot.png</image:loc>
+      <image:title>Aurum AI Trading Bots — EX-AI Bot, EX-AI PRO and Zeus AI Bot</image:title>
+      <image:caption>Compare all three Aurum AI trading bots: EX-AI Bot (avg 17.5%/mo), EX-AI PRO, and Zeus AI Bot.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 3. About Page -->
+  <url>
+    <loc>https://www.musathegiant.com/about-aurum.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.musathegiant.com/images/aurum-trading-bot.png</image:loc>
+      <image:title>About Aurum Foundation — CEO Bryan Benson and Intent-Based DeFi</image:title>
+      <image:caption>Aurum Foundation: Founded 2024 by CEO Bryan Benson, ex-Binance Director. AI-native DeFi ecosystem.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 4. NeoBank Page -->
+  <url>
+    <loc>https://www.musathegiant.com/aurum-neobank.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.musathegiant.com/images/aurum-neobank.png</image:loc>
+      <image:title>Aurum NeoBank — Crypto Mastercard Debit Cards</image:title>
+      <image:caption>Aurum NeoBank: Nova, Imperium, World Elite and Infinity cards. Apple Pay, Google Pay, no KYC on premium tiers.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 5. Partner Program Page -->
+  <url>
+    <loc>https://www.musathegiant.com/aurum-partner-program.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.musathegiant.com/images/aurum-affiliate-program.png</image:loc>
+      <image:title>Aurum Foundation Partner Program — 6 Income Streams, 15 Legacy Levels</image:title>
+      <image:caption>Aurum Partner Program: Direct Sales 18.5%, Profitshare 30%, Extra Bonuses up to $3M. Code EXTHT1.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 6. Testimonials Page -->
+  <url>
+    <loc>https://www.musathegiant.com/aurum-testimonials.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.musathegiant.com/images/aurum-ex-ai-bot.png</image:loc>
+      <image:title>Aurum Foundation Testimonials — Real Reviews and Withdrawal Proof</image:title>
+      <image:caption>124+ Trustpilot reviews, 4.4/5 stars. Real Aurum Foundation member withdrawal proof and testimonials.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 7. Getting Started Page -->
+  <url>
+    <loc>https://www.musathegiant.com/getting-started-with-aurum.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.musathegiant.com/images/aurum-ex-ai-bot.png</image:loc>
+      <image:title>How to Join Aurum Foundation — Step-by-Step Getting Started Guide</image:title>
+      <image:caption>Join Aurum Foundation in 30 minutes: register with code EXTHT1, fund $100 USDT, activate EX-AI Bot.</image:caption>
+    </image:image>
+  </url>
+
+</urlset>
