@@ -313,6 +313,10 @@
         /* ============================================
            HERO SECTION
            ============================================ */
+        .breadcrumb { padding:calc(var(--nav-height) + 12px) 0 0; font-family:var(--font-heading); font-size:0.78rem; color:var(--text-sub); }
+        .breadcrumb a { color:var(--blue-primary); font-weight:500; }
+        .breadcrumb a:hover { text-decoration:underline; }
+        .breadcrumb .sep { margin:0 8px; opacity:0.5; }
         .hero { position:relative; min-height:100vh; display:flex; align-items:center; padding-top:var(--nav-height); background:linear-gradient(170deg,#F1F8FF 0%,var(--bg-page) 50%,#F1F8FF 100%); overflow:hidden; }
         .hero::before { content:''; position:absolute; top:-20%; right:-10%; width:700px; height:700px; background:radial-gradient(circle,rgba(0,115,255,0.07) 0%,transparent 65%); pointer-events:none; }
         .hero::after { content:''; position:absolute; bottom:-15%; left:-8%; width:500px; height:500px; background:radial-gradient(circle,rgba(56,152,248,0.05) 0%,transparent 65%); pointer-events:none; }
@@ -701,6 +705,7 @@
         <section class="hero" id="testimonials-hero" aria-label="Testimonials Hero">
             <div class="particles" id="particles"></div>
             <div class="container">
+                <div class="breadcrumb"><a href="aurum.html">Home</a><span class="sep">/</span>Testimonials</div>
                 <div class="hero-grid">
                     <!-- Text Column -->
                     <div class="hero-content">
