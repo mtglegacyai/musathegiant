@@ -236,7 +236,105 @@
         @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
         @keyframes chevron-cascade { 0% { opacity: 0; transform: translateY(-6px); } 30% { opacity: 1; transform: translateY(0); } 60% { opacity: 1; transform: translateY(4px); } 100% { opacity: 0; transform: translateY(10px); } }
         @keyframes particle-drift { 0% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 0.4; } 90% { opacity: 0.4; } 100% { transform: translateY(-100vh) translateX(40px); opacity: 0; } }
-        @keyframes slideGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes slideGradient { 0% { background-position: 0% 50%; }
+
+        /* ============================================
+           SEQUENTIAL FILL ANIMATION SYSTEM
+           10 bars fill one at a time, bottom-anchored.
+           Each bar owns a 10% window of a 20s cycle.
+           Filled bars stay lit; all reset on loop.
+           ============================================ */
+
+        /* Bar 0 — active  0%–10% */
+        @keyframes eq-seq-0 {
+            0%   { transform:scaleY(0.0); opacity:0.28; }
+            10%  { transform:scaleY(1.0); opacity:1.00; }
+            99%  { transform:scaleY(1.0); opacity:1.00; }
+            100% { transform:scaleY(0.0); opacity:0.28; }
+        }
+        /* Bar 1 — active 10%–20% */
+        @keyframes eq-seq-1 {
+            0%,10%  { transform:scaleY(0.0); opacity:0.28; }
+            20%     { transform:scaleY(1.0); opacity:1.00; }
+            99%     { transform:scaleY(1.0); opacity:1.00; }
+            100%    { transform:scaleY(0.0); opacity:0.28; }
+        }
+        /* Bar 2 — active 20%–30% */
+        @keyframes eq-seq-2 {
+            0%,20%  { transform:scaleY(0.0); opacity:0.28; }
+            30%     { transform:scaleY(1.0); opacity:1.00; }
+            99%     { transform:scaleY(1.0); opacity:1.00; }
+            100%    { transform:scaleY(0.0); opacity:0.28; }
+        }
+        /* Bar 3 — active 30%–40% */
+        @keyframes eq-seq-3 {
+            0%,30%  { transform:scaleY(0.0); opacity:0.28; }
+            40%     { transform:scaleY(1.0); opacity:1.00; }
+            99%     { transform:scaleY(1.0); opacity:1.00; }
+            100%    { transform:scaleY(0.0); opacity:0.28; }
+        }
+        /* Bar 4 — active 40%–50% */
+        @keyframes eq-seq-4 {
+            0%,40%  { transform:scaleY(0.0); opacity:0.28; }
+            50%     { transform:scaleY(1.0); opacity:1.00; }
+            99%     { transform:scaleY(1.0); opacity:1.00; }
+            100%    { transform:scaleY(0.0); opacity:0.28; }
+        }
+        /* Bar 5 — active 50%–60% */
+        @keyframes eq-seq-5 {
+            0%,50%  { transform:scaleY(0.0); opacity:0.28; }
+            60%     { transform:scaleY(1.0); opacity:1.00; }
+            99%     { transform:scaleY(1.0); opacity:1.00; }
+            100%    { transform:scaleY(0.0); opacity:0.28; }
+        }
+        /* Bar 6 — active 60%–70% */
+        @keyframes eq-seq-6 {
+            0%,60%  { transform:scaleY(0.0); opacity:0.28; }
+            70%     { transform:scaleY(1.0); opacity:1.00; }
+            99%     { transform:scaleY(1.0); opacity:1.00; }
+            100%    { transform:scaleY(0.0); opacity:0.28; }
+        }
+        /* Bar 7 — active 70%–80% */
+        @keyframes eq-seq-7 {
+            0%,70%  { transform:scaleY(0.0); opacity:0.28; }
+            80%     { transform:scaleY(1.0); opacity:1.00; }
+            99%     { transform:scaleY(1.0); opacity:1.00; }
+            100%    { transform:scaleY(0.0); opacity:0.28; }
+        }
+        /* Bar 8 — active 80%–90% */
+        @keyframes eq-seq-8 {
+            0%,80%  { transform:scaleY(0.0); opacity:0.28; }
+            90%     { transform:scaleY(1.0); opacity:1.00; }
+            99%     { transform:scaleY(1.0); opacity:1.00; }
+            100%    { transform:scaleY(0.0); opacity:0.28; }
+        }
+        /* Bar 9 — active 90%–100% */
+        @keyframes eq-seq-9 {
+            0%,90%  { transform:scaleY(0.0); opacity:0.28; }
+            100%    { transform:scaleY(1.0); opacity:1.00; }
+        }
+
+        /* SVG overlay: above ::before chart bg, below content (z-index:2) */
+        .thumb-bars-svg {
+            position:absolute;
+            inset:0;
+            width:100%;
+            height:100%;
+            z-index:1;
+            pointer-events:none;
+            border-radius:18px;
+            overflow:hidden;
+        }
+
+        /* Shared bar base — animation-name set per-bar via inline style */
+        .eq-bar {
+            transform-box:fill-box;
+            transform-origin:50% 100%;
+            animation-duration:20s;
+            animation-timing-function:ease-in-out;
+            animation-iteration-count:infinite;
+            will-change:transform, opacity;
+        } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         @keyframes menuLinkSlide { 0% { opacity:0; transform:translateX(24px) scale(0.96); } 100% { opacity:1; transform:translateX(0) scale(1); } }
         @keyframes pulse-ring { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.5); opacity: 0; } }
 
@@ -662,6 +760,48 @@
                     </div>
                     <div class="section-image-col reveal from-right stagger-3">
                         <div class="video-placeholder" id="hero-video-player" data-video-id="yGO5NRg6dtk">
+                            <svg class="thumb-bars-svg" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true">
+                                <g class="eq-bar" style="animation-name:eq-seq-0;">
+                                    <rect x="72" y="412" width="40" height="48" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="72" y="412" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-1;">
+                                    <rect x="144" y="390" width="40" height="70" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="144" y="390" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-2;">
+                                    <rect x="216" y="405" width="40" height="55" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="216" y="405" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-3;">
+                                    <rect x="288" y="368" width="40" height="92" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="288" y="368" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-4;">
+                                    <rect x="360" y="384" width="40" height="76" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="360" y="384" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-5;">
+                                    <rect x="432" y="346" width="40" height="114" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="432" y="346" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-6;">
+                                    <rect x="504" y="360" width="40" height="100" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="504" y="360" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-7;">
+                                    <rect x="576" y="324" width="40" height="136" fill="white" fill-opacity="0.30" rx="3"/>
+                                    <rect x="576" y="324" width="40" height="2.5" fill="white" fill-opacity="0.48" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-8;">
+                                    <rect x="648" y="342" width="40" height="118" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="648" y="342" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-9;">
+                                    <rect x="720" y="290" width="40" height="170" fill="white" fill-opacity="0.32" rx="3"/>
+                                    <rect x="720" y="290" width="40" height="2.5" fill="white" fill-opacity="0.52" rx="1"/>
+                                </g>
+                            </svg>
                             <div class="aurum-thumb-content" id="hero-thumb">
                                 <p class="aurum-thumb-headline">The Ecosystem That's Creating Millionaires</p>
                                 <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
@@ -689,6 +829,48 @@
                 <div style="text-align:center;margin-bottom:clamp(20px,3vw,35px);"><div class="section-eyebrow reveal stagger-1" style="justify-content:center;"><i class="fas fa-play-circle" style="font-size:0.65rem;"></i> Featured Video</div></div>
                 <div class="reveal stagger-2">
                     <div class="video-placeholder" id="featured-video-player" data-video-id="9unT8NPwjtU">
+                            <svg class="thumb-bars-svg" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true">
+                                <g class="eq-bar" style="animation-name:eq-seq-0;">
+                                    <rect x="72" y="412" width="40" height="48" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="72" y="412" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-1;">
+                                    <rect x="144" y="390" width="40" height="70" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="144" y="390" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-2;">
+                                    <rect x="216" y="405" width="40" height="55" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="216" y="405" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-3;">
+                                    <rect x="288" y="368" width="40" height="92" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="288" y="368" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-4;">
+                                    <rect x="360" y="384" width="40" height="76" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="360" y="384" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-5;">
+                                    <rect x="432" y="346" width="40" height="114" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="432" y="346" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-6;">
+                                    <rect x="504" y="360" width="40" height="100" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="504" y="360" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-7;">
+                                    <rect x="576" y="324" width="40" height="136" fill="white" fill-opacity="0.30" rx="3"/>
+                                    <rect x="576" y="324" width="40" height="2.5" fill="white" fill-opacity="0.48" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-8;">
+                                    <rect x="648" y="342" width="40" height="118" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="648" y="342" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-9;">
+                                    <rect x="720" y="290" width="40" height="170" fill="white" fill-opacity="0.32" rx="3"/>
+                                    <rect x="720" y="290" width="40" height="2.5" fill="white" fill-opacity="0.52" rx="1"/>
+                                </g>
+                            </svg>
                         <div class="aurum-thumb-content" id="featured-thumb">
                             <p class="aurum-thumb-headline">Built in Private. Proven With Real Money. Then Opened to the World.</p>
                             <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
@@ -729,6 +911,48 @@
                     </div>
                     <div class="section-image-col reveal from-right stagger-3">
                         <div class="video-placeholder" id="kraken-video-player" data-video-id="Rxwn90s2QsA">
+                            <svg class="thumb-bars-svg" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true">
+                                <g class="eq-bar" style="animation-name:eq-seq-0;">
+                                    <rect x="72" y="412" width="40" height="48" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="72" y="412" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-1;">
+                                    <rect x="144" y="390" width="40" height="70" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="144" y="390" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-2;">
+                                    <rect x="216" y="405" width="40" height="55" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="216" y="405" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-3;">
+                                    <rect x="288" y="368" width="40" height="92" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="288" y="368" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-4;">
+                                    <rect x="360" y="384" width="40" height="76" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="360" y="384" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-5;">
+                                    <rect x="432" y="346" width="40" height="114" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="432" y="346" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-6;">
+                                    <rect x="504" y="360" width="40" height="100" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="504" y="360" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-7;">
+                                    <rect x="576" y="324" width="40" height="136" fill="white" fill-opacity="0.30" rx="3"/>
+                                    <rect x="576" y="324" width="40" height="2.5" fill="white" fill-opacity="0.48" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-8;">
+                                    <rect x="648" y="342" width="40" height="118" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="648" y="342" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-9;">
+                                    <rect x="720" y="290" width="40" height="170" fill="white" fill-opacity="0.32" rx="3"/>
+                                    <rect x="720" y="290" width="40" height="2.5" fill="white" fill-opacity="0.52" rx="1"/>
+                                </g>
+                            </svg>
                             <div class="aurum-thumb-content" id="kraken-thumb">
                                 <p class="aurum-thumb-headline">How to Set Up Your Crypto Exchange</p>
                                 <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
@@ -764,6 +988,48 @@
                     </div>
                     <div class="section-image-col reveal from-left stagger-2">
                         <div class="video-placeholder" id="register-video-player" data-video-id="9HFTDhqkEgg">
+                            <svg class="thumb-bars-svg" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true">
+                                <g class="eq-bar" style="animation-name:eq-seq-0;">
+                                    <rect x="72" y="412" width="40" height="48" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="72" y="412" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-1;">
+                                    <rect x="144" y="390" width="40" height="70" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="144" y="390" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-2;">
+                                    <rect x="216" y="405" width="40" height="55" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="216" y="405" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-3;">
+                                    <rect x="288" y="368" width="40" height="92" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="288" y="368" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-4;">
+                                    <rect x="360" y="384" width="40" height="76" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="360" y="384" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-5;">
+                                    <rect x="432" y="346" width="40" height="114" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="432" y="346" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-6;">
+                                    <rect x="504" y="360" width="40" height="100" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="504" y="360" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-7;">
+                                    <rect x="576" y="324" width="40" height="136" fill="white" fill-opacity="0.30" rx="3"/>
+                                    <rect x="576" y="324" width="40" height="2.5" fill="white" fill-opacity="0.48" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-8;">
+                                    <rect x="648" y="342" width="40" height="118" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="648" y="342" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-9;">
+                                    <rect x="720" y="290" width="40" height="170" fill="white" fill-opacity="0.32" rx="3"/>
+                                    <rect x="720" y="290" width="40" height="2.5" fill="white" fill-opacity="0.52" rx="1"/>
+                                </g>
+                            </svg>
                             <div class="aurum-thumb-content" id="register-thumb">
                                 <p class="aurum-thumb-headline">Watch: How to Register Your Account</p>
                                 <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
@@ -802,6 +1068,48 @@
                     </div>
                     <div class="section-image-col reveal from-right stagger-2">
                         <div class="video-placeholder" id="fund-video-player" data-video-id="Ee0W1_Pdiz8">
+                            <svg class="thumb-bars-svg" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true">
+                                <g class="eq-bar" style="animation-name:eq-seq-0;">
+                                    <rect x="72" y="412" width="40" height="48" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="72" y="412" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-1;">
+                                    <rect x="144" y="390" width="40" height="70" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="144" y="390" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-2;">
+                                    <rect x="216" y="405" width="40" height="55" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="216" y="405" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-3;">
+                                    <rect x="288" y="368" width="40" height="92" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="288" y="368" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-4;">
+                                    <rect x="360" y="384" width="40" height="76" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="360" y="384" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-5;">
+                                    <rect x="432" y="346" width="40" height="114" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="432" y="346" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-6;">
+                                    <rect x="504" y="360" width="40" height="100" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="504" y="360" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-7;">
+                                    <rect x="576" y="324" width="40" height="136" fill="white" fill-opacity="0.30" rx="3"/>
+                                    <rect x="576" y="324" width="40" height="2.5" fill="white" fill-opacity="0.48" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-8;">
+                                    <rect x="648" y="342" width="40" height="118" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="648" y="342" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-9;">
+                                    <rect x="720" y="290" width="40" height="170" fill="white" fill-opacity="0.32" rx="3"/>
+                                    <rect x="720" y="290" width="40" height="2.5" fill="white" fill-opacity="0.52" rx="1"/>
+                                </g>
+                            </svg>
                             <div class="aurum-thumb-content" id="fund-thumb">
                                 <p class="aurum-thumb-headline">Watch: How to Make Your First Deposit</p>
                                 <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
@@ -863,6 +1171,48 @@
                     </div>
                     <div class="section-image-col reveal from-left stagger-2">
                         <div class="video-placeholder" id="topup-video-player" data-video-id="yKVWGVIISdE">
+                            <svg class="thumb-bars-svg" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true">
+                                <g class="eq-bar" style="animation-name:eq-seq-0;">
+                                    <rect x="72" y="412" width="40" height="48" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="72" y="412" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-1;">
+                                    <rect x="144" y="390" width="40" height="70" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="144" y="390" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-2;">
+                                    <rect x="216" y="405" width="40" height="55" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="216" y="405" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-3;">
+                                    <rect x="288" y="368" width="40" height="92" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="288" y="368" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-4;">
+                                    <rect x="360" y="384" width="40" height="76" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="360" y="384" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-5;">
+                                    <rect x="432" y="346" width="40" height="114" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="432" y="346" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-6;">
+                                    <rect x="504" y="360" width="40" height="100" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="504" y="360" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-7;">
+                                    <rect x="576" y="324" width="40" height="136" fill="white" fill-opacity="0.30" rx="3"/>
+                                    <rect x="576" y="324" width="40" height="2.5" fill="white" fill-opacity="0.48" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-8;">
+                                    <rect x="648" y="342" width="40" height="118" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="648" y="342" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-9;">
+                                    <rect x="720" y="290" width="40" height="170" fill="white" fill-opacity="0.32" rx="3"/>
+                                    <rect x="720" y="290" width="40" height="2.5" fill="white" fill-opacity="0.52" rx="1"/>
+                                </g>
+                            </svg>
                             <div class="aurum-thumb-content" id="topup-thumb">
                                 <p class="aurum-thumb-headline">Watch: How to Top Up Your Account</p>
                                 <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
@@ -926,6 +1276,48 @@
                     </div>
                     <div class="section-image-col reveal from-right stagger-2">
                         <div class="video-placeholder" id="withdraw-video-player" data-video-id="sbHAZI5HA48">
+                            <svg class="thumb-bars-svg" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true">
+                                <g class="eq-bar" style="animation-name:eq-seq-0;">
+                                    <rect x="72" y="412" width="40" height="48" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="72" y="412" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-1;">
+                                    <rect x="144" y="390" width="40" height="70" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="144" y="390" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-2;">
+                                    <rect x="216" y="405" width="40" height="55" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="216" y="405" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-3;">
+                                    <rect x="288" y="368" width="40" height="92" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="288" y="368" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-4;">
+                                    <rect x="360" y="384" width="40" height="76" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="360" y="384" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-5;">
+                                    <rect x="432" y="346" width="40" height="114" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="432" y="346" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-6;">
+                                    <rect x="504" y="360" width="40" height="100" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="504" y="360" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-7;">
+                                    <rect x="576" y="324" width="40" height="136" fill="white" fill-opacity="0.30" rx="3"/>
+                                    <rect x="576" y="324" width="40" height="2.5" fill="white" fill-opacity="0.48" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-8;">
+                                    <rect x="648" y="342" width="40" height="118" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="648" y="342" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-9;">
+                                    <rect x="720" y="290" width="40" height="170" fill="white" fill-opacity="0.32" rx="3"/>
+                                    <rect x="720" y="290" width="40" height="2.5" fill="white" fill-opacity="0.52" rx="1"/>
+                                </g>
+                            </svg>
                             <div class="aurum-thumb-content" id="withdraw-thumb">
                                 <p class="aurum-thumb-headline">Watch: How to Withdraw Your Profits</p>
                                 <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
@@ -966,6 +1358,48 @@
                     </div>
                     <div class="section-image-col reveal from-right stagger-3">
                         <div class="video-placeholder" id="proof1-video-player" data-video-id="4F3RE2B4cGk">
+                            <svg class="thumb-bars-svg" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true">
+                                <g class="eq-bar" style="animation-name:eq-seq-0;">
+                                    <rect x="72" y="412" width="40" height="48" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="72" y="412" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-1;">
+                                    <rect x="144" y="390" width="40" height="70" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="144" y="390" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-2;">
+                                    <rect x="216" y="405" width="40" height="55" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="216" y="405" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-3;">
+                                    <rect x="288" y="368" width="40" height="92" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="288" y="368" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-4;">
+                                    <rect x="360" y="384" width="40" height="76" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="360" y="384" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-5;">
+                                    <rect x="432" y="346" width="40" height="114" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="432" y="346" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-6;">
+                                    <rect x="504" y="360" width="40" height="100" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="504" y="360" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-7;">
+                                    <rect x="576" y="324" width="40" height="136" fill="white" fill-opacity="0.30" rx="3"/>
+                                    <rect x="576" y="324" width="40" height="2.5" fill="white" fill-opacity="0.48" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-8;">
+                                    <rect x="648" y="342" width="40" height="118" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="648" y="342" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-9;">
+                                    <rect x="720" y="290" width="40" height="170" fill="white" fill-opacity="0.32" rx="3"/>
+                                    <rect x="720" y="290" width="40" height="2.5" fill="white" fill-opacity="0.52" rx="1"/>
+                                </g>
+                            </svg>
                             <div class="aurum-thumb-content" id="proof1-thumb">
                                 <p class="aurum-thumb-headline">$382 Withdrawn Live. Watch Every Click.</p>
                                 <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
@@ -993,6 +1427,48 @@
                     </div>
                     <div class="section-image-col reveal from-left stagger-3">
                         <div class="video-placeholder" id="proof2-video-player" data-video-id="C7WCA_rH9Jc">
+                            <svg class="thumb-bars-svg" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true">
+                                <g class="eq-bar" style="animation-name:eq-seq-0;">
+                                    <rect x="72" y="412" width="40" height="48" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="72" y="412" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-1;">
+                                    <rect x="144" y="390" width="40" height="70" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="144" y="390" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-2;">
+                                    <rect x="216" y="405" width="40" height="55" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="216" y="405" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-3;">
+                                    <rect x="288" y="368" width="40" height="92" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="288" y="368" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-4;">
+                                    <rect x="360" y="384" width="40" height="76" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="360" y="384" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-5;">
+                                    <rect x="432" y="346" width="40" height="114" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="432" y="346" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-6;">
+                                    <rect x="504" y="360" width="40" height="100" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="504" y="360" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-7;">
+                                    <rect x="576" y="324" width="40" height="136" fill="white" fill-opacity="0.30" rx="3"/>
+                                    <rect x="576" y="324" width="40" height="2.5" fill="white" fill-opacity="0.48" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-8;">
+                                    <rect x="648" y="342" width="40" height="118" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="648" y="342" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-9;">
+                                    <rect x="720" y="290" width="40" height="170" fill="white" fill-opacity="0.32" rx="3"/>
+                                    <rect x="720" y="290" width="40" height="2.5" fill="white" fill-opacity="0.52" rx="1"/>
+                                </g>
+                            </svg>
                             <div class="aurum-thumb-content" id="proof2-thumb">
                                 <p class="aurum-thumb-headline">$735 Out. Dates Don't Lie.</p>
                                 <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
@@ -1020,6 +1496,48 @@
                     </div>
                     <div class="section-image-col reveal from-right stagger-3">
                         <div class="video-placeholder" id="proof3-video-player" data-video-id="SE95PjafhKc">
+                            <svg class="thumb-bars-svg" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true">
+                                <g class="eq-bar" style="animation-name:eq-seq-0;">
+                                    <rect x="72" y="412" width="40" height="48" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="72" y="412" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-1;">
+                                    <rect x="144" y="390" width="40" height="70" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="144" y="390" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-2;">
+                                    <rect x="216" y="405" width="40" height="55" fill="white" fill-opacity="0.22" rx="3"/>
+                                    <rect x="216" y="405" width="40" height="2.5" fill="white" fill-opacity="0.40" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-3;">
+                                    <rect x="288" y="368" width="40" height="92" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="288" y="368" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-4;">
+                                    <rect x="360" y="384" width="40" height="76" fill="white" fill-opacity="0.24" rx="3"/>
+                                    <rect x="360" y="384" width="40" height="2.5" fill="white" fill-opacity="0.42" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-5;">
+                                    <rect x="432" y="346" width="40" height="114" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="432" y="346" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-6;">
+                                    <rect x="504" y="360" width="40" height="100" fill="white" fill-opacity="0.26" rx="3"/>
+                                    <rect x="504" y="360" width="40" height="2.5" fill="white" fill-opacity="0.44" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-7;">
+                                    <rect x="576" y="324" width="40" height="136" fill="white" fill-opacity="0.30" rx="3"/>
+                                    <rect x="576" y="324" width="40" height="2.5" fill="white" fill-opacity="0.48" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-8;">
+                                    <rect x="648" y="342" width="40" height="118" fill="white" fill-opacity="0.28" rx="3"/>
+                                    <rect x="648" y="342" width="40" height="2.5" fill="white" fill-opacity="0.46" rx="1"/>
+                                </g>
+                                <g class="eq-bar" style="animation-name:eq-seq-9;">
+                                    <rect x="720" y="290" width="40" height="170" fill="white" fill-opacity="0.32" rx="3"/>
+                                    <rect x="720" y="290" width="40" height="2.5" fill="white" fill-opacity="0.52" rx="1"/>
+                                </g>
+                            </svg>
                             <div class="aurum-thumb-content" id="proof3-thumb">
                                 <p class="aurum-thumb-headline">$589 Out. Verified on the Blockchain.</p>
                                 <div class="aurum-play-btn"><i class="fas fa-play"></i></div>
