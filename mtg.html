@@ -726,8 +726,19 @@
                         <line x1="0" y1="40" x2="540" y2="40"  stroke="rgba(0,115,255,0.05)" stroke-width="1"/>
                         <path d="M0,162 C50,158 100,152 150,142 C200,132 240,118 290,100 C330,85 370,65 430,42 C470,28 500,16 540,8" stroke="#0073FF" stroke-width="2.5" fill="none" filter="url(#aglow)"/>
                         <path d="M0,162 C50,158 100,152 150,142 C200,132 240,118 290,100 C330,85 370,65 430,42 C470,28 500,16 540,8 L540,200 L0,200 Z" fill="url(#ag)"/>
-                        <circle cx="540" cy="8" r="5" fill="#3898F8" filter="url(#aglow)"/>
-                        <circle cx="540" cy="8" r="11" fill="rgba(0,115,255,0.2)"/>
+                        <!-- Animated travelling dot -->
+                        <circle r="5" fill="#3898F8" filter="url(#aglow)">
+                            <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"
+                                path="M0,162 C50,158 100,152 150,142 C200,132 240,118 290,100 C330,85 370,65 430,42 C470,28 500,16 540,8"/>
+                        </circle>
+                        <circle r="11" fill="rgba(0,115,255,0.25)">
+                            <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"
+                                path="M0,162 C50,158 100,152 150,142 C200,132 240,118 290,100 C330,85 370,65 430,42 C470,28 500,16 540,8"/>
+                        </circle>
+                        <circle r="18" fill="rgba(0,115,255,0.08)">
+                            <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"
+                                path="M0,162 C50,158 100,152 150,142 C200,132 240,118 290,100 C330,85 370,65 430,42 C470,28 500,16 540,8"/>
+                        </circle>
                     </svg>
                 </div>
 
@@ -806,8 +817,19 @@
                         <!-- Bull market line -->
                         <path d="M0,168 C60,164 110,158 160,146 C210,134 250,120 300,100 C340,84 380,62 440,38 C475,24 505,12 540,6" stroke="#C7F160" stroke-width="2.5" fill="none" filter="url(#wglow)"/>
                         <path d="M0,168 C60,164 110,158 160,146 C210,134 250,120 300,100 C340,84 380,62 440,38 C475,24 505,12 540,6 L540,200 L0,200 Z" fill="url(#wg)"/>
-                        <circle cx="540" cy="6" r="5" fill="#C7F160" filter="url(#wglow)"/>
-                        <circle cx="540" cy="6" r="11" fill="rgba(199,241,96,0.18)"/>
+                        <!-- Animated travelling dot -->
+                        <circle r="5" fill="#C7F160" filter="url(#wglow)">
+                            <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"
+                                path="M0,168 C60,164 110,158 160,146 C210,134 250,120 300,100 C340,84 380,62 440,38 C475,24 505,12 540,6"/>
+                        </circle>
+                        <circle r="11" fill="rgba(199,241,96,0.22)">
+                            <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"
+                                path="M0,168 C60,164 110,158 160,146 C210,134 250,120 300,100 C340,84 380,62 440,38 C475,24 505,12 540,6"/>
+                        </circle>
+                        <circle r="18" fill="rgba(199,241,96,0.08)">
+                            <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear"
+                                path="M0,168 C60,164 110,158 160,146 C210,134 250,120 300,100 C340,84 380,62 440,38 C475,24 505,12 540,6"/>
+                        </circle>
                     </svg>
                 </div>
 
