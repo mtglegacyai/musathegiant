@@ -25,6 +25,7 @@
     <link rel="shortcut icon" type="image/png" href="https://www.musathegiant.com/images/favicon.png">
     <link rel="apple-touch-icon" href="https://www.musathegiant.com/images/favicon.png">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -511,8 +512,43 @@
             transform: translateY(-2px);
         }
 
-        .cta-arrow { font-size: 1.1rem; transition: transform 0.2s ease; }
-        .card-cta:hover .cta-arrow { transform: translateX(5px); }
+        /* Aurum-style animated arrow circle */
+        @keyframes chevron-cascade-right {
+            0%   { opacity: 0; transform: translateX(-4px); }
+            30%  { opacity: 1; transform: translateX(0); }
+            60%  { opacity: 1; transform: translateX(3px); }
+            100% { opacity: 0; transform: translateX(7px); }
+        }
+
+        .btn-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .aurum-cta .btn-circle {
+            background: #FFFFFF;
+        }
+
+        .wefi-cta .btn-circle {
+            background: #000000;
+        }
+
+        .btn-circle i {
+            opacity: 0;
+            font-size: 0.78rem;
+            animation: chevron-cascade-right 2.2s ease-in-out infinite;
+        }
+
+        .aurum-cta .btn-circle i { color: var(--aurum); }
+        .wefi-cta .btn-circle i  { color: var(--wefi); }
+
+        .income-card:hover .btn-circle { transform: scale(1.08); }
 
         /* ===========================
            DIVIDER
@@ -819,7 +855,7 @@
 
                     <div class="card-cta aurum-cta" role="presentation" aria-hidden="true">
                         ENTER AURUM
-                        <span class="cta-arrow">&#8594;</span>
+                        <span class="btn-circle"><i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
 
@@ -915,7 +951,7 @@
 
                     <div class="card-cta wefi-cta" role="presentation" aria-hidden="true">
                         EXPLORE WEFI
-                        <span class="cta-arrow">&#8594;</span>
+                        <span class="btn-circle"><i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
 
