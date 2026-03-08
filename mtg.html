@@ -873,9 +873,10 @@
                   <clipPath id="cc">
                     <circle cx="200" cy="200" r="181"/>
                   </clipPath>
-                  <!-- U-ARC: sweep=0 (CCW) + large=0 (short) = goes through BOTTOM ✓
-                       At bottom, CCW tangent points RIGHT → text reads L to R ✓ -->
-                  <path id="ua" d="M 73,300 A 162,162 0 0,0 327,300"/>
+                  <!-- U-ARC: wider span (144°, 407px) to fit font-size 36.
+                       sweep=0,large=0 = CCW through BOTTOM = U-shape ✓
+                       Text edges land at y≈289, traces end y=288. No overlap. -->
+                  <path id="ua" d="M 46,250 A 162,162 0 0,0 354,250"/>
                 </defs>
 
                 <!-- Shadow beneath the whole logo -->
@@ -996,8 +997,8 @@
                   font-family="'Outfit','DM Sans',sans-serif"
                   font-style="italic"
                   font-weight="600"
-                  font-size="30"
-                  letter-spacing="1.5"
+                  font-size="36"
+                  letter-spacing="0.5"
                   fill="rgba(255,255,255,0.92)">
                   <textPath href="#ua" startOffset="50%" text-anchor="middle">musathegiant.com</textPath>
                 </text>
