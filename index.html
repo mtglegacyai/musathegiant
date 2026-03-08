@@ -835,6 +835,88 @@
         }
 
         /* ===========================
+           SCROLL TO TOP BUTTON
+        =========================== */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0073FF, #3898F8);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(16px);
+            transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,115,255,0.35);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0,115,255,0.55);
+        }
+
+        .scroll-to-top .btn-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .scroll-to-top:hover .btn-circle {
+            transform: scale(1.08);
+        }
+
+        .scroll-to-top .btn-circle i {
+            color: #0073FF;
+            font-size: 0.8rem;
+            animation: chevron-cascade-up 1.6s ease-in-out infinite;
+        }
+
+        .scroll-to-top:hover .btn-circle i {
+            animation: scroll-top-bounce 0.55s ease-in-out infinite;
+        }
+
+        @keyframes chevron-cascade-up {
+            0%   { opacity: 0; transform: translateY(6px);  }
+            30%  { opacity: 1; transform: translateY(0);    }
+            60%  { opacity: 1; transform: translateY(-4px); }
+            100% { opacity: 0; transform: translateY(-10px);}
+        }
+
+        @keyframes scroll-top-bounce {
+            0%, 100% { transform: translateY(0);   }
+            50%       { transform: translateY(-3px);}
+        }
+
+        @media (max-width: 768px) {
+            .scroll-to-top { bottom: 20px; right: 20px; width: 46px; height: 46px; }
+            .scroll-to-top .btn-circle { width: 46px; height: 46px; }
+        }
+
+        @media (max-width: 480px) {
+            .scroll-to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
+            .scroll-to-top .btn-circle { width: 42px; height: 42px; }
+        }
+
+        /* ===========================
            RESPONSIVE
         =========================== */
         @media (max-width: 768px) {
@@ -1456,7 +1538,32 @@
         });
 
         revealEls.forEach(el => revealObserver.observe(el));
+
+        // ════════════════════════════════════════
+        // SCROLL TO TOP BUTTON
+        // ════════════════════════════════════════
+        (function() {
+            const scrollBtn = document.getElementById('scroll-to-top');
+            if (!scrollBtn) return;
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 600) {
+                    scrollBtn.classList.add('visible');
+                } else {
+                    scrollBtn.classList.remove('visible');
+                }
+            }, { passive: true });
+
+            scrollBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
     </script>
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">
+        <span class="btn-circle"><i class="fas fa-arrow-up"></i></span>
+    </button>
 
 </body>
 </html>
