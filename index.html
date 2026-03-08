@@ -95,11 +95,11 @@
         }
 
         /* ===========================
-           HEADER
+           HEADER & HAMBURGER NAV
         =========================== */
         header {
             position: relative;
-            z-index: 10;
+            z-index: 100;
             border-bottom: 1px solid var(--border);
         }
 
@@ -110,29 +110,135 @@
             height: 68px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            position: relative;
         }
 
-        .nav-brand {
+        /* Hamburger button — centered */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 0;
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+            z-index: 110;
+        }
+
+        .hamburger:hover {
+            border-color: rgba(255,255,255,0.28);
+            background: rgba(255,255,255,0.04);
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Hamburger open state — X shape */
+        .hamburger.open .bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .hamburger.open .bar:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.open .bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Dropdown menu */
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background: #0D0D1A;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            min-width: 220px;
+            padding: 8px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 200;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        .nav-dropdown.open {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-dropdown a {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-family: var(--f-head);
-            font-size: 1.05rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
+            gap: 12px;
+            padding: 13px 16px;
+            border-radius: 9px;
+            font-family: var(--f-body);
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--dim);
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
         }
 
-        .nav-tag {
-            font-family: var(--f-body);
+        .nav-dropdown a:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--white);
+        }
+
+        .nav-dropdown .menu-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .nav-dropdown .menu-dot.blue  { background: var(--aurum); box-shadow: 0 0 6px var(--aurum); }
+        .nav-dropdown .menu-dot.green { background: var(--wefi);  box-shadow: 0 0 6px var(--wefi); }
+
+        .nav-dropdown .menu-label {
+            font-family: var(--f-head);
             font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 2.5px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--dim);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: 5px 14px;
+            color: var(--faint);
+            padding: 8px 16px 4px;
+        }
+
+        /* ===========================
+           HERO LOGO
+        =========================== */
+        .hero-logo-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: up 0.8s ease 0.15s both;
+        }
+
+        .hero-logo-svg {
+            /* Desktop: 220px. Scales fluidly down to 52vw on small screens.
+               Never exceeds 220px, never shrinks below 140px.            */
+            width: clamp(140px, 52vw, 220px);
+            height: auto;
+            display: block;
         }
 
         /* ===========================
@@ -643,6 +749,24 @@
             to   { opacity:1; transform:translateY(0); }
         }
 
+        /* ── Logo animation keyframes ── */
+        @keyframes viaPulse {
+            0%, 100% { opacity: 1;   }
+            50%       { opacity: 0.25; }
+        }
+        @keyframes viaPulse2 {
+            0%, 100% { opacity: 0.4; }
+            50%       { opacity: 1;   }
+        }
+        @keyframes borderBreath {
+            0%, 100% { opacity: 0.5; }
+            50%       { opacity: 1;   }
+        }
+        @keyframes traceGlow {
+            0%, 100% { opacity: 0.4; }
+            50%       { opacity: 1;   }
+        }
+
         .fade-in {
             opacity: 0;
             animation: up 0.85s ease both;
@@ -663,11 +787,8 @@
            RESPONSIVE
         =========================== */
         @media (max-width: 768px) {
-            .nav-tag { display: none; }
-            .nav-brand { margin: 0 auto; }
-            .hero { padding: 60px 0 52px; }
-            .stat { min-width: 130px; padding: 20px 14px; }
-            .stat-num { font-size: 1.55rem; }
+            .hero { padding: 52px 0 48px; }
+            .hero-logo-wrap { margin-bottom: 24px; }
             .section-intro { padding: 60px 0 28px; }
             .card-visual { height: 210px; }
             .card-body { padding: 24px 20px 28px; }
@@ -676,10 +797,15 @@
 
         @media (max-width: 480px) {
             .wrap { padding: 0 16px; }
+            .hero-logo-wrap { margin-bottom: 20px; }
             .card-visual { height: 180px; }
             .vis-stat { display: none; }
             .card-pills { display: none; }
             .card-cta { font-size: 1rem; padding: 17px 20px; }
+        }
+
+        @media (max-width: 360px) {
+            .hero-logo-svg { width: clamp(120px, 80vw, 160px); }
         }
     </style>
 </head>
@@ -691,28 +817,203 @@
     <!-- HEADER -->
     <header>
         <nav class="nav" aria-label="Primary navigation">
-            <div class="nav-brand">
-                <span aria-hidden="true">👑</span>
-                The Digital Architect
+
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-dropdown">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-dropdown" id="nav-dropdown" role="menu">
+                <p class="menu-label">Income Streams</p>
+                <a href="#aurum" role="menuitem" onclick="closeMenu()">
+                    <span class="menu-dot blue"></span>
+                    Aurum
+                </a>
+                <a href="#wefi" role="menuitem" onclick="closeMenu()">
+                    <span class="menu-dot green"></span>
+                    WeFi
+                </a>
             </div>
-            <span class="nav-tag">Live Income Streams</span>
+
         </nav>
     </header>
 
     <!-- HERO -->
     <section class="hero" aria-labelledby="hero-title">
         <div class="wrap">
-            <span class="hero-eyebrow">musathegiant.com</span>
+
+            <!-- MTG Vector Logo — premium rebuild v3 -->
+            <div class="hero-logo-wrap" role="img" aria-label="musathegiant.com">
+                <svg class="hero-logo-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="bg" cx="50%" cy="42%" r="56%">
+                    <stop offset="0%"   stop-color="#151528"/>
+                    <stop offset="50%"  stop-color="#0d0d1e"/>
+                    <stop offset="100%" stop-color="#080810"/>
+                  </radialGradient>
+                  <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"   stop-color="#FFFFFF"/>
+                    <stop offset="45%"  stop-color="#E0E0E0"/>
+                    <stop offset="100%" stop-color="#909090"/>
+                  </linearGradient>
+                  <filter id="sh">
+                    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.9"/>
+                  </filter>
+                  <!-- Border filters -->
+                  <filter id="hl" x="-15%" y="-15%" width="130%" height="130%">
+                    <feGaussianBlur stdDeviation="5" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                  <!-- Subtle drop shadow beneath circle -->
+                  <filter id="cshadow" x="-12%" y="-8%" width="124%" height="128%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="14"
+                      flood-color="rgba(0,115,255,0.18)" flood-opacity="1"/>
+                  </filter>
+                  <clipPath id="cc">
+                    <circle cx="200" cy="200" r="181"/>
+                  </clipPath>
+                  <!-- U-ARC: wider span (144°, 407px) to fit font-size 36.
+                       sweep=0,large=0 = CCW through BOTTOM = U-shape ✓
+                       Text edges land at y≈289, traces end y=288. No overlap. -->
+                  <path id="ua" d="M 46,250 A 162,162 0 0,0 354,250"/>
+                </defs>
+
+                <!-- Shadow beneath the whole logo -->
+                <circle cx="200" cy="200" r="181" fill="none" filter="url(#cshadow)" stroke="rgba(0,115,255,0.6)" stroke-width="1"/>
+
+                <!-- Outer dashed circuit-board ring — fine tick marks -->
+                <circle cx="200" cy="200" r="183"
+                  fill="none"
+                  stroke="rgba(0,115,255,0.35)"
+                  stroke-width="1"
+                  stroke-dasharray="3 11"
+                  stroke-dashoffset="0"/>
+
+                <!-- Main crisp border — thin, sharp, blue-white -->
+                <circle cx="200" cy="200" r="181"
+                  fill="none"
+                  stroke="rgba(180,210,255,0.55)"
+                  stroke-width="1.2"/>
+
+                <!-- Inner accent ring — very faint white, close to border -->
+                <circle cx="200" cy="200" r="178"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.05)"
+                  stroke-width="1"/>
+
+                <!-- Fill -->
+                <circle cx="200" cy="200" r="181" fill="url(#bg)"/>
+
+                <g clip-path="url(#cc)">
+
+                  <!-- UPPER CIRCUIT TRACES -->
+                  <g stroke="rgba(255,255,255,0.88)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1" fill="none">
+                    <polyline points="152,192 104,192 68,192"/>
+                    <polyline points="161,174 161,148 130,117 130,94"/>
+                    <polyline points="172,152 172,116 153,116 153,73"/>
+                    <polyline points="183,146 183,102 176,60"/>
+                    <polyline points="192,144 192,50"/>
+                    <polyline points="200,143 200,38"/>
+                    <polyline points="212,146 212,96 228,96 228,58"/>
+                    <polyline points="224,160 256,128 302,128"/>
+                    <polyline points="232,180 278,170 318,158"/>
+                  </g>
+                  <!-- Junction pads -->
+                  <g fill="rgba(255,255,255,0.7)" stroke="none">
+                    <circle cx="161" cy="148" r="3"/>
+                    <circle cx="130" cy="117" r="3"/>
+                    <circle cx="172" cy="116" r="3"/>
+                    <circle cx="153" cy="116" r="3"/>
+                    <circle cx="212" cy="96"  r="3"/>
+                    <circle cx="228" cy="96"  r="3"/>
+                    <circle cx="256" cy="128" r="3"/>
+                    <circle cx="278" cy="170" r="3"/>
+                  </g>
+                  <!-- Filled terminal vias -->
+                  <g fill="rgba(255,255,255,0.95)" stroke="none">
+                    <circle cx="68"  cy="192" r="6.5"/>
+                    <circle cx="130" cy="94"  r="5.5"/>
+                    <circle cx="176" cy="60"  r="5"/>
+                    <circle cx="192" cy="50"  r="6"/>
+                    <circle cx="200" cy="38"  r="7"/>
+                    <circle cx="302" cy="128" r="5.5"/>
+                    <circle cx="318" cy="158" r="5"/>
+                  </g>
+                  <!-- Hollow ring vias -->
+                  <g fill="#0d0d1e" stroke="rgba(255,255,255,0.92)" stroke-width="2.2">
+                    <circle cx="153" cy="73"  r="5.5"/>
+                    <circle cx="228" cy="58"  r="5.5"/>
+                  </g>
+
+                  <!-- MTG LETTERMARK -->
+                  <text x="200" y="238"
+                    text-anchor="middle"
+                    font-family="'Outfit','Arial Black','Franklin Gothic Heavy',sans-serif"
+                    font-weight="900"
+                    font-size="108"
+                    letter-spacing="-4"
+                    fill="url(#mg)"
+                    filter="url(#sh)">MTG</text>
+
+                  <!-- LOWER CIRCUIT TRACES — all end by y=288 -->
+                  <g stroke="rgba(255,255,255,0.82)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1" fill="none">
+                    <polyline points="176,252 176,268 154,268 154,284"/>
+                    <polyline points="187,252 187,280"/>
+                    <polyline points="195,252 195,285"/>
+                    <polyline points="200,252 200,288"/>
+                    <polyline points="206,252 206,285"/>
+                    <polyline points="215,252 215,280"/>
+                    <polyline points="226,252 226,264 252,264 252,282"/>
+                  </g>
+                  <!-- Lower junction pads -->
+                  <g fill="rgba(255,255,255,0.65)" stroke="none">
+                    <circle cx="176" cy="268" r="2.8"/>
+                    <circle cx="154" cy="268" r="2.8"/>
+                    <circle cx="226" cy="264" r="2.8"/>
+                    <circle cx="252" cy="264" r="2.8"/>
+                  </g>
+                  <!-- Lower terminal vias -->
+                  <g fill="rgba(255,255,255,0.82)" stroke="none">
+                    <circle cx="154" cy="284" r="3.5"/>
+                    <circle cx="187" cy="280" r="3"/>
+                    <circle cx="195" cy="285" r="3"/>
+                    <circle cx="200" cy="288" r="4"/>
+                    <circle cx="206" cy="285" r="3"/>
+                    <circle cx="215" cy="280" r="3"/>
+                    <circle cx="252" cy="282" r="3.5"/>
+                  </g>
+
+                </g><!-- end clip -->
+
+                <!-- Inner vignette ring -->
+                <circle cx="200" cy="200" r="181" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2"/>
+
+                <!-- CURVED BOTTOM TEXT
+                     Arc: M 89,308 A 155,155 0 0,1 311,308
+                     Clockwise sweep → dips to (200,355) → U-shape ✓
+                     Traces end y=288. Gap=20px. OUTSIDE clip — never masked. -->
+                <text
+                  font-family="'Outfit','DM Sans',sans-serif"
+                  font-style="italic"
+                  font-weight="600"
+                  font-size="36"
+                  letter-spacing="0.5"
+                  fill="rgba(255,255,255,0.92)">
+                  <textPath href="#ua" startOffset="50%" text-anchor="middle">musathegiant.com</textPath>
+                </text>
+
+                </svg>
+            </div>
+
 
             <h1 class="hero-title" id="hero-title">
                 Multiple Streams.<br>
-
             </h1>
 
             <p class="hero-body">
                 Unlock your path to financial freedom with exclusive access to meticulously vetted ₿itcoin, Crypto, AI, Trading, Affiliate, and Digital Marketing opportunities! Discover more below...
             </p>
-
 
         </div>
     </section>
@@ -720,7 +1021,7 @@
     <hr class="divider blue">
 
     <!-- AURUM SECTION -->
-    <section aria-labelledby="aurum-heading">
+    <section id="aurum" aria-labelledby="aurum-heading">
         <div class="wrap">
 
             <div class="section-intro fade-in" style="animation-delay:0.1s">
@@ -869,7 +1170,7 @@
     <hr class="divider green">
 
     <!-- WEFI SECTION -->
-    <section aria-labelledby="wefi-heading">
+    <section id="wefi" aria-labelledby="wefi-heading">
         <div class="wrap">
 
             <div class="section-intro fade-in" style="animation-delay:0.1s">
@@ -1011,6 +1312,34 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Hamburger menu
+        const hamburger   = document.getElementById('hamburger');
+        const navDropdown = document.getElementById('nav-dropdown');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = navDropdown.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close on outside click
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navDropdown.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+
+        function closeMenu() {
+            navDropdown.classList.remove('open');
+            hamburger.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+        }
 
         // Floating particles
         const canvas = document.getElementById('particles');
