@@ -1542,7 +1542,7 @@
         // ════════════════════════════════════════
         // SCROLL TO TOP BUTTON
         // ════════════════════════════════════════
-        (function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const scrollBtn = document.getElementById('scroll-to-top');
             if (!scrollBtn) return;
 
@@ -1557,7 +1557,7 @@
             scrollBtn.addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-        })();
+        });
     </script>
 
     <!-- SCROLL TO TOP -->
