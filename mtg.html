@@ -95,11 +95,11 @@
         }
 
         /* ===========================
-           HEADER
+           HEADER & HAMBURGER NAV
         =========================== */
         header {
             position: relative;
-            z-index: 10;
+            z-index: 100;
             border-bottom: 1px solid var(--border);
         }
 
@@ -110,29 +110,128 @@
             height: 68px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            position: relative;
         }
 
-        .nav-brand {
+        /* Hamburger button — centered */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 0;
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+            z-index: 110;
+        }
+
+        .hamburger:hover {
+            border-color: rgba(255,255,255,0.28);
+            background: rgba(255,255,255,0.04);
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Hamburger open state — X shape */
+        .hamburger.open .bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .hamburger.open .bar:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.open .bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Dropdown menu */
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background: #0D0D1A;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            min-width: 220px;
+            padding: 8px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 200;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        .nav-dropdown.open {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-dropdown a {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-family: var(--f-head);
-            font-size: 1.05rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
+            gap: 12px;
+            padding: 13px 16px;
+            border-radius: 9px;
+            font-family: var(--f-body);
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--dim);
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
         }
 
-        .nav-tag {
-            font-family: var(--f-body);
+        .nav-dropdown a:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--white);
+        }
+
+        .nav-dropdown .menu-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .nav-dropdown .menu-dot.blue  { background: var(--aurum); box-shadow: 0 0 6px var(--aurum); }
+        .nav-dropdown .menu-dot.green { background: var(--wefi);  box-shadow: 0 0 6px var(--wefi); }
+
+        .nav-dropdown .menu-label {
+            font-family: var(--f-head);
             font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 2.5px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--dim);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: 5px 14px;
+            color: var(--faint);
+            padding: 8px 16px 4px;
+        }
+
+        /* ===========================
+           HERO LOGO
+        =========================== */
+        .hero-logo {
+            display: block;
+            width: min(320px, 80vw);
+            height: auto;
+            margin: 0 auto 32px;
+            opacity: 0;
+            animation: up 0.8s ease 0.15s both;
         }
 
         /* ===========================
@@ -663,11 +762,8 @@
            RESPONSIVE
         =========================== */
         @media (max-width: 768px) {
-            .nav-tag { display: none; }
-            .nav-brand { margin: 0 auto; }
-            .hero { padding: 60px 0 52px; }
-            .stat { min-width: 130px; padding: 20px 14px; }
-            .stat-num { font-size: 1.55rem; }
+            .hero { padding: 52px 0 48px; }
+            .hero-logo { width: min(260px, 75vw); margin-bottom: 24px; }
             .section-intro { padding: 60px 0 28px; }
             .card-visual { height: 210px; }
             .card-body { padding: 24px 20px 28px; }
@@ -691,28 +787,47 @@
     <!-- HEADER -->
     <header>
         <nav class="nav" aria-label="Primary navigation">
-            <div class="nav-brand">
-                <span aria-hidden="true">👑</span>
-                The Digital Architect
+
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-dropdown">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <div class="nav-dropdown" id="nav-dropdown" role="menu">
+                <p class="menu-label">Income Streams</p>
+                <a href="#aurum" role="menuitem" onclick="closeMenu()">
+                    <span class="menu-dot blue"></span>
+                    Aurum
+                </a>
+                <a href="#wefi" role="menuitem" onclick="closeMenu()">
+                    <span class="menu-dot green"></span>
+                    WeFi
+                </a>
             </div>
-            <span class="nav-tag">Live Income Streams</span>
+
         </nav>
     </header>
 
     <!-- HERO -->
     <section class="hero" aria-labelledby="hero-title">
         <div class="wrap">
-            <span class="hero-eyebrow">musathegiant.com</span>
+
+            <img
+                src="https://www.musathegiant.com/images/mtg-musathegiant.png"
+                alt="The Digital Architect"
+                class="hero-logo"
+                loading="eager"
+                decoding="async"
+            >
 
             <h1 class="hero-title" id="hero-title">
                 Multiple Streams.<br>
-
             </h1>
 
             <p class="hero-body">
                 Unlock your path to financial freedom with exclusive access to meticulously vetted ₿itcoin, Crypto, AI, Trading, Affiliate, and Digital Marketing opportunities! Discover more below...
             </p>
-
 
         </div>
     </section>
@@ -720,7 +835,7 @@
     <hr class="divider blue">
 
     <!-- AURUM SECTION -->
-    <section aria-labelledby="aurum-heading">
+    <section id="aurum" aria-labelledby="aurum-heading">
         <div class="wrap">
 
             <div class="section-intro fade-in" style="animation-delay:0.1s">
@@ -869,7 +984,7 @@
     <hr class="divider green">
 
     <!-- WEFI SECTION -->
-    <section aria-labelledby="wefi-heading">
+    <section id="wefi" aria-labelledby="wefi-heading">
         <div class="wrap">
 
             <div class="section-intro fade-in" style="animation-delay:0.1s">
@@ -1011,6 +1126,34 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Hamburger menu
+        const hamburger   = document.getElementById('hamburger');
+        const navDropdown = document.getElementById('nav-dropdown');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = navDropdown.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close on outside click
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navDropdown.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+
+        function closeMenu() {
+            navDropdown.classList.remove('open');
+            hamburger.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+        }
 
         // Floating particles
         const canvas = document.getElementById('particles');
