@@ -234,9 +234,11 @@
         }
 
         .hero-logo-svg {
-            width: min(340px, 78vw);
+            /* Desktop: 220px. Scales fluidly down to 52vw on small screens.
+               Never exceeds 220px, never shrinks below 140px.            */
+            width: clamp(140px, 52vw, 220px);
             height: auto;
-            overflow: visible;
+            display: block;
         }
 
         /* ===========================
@@ -786,7 +788,7 @@
         =========================== */
         @media (max-width: 768px) {
             .hero { padding: 52px 0 48px; }
-            .hero-logo-wrap { margin-bottom: 28px; }
+            .hero-logo-wrap { margin-bottom: 24px; }
             .section-intro { padding: 60px 0 28px; }
             .card-visual { height: 210px; }
             .card-body { padding: 24px 20px 28px; }
@@ -795,10 +797,15 @@
 
         @media (max-width: 480px) {
             .wrap { padding: 0 16px; }
+            .hero-logo-wrap { margin-bottom: 20px; }
             .card-visual { height: 180px; }
             .vis-stat { display: none; }
             .card-pills { display: none; }
             .card-cta { font-size: 1rem; padding: 17px 20px; }
+        }
+
+        @media (max-width: 360px) {
+            .hero-logo-svg { width: clamp(120px, 80vw, 160px); }
         }
     </style>
 </head>
@@ -838,7 +845,7 @@
 
             <!-- MTG Vector Logo — premium rebuild v3 -->
             <div class="hero-logo-wrap" role="img" aria-label="musathegiant.com">
-                <svg class="hero-logo-svg" viewBox="0 0 400 400" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+                <svg class="hero-logo-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <radialGradient id="bg" cx="50%" cy="42%" r="56%">
                     <stop offset="0%"   stop-color="#151528"/>
