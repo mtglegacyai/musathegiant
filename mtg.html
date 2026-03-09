@@ -1892,10 +1892,7 @@
             function formatPrice(priceUsd) {
                 const num = Number(priceUsd);
                 if (!isFinite(num)) return null;
-                let decimals = 4;
-                if (num >= 1)   decimals = 3;
-                if (num >= 100) decimals = 2;
-                return '$' + num.toFixed(decimals);
+                return '$' + num.toFixed(2);
             }
 
             function applyPrice(formatted) {
