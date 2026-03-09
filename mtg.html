@@ -1639,12 +1639,12 @@
                                 <div class="mining-stat-lbl">MINES UNTIL</div>
                             </div>
                             <div class="mining-stat">
-                                <div class="mining-stat-val green-txt">LIVE</div>
-                                <div class="mining-stat-lbl">STATUS</div>
+                                <div class="mining-stat-val green-txt" id="wfi-card-mcap">...</div>
+                                <div class="mining-stat-lbl">MARKET CAP</div>
                             </div>
                             <div class="mining-stat">
-                                <div class="mining-stat-val">24/7</div>
-                                <div class="mining-stat-lbl">UPTIME</div>
+                                <div class="mining-stat-val" id="wfi-card-holders">...</div>
+                                <div class="mining-stat-lbl">HOLDERS</div>
                             </div>
                         </div>
 
@@ -1862,72 +1862,131 @@
         })();
 
         // ════════════════════════════════════════
-        // LIVE WFI PRICE (DexScreener)
+        // LIVE WFI DATA — Price, Market Cap, Holders
+        // Sources: DexScreener (price + mcap) | BscScan via jina.ai (holders)
+        // Mirrors exact logic from wfi-token.html
         // ════════════════════════════════════════
-        (function() {
-            const priceEl    = document.getElementById('wfi-card-price');
-            if (!priceEl) return;
+        const WFICardFetcher = {
+            pairAddress:  '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0',
+            chainId:      'bsc',
+            tokenAddress: null,
+            refreshMs:    30000,
+            _timer:       null,
+            _inFlight:    false,
 
-            const PAIR       = '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0';
-            const DIRECT     = 'https://api.dexscreener.com/latest/dex/pairs/bsc/' + PAIR;
-            const PROXY      = 'https://corsproxy.io/?' + encodeURIComponent(DIRECT);
-            const REFRESH_MS = 30000;
+            get dexUrl() {
+                return 'https://api.dexscreener.com/latest/dex/pairs/' + this.chainId + '/' + this.pairAddress;
+            },
 
-            function formatPrice(priceUsd) {
-                const num = Number(priceUsd);
-                if (!isFinite(num)) return null;
-                return '$' + num.toFixed(2);
-            }
+            init() {
+                this.fetchAll();
+                if (this._timer) clearInterval(this._timer);
+                this._timer = setInterval(() => this.fetchAll(), this.refreshMs);
+            },
 
-            function applyPrice(formatted) {
-                priceEl.textContent = formatted;
-                priceEl.style.color = '#ffffff';
-                setTimeout(function() { priceEl.style.color = ''; }, 300);
-            }
+            async fetchAll() {
+                if (this._inFlight) return;
+                this._inFlight = true;
+                try {
+                    const pair = await this.fetchPair();
+                    if (pair) {
+                        if (pair.baseToken && pair.baseToken.address) {
+                            this.tokenAddress = pair.baseToken.address;
+                        }
+                        this.updatePrice(pair);
+                        this.updateMcap(pair);
+                    }
+                    await this.updateHolders();
+                } catch(e) {
+                    console.warn('WFICardFetcher.fetchAll failed:', e);
+                } finally {
+                    this._inFlight = false;
+                }
+            },
 
-            function extractPair(data) {
-                if (data && data.pair)                                      return data.pair;
-                if (data && Array.isArray(data.pairs) && data.pairs.length) return data.pairs[0];
+            async fetchPair() {
+                // Try direct first, then corsproxy fallback
+                const direct = this.dexUrl + '?t=' + Date.now();
+                const proxy  = 'https://corsproxy.io/?' + encodeURIComponent(this.dexUrl);
+
+                for (const url of [direct, proxy]) {
+                    try {
+                        const res  = await fetch(url);
+                        if (!res.ok) continue;
+                        const raw  = await res.json();
+                        // corsproxy wraps payload in { contents: "..." }
+                        const data = (raw && raw.contents) ? JSON.parse(raw.contents) : raw;
+                        if (data && data.pair)                                       return data.pair;
+                        if (data && Array.isArray(data.pairs) && data.pairs.length)  return data.pairs[0];
+                    } catch(e) { /* try next */ }
+                }
                 return null;
-            }
+            },
 
-            async function tryFetch(url) {
-                const res  = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now());
-                if (!res.ok) throw new Error('HTTP ' + res.status);
-                const data = await res.json();
-                // corsproxy wraps payload in { contents: "..." }
-                return (data && data.contents) ? JSON.parse(data.contents) : data;
-            }
+            formatCompactUsd(value) {
+                const n = Number(value);
+                if (!isFinite(n)) return null;
+                const abs = Math.abs(n);
+                if (abs >= 1e12) return '$' + (n / 1e12).toFixed(2) + 'T';
+                if (abs >= 1e9)  return '$' + (n / 1e9).toFixed(2)  + 'B';
+                if (abs >= 1e6)  return '$' + (n / 1e6).toFixed(2)  + 'M';
+                if (abs >= 1e3)  return '$' + (n / 1e3).toFixed(2)  + 'K';
+                return '$' + n.toFixed(2);
+            },
 
-            async function fetchPrice() {
-                let data = null;
+            flash(el) {
+                if (!el) return;
+                el.style.color = '#ffffff';
+                setTimeout(() => { el.style.color = ''; }, 300);
+            },
 
-                // 1. Try direct
-                try { data = await tryFetch(DIRECT); } catch(e) {}
+            updatePrice(pair) {
+                const el  = document.getElementById('wfi-card-price');
+                if (!el)  return;
+                const num = Number(pair && pair.priceUsd);
+                if (!isFinite(num)) return;
+                el.textContent = '$' + num.toFixed(2);
+                this.flash(el);
+            },
 
-                // 2. Fall back to CORS proxy
-                if (!data) {
-                    try { data = await tryFetch(PROXY); } catch(e) {}
+            updateMcap(pair) {
+                const el    = document.getElementById('wfi-card-mcap');
+                if (!el)    return;
+                const value = (pair.marketCap != null) ? pair.marketCap : pair.fdv;
+                const fmt   = this.formatCompactUsd(value);
+                if (!fmt)   return;
+                el.textContent = fmt;
+                this.flash(el);
+            },
+
+            async updateHolders() {
+                const el = document.getElementById('wfi-card-holders');
+                if (!el || !this.tokenAddress) return;
+
+                // BscScan blocks direct CORS — use jina.ai text proxy (same as wfi-token.html)
+                const bscUrl   = 'https://bscscan.com/token/' + this.tokenAddress;
+                const jinaUrl  = 'https://r.jina.ai/' + bscUrl + '?t=' + Date.now();
+
+                try {
+                    const res = await fetch(jinaUrl);
+                    if (!res.ok) throw new Error('jina ' + res.status);
+                    const text  = await res.text();
+                    const match = text.match(/Holders?\s*[:\-]?\s*([\d,]+)/i);
+                    if (!match || !match[1]) throw new Error('no match');
+                    const count = Number(match[1].replace(/,/g, ''));
+                    if (!isFinite(count)) throw new Error('NaN');
+                    el.textContent = count.toLocaleString();
+                    this.flash(el);
+                } catch(e) {
+                    console.warn('Holders fetch failed:', e);
+                    if (el.textContent === '...') el.textContent = '--';
                 }
-
-                if (!data) {
-                    if (priceEl.textContent === '...') priceEl.textContent = '--';
-                    return;
-                }
-
-                const pair      = extractPair(data);
-                const formatted = pair && formatPrice(pair.priceUsd);
-
-                if (formatted) {
-                    applyPrice(formatted);
-                } else {
-                    if (priceEl.textContent === '...') priceEl.textContent = '--';
-                }
             }
+        };
 
-            fetchPrice();
-            setInterval(fetchPrice, REFRESH_MS);
-        })();
+        document.addEventListener('DOMContentLoaded', function() {
+            WFICardFetcher.init();
+        });
         document.addEventListener('DOMContentLoaded', function() {
             const scrollBtn = document.getElementById('scroll-to-top');
             if (!scrollBtn) return;
