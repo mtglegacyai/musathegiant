@@ -1003,28 +1003,12 @@
             z-index: 2;
         }
 
-        .mining-top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.62rem;
-            color: rgba(199,241,96,0.5);
-            letter-spacing: 0.1em;
-            margin-bottom: 4px;
-        }
-
-        .node-num { color: rgba(199,241,96,0.85); }
-
-        .mining-wfi-price {
-            font-size: 0.62rem;
-            color: rgba(199,241,96,0.5);
-            letter-spacing: 0.1em;
-        }
-
-        .wfi-price-val {
-            color: #C7F160;
-            font-weight: 700;
+        .mining-sim-tag {
+            font-size: 0.52rem;
+            color: rgba(199,241,96,0.35);
+            font-style: italic;
             letter-spacing: 0.06em;
+            text-transform: none;
         }
 
         .mining-counter-wrap {
@@ -1621,18 +1605,18 @@
                         NODE ACTIVE
                     </span>
 
+                    <!-- Live WFI price — mirrors Aurum's +17.5% stat position -->
+                    <div class="vis-stat" aria-hidden="true">
+                        <div class="vis-stat-num green" id="wfi-card-price">...</div>
+                        <div class="vis-stat-label">WFI Price</div>
+                    </div>
+
                     <!-- MINING COUNTER DASHBOARD -->
                     <div class="mining-dashboard" aria-hidden="true">
 
-                        <!-- Top row: node status -->
-                        <div class="mining-top-row">
-                            <div class="mining-node-id">ITO NODE #<span class="node-num">2847</span></div>
-                            <div class="mining-wfi-price">WFI <span id="wfi-card-price" class="wfi-price-val">...</span></div>
-                        </div>
-
                         <!-- Main counter -->
                         <div class="mining-counter-wrap">
-                            <div class="mining-label">WFI MINED</div>
+                            <div class="mining-label">WFI MINED <span class="mining-sim-tag">(Simulation)</span></div>
                             <div class="mining-counter" id="wfi-counter">0.00000000</div>
                             <div class="mining-rate">+<span id="wfi-rate">0.00000287</span> WFI / sec</div>
                         </div>
