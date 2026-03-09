@@ -989,8 +989,145 @@
         }
 
         /* ===========================
-           SCROLL TO TOP BUTTON
+           MINING COUNTER DASHBOARD
         =========================== */
+        .mining-dashboard {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 44px 22px 20px;
+            font-family: 'Courier New', 'Lucida Console', monospace;
+            z-index: 2;
+        }
+
+        .mining-sim-tag {
+            font-size: 0.52rem;
+            color: rgba(199,241,96,0.35);
+            font-style: italic;
+            letter-spacing: 0.06em;
+            text-transform: none;
+        }
+
+        .mining-counter-wrap {
+            text-align: center;
+            padding: 10px 0 8px;
+        }
+
+        .mining-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            color: rgba(199,241,96,0.45);
+            margin-bottom: 6px;
+        }
+
+        .mining-counter {
+            font-size: clamp(1.25rem, 3.5vw, 1.7rem);
+            font-weight: 700;
+            color: #C7F160;
+            letter-spacing: 0.04em;
+            text-shadow: 0 0 18px rgba(199,241,96,0.55), 0 0 36px rgba(199,241,96,0.2);
+            line-height: 1;
+            margin-bottom: 6px;
+            transition: text-shadow 0.1s ease;
+        }
+
+        .mining-rate {
+            font-size: 0.6rem;
+            color: rgba(199,241,96,0.45);
+            letter-spacing: 0.08em;
+        }
+
+        .mining-hashbar-wrap {
+            margin: 4px 0;
+        }
+
+        .mining-hashbar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.58rem;
+            color: rgba(199,241,96,0.4);
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
+        }
+
+        .mining-hashval { color: rgba(199,241,96,0.7); }
+
+        .mining-hashbar-track {
+            height: 4px;
+            background: rgba(199,241,96,0.08);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .mining-hashbar-fill {
+            height: 100%;
+            width: 72%;
+            background: linear-gradient(90deg, rgba(199,241,96,0.4), #C7F160);
+            border-radius: 2px;
+            animation: hashPulse 3.5s ease-in-out infinite;
+        }
+
+        @keyframes hashPulse {
+            0%, 100% { width: 68%; opacity: 0.8; }
+            50%       { width: 82%; opacity: 1;   }
+        }
+
+        .mining-stats-row {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(199,241,96,0.08);
+            padding-top: 10px;
+            margin-top: 4px;
+        }
+
+        .mining-stat {
+            text-align: center;
+            flex: 1;
+        }
+
+        .mining-stat-val {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: rgba(199,241,96,0.9);
+            letter-spacing: 0.05em;
+        }
+
+        .mining-stat-val.green-txt {
+            color: #C7F160;
+            text-shadow: 0 0 10px rgba(199,241,96,0.6);
+            animation: statusBlink 2s ease-in-out infinite;
+        }
+
+        @keyframes statusBlink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.4; }
+        }
+
+        .mining-stat-lbl {
+            font-size: 0.52rem;
+            color: rgba(199,241,96,0.35);
+            letter-spacing: 0.12em;
+            margin-top: 2px;
+        }
+
+        /* Scanline CRT effect */
+        .mining-scanline {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 3px,
+                rgba(0,0,0,0.06) 3px,
+                rgba(0,0,0,0.06) 4px
+            );
+            pointer-events: none;
+            border-radius: inherit;
+            z-index: 3;
+        }
         .scroll-to-top {
             position: fixed;
             bottom: 28px;
@@ -1465,56 +1602,55 @@
 
                     <span class="vis-badge wefi-badge">
                         <span class="badge-dot" aria-hidden="true"></span>
-                        DEFI BANK LIVE
+                        NODE ACTIVE
                     </span>
 
+                    <!-- Live WFI price — mirrors Aurum's +17.5% stat position -->
                     <div class="vis-stat" aria-hidden="true">
-                        <div class="vis-stat-num green">DEFI</div>
-                        <div class="vis-stat-label">Yields Daily</div>
+                        <div class="vis-stat-num green" id="wfi-card-price">...</div>
+                        <div class="vis-stat-label">WFI Price</div>
                     </div>
 
-                    <svg class="vis-chart" viewBox="0 0 540 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <defs>
-                            <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#C7F160" stop-opacity="0.22"/>
-                                <stop offset="100%" stop-color="#C7F160" stop-opacity="0"/>
-                            </linearGradient>
-                            <filter id="wglow">
-                                <feGaussianBlur stdDeviation="3" result="b"/>
-                                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                            </filter>
-                        </defs>
-                        <line x1="0" y1="160" x2="540" y2="160" stroke="rgba(199,241,96,0.08)" stroke-width="1"/>
-                        <line x1="0" y1="120" x2="540" y2="120" stroke="rgba(199,241,96,0.07)" stroke-width="1"/>
-                        <line x1="0" y1="80" x2="540" y2="80"  stroke="rgba(199,241,96,0.05)" stroke-width="1"/>
-                        <line x1="0" y1="40" x2="540" y2="40"  stroke="rgba(199,241,96,0.04)" stroke-width="1"/>
-                        <!-- Crypto card silhouette -->
-                        <rect x="360" y="22" width="155" height="96" rx="10" fill="rgba(199,241,96,0.04)" stroke="rgba(199,241,96,0.18)" stroke-width="1.2"/>
-                        <rect x="360" y="22" width="155" height="26" rx="10" fill="rgba(199,241,96,0.07)"/>
-                        <rect x="372" y="68" width="38" height="26" rx="5" fill="rgba(212,175,55,0.85)" stroke="rgba(212,175,55,1)" stroke-width="1"/>
-                        <!-- Chip lines -->
-                        <line x1="372" y1="77" x2="410" y2="77" stroke="rgba(180,140,20,0.6)" stroke-width="0.8"/>
-                        <line x1="372" y1="84" x2="410" y2="84" stroke="rgba(180,140,20,0.6)" stroke-width="0.8"/>
-                        <line x1="384" y1="68" x2="384" y2="94" stroke="rgba(180,140,20,0.6)" stroke-width="0.8"/>
-                        <line x1="396" y1="68" x2="396" y2="94" stroke="rgba(180,140,20,0.6)" stroke-width="0.8"/>
-                        <text x="372" y="108" font-family="monospace" font-size="9" fill="rgba(199,241,96,0.35)" letter-spacing="3">**** 7734</text>
-                        <!-- Bull market line -->
-                        <path d="M0,168 C60,164 110,158 160,146 C210,134 250,120 300,100 C340,84 380,62 440,38 C475,24 505,12 540,6" stroke="#C7F160" stroke-width="2.5" fill="none" filter="url(#wglow)"/>
-                        <path d="M0,168 C60,164 110,158 160,146 C210,134 250,120 300,100 C340,84 380,62 440,38 C475,24 505,12 540,6 L540,200 L0,200 Z" fill="url(#wg)"/>
-                        <!-- Animated travelling dot -->
-                        <circle r="5" fill="#C7F160" filter="url(#wglow)">
-                            <animateMotion dur="8s" repeatCount="indefinite" calcMode="linear"
-                                path="M0,168 C60,164 110,158 160,146 C210,134 250,120 300,100 C340,84 380,62 440,38 C475,24 505,12 540,6"/>
-                        </circle>
-                        <circle r="11" fill="rgba(199,241,96,0.22)">
-                            <animateMotion dur="8s" repeatCount="indefinite" calcMode="linear"
-                                path="M0,168 C60,164 110,158 160,146 C210,134 250,120 300,100 C340,84 380,62 440,38 C475,24 505,12 540,6"/>
-                        </circle>
-                        <circle r="18" fill="rgba(199,241,96,0.08)">
-                            <animateMotion dur="8s" repeatCount="indefinite" calcMode="linear"
-                                path="M0,168 C60,164 110,158 160,146 C210,134 250,120 300,100 C340,84 380,62 440,38 C475,24 505,12 540,6"/>
-                        </circle>
-                    </svg>
+                    <!-- MINING COUNTER DASHBOARD -->
+                    <div class="mining-dashboard" aria-hidden="true">
+
+                        <!-- Main counter -->
+                        <div class="mining-counter-wrap">
+                            <div class="mining-label">WFI MINED <span class="mining-sim-tag">(Simulation)</span></div>
+                            <div class="mining-counter" id="wfi-counter">0.00000000</div>
+                            <div class="mining-rate">+<span id="wfi-rate">0.00000287</span> WFI / sec</div>
+                        </div>
+
+                        <!-- Hash bar -->
+                        <div class="mining-hashbar-wrap">
+                            <div class="mining-hashbar-label">
+                                <span>HASH RATE</span>
+                                <span class="mining-hashval">247.3 H/s</span>
+                            </div>
+                            <div class="mining-hashbar-track">
+                                <div class="mining-hashbar-fill" id="wfi-hashbar"></div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom stats row -->
+                        <div class="mining-stats-row">
+                            <div class="mining-stat">
+                                <div class="mining-stat-val">2032</div>
+                                <div class="mining-stat-lbl">MINES UNTIL</div>
+                            </div>
+                            <div class="mining-stat">
+                                <div class="mining-stat-val green-txt" id="wfi-card-mcap">...</div>
+                                <div class="mining-stat-lbl">MARKET CAP</div>
+                            </div>
+                            <div class="mining-stat">
+                                <div class="mining-stat-val" id="wfi-card-holders">...</div>
+                                <div class="mining-stat-lbl">HOLDERS</div>
+                            </div>
+                        </div>
+
+                        <!-- Scanline overlay -->
+                        <div class="mining-scanline"></div>
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -1703,8 +1839,154 @@
         revealEls.forEach(el => revealObserver.observe(el));
 
         // ════════════════════════════════════════
-        // SCROLL TO TOP BUTTON
+        // WFI MINING COUNTER
         // ════════════════════════════════════════
+        (function() {
+            const counterEl = document.getElementById('wfi-counter');
+            if (!counterEl) return;
+
+            const RATE    = 0.00000287;
+            const SEED    = 1.84729300;
+            let   balance = SEED;
+
+            setInterval(function() {
+                balance += RATE;
+                counterEl.textContent = balance.toFixed(8);
+                counterEl.style.textShadow =
+                    '0 0 28px rgba(199,241,96,0.9), 0 0 50px rgba(199,241,96,0.4)';
+                setTimeout(function() {
+                    counterEl.style.textShadow =
+                        '0 0 18px rgba(199,241,96,0.55), 0 0 36px rgba(199,241,96,0.2)';
+                }, 120);
+            }, 1000);
+        })();
+
+        // ════════════════════════════════════════
+        // LIVE WFI DATA — Price, Market Cap, Holders
+        // Sources: DexScreener (price + mcap) | BscScan via jina.ai (holders)
+        // Mirrors exact logic from wfi-token.html
+        // ════════════════════════════════════════
+        const WFICardFetcher = {
+            pairAddress:  '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0',
+            chainId:      'bsc',
+            tokenAddress: null,
+            refreshMs:    30000,
+            _timer:       null,
+            _inFlight:    false,
+
+            get dexUrl() {
+                return 'https://api.dexscreener.com/latest/dex/pairs/' + this.chainId + '/' + this.pairAddress;
+            },
+
+            init() {
+                this.fetchAll();
+                if (this._timer) clearInterval(this._timer);
+                this._timer = setInterval(() => this.fetchAll(), this.refreshMs);
+            },
+
+            async fetchAll() {
+                if (this._inFlight) return;
+                this._inFlight = true;
+                try {
+                    const pair = await this.fetchPair();
+                    if (pair) {
+                        if (pair.baseToken && pair.baseToken.address) {
+                            this.tokenAddress = pair.baseToken.address;
+                        }
+                        this.updatePrice(pair);
+                        this.updateMcap(pair);
+                    }
+                    await this.updateHolders();
+                } catch(e) {
+                    console.warn('WFICardFetcher.fetchAll failed:', e);
+                } finally {
+                    this._inFlight = false;
+                }
+            },
+
+            async fetchPair() {
+                // Try direct first, then corsproxy fallback
+                const direct = this.dexUrl + '?t=' + Date.now();
+                const proxy  = 'https://corsproxy.io/?' + encodeURIComponent(this.dexUrl);
+
+                for (const url of [direct, proxy]) {
+                    try {
+                        const res  = await fetch(url);
+                        if (!res.ok) continue;
+                        const raw  = await res.json();
+                        // corsproxy wraps payload in { contents: "..." }
+                        const data = (raw && raw.contents) ? JSON.parse(raw.contents) : raw;
+                        if (data && data.pair)                                       return data.pair;
+                        if (data && Array.isArray(data.pairs) && data.pairs.length)  return data.pairs[0];
+                    } catch(e) { /* try next */ }
+                }
+                return null;
+            },
+
+            formatCompactUsd(value) {
+                const n = Number(value);
+                if (!isFinite(n)) return null;
+                const abs = Math.abs(n);
+                if (abs >= 1e12) return '$' + (n / 1e12).toFixed(2) + 'T';
+                if (abs >= 1e9)  return '$' + (n / 1e9).toFixed(2)  + 'B';
+                if (abs >= 1e6)  return '$' + (n / 1e6).toFixed(2)  + 'M';
+                if (abs >= 1e3)  return '$' + (n / 1e3).toFixed(2)  + 'K';
+                return '$' + n.toFixed(2);
+            },
+
+            flash(el) {
+                if (!el) return;
+                el.style.color = '#ffffff';
+                setTimeout(() => { el.style.color = ''; }, 300);
+            },
+
+            updatePrice(pair) {
+                const el  = document.getElementById('wfi-card-price');
+                if (!el)  return;
+                const num = Number(pair && pair.priceUsd);
+                if (!isFinite(num)) return;
+                el.textContent = '$' + num.toFixed(2);
+                this.flash(el);
+            },
+
+            updateMcap(pair) {
+                const el    = document.getElementById('wfi-card-mcap');
+                if (!el)    return;
+                const value = (pair.marketCap != null) ? pair.marketCap : pair.fdv;
+                const fmt   = this.formatCompactUsd(value);
+                if (!fmt)   return;
+                el.textContent = fmt;
+                this.flash(el);
+            },
+
+            async updateHolders() {
+                const el = document.getElementById('wfi-card-holders');
+                if (!el || !this.tokenAddress) return;
+
+                // BscScan blocks direct CORS — use jina.ai text proxy (same as wfi-token.html)
+                const bscUrl   = 'https://bscscan.com/token/' + this.tokenAddress;
+                const jinaUrl  = 'https://r.jina.ai/' + bscUrl + '?t=' + Date.now();
+
+                try {
+                    const res = await fetch(jinaUrl);
+                    if (!res.ok) throw new Error('jina ' + res.status);
+                    const text  = await res.text();
+                    const match = text.match(/Holders?\s*[:\-]?\s*([\d,]+)/i);
+                    if (!match || !match[1]) throw new Error('no match');
+                    const count = Number(match[1].replace(/,/g, ''));
+                    if (!isFinite(count)) throw new Error('NaN');
+                    el.textContent = count.toLocaleString();
+                    this.flash(el);
+                } catch(e) {
+                    console.warn('Holders fetch failed:', e);
+                    if (el.textContent === '...') el.textContent = '--';
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            WFICardFetcher.init();
+        });
         document.addEventListener('DOMContentLoaded', function() {
             const scrollBtn = document.getElementById('scroll-to-top');
             if (!scrollBtn) return;
