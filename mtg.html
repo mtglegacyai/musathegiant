@@ -240,11 +240,19 @@
         }
 
         .hero-logo-svg {
-            /* Desktop: 220px. Scales fluidly down to 52vw on small screens.
-               Never exceeds 220px, never shrinks below 140px.            */
             width: clamp(140px, 52vw, 220px);
             height: auto;
             display: block;
+            animation: doof 3.2s ease-in-out 1.2s infinite;
+            transform-origin: center center;
+        }
+
+        /* Single soft subtle pulse — barely there, almost unnoticeable */
+        @keyframes doof {
+            0%   { transform: scale(1);      }
+            15%  { transform: scale(1.025);  }
+            45%  { transform: scale(1);      }
+            100% { transform: scale(1);      }
         }
 
         /* ===========================
@@ -908,9 +916,11 @@
             0%, 100% { opacity: 0.4; }
             50%       { opacity: 1;   }
         }
-        @keyframes borderBreath {
-            0%, 100% { opacity: 0.5; }
-            50%       { opacity: 1;   }
+        @keyframes doofGlow {
+            0%   { opacity: 0.3;  }
+            15%  { opacity: 0.6;  }
+            45%  { opacity: 0.3;  }
+            100% { opacity: 0.3;  }
         }
         @keyframes traceGlow {
             0%, 100% { opacity: 0.4; }
@@ -1156,28 +1166,16 @@
                   <path id="ua" d="M 46,250 A 162,162 0 0,0 354,250"/>
                 </defs>
 
-                <!-- Shadow beneath the whole logo -->
-                <circle cx="200" cy="200" r="181" fill="none" filter="url(#cshadow)" stroke="rgba(0,115,255,0.6)" stroke-width="1"/>
-
-                <!-- Outer dashed circuit-board ring — fine tick marks -->
-                <circle cx="200" cy="200" r="183"
-                  fill="none"
-                  stroke="rgba(0,115,255,0.35)"
-                  stroke-width="1"
-                  stroke-dasharray="3 11"
-                  stroke-dashoffset="0"/>
-
-                <!-- Main crisp border — thin, sharp, blue-white -->
-                <circle cx="200" cy="200" r="181"
-                  fill="none"
-                  stroke="rgba(180,210,255,0.55)"
-                  stroke-width="1.2"/>
-
-                <!-- Inner accent ring — very faint white, close to border -->
-                <circle cx="200" cy="200" r="178"
-                  fill="none"
-                  stroke="rgba(255,255,255,0.05)"
-                  stroke-width="1"/>
+                <!-- Outer glow halo — surges on each doof -->
+                <circle cx="200" cy="200" r="185" fill="none" stroke="rgba(0,115,255,0.28)" stroke-width="16" filter="url(#hl)"
+                    style="animation: doofGlow 3.2s ease-in-out 1.2s infinite;"/>
+                <!-- Sharp blue border -->
+                <circle cx="200" cy="200" r="181" fill="none" stroke="rgba(180,210,255,0.55)" stroke-width="1.2"
+                    style="animation: doofGlow 3.2s ease-in-out 1.2s infinite;"/>
+                <!-- Inner accent ring -->
+                <circle cx="200" cy="200" r="178" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                <!-- Fill -->
+                <circle cx="200" cy="200" r="181" fill="url(#bg)"/>
 
                 <!-- Fill -->
                 <circle cx="200" cy="200" r="181" fill="url(#bg)"/>
