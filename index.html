@@ -439,6 +439,7 @@
         .card-visual.wefi-vis {
             background: linear-gradient(140deg, #030601 0%, #070C02 55%, #030501 100%);
             border-bottom: 1px solid rgba(199,241,96,0.1);
+            height: 310px;
         }
 
         .income-card.aurum-card:hover {
@@ -998,7 +999,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 44px 22px 20px;
+            padding: 44px 22px 24px;
             font-family: 'Courier New', 'Lucida Console', monospace;
             z-index: 2;
         }
@@ -1040,40 +1041,63 @@
             letter-spacing: 0.08em;
         }
 
-        .mining-hashbar-wrap {
-            margin: 4px 0;
+        /* ═══════════════════════════════════════
+           ASIC MINING MACHINE
+        ═══════════════════════════════════════ */
+        .asic-miner-wrap {
+            margin: 2px 0;
+            width: 100%;
+        }
+        .asic-svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            overflow: visible;
         }
 
-        .mining-hashbar-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.58rem;
-            color: rgba(199,241,96,0.4);
-            letter-spacing: 0.1em;
-            margin-bottom: 5px;
+        /* Fan rotation */
+        @keyframes fanSpin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+        .fan-rotor {
+            transform-box: fill-box;
+            transform-origin: 50% 50%;
+            animation: fanSpin 0.38s linear infinite;
+        }
+        .fan-rotor-slow {
+            transform-box: fill-box;
+            transform-origin: 50% 50%;
+            animation: fanSpin 0.55s linear infinite;
         }
 
-        .mining-hashval { color: rgba(199,241,96,0.7); }
-
-        .mining-hashbar-track {
-            height: 4px;
-            background: rgba(199,241,96,0.08);
-            border-radius: 2px;
-            overflow: hidden;
+        /* Circuit trace flow */
+        @keyframes circuitFlow {
+            from { stroke-dashoffset: 14; }
+            to   { stroke-dashoffset: 0; }
+        }
+        .circuit-flow {
+            stroke-dasharray: 4 3;
+            animation: circuitFlow 0.65s linear infinite;
+        }
+        .circuit-flow-r {
+            stroke-dasharray: 4 3;
+            animation: circuitFlow 0.85s linear infinite;
         }
 
-        .mining-hashbar-fill {
-            height: 100%;
-            width: 72%;
-            background: linear-gradient(90deg, rgba(199,241,96,0.4), #C7F160);
-            border-radius: 2px;
-            animation: hashPulse 3.5s ease-in-out infinite;
+        /* Energy node pulse */
+        @keyframes energyPulse {
+            0%, 100% { opacity: 0.5; r: 1.5; }
+            50%       { opacity: 1;   r: 2.4; }
         }
+        .energy-node { animation: energyPulse 1.6s ease-in-out infinite; }
 
-        @keyframes hashPulse {
-            0%, 100% { width: 68%; opacity: 0.8; }
-            50%       { width: 82%; opacity: 1;   }
+        /* Machine LED blink */
+        @keyframes minerLedPulse {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.2; }
         }
+        .miner-led { animation: minerLedPulse 1.9s ease-in-out infinite; }
 
         .mining-stats-row {
             display: flex;
@@ -1215,6 +1239,7 @@
             .hero-logo-wrap { margin-bottom: 24px; }
             .section-intro { padding: 60px 0 28px; }
             .card-visual { height: 220px; }
+            .card-visual.wefi-vis { height: 290px; }
             .card-body { padding: 24px 20px 28px; }
             .social-inner { flex-direction: column; align-items: flex-start; }
 
@@ -1224,8 +1249,8 @@
             .vis-stat { top: 14px; right: 14px; }
             .vis-badge { top: 14px; left: 14px; font-size: 0.6rem; padding: 5px 10px; }
 
-            /* Mining dashboard mobile scale */
-            .mining-dashboard { padding: 42px 14px 14px; }
+            /* Mining dashboard tablet scale */
+            .mining-dashboard { padding: 42px 14px 20px; }
             .mining-counter { font-size: 1.1rem; }
             .mining-label { font-size: 0.55rem; }
             .mining-rate { font-size: 0.54rem; }
@@ -1233,14 +1258,13 @@
             .mining-stat-val { font-size: 0.72rem; }
             .mining-stat-lbl { font-size: 0.46rem; letter-spacing: 0.08em; }
             .mining-stats-row { padding-top: 8px; gap: 2px; }
-            .mining-hashbar-label { font-size: 0.52rem; }
-            .mining-hashbar-wrap { margin: 2px 0; }
         }
 
         @media (max-width: 480px) {
             .wrap { padding: 0 16px; }
             .hero-logo-wrap { margin-bottom: 20px; }
             .card-visual { height: 230px; }
+            .card-visual.wefi-vis { height: 270px; }
 
             /* Never hide vis-stat — scale it to fit */
             .vis-stat { top: 12px; right: 12px; }
@@ -1252,18 +1276,13 @@
             .card-cta { font-size: 1rem; padding: 17px 20px; }
 
             /* Mining dashboard small screen */
-            .mining-dashboard { padding: 40px 12px 12px; }
+            .mining-dashboard { padding: 40px 12px 18px; }
             .mining-counter { font-size: 1rem; letter-spacing: 0.02em; }
             .mining-label { font-size: 0.52rem; }
             .mining-sim-tag { font-size: 0.48rem; }
             .mining-rate { font-size: 0.5rem; }
             .mining-counter-wrap { padding: 4px 0 4px; }
-            .mining-hashbar-wrap { margin: 2px 0; }
-            .mining-hashbar-label { font-size: 0.48rem; }
-            .mining-stats-row {
-                padding-top: 8px;
-                gap: 0;
-            }
+            .mining-stats-row { padding-top: 8px; gap: 0; }
             .mining-stat-val { font-size: 0.66rem; }
             .mining-stat-lbl { font-size: 0.42rem; letter-spacing: 0.06em; margin-top: 1px; }
         }
@@ -1271,6 +1290,8 @@
         @media (max-width: 360px) {
             .hero-logo-svg { width: clamp(120px, 80vw, 160px); }
             .card-visual { height: 220px; }
+            .card-visual.wefi-vis { height: 260px; }
+            .mining-dashboard { padding: 38px 10px 16px; }
             .mining-counter { font-size: 0.9rem; }
             .vis-stat-num { font-size: 1rem; }
             .mining-stat-val { font-size: 0.6rem; }
@@ -1662,19 +1683,242 @@
                         <!-- Main counter -->
                         <div class="mining-counter-wrap">
                             <div class="mining-label">WFI MINED <span class="mining-sim-tag">(Simulation)</span></div>
-                            <div class="mining-counter" id="wfi-counter">0.00000000</div>
+                            <div class="mining-counter" id="wfi-counter">3700.34</div>
                             <div class="mining-rate">+<span id="wfi-rate">0.00000287</span> WFI / sec</div>
                         </div>
 
-                        <!-- Hash bar -->
-                        <div class="mining-hashbar-wrap">
-                            <div class="mining-hashbar-label">
-                                <span>HASH RATE</span>
-                                <span class="mining-hashval">247.3 H/s</span>
-                            </div>
-                            <div class="mining-hashbar-track">
-                                <div class="mining-hashbar-fill" id="wfi-hashbar"></div>
-                            </div>
+                        <!-- ASIC Mining Machine -->
+                        <div class="asic-miner-wrap">
+                          <svg class="asic-svg" viewBox="0 0 460 90" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                              <linearGradient id="acBody" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%"   stop-color="#252540"/>
+                                <stop offset="45%"  stop-color="#181828"/>
+                                <stop offset="100%" stop-color="#0d0d1c"/>
+                              </linearGradient>
+                              <linearGradient id="acPanel" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%"   stop-color="#1a1a2c"/>
+                                <stop offset="100%" stop-color="#090912"/>
+                              </linearGradient>
+                              <radialGradient id="acFanGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%"   stop-color="#C7F160" stop-opacity="0.2"/>
+                                <stop offset="100%" stop-color="#C7F160" stop-opacity="0"/>
+                              </radialGradient>
+                              <filter id="acLed" x="-60%" y="-60%" width="220%" height="220%">
+                                <feGaussianBlur stdDeviation="1.4" result="b"/>
+                                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                              </filter>
+                              <filter id="acNodeGlow" x="-80%" y="-80%" width="260%" height="260%">
+                                <feGaussianBlur stdDeviation="1.8" result="b"/>
+                                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                              </filter>
+                            </defs>
+
+                            <!-- ── CHASSIS SHADOW ── -->
+                            <rect x="82" y="21" rx="4" width="300" height="62" fill="#000" opacity="0.45"/>
+
+                            <!-- ── MAIN CHASSIS ── -->
+                            <rect x="80" y="19" rx="4" width="300" height="62" fill="url(#acBody)" stroke="#2c2c48" stroke-width="1"/>
+
+                            <!-- ── LED STRIP ── -->
+                            <rect x="80" y="19" rx="4" width="300" height="5.5" fill="#080810"/>
+                            <!-- Model label -->
+                            <text x="230" y="23.3" text-anchor="middle" font-size="4" fill="rgba(199,241,96,0.42)"
+                                  font-family="'Courier New',monospace" letter-spacing="2.2">WFI-MINER · ACTIVE</text>
+                            <!-- Left LEDs -->
+                            <rect x="88"  y="19.8" width="5.5" height="2" rx="0.9" fill="#C7F160" class="miner-led" style="animation-delay:0s"    filter="url(#acLed)"/>
+                            <rect x="96"  y="19.8" width="4"   height="2" rx="0.9" fill="#C7F160" class="miner-led" style="animation-delay:0.28s"  filter="url(#acLed)"/>
+                            <rect x="103" y="19.8" width="5"   height="2" rx="0.9" fill="#C7F160" class="miner-led" style="animation-delay:0.56s"  filter="url(#acLed)"/>
+                            <rect x="111" y="19.8" width="3"   height="2" rx="0.9" fill="#C7F160" opacity="0.22"/>
+                            <!-- Right LEDs -->
+                            <rect x="344" y="19.8" width="4.5" height="2" rx="0.9" fill="#C7F160" class="miner-led" style="animation-delay:0.14s"  filter="url(#acLed)"/>
+                            <rect x="351" y="19.8" width="4.5" height="2" rx="0.9" fill="#C7F160" class="miner-led" style="animation-delay:0.70s"  filter="url(#acLed)"/>
+                            <rect x="358" y="19.8" width="3.5" height="2" rx="0.9" fill="#55aaff"  opacity="0.55"/>
+                            <rect x="364" y="19.8" width="4.5" height="2" rx="0.9" fill="#C7F160" class="miner-led" style="animation-delay:0.42s"  filter="url(#acLed)"/>
+
+                            <!-- ── LEFT INTAKE PANEL ── -->
+                            <rect x="80" y="24" width="52" height="57" fill="url(#acPanel)"/>
+                            <!-- Horizontal intake slits — 9 rows -->
+                            <rect x="84" y="27.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="84" y="32.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="84" y="37.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="84" y="42.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="84" y="47.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="84" y="52.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="84" y="57.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="84" y="62.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="84" y="67.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <!-- Slit shine (top edge highlight) -->
+                            <rect x="84" y="27.5" width="44" height="0.7" fill="#1e1e38" opacity="0.9"/>
+                            <rect x="84" y="32.5" width="44" height="0.7" fill="#1e1e38" opacity="0.9"/>
+                            <rect x="84" y="37.5" width="44" height="0.7" fill="#1e1e38" opacity="0.9"/>
+                            <rect x="84" y="42.5" width="44" height="0.7" fill="#1e1e38" opacity="0.9"/>
+                            <rect x="84" y="47.5" width="44" height="0.7" fill="#1e1e38" opacity="0.9"/>
+                            <rect x="84" y="52.5" width="44" height="0.7" fill="#1e1e38" opacity="0.9"/>
+                            <rect x="84" y="57.5" width="44" height="0.7" fill="#1e1e38" opacity="0.9"/>
+                            <rect x="84" y="62.5" width="44" height="0.7" fill="#1e1e38" opacity="0.9"/>
+                            <rect x="84" y="67.5" width="44" height="0.7" fill="#1e1e38" opacity="0.9"/>
+                            <!-- Panel seam -->
+                            <line x1="132" y1="24" x2="132" y2="81" stroke="#0c0c18" stroke-width="2"/>
+                            <line x1="132" y1="24" x2="132" y2="81" stroke="#2a2a42" stroke-width="0.5" opacity="0.6"/>
+
+                            <!-- ── RIGHT EXHAUST PANEL ── -->
+                            <rect x="328" y="24" width="52" height="57" fill="url(#acPanel)"/>
+                            <!-- Exhaust slits — 9 rows -->
+                            <rect x="332" y="27.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="332" y="32.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="332" y="37.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="332" y="42.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="332" y="47.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="332" y="52.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="332" y="57.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="332" y="62.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <rect x="332" y="67.5" width="44" height="3" rx="1.2" fill="#07070e"/>
+                            <!-- Warm exhaust tint -->
+                            <rect x="328" y="24" width="52" height="57" fill="rgba(30,14,0,0.14)"/>
+                            <!-- Connector ports -->
+                            <rect x="371" y="36" width="7" height="4.5" rx="0.6" fill="#07070e" stroke="#202030" stroke-width="0.6"/>
+                            <rect x="371" y="43" width="7" height="4.5" rx="0.6" fill="#07070e" stroke="#202030" stroke-width="0.6"/>
+                            <rect x="371" y="50" width="7" height="4.5" rx="0.6" fill="#07070e" stroke="#202030" stroke-width="0.6"/>
+                            <rect x="371" y="57" width="7" height="3.5" rx="0.6" fill="#07070e" stroke="#202030" stroke-width="0.6"/>
+                            <!-- Panel seam -->
+                            <line x1="328" y1="24" x2="328" y2="81" stroke="#0c0c18" stroke-width="2"/>
+                            <line x1="328" y1="24" x2="328" y2="81" stroke="#2a2a42" stroke-width="0.5" opacity="0.6"/>
+
+                            <!-- ── PCB CHIPS between fans ── -->
+                            <!-- Between fan1 and fan2 -->
+                            <rect x="188" y="35" width="10" height="7.5" rx="0.8" fill="#14223a" stroke="#223452" stroke-width="0.5"/>
+                            <rect x="188" y="57" width="10" height="7.5" rx="0.8" fill="#14223a" stroke="#223452" stroke-width="0.5"/>
+                            <line x1="193" y1="42.5" x2="193" y2="57" stroke="#223452" stroke-width="0.4"/>
+                            <line x1="188" y1="38.5" x2="185" y2="38.5" stroke="#223452" stroke-width="0.4"/>
+                            <line x1="188" y1="60.5" x2="185" y2="60.5" stroke="#223452" stroke-width="0.4"/>
+                            <line x1="198" y1="38.5" x2="201" y2="38.5" stroke="#223452" stroke-width="0.4"/>
+                            <line x1="198" y1="60.5" x2="201" y2="60.5" stroke="#223452" stroke-width="0.4"/>
+                            <!-- Between fan2 and fan3 -->
+                            <rect x="254" y="35" width="10" height="7.5" rx="0.8" fill="#14223a" stroke="#223452" stroke-width="0.5"/>
+                            <rect x="254" y="57" width="10" height="7.5" rx="0.8" fill="#14223a" stroke="#223452" stroke-width="0.5"/>
+                            <line x1="259" y1="42.5" x2="259" y2="57" stroke="#223452" stroke-width="0.4"/>
+                            <line x1="254" y1="38.5" x2="251" y2="38.5" stroke="#223452" stroke-width="0.4"/>
+                            <line x1="254" y1="60.5" x2="251" y2="60.5" stroke="#223452" stroke-width="0.4"/>
+                            <line x1="264" y1="38.5" x2="267" y2="38.5" stroke="#223452" stroke-width="0.4"/>
+                            <line x1="264" y1="60.5" x2="267" y2="60.5" stroke="#223452" stroke-width="0.4"/>
+
+                            <!-- ══ FAN 1 — cx=164, cy=50 ══ -->
+                            <g transform="translate(164,50)">
+                              <circle r="21" fill="#080810" stroke="#222238" stroke-width="1.5"/>
+                              <circle r="19.5" fill="none" stroke="#06060c" stroke-width="2.5"/>
+                              <circle r="18.5" fill="url(#acFanGlow)"/>
+                              <g class="fan-rotor">
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#2c3e56" transform="rotate(0)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#223244" transform="rotate(60)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#2c3e56" transform="rotate(120)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#223244" transform="rotate(180)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#2c3e56" transform="rotate(240)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#223244" transform="rotate(300)"/>
+                              </g>
+                              <!-- Motion blur ring -->
+                              <circle r="16.5" fill="rgba(8,8,18,0.3)"/>
+                              <!-- Hub -->
+                              <circle r="4.2" fill="#12203a" stroke="#28385a" stroke-width="1"/>
+                              <circle r="2" fill="#C7F160" opacity="0.65" filter="url(#acLed)"/>
+                            </g>
+
+                            <!-- ══ FAN 2 — cx=230, cy=50 — slightly different phase ══ -->
+                            <g transform="translate(230,50)">
+                              <circle r="21" fill="#080810" stroke="#222238" stroke-width="1.5"/>
+                              <circle r="19.5" fill="none" stroke="#06060c" stroke-width="2.5"/>
+                              <circle r="18.5" fill="url(#acFanGlow)" opacity="1.3"/>
+                              <g class="fan-rotor-slow">
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#2a3c54" transform="rotate(20)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#203040" transform="rotate(80)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#2a3c54" transform="rotate(140)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#203040" transform="rotate(200)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#2a3c54" transform="rotate(260)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#203040" transform="rotate(320)"/>
+                              </g>
+                              <circle r="16.5" fill="rgba(8,8,18,0.3)"/>
+                              <circle r="4.2" fill="#12203a" stroke="#28385a" stroke-width="1"/>
+                              <circle r="2" fill="#C7F160" opacity="0.88" filter="url(#acLed)"/>
+                            </g>
+
+                            <!-- ══ FAN 3 — cx=296, cy=50 ══ -->
+                            <g transform="translate(296,50)">
+                              <circle r="21" fill="#080810" stroke="#222238" stroke-width="1.5"/>
+                              <circle r="19.5" fill="none" stroke="#06060c" stroke-width="2.5"/>
+                              <circle r="18.5" fill="url(#acFanGlow)"/>
+                              <g class="fan-rotor">
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#2c3e56" transform="rotate(10)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#223244" transform="rotate(70)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#2c3e56" transform="rotate(130)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#223244" transform="rotate(190)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#2c3e56" transform="rotate(250)"/>
+                                <path d="M1.5,-3 C3,-7 5,-13 3.5,-18 A3.5,3.5 0 0,1 -3.5,-18 C-5,-13 -3,-7 -1.5,-3 Z" fill="#223244" transform="rotate(310)"/>
+                              </g>
+                              <circle r="16.5" fill="rgba(8,8,18,0.3)"/>
+                              <circle r="4.2" fill="#12203a" stroke="#28385a" stroke-width="1"/>
+                              <circle r="2" fill="#C7F160" opacity="0.65" filter="url(#acLed)"/>
+                            </g>
+
+                            <!-- ── CORNER SCREWS ── -->
+                            <circle cx="86"  cy="25"  r="2.3" fill="#121220" stroke="#282840" stroke-width="0.6"/>
+                            <line x1="84.5" y1="25"  x2="87.5" y2="25"  stroke="#323250" stroke-width="0.6"/>
+                            <line x1="86"   y1="23.5" x2="86"   y2="26.5" stroke="#323250" stroke-width="0.6"/>
+                            <circle cx="374" cy="25"  r="2.3" fill="#121220" stroke="#282840" stroke-width="0.6"/>
+                            <line x1="372.5" y1="25"  x2="375.5" y2="25"  stroke="#323250" stroke-width="0.6"/>
+                            <line x1="374"   y1="23.5" x2="374"   y2="26.5" stroke="#323250" stroke-width="0.6"/>
+                            <circle cx="86"  cy="77"  r="2.3" fill="#121220" stroke="#282840" stroke-width="0.6"/>
+                            <line x1="84.5" y1="77"  x2="87.5" y2="77"  stroke="#323250" stroke-width="0.6"/>
+                            <line x1="86"   y1="75.5" x2="86"   y2="78.5" stroke="#323250" stroke-width="0.6"/>
+                            <circle cx="374" cy="77"  r="2.3" fill="#121220" stroke="#282840" stroke-width="0.6"/>
+                            <line x1="372.5" y1="77"  x2="375.5" y2="77"  stroke="#323250" stroke-width="0.6"/>
+                            <line x1="374"   y1="75.5" x2="374"   y2="78.5" stroke="#323250" stroke-width="0.6"/>
+
+                            <!-- ── BOTTOM RAIL ── -->
+                            <rect x="80" y="78" rx="2" width="300" height="3" fill="#07070e" stroke="#1a1a2c" stroke-width="0.5"/>
+
+                            <!-- ══ CIRCUIT CONNECTOR LINES ══ -->
+
+                            <!-- LEFT trace: HASH RATE (30,12) → corner (30,50) → machine entry (80,50) -->
+                            <!-- Soft glow halo -->
+                            <path d="M30,12 L30,50 L80,50" fill="none" stroke="#C7F160" stroke-width="3.5" opacity="0.05"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <!-- Static dim base -->
+                            <path d="M30,12 L30,50 L80,50" fill="none" stroke="#C7F160" stroke-width="0.7" opacity="0.18"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <!-- Animated flow -->
+                            <path d="M30,12 L30,50 L80,50" fill="none" stroke="#C7F160" stroke-width="1" opacity="0.48"
+                                  stroke-linecap="round" stroke-linejoin="round" class="circuit-flow"/>
+                            <!-- Nodes -->
+                            <circle cx="30" cy="12" r="1.8" fill="#C7F160" opacity="0.45"/>
+                            <circle cx="30" cy="50" r="2.8" fill="rgba(199,241,96,0.1)" stroke="#C7F160" stroke-width="0.7"/>
+                            <circle cx="30" cy="50" r="1.5" fill="#C7F160" opacity="0.55"/>
+                            <circle cx="80" cy="50" r="3.2" fill="rgba(199,241,96,0.12)" stroke="#C7F160" stroke-width="0.8"/>
+                            <circle class="energy-node" cx="80" cy="50" r="1.8" fill="#C7F160" filter="url(#acNodeGlow)"/>
+
+                            <!-- RIGHT trace: machine exit (380,50) → corner (430,50) → H/s label (430,12) -->
+                            <!-- Soft glow halo -->
+                            <path d="M380,50 L430,50 L430,12" fill="none" stroke="#C7F160" stroke-width="3.5" opacity="0.05"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <!-- Static dim base -->
+                            <path d="M380,50 L430,50 L430,12" fill="none" stroke="#C7F160" stroke-width="0.7" opacity="0.18"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <!-- Animated flow -->
+                            <path d="M380,50 L430,50 L430,12" fill="none" stroke="#C7F160" stroke-width="1" opacity="0.48"
+                                  stroke-linecap="round" stroke-linejoin="round" class="circuit-flow-r"/>
+                            <!-- Nodes -->
+                            <circle cx="380" cy="50" r="3.2" fill="rgba(199,241,96,0.12)" stroke="#C7F160" stroke-width="0.8"/>
+                            <circle class="energy-node" cx="380" cy="50" r="1.8" fill="#C7F160" style="animation-delay:0.8s" filter="url(#acNodeGlow)"/>
+                            <circle cx="430" cy="50" r="2.8" fill="rgba(199,241,96,0.1)" stroke="#C7F160" stroke-width="0.7"/>
+                            <circle cx="430" cy="50" r="1.5" fill="#C7F160" opacity="0.55"/>
+                            <circle cx="430" cy="12" r="1.8" fill="#C7F160" opacity="0.45"/>
+
+                            <!-- ══ LABELS ══ -->
+                            <text x="4" y="10" font-size="6.5" fill="rgba(199,241,96,0.38)"
+                                  font-family="'Courier New',monospace" letter-spacing="0.8">HASH RATE</text>
+                            <text x="456" y="10" text-anchor="end" font-size="6.5" fill="rgba(199,241,96,0.72)"
+                                  font-family="'Courier New',monospace" letter-spacing="0.8">247.3 H/s</text>
+
+                          </svg>
                         </div>
 
                         <!-- Bottom stats row -->
@@ -1896,7 +2140,7 @@
 
             setInterval(function() {
                 balance += RATE;
-                counterEl.textContent = balance.toFixed(8);
+                counterEl.textContent = balance.toFixed(2);
                 counterEl.style.textShadow =
                     '0 0 28px rgba(199,241,96,0.9), 0 0 50px rgba(199,241,96,0.4)';
                 setTimeout(function() {
