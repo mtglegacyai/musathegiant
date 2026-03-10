@@ -439,6 +439,7 @@
         .card-visual.wefi-vis {
             background: linear-gradient(140deg, #030601 0%, #070C02 55%, #030501 100%);
             border-bottom: 1px solid rgba(199,241,96,0.1);
+            height: 310px;
         }
 
         .income-card.aurum-card:hover {
@@ -998,7 +999,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 44px 22px 20px;
+            padding: 44px 22px 24px;
             font-family: 'Courier New', 'Lucida Console', monospace;
             z-index: 2;
         }
@@ -1238,6 +1239,7 @@
             .hero-logo-wrap { margin-bottom: 24px; }
             .section-intro { padding: 60px 0 28px; }
             .card-visual { height: 220px; }
+            .card-visual.wefi-vis { height: 290px; }
             .card-body { padding: 24px 20px 28px; }
             .social-inner { flex-direction: column; align-items: flex-start; }
 
@@ -1247,8 +1249,8 @@
             .vis-stat { top: 14px; right: 14px; }
             .vis-badge { top: 14px; left: 14px; font-size: 0.6rem; padding: 5px 10px; }
 
-            /* Mining dashboard mobile scale */
-            .mining-dashboard { padding: 42px 14px 14px; }
+            /* Mining dashboard tablet scale */
+            .mining-dashboard { padding: 42px 14px 20px; }
             .mining-counter { font-size: 1.1rem; }
             .mining-label { font-size: 0.55rem; }
             .mining-rate { font-size: 0.54rem; }
@@ -1256,14 +1258,13 @@
             .mining-stat-val { font-size: 0.72rem; }
             .mining-stat-lbl { font-size: 0.46rem; letter-spacing: 0.08em; }
             .mining-stats-row { padding-top: 8px; gap: 2px; }
-            .mining-hashbar-label { font-size: 0.52rem; }
-            .mining-hashbar-wrap { margin: 2px 0; }
         }
 
         @media (max-width: 480px) {
             .wrap { padding: 0 16px; }
             .hero-logo-wrap { margin-bottom: 20px; }
             .card-visual { height: 230px; }
+            .card-visual.wefi-vis { height: 270px; }
 
             /* Never hide vis-stat — scale it to fit */
             .vis-stat { top: 12px; right: 12px; }
@@ -1275,18 +1276,13 @@
             .card-cta { font-size: 1rem; padding: 17px 20px; }
 
             /* Mining dashboard small screen */
-            .mining-dashboard { padding: 40px 12px 12px; }
+            .mining-dashboard { padding: 40px 12px 18px; }
             .mining-counter { font-size: 1rem; letter-spacing: 0.02em; }
             .mining-label { font-size: 0.52rem; }
             .mining-sim-tag { font-size: 0.48rem; }
             .mining-rate { font-size: 0.5rem; }
             .mining-counter-wrap { padding: 4px 0 4px; }
-            .mining-hashbar-wrap { margin: 2px 0; }
-            .mining-hashbar-label { font-size: 0.48rem; }
-            .mining-stats-row {
-                padding-top: 8px;
-                gap: 0;
-            }
+            .mining-stats-row { padding-top: 8px; gap: 0; }
             .mining-stat-val { font-size: 0.66rem; }
             .mining-stat-lbl { font-size: 0.42rem; letter-spacing: 0.06em; margin-top: 1px; }
         }
@@ -1294,6 +1290,8 @@
         @media (max-width: 360px) {
             .hero-logo-svg { width: clamp(120px, 80vw, 160px); }
             .card-visual { height: 220px; }
+            .card-visual.wefi-vis { height: 260px; }
+            .mining-dashboard { padding: 38px 10px 16px; }
             .mining-counter { font-size: 0.9rem; }
             .vis-stat-num { font-size: 1rem; }
             .mining-stat-val { font-size: 0.6rem; }
