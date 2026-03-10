@@ -2155,101 +2155,78 @@
         // LIVE WFI DATA — Price, Market Cap, Holders
         // Sources: DexScreener (price + mcap) | BscScan via jina.ai (holders)
         // Mirrors exact logic from wfi-token.html
-        // ════════════════════════════════════════
-        // ════════════════════════════════════════
-        // LIVE WFI DATA — Price, Market Cap, Holders
-        // Price + Market Cap: CoinGecko (primary) → DexScreener (fallback)
-        // Holders: BscScan via jina.ai proxy
-        // ════════════════════════════════════════
+        // ════════════════════════════════════════════════════════════════
+        // LIVE WFI DATA — Price · Market Cap · Holders
+        // Mirrors wfi-token.html exactly:
+        //   Primary source : DexScreener direct fetch (CORS-open, no proxy)
+        //   Fallback        : DexScreener via corsproxy.io
+        //   Holders         : BscScan scraped via r.jina.ai text proxy
+        //   Refresh interval: 30 000 ms
+        // Root cause of previous failure: CoinGecko /simple/price blocks
+        // unauthenticated browser requests (CORS + 401). DexScreener sends
+        // Access-Control-Allow-Origin: * so it works directly from any browser.
+        // ════════════════════════════════════════════════════════════════
         const WFICardFetcher = {
-            // CoinGecko
-            geckoId:      'wfi',
-            geckoUrl:     'https://api.coingecko.com/api/v3/simple/price?ids=wfi&vs_currencies=usd&include_market_cap=true&include_24hr_change=true',
 
-            // DexScreener fallback
             pairAddress:  '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0',
             chainId:      'bsc',
-            get dexUrl()  { return 'https://api.dexscreener.com/latest/dex/pairs/' + this.chainId + '/' + this.pairAddress; },
-
-            // BscScan holders
             tokenAddress: null,
-
-            refreshMs:    60000,   // CoinGecko free tier: 30 calls/min — refresh every 60s is safe
+            refreshMs:    30000,
             _timer:       null,
             _inFlight:    false,
 
+            get dexUrl() {
+                return 'https://api.dexscreener.com/latest/dex/pairs/'
+                     + this.chainId + '/' + this.pairAddress;
+            },
+
+            // ── Bootstrap (same pattern as wfi-token.html) ──────────────
             init() {
                 this.fetchAll();
                 if (this._timer) clearInterval(this._timer);
                 this._timer = setInterval(() => this.fetchAll(), this.refreshMs);
             },
 
+            // ── Main cycle ───────────────────────────────────────────────
             async fetchAll() {
                 if (this._inFlight) return;
                 this._inFlight = true;
                 try {
-                    await this.fetchPriceAndMcap();
+                    const pair = await this.fetchDexPair();
+                    if (pair) {
+                        if (pair.baseToken && pair.baseToken.address) {
+                            this.tokenAddress = pair.baseToken.address;
+                        }
+                        this.updatePrice(pair.priceUsd);
+                        const mcap = (pair.marketCap != null) ? pair.marketCap : pair.fdv;
+                        if (mcap != null) this.updateMcap(mcap);
+                    }
                     await this.updateHolders();
-                } catch(e) {
-                    console.warn('WFICardFetcher error:', e);
+                } catch (e) {
+                    console.warn('WFICardFetcher.fetchAll:', e);
                 } finally {
                     this._inFlight = false;
                 }
             },
 
-            // ── Price + Market Cap ──────────────────────────────────────
-            async fetchPriceAndMcap() {
-                // 1. Try CoinGecko — direct first, then via corsproxy if CORS blocks it
-                const geckoProxy = 'https://corsproxy.io/?' + encodeURIComponent(this.geckoUrl);
-                for (const url of [this.geckoUrl, geckoProxy]) {
-                    try {
-                        const res  = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now());
-                        if (!res.ok) continue;
-                        const raw  = await res.json();
-                        // corsproxy wraps payload in { contents: "..." }
-                        const data = (raw && raw.contents) ? JSON.parse(raw.contents) : raw;
-                        const coin = data && data.wfi;
-                        if (coin && coin.usd) {
-                            this.updatePrice(coin.usd);
-                            if (coin.usd_market_cap) this.updateMcap(coin.usd_market_cap);
-                            return; // success — skip DexScreener fallback entirely
-                        }
-                    } catch(e) { /* try next URL */ }
-                }
-
-                // 2. DexScreener fallback
-                try {
-                    const pair = await this.fetchDexPair();
-                    if (pair) {
-                        if (pair.priceUsd)  this.updatePrice(Number(pair.priceUsd));
-                        const mcap = (pair.marketCap != null) ? pair.marketCap : pair.fdv;
-                        if (mcap)           this.updateMcap(mcap);
-                        if (pair.baseToken && pair.baseToken.address) {
-                            this.tokenAddress = pair.baseToken.address;
-                        }
-                    }
-                } catch(e) {
-                    console.warn('DexScreener fallback failed:', e);
-                }
-            },
-
+            // ── DexScreener: direct first, corsproxy fallback ────────────
             async fetchDexPair() {
                 const direct = this.dexUrl + '?t=' + Date.now();
                 const proxy  = 'https://corsproxy.io/?' + encodeURIComponent(this.dexUrl);
                 for (const url of [direct, proxy]) {
                     try {
-                        const res  = await fetch(url);
+                        const res  = await fetch(url, { method: 'GET' });
                         if (!res.ok) continue;
                         const raw  = await res.json();
                         const data = (raw && raw.contents) ? JSON.parse(raw.contents) : raw;
-                        if (data && data.pair)                                      return data.pair;
-                        if (data && Array.isArray(data.pairs) && data.pairs.length) return data.pairs[0];
-                    } catch(e) { /* try next */ }
+                        if (data && data.pair)                                       return data.pair;
+                        if (data && Array.isArray(data.pairs) && data.pairs.length)  return data.pairs[0];
+                    } catch (e) { /* try next */ }
                 }
                 return null;
             },
 
-            // ── Formatters ──────────────────────────────────────────────
+            // ── Formatters ───────────────────────────────────────────────
             formatCompactUsd(value) {
                 const n = Number(value);
                 if (!isFinite(n)) return null;
@@ -2263,18 +2240,18 @@
 
             flash(el) {
                 if (!el) return;
-                const orig = el.style.color;
                 el.style.color = '#ffffff';
-                setTimeout(() => { el.style.color = orig; }, 300);
+                setTimeout(() => { el.style.color = ''; }, 300);
             },
 
-            // ── DOM updaters ────────────────────────────────────────────
+            // ── DOM updaters ─────────────────────────────────────────────
             updatePrice(priceUsd) {
-                const el = document.getElementById('wfi-card-price');
+                const el  = document.getElementById('wfi-card-price');
                 if (!el)  return;
                 const num = Number(priceUsd);
                 if (!isFinite(num)) return;
-                el.textContent = '$' + num.toFixed(2);
+                const decimals = num >= 1 ? 2 : 4;
+                el.textContent = '$' + num.toFixed(decimals);
                 this.flash(el);
             },
 
@@ -2287,44 +2264,34 @@
                 this.flash(el);
             },
 
-            // ── Holders via jina.ai → BscScan ───────────────────────────
+            // ── Holders: r.jina.ai → BscScan (mirrors wfi-token.html) ───
             async updateHolders() {
                 const el = document.getElementById('wfi-card-holders');
                 if (!el) return;
-
-                // Token address comes from DexScreener pair; if not yet known, skip quietly
                 if (!this.tokenAddress) {
-                    // Try to populate tokenAddress via DexScreener silently
-                    try {
-                        const pair = await this.fetchDexPair();
-                        if (pair && pair.baseToken && pair.baseToken.address) {
-                            this.tokenAddress = pair.baseToken.address;
-                        }
-                    } catch(e) {}
-                    if (!this.tokenAddress) return;
+                    if (el.textContent === '...') el.textContent = '--';
+                    return;
                 }
-
-                const bscUrl  = 'https://bscscan.com/token/' + this.tokenAddress;
-                const jinaUrl = 'https://r.jina.ai/' + bscUrl + '?t=' + Date.now();
-
+                const jinaUrl = 'https://r.jina.ai/https://bscscan.com/token/'
+                              + this.tokenAddress + '?t=' + Date.now();
                 try {
-                    const res   = await fetch(jinaUrl);
+                    const res   = await fetch(jinaUrl, { method: 'GET' });
                     if (!res.ok) throw new Error('jina ' + res.status);
                     const text  = await res.text();
                     const match = text.match(/Holders?\s*[:\-]?\s*([\d,]+)/i);
-                    if (!match || !match[1]) throw new Error('no match');
+                    if (!match || !match[1]) throw new Error('pattern not found');
                     const count = Number(match[1].replace(/,/g, ''));
                     if (!isFinite(count)) throw new Error('NaN');
                     el.textContent = count.toLocaleString();
                     this.flash(el);
-                } catch(e) {
+                } catch (e) {
                     console.warn('Holders fetch failed:', e);
                     if (el.textContent === '...') el.textContent = '--';
                 }
             }
         };
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             WFICardFetcher.init();
         });
         document.addEventListener('DOMContentLoaded', function() {
