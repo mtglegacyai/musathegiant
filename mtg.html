@@ -2157,14 +2157,10 @@
         // Mirrors exact logic from wfi-token.html
         // ════════════════════════════════════════════════════════════════
         // LIVE WFI DATA — Price · Market Cap · Holders
-        // Mirrors wfi-token.html exactly:
-        //   Primary source : DexScreener direct fetch (CORS-open, no proxy)
-        //   Fallback        : DexScreener via corsproxy.io
-        //   Holders         : BscScan scraped via r.jina.ai text proxy
-        //   Refresh interval: 30 000 ms
-        // Root cause of previous failure: CoinGecko /simple/price blocks
-        // unauthenticated browser requests (CORS + 401). DexScreener sends
-        // Access-Control-Allow-Origin: * so it works directly from any browser.
+        // Exact mirror of wfi-token.html:
+        //   DexScreener plain direct fetch — no proxy, no fallback
+        //   Holders: BscScan via r.jina.ai
+        //   Refresh: 30 000 ms
         // ════════════════════════════════════════════════════════════════
         const WFICardFetcher = {
 
@@ -2209,21 +2205,23 @@
                 }
             },
 
-            // ── DexScreener: direct first, corsproxy fallback ────────────
+            // ── DexScreener: plain direct fetch — identical to wfi-token.html ─
             async fetchDexPair() {
-                const direct = this.dexUrl + '?t=' + Date.now();
-                const proxy  = 'https://corsproxy.io/?' + encodeURIComponent(this.dexUrl);
-                for (const url of [direct, proxy]) {
-                    try {
-                        const res  = await fetch(url, { method: 'GET' });
-                        if (!res.ok) continue;
-                        const raw  = await res.json();
-                        const data = (raw && raw.contents) ? JSON.parse(raw.contents) : raw;
-                        if (data && data.pair)                                       return data.pair;
-                        if (data && Array.isArray(data.pairs) && data.pairs.length)  return data.pairs[0];
-                    } catch (e) { /* try next */ }
+                try {
+                    const url      = this.dexUrl + '?t=' + Date.now();
+                    const response = await fetch(url, { method: 'GET' });
+                    if (!response.ok) {
+                        console.warn('DexScreener returned', response.status);
+                        return null;
+                    }
+                    const data = await response.json();
+                    if (data && data.pair)                                       return data.pair;
+                    if (data && Array.isArray(data.pairs) && data.pairs.length)  return data.pairs[0];
+                    return null;
+                } catch (err) {
+                    console.warn('DexScreener fetch failed:', err);
+                    return null;
                 }
-                return null;
             },
 
             // ── Formatters ───────────────────────────────────────────────
