@@ -1954,19 +1954,22 @@
 
             // ── Price + Market Cap ──────────────────────────────────────
             async fetchPriceAndMcap() {
-                // 1. Try CoinGecko (most accurate, no API key needed for free tier)
-                try {
-                    const res  = await fetch(this.geckoUrl + '&t=' + Date.now());
-                    if (!res.ok) throw new Error('CoinGecko HTTP ' + res.status);
-                    const data = await res.json();
-                    const coin = data && data.wfi;
-                    if (coin && coin.usd) {
-                        this.updatePrice(coin.usd);
-                        if (coin.usd_market_cap) this.updateMcap(coin.usd_market_cap);
-                        return; // success — skip fallback
-                    }
-                } catch(e) {
-                    console.warn('CoinGecko fetch failed, trying DexScreener:', e);
+                // 1. Try CoinGecko — direct first, then via corsproxy if CORS blocks it
+                const geckoProxy = 'https://corsproxy.io/?' + encodeURIComponent(this.geckoUrl);
+                for (const url of [this.geckoUrl, geckoProxy]) {
+                    try {
+                        const res  = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now());
+                        if (!res.ok) continue;
+                        const raw  = await res.json();
+                        // corsproxy wraps payload in { contents: "..." }
+                        const data = (raw && raw.contents) ? JSON.parse(raw.contents) : raw;
+                        const coin = data && data.wfi;
+                        if (coin && coin.usd) {
+                            this.updatePrice(coin.usd);
+                            if (coin.usd_market_cap) this.updateMcap(coin.usd_market_cap);
+                            return; // success — skip DexScreener fallback entirely
+                        }
+                    } catch(e) { /* try next URL */ }
                 }
 
                 // 2. DexScreener fallback
