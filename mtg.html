@@ -2197,7 +2197,7 @@
                         if (pair.baseToken && pair.baseToken.address) {
                             this.tokenAddress = pair.baseToken.address;
                         }
-                        this.updatePrice(pair.priceUsd);
+                        this.updatePrice(pair);
                         const mcap = (pair.marketCap != null) ? pair.marketCap : pair.fdv;
                         if (mcap != null) this.updateMcap(mcap);
                     }
@@ -2227,6 +2227,16 @@
             },
 
             // ── Formatters ───────────────────────────────────────────────
+            formatUsd(value, opts) {
+                const num = Number(value);
+                if (!isFinite(num)) return null;
+                const decimals = (opts && typeof opts.decimals === 'number') ? opts.decimals : 2;
+                return '$' + num.toLocaleString(undefined, {
+                    minimumFractionDigits: decimals,
+                    maximumFractionDigits: decimals
+                });
+            },
+
             formatCompactUsd(value) {
                 const n = Number(value);
                 if (!isFinite(n)) return null;
@@ -2235,7 +2245,7 @@
                 if (abs >= 1e9)  return '$' + (n / 1e9).toFixed(2)  + 'B';
                 if (abs >= 1e6)  return '$' + (n / 1e6).toFixed(2)  + 'M';
                 if (abs >= 1e3)  return '$' + (n / 1e3).toFixed(2)  + 'K';
-                return '$' + n.toFixed(2);
+                return this.formatUsd(n, { decimals: 2 });
             },
 
             flash(el) {
@@ -2245,13 +2255,21 @@
             },
 
             // ── DOM updaters ─────────────────────────────────────────────
-            updatePrice(priceUsd) {
-                const el  = document.getElementById('wfi-card-price');
-                if (!el)  return;
+            // Signature mirrors wfi-token.html: receives the full pair object
+            updatePrice(pair) {
+                const el = document.getElementById('wfi-card-price');
+                if (!el) return;
+                const priceUsd = pair && pair.priceUsd;
                 const num = Number(priceUsd);
-                if (!isFinite(num)) return;
-                const decimals = num >= 1 ? 2 : 4;
-                el.textContent = '$' + num.toFixed(decimals);
+                if (!isFinite(num)) {
+                    el.textContent = 'Unavailable';
+                    return;
+                }
+                // Exact same decimal logic as wfi-token.html
+                let decimals = 4;
+                if (num >= 1)   decimals = 2;
+                if (num >= 100) decimals = 2;
+                el.textContent = this.formatUsd(num, { decimals });
                 this.flash(el);
             },
 
