@@ -2152,71 +2152,66 @@
         })();
 
         // ════════════════════════════════════════
-        // LIVE WFI DATA — Price, Market Cap, Holders
-        // Sources: DexScreener (price + mcap) | BscScan via jina.ai (holders)
-        // Mirrors exact logic from wfi-token.html
-        // ════════════════════════════════════════════════════════════════
-        // LIVE WFI DATA — Price · Market Cap · Holders
-        // Exact mirror of wfi-token.html:
-        //   DexScreener plain direct fetch — no proxy, no fallback
-        //   Holders: BscScan via r.jina.ai
-        //   Refresh: 30 000 ms
-        // ════════════════════════════════════════════════════════════════
+        // LIVE WFI DATA — verbatim copy of WFIDataFetcher from wfi-token.html
+        // Only the 3 element IDs are changed to match index.html's DOM:
+        //   currentPrice  → wfi-card-price
+        //   marketCap     → wfi-card-mcap
+        //   holders       → wfi-card-holders
+        // ════════════════════════════════════════
         const WFICardFetcher = {
+            pairAddress: '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0',
+            chainId: 'bsc',
 
-            pairAddress:  '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0',
-            chainId:      'bsc',
+            get dexScreenerUrl() {
+                return 'https://api.dexscreener.com/latest/dex/pairs/' + this.chainId + '/' + this.pairAddress;
+            },
+
             tokenAddress: null,
-            refreshMs:    30000,
-            _timer:       null,
-            _inFlight:    false,
+            refreshMs: 30000,
+            _timer: null,
+            _fetchInFlight: false,
 
-            get dexUrl() {
-                return 'https://api.dexscreener.com/latest/dex/pairs/'
-                     + this.chainId + '/' + this.pairAddress;
-            },
-
-            // ── Bootstrap (same pattern as wfi-token.html) ──────────────
             init() {
-                this.fetchAll();
+                console.log('Initializing WFI Card Fetcher...');
+                this.setLoadingState(true);
+                this.fetchAllData();
                 if (this._timer) clearInterval(this._timer);
-                this._timer = setInterval(() => this.fetchAll(), this.refreshMs);
+                this._timer = setInterval(() => this.fetchAllData(), this.refreshMs);
             },
 
-            // ── Main cycle ───────────────────────────────────────────────
-            async fetchAll() {
-                if (this._inFlight) return;
-                this._inFlight = true;
+            async fetchAllData() {
+                if (this._fetchInFlight) return;
+                this._fetchInFlight = true;
                 try {
-                    const pair = await this.fetchDexPair();
+                    const pair = await this.fetchDexScreenerPair();
                     if (pair) {
-                        if (pair.baseToken && pair.baseToken.address) {
-                            this.tokenAddress = pair.baseToken.address;
-                        }
+                        this.tokenAddress = (pair.baseToken && pair.baseToken.address) ? pair.baseToken.address : null;
                         this.updatePrice(pair);
-                        const mcap = (pair.marketCap != null) ? pair.marketCap : pair.fdv;
-                        if (mcap != null) this.updateMcap(mcap);
+                        this.updateMarketCap(pair);
+                    } else {
+                        this.showFallbackForPriceAndMcap();
                     }
-                    await this.updateHolders();
+                    await this.updateHoldersCount();
                 } catch (e) {
-                    console.warn('WFICardFetcher.fetchAll:', e);
+                    console.warn('fetchAllData failed:', e);
+                    this.showFallbackForPriceAndMcap();
+                    this.showFallbackForHolders();
                 } finally {
-                    this._inFlight = false;
+                    this._fetchInFlight = false;
                 }
             },
 
-            // ── DexScreener: plain direct fetch — identical to wfi-token.html ─
-            async fetchDexPair() {
+            async fetchDexScreenerPair() {
                 try {
-                    const url      = this.dexUrl + '?t=' + Date.now();
+                    const url = this.dexScreenerUrl + '?t=' + Date.now();
                     const response = await fetch(url, { method: 'GET' });
                     if (!response.ok) {
-                        console.warn('DexScreener returned', response.status);
+                        console.warn('DexScreener API returned', response.status);
                         return null;
                     }
                     const data = await response.json();
-                    if (data && data.pair)                                       return data.pair;
-                    if (data && Array.isArray(data.pairs) && data.pairs.length)  return data.pairs[0];
+                    if (data && data.pair) return data.pair;
+                    if (data && Array.isArray(data.pairs) && data.pairs.length) return data.pairs[0];
                     return null;
                 } catch (err) {
                     console.warn('DexScreener fetch failed:', err);
@@ -2224,7 +2219,23 @@
                 }
             },
 
-            // ── Formatters ───────────────────────────────────────────────
+            setLoadingState(isLoading) {
+                const ids = ['wfi-card-price', 'wfi-card-mcap', 'wfi-card-holders'];
+                ids.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (!el) return;
+                    if (isLoading) el.classList.add('loading');
+                    else el.classList.remove('loading');
+                });
+            },
+
+            markUpdated(el) {
+                if (!el) return;
+                el.classList.remove('loading');
+                el.classList.add('updated');
+                setTimeout(() => el.classList.remove('updated'), 600);
+            },
+
             formatUsd(value, opts) {
                 const num = Number(value);
                 if (!isFinite(num)) return null;
@@ -2236,24 +2247,16 @@
             },
 
             formatCompactUsd(value) {
-                const n = Number(value);
-                if (!isFinite(n)) return null;
-                const abs = Math.abs(n);
-                if (abs >= 1e12) return '$' + (n / 1e12).toFixed(2) + 'T';
-                if (abs >= 1e9)  return '$' + (n / 1e9).toFixed(2)  + 'B';
-                if (abs >= 1e6)  return '$' + (n / 1e6).toFixed(2)  + 'M';
-                if (abs >= 1e3)  return '$' + (n / 1e3).toFixed(2)  + 'K';
-                return this.formatUsd(n, { decimals: 2 });
+                const num = Number(value);
+                if (!isFinite(num)) return null;
+                const abs = Math.abs(num);
+                if (abs >= 1e12) return '$' + (num / 1e12).toFixed(2) + 'T';
+                if (abs >= 1e9)  return '$' + (num / 1e9).toFixed(2) + 'B';
+                if (abs >= 1e6)  return '$' + (num / 1e6).toFixed(2) + 'M';
+                if (abs >= 1e3)  return '$' + (num / 1e3).toFixed(2) + 'K';
+                return this.formatUsd(num, { decimals: 2 });
             },
 
-            flash(el) {
-                if (!el) return;
-                el.style.color = '#ffffff';
-                setTimeout(() => { el.style.color = ''; }, 300);
-            },
-
-            // ── DOM updaters ─────────────────────────────────────────────
-            // Signature mirrors wfi-token.html: receives the full pair object
             updatePrice(pair) {
                 const el = document.getElementById('wfi-card-price');
                 if (!el) return;
@@ -2261,48 +2264,77 @@
                 const num = Number(priceUsd);
                 if (!isFinite(num)) {
                     el.textContent = 'Unavailable';
+                    el.classList.remove('loading');
                     return;
                 }
-                // Exact same decimal logic as wfi-token.html
                 let decimals = 4;
                 if (num >= 1)   decimals = 2;
                 if (num >= 100) decimals = 2;
-                el.textContent = this.formatUsd(num, { decimals });
-                this.flash(el);
+                el.textContent = this.formatUsd(num, { decimals: decimals });
+                this.markUpdated(el);
             },
 
-            updateMcap(value) {
-                const el  = document.getElementById('wfi-card-mcap');
-                if (!el)  return;
-                const fmt = this.formatCompactUsd(value);
-                if (!fmt) return;
-                el.textContent = fmt;
-                this.flash(el);
-            },
-
-            // ── Holders: r.jina.ai → BscScan (mirrors wfi-token.html) ───
-            async updateHolders() {
-                const el = document.getElementById('wfi-card-holders');
+            updateMarketCap(pair) {
+                const el = document.getElementById('wfi-card-mcap');
                 if (!el) return;
-                if (!this.tokenAddress) {
-                    if (el.textContent === '...') el.textContent = '--';
+                const marketCap = pair && (pair.marketCap ?? null);
+                const fdv = pair && (pair.fdv ?? null);
+                const value = (marketCap !== null && marketCap !== undefined) ? marketCap : fdv;
+                const formatted = this.formatCompactUsd(value);
+                if (!formatted) {
+                    el.textContent = 'Unavailable';
+                    el.classList.remove('loading');
                     return;
                 }
-                const jinaUrl = 'https://r.jina.ai/https://bscscan.com/token/'
-                              + this.tokenAddress + '?t=' + Date.now();
+                el.textContent = formatted;
+                this.markUpdated(el);
+            },
+
+            showFallbackForPriceAndMcap() {
+                const priceEl = document.getElementById('wfi-card-price');
+                const mcEl    = document.getElementById('wfi-card-mcap');
+                if (priceEl) {
+                    priceEl.innerHTML = '<a href="https://dexscreener.com/bsc/' + this.pairAddress + '" target="_blank" rel="noopener" style="color:#C7F160;text-decoration:none;">View Live →</a>';
+                    priceEl.classList.remove('loading');
+                }
+                if (mcEl) {
+                    mcEl.innerHTML = '<a href="https://dexscreener.com/bsc/' + this.pairAddress + '" target="_blank" rel="noopener" style="color:#C7F160;text-decoration:none;">View Live →</a>';
+                    mcEl.classList.remove('loading');
+                }
+            },
+
+            showFallbackForHolders() {
+                const holdersEl = document.getElementById('wfi-card-holders');
+                if (!holdersEl) return;
+                const tokenAddr = this.tokenAddress ? this.tokenAddress : '';
+                const url = tokenAddr ? ('https://bscscan.com/token/' + tokenAddr) : 'https://dexscreener.com/bsc/' + this.pairAddress;
+                holdersEl.innerHTML = '<a href="' + url + '" target="_blank" rel="noopener" style="color:#C7F160;text-decoration:none;">View Live →</a>';
+                holdersEl.classList.remove('loading');
+            },
+
+            async updateHoldersCount() {
+                const holdersEl = document.getElementById('wfi-card-holders');
+                if (!holdersEl) return;
+                if (!this.tokenAddress) {
+                    this.showFallbackForHolders();
+                    return;
+                }
+                const bscscanUrl = 'https://bscscan.com/token/' + this.tokenAddress;
+                const proxyUrl = 'https://r.jina.ai/http://' + bscscanUrl.replace(/^https?:\/\//, '');
                 try {
-                    const res   = await fetch(jinaUrl, { method: 'GET' });
-                    if (!res.ok) throw new Error('jina ' + res.status);
-                    const text  = await res.text();
+                    const res = await fetch(proxyUrl + '?t=' + Date.now(), { method: 'GET' });
+                    if (!res.ok) throw new Error('Proxy returned ' + res.status);
+                    const text = await res.text();
                     const match = text.match(/Holders?\s*[:\-]?\s*([\d,]+)/i);
-                    if (!match || !match[1]) throw new Error('pattern not found');
-                    const count = Number(match[1].replace(/,/g, ''));
-                    if (!isFinite(count)) throw new Error('NaN');
-                    el.textContent = count.toLocaleString();
-                    this.flash(el);
-                } catch (e) {
-                    console.warn('Holders fetch failed:', e);
-                    if (el.textContent === '...') el.textContent = '--';
+                    if (!match || !match[1]) throw new Error('Holders count not found in page text');
+                    const raw = match[1].replace(/,/g, '');
+                    const count = Number(raw);
+                    if (!isFinite(count)) throw new Error('Invalid holders number');
+                    holdersEl.innerHTML = '<a href="https://bscscan.com/token/' + this.tokenAddress + '" target="_blank" rel="noopener" style="color:#C7F160;text-decoration:none;">' + count.toLocaleString() + '</a>';
+                    this.markUpdated(holdersEl);
+                } catch (err) {
+                    console.warn('Holders fetch failed:', err);
+                    this.showFallbackForHolders();
                 }
             }
         };
