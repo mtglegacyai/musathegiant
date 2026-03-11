@@ -2152,13 +2152,15 @@
         })();
 
         // ══════════════════════════════════════════════════════════
-        // LIVE WFI PRICE — GeckoTerminal API (CoinGecko onchain data)
-        // api.geckoterminal.com is CORS-open — works natively in any browser.
-        // Same price feed as CoinGecko.com. Refreshes every 30 seconds.
+        // LIVE WFI PRICE — GeckoTerminal token endpoint
+        // Uses the TOKEN address (not a single pool) so the price is
+        // aggregated across ALL exchanges — matches CoinGecko / CryptoRank.
+        // CORS-open, no API key required. Refreshes every 30 seconds.
+        // Token contract: 0x90c48855Bb69f9D2C261Efd0D8C7F35990F2dd6f (BSC)
         // ══════════════════════════════════════════════════════════
         (function () {
-            var POOL    = '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0';
-            var API_URL = 'https://api.geckoterminal.com/api/v2/networks/bsc/pools/' + POOL;
+            var TOKEN   = '0x90c48855bb69f9d2c261efd0d8c7f35990f2dd6f';
+            var API_URL = 'https://api.geckoterminal.com/api/v2/networks/bsc/tokens/' + TOKEN;
             var REFRESH = 30000;
 
             function formatPrice(num) {
@@ -2196,10 +2198,10 @@
                         var attr = json && json.data && json.data.attributes;
                         if (!attr) throw new Error('no attributes');
 
-                        // ── Price ────────────────────────────────────────
+                        // ── Price (aggregated across all pools/exchanges) ─
                         var priceEl = document.getElementById('wfi-card-price');
                         if (priceEl) {
-                            var price = Number(attr.base_token_price_usd);
+                            var price = Number(attr.price_usd);
                             var fmt   = formatPrice(price);
                             if (fmt) { priceEl.textContent = fmt; flash(priceEl); }
                         }
