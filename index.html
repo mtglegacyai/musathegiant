@@ -2151,149 +2151,77 @@
             }, 1000);
         })();
 
-        // ════════════════════════════════════════
-        // LIVE WFI DATA — Price, Market Cap, Holders
-        // Sources: DexScreener (price + mcap) | BscScan via jina.ai (holders)
-        // Mirrors exact logic from wfi-token.html
-        // ════════════════════════════════════════════════════════════════
-        // LIVE WFI DATA — Price · Market Cap · Holders
-        // Mirrors wfi-token.html exactly:
-        //   Primary source : DexScreener direct fetch (CORS-open, no proxy)
-        //   Fallback        : DexScreener via corsproxy.io
-        //   Holders         : BscScan scraped via r.jina.ai text proxy
-        //   Refresh interval: 30 000 ms
-        // Root cause of previous failure: CoinGecko /simple/price blocks
-        // unauthenticated browser requests (CORS + 401). DexScreener sends
-        // Access-Control-Allow-Origin: * so it works directly from any browser.
-        // ════════════════════════════════════════════════════════════════
-        const WFICardFetcher = {
+        // ══════════════════════════════════════════════════════════
+        // LIVE WFI PRICE — GeckoTerminal API (CoinGecko onchain data)
+        // api.geckoterminal.com is CORS-open — works natively in any browser.
+        // Same price feed as CoinGecko.com. Refreshes every 30 seconds.
+        // ══════════════════════════════════════════════════════════
+        (function () {
+            var POOL    = '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0';
+            var API_URL = 'https://api.geckoterminal.com/api/v2/networks/bsc/pools/' + POOL;
+            var REFRESH = 30000;
 
-            pairAddress:  '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0',
-            chainId:      'bsc',
-            tokenAddress: null,
-            refreshMs:    30000,
-            _timer:       null,
-            _inFlight:    false,
+            function formatPrice(num) {
+                if (!isFinite(num)) return null;
+                var decimals = num >= 1 ? 2 : 4;
+                return '$' + num.toLocaleString(undefined, {
+                    minimumFractionDigits: decimals,
+                    maximumFractionDigits: decimals
+                });
+            }
 
-            get dexUrl() {
-                return 'https://api.dexscreener.com/latest/dex/pairs/'
-                     + this.chainId + '/' + this.pairAddress;
-            },
+            function formatCompact(num) {
+                if (!isFinite(num)) return null;
+                var abs = Math.abs(num);
+                if (abs >= 1e12) return '$' + (num / 1e12).toFixed(2) + 'T';
+                if (abs >= 1e9)  return '$' + (num / 1e9).toFixed(2)  + 'B';
+                if (abs >= 1e6)  return '$' + (num / 1e6).toFixed(2)  + 'M';
+                if (abs >= 1e3)  return '$' + (num / 1e3).toFixed(2)  + 'K';
+                return '$' + num.toFixed(2);
+            }
 
-            // ── Bootstrap (same pattern as wfi-token.html) ──────────────
-            init() {
-                this.fetchAll();
-                if (this._timer) clearInterval(this._timer);
-                this._timer = setInterval(() => this.fetchAll(), this.refreshMs);
-            },
-
-            // ── Main cycle ───────────────────────────────────────────────
-            async fetchAll() {
-                if (this._inFlight) return;
-                this._inFlight = true;
-                try {
-                    const pair = await this.fetchDexPair();
-                    if (pair) {
-                        if (pair.baseToken && pair.baseToken.address) {
-                            this.tokenAddress = pair.baseToken.address;
-                        }
-                        this.updatePrice(pair.priceUsd);
-                        const mcap = (pair.marketCap != null) ? pair.marketCap : pair.fdv;
-                        if (mcap != null) this.updateMcap(mcap);
-                    }
-                    await this.updateHolders();
-                } catch (e) {
-                    console.warn('WFICardFetcher.fetchAll:', e);
-                } finally {
-                    this._inFlight = false;
-                }
-            },
-
-            // ── DexScreener: direct first, corsproxy fallback ────────────
-            async fetchDexPair() {
-                const direct = this.dexUrl + '?t=' + Date.now();
-                const proxy  = 'https://corsproxy.io/?' + encodeURIComponent(this.dexUrl);
-                for (const url of [direct, proxy]) {
-                    try {
-                        const res  = await fetch(url, { method: 'GET' });
-                        if (!res.ok) continue;
-                        const raw  = await res.json();
-                        const data = (raw && raw.contents) ? JSON.parse(raw.contents) : raw;
-                        if (data && data.pair)                                       return data.pair;
-                        if (data && Array.isArray(data.pairs) && data.pairs.length)  return data.pairs[0];
-                    } catch (e) { /* try next */ }
-                }
-                return null;
-            },
-
-            // ── Formatters ───────────────────────────────────────────────
-            formatCompactUsd(value) {
-                const n = Number(value);
-                if (!isFinite(n)) return null;
-                const abs = Math.abs(n);
-                if (abs >= 1e12) return '$' + (n / 1e12).toFixed(2) + 'T';
-                if (abs >= 1e9)  return '$' + (n / 1e9).toFixed(2)  + 'B';
-                if (abs >= 1e6)  return '$' + (n / 1e6).toFixed(2)  + 'M';
-                if (abs >= 1e3)  return '$' + (n / 1e3).toFixed(2)  + 'K';
-                return '$' + n.toFixed(2);
-            },
-
-            flash(el) {
+            function flash(el) {
                 if (!el) return;
                 el.style.color = '#ffffff';
-                setTimeout(() => { el.style.color = ''; }, 300);
-            },
-
-            // ── DOM updaters ─────────────────────────────────────────────
-            updatePrice(priceUsd) {
-                const el  = document.getElementById('wfi-card-price');
-                if (!el)  return;
-                const num = Number(priceUsd);
-                if (!isFinite(num)) return;
-                const decimals = num >= 1 ? 2 : 4;
-                el.textContent = '$' + num.toFixed(decimals);
-                this.flash(el);
-            },
-
-            updateMcap(value) {
-                const el  = document.getElementById('wfi-card-mcap');
-                if (!el)  return;
-                const fmt = this.formatCompactUsd(value);
-                if (!fmt) return;
-                el.textContent = fmt;
-                this.flash(el);
-            },
-
-            // ── Holders: r.jina.ai → BscScan (mirrors wfi-token.html) ───
-            async updateHolders() {
-                const el = document.getElementById('wfi-card-holders');
-                if (!el) return;
-                if (!this.tokenAddress) {
-                    if (el.textContent === '...') el.textContent = '--';
-                    return;
-                }
-                const jinaUrl = 'https://r.jina.ai/https://bscscan.com/token/'
-                              + this.tokenAddress + '?t=' + Date.now();
-                try {
-                    const res   = await fetch(jinaUrl, { method: 'GET' });
-                    if (!res.ok) throw new Error('jina ' + res.status);
-                    const text  = await res.text();
-                    const match = text.match(/Holders?\s*[:\-]?\s*([\d,]+)/i);
-                    if (!match || !match[1]) throw new Error('pattern not found');
-                    const count = Number(match[1].replace(/,/g, ''));
-                    if (!isFinite(count)) throw new Error('NaN');
-                    el.textContent = count.toLocaleString();
-                    this.flash(el);
-                } catch (e) {
-                    console.warn('Holders fetch failed:', e);
-                    if (el.textContent === '...') el.textContent = '--';
-                }
+                setTimeout(function () { el.style.color = ''; }, 300);
             }
-        };
 
-        document.addEventListener('DOMContentLoaded', function () {
-            WFICardFetcher.init();
-        });
+            function fetchAndUpdate() {
+                fetch(API_URL + '?t=' + Date.now())
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
+                        return res.json();
+                    })
+                    .then(function (json) {
+                        var attr = json && json.data && json.data.attributes;
+                        if (!attr) throw new Error('no attributes');
+
+                        // ── Price ────────────────────────────────────────
+                        var priceEl = document.getElementById('wfi-card-price');
+                        if (priceEl) {
+                            var price = Number(attr.base_token_price_usd);
+                            var fmt   = formatPrice(price);
+                            if (fmt) { priceEl.textContent = fmt; flash(priceEl); }
+                        }
+
+                        // ── Market Cap ───────────────────────────────────
+                        var mcapEl = document.getElementById('wfi-card-mcap');
+                        if (mcapEl) {
+                            var mcap = Number(attr.market_cap_usd || attr.fdv_usd);
+                            var mfmt = formatCompact(mcap);
+                            if (mfmt) { mcapEl.textContent = mfmt; flash(mcapEl); }
+                        }
+                    })
+                    .catch(function (err) {
+                        console.warn('WFI GeckoTerminal fetch failed:', err);
+                    });
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                fetchAndUpdate();
+                setInterval(fetchAndUpdate, REFRESH);
+            });
+        })();
         document.addEventListener('DOMContentLoaded', function() {
             const scrollBtn = document.getElementById('scroll-to-top');
             if (!scrollBtn) return;
