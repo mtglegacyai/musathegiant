@@ -1933,7 +1933,7 @@
                                 <div class="mining-stat-lbl">MARKET CAP</div>
                             </div>
                             <div class="mining-stat">
-                                <div class="mining-stat-val" id="wfi-card-holders">...</div>
+                                <div class="mining-stat-val" id="wfi-card-holders">33,240</div>
                                 <div class="mining-stat-lbl">HOLDERS</div>
                             </div>
                         </div>
@@ -2152,15 +2152,28 @@
         })();
 
         // ══════════════════════════════════════════════════════════
-        // LIVE WFI PRICE — GeckoTerminal API (CoinGecko onchain data)
-        // api.geckoterminal.com is CORS-open — works natively in any browser.
-        // Same price feed as CoinGecko.com. Refreshes every 30 seconds.
+        // LIVE WFI STATS
+        // Price + Market Cap — GeckoTerminal (CORS-open, refreshes every 30s)
+        // Holders           — BSCScan API     (refreshes every 5 min)
         // ══════════════════════════════════════════════════════════
         (function () {
-            var POOL    = '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0';
-            var API_URL = 'https://api.geckoterminal.com/api/v2/networks/bsc/pools/' + POOL;
-            var REFRESH = 30000;
+            // ── Config ───────────────────────────────────────────
+            var POOL          = '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0';
+            var WFI_CONTRACT  = '0x90c48855bb69f9d2c261efd0d8c7f35990f2dd6f';
 
+            // !! REPLACE THIS with your free BSCScan API key !!
+            // Get one free at: https://bscscan.com/myapikey (takes 2 min)
+            var BSCSCAN_KEY   = 'YOUR_BSCSCAN_API_KEY';
+
+            var POOL_URL      = 'https://api.geckoterminal.com/api/v2/networks/bsc/pools/' + POOL;
+            var HOLDERS_URL   = 'https://api.bscscan.com/api?module=token&action=tokeninfo'
+                                + '&contractaddress=' + WFI_CONTRACT
+                                + '&apikey=' + BSCSCAN_KEY;
+
+            var PRICE_REFRESH   = 30000;       // 30 seconds
+            var HOLDERS_REFRESH = 300000;      // 5 minutes
+
+            // ── Formatters ────────────────────────────────────────
             function formatPrice(num) {
                 if (!isFinite(num)) return null;
                 var decimals = num >= 1 ? 2 : 4;
@@ -2180,14 +2193,20 @@
                 return '$' + num.toFixed(2);
             }
 
+            function formatHolders(num) {
+                if (!isFinite(num) || num <= 0) return null;
+                return num.toLocaleString();   // e.g. "33,240"
+            }
+
             function flash(el) {
                 if (!el) return;
                 el.style.color = '#ffffff';
                 setTimeout(function () { el.style.color = ''; }, 300);
             }
 
-            function fetchAndUpdate() {
-                fetch(API_URL + '?t=' + Date.now())
+            // ── Price + Market Cap (GeckoTerminal) ────────────────
+            function fetchPriceAndMcap() {
+                fetch(POOL_URL + '?t=' + Date.now())
                     .then(function (res) {
                         if (!res.ok) throw new Error('HTTP ' + res.status);
                         return res.json();
@@ -2196,30 +2215,57 @@
                         var attr = json && json.data && json.data.attributes;
                         if (!attr) throw new Error('no attributes');
 
-                        // ── Price ────────────────────────────────────────
                         var priceEl = document.getElementById('wfi-card-price');
                         if (priceEl) {
-                            var price = Number(attr.base_token_price_usd);
-                            var fmt   = formatPrice(price);
+                            var fmt = formatPrice(Number(attr.base_token_price_usd));
                             if (fmt) { priceEl.textContent = fmt; flash(priceEl); }
                         }
 
-                        // ── Market Cap ───────────────────────────────────
                         var mcapEl = document.getElementById('wfi-card-mcap');
                         if (mcapEl) {
-                            var mcap = Number(attr.market_cap_usd || attr.fdv_usd);
-                            var mfmt = formatCompact(mcap);
+                            var mfmt = formatCompact(Number(attr.market_cap_usd || attr.fdv_usd));
                             if (mfmt) { mcapEl.textContent = mfmt; flash(mcapEl); }
                         }
                     })
                     .catch(function (err) {
-                        console.warn('WFI GeckoTerminal fetch failed:', err);
+                        console.warn('WFI price fetch failed:', err);
                     });
             }
 
+            // ── Holders (BSCScan) ─────────────────────────────────
+            function fetchHolders() {
+                var holdersEl = document.getElementById('wfi-card-holders');
+                if (!holdersEl) return;
+
+                // Skip if API key hasn't been set yet
+                if (BSCSCAN_KEY === 'YOUR_BSCSCAN_API_KEY') {
+                    console.info('WFI holders: add your BSCScan API key to enable live updates.');
+                    return;
+                }
+
+                fetch(HOLDERS_URL + '&t=' + Date.now())
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
+                        return res.json();
+                    })
+                    .then(function (json) {
+                        // BSCScan returns: { status:"1", result:[{ holders:"33240", ... }] }
+                        var result  = json && json.result && json.result[0];
+                        var holders = result && Number(result.holders);
+                        var hfmt    = formatHolders(holders);
+                        if (hfmt) { holdersEl.textContent = hfmt; flash(holdersEl); }
+                    })
+                    .catch(function (err) {
+                        console.warn('WFI holders fetch failed:', err);
+                    });
+            }
+
+            // ── Boot ──────────────────────────────────────────────
             document.addEventListener('DOMContentLoaded', function () {
-                fetchAndUpdate();
-                setInterval(fetchAndUpdate, REFRESH);
+                fetchPriceAndMcap();
+                fetchHolders();
+                setInterval(fetchPriceAndMcap, PRICE_REFRESH);
+                setInterval(fetchHolders,      HOLDERS_REFRESH);
             });
         })();
         document.addEventListener('DOMContentLoaded', function() {
