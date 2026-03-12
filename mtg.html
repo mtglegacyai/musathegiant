@@ -2152,16 +2152,18 @@
         })();
 
         // ══════════════════════════════════════════════════════════
-        // LIVE WFI PRICE — GeckoTerminal token endpoint
-        // Uses the TOKEN address (not a single pool) so the price is
-        // aggregated across ALL exchanges — matches CoinGecko / CryptoRank.
-        // CORS-open, no API key required. Refreshes every 30 seconds.
-        // Token contract: 0x90c48855Bb69f9D2C261Efd0D8C7F35990F2dd6f (BSC)
+        // LIVE WFI PRICE — GeckoTerminal API (CoinGecko onchain data)
+        // api.geckoterminal.com is CORS-open — works natively in any browser.
+        // Same price feed as CoinGecko.com. Refreshes every 30 seconds.
         // ══════════════════════════════════════════════════════════
         (function () {
-            var TOKEN   = '0x90c48855bb69f9d2c261efd0d8c7f35990f2dd6f';
-            var API_URL = 'https://api.geckoterminal.com/api/v2/networks/bsc/tokens/' + TOKEN;
-            var REFRESH = 30000;
+            var POOL         = '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0';
+            var POOL_URL     = 'https://api.geckoterminal.com/api/v2/networks/bsc/pools/' + POOL;
+            var REFRESH      = 30000;
+
+            // WFI token address on BSC (base token of the pool above)
+            var TOKEN_ADDR   = '0x8dff3d1619c26e3c5f9e93a13a6db31c84ebb62a';
+            var TOKEN_URL    = 'https://api.geckoterminal.com/api/v2/networks/bsc/tokens/' + TOKEN_ADDR;
 
             function formatPrice(num) {
                 if (!isFinite(num)) return null;
@@ -2182,14 +2184,21 @@
                 return '$' + num.toFixed(2);
             }
 
+            function formatHolders(num) {
+                if (!isFinite(num) || num <= 0) return null;
+                if (num >= 1e6) return (num / 1e6).toFixed(1) + 'M+';
+                if (num >= 1e3) return Math.floor(num / 1000) + 'K+';
+                return num.toLocaleString();
+            }
+
             function flash(el) {
                 if (!el) return;
                 el.style.color = '#ffffff';
                 setTimeout(function () { el.style.color = ''; }, 300);
             }
 
-            function fetchAndUpdate() {
-                fetch(API_URL + '?t=' + Date.now())
+            function fetchPoolData() {
+                fetch(POOL_URL + '?t=' + Date.now())
                     .then(function (res) {
                         if (!res.ok) throw new Error('HTTP ' + res.status);
                         return res.json();
@@ -2198,10 +2207,10 @@
                         var attr = json && json.data && json.data.attributes;
                         if (!attr) throw new Error('no attributes');
 
-                        // ── Price (aggregated across all pools/exchanges) ─
+                        // ── Price ────────────────────────────────────────
                         var priceEl = document.getElementById('wfi-card-price');
                         if (priceEl) {
-                            var price = Number(attr.price_usd);
+                            var price = Number(attr.base_token_price_usd);
                             var fmt   = formatPrice(price);
                             if (fmt) { priceEl.textContent = fmt; flash(priceEl); }
                         }
@@ -2215,13 +2224,49 @@
                         }
                     })
                     .catch(function (err) {
-                        console.warn('WFI GeckoTerminal fetch failed:', err);
+                        console.warn('WFI pool fetch failed:', err);
                     });
+            }
+
+            function fetchHolders() {
+                var holdersEl = document.getElementById('wfi-card-holders');
+                if (!holdersEl) return;
+
+                fetch(TOKEN_URL + '?t=' + Date.now())
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
+                        return res.json();
+                    })
+                    .then(function (json) {
+                        var attr = json && json.data && json.data.attributes;
+                        if (!attr) throw new Error('no token attributes');
+
+                        var holders = Number(attr.holders || attr.number_of_holders || 0);
+                        var hfmt    = formatHolders(holders);
+                        if (hfmt) { holdersEl.textContent = hfmt; flash(holdersEl); }
+                        else {
+                            // Fallback: show community figure from marketing copy
+                            holdersEl.textContent = '100K+';
+                        }
+                    })
+                    .catch(function (err) {
+                        console.warn('WFI holders fetch failed:', err);
+                        // Fallback so element never stays on "..."
+                        if (holdersEl.textContent === '...') {
+                            holdersEl.textContent = '100K+';
+                        }
+                    });
+            }
+
+            function fetchAndUpdate() {
+                fetchPoolData();
+                fetchHolders();
             }
 
             document.addEventListener('DOMContentLoaded', function () {
                 fetchAndUpdate();
-                setInterval(fetchAndUpdate, REFRESH);
+                setInterval(fetchPoolData, REFRESH);          // price + mcap every 30s
+                setInterval(fetchHolders,  REFRESH * 10);     // holders every 5 min (changes slowly)
             });
         })();
         document.addEventListener('DOMContentLoaded', function() {
