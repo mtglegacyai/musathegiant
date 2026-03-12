@@ -2151,122 +2151,142 @@
             }, 1000);
         })();
 
-        // ══════════════════════════════════════════════════════════
-        // LIVE WFI STATS
-        // Price + Market Cap — GeckoTerminal (CORS-open, refreshes every 30s)
-        // Holders           — BSCScan API     (refreshes every 5 min)
-        // ══════════════════════════════════════════════════════════
+        // ══════════════════════════════════════════════════════════════════
+        // LIVE WFI STATS — fully automatic, no API key needed
+        //
+        // Price + Market Cap  →  GeckoTerminal   (refreshes every 30s)
+        // Holders             →  BSCScan public page via CORS proxy
+        //                        (refreshes every 5 min, same source as DexScreener)
+        //                        Tries allorigins.win first, corsproxy.io as fallback.
+        // ══════════════════════════════════════════════════════════════════
         (function () {
-            // ── Config ───────────────────────────────────────────
-            var POOL          = '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0';
-            var WFI_CONTRACT  = '0x90c48855bb69f9d2c261efd0d8c7f35990f2dd6f';
 
-            // !! REPLACE THIS with your free BSCScan API key !!
-            // Get one free at: https://bscscan.com/myapikey (takes 2 min)
-            var BSCSCAN_KEY   = 'YOUR_BSCSCAN_API_KEY';
+            var WFI_CONTRACT = '0x90c48855Bb69f9D2C261Efd0D8C7F35990F2dd6f';
+            var POOL         = '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0';
+            var BSCSCAN_PAGE = 'https://bscscan.com/token/' + WFI_CONTRACT;
+            var GECKO_URL    = 'https://api.geckoterminal.com/api/v2/networks/bsc/pools/' + POOL;
 
-            var POOL_URL      = 'https://api.geckoterminal.com/api/v2/networks/bsc/pools/' + POOL;
-            var HOLDERS_URL   = 'https://api.bscscan.com/api?module=token&action=tokeninfo'
-                                + '&contractaddress=' + WFI_CONTRACT
-                                + '&apikey=' + BSCSCAN_KEY;
+            // CORS proxy URLs — tried in order, stops at first success
+            var PROXIES = [
+                function (url) { return 'https://api.allorigins.win/get?url=' + encodeURIComponent(url); },
+                function (url) { return 'https://corsproxy.io/?' + encodeURIComponent(url); },
+                function (url) { return 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(url); }
+            ];
 
-            var PRICE_REFRESH   = 30000;       // 30 seconds
-            var HOLDERS_REFRESH = 300000;      // 5 minutes
-
-            // ── Formatters ────────────────────────────────────────
-            function formatPrice(num) {
-                if (!isFinite(num)) return null;
-                var decimals = num >= 1 ? 2 : 4;
-                return '$' + num.toLocaleString(undefined, {
-                    minimumFractionDigits: decimals,
-                    maximumFractionDigits: decimals
-                });
+            // ── Formatters ────────────────────────────────────────────
+            function fmtPrice(n) {
+                if (!isFinite(n)) return null;
+                var d = n >= 1 ? 2 : 4;
+                return '$' + n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
             }
 
-            function formatCompact(num) {
-                if (!isFinite(num)) return null;
-                var abs = Math.abs(num);
-                if (abs >= 1e12) return '$' + (num / 1e12).toFixed(2) + 'T';
-                if (abs >= 1e9)  return '$' + (num / 1e9).toFixed(2)  + 'B';
-                if (abs >= 1e6)  return '$' + (num / 1e6).toFixed(2)  + 'M';
-                if (abs >= 1e3)  return '$' + (num / 1e3).toFixed(2)  + 'K';
-                return '$' + num.toFixed(2);
-            }
-
-            function formatHolders(num) {
-                if (!isFinite(num) || num <= 0) return null;
-                return num.toLocaleString();   // e.g. "33,240"
+            function fmtCompact(n) {
+                if (!isFinite(n)) return null;
+                var a = Math.abs(n);
+                if (a >= 1e12) return '$' + (n / 1e12).toFixed(2) + 'T';
+                if (a >= 1e9)  return '$' + (n / 1e9).toFixed(2)  + 'B';
+                if (a >= 1e6)  return '$' + (n / 1e6).toFixed(2)  + 'M';
+                if (a >= 1e3)  return '$' + (n / 1e3).toFixed(2)  + 'K';
+                return '$' + n.toFixed(2);
             }
 
             function flash(el) {
                 if (!el) return;
-                el.style.color = '#ffffff';
+                el.style.color = '#fff';
                 setTimeout(function () { el.style.color = ''; }, 300);
             }
 
-            // ── Price + Market Cap (GeckoTerminal) ────────────────
-            function fetchPriceAndMcap() {
-                fetch(POOL_URL + '?t=' + Date.now())
-                    .then(function (res) {
-                        if (!res.ok) throw new Error('HTTP ' + res.status);
-                        return res.json();
+            // ── Extract holder count from BSCScan HTML ────────────────
+            // BSCScan renders holder count as e.g. "33,240 addresses"
+            // We try several regex patterns to be resilient to page changes.
+            function parseHolders(html) {
+                var patterns = [
+                    /(\d[\d,]+)\s+address/i,
+                    /[Hh]olders?[^>]*>\s*([\d,]+)/,
+                    /token_holders[^>]*>\s*([\d,]+)/,
+                    /"holders"\s*:\s*"?([\d,]+)"?/
+                ];
+                for (var i = 0; i < patterns.length; i++) {
+                    var m = html.match(patterns[i]);
+                    if (m) {
+                        var n = parseInt(m[1].replace(/,/g, ''), 10);
+                        if (n > 0) return n;
+                    }
+                }
+                return null;
+            }
+
+            // ── Fetch BSCScan page via proxy chain, parse holders ─────
+            function tryProxy(proxyIndex, onSuccess) {
+                if (proxyIndex >= PROXIES.length) return; // all proxies exhausted
+
+                var proxyUrl = PROXIES[proxyIndex](BSCSCAN_PAGE);
+
+                fetch(proxyUrl)
+                    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+                    .then(function (text) {
+                        // allorigins.win wraps response in JSON: { contents: "..." }
+                        var html = text;
+                        try {
+                            var j = JSON.parse(text);
+                            if (j && j.contents) html = j.contents;
+                        } catch (e) { /* not JSON, use raw text */ }
+
+                        var holders = parseHolders(html);
+                        if (holders) {
+                            onSuccess(holders);
+                        } else {
+                            // Parsed OK but couldn't find holders — try next proxy
+                            tryProxy(proxyIndex + 1, onSuccess);
+                        }
                     })
+                    .catch(function () {
+                        // Network error — try next proxy
+                        tryProxy(proxyIndex + 1, onSuccess);
+                    });
+            }
+
+            function fetchHolders() {
+                var el = document.getElementById('wfi-card-holders');
+                if (!el) return;
+
+                tryProxy(0, function (holders) {
+                    el.textContent = holders.toLocaleString(); // "33,240"
+                    flash(el);
+                });
+            }
+
+            // ── Price + Market Cap (GeckoTerminal) ────────────────────
+            function fetchPriceAndMcap() {
+                fetch(GECKO_URL + '?t=' + Date.now())
+                    .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
                     .then(function (json) {
-                        var attr = json && json.data && json.data.attributes;
-                        if (!attr) throw new Error('no attributes');
+                        var a = json && json.data && json.data.attributes;
+                        if (!a) return;
 
                         var priceEl = document.getElementById('wfi-card-price');
                         if (priceEl) {
-                            var fmt = formatPrice(Number(attr.base_token_price_usd));
-                            if (fmt) { priceEl.textContent = fmt; flash(priceEl); }
+                            var p = fmtPrice(Number(a.base_token_price_usd));
+                            if (p) { priceEl.textContent = p; flash(priceEl); }
                         }
 
                         var mcapEl = document.getElementById('wfi-card-mcap');
                         if (mcapEl) {
-                            var mfmt = formatCompact(Number(attr.market_cap_usd || attr.fdv_usd));
-                            if (mfmt) { mcapEl.textContent = mfmt; flash(mcapEl); }
+                            var m = fmtCompact(Number(a.market_cap_usd || a.fdv_usd));
+                            if (m) { mcapEl.textContent = m; flash(mcapEl); }
                         }
                     })
-                    .catch(function (err) {
-                        console.warn('WFI price fetch failed:', err);
-                    });
+                    .catch(function (e) { console.warn('WFI price fetch failed:', e); });
             }
 
-            // ── Holders (BSCScan) ─────────────────────────────────
-            function fetchHolders() {
-                var holdersEl = document.getElementById('wfi-card-holders');
-                if (!holdersEl) return;
-
-                // Skip if API key hasn't been set yet
-                if (BSCSCAN_KEY === 'YOUR_BSCSCAN_API_KEY') {
-                    console.info('WFI holders: add your BSCScan API key to enable live updates.');
-                    return;
-                }
-
-                fetch(HOLDERS_URL + '&t=' + Date.now())
-                    .then(function (res) {
-                        if (!res.ok) throw new Error('HTTP ' + res.status);
-                        return res.json();
-                    })
-                    .then(function (json) {
-                        // BSCScan returns: { status:"1", result:[{ holders:"33240", ... }] }
-                        var result  = json && json.result && json.result[0];
-                        var holders = result && Number(result.holders);
-                        var hfmt    = formatHolders(holders);
-                        if (hfmt) { holdersEl.textContent = hfmt; flash(holdersEl); }
-                    })
-                    .catch(function (err) {
-                        console.warn('WFI holders fetch failed:', err);
-                    });
-            }
-
-            // ── Boot ──────────────────────────────────────────────
+            // ── Boot ──────────────────────────────────────────────────
             document.addEventListener('DOMContentLoaded', function () {
                 fetchPriceAndMcap();
                 fetchHolders();
-                setInterval(fetchPriceAndMcap, PRICE_REFRESH);
-                setInterval(fetchHolders,      HOLDERS_REFRESH);
+                setInterval(fetchPriceAndMcap, 30000);   // price every 30s
+                setInterval(fetchHolders,      300000);  // holders every 5 min
             });
+
         })();
         document.addEventListener('DOMContentLoaded', function() {
             const scrollBtn = document.getElementById('scroll-to-top');
