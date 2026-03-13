@@ -215,6 +215,7 @@
 
         .nav-dropdown .menu-dot.blue  { background: var(--aurum); box-shadow: 0 0 6px var(--aurum); }
         .nav-dropdown .menu-dot.green { background: var(--wefi);  box-shadow: 0 0 6px var(--wefi); }
+        .nav-dropdown .menu-dot.valr  { background: var(--valr);  box-shadow: 0 0 6px var(--valr); }
 
         .nav-dropdown .menu-label {
             font-family: var(--f-head);
@@ -1845,6 +1846,10 @@
 
             <div class="nav-dropdown" id="nav-dropdown" role="menu">
                 <p class="menu-label">Income Streams</p>
+                <a href="#start-here" role="menuitem" onclick="closeMenu()">
+                    <span class="menu-dot valr"></span>
+                    Wallets
+                </a>
                 <a href="#aurum" role="menuitem" onclick="closeMenu()">
                     <span class="menu-dot blue"></span>
                     Aurum
@@ -2884,6 +2889,7 @@
                 <div>
                     <h3 class="footer-heading">Income Streams</h3>
                     <ul class="footer-links">
+                        <li><a href="#start-here">Crypto Wallets</a></li>
                         <li><a href="https://www.musathegiant.com/aurum.html" target="_blank" rel="noopener noreferrer">Aurum Foundation</a></li>
                         <li><a href="https://www.deobankdefi.com" target="_blank" rel="noopener noreferrer">WeFi DeoBanking</a></li>
                     </ul>
