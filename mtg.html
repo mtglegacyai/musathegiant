@@ -118,7 +118,7 @@
             position: relative;
         }
 
-        /* Hamburger button — centered */
+        /* Hamburger button  -  centered */
         .hamburger {
             display: flex;
             flex-direction: column;
@@ -151,7 +151,7 @@
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        /* Hamburger open state — X shape */
+        /* Hamburger open state  -  X shape */
         .hamburger.open .bar:nth-child(1) {
             transform: translateY(7px) rotate(45deg);
         }
@@ -247,7 +247,7 @@
             transform-origin: center center;
         }
 
-        /* Single soft subtle pulse — barely there, almost unnoticeable */
+        /* Single soft subtle pulse  -  barely there, almost unnoticeable */
         @keyframes doof {
             0%   { transform: scale(1);      }
             15%  { transform: scale(1.025);  }
@@ -937,7 +937,7 @@
            SCROLL REVEAL SYSTEM
         =========================== */
 
-        /* Base hidden state — all reveal elements start here */
+        /* Base hidden state  -  all reveal elements start here */
         .reveal {
             opacity: 0;
             will-change: opacity, transform;
@@ -954,14 +954,14 @@
         .reveal-scale  { transform: scale(0.92); }
         .reveal-blur   { transform: translateY(28px); filter: blur(6px); }
 
-        /* Fired state — observer adds this class */
+        /* Fired state  -  observer adds this class */
         .reveal.in-view {
             opacity: 1;
             transform: none;
             filter: none;
         }
 
-        /* Divider line reveal — draws in from center */
+        /* Divider line reveal  -  draws in from center */
         .divider {
             transform: scaleX(0);
             transform-origin: center;
@@ -1244,7 +1244,7 @@
             .card-body { padding: 24px 20px 28px; }
             .social-inner { flex-direction: column; align-items: flex-start; }
 
-            /* Keep vis-stat visible — scale down slightly */
+            /* Keep vis-stat visible  -  scale down slightly */
             .vis-stat-num { font-size: 1.25rem; }
             .vis-stat-label { font-size: 0.56rem; letter-spacing: 1px; }
             .vis-stat { top: 14px; right: 14px; }
@@ -1267,7 +1267,7 @@
             .card-visual { height: 230px; }
             .card-visual.wefi-vis { height: 270px; }
 
-            /* Never hide vis-stat — scale it to fit */
+            /* Never hide vis-stat  -  scale it to fit */
             .vis-stat { top: 12px; right: 12px; }
             .vis-stat-num { font-size: 1.1rem; }
             .vis-stat-label { font-size: 0.52rem; letter-spacing: 0.8px; }
@@ -1298,6 +1298,404 @@
             .mining-stat-val { font-size: 0.6rem; }
             .mining-stat-lbl { font-size: 0.38rem; }
         }
+        /* ===========================
+           VALR ONBOARDING SECTION
+        =========================== */
+        :root {
+            --valr:        #1E4DF2;
+            --valr-dim:    rgba(30,77,242,0.55);
+            --valr-glow:   rgba(30,77,242,0.15);
+            --valr-border: rgba(30,77,242,0.22);
+            --valr-bg:     #030F0E;
+        }
+
+        /* ── Wave divider between hero and this section ── */
+        .valr-wave-divider {
+            display: block;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            margin-bottom: -1px;
+        }
+        .valr-wave-divider svg {
+            display: block;
+            width: 100%;
+            height: 60px;
+        }
+
+        /* ── Section wrapper ── */
+        .valr-section {
+            position: relative;
+            padding: 72px 0 80px;
+            overflow: hidden;
+        }
+        .valr-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(30,77,242,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* ── Eyebrow / step-zero badge ── */
+        .valr-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--valr);
+            margin-bottom: 18px;
+            padding: 6px 16px;
+            border: 1px solid var(--valr-border);
+            border-radius: 50px;
+            background: var(--valr-glow);
+        }
+        .valr-eyebrow-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--valr);
+            box-shadow: 0 0 8px var(--valr);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        /* ── Section heading ── */
+        .valr-heading {
+            font-family: var(--f-head);
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.4px;
+            margin-bottom: 16px;
+        }
+        .valr-heading .t-valr {
+            background: linear-gradient(90deg, #1E4DF2, #4B70F5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── Intro paragraph ── */
+        .valr-intro {
+            font-size: 1rem;
+            color: var(--dim);
+            max-width: 580px;
+            line-height: 1.75;
+            margin-bottom: 40px;
+        }
+
+        /* ── Primary CTA ── */
+        .valr-cta-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        .valr-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            padding: 17px 36px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #1E4DF2 0%, #1640D4 100%);
+            color: #FFFFFF;
+            font-family: var(--f-head);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 8px 32px rgba(30,77,242,0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        .valr-cta-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+            border-radius: inherit;
+        }
+        .valr-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 44px rgba(30,77,242,0.5);
+        }
+        .valr-cta-btn svg { flex-shrink: 0; }
+
+        .valr-code-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border: 1px solid var(--valr-border);
+            border-radius: 50px;
+            background: var(--valr-glow);
+            font-family: var(--f-head);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--valr);
+            letter-spacing: 1px;
+        }
+        .valr-code-pill span.code-label {
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--valr-dim);
+        }
+
+        /* ── Infographic steps grid ── */
+        .valr-steps-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--valr);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .valr-steps-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--valr-border);
+        }
+
+        .valr-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 14px;
+            margin-bottom: 48px;
+        }
+
+        .valr-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .valr-step::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: linear-gradient(180deg, #1E4DF2, #4B70F5);
+            border-radius: 0 0 0 16px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .valr-step:hover {
+            border-color: var(--valr-border);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(30,77,242,0.1);
+        }
+        .valr-step:hover::before { opacity: 1; }
+
+        .valr-step-num {
+            flex-shrink: 0;
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            background: var(--valr-glow);
+            border: 1.5px solid var(--valr-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--f-head);
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--valr);
+        }
+
+        .valr-step-content {}
+        .valr-step-title {
+            font-family: var(--f-head);
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--white);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        .valr-step-desc {
+            font-size: 0.8rem;
+            color: var(--dim);
+            line-height: 1.55;
+        }
+        .valr-step-desc .highlight {
+            color: var(--valr);
+            font-weight: 600;
+        }
+
+        /* ── Progress connector row (visual flow) ── */
+        .valr-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+            padding: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+        }
+        .valr-flow::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(30,77,242,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .valr-flow-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 7px;
+            min-width: 72px;
+            position: relative;
+            z-index: 1;
+        }
+        .valr-flow-icon {
+            width: 46px; height: 46px;
+            border-radius: 50%;
+            background: var(--valr-glow);
+            border: 1.5px solid var(--valr-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: transform 0.2s ease;
+        }
+        .valr-flow-icon:hover { transform: scale(1.12); }
+        .valr-flow-caption {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--faint);
+            text-align: center;
+            max-width: 68px;
+            line-height: 1.3;
+        }
+        .valr-flow-arrow {
+            color: var(--valr-dim);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin: 0 4px;
+            align-self: flex-start;
+            margin-top: 15px;
+        }
+
+        /* ── Backup + Help row ── */
+        .valr-footer-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: stretch;
+        }
+
+        .valr-backup-card {
+            flex: 1;
+            min-width: 260px;
+            padding: 20px 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .valr-backup-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: rgba(240,185,11,0.1);
+            border: 1px solid rgba(240,185,11,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        .valr-backup-text {}
+        .valr-backup-title {
+            font-family: var(--f-head);
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .valr-backup-desc {
+            font-size: 0.78rem;
+            color: var(--dim);
+            line-height: 1.5;
+        }
+        .valr-backup-desc a {
+            color: rgba(240,185,11,0.8);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .valr-help-card {
+            flex: 1;
+            min-width: 260px;
+            padding: 20px 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .valr-help-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: rgba(37,211,102,0.1);
+            border: 1px solid rgba(37,211,102,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        .valr-help-title {
+            font-family: var(--f-head);
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .valr-help-desc {
+            font-size: 0.78rem;
+            color: var(--dim);
+            line-height: 1.5;
+        }
+
+        /* ── Responsive tweaks ── */
+        @media (max-width: 600px) {
+            .valr-steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .valr-flow-arrow { display: none; }
+            .valr-flow { gap: 12px; }
+            .valr-flow-node { min-width: 60px; }
+            .valr-flow-icon { width: 40px; height: 40px; font-size: 1rem; }
+        }
+
     </style>
 </head>
 <body>
@@ -1334,7 +1732,7 @@
     <section class="hero" aria-labelledby="hero-title">
         <div class="wrap">
 
-            <!-- MTG Vector Logo — premium rebuild v3 -->
+            <!-- MTG Vector Logo  -  premium rebuild v3 -->
             <div class="hero-logo-wrap" role="img" aria-label="musathegiant.com">
                 <svg class="hero-logo-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="overflow:hidden;display:block;">
                 <defs>
@@ -1370,7 +1768,7 @@
                   <path id="ua" d="M 46,250 A 162,162 0 0,0 354,250"/>
                 </defs>
 
-                <!-- Outer glow halo — surges on each doof -->
+                <!-- Outer glow halo  -  surges on each doof -->
                 <circle cx="200" cy="200" r="185" fill="none" stroke="rgba(0,115,255,0.28)" stroke-width="16" filter="url(#hl)"
                     style="animation: doofGlow 3.2s ease-in-out 1.2s infinite;"/>
                 <!-- Sharp blue border -->
@@ -1435,7 +1833,7 @@
                     fill="url(#mg)"
                     filter="url(#sh)">MTG</text>
 
-                  <!-- LOWER CIRCUIT TRACES — all end by y=288 -->
+                  <!-- LOWER CIRCUIT TRACES  -  all end by y=288 -->
                   <g stroke="rgba(255,255,255,0.82)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1" fill="none">
                     <polyline points="176,252 176,268 154,268 154,284"/>
                     <polyline points="187,252 187,280"/>
@@ -1471,7 +1869,7 @@
                 <!-- CURVED BOTTOM TEXT
                      Arc: M 89,308 A 155,155 0 0,1 311,308
                      Clockwise sweep → dips to (200,355) → U-shape ✓
-                     Traces end y=288. Gap=20px. OUTSIDE clip — never masked. -->
+                     Traces end y=288. Gap=20px. OUTSIDE clip  -  never masked. -->
                 <text
                   font-family="'Outfit','DM Sans',sans-serif"
                   font-style="italic"
@@ -1493,6 +1891,240 @@
             <p class="hero-body">
                 Unlock your path to financial freedom with exclusive access to meticulously vetted ₿itcoin, Crypto, AI, Trading, Affiliate, and Digital Marketing opportunities! Discover more below...
             </p>
+
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         VALR ONBOARDING SECTION  -  "Your First Step Into Crypto"
+    ══════════════════════════════════════════════════════════════ -->
+
+    <!-- Wave divider separating Hero from onboarding section -->
+    <div class="valr-wave-divider" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="rgba(30,77,242,0.0)"/>
+                    <stop offset="30%" stop-color="rgba(30,77,242,0.12)"/>
+                    <stop offset="70%" stop-color="rgba(0,115,255,0.10)"/>
+                    <stop offset="100%" stop-color="rgba(0,115,255,0.0)"/>
+                </linearGradient>
+            </defs>
+            <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,10 1440,30 L1440,60 L0,60 Z"
+                  fill="url(#waveGrad)" opacity="0.5"/>
+            <path d="M0,45 C360,20 720,55 1080,38 C1260,30 1380,42 1440,48 L1440,60 L0,60 Z"
+                  fill="rgba(30,77,242,0.06)"/>
+        </svg>
+    </div>
+
+    <section class="valr-section" id="start-here" aria-labelledby="valr-heading">
+        <div class="wrap">
+
+            <!-- ── Eyebrow ── -->
+            <div class="valr-eyebrow reveal reveal-up">
+                <span class="valr-eyebrow-dot" aria-hidden="true"></span>
+                Step Zero  -  Before You Begin
+            </div>
+
+            <!-- ── Heading ── -->
+            <h2 class="valr-heading reveal reveal-up" id="valr-heading" style="transition-delay:0.05s">
+                Your First Step<br>
+                Into <span class="t-valr">Crypto</span> Starts Here
+            </h2>
+
+            <!-- ── Intro copy ── -->
+            <p class="valr-intro reveal reveal-up" style="transition-delay:0.1s">
+                Before you can participate in any income stream on this site, you need a crypto exchange account  -  a secure wallet where you can buy, hold, and transfer stablecoins like <strong style="color:var(--white)">USDT</strong> and <strong style="color:var(--white)">USDC</strong>. It takes less than 10 minutes. Follow the guide below and I'll walk you through every step.
+            </p>
+
+            <!-- ── CTA row ── -->
+            <div class="valr-cta-wrap reveal reveal-up" style="transition-delay:0.15s">
+                <a href="https://www.valr.com/invite/VAKM6VZY"
+                   class="valr-cta-btn"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Open a VALR account with my referral code">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Open Your VALR Account
+                </a>
+
+                <div class="valr-code-pill">
+                    <span class="code-label">Referral Code</span>
+                    <span>VAKM6VZY</span>
+                </div>
+            </div>
+
+            <!-- ── Referral benefit callout ── -->
+            <p class="reveal reveal-up" style="font-size:0.82rem;color:var(--dim);margin-bottom:52px;margin-top:-28px;max-width:520px;line-height:1.6;transition-delay:0.18s">
+                ✦ Using my referral code <strong style="color:var(--valr)">VAKM6VZY</strong> automatically unlocks <strong style="color:var(--white)">lifetime trading fee discounts</strong> plus additional rebates on every trade  -  a permanent advantage over signing up without a code.
+            </p>
+
+            <!-- ── Visual Progress Flow (infographic) ── -->
+            <p class="valr-steps-label reveal reveal-up" style="transition-delay:0.2s">VALR Registration Flow</p>
+
+            <div class="valr-flow reveal reveal-up" style="transition-delay:0.22s" aria-label="Visual flow of the registration process">
+                <div class="valr-flow-node">
+                    <div class="valr-flow-icon">🖱️</div>
+                    <span class="valr-flow-caption">Click Link</span>
+                </div>
+                <div class="valr-flow-arrow" aria-hidden="true">›</div>
+                <div class="valr-flow-node">
+                    <div class="valr-flow-icon">👤</div>
+                    <span class="valr-flow-caption">Your Name</span>
+                </div>
+                <div class="valr-flow-arrow" aria-hidden="true">›</div>
+                <div class="valr-flow-node">
+                    <div class="valr-flow-icon">🌍</div>
+                    <span class="valr-flow-caption">Country</span>
+                </div>
+                <div class="valr-flow-arrow" aria-hidden="true">›</div>
+                <div class="valr-flow-node">
+                    <div class="valr-flow-icon">🏷️</div>
+                    <span class="valr-flow-caption">Referral Code</span>
+                </div>
+                <div class="valr-flow-arrow" aria-hidden="true">›</div>
+                <div class="valr-flow-node">
+                    <div class="valr-flow-icon">📧</div>
+                    <span class="valr-flow-caption">Email</span>
+                </div>
+                <div class="valr-flow-arrow" aria-hidden="true">›</div>
+                <div class="valr-flow-node">
+                    <div class="valr-flow-icon">🔐</div>
+                    <span class="valr-flow-caption">Password</span>
+                </div>
+                <div class="valr-flow-arrow" aria-hidden="true">›</div>
+                <div class="valr-flow-node">
+                    <div class="valr-flow-icon">✅</div>
+                    <span class="valr-flow-caption">Terms</span>
+                </div>
+                <div class="valr-flow-arrow" aria-hidden="true">›</div>
+                <div class="valr-flow-node">
+                    <div class="valr-flow-icon">📬</div>
+                    <span class="valr-flow-caption">Verify Email</span>
+                </div>
+                <div class="valr-flow-arrow" aria-hidden="true">›</div>
+                <div class="valr-flow-node">
+                    <div class="valr-flow-icon">🔓</div>
+                    <span class="valr-flow-caption">Sign In</span>
+                </div>
+                <div class="valr-flow-arrow" aria-hidden="true">›</div>
+                <div class="valr-flow-node">
+                    <div class="valr-flow-icon">🪪</div>
+                    <span class="valr-flow-caption">Verify ID</span>
+                </div>
+            </div>
+
+            <!-- ── Detailed step cards ── -->
+            <div class="valr-steps-grid" role="list">
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.05s">
+                    <div class="valr-step-num" aria-label="Step 1">01</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Click the VALR Button Above</p>
+                        <p class="valr-step-desc">Tap the <span class="highlight">Open Your VALR Account</span> button. This opens the registration page with my referral code pre-loaded.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.08s">
+                    <div class="valr-step-num" aria-label="Step 2">02</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Enter Your Name &amp; Surname</p>
+                        <p class="valr-step-desc">Use your full legal name exactly as it appears on your ID document  -  this is required for verification later.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.11s">
+                    <div class="valr-step-num" aria-label="Step 3">03</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Select Your Country</p>
+                        <p class="valr-step-desc">Choose your country of residence from the dropdown. VALR supports users across Africa and beyond.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.14s">
+                    <div class="valr-step-num" aria-label="Step 4">04</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Confirm the Referral Code</p>
+                        <p class="valr-step-desc">Make sure the field shows <span class="highlight">VAKM6VZY</span>. This is your key to permanent fee discounts  -  don't skip it.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.17s">
+                    <div class="valr-step-num" aria-label="Step 5">05</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Enter Your Email Address</p>
+                        <p class="valr-step-desc">Use an email you check regularly  -  VALR will send a verification link here in the next step.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.20s">
+                    <div class="valr-step-num" aria-label="Step 6">06</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Create a Strong Password</p>
+                        <p class="valr-step-desc">Use at least <span class="highlight">14 characters</span> with a mix of letters, numbers, and symbols. Store it somewhere safe  -  never reuse passwords.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.23s">
+                    <div class="valr-step-num" aria-label="Step 7">07</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Agree to Terms &amp; Conditions</p>
+                        <p class="valr-step-desc">Read and accept VALR's terms of service. Then click <span class="highlight">Create Account</span> to proceed.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.26s">
+                    <div class="valr-step-num" aria-label="Step 8">08</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Verify Your Email</p>
+                        <p class="valr-step-desc">Check your inbox for a confirmation email from VALR. Click the link inside to activate your account. Check spam if needed.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.29s">
+                    <div class="valr-step-num" aria-label="Step 9">09</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Sign In to Your New Account</p>
+                        <p class="valr-step-desc">Return to <span class="highlight">valr.com</span>, sign in with your email and password, and you're in. You can also download the official VALR app directly from <a href="https://www.valr.com" target="_blank" rel="noopener noreferrer" style="color:var(--valr);font-weight:600;text-decoration:underline;text-underline-offset:2px;">valr.com</a> to manage your account on the go.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.32s">
+                    <div class="valr-step-num" aria-label="Step 10">10</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Complete Identity Verification</p>
+                        <p class="valr-step-desc">Upload your ID document and a selfie. This is a regulatory requirement (KYC) that unlocks full deposit and withdrawal access. Usually approved within minutes.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── Backup + Help row ── -->
+            <div class="valr-footer-row reveal reveal-up" style="transition-delay:0.35s">
+
+                <div class="valr-backup-card">
+                    <div class="valr-backup-icon" aria-hidden="true">🔄</div>
+                    <div class="valr-backup-text">
+                        <p class="valr-backup-title">VALR Not Available in Your Country?</p>
+                        <p class="valr-backup-desc">
+                            No problem  -  use <a href="https://www.binance.com/referral/earn-together/refer2earn-usdc/claim?hl=en&ref=GRO_28502_K7N6J&utm_source=default" target="_blank" rel="noopener noreferrer">Binance</a> as your backup exchange. It supports 150+ countries and offers the same stablecoin access you need to participate in all income streams on this site.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="valr-help-card">
+                    <div class="valr-help-icon" aria-hidden="true">💬</div>
+                    <div>
+                        <p class="valr-help-title">Need Help Getting Set Up?</p>
+                        <p class="valr-help-desc">
+                            I'm here for you. Tap the <strong style="color:#25D366">WhatsApp icon</strong> at the bottom of this page to message me directly  -  I'll personally walk you through anything you're stuck on.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
     </section>
@@ -1672,7 +2304,7 @@
                         NODE ACTIVE
                     </span>
 
-                    <!-- Live WFI price — mirrors Aurum's +17.5% stat position -->
+                    <!-- Live WFI price  -  mirrors Aurum's +17.5% stat position -->
                     <div class="vis-stat" aria-hidden="true">
                         <div class="vis-stat-num green" id="wfi-card-price">...</div>
                         <div class="vis-stat-label">WFI Price</div>
@@ -1739,7 +2371,7 @@
 
                             <!-- ── LEFT INTAKE PANEL ── -->
                             <rect x="80" y="24" width="52" height="57" fill="url(#acPanel)"/>
-                            <!-- Horizontal intake slits — 9 rows -->
+                            <!-- Horizontal intake slits  -  9 rows -->
                             <rect x="84" y="27.5" width="44" height="3" rx="1.2" fill="#07070e"/>
                             <rect x="84" y="32.5" width="44" height="3" rx="1.2" fill="#07070e"/>
                             <rect x="84" y="37.5" width="44" height="3" rx="1.2" fill="#07070e"/>
@@ -1765,7 +2397,7 @@
 
                             <!-- ── RIGHT EXHAUST PANEL ── -->
                             <rect x="328" y="24" width="52" height="57" fill="url(#acPanel)"/>
-                            <!-- Exhaust slits — 9 rows -->
+                            <!-- Exhaust slits  -  9 rows -->
                             <rect x="332" y="27.5" width="44" height="3" rx="1.2" fill="#07070e"/>
                             <rect x="332" y="32.5" width="44" height="3" rx="1.2" fill="#07070e"/>
                             <rect x="332" y="37.5" width="44" height="3" rx="1.2" fill="#07070e"/>
@@ -1804,7 +2436,7 @@
                             <line x1="264" y1="38.5" x2="267" y2="38.5" stroke="#223452" stroke-width="0.4"/>
                             <line x1="264" y1="60.5" x2="267" y2="60.5" stroke="#223452" stroke-width="0.4"/>
 
-                            <!-- ══ FAN 1 — cx=164, cy=50 ══ -->
+                            <!-- ══ FAN 1  -  cx=164, cy=50 ══ -->
                             <g transform="translate(164,50)">
                               <circle r="21" fill="#080810" stroke="#222238" stroke-width="1.5"/>
                               <circle r="19.5" fill="none" stroke="#06060c" stroke-width="2.5"/>
@@ -1824,7 +2456,7 @@
                               <circle r="2" fill="#C7F160" opacity="0.65" filter="url(#acLed)"/>
                             </g>
 
-                            <!-- ══ FAN 2 — cx=230, cy=50 — slightly different phase ══ -->
+                            <!-- ══ FAN 2  -  cx=230, cy=50  -  slightly different phase ══ -->
                             <g transform="translate(230,50)">
                               <circle r="21" fill="#080810" stroke="#222238" stroke-width="1.5"/>
                               <circle r="19.5" fill="none" stroke="#06060c" stroke-width="2.5"/>
@@ -1842,7 +2474,7 @@
                               <circle r="2" fill="#C7F160" opacity="0.88" filter="url(#acLed)"/>
                             </g>
 
-                            <!-- ══ FAN 3 — cx=296, cy=50 ══ -->
+                            <!-- ══ FAN 3  -  cx=296, cy=50 ══ -->
                             <g transform="translate(296,50)">
                               <circle r="21" fill="#080810" stroke="#222238" stroke-width="1.5"/>
                               <circle r="19.5" fill="none" stroke="#06060c" stroke-width="2.5"/>
@@ -2107,7 +2739,7 @@
         draw();
 
         // ════════════════════════════════════════
-        // SCROLL REVEAL — Intersection Observer
+        // SCROLL REVEAL  -  Intersection Observer
         // ════════════════════════════════════════
         const revealEls = document.querySelectorAll('.reveal');
 
@@ -2151,122 +2783,142 @@
             }, 1000);
         })();
 
-        // ══════════════════════════════════════════════════════════
-        // LIVE WFI STATS
-        // Price + Market Cap — GeckoTerminal (CORS-open, refreshes every 30s)
-        // Holders           — BSCScan API     (refreshes every 5 min)
-        // ══════════════════════════════════════════════════════════
+        // ══════════════════════════════════════════════════════════════════
+        // LIVE WFI STATS  -  fully automatic, no API key needed
+        //
+        // Price + Market Cap  →  GeckoTerminal   (refreshes every 30s)
+        // Holders             →  BSCScan public page via CORS proxy
+        //                        (refreshes every 5 min, same source as DexScreener)
+        //                        Tries allorigins.win first, corsproxy.io as fallback.
+        // ══════════════════════════════════════════════════════════════════
         (function () {
-            // ── Config ───────────────────────────────────────────
-            var POOL          = '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0';
-            var WFI_CONTRACT  = '0x90c48855bb69f9d2c261efd0d8c7f35990f2dd6f';
 
-            // !! REPLACE THIS with your free BSCScan API key !!
-            // Get one free at: https://bscscan.com/myapikey (takes 2 min)
-            var BSCSCAN_KEY   = 'YOUR_BSCSCAN_API_KEY';
+            var WFI_CONTRACT = '0x90c48855Bb69f9D2C261Efd0D8C7F35990F2dd6f';
+            var POOL         = '0xdbbb8c123f0ee395efcaaf6b3285562470ab40e0';
+            var BSCSCAN_PAGE = 'https://bscscan.com/token/' + WFI_CONTRACT;
+            var GECKO_URL    = 'https://api.geckoterminal.com/api/v2/networks/bsc/pools/' + POOL;
 
-            var POOL_URL      = 'https://api.geckoterminal.com/api/v2/networks/bsc/pools/' + POOL;
-            var HOLDERS_URL   = 'https://api.bscscan.com/api?module=token&action=tokeninfo'
-                                + '&contractaddress=' + WFI_CONTRACT
-                                + '&apikey=' + BSCSCAN_KEY;
+            // CORS proxy URLs  -  tried in order, stops at first success
+            var PROXIES = [
+                function (url) { return 'https://api.allorigins.win/get?url=' + encodeURIComponent(url); },
+                function (url) { return 'https://corsproxy.io/?' + encodeURIComponent(url); },
+                function (url) { return 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(url); }
+            ];
 
-            var PRICE_REFRESH   = 30000;       // 30 seconds
-            var HOLDERS_REFRESH = 300000;      // 5 minutes
-
-            // ── Formatters ────────────────────────────────────────
-            function formatPrice(num) {
-                if (!isFinite(num)) return null;
-                var decimals = num >= 1 ? 2 : 4;
-                return '$' + num.toLocaleString(undefined, {
-                    minimumFractionDigits: decimals,
-                    maximumFractionDigits: decimals
-                });
+            // ── Formatters ────────────────────────────────────────────
+            function fmtPrice(n) {
+                if (!isFinite(n)) return null;
+                var d = n >= 1 ? 2 : 4;
+                return '$' + n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
             }
 
-            function formatCompact(num) {
-                if (!isFinite(num)) return null;
-                var abs = Math.abs(num);
-                if (abs >= 1e12) return '$' + (num / 1e12).toFixed(2) + 'T';
-                if (abs >= 1e9)  return '$' + (num / 1e9).toFixed(2)  + 'B';
-                if (abs >= 1e6)  return '$' + (num / 1e6).toFixed(2)  + 'M';
-                if (abs >= 1e3)  return '$' + (num / 1e3).toFixed(2)  + 'K';
-                return '$' + num.toFixed(2);
-            }
-
-            function formatHolders(num) {
-                if (!isFinite(num) || num <= 0) return null;
-                return num.toLocaleString();   // e.g. "33,240"
+            function fmtCompact(n) {
+                if (!isFinite(n)) return null;
+                var a = Math.abs(n);
+                if (a >= 1e12) return '$' + (n / 1e12).toFixed(2) + 'T';
+                if (a >= 1e9)  return '$' + (n / 1e9).toFixed(2)  + 'B';
+                if (a >= 1e6)  return '$' + (n / 1e6).toFixed(2)  + 'M';
+                if (a >= 1e3)  return '$' + (n / 1e3).toFixed(2)  + 'K';
+                return '$' + n.toFixed(2);
             }
 
             function flash(el) {
                 if (!el) return;
-                el.style.color = '#ffffff';
+                el.style.color = '#fff';
                 setTimeout(function () { el.style.color = ''; }, 300);
             }
 
-            // ── Price + Market Cap (GeckoTerminal) ────────────────
-            function fetchPriceAndMcap() {
-                fetch(POOL_URL + '?t=' + Date.now())
-                    .then(function (res) {
-                        if (!res.ok) throw new Error('HTTP ' + res.status);
-                        return res.json();
+            // ── Extract holder count from BSCScan HTML ────────────────
+            // BSCScan renders holder count as e.g. "33,240 addresses"
+            // We try several regex patterns to be resilient to page changes.
+            function parseHolders(html) {
+                var patterns = [
+                    /(\d[\d,]+)\s+address/i,
+                    /[Hh]olders?[^>]*>\s*([\d,]+)/,
+                    /token_holders[^>]*>\s*([\d,]+)/,
+                    /"holders"\s*:\s*"?([\d,]+)"?/
+                ];
+                for (var i = 0; i < patterns.length; i++) {
+                    var m = html.match(patterns[i]);
+                    if (m) {
+                        var n = parseInt(m[1].replace(/,/g, ''), 10);
+                        if (n > 0) return n;
+                    }
+                }
+                return null;
+            }
+
+            // ── Fetch BSCScan page via proxy chain, parse holders ─────
+            function tryProxy(proxyIndex, onSuccess) {
+                if (proxyIndex >= PROXIES.length) return; // all proxies exhausted
+
+                var proxyUrl = PROXIES[proxyIndex](BSCSCAN_PAGE);
+
+                fetch(proxyUrl)
+                    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+                    .then(function (text) {
+                        // allorigins.win wraps response in JSON: { contents: "..." }
+                        var html = text;
+                        try {
+                            var j = JSON.parse(text);
+                            if (j && j.contents) html = j.contents;
+                        } catch (e) { /* not JSON, use raw text */ }
+
+                        var holders = parseHolders(html);
+                        if (holders) {
+                            onSuccess(holders);
+                        } else {
+                            // Parsed OK but couldn't find holders  -  try next proxy
+                            tryProxy(proxyIndex + 1, onSuccess);
+                        }
                     })
+                    .catch(function () {
+                        // Network error  -  try next proxy
+                        tryProxy(proxyIndex + 1, onSuccess);
+                    });
+            }
+
+            function fetchHolders() {
+                var el = document.getElementById('wfi-card-holders');
+                if (!el) return;
+
+                tryProxy(0, function (holders) {
+                    el.textContent = holders.toLocaleString(); // "33,240"
+                    flash(el);
+                });
+            }
+
+            // ── Price + Market Cap (GeckoTerminal) ────────────────────
+            function fetchPriceAndMcap() {
+                fetch(GECKO_URL + '?t=' + Date.now())
+                    .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
                     .then(function (json) {
-                        var attr = json && json.data && json.data.attributes;
-                        if (!attr) throw new Error('no attributes');
+                        var a = json && json.data && json.data.attributes;
+                        if (!a) return;
 
                         var priceEl = document.getElementById('wfi-card-price');
                         if (priceEl) {
-                            var fmt = formatPrice(Number(attr.base_token_price_usd));
-                            if (fmt) { priceEl.textContent = fmt; flash(priceEl); }
+                            var p = fmtPrice(Number(a.base_token_price_usd));
+                            if (p) { priceEl.textContent = p; flash(priceEl); }
                         }
 
                         var mcapEl = document.getElementById('wfi-card-mcap');
                         if (mcapEl) {
-                            var mfmt = formatCompact(Number(attr.market_cap_usd || attr.fdv_usd));
-                            if (mfmt) { mcapEl.textContent = mfmt; flash(mcapEl); }
+                            var m = fmtCompact(Number(a.market_cap_usd || a.fdv_usd));
+                            if (m) { mcapEl.textContent = m; flash(mcapEl); }
                         }
                     })
-                    .catch(function (err) {
-                        console.warn('WFI price fetch failed:', err);
-                    });
+                    .catch(function (e) { console.warn('WFI price fetch failed:', e); });
             }
 
-            // ── Holders (BSCScan) ─────────────────────────────────
-            function fetchHolders() {
-                var holdersEl = document.getElementById('wfi-card-holders');
-                if (!holdersEl) return;
-
-                // Skip if API key hasn't been set yet
-                if (BSCSCAN_KEY === 'YOUR_BSCSCAN_API_KEY') {
-                    console.info('WFI holders: add your BSCScan API key to enable live updates.');
-                    return;
-                }
-
-                fetch(HOLDERS_URL + '&t=' + Date.now())
-                    .then(function (res) {
-                        if (!res.ok) throw new Error('HTTP ' + res.status);
-                        return res.json();
-                    })
-                    .then(function (json) {
-                        // BSCScan returns: { status:"1", result:[{ holders:"33240", ... }] }
-                        var result  = json && json.result && json.result[0];
-                        var holders = result && Number(result.holders);
-                        var hfmt    = formatHolders(holders);
-                        if (hfmt) { holdersEl.textContent = hfmt; flash(holdersEl); }
-                    })
-                    .catch(function (err) {
-                        console.warn('WFI holders fetch failed:', err);
-                    });
-            }
-
-            // ── Boot ──────────────────────────────────────────────
+            // ── Boot ──────────────────────────────────────────────────
             document.addEventListener('DOMContentLoaded', function () {
                 fetchPriceAndMcap();
                 fetchHolders();
-                setInterval(fetchPriceAndMcap, PRICE_REFRESH);
-                setInterval(fetchHolders,      HOLDERS_REFRESH);
+                setInterval(fetchPriceAndMcap, 30000);   // price every 30s
+                setInterval(fetchHolders,      300000);  // holders every 5 min
             });
+
         })();
         document.addEventListener('DOMContentLoaded', function() {
             const scrollBtn = document.getElementById('scroll-to-top');
