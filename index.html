@@ -118,7 +118,7 @@
             position: relative;
         }
 
-        /* Hamburger button — centered */
+        /* Hamburger button  -  centered */
         .hamburger {
             display: flex;
             flex-direction: column;
@@ -151,7 +151,7 @@
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        /* Hamburger open state — X shape */
+        /* Hamburger open state  -  X shape */
         .hamburger.open .bar:nth-child(1) {
             transform: translateY(7px) rotate(45deg);
         }
@@ -247,7 +247,7 @@
             transform-origin: center center;
         }
 
-        /* Single soft subtle pulse — barely there, almost unnoticeable */
+        /* Single soft subtle pulse  -  barely there, almost unnoticeable */
         @keyframes doof {
             0%   { transform: scale(1);      }
             15%  { transform: scale(1.025);  }
@@ -937,7 +937,7 @@
            SCROLL REVEAL SYSTEM
         =========================== */
 
-        /* Base hidden state — all reveal elements start here */
+        /* Base hidden state  -  all reveal elements start here */
         .reveal {
             opacity: 0;
             will-change: opacity, transform;
@@ -954,14 +954,14 @@
         .reveal-scale  { transform: scale(0.92); }
         .reveal-blur   { transform: translateY(28px); filter: blur(6px); }
 
-        /* Fired state — observer adds this class */
+        /* Fired state  -  observer adds this class */
         .reveal.in-view {
             opacity: 1;
             transform: none;
             filter: none;
         }
 
-        /* Divider line reveal — draws in from center */
+        /* Divider line reveal  -  draws in from center */
         .divider {
             transform: scaleX(0);
             transform-origin: center;
@@ -1244,7 +1244,7 @@
             .card-body { padding: 24px 20px 28px; }
             .social-inner { flex-direction: column; align-items: flex-start; }
 
-            /* Keep vis-stat visible — scale down slightly */
+            /* Keep vis-stat visible  -  scale down slightly */
             .vis-stat-num { font-size: 1.25rem; }
             .vis-stat-label { font-size: 0.56rem; letter-spacing: 1px; }
             .vis-stat { top: 14px; right: 14px; }
@@ -1267,7 +1267,7 @@
             .card-visual { height: 230px; }
             .card-visual.wefi-vis { height: 270px; }
 
-            /* Never hide vis-stat — scale it to fit */
+            /* Never hide vis-stat  -  scale it to fit */
             .vis-stat { top: 12px; right: 12px; }
             .vis-stat-num { font-size: 1.1rem; }
             .vis-stat-label { font-size: 0.52rem; letter-spacing: 0.8px; }
@@ -1298,6 +1298,534 @@
             .mining-stat-val { font-size: 0.6rem; }
             .mining-stat-lbl { font-size: 0.38rem; }
         }
+        /* ===========================
+           VALR ONBOARDING SECTION
+        =========================== */
+        :root {
+            --valr:        #1E4DF2;
+            --valr-dim:    rgba(30,77,242,0.55);
+            --valr-glow:   rgba(30,77,242,0.15);
+            --valr-border: rgba(30,77,242,0.22);
+            --valr-bg:     #030F0E;
+        }
+
+        /* ── Section wrapper ── */
+        .valr-section {
+            position: relative;
+            padding: 80px 0 80px;
+            overflow: hidden;
+        }
+        .valr-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(30,77,242,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* ── Eyebrow / step-zero badge ── */
+        .valr-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--valr);
+            margin-bottom: 18px;
+            padding: 6px 16px;
+            border: 1px solid var(--valr-border);
+            border-radius: 50px;
+            background: var(--valr-glow);
+        }
+        .valr-eyebrow-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--valr);
+            box-shadow: 0 0 8px var(--valr);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        /* ── Section heading ── */
+        .valr-heading {
+            font-family: var(--f-head);
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.4px;
+            margin-bottom: 16px;
+        }
+        .valr-heading .t-valr {
+            background: linear-gradient(90deg, #1E4DF2, #4B70F5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── Intro paragraph ── */
+        .valr-intro {
+            font-size: 1rem;
+            color: var(--dim);
+            max-width: 580px;
+            line-height: 1.75;
+            margin-bottom: 40px;
+        }
+
+        /* ── Primary CTA ── */
+        .valr-cta-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        .valr-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            padding: 17px 36px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #1E4DF2 0%, #1640D4 100%);
+            color: #FFFFFF;
+            font-family: var(--f-head);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 8px 32px rgba(30,77,242,0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        .valr-cta-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+            border-radius: inherit;
+        }
+        .valr-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 44px rgba(30,77,242,0.5);
+        }
+        .valr-cta-btn svg { flex-shrink: 0; }
+
+        .valr-code-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border: 1px solid var(--valr-border);
+            border-radius: 50px;
+            background: var(--valr-glow);
+            font-family: var(--f-head);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--valr);
+            letter-spacing: 1px;
+        }
+        .valr-code-pill span.code-label {
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--valr-dim);
+        }
+
+        /* ── Infographic steps grid ── */
+        .valr-steps-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--valr);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .valr-steps-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--valr-border);
+        }
+
+        .valr-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 14px;
+            margin-bottom: 48px;
+        }
+
+        .valr-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .valr-step::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: linear-gradient(180deg, #1E4DF2, #4B70F5);
+            border-radius: 0 0 0 16px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .valr-step:hover {
+            border-color: var(--valr-border);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(30,77,242,0.1);
+        }
+        .valr-step:hover::before { opacity: 1; }
+
+        .valr-step-num {
+            flex-shrink: 0;
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            background: var(--valr-glow);
+            border: 1.5px solid var(--valr-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--f-head);
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--valr);
+        }
+
+        .valr-step-content {}
+        .valr-step-title {
+            font-family: var(--f-head);
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--white);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        .valr-step-desc {
+            font-size: 0.8rem;
+            color: var(--dim);
+            line-height: 1.55;
+        }
+        .valr-step-desc .highlight {
+            color: var(--valr);
+            font-weight: 600;
+        }
+
+        /* ── Circuit Board Signal Flow ── */
+
+        @keyframes circuit-orb-travel {
+            from { offset-distance: 0%; }
+            to   { offset-distance: 100%; }
+        }
+
+        /* Icon ring burst on activation */
+        @keyframes cnode-ring-burst {
+            0%    { opacity:0; transform:scale(1);   }
+            0.15% { opacity:0.85; transform:scale(1);   }
+            2.65% { opacity:0; transform:scale(1.95); }
+            100%  { opacity:0; transform:scale(1.95); }
+        }
+
+        /* Icon border glow on activation */
+        @keyframes cnode-glow-pulse {
+            0%    { opacity:0; }
+            0.15% { opacity:1; }
+            2.65% { opacity:0; }
+            100%  { opacity:0; }
+        }
+
+        /* Trace illuminate on orb passage */
+        @keyframes trace-illuminate {
+            0%    { opacity:0; }
+            0.15% { opacity:1; }
+            2.65% { opacity:0; }
+            100%  { opacity:0; }
+        }
+
+        /* ── Wrapper card ── */
+        .valr-circuit-wrap {
+            margin-bottom: 48px;
+            border-radius: var(--radius);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .valr-circuit-wrap::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 75% 75% at 50% 50%, rgba(30,77,242,0.06) 0%, transparent 70%);
+            pointer-events: none;
+            border-radius: var(--radius);
+        }
+
+        /* ── Desktop SVG ── */
+        .valr-circuit-svg {
+            display: block;
+            width: 100%;
+            padding: 28px 20px 20px;
+            box-sizing: border-box;
+            overflow: visible;
+        }
+
+        /* ── Mobile 2-col badge grid ── */
+        .valr-mobile-steps {
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 20px;
+        }
+        .vms-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 13px;
+            background: rgba(30,77,242,0.08);
+            border: 1px solid rgba(30,77,242,0.22);
+            border-radius: 12px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .vms-item:hover {
+            border-color: rgba(30,77,242,0.5);
+            background: rgba(30,77,242,0.13);
+        }
+        .vms-icon { font-size: 1.35rem; flex-shrink: 0; line-height: 1; }
+        .vms-num  {
+            font-family: var(--f-head);
+            font-size: 0.58rem; font-weight: 800;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--valr); display: block; margin-bottom: 2px;
+        }
+        .vms-cap  {
+            font-size: 0.67rem; font-weight: 700;
+            color: rgba(255,255,255,0.65);
+            letter-spacing: 0.2px; line-height: 1.2;
+        }
+
+        @media (max-width: 640px) {
+            .valr-circuit-svg   { display: none; }
+            .valr-mobile-steps  { display: grid; }
+        }
+
+        /* ── SVG element styles ── */
+        .circuit-path-base {
+            stroke: rgba(30,77,242,0.18);
+            stroke-width: 1.5;
+            stroke-dasharray: 5 8;
+            stroke-linecap: round;
+            fill: none;
+        }
+        /* Always-on ambient glow on the trace */
+        .circuit-path-ambient {
+            stroke: rgba(30,77,242,0.07);
+            stroke-width: 10;
+            stroke-linecap: round;
+            fill: none;
+        }
+        /* Via junction pad */
+        .circuit-via {
+            fill: rgba(30,77,242,0.45);
+            stroke: rgba(30,77,242,0.6);
+            stroke-width: 0.8;
+        }
+        .circuit-via-mid {
+            fill: rgba(30,77,242,0.25);
+        }
+        /* Icon base circle */
+        .cnode-base {
+            fill: rgba(30,77,242,0.1);
+            stroke: rgba(30,77,242,0.28);
+            stroke-width: 1.5;
+        }
+        /* Glow ring that fires on activation */
+        .cnode-glow {
+            fill: none;
+            stroke: #4B70F5;
+            stroke-width: 2.5;
+            filter: drop-shadow(0 0 5px rgba(30,77,242,1))
+                    drop-shadow(0 0 14px rgba(30,77,242,0.75));
+            animation: cnode-glow-pulse 28s linear infinite;
+            animation-delay: var(--d, 0s);
+            opacity: 0;
+        }
+        /* Expanding burst ring */
+        .cnode-ring {
+            fill: none;
+            stroke: rgba(30,77,242,0.6);
+            stroke-width: 1.5;
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: cnode-ring-burst 28s linear infinite;
+            animation-delay: var(--d, 0s);
+            opacity: 0;
+        }
+        /* Second wider burst ring (offset by tiny delay) */
+        .cnode-ring2 {
+            fill: none;
+            stroke: rgba(30,77,242,0.35);
+            stroke-width: 1;
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: cnode-ring-burst 28s linear infinite;
+            animation-delay: calc(var(--d, 0s) + 0.18s);
+            opacity: 0;
+        }
+        /* Emoji icon */
+        .cnode-icon {
+            text-anchor: middle;
+            dominant-baseline: central;
+            font-size: 20px;
+            font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;
+            pointer-events: none;
+        }
+        /* Label below icon */
+        .cnode-label {
+            text-anchor: middle;
+            fill: rgba(255,255,255,0.4);
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            font-family: 'DM Sans', sans-serif;
+            pointer-events: none;
+        }
+
+        /* ── Travelling signal orb (CSS motion-path) ── */
+        .circuit-orb {
+            fill: #C8D8FF;
+            filter: drop-shadow(0 0 2px #FFFFFF)
+                    drop-shadow(0 0 6px #6B8FFF)
+                    drop-shadow(0 0 18px rgba(30,77,242,0.95))
+                    drop-shadow(0 0 35px rgba(30,77,242,0.55));
+            offset-path: path('M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55');
+            offset-rotate: 0deg;
+            animation: circuit-orb-travel 28s linear infinite;
+        }
+        /* Large soft bloom around the orb */
+        .circuit-orb-bloom {
+            fill: rgba(30,77,242,0.18);
+            filter: drop-shadow(0 0 18px rgba(30,77,242,0.6));
+            offset-path: path('M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55');
+            offset-rotate: 0deg;
+            animation: circuit-orb-travel 28s linear infinite;
+        }
+        /* Medium glow ring around orb */
+        .circuit-orb-mid {
+            fill: rgba(75,112,245,0.45);
+            filter: drop-shadow(0 0 8px rgba(30,77,242,0.9));
+            offset-path: path('M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55');
+            offset-rotate: 0deg;
+            animation: circuit-orb-travel 28s linear infinite;
+        }
+
+
+
+                /* ── Backup + Help row ── */
+        .valr-footer-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: stretch;
+        }
+
+        .valr-backup-card {
+            flex: 1;
+            min-width: 260px;
+            padding: 20px 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .valr-backup-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: rgba(240,185,11,0.1);
+            border: 1px solid rgba(240,185,11,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        .valr-backup-text {}
+        .valr-backup-title {
+            font-family: var(--f-head);
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .valr-backup-desc {
+            font-size: 0.78rem;
+            color: var(--dim);
+            line-height: 1.5;
+        }
+        .valr-backup-desc a {
+            color: rgba(240,185,11,0.8);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .valr-help-card {
+            flex: 1;
+            min-width: 260px;
+            padding: 20px 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .valr-help-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: rgba(37,211,102,0.1);
+            border: 1px solid rgba(37,211,102,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        .valr-help-title {
+            font-family: var(--f-head);
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .valr-help-desc {
+            font-size: 0.78rem;
+            color: var(--dim);
+            line-height: 1.5;
+        }
+
+        /* ── Responsive tweaks ── */
+        @media (max-width: 600px) {
+            .valr-steps-grid {
+                grid-template-columns: 1fr;
+            }
+            /* flow handled by mobile block above */
+        }
+
     </style>
 </head>
 <body>
@@ -1334,7 +1862,7 @@
     <section class="hero" aria-labelledby="hero-title">
         <div class="wrap">
 
-            <!-- MTG Vector Logo — premium rebuild v3 -->
+            <!-- MTG Vector Logo  -  premium rebuild v3 -->
             <div class="hero-logo-wrap" role="img" aria-label="musathegiant.com">
                 <svg class="hero-logo-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="overflow:hidden;display:block;">
                 <defs>
@@ -1370,7 +1898,7 @@
                   <path id="ua" d="M 46,250 A 162,162 0 0,0 354,250"/>
                 </defs>
 
-                <!-- Outer glow halo — surges on each doof -->
+                <!-- Outer glow halo  -  surges on each doof -->
                 <circle cx="200" cy="200" r="185" fill="none" stroke="rgba(0,115,255,0.28)" stroke-width="16" filter="url(#hl)"
                     style="animation: doofGlow 3.2s ease-in-out 1.2s infinite;"/>
                 <!-- Sharp blue border -->
@@ -1435,7 +1963,7 @@
                     fill="url(#mg)"
                     filter="url(#sh)">MTG</text>
 
-                  <!-- LOWER CIRCUIT TRACES — all end by y=288 -->
+                  <!-- LOWER CIRCUIT TRACES  -  all end by y=288 -->
                   <g stroke="rgba(255,255,255,0.82)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1" fill="none">
                     <polyline points="176,252 176,268 154,268 154,284"/>
                     <polyline points="187,252 187,280"/>
@@ -1471,7 +1999,7 @@
                 <!-- CURVED BOTTOM TEXT
                      Arc: M 89,308 A 155,155 0 0,1 311,308
                      Clockwise sweep → dips to (200,355) → U-shape ✓
-                     Traces end y=288. Gap=20px. OUTSIDE clip — never masked. -->
+                     Traces end y=288. Gap=20px. OUTSIDE clip  -  never masked. -->
                 <text
                   font-family="'Outfit','DM Sans',sans-serif"
                   font-style="italic"
@@ -1493,6 +2021,381 @@
             <p class="hero-body">
                 Unlock your path to financial freedom with exclusive access to meticulously vetted ₿itcoin, Crypto, AI, Trading, Affiliate, and Digital Marketing opportunities! Discover more below...
             </p>
+
+        </div>
+    </section>
+
+    <hr class="divider blue reveal">
+
+    <!-- ══════════════════════════════════════════════════════════════
+         VALR ONBOARDING SECTION  -  "Your First Step Into Crypto"
+    ══════════════════════════════════════════════════════════════ -->
+
+    <section class="valr-section" id="start-here" aria-labelledby="valr-heading">
+        <div class="wrap">
+
+            <!-- ── Eyebrow ── -->
+            <div class="valr-eyebrow reveal reveal-up">
+                <span class="valr-eyebrow-dot" aria-hidden="true"></span>
+                Step Zero  -  Before You Begin
+            </div>
+
+            <!-- ── Heading ── -->
+            <h2 class="valr-heading reveal reveal-up" id="valr-heading" style="transition-delay:0.05s">
+                Your First Step<br>
+                Into <span class="t-valr">Crypto</span> Starts Here
+            </h2>
+
+            <!-- ── Intro copy ── -->
+            <p class="valr-intro reveal reveal-up" style="transition-delay:0.1s">
+                Before you can participate in any income stream on this site, you need a crypto exchange account  -  a secure wallet where you can buy, hold, and transfer stablecoins like <strong style="color:var(--white)">USDT</strong> and <strong style="color:var(--white)">USDC</strong>. It takes less than 10 minutes. Follow the guide below and I'll walk you through every step.
+            </p>
+
+            <!-- ── CTA row ── -->
+            <div class="valr-cta-wrap reveal reveal-up" style="transition-delay:0.15s">
+                <a href="https://www.valr.com/invite/VAKM6VZY"
+                   class="valr-cta-btn"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Open a VALR account with my referral code">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Open Your VALR Account
+                </a>
+
+                <a href="https://www.valr.com/invite/VAKM6VZY" target="_blank" rel="noopener noreferrer" class="valr-code-pill">
+                    <span class="code-label">Referral Code</span>
+                    <span>VAKM6VZY</span>
+                </a>
+            </div>
+
+            <!-- ── Referral benefit callout ── -->
+            <p class="reveal reveal-up" style="font-size:0.82rem;color:var(--dim);margin-bottom:52px;margin-top:-28px;max-width:520px;line-height:1.6;transition-delay:0.18s">
+                ✦ Using my referral code <a href="https://www.valr.com/invite/VAKM6VZY" target="_blank" rel="noopener noreferrer"><strong style="color:var(--valr)">VAKM6VZY</strong></a> automatically unlocks <strong style="color:var(--white)">lifetime trading fee discounts</strong> plus additional rebates on every trade  -  a permanent advantage over signing up without a code.
+            </p>
+
+            <!-- ── Visual Progress Flow (infographic) ── -->
+            <p class="valr-steps-label reveal reveal-up" style="transition-delay:0.2s">VALR Registration Flow</p>
+
+<div class="valr-circuit-wrap reveal reveal-up" style="transition-delay:0.22s">
+                <svg class="valr-circuit-svg" viewBox="0 0 700 265"
+                 preserveAspectRatio="xMidYMid meet"
+                 xmlns="http://www.w3.org/2000/svg"
+                 role="img" aria-label="VALR 10-step registration circuit flow">
+                <!-- Ambient glow on full path -->
+                <path d="M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55" class="circuit-path-ambient"/>
+                <!-- Dormant dashed trace -->
+                <path d="M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55" class="circuit-path-base"/>
+
+                <!-- Mid-point via pads (row 1) -->
+                <circle cx="117" cy="95" r="3.5" class="circuit-via"/>
+                <circle cx="242" cy="95" r="3.5" class="circuit-via"/>
+                <circle cx="367" cy="95" r="3.5" class="circuit-via"/>
+                <circle cx="495" cy="95" r="3.5" class="circuit-via"/>
+                <!-- Mid-point via pads (row 2) -->
+                <circle cx="117" cy="210" r="3.5" class="circuit-via"/>
+                <circle cx="242" cy="210" r="3.5" class="circuit-via"/>
+                <circle cx="367" cy="210" r="3.5" class="circuit-via"/>
+                <circle cx="495" cy="210" r="3.5" class="circuit-via"/>
+                <!-- U-bend midpoint via -->
+                <circle cx="600" cy="152" r="4.5" class="circuit-via"/>
+
+                <!-- PCB corner bracket detail in U-bend -->
+                <rect x="590" y="88" width="18" height="8" rx="2"
+                      fill="none" stroke="rgba(30,77,242,0.3)" stroke-width="1"/>
+                <rect x="590" y="204" width="18" height="8" rx="2"
+                      fill="none" stroke="rgba(30,77,242,0.3)" stroke-width="1"/>
+                <text x="609" y="155" text-anchor="middle" fill="rgba(30,77,242,0.35)"
+                      font-size="8" font-family="DM Sans,sans-serif" font-weight="700">⟳</text>
+
+                <!-- Layer 1: orb bloom (renders underneath) -->
+                <circle r="14" class="circuit-orb-bloom"/>
+                <!-- Layer 2: orb mid-glow -->
+                <circle r="8"  class="circuit-orb-mid"/>
+
+                <!-- Icon nodes -->
+
+                <!-- Node 0: Click Here -->
+                <a href="https://www.valr.com/invite/VAKM6VZY" target="_blank" rel="noopener noreferrer" style="cursor:pointer;">
+                <g style="--d:0.0s">
+                    <circle cx="55" cy="95" r="34" fill="transparent" style="cursor:pointer;"/>
+                    <circle cx="55" cy="95" r="27" class="cnode-base"/>
+                    <circle cx="55" cy="95" r="27" class="cnode-glow"/>
+                    <circle cx="55" cy="95" r="27" class="cnode-ring"/>
+                    <circle cx="55" cy="95" r="27" class="cnode-ring2"/>
+                    <text x="55" y="95" class="cnode-icon">🖱️</text>
+                    <text x="55" y="129" class="cnode-label">Click Here</text>
+                </g>
+                </a>
+                <!-- Node 1: Your Name -->
+                <g style="--d:2.8s">
+                    <circle cx="180" cy="95" r="27" class="cnode-base"/>
+                    <circle cx="180" cy="95" r="27" class="cnode-glow"/>
+                    <circle cx="180" cy="95" r="27" class="cnode-ring"/>
+                    <circle cx="180" cy="95" r="27" class="cnode-ring2"/>
+                    <text x="180" y="95" class="cnode-icon">👤</text>
+                    <text x="180" y="129" class="cnode-label">Your Name</text>
+                </g>
+                <!-- Node 2: Country -->
+                <g style="--d:5.6s">
+                    <circle cx="305" cy="95" r="27" class="cnode-base"/>
+                    <circle cx="305" cy="95" r="27" class="cnode-glow"/>
+                    <circle cx="305" cy="95" r="27" class="cnode-ring"/>
+                    <circle cx="305" cy="95" r="27" class="cnode-ring2"/>
+                    <text x="305" y="95" class="cnode-icon">🌍</text>
+                    <text x="305" y="129" class="cnode-label">Country</text>
+                </g>
+                <!-- Node 3: Ref. Code -->
+                <g style="--d:8.4s">
+                    <circle cx="430" cy="95" r="27" class="cnode-base"/>
+                    <circle cx="430" cy="95" r="27" class="cnode-glow"/>
+                    <circle cx="430" cy="95" r="27" class="cnode-ring"/>
+                    <circle cx="430" cy="95" r="27" class="cnode-ring2"/>
+                    <text x="430" y="95" class="cnode-icon">🏷️</text>
+                    <text x="430" y="129" class="cnode-label">Ref. Code</text>
+                </g>
+                <!-- Node 4: Email -->
+                <g style="--d:11.2s">
+                    <circle cx="560" cy="95" r="27" class="cnode-base"/>
+                    <circle cx="560" cy="95" r="27" class="cnode-glow"/>
+                    <circle cx="560" cy="95" r="27" class="cnode-ring"/>
+                    <circle cx="560" cy="95" r="27" class="cnode-ring2"/>
+                    <text x="560" y="95" class="cnode-icon">📧</text>
+                    <text x="560" y="129" class="cnode-label">Email</text>
+                </g>
+                <!-- Node 5: Password -->
+                <g style="--d:14.0s">
+                    <circle cx="560" cy="210" r="27" class="cnode-base"/>
+                    <circle cx="560" cy="210" r="27" class="cnode-glow"/>
+                    <circle cx="560" cy="210" r="27" class="cnode-ring"/>
+                    <circle cx="560" cy="210" r="27" class="cnode-ring2"/>
+                    <text x="560" y="210" class="cnode-icon">🔐</text>
+                    <text x="560" y="244" class="cnode-label">Password</text>
+                </g>
+                <!-- Node 6: Terms -->
+                <g style="--d:16.8s">
+                    <circle cx="430" cy="210" r="27" class="cnode-base"/>
+                    <circle cx="430" cy="210" r="27" class="cnode-glow"/>
+                    <circle cx="430" cy="210" r="27" class="cnode-ring"/>
+                    <circle cx="430" cy="210" r="27" class="cnode-ring2"/>
+                    <text x="430" y="210" class="cnode-icon">✅</text>
+                    <text x="430" y="244" class="cnode-label">Terms</text>
+                </g>
+                <!-- Node 7: Verify Email -->
+                <g style="--d:19.6s">
+                    <circle cx="305" cy="210" r="27" class="cnode-base"/>
+                    <circle cx="305" cy="210" r="27" class="cnode-glow"/>
+                    <circle cx="305" cy="210" r="27" class="cnode-ring"/>
+                    <circle cx="305" cy="210" r="27" class="cnode-ring2"/>
+                    <text x="305" y="210" class="cnode-icon">📬</text>
+                    <text x="305" y="244" class="cnode-label">Verify Email</text>
+                </g>
+                <!-- Node 8: Sign In -->
+                <g style="--d:22.4s">
+                    <circle cx="180" cy="210" r="27" class="cnode-base"/>
+                    <circle cx="180" cy="210" r="27" class="cnode-glow"/>
+                    <circle cx="180" cy="210" r="27" class="cnode-ring"/>
+                    <circle cx="180" cy="210" r="27" class="cnode-ring2"/>
+                    <text x="180" y="210" class="cnode-icon">🔓</text>
+                    <text x="180" y="244" class="cnode-label">Sign In</text>
+                </g>
+                <!-- Node 9: Verify ID -->
+                <g style="--d:0s">
+                    <circle cx="55" cy="210" r="27" class="cnode-base"/>
+                    <circle cx="55" cy="210" r="27" class="cnode-glow"/>
+                    <circle cx="55" cy="210" r="27" class="cnode-ring"/>
+                    <circle cx="55" cy="210" r="27" class="cnode-ring2"/>
+                    <text x="55" y="210" class="cnode-icon">🪪</text>
+                    <text x="55" y="244" class="cnode-label">Verify ID</text>
+                </g>
+
+                <!-- Layer 3: orb core (renders on top of icons) -->
+                <circle r="5"  class="circuit-orb"/>
+            </svg>
+                <div class="valr-mobile-steps">
+                    <a href="https://www.valr.com/invite/VAKM6VZY" target="_blank" rel="noopener noreferrer" class="vms-item" style="text-decoration:none;">
+                        <span class="vms-icon">🖱️</span>
+                        <div>
+                            <span class="vms-num">Step 01</span>
+                            <span class="vms-cap">Click Here</span>
+                        </div>
+                    </a>
+                    <div class="vms-item">
+                        <span class="vms-icon">👤</span>
+                        <div>
+                            <span class="vms-num">Step 02</span>
+                            <span class="vms-cap">Your Name</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">🌍</span>
+                        <div>
+                            <span class="vms-num">Step 03</span>
+                            <span class="vms-cap">Country</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">🏷️</span>
+                        <div>
+                            <span class="vms-num">Step 04</span>
+                            <span class="vms-cap">Ref. Code</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">📧</span>
+                        <div>
+                            <span class="vms-num">Step 05</span>
+                            <span class="vms-cap">Email</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">🔐</span>
+                        <div>
+                            <span class="vms-num">Step 06</span>
+                            <span class="vms-cap">Password</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">✅</span>
+                        <div>
+                            <span class="vms-num">Step 07</span>
+                            <span class="vms-cap">Terms</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">📬</span>
+                        <div>
+                            <span class="vms-num">Step 08</span>
+                            <span class="vms-cap">Verify Email</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">🔓</span>
+                        <div>
+                            <span class="vms-num">Step 09</span>
+                            <span class="vms-cap">Sign In</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">🪪</span>
+                        <div>
+                            <span class="vms-num">Step 10</span>
+                            <span class="vms-cap">Verify ID</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Detailed step cards ── -->
+            <div class="valr-steps-grid" role="list">
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.05s">
+                    <div class="valr-step-num" aria-label="Step 1">01</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Click the VALR Button Above</p>
+                        <p class="valr-step-desc">Tap the <a href="https://www.valr.com/invite/VAKM6VZY" target="_blank" rel="noopener noreferrer"><span class="highlight">Open Your VALR Account</span></a> button. This opens the registration page with my referral code pre-loaded.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.08s">
+                    <div class="valr-step-num" aria-label="Step 2">02</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Enter Your Name &amp; Surname</p>
+                        <p class="valr-step-desc">Use your full legal name exactly as it appears on your ID document  -  this is required for verification later.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.11s">
+                    <div class="valr-step-num" aria-label="Step 3">03</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Select Your Country</p>
+                        <p class="valr-step-desc">Choose your country of residence from the dropdown. VALR supports users across Africa and beyond.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.14s">
+                    <div class="valr-step-num" aria-label="Step 4">04</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Confirm the Referral Code</p>
+                        <p class="valr-step-desc">Make sure the field shows <a href="https://www.valr.com/invite/VAKM6VZY" target="_blank" rel="noopener noreferrer"><span class="highlight">VAKM6VZY</span></a>. This is your key to permanent fee discounts  -  don't skip it.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.17s">
+                    <div class="valr-step-num" aria-label="Step 5">05</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Enter Your Email Address</p>
+                        <p class="valr-step-desc">Use an email you check regularly  -  VALR will send a verification link here in the next step.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.20s">
+                    <div class="valr-step-num" aria-label="Step 6">06</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Create a Strong Password</p>
+                        <p class="valr-step-desc">Use at least <span class="highlight">14 characters</span> with a mix of letters, numbers, and symbols. Store it somewhere safe  -  never reuse passwords.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.23s">
+                    <div class="valr-step-num" aria-label="Step 7">07</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Agree to Terms &amp; Conditions</p>
+                        <p class="valr-step-desc">Read and accept VALR's terms of service. Then click <span class="highlight">Create Account</span> to proceed.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.26s">
+                    <div class="valr-step-num" aria-label="Step 8">08</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Verify Your Email</p>
+                        <p class="valr-step-desc">Check your inbox for a confirmation email from VALR. Click the link inside to activate your account. Check spam if needed.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.29s">
+                    <div class="valr-step-num" aria-label="Step 9">09</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Sign In to Your New Account</p>
+                        <p class="valr-step-desc">Download the VALR app from their official website <a href="https://www.valr.com" target="_blank" rel="noopener noreferrer" style="color:var(--valr);font-weight:600;text-decoration:underline;text-underline-offset:2px;">valr.com</a>, sign in with the email and password you registered with, and you are in.</p>
+                    </div>
+                </div>
+
+                <div class="valr-step reveal reveal-up" role="listitem" style="transition-delay:0.32s">
+                    <div class="valr-step-num" aria-label="Step 10">10</div>
+                    <div class="valr-step-content">
+                        <p class="valr-step-title">Complete Identity Verification</p>
+                        <p class="valr-step-desc">Upload your ID document and a selfie. This is a regulatory requirement (KYC) that unlocks full deposit and withdrawal access. Usually approved within minutes.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── Backup + Help row ── -->
+            <div class="valr-footer-row reveal reveal-up" style="transition-delay:0.35s">
+
+                <div class="valr-backup-card">
+                    <div class="valr-backup-icon" aria-hidden="true">🔄</div>
+                    <div class="valr-backup-text">
+                        <p class="valr-backup-title">VALR Not Available in Your Country?</p>
+                        <p class="valr-backup-desc">
+                            No problem  -  use <a href="https://www.binance.com/referral/earn-together/refer2earn-usdc/claim?hl=en&ref=GRO_28502_K7N6J&utm_source=default" target="_blank" rel="noopener noreferrer">Binance</a> as your backup exchange. It supports 150+ countries and offers the same stablecoin access you need to participate in all income streams on this site.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="valr-help-card">
+                    <div class="valr-help-icon" aria-hidden="true">💬</div>
+                    <div>
+                        <p class="valr-help-title">Need Help Getting Set Up?</p>
+                        <p class="valr-help-desc">
+                            I'm here for you. Tap the <a href="https://wa.me/27721714626" target="_blank" rel="noopener noreferrer" style="color:#25D366;text-decoration:none;"><strong style="color:#25D366">WhatsApp icon</strong></a> at the bottom of this page to message me directly  -  I'll personally walk you through anything you're stuck on.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
     </section>
@@ -1672,7 +2575,7 @@
                         NODE ACTIVE
                     </span>
 
-                    <!-- Live WFI price — mirrors Aurum's +17.5% stat position -->
+                    <!-- Live WFI price  -  mirrors Aurum's +17.5% stat position -->
                     <div class="vis-stat" aria-hidden="true">
                         <div class="vis-stat-num green" id="wfi-card-price">...</div>
                         <div class="vis-stat-label">WFI Price</div>
@@ -1739,7 +2642,7 @@
 
                             <!-- ── LEFT INTAKE PANEL ── -->
                             <rect x="80" y="24" width="52" height="57" fill="url(#acPanel)"/>
-                            <!-- Horizontal intake slits — 9 rows -->
+                            <!-- Horizontal intake slits  -  9 rows -->
                             <rect x="84" y="27.5" width="44" height="3" rx="1.2" fill="#07070e"/>
                             <rect x="84" y="32.5" width="44" height="3" rx="1.2" fill="#07070e"/>
                             <rect x="84" y="37.5" width="44" height="3" rx="1.2" fill="#07070e"/>
@@ -1765,7 +2668,7 @@
 
                             <!-- ── RIGHT EXHAUST PANEL ── -->
                             <rect x="328" y="24" width="52" height="57" fill="url(#acPanel)"/>
-                            <!-- Exhaust slits — 9 rows -->
+                            <!-- Exhaust slits  -  9 rows -->
                             <rect x="332" y="27.5" width="44" height="3" rx="1.2" fill="#07070e"/>
                             <rect x="332" y="32.5" width="44" height="3" rx="1.2" fill="#07070e"/>
                             <rect x="332" y="37.5" width="44" height="3" rx="1.2" fill="#07070e"/>
@@ -1804,7 +2707,7 @@
                             <line x1="264" y1="38.5" x2="267" y2="38.5" stroke="#223452" stroke-width="0.4"/>
                             <line x1="264" y1="60.5" x2="267" y2="60.5" stroke="#223452" stroke-width="0.4"/>
 
-                            <!-- ══ FAN 1 — cx=164, cy=50 ══ -->
+                            <!-- ══ FAN 1  -  cx=164, cy=50 ══ -->
                             <g transform="translate(164,50)">
                               <circle r="21" fill="#080810" stroke="#222238" stroke-width="1.5"/>
                               <circle r="19.5" fill="none" stroke="#06060c" stroke-width="2.5"/>
@@ -1824,7 +2727,7 @@
                               <circle r="2" fill="#C7F160" opacity="0.65" filter="url(#acLed)"/>
                             </g>
 
-                            <!-- ══ FAN 2 — cx=230, cy=50 — slightly different phase ══ -->
+                            <!-- ══ FAN 2  -  cx=230, cy=50  -  slightly different phase ══ -->
                             <g transform="translate(230,50)">
                               <circle r="21" fill="#080810" stroke="#222238" stroke-width="1.5"/>
                               <circle r="19.5" fill="none" stroke="#06060c" stroke-width="2.5"/>
@@ -1842,7 +2745,7 @@
                               <circle r="2" fill="#C7F160" opacity="0.88" filter="url(#acLed)"/>
                             </g>
 
-                            <!-- ══ FAN 3 — cx=296, cy=50 ══ -->
+                            <!-- ══ FAN 3  -  cx=296, cy=50 ══ -->
                             <g transform="translate(296,50)">
                               <circle r="21" fill="#080810" stroke="#222238" stroke-width="1.5"/>
                               <circle r="19.5" fill="none" stroke="#06060c" stroke-width="2.5"/>
@@ -2107,7 +3010,7 @@
         draw();
 
         // ════════════════════════════════════════
-        // SCROLL REVEAL — Intersection Observer
+        // SCROLL REVEAL  -  Intersection Observer
         // ════════════════════════════════════════
         const revealEls = document.querySelectorAll('.reveal');
 
@@ -2152,7 +3055,7 @@
         })();
 
         // ══════════════════════════════════════════════════════════════════
-        // LIVE WFI STATS — fully automatic, no API key needed
+        // LIVE WFI STATS  -  fully automatic, no API key needed
         //
         // Price + Market Cap  →  GeckoTerminal   (refreshes every 30s)
         // Holders             →  BSCScan public page via CORS proxy
@@ -2166,7 +3069,7 @@
             var BSCSCAN_PAGE = 'https://bscscan.com/token/' + WFI_CONTRACT;
             var GECKO_URL    = 'https://api.geckoterminal.com/api/v2/networks/bsc/pools/' + POOL;
 
-            // CORS proxy URLs — tried in order, stops at first success
+            // CORS proxy URLs  -  tried in order, stops at first success
             var PROXIES = [
                 function (url) { return 'https://api.allorigins.win/get?url=' + encodeURIComponent(url); },
                 function (url) { return 'https://corsproxy.io/?' + encodeURIComponent(url); },
@@ -2236,12 +3139,12 @@
                         if (holders) {
                             onSuccess(holders);
                         } else {
-                            // Parsed OK but couldn't find holders — try next proxy
+                            // Parsed OK but couldn't find holders  -  try next proxy
                             tryProxy(proxyIndex + 1, onSuccess);
                         }
                     })
                     .catch(function () {
-                        // Network error — try next proxy
+                        // Network error  -  try next proxy
                         tryProxy(proxyIndex + 1, onSuccess);
                     });
             }
