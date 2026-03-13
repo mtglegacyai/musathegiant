@@ -1534,24 +1534,24 @@
         /* Icon ring burst on activation */
         @keyframes cnode-ring-burst {
             0%    { opacity:0; transform:scale(1);   }
-            0.3%  { opacity:0.85; transform:scale(1);   }
-            5.5%  { opacity:0; transform:scale(1.95); }
+            0.15% { opacity:0.85; transform:scale(1);   }
+            2.65% { opacity:0; transform:scale(1.95); }
             100%  { opacity:0; transform:scale(1.95); }
         }
 
         /* Icon border glow on activation */
         @keyframes cnode-glow-pulse {
             0%    { opacity:0; }
-            0.3%  { opacity:1; }
-            5.5%  { opacity:0; }
+            0.15% { opacity:1; }
+            2.65% { opacity:0; }
             100%  { opacity:0; }
         }
 
         /* Trace illuminate on orb passage */
         @keyframes trace-illuminate {
             0%    { opacity:0; }
-            0.3%  { opacity:1; }
-            5.5%  { opacity:0; }
+            0.15% { opacity:1; }
+            2.65% { opacity:0; }
             100%  { opacity:0; }
         }
 
@@ -1657,7 +1657,7 @@
             stroke-width: 2.5;
             filter: drop-shadow(0 0 5px rgba(30,77,242,1))
                     drop-shadow(0 0 14px rgba(30,77,242,0.75));
-            animation: cnode-glow-pulse 13.5s linear infinite;
+            animation: cnode-glow-pulse 28s linear infinite;
             animation-delay: var(--d, 0s);
             opacity: 0;
         }
@@ -1668,7 +1668,7 @@
             stroke-width: 1.5;
             transform-box: fill-box;
             transform-origin: center;
-            animation: cnode-ring-burst 13.5s linear infinite;
+            animation: cnode-ring-burst 28s linear infinite;
             animation-delay: var(--d, 0s);
             opacity: 0;
         }
@@ -1679,7 +1679,7 @@
             stroke-width: 1;
             transform-box: fill-box;
             transform-origin: center;
-            animation: cnode-ring-burst 13.5s linear infinite;
+            animation: cnode-ring-burst 28s linear infinite;
             animation-delay: calc(var(--d, 0s) + 0.18s);
             opacity: 0;
         }
@@ -1712,7 +1712,7 @@
                     drop-shadow(0 0 35px rgba(30,77,242,0.55));
             offset-path: path('M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55');
             offset-rotate: 0deg;
-            animation: circuit-orb-travel 13.5s linear infinite;
+            animation: circuit-orb-travel 28s linear infinite;
         }
         /* Large soft bloom around the orb */
         .circuit-orb-bloom {
@@ -1720,7 +1720,7 @@
             filter: drop-shadow(0 0 18px rgba(30,77,242,0.6));
             offset-path: path('M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55');
             offset-rotate: 0deg;
-            animation: circuit-orb-travel 13.5s linear infinite;
+            animation: circuit-orb-travel 28s linear infinite;
         }
         /* Medium glow ring around orb */
         .circuit-orb-mid {
@@ -1728,7 +1728,7 @@
             filter: drop-shadow(0 0 8px rgba(30,77,242,0.9));
             offset-path: path('M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55');
             offset-rotate: 0deg;
-            animation: circuit-orb-travel 13.5s linear infinite;
+            animation: circuit-orb-travel 28s linear infinite;
         }
 
 
@@ -2126,7 +2126,7 @@
                     <text x="55" y="129" class="cnode-label">Click Link</text>
                 </g>
                 <!-- Node 1: Your Name -->
-                <g style="--d:1.5s">
+                <g style="--d:2.8s">
                     <circle cx="180" cy="95" r="27" class="cnode-base"/>
                     <circle cx="180" cy="95" r="27" class="cnode-glow"/>
                     <circle cx="180" cy="95" r="27" class="cnode-ring"/>
@@ -2135,7 +2135,7 @@
                     <text x="180" y="129" class="cnode-label">Your Name</text>
                 </g>
                 <!-- Node 2: Country -->
-                <g style="--d:3.0s">
+                <g style="--d:5.6s">
                     <circle cx="305" cy="95" r="27" class="cnode-base"/>
                     <circle cx="305" cy="95" r="27" class="cnode-glow"/>
                     <circle cx="305" cy="95" r="27" class="cnode-ring"/>
@@ -2144,7 +2144,7 @@
                     <text x="305" y="129" class="cnode-label">Country</text>
                 </g>
                 <!-- Node 3: Ref. Code -->
-                <g style="--d:4.5s">
+                <g style="--d:8.4s">
                     <circle cx="430" cy="95" r="27" class="cnode-base"/>
                     <circle cx="430" cy="95" r="27" class="cnode-glow"/>
                     <circle cx="430" cy="95" r="27" class="cnode-ring"/>
@@ -2153,7 +2153,7 @@
                     <text x="430" y="129" class="cnode-label">Ref. Code</text>
                 </g>
                 <!-- Node 4: Email -->
-                <g style="--d:6.0s">
+                <g style="--d:11.2s">
                     <circle cx="560" cy="95" r="27" class="cnode-base"/>
                     <circle cx="560" cy="95" r="27" class="cnode-glow"/>
                     <circle cx="560" cy="95" r="27" class="cnode-ring"/>
@@ -2162,7 +2162,7 @@
                     <text x="560" y="129" class="cnode-label">Email</text>
                 </g>
                 <!-- Node 5: Password -->
-                <g style="--d:7.5s">
+                <g style="--d:14.0s">
                     <circle cx="560" cy="210" r="27" class="cnode-base"/>
                     <circle cx="560" cy="210" r="27" class="cnode-glow"/>
                     <circle cx="560" cy="210" r="27" class="cnode-ring"/>
@@ -2171,7 +2171,7 @@
                     <text x="560" y="244" class="cnode-label">Password</text>
                 </g>
                 <!-- Node 6: Terms -->
-                <g style="--d:9.0s">
+                <g style="--d:16.8s">
                     <circle cx="430" cy="210" r="27" class="cnode-base"/>
                     <circle cx="430" cy="210" r="27" class="cnode-glow"/>
                     <circle cx="430" cy="210" r="27" class="cnode-ring"/>
@@ -2180,7 +2180,7 @@
                     <text x="430" y="244" class="cnode-label">Terms</text>
                 </g>
                 <!-- Node 7: Verify Email -->
-                <g style="--d:10.5s">
+                <g style="--d:19.6s">
                     <circle cx="305" cy="210" r="27" class="cnode-base"/>
                     <circle cx="305" cy="210" r="27" class="cnode-glow"/>
                     <circle cx="305" cy="210" r="27" class="cnode-ring"/>
@@ -2189,7 +2189,7 @@
                     <text x="305" y="244" class="cnode-label">Verify Email</text>
                 </g>
                 <!-- Node 8: Sign In -->
-                <g style="--d:12.0s">
+                <g style="--d:22.4s">
                     <circle cx="180" cy="210" r="27" class="cnode-base"/>
                     <circle cx="180" cy="210" r="27" class="cnode-glow"/>
                     <circle cx="180" cy="210" r="27" class="cnode-ring"/>
