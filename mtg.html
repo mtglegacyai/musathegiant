@@ -1524,243 +1524,216 @@
             font-weight: 600;
         }
 
-        /* ── Progress connector row (visual flow) ── */
+        /* ── Circuit Board Signal Flow ── */
 
-        /* Signal orb: travels left→right, active for 1 of 9 slots (11.1%) */
-        @keyframes orb-travel {
-            0%      { transform: translateX(0px);   opacity: 0; }
-            1.5%    { transform: translateX(0px);   opacity: 1; }
-            9.5%    { transform: translateX(40px);  opacity: 1; }
-            11.1%   { transform: translateX(42px);  opacity: 0; }
-            100%    { transform: translateX(42px);  opacity: 0; }
-        }
-        /* Trace flash: wire illuminates as signal passes */
-        @keyframes trace-flash {
-            0%      { opacity: 0; }
-            1.5%    { opacity: 1; }
-            9.5%    { opacity: 1; }
-            11.1%   { opacity: 0; }
-            100%    { opacity: 0; }
-        }
-        /* Icon ring: expands outward when signal arrives */
-        @keyframes icon-ring-expand {
-            0%      { transform: scale(1);    opacity: 0; }
-            0.5%    { transform: scale(1.04); opacity: 1; }
-            6%      { transform: scale(1.55); opacity: 0; }
-            100%    { transform: scale(1.55); opacity: 0; }
-        }
-        /* Icon glow: border + box-shadow brightens on arrival */
-        @keyframes icon-glow-pulse {
-            0%      { box-shadow: 0 0 0 0 rgba(30,77,242,0);   border-color: var(--valr-border); }
-            0.5%    { box-shadow: 0 0 22px 6px rgba(30,77,242,0.65), 0 0 50px rgba(30,77,242,0.25); border-color: #4B70F5; }
-            7%      { box-shadow: 0 0 0 0 rgba(30,77,242,0);   border-color: var(--valr-border); }
-            100%    { box-shadow: 0 0 0 0 rgba(30,77,242,0);   border-color: var(--valr-border); }
-        }
-        /* Mobile vertical orb */
-        @keyframes orb-travel-v {
-            0%      { transform: translateY(0px);   opacity: 0; }
-            1.5%    { transform: translateY(0px);   opacity: 1; }
-            9.5%    { transform: translateY(32px);  opacity: 1; }
-            11.1%   { transform: translateY(34px);  opacity: 0; }
-            100%    { transform: translateY(34px);  opacity: 0; }
+        @keyframes circuit-orb-travel {
+            from { offset-distance: 0%; }
+            to   { offset-distance: 100%; }
         }
 
-        /* ── Flow container ── */
-        .valr-flow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: nowrap;
-            gap: 0;
+        /* Icon ring burst on activation */
+        @keyframes cnode-ring-burst {
+            0%    { opacity:0; transform:scale(1);   }
+            0.3%  { opacity:0.85; transform:scale(1);   }
+            5.5%  { opacity:0; transform:scale(1.95); }
+            100%  { opacity:0; transform:scale(1.95); }
+        }
+
+        /* Icon border glow on activation */
+        @keyframes cnode-glow-pulse {
+            0%    { opacity:0; }
+            0.3%  { opacity:1; }
+            5.5%  { opacity:0; }
+            100%  { opacity:0; }
+        }
+
+        /* Trace illuminate on orb passage */
+        @keyframes trace-illuminate {
+            0%    { opacity:0; }
+            0.3%  { opacity:1; }
+            5.5%  { opacity:0; }
+            100%  { opacity:0; }
+        }
+
+        /* ── Wrapper card ── */
+        .valr-circuit-wrap {
             margin-bottom: 48px;
-            padding: 32px 24px;
+            border-radius: var(--radius);
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow-x: auto;
-            overflow-y: visible;
             position: relative;
-            scrollbar-width: none;
+            overflow: hidden;
         }
-        .valr-flow::-webkit-scrollbar { display: none; }
-        .valr-flow::before {
+        .valr-circuit-wrap::before {
             content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(30,77,242,0.06) 0%, transparent 70%);
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 75% 75% at 50% 50%, rgba(30,77,242,0.06) 0%, transparent 70%);
             pointer-events: none;
             border-radius: var(--radius);
         }
 
-        /* ── Node (icon + caption) ── */
-        .valr-flow-node {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 9px;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ── Icon circle ── */
-        .valr-flow-icon {
-            width: 54px; height: 54px;
-            border-radius: 50%;
-            background: rgba(30,77,242,0.1);
-            border: 1.5px solid var(--valr-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-            position: relative;
-            overflow: visible;
-            /* glow animation driven by --icon-delay */
-            animation: icon-glow-pulse 13.5s ease-in-out infinite;
-            animation-delay: var(--icon-delay, 0s);
-        }
-        /* Expanding ring on icon activation */
-        .valr-flow-icon::after {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 50%;
-            border: 2px solid rgba(30,77,242,0.85);
-            pointer-events: none;
-            animation: icon-ring-expand 13.5s ease-in-out infinite;
-            animation-delay: var(--icon-delay, 0s);
-            opacity: 0;
-        }
-        .valr-flow-icon:hover {
-            transform: scale(1.1);
-        }
-
-        /* ── Caption ── */
-        .valr-flow-caption {
-            font-size: 0.56rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.4);
-            text-align: center;
-            width: 62px;
-            line-height: 1.35;
-        }
-
-        /* ── Signal connector ── */
-        .valr-flow-chevron {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            width: 52px;
-            height: 54px;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 24px; /* offset caption so orb aligns with icon center */
+        /* ── Desktop SVG ── */
+        .valr-circuit-svg {
+            display: block;
+            width: 100%;
+            padding: 28px 20px 20px;
+            box-sizing: border-box;
             overflow: visible;
         }
-        .valr-flow-chevron svg { overflow: visible; }
 
-        /* Dormant circuit trace */
-        .flow-trace-base {
+        /* ── Mobile 2-col badge grid ── */
+        .valr-mobile-steps {
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 20px;
+        }
+        .vms-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 13px;
+            background: rgba(30,77,242,0.08);
+            border: 1px solid rgba(30,77,242,0.22);
+            border-radius: 12px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .vms-item:hover {
+            border-color: rgba(30,77,242,0.5);
+            background: rgba(30,77,242,0.13);
+        }
+        .vms-icon { font-size: 1.35rem; flex-shrink: 0; line-height: 1; }
+        .vms-num  {
+            font-family: var(--f-head);
+            font-size: 0.58rem; font-weight: 800;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--valr); display: block; margin-bottom: 2px;
+        }
+        .vms-cap  {
+            font-size: 0.67rem; font-weight: 700;
+            color: rgba(255,255,255,0.65);
+            letter-spacing: 0.2px; line-height: 1.2;
+        }
+
+        @media (max-width: 640px) {
+            .valr-circuit-svg   { display: none; }
+            .valr-mobile-steps  { display: grid; }
+        }
+
+        /* ── SVG element styles ── */
+        .circuit-path-base {
             stroke: rgba(30,77,242,0.18);
             stroke-width: 1.5;
-            stroke-dasharray: 3 5;
+            stroke-dasharray: 5 8;
             stroke-linecap: round;
+            fill: none;
         }
-        /* Active illuminated trace */
-        .flow-trace-live {
-            stroke: rgba(30,77,242,0.8);
-            stroke-width: 2;
-            filter: drop-shadow(0 0 4px rgba(30,77,242,0.9));
-            animation: trace-flash 13.5s ease-in-out infinite;
-            animation-delay: var(--conn-delay, 0s);
+        /* Always-on ambient glow on the trace */
+        .circuit-path-ambient {
+            stroke: rgba(30,77,242,0.07);
+            stroke-width: 10;
+            stroke-linecap: round;
+            fill: none;
+        }
+        /* Via junction pad */
+        .circuit-via {
+            fill: rgba(30,77,242,0.45);
+            stroke: rgba(30,77,242,0.6);
+            stroke-width: 0.8;
+        }
+        .circuit-via-mid {
+            fill: rgba(30,77,242,0.25);
+        }
+        /* Icon base circle */
+        .cnode-base {
+            fill: rgba(30,77,242,0.1);
+            stroke: rgba(30,77,242,0.28);
+            stroke-width: 1.5;
+        }
+        /* Glow ring that fires on activation */
+        .cnode-glow {
+            fill: none;
+            stroke: #4B70F5;
+            stroke-width: 2.5;
+            filter: drop-shadow(0 0 5px rgba(30,77,242,1))
+                    drop-shadow(0 0 14px rgba(30,77,242,0.75));
+            animation: cnode-glow-pulse 13.5s linear infinite;
+            animation-delay: var(--d, 0s);
             opacity: 0;
         }
-        /* Junction via pads */
-        .flow-via {
-            fill: rgba(30,77,242,0.3);
-            stroke: rgba(30,77,242,0.5);
+        /* Expanding burst ring */
+        .cnode-ring {
+            fill: none;
+            stroke: rgba(30,77,242,0.6);
+            stroke-width: 1.5;
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: cnode-ring-burst 13.5s linear infinite;
+            animation-delay: var(--d, 0s);
+            opacity: 0;
+        }
+        /* Second wider burst ring (offset by tiny delay) */
+        .cnode-ring2 {
+            fill: none;
+            stroke: rgba(30,77,242,0.35);
             stroke-width: 1;
-        }
-        /* Travelling signal orb */
-        .signal-orb {
-            fill: #4B70F5;
-            filter: drop-shadow(-5px 0 5px rgba(30,77,242,0.7))
-                    drop-shadow(0 0 8px rgba(75,112,245,0.95))
-                    drop-shadow(0 0 18px rgba(30,77,242,0.55));
-            animation: orb-travel 13.5s ease-in-out infinite;
-            animation-delay: var(--conn-delay, 0s);
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: cnode-ring-burst 13.5s linear infinite;
+            animation-delay: calc(var(--d, 0s) + 0.18s);
             opacity: 0;
         }
-
-        /* ── Mobile: vertical layout ── */
-        @media (max-width: 680px) {
-            .valr-flow {
-                flex-direction: column;
-                align-items: flex-start;
-                overflow-x: visible;
-                overflow-y: visible;
-                padding: 24px 20px;
-                gap: 0;
-            }
-            .valr-flow-node {
-                flex-direction: row;
-                gap: 16px;
-                width: 100%;
-                max-width: 300px;
-                align-items: center;
-            }
-            .valr-flow-icon {
-                width: 50px; height: 50px;
-                font-size: 1.2rem;
-                flex-shrink: 0;
-            }
-            .valr-flow-caption {
-                width: auto;
-                text-align: left;
-                font-size: 0.63rem;
-                letter-spacing: 0.5px;
-            }
-            .valr-flow-chevron {
-                width: 50px;
-                height: 40px;
-                margin-bottom: 0;
-                margin-left: 0;
-                align-self: flex-start;
-                overflow: hidden;
-            }
-            .valr-flow-chevron svg { display: none; }
-            /* CSS-only vertical connector for mobile */
-            .valr-flow-chevron::before {
-                content: '';
-                position: absolute;
-                left: 23px;
-                top: 0; bottom: 0; width: 2px;
-                background: repeating-linear-gradient(
-                    180deg,
-                    rgba(30,77,242,0.3) 0px, rgba(30,77,242,0.3) 4px,
-                    transparent 4px, transparent 9px
-                );
-            }
-            .valr-flow-chevron::after {
-                content: '';
-                position: absolute;
-                left: 17px;
-                top: -6px;
-                width: 12px; height: 12px;
-                border-radius: 50%;
-                background: #4B70F5;
-                box-shadow: 0 0 10px rgba(30,77,242,0.9), 0 0 20px rgba(30,77,242,0.5);
-                animation: orb-travel-v 13.5s ease-in-out infinite;
-                animation-delay: var(--conn-delay, 0s);
-                opacity: 0;
-            }
+        /* Emoji icon */
+        .cnode-icon {
+            text-anchor: middle;
+            dominant-baseline: central;
+            font-size: 20px;
+            font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;
+            pointer-events: none;
+        }
+        /* Label below icon */
+        .cnode-label {
+            text-anchor: middle;
+            fill: rgba(255,255,255,0.4);
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            font-family: 'DM Sans', sans-serif;
+            pointer-events: none;
         }
 
-        /* ── Backup + Help row ── */
+        /* ── Travelling signal orb (CSS motion-path) ── */
+        .circuit-orb {
+            fill: #C8D8FF;
+            filter: drop-shadow(0 0 2px #FFFFFF)
+                    drop-shadow(0 0 6px #6B8FFF)
+                    drop-shadow(0 0 18px rgba(30,77,242,0.95))
+                    drop-shadow(0 0 35px rgba(30,77,242,0.55));
+            offset-path: path('M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55');
+            offset-rotate: 0deg;
+            animation: circuit-orb-travel 13.5s linear infinite;
+        }
+        /* Large soft bloom around the orb */
+        .circuit-orb-bloom {
+            fill: rgba(30,77,242,0.18);
+            filter: drop-shadow(0 0 18px rgba(30,77,242,0.6));
+            offset-path: path('M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55');
+            offset-rotate: 0deg;
+            animation: circuit-orb-travel 13.5s linear infinite;
+        }
+        /* Medium glow ring around orb */
+        .circuit-orb-mid {
+            fill: rgba(75,112,245,0.45);
+            filter: drop-shadow(0 0 8px rgba(30,77,242,0.9));
+            offset-path: path('M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55');
+            offset-rotate: 0deg;
+            animation: circuit-orb-travel 13.5s linear infinite;
+        }
+
+
+
+                /* ── Backup + Help row ── */
         .valr-footer-row {
             display: flex;
             flex-wrap: wrap;
@@ -2105,163 +2078,209 @@
             <!-- ── Visual Progress Flow (infographic) ── -->
             <p class="valr-steps-label reveal reveal-up" style="transition-delay:0.2s">VALR Registration Flow</p>
 
-                        <div class="valr-flow reveal reveal-up" style="transition-delay:0.22s" aria-label="VALR registration signal flow">
-                <div class="valr-flow-node">
-                    <div class="valr-flow-icon" style="--icon-delay:0s" role="img" aria-label="Click Link">🖱️</div>
-                    <span class="valr-flow-caption">Click Link</span>
-                </div>
-                <div class="valr-flow-chevron" style="--conn-delay:0.00s" aria-hidden="true">
-                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Dormant dashed circuit trace -->
-                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Via pads at each end -->
-                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
-                        <circle class="flow-via" cx="46" cy="10" r="3"/>
-                        <!-- Illuminated trace (animates with signal) -->
-                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Signal orb (glowing particle) -->
-                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
-                    </svg>
-                </div>
-                <div class="valr-flow-node">
-                    <div class="valr-flow-icon" style="--icon-delay:1.23s" role="img" aria-label="Your Name">👤</div>
-                    <span class="valr-flow-caption">Your Name</span>
-                </div>
-                <div class="valr-flow-chevron" style="--conn-delay:1.50s" aria-hidden="true">
-                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Dormant dashed circuit trace -->
-                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Via pads at each end -->
-                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
-                        <circle class="flow-via" cx="46" cy="10" r="3"/>
-                        <!-- Illuminated trace (animates with signal) -->
-                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Signal orb (glowing particle) -->
-                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
-                    </svg>
-                </div>
-                <div class="valr-flow-node">
-                    <div class="valr-flow-icon" style="--icon-delay:2.73s" role="img" aria-label="Country">🌍</div>
-                    <span class="valr-flow-caption">Country</span>
-                </div>
-                <div class="valr-flow-chevron" style="--conn-delay:3.00s" aria-hidden="true">
-                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Dormant dashed circuit trace -->
-                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Via pads at each end -->
-                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
-                        <circle class="flow-via" cx="46" cy="10" r="3"/>
-                        <!-- Illuminated trace (animates with signal) -->
-                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Signal orb (glowing particle) -->
-                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
-                    </svg>
-                </div>
-                <div class="valr-flow-node">
-                    <div class="valr-flow-icon" style="--icon-delay:4.23s" role="img" aria-label="Referral Code">🏷️</div>
-                    <span class="valr-flow-caption">Referral Code</span>
-                </div>
-                <div class="valr-flow-chevron" style="--conn-delay:4.50s" aria-hidden="true">
-                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Dormant dashed circuit trace -->
-                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Via pads at each end -->
-                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
-                        <circle class="flow-via" cx="46" cy="10" r="3"/>
-                        <!-- Illuminated trace (animates with signal) -->
-                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Signal orb (glowing particle) -->
-                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
-                    </svg>
-                </div>
-                <div class="valr-flow-node">
-                    <div class="valr-flow-icon" style="--icon-delay:5.73s" role="img" aria-label="Email">📧</div>
-                    <span class="valr-flow-caption">Email</span>
-                </div>
-                <div class="valr-flow-chevron" style="--conn-delay:6.00s" aria-hidden="true">
-                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Dormant dashed circuit trace -->
-                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Via pads at each end -->
-                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
-                        <circle class="flow-via" cx="46" cy="10" r="3"/>
-                        <!-- Illuminated trace (animates with signal) -->
-                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Signal orb (glowing particle) -->
-                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
-                    </svg>
-                </div>
-                <div class="valr-flow-node">
-                    <div class="valr-flow-icon" style="--icon-delay:7.23s" role="img" aria-label="Password">🔐</div>
-                    <span class="valr-flow-caption">Password</span>
-                </div>
-                <div class="valr-flow-chevron" style="--conn-delay:7.50s" aria-hidden="true">
-                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Dormant dashed circuit trace -->
-                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Via pads at each end -->
-                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
-                        <circle class="flow-via" cx="46" cy="10" r="3"/>
-                        <!-- Illuminated trace (animates with signal) -->
-                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Signal orb (glowing particle) -->
-                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
-                    </svg>
-                </div>
-                <div class="valr-flow-node">
-                    <div class="valr-flow-icon" style="--icon-delay:8.73s" role="img" aria-label="Terms">✅</div>
-                    <span class="valr-flow-caption">Terms</span>
-                </div>
-                <div class="valr-flow-chevron" style="--conn-delay:9.00s" aria-hidden="true">
-                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Dormant dashed circuit trace -->
-                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Via pads at each end -->
-                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
-                        <circle class="flow-via" cx="46" cy="10" r="3"/>
-                        <!-- Illuminated trace (animates with signal) -->
-                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Signal orb (glowing particle) -->
-                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
-                    </svg>
-                </div>
-                <div class="valr-flow-node">
-                    <div class="valr-flow-icon" style="--icon-delay:10.23s" role="img" aria-label="Verify Email">📬</div>
-                    <span class="valr-flow-caption">Verify Email</span>
-                </div>
-                <div class="valr-flow-chevron" style="--conn-delay:10.50s" aria-hidden="true">
-                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Dormant dashed circuit trace -->
-                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Via pads at each end -->
-                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
-                        <circle class="flow-via" cx="46" cy="10" r="3"/>
-                        <!-- Illuminated trace (animates with signal) -->
-                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Signal orb (glowing particle) -->
-                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
-                    </svg>
-                </div>
-                <div class="valr-flow-node">
-                    <div class="valr-flow-icon" style="--icon-delay:11.73s" role="img" aria-label="Sign In">🔓</div>
-                    <span class="valr-flow-caption">Sign In</span>
-                </div>
-                <div class="valr-flow-chevron" style="--conn-delay:12.00s" aria-hidden="true">
-                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Dormant dashed circuit trace -->
-                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Via pads at each end -->
-                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
-                        <circle class="flow-via" cx="46" cy="10" r="3"/>
-                        <!-- Illuminated trace (animates with signal) -->
-                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
-                        <!-- Signal orb (glowing particle) -->
-                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
-                    </svg>
-                </div>
-                <div class="valr-flow-node">
-                    <div class="valr-flow-icon" style="--icon-delay:13.23s" role="img" aria-label="Verify ID">🪪</div>
-                    <span class="valr-flow-caption">Verify ID</span>
+<div class="valr-circuit-wrap reveal reveal-up" style="transition-delay:0.22s">
+                <svg class="valr-circuit-svg" viewBox="0 0 700 265"
+                 preserveAspectRatio="xMidYMid meet"
+                 xmlns="http://www.w3.org/2000/svg"
+                 role="img" aria-label="VALR 10-step registration circuit flow">
+                <!-- Ambient glow on full path -->
+                <path d="M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55" class="circuit-path-ambient"/>
+                <!-- Dormant dashed trace -->
+                <path d="M 55,95 H 560 Q 600,95 600,152 Q 600,210 560,210 H 55" class="circuit-path-base"/>
+
+                <!-- Mid-point via pads (row 1) -->
+                <circle cx="117" cy="95" r="3.5" class="circuit-via"/>
+                <circle cx="242" cy="95" r="3.5" class="circuit-via"/>
+                <circle cx="367" cy="95" r="3.5" class="circuit-via"/>
+                <circle cx="495" cy="95" r="3.5" class="circuit-via"/>
+                <!-- Mid-point via pads (row 2) -->
+                <circle cx="117" cy="210" r="3.5" class="circuit-via"/>
+                <circle cx="242" cy="210" r="3.5" class="circuit-via"/>
+                <circle cx="367" cy="210" r="3.5" class="circuit-via"/>
+                <circle cx="495" cy="210" r="3.5" class="circuit-via"/>
+                <!-- U-bend midpoint via -->
+                <circle cx="600" cy="152" r="4.5" class="circuit-via"/>
+
+                <!-- PCB corner bracket detail in U-bend -->
+                <rect x="590" y="88" width="18" height="8" rx="2"
+                      fill="none" stroke="rgba(30,77,242,0.3)" stroke-width="1"/>
+                <rect x="590" y="204" width="18" height="8" rx="2"
+                      fill="none" stroke="rgba(30,77,242,0.3)" stroke-width="1"/>
+                <text x="609" y="155" text-anchor="middle" fill="rgba(30,77,242,0.35)"
+                      font-size="8" font-family="DM Sans,sans-serif" font-weight="700">⟳</text>
+
+                <!-- Layer 1: orb bloom (renders underneath) -->
+                <circle r="14" class="circuit-orb-bloom"/>
+                <!-- Layer 2: orb mid-glow -->
+                <circle r="8"  class="circuit-orb-mid"/>
+
+                <!-- Icon nodes -->
+
+                <!-- Node 0: Click Link -->
+                <g style="--d:0.0s">
+                    <circle cx="55" cy="95" r="27" class="cnode-base"/>
+                    <circle cx="55" cy="95" r="27" class="cnode-glow"/>
+                    <circle cx="55" cy="95" r="27" class="cnode-ring"/>
+                    <circle cx="55" cy="95" r="27" class="cnode-ring2"/>
+                    <text x="55" y="95" class="cnode-icon">🖱️</text>
+                    <text x="55" y="129" class="cnode-label">Click Link</text>
+                </g>
+                <!-- Node 1: Your Name -->
+                <g style="--d:1.5s">
+                    <circle cx="180" cy="95" r="27" class="cnode-base"/>
+                    <circle cx="180" cy="95" r="27" class="cnode-glow"/>
+                    <circle cx="180" cy="95" r="27" class="cnode-ring"/>
+                    <circle cx="180" cy="95" r="27" class="cnode-ring2"/>
+                    <text x="180" y="95" class="cnode-icon">👤</text>
+                    <text x="180" y="129" class="cnode-label">Your Name</text>
+                </g>
+                <!-- Node 2: Country -->
+                <g style="--d:3.0s">
+                    <circle cx="305" cy="95" r="27" class="cnode-base"/>
+                    <circle cx="305" cy="95" r="27" class="cnode-glow"/>
+                    <circle cx="305" cy="95" r="27" class="cnode-ring"/>
+                    <circle cx="305" cy="95" r="27" class="cnode-ring2"/>
+                    <text x="305" y="95" class="cnode-icon">🌍</text>
+                    <text x="305" y="129" class="cnode-label">Country</text>
+                </g>
+                <!-- Node 3: Ref. Code -->
+                <g style="--d:4.5s">
+                    <circle cx="430" cy="95" r="27" class="cnode-base"/>
+                    <circle cx="430" cy="95" r="27" class="cnode-glow"/>
+                    <circle cx="430" cy="95" r="27" class="cnode-ring"/>
+                    <circle cx="430" cy="95" r="27" class="cnode-ring2"/>
+                    <text x="430" y="95" class="cnode-icon">🏷️</text>
+                    <text x="430" y="129" class="cnode-label">Ref. Code</text>
+                </g>
+                <!-- Node 4: Email -->
+                <g style="--d:6.0s">
+                    <circle cx="560" cy="95" r="27" class="cnode-base"/>
+                    <circle cx="560" cy="95" r="27" class="cnode-glow"/>
+                    <circle cx="560" cy="95" r="27" class="cnode-ring"/>
+                    <circle cx="560" cy="95" r="27" class="cnode-ring2"/>
+                    <text x="560" y="95" class="cnode-icon">📧</text>
+                    <text x="560" y="129" class="cnode-label">Email</text>
+                </g>
+                <!-- Node 5: Password -->
+                <g style="--d:7.5s">
+                    <circle cx="560" cy="210" r="27" class="cnode-base"/>
+                    <circle cx="560" cy="210" r="27" class="cnode-glow"/>
+                    <circle cx="560" cy="210" r="27" class="cnode-ring"/>
+                    <circle cx="560" cy="210" r="27" class="cnode-ring2"/>
+                    <text x="560" y="210" class="cnode-icon">🔐</text>
+                    <text x="560" y="244" class="cnode-label">Password</text>
+                </g>
+                <!-- Node 6: Terms -->
+                <g style="--d:9.0s">
+                    <circle cx="430" cy="210" r="27" class="cnode-base"/>
+                    <circle cx="430" cy="210" r="27" class="cnode-glow"/>
+                    <circle cx="430" cy="210" r="27" class="cnode-ring"/>
+                    <circle cx="430" cy="210" r="27" class="cnode-ring2"/>
+                    <text x="430" y="210" class="cnode-icon">✅</text>
+                    <text x="430" y="244" class="cnode-label">Terms</text>
+                </g>
+                <!-- Node 7: Verify Email -->
+                <g style="--d:10.5s">
+                    <circle cx="305" cy="210" r="27" class="cnode-base"/>
+                    <circle cx="305" cy="210" r="27" class="cnode-glow"/>
+                    <circle cx="305" cy="210" r="27" class="cnode-ring"/>
+                    <circle cx="305" cy="210" r="27" class="cnode-ring2"/>
+                    <text x="305" y="210" class="cnode-icon">📬</text>
+                    <text x="305" y="244" class="cnode-label">Verify Email</text>
+                </g>
+                <!-- Node 8: Sign In -->
+                <g style="--d:12.0s">
+                    <circle cx="180" cy="210" r="27" class="cnode-base"/>
+                    <circle cx="180" cy="210" r="27" class="cnode-glow"/>
+                    <circle cx="180" cy="210" r="27" class="cnode-ring"/>
+                    <circle cx="180" cy="210" r="27" class="cnode-ring2"/>
+                    <text x="180" y="210" class="cnode-icon">🔓</text>
+                    <text x="180" y="244" class="cnode-label">Sign In</text>
+                </g>
+                <!-- Node 9: Verify ID -->
+                <g style="--d:0s">
+                    <circle cx="55" cy="210" r="27" class="cnode-base"/>
+                    <circle cx="55" cy="210" r="27" class="cnode-glow"/>
+                    <circle cx="55" cy="210" r="27" class="cnode-ring"/>
+                    <circle cx="55" cy="210" r="27" class="cnode-ring2"/>
+                    <text x="55" y="210" class="cnode-icon">🪪</text>
+                    <text x="55" y="244" class="cnode-label">Verify ID</text>
+                </g>
+
+                <!-- Layer 3: orb core (renders on top of icons) -->
+                <circle r="5"  class="circuit-orb"/>
+            </svg>
+                <div class="valr-mobile-steps">
+                    <div class="vms-item">
+                        <span class="vms-icon">🖱️</span>
+                        <div>
+                            <span class="vms-num">Step 01</span>
+                            <span class="vms-cap">Click Link</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">👤</span>
+                        <div>
+                            <span class="vms-num">Step 02</span>
+                            <span class="vms-cap">Your Name</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">🌍</span>
+                        <div>
+                            <span class="vms-num">Step 03</span>
+                            <span class="vms-cap">Country</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">🏷️</span>
+                        <div>
+                            <span class="vms-num">Step 04</span>
+                            <span class="vms-cap">Ref. Code</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">📧</span>
+                        <div>
+                            <span class="vms-num">Step 05</span>
+                            <span class="vms-cap">Email</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">🔐</span>
+                        <div>
+                            <span class="vms-num">Step 06</span>
+                            <span class="vms-cap">Password</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">✅</span>
+                        <div>
+                            <span class="vms-num">Step 07</span>
+                            <span class="vms-cap">Terms</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">📬</span>
+                        <div>
+                            <span class="vms-num">Step 08</span>
+                            <span class="vms-cap">Verify Email</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">🔓</span>
+                        <div>
+                            <span class="vms-num">Step 09</span>
+                            <span class="vms-cap">Sign In</span>
+                        </div>
+                    </div>
+                    <div class="vms-item">
+                        <span class="vms-icon">🪪</span>
+                        <div>
+                            <span class="vms-num">Step 10</span>
+                            <span class="vms-cap">Verify ID</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
