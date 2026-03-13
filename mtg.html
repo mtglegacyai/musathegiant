@@ -1526,23 +1526,46 @@
 
         /* ── Progress connector row (visual flow) ── */
 
-        /* Animated chevron keyframe — travels right */
-        @keyframes chevron-travel {
-            0%   { opacity: 0;   transform: translateX(-5px); }
-            2%   { opacity: 1;   transform: translateX(0px);  }
-            9%   { opacity: 1;   transform: translateX(0px);  }
-            11%  { opacity: 0;   transform: translateX(5px);  }
-            100% { opacity: 0;   transform: translateX(5px);  }
+        /* Signal orb: travels left→right, active for 1 of 9 slots (11.1%) */
+        @keyframes orb-travel {
+            0%      { transform: translateX(0px);   opacity: 0; }
+            1.5%    { transform: translateX(0px);   opacity: 1; }
+            9.5%    { transform: translateX(40px);  opacity: 1; }
+            11.1%   { transform: translateX(42px);  opacity: 0; }
+            100%    { transform: translateX(42px);  opacity: 0; }
         }
-        /* Down variant for mobile */
-        @keyframes chevron-travel-down {
-            0%   { opacity: 0;   transform: translateY(-5px); }
-            2%   { opacity: 1;   transform: translateY(0px);  }
-            9%   { opacity: 1;   transform: translateY(0px);  }
-            11%  { opacity: 0;   transform: translateY(5px);  }
-            100% { opacity: 0;   transform: translateY(5px);  }
+        /* Trace flash: wire illuminates as signal passes */
+        @keyframes trace-flash {
+            0%      { opacity: 0; }
+            1.5%    { opacity: 1; }
+            9.5%    { opacity: 1; }
+            11.1%   { opacity: 0; }
+            100%    { opacity: 0; }
+        }
+        /* Icon ring: expands outward when signal arrives */
+        @keyframes icon-ring-expand {
+            0%      { transform: scale(1);    opacity: 0; }
+            0.5%    { transform: scale(1.04); opacity: 1; }
+            6%      { transform: scale(1.55); opacity: 0; }
+            100%    { transform: scale(1.55); opacity: 0; }
+        }
+        /* Icon glow: border + box-shadow brightens on arrival */
+        @keyframes icon-glow-pulse {
+            0%      { box-shadow: 0 0 0 0 rgba(30,77,242,0);   border-color: var(--valr-border); }
+            0.5%    { box-shadow: 0 0 22px 6px rgba(30,77,242,0.65), 0 0 50px rgba(30,77,242,0.25); border-color: #4B70F5; }
+            7%      { box-shadow: 0 0 0 0 rgba(30,77,242,0);   border-color: var(--valr-border); }
+            100%    { box-shadow: 0 0 0 0 rgba(30,77,242,0);   border-color: var(--valr-border); }
+        }
+        /* Mobile vertical orb */
+        @keyframes orb-travel-v {
+            0%      { transform: translateY(0px);   opacity: 0; }
+            1.5%    { transform: translateY(0px);   opacity: 1; }
+            9.5%    { transform: translateY(32px);  opacity: 1; }
+            11.1%   { transform: translateY(34px);  opacity: 0; }
+            100%    { transform: translateY(34px);  opacity: 0; }
         }
 
+        /* ── Flow container ── */
         .valr-flow {
             display: flex;
             align-items: center;
@@ -1550,7 +1573,7 @@
             flex-wrap: nowrap;
             gap: 0;
             margin-bottom: 48px;
-            padding: 28px 20px;
+            padding: 32px 24px;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
@@ -1564,110 +1587,177 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(30,77,242,0.05) 0%, transparent 70%);
+            background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(30,77,242,0.06) 0%, transparent 70%);
             pointer-events: none;
             border-radius: var(--radius);
         }
 
+        /* ── Node (icon + caption) ── */
         .valr-flow-node {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 9px;
             flex-shrink: 0;
             position: relative;
             z-index: 1;
         }
+
+        /* ── Icon circle ── */
         .valr-flow-icon {
-            width: 52px; height: 52px;
+            width: 54px; height: 54px;
             border-radius: 50%;
-            background: var(--valr-glow);
+            background: rgba(30,77,242,0.1);
             border: 1.5px solid var(--valr-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-size: 1.3rem;
             flex-shrink: 0;
+            position: relative;
+            overflow: visible;
+            /* glow animation driven by --icon-delay */
+            animation: icon-glow-pulse 13.5s ease-in-out infinite;
+            animation-delay: var(--icon-delay, 0s);
+        }
+        /* Expanding ring on icon activation */
+        .valr-flow-icon::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 2px solid rgba(30,77,242,0.85);
+            pointer-events: none;
+            animation: icon-ring-expand 13.5s ease-in-out infinite;
+            animation-delay: var(--icon-delay, 0s);
+            opacity: 0;
         }
         .valr-flow-icon:hover {
-            transform: scale(1.12);
-            box-shadow: 0 0 18px rgba(30,77,242,0.4);
+            transform: scale(1.1);
         }
+
+        /* ── Caption ── */
         .valr-flow-caption {
-            font-size: 0.58rem;
+            font-size: 0.56rem;
             font-weight: 700;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255,255,255,0.4);
             text-align: center;
-            width: 64px;
+            width: 62px;
             line-height: 1.35;
         }
 
-        /* ── Chevron connector ── */
+        /* ── Signal connector ── */
         .valr-flow-chevron {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            width: 32px;
-            height: 52px;
+            width: 52px;
+            height: 54px;
             position: relative;
             z-index: 1;
-            margin-bottom: 22px; /* align with icon center, offset for caption */
-        }
-        .valr-flow-chevron svg {
+            margin-bottom: 24px; /* offset caption so orb aligns with icon center */
             overflow: visible;
         }
-        /* Three staggered chevron paths inside each connector */
-        .chev-1 {
-            animation: chevron-travel 13.5s ease-in-out infinite;
+        .valr-flow-chevron svg { overflow: visible; }
+
+        /* Dormant circuit trace */
+        .flow-trace-base {
+            stroke: rgba(30,77,242,0.18);
+            stroke-width: 1.5;
+            stroke-dasharray: 3 5;
+            stroke-linecap: round;
+        }
+        /* Active illuminated trace */
+        .flow-trace-live {
+            stroke: rgba(30,77,242,0.8);
+            stroke-width: 2;
+            filter: drop-shadow(0 0 4px rgba(30,77,242,0.9));
+            animation: trace-flash 13.5s ease-in-out infinite;
+            animation-delay: var(--conn-delay, 0s);
+            opacity: 0;
+        }
+        /* Junction via pads */
+        .flow-via {
+            fill: rgba(30,77,242,0.3);
+            stroke: rgba(30,77,242,0.5);
+            stroke-width: 1;
+        }
+        /* Travelling signal orb */
+        .signal-orb {
+            fill: #4B70F5;
+            filter: drop-shadow(-5px 0 5px rgba(30,77,242,0.7))
+                    drop-shadow(0 0 8px rgba(75,112,245,0.95))
+                    drop-shadow(0 0 18px rgba(30,77,242,0.55));
+            animation: orb-travel 13.5s ease-in-out infinite;
+            animation-delay: var(--conn-delay, 0s);
             opacity: 0;
         }
 
-
-        /* ── Mobile: vertical snake layout ── */
+        /* ── Mobile: vertical layout ── */
         @media (max-width: 680px) {
             .valr-flow {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
                 overflow-x: visible;
                 overflow-y: visible;
-                padding: 24px 16px;
+                padding: 24px 20px;
                 gap: 0;
             }
             .valr-flow-node {
                 flex-direction: row;
-                gap: 14px;
+                gap: 16px;
                 width: 100%;
-                max-width: 280px;
+                max-width: 300px;
                 align-items: center;
             }
             .valr-flow-icon {
-                width: 48px; height: 48px;
-                font-size: 1.15rem;
+                width: 50px; height: 50px;
+                font-size: 1.2rem;
                 flex-shrink: 0;
             }
             .valr-flow-caption {
                 width: auto;
                 text-align: left;
-                font-size: 0.65rem;
+                font-size: 0.63rem;
                 letter-spacing: 0.5px;
             }
             .valr-flow-chevron {
-                width: 48px;
-                height: 28px;
+                width: 50px;
+                height: 40px;
                 margin-bottom: 0;
                 margin-left: 0;
                 align-self: flex-start;
-                margin-left: 12px; /* indent to align under icons */
+                overflow: hidden;
             }
-            .valr-flow-chevron svg {
-                transform: rotate(90deg);
+            .valr-flow-chevron svg { display: none; }
+            /* CSS-only vertical connector for mobile */
+            .valr-flow-chevron::before {
+                content: '';
+                position: absolute;
+                left: 23px;
+                top: 0; bottom: 0; width: 2px;
+                background: repeating-linear-gradient(
+                    180deg,
+                    rgba(30,77,242,0.3) 0px, rgba(30,77,242,0.3) 4px,
+                    transparent 4px, transparent 9px
+                );
             }
-            .chev-1 { animation-name: chevron-travel-down; animation-duration: 13.5s; }
-
+            .valr-flow-chevron::after {
+                content: '';
+                position: absolute;
+                left: 17px;
+                top: -6px;
+                width: 12px; height: 12px;
+                border-radius: 50%;
+                background: #4B70F5;
+                box-shadow: 0 0 10px rgba(30,77,242,0.9), 0 0 20px rgba(30,77,242,0.5);
+                animation: orb-travel-v 13.5s ease-in-out infinite;
+                animation-delay: var(--conn-delay, 0s);
+                opacity: 0;
+            }
         }
 
         /* ── Backup + Help row ── */
@@ -2015,90 +2105,162 @@
             <!-- ── Visual Progress Flow (infographic) ── -->
             <p class="valr-steps-label reveal reveal-up" style="transition-delay:0.2s">VALR Registration Flow</p>
 
-            <div class="valr-flow reveal reveal-up" style="transition-delay:0.22s" aria-label="Visual registration flow: Click Link through to Verify ID">
+                        <div class="valr-flow reveal reveal-up" style="transition-delay:0.22s" aria-label="VALR registration signal flow">
                 <div class="valr-flow-node">
-                    <div class="valr-flow-icon" role="img" aria-label="Click Link">🖱️</div>
+                    <div class="valr-flow-icon" style="--icon-delay:0s" role="img" aria-label="Click Link">🖱️</div>
                     <span class="valr-flow-caption">Click Link</span>
                 </div>
-                                <div class="valr-flow-chevron" aria-hidden="true">
-                    <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="chev-1" d="M11 4 L19 10 L11 16" stroke="rgba(30,77,242,1.0)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:0.00s"/>
+                <div class="valr-flow-chevron" style="--conn-delay:0.00s" aria-hidden="true">
+                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Dormant dashed circuit trace -->
+                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Via pads at each end -->
+                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
+                        <circle class="flow-via" cx="46" cy="10" r="3"/>
+                        <!-- Illuminated trace (animates with signal) -->
+                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Signal orb (glowing particle) -->
+                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
                     </svg>
                 </div>
                 <div class="valr-flow-node">
-                    <div class="valr-flow-icon" role="img" aria-label="Your Name">👤</div>
+                    <div class="valr-flow-icon" style="--icon-delay:1.23s" role="img" aria-label="Your Name">👤</div>
                     <span class="valr-flow-caption">Your Name</span>
                 </div>
-                                <div class="valr-flow-chevron" aria-hidden="true">
-                    <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="chev-1" d="M11 4 L19 10 L11 16" stroke="rgba(30,77,242,1.0)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:1.50s"/>
+                <div class="valr-flow-chevron" style="--conn-delay:1.50s" aria-hidden="true">
+                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Dormant dashed circuit trace -->
+                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Via pads at each end -->
+                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
+                        <circle class="flow-via" cx="46" cy="10" r="3"/>
+                        <!-- Illuminated trace (animates with signal) -->
+                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Signal orb (glowing particle) -->
+                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
                     </svg>
                 </div>
                 <div class="valr-flow-node">
-                    <div class="valr-flow-icon" role="img" aria-label="Country">🌍</div>
+                    <div class="valr-flow-icon" style="--icon-delay:2.73s" role="img" aria-label="Country">🌍</div>
                     <span class="valr-flow-caption">Country</span>
                 </div>
-                                <div class="valr-flow-chevron" aria-hidden="true">
-                    <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="chev-1" d="M11 4 L19 10 L11 16" stroke="rgba(30,77,242,1.0)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:3.00s"/>
+                <div class="valr-flow-chevron" style="--conn-delay:3.00s" aria-hidden="true">
+                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Dormant dashed circuit trace -->
+                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Via pads at each end -->
+                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
+                        <circle class="flow-via" cx="46" cy="10" r="3"/>
+                        <!-- Illuminated trace (animates with signal) -->
+                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Signal orb (glowing particle) -->
+                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
                     </svg>
                 </div>
                 <div class="valr-flow-node">
-                    <div class="valr-flow-icon" role="img" aria-label="Referral Code">🏷️</div>
+                    <div class="valr-flow-icon" style="--icon-delay:4.23s" role="img" aria-label="Referral Code">🏷️</div>
                     <span class="valr-flow-caption">Referral Code</span>
                 </div>
-                                <div class="valr-flow-chevron" aria-hidden="true">
-                    <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="chev-1" d="M11 4 L19 10 L11 16" stroke="rgba(30,77,242,1.0)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:4.50s"/>
+                <div class="valr-flow-chevron" style="--conn-delay:4.50s" aria-hidden="true">
+                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Dormant dashed circuit trace -->
+                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Via pads at each end -->
+                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
+                        <circle class="flow-via" cx="46" cy="10" r="3"/>
+                        <!-- Illuminated trace (animates with signal) -->
+                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Signal orb (glowing particle) -->
+                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
                     </svg>
                 </div>
                 <div class="valr-flow-node">
-                    <div class="valr-flow-icon" role="img" aria-label="Email">📧</div>
+                    <div class="valr-flow-icon" style="--icon-delay:5.73s" role="img" aria-label="Email">📧</div>
                     <span class="valr-flow-caption">Email</span>
                 </div>
-                                <div class="valr-flow-chevron" aria-hidden="true">
-                    <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="chev-1" d="M11 4 L19 10 L11 16" stroke="rgba(30,77,242,1.0)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:6.00s"/>
+                <div class="valr-flow-chevron" style="--conn-delay:6.00s" aria-hidden="true">
+                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Dormant dashed circuit trace -->
+                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Via pads at each end -->
+                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
+                        <circle class="flow-via" cx="46" cy="10" r="3"/>
+                        <!-- Illuminated trace (animates with signal) -->
+                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Signal orb (glowing particle) -->
+                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
                     </svg>
                 </div>
                 <div class="valr-flow-node">
-                    <div class="valr-flow-icon" role="img" aria-label="Password">🔐</div>
+                    <div class="valr-flow-icon" style="--icon-delay:7.23s" role="img" aria-label="Password">🔐</div>
                     <span class="valr-flow-caption">Password</span>
                 </div>
-                                <div class="valr-flow-chevron" aria-hidden="true">
-                    <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="chev-1" d="M11 4 L19 10 L11 16" stroke="rgba(30,77,242,1.0)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:7.50s"/>
+                <div class="valr-flow-chevron" style="--conn-delay:7.50s" aria-hidden="true">
+                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Dormant dashed circuit trace -->
+                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Via pads at each end -->
+                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
+                        <circle class="flow-via" cx="46" cy="10" r="3"/>
+                        <!-- Illuminated trace (animates with signal) -->
+                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Signal orb (glowing particle) -->
+                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
                     </svg>
                 </div>
                 <div class="valr-flow-node">
-                    <div class="valr-flow-icon" role="img" aria-label="Terms">✅</div>
+                    <div class="valr-flow-icon" style="--icon-delay:8.73s" role="img" aria-label="Terms">✅</div>
                     <span class="valr-flow-caption">Terms</span>
                 </div>
-                                <div class="valr-flow-chevron" aria-hidden="true">
-                    <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="chev-1" d="M11 4 L19 10 L11 16" stroke="rgba(30,77,242,1.0)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:9.00s"/>
+                <div class="valr-flow-chevron" style="--conn-delay:9.00s" aria-hidden="true">
+                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Dormant dashed circuit trace -->
+                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Via pads at each end -->
+                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
+                        <circle class="flow-via" cx="46" cy="10" r="3"/>
+                        <!-- Illuminated trace (animates with signal) -->
+                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Signal orb (glowing particle) -->
+                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
                     </svg>
                 </div>
                 <div class="valr-flow-node">
-                    <div class="valr-flow-icon" role="img" aria-label="Verify Email">📬</div>
+                    <div class="valr-flow-icon" style="--icon-delay:10.23s" role="img" aria-label="Verify Email">📬</div>
                     <span class="valr-flow-caption">Verify Email</span>
                 </div>
-                                <div class="valr-flow-chevron" aria-hidden="true">
-                    <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="chev-1" d="M11 4 L19 10 L11 16" stroke="rgba(30,77,242,1.0)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:10.50s"/>
+                <div class="valr-flow-chevron" style="--conn-delay:10.50s" aria-hidden="true">
+                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Dormant dashed circuit trace -->
+                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Via pads at each end -->
+                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
+                        <circle class="flow-via" cx="46" cy="10" r="3"/>
+                        <!-- Illuminated trace (animates with signal) -->
+                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Signal orb (glowing particle) -->
+                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
                     </svg>
                 </div>
                 <div class="valr-flow-node">
-                    <div class="valr-flow-icon" role="img" aria-label="Sign In">🔓</div>
+                    <div class="valr-flow-icon" style="--icon-delay:11.73s" role="img" aria-label="Sign In">🔓</div>
                     <span class="valr-flow-caption">Sign In</span>
                 </div>
-                                <div class="valr-flow-chevron" aria-hidden="true">
-                    <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="chev-1" d="M11 4 L19 10 L11 16" stroke="rgba(30,77,242,1.0)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:12.00s"/>
+                <div class="valr-flow-chevron" style="--conn-delay:12.00s" aria-hidden="true">
+                    <svg width="52" height="20" viewBox="0 0 52 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Dormant dashed circuit trace -->
+                        <line class="flow-trace-base" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Via pads at each end -->
+                        <circle class="flow-via" cx="6"  cy="10" r="3"/>
+                        <circle class="flow-via" cx="46" cy="10" r="3"/>
+                        <!-- Illuminated trace (animates with signal) -->
+                        <line class="flow-trace-live" x1="8" y1="10" x2="44" y2="10"/>
+                        <!-- Signal orb (glowing particle) -->
+                        <circle class="signal-orb" cx="6" cy="10" r="4.5"/>
                     </svg>
                 </div>
                 <div class="valr-flow-node">
-                    <div class="valr-flow-icon" role="img" aria-label="Verify ID">🪪</div>
+                    <div class="valr-flow-icon" style="--icon-delay:13.23s" role="img" aria-label="Verify ID">🪪</div>
                     <span class="valr-flow-caption">Verify ID</span>
                 </div>
             </div>
