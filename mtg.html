@@ -1470,9 +1470,10 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 16px;
-            transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: default;
         }
         .valr-step::before {
             content: '';
@@ -1482,12 +1483,12 @@
             background: linear-gradient(180deg, #1E4DF2, #4B70F5);
             border-radius: 0 0 0 16px;
             opacity: 0;
-            transition: opacity 0.25s ease;
+            transition: opacity 0.3s ease;
         }
         .valr-step:hover {
-            border-color: var(--valr-border);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(30,77,242,0.1);
+            border-color: rgba(30,77,242,0.28);
+            transform: translateY(-5px);
+            box-shadow: 0 24px 80px rgba(30,77,242,0.15), 0 0 0 1px rgba(30,77,242,0.22);
         }
         .valr-step:hover::before { opacity: 1; }
 
@@ -1564,6 +1565,12 @@
             border: 1px solid var(--border);
             position: relative;
             overflow: hidden;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .valr-circuit-wrap:hover {
+            border-color: rgba(30,77,242,0.28);
+            box-shadow: 0 24px 80px rgba(30,77,242,0.12), 0 0 0 1px rgba(30,77,242,0.2);
+            transform: translateY(-5px);
         }
         .valr-circuit-wrap::before {
             content: '';
@@ -1597,11 +1604,13 @@
             background: rgba(30,77,242,0.08);
             border: 1px solid rgba(30,77,242,0.22);
             border-radius: 12px;
-            transition: border-color 0.2s, background 0.2s;
+            transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
         .vms-item:hover {
-            border-color: rgba(30,77,242,0.5);
+            border-color: rgba(30,77,242,0.45);
             background: rgba(30,77,242,0.13);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(30,77,242,0.18), 0 0 0 1px rgba(30,77,242,0.3);
         }
         .vms-icon { font-size: 1.35rem; flex-shrink: 0; line-height: 1; }
         .vms-num  {
@@ -1752,6 +1761,12 @@
             display: flex;
             align-items: flex-start;
             gap: 14px;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .valr-backup-card:hover {
+            border-color: rgba(30,77,242,0.28);
+            transform: translateY(-5px);
+            box-shadow: 0 24px 80px rgba(30,77,242,0.15), 0 0 0 1px rgba(30,77,242,0.22);
         }
         .valr-backup-icon {
             width: 40px; height: 40px;
@@ -1794,6 +1809,12 @@
             display: flex;
             align-items: flex-start;
             gap: 14px;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .valr-help-card:hover {
+            border-color: rgba(30,77,242,0.28);
+            transform: translateY(-5px);
+            box-shadow: 0 24px 80px rgba(30,77,242,0.15), 0 0 0 1px rgba(30,77,242,0.22);
         }
         .valr-help-icon {
             width: 40px; height: 40px;
