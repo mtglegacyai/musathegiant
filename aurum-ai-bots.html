@@ -2123,5 +2123,628 @@
         initAurumVideoPlayer({ playerId:'neobank-video-player', thumbId:'neobank-thumb', loadingId:'neobank-loading', iframeWrapId:'neobank-iframe-wrap' });
     </script>
 
+
+    <!-- ============================================================
+         AURUM SOCIAL PROOF WIDGET | ConversionArchitect AI
+         musathegiant.com | Injected before </body>
+         ============================================================ -->
+    <script>
+/**
+ * ============================================================
+ *  AURUM FOUNDATION — SOCIAL PROOF NOTIFICATION WIDGET
+ *  ConversionArchitect AI | Built for musathegiant.com
+ *  Brand: DM Sans · #0073FF · #3898F8 · Dark Glass UI
+ *  Paste this entire <script> block just before </body>
+ * ============================================================
+ */
+(function () {
+  'use strict';
+
+  // ============================================================
+  // 1. NOTIFICATION DATA — 27 ENTRIES
+  // ============================================================
+  var NOTIFICATIONS = [
+    { name: 'Mike',     location: 'Cape Town, South Africa',       action: 'just joined Aurum',                        type: 'join'     },
+    { name: 'Brandon',  location: 'California, USA',               action: 'just activated his EX-AI Bot',             type: 'activate' },
+    { name: 'Zanele',   location: 'Durban, South Africa',          action: 'just topped up her EX-AI Bot',             type: 'topup'    },
+    { name: 'Oga',      location: 'Lagos, Nigeria',                action: 'just joined Aurum',                        type: 'join'     },
+    { name: 'Sipho',    location: 'Johannesburg, South Africa',    action: 'just started his EX-AI Bot',               type: 'activate' },
+    { name: 'Amara',    location: 'Accra, Ghana',                  action: 'just made her first deposit',              type: 'deposit'  },
+    { name: 'James',    location: 'London, UK',                    action: 'just requested a withdrawal of $480',      type: 'withdraw' },
+    { name: 'Thabo',    location: 'Pretoria, South Africa',        action: 'just activated his EX-AI Bot',             type: 'activate' },
+    { name: 'Keisha',   location: 'Atlanta, USA',                  action: 'joined Aurum 3 minutes ago',               type: 'join'     },
+    { name: 'Liam',     location: 'Sydney, Australia',             action: 'just joined Aurum',                        type: 'join'     },
+    { name: 'Nomvula',  location: 'Soweto, South Africa',          action: 'just received $210 from her EX-AI Bot',    type: 'withdraw' },
+    { name: 'David',    location: 'Toronto, Canada',               action: 'activated his EX-AI Bot 6 min ago',        type: 'activate' },
+    { name: 'Chidi',    location: 'Abuja, Nigeria',                action: 'just topped up his bot wallet',            type: 'topup'    },
+    { name: 'Emma',     location: 'Manchester, UK',                action: 'just joined Aurum',                        type: 'join'     },
+    { name: 'Bongani',  location: 'Durban, South Africa',          action: 'just requested a withdrawal of $630',      type: 'withdraw' },
+    { name: 'Aisha',    location: 'Nairobi, Kenya',                action: 'activated her EX-AI Bot moments ago',      type: 'activate' },
+    { name: 'Tyler',    location: 'Texas, USA',                    action: 'just joined Aurum',                        type: 'join'     },
+    { name: 'Lindiwe',  location: 'Cape Town, South Africa',       action: 'just saw her first bot profit',            type: 'withdraw' },
+    { name: 'Kwame',    location: 'Kumasi, Ghana',                 action: 'joined Aurum 8 minutes ago',               type: 'join'     },
+    { name: 'Sophie',   location: 'Melbourne, Australia',          action: 'just activated her EX-AI Bot',             type: 'activate' },
+    { name: 'Tebogo',   location: 'Bloemfontein, South Africa',    action: 'joined Aurum a few moments ago',           type: 'join'     },
+    { name: 'Marcus',   location: 'Birmingham, UK',                action: 'just requested a withdrawal of $390',      type: 'withdraw' },
+    { name: 'Fatima',   location: 'Dar es Salaam, Tanzania',       action: 'just joined Aurum',                        type: 'join'     },
+    { name: 'Jayden',   location: 'Auckland, New Zealand',         action: 'activated his EX-AI Bot 4 min ago',        type: 'activate' },
+    { name: 'Nandi',    location: 'East London, South Africa',     action: 'just topped up her EX-AI Bot',             type: 'topup'    },
+    { name: 'Samuel',   location: 'Houston, USA',                  action: 'just made his first deposit',              type: 'deposit'  },
+    { name: 'Precious', location: 'Harare, Zimbabwe',              action: 'joined Aurum 11 minutes ago',              type: 'join'     }
+  ];
+
+  // ============================================================
+  // 2. TYPE CONFIG — Icon + Avatar gradient per action type
+  // ============================================================
+  var TYPE_CONFIG = {
+    join:     { icon: '🚀', grad: 'linear-gradient(135deg, #0073FF 0%, #3898F8 100%)' },
+    activate: { icon: '🤖', grad: 'linear-gradient(135deg, #1A5FD4 0%, #2C90FA 100%)' },
+    topup:    { icon: '💰', grad: 'linear-gradient(135deg, #0060DD 0%, #3898F8 100%)' },
+    deposit:  { icon: '💎', grad: 'linear-gradient(135deg, #0073FF 0%, #60BBFF 100%)' },
+    withdraw: { icon: '💸', grad: 'linear-gradient(135deg, #00A87A 0%, #3898F8 100%)' }
+  };
+
+  // ============================================================
+  // 3. INJECT STYLES — Scoped under #aurum-social-proof
+  // ============================================================
+  var css = `
+    /* ── CONTAINER ── */
+    #aurum-social-proof {
+      position: fixed;
+      bottom: 24px;
+      left: 20px;
+      width: 308px;
+      z-index: 9990;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      pointer-events: none;
+    }
+
+    /* ── CARD ── */
+    #aurum-sp-card {
+      position: relative;
+      background: rgba(4, 6, 22, 0.93);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-left: 3px solid #0073FF;
+      border-radius: 14px;
+      padding: 13px 38px 10px 13px;
+      box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.40),
+        0 0 0 1px rgba(0, 115, 255, 0.10),
+        0 4px 16px rgba(0, 115, 255, 0.18);
+      overflow: hidden;
+      pointer-events: all;
+      opacity: 0;
+      transform: translateX(-120%) translateY(8px);
+      will-change: transform, opacity;
+    }
+
+    /* Top shimmer line */
+    #aurum-sp-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(56, 152, 248, 0.55) 50%, transparent 100%);
+      border-radius: 14px 14px 0 0;
+      pointer-events: none;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes aurumSpIn {
+      0%   { opacity: 0; transform: translateX(-115%) translateY(10px); }
+      65%  { transform: translateX(6px) translateY(-2px); }
+      82%  { transform: translateX(-3px) translateY(0); }
+      100% { opacity: 1; transform: translateX(0) translateY(0); }
+    }
+    @keyframes aurumSpOut {
+      0%   { opacity: 1; transform: translateX(0) translateY(0); }
+      100% { opacity: 0; transform: translateX(-28px) translateY(6px); }
+    }
+    @keyframes aurumSpPulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.35; transform: scale(0.65); }
+    }
+    @keyframes aurumSpShimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    #aurum-sp-card.sp-is-entering {
+      animation: aurumSpIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    #aurum-sp-card.sp-is-exiting {
+      animation: aurumSpOut 0.38s ease-in forwards;
+    }
+
+    /* ── LIVE BADGE ── */
+    #aurum-sp-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #00D4A0;
+      margin-bottom: 7px;
+    }
+    #aurum-sp-live-dot {
+      width: 6px;
+      height: 6px;
+      background: #00D4A0;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: aurumSpPulseDot 1.6s ease-in-out infinite;
+    }
+
+    /* ── BODY ROW ── */
+    #aurum-sp-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+    }
+
+    /* ── AVATAR ── */
+    #aurum-sp-avatar {
+      position: relative;
+      flex-shrink: 0;
+    }
+    #aurum-sp-avatar-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.01em;
+      transition: background 0.3s ease;
+    }
+    #aurum-sp-badge {
+      position: absolute;
+      bottom: -2px;
+      right: -3px;
+      width: 18px;
+      height: 18px;
+      background: #080B1E;
+      border: 1.5px solid rgba(0, 115, 255, 0.35);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9.5px;
+      line-height: 1;
+    }
+
+    /* ── TEXT ── */
+    #aurum-sp-content {
+      flex: 1;
+      min-width: 0;
+    }
+    #aurum-sp-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: 0.01em;
+    }
+    #aurum-sp-location {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.42);
+      margin-top: 0px;
+      line-height: 1.3;
+    }
+    #aurum-sp-action {
+      font-size: 12.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+    #aurum-sp-action .sp-highlight {
+      color: #60CCFF;
+      font-weight: 700;
+    }
+    #aurum-sp-action .sp-amount {
+      color: #00D4A0;
+      font-weight: 700;
+    }
+
+    /* ── TIMESTAMP ── */
+    #aurum-sp-time {
+      font-size: 10.5px;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.30);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    #aurum-sp-time-dot {
+      width: 4px;
+      height: 4px;
+      background: #0073FF;
+      border-radius: 50%;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+
+    /* ── CLOSE BUTTON ── */
+    #aurum-sp-close {
+      position: absolute;
+      top: 9px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.28);
+      font-size: 15px;
+      line-height: 1;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      padding: 0;
+      transition: color 0.2s ease, background 0.2s ease;
+      pointer-events: all;
+      font-family: inherit;
+    }
+    #aurum-sp-close:hover {
+      color: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.09);
+    }
+    #aurum-sp-close:focus {
+      outline: 2px solid rgba(0, 115, 255, 0.5);
+      outline-offset: 2px;
+    }
+
+    /* ── PROGRESS BAR ── */
+    #aurum-sp-progress-wrap {
+      margin-top: 10px;
+      height: 2.5px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    #aurum-sp-progress-bar {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #0073FF 0%, #3898F8 60%, #60CCFF 100%);
+      border-radius: 99px;
+      transform-origin: left;
+    }
+
+    /* ── MOBILE: bottom-center, full-width ── */
+    @media (max-width: 480px) {
+      #aurum-social-proof {
+        left: 12px;
+        right: 12px;
+        bottom: 16px;
+        width: auto;
+      }
+      #aurum-sp-card {
+        padding: 12px 36px 9px 12px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      #aurum-sp-name    { font-size: 12px; }
+      #aurum-sp-action  { font-size: 11.5px; }
+      #aurum-sp-location{ font-size: 10.5px; }
+    }
+  `;
+
+  var styleEl = document.createElement('style');
+  styleEl.id = 'aurum-sp-css';
+  styleEl.textContent = css;
+  document.head.appendChild(styleEl);
+
+  // ============================================================
+  // 4. BUILD DOM STRUCTURE
+  // ============================================================
+  var wrapper = document.createElement('div');
+  wrapper.id = 'aurum-social-proof';
+  wrapper.setAttribute('aria-live', 'polite');
+  wrapper.setAttribute('aria-atomic', 'true');
+  wrapper.setAttribute('role', 'status');
+  wrapper.innerHTML = [
+    '<div id="aurum-sp-card">',
+      '<button id="aurum-sp-close" aria-label="Close notification" title="Close">&#x00D7;</button>',
+      '<div id="aurum-sp-live">',
+        '<span id="aurum-sp-live-dot"></span>',
+        'Live Activity',
+      '</div>',
+      '<div id="aurum-sp-inner">',
+        '<div id="aurum-sp-avatar">',
+          '<div id="aurum-sp-avatar-circle"><span id="aurum-sp-initials"></span></div>',
+          '<div id="aurum-sp-badge"><span id="aurum-sp-type-icon"></span></div>',
+        '</div>',
+        '<div id="aurum-sp-content">',
+          '<div id="aurum-sp-name"></div>',
+          '<div id="aurum-sp-location"></div>',
+          '<div id="aurum-sp-action"></div>',
+          '<div id="aurum-sp-time">',
+            '<span id="aurum-sp-time-dot"></span>',
+            '<span id="aurum-sp-time-text"></span>',
+          '</div>',
+        '</div>',
+      '</div>',
+      '<div id="aurum-sp-progress-wrap">',
+        '<div id="aurum-sp-progress-bar"></div>',
+      '</div>',
+    '</div>'
+  ].join('');
+  document.body.appendChild(wrapper);
+
+  // ============================================================
+  // 5. ELEMENT REFERENCES
+  // ============================================================
+  var card         = document.getElementById('aurum-sp-card');
+  var closeBtn     = document.getElementById('aurum-sp-close');
+  var initialsEl   = document.getElementById('aurum-sp-initials');
+  var typeIconEl   = document.getElementById('aurum-sp-type-icon');
+  var avatarCircle = document.getElementById('aurum-sp-avatar-circle');
+  var nameEl       = document.getElementById('aurum-sp-name');
+  var locationEl   = document.getElementById('aurum-sp-location');
+  var actionEl     = document.getElementById('aurum-sp-action');
+  var timeTextEl   = document.getElementById('aurum-sp-time-text');
+  var progressBar  = document.getElementById('aurum-sp-progress-bar');
+
+  // ============================================================
+  // 6. STATE
+  // ============================================================
+  var queue        = [];
+  var qIndex       = 0;
+  var dismissTimer = null;
+  var gapTimer     = null;
+  var isPaused     = false;
+  var isSnoozed    = false;
+  var displayMs    = 6000;
+  var remainingMs  = 6000;
+  var pausedAt     = 0;
+  var progStart    = 0;
+
+  // Time labels (used when action copy doesn't already carry one)
+  var TIME_LABELS = [
+    'just now',
+    'moments ago',
+    'a few moments ago',
+    '2 min ago',
+    '3 min ago',
+    '4 min ago',
+    '6 min ago',
+    '8 min ago',
+    '10 min ago'
+  ];
+
+  // ============================================================
+  // 7. UTILITY FUNCTIONS
+  // ============================================================
+  function rand(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function buildQueue() {
+    queue = shuffle(NOTIFICATIONS);
+  }
+
+  // Returns a time label only when the action text doesn't already contain one
+  function resolveTimeLabel(action) {
+    var hasTime = /just|moments|ago|few|minutes|min\s/i.test(action);
+    if (hasTime) return '';
+    return TIME_LABELS[rand(0, TIME_LABELS.length - 1)];
+  }
+
+  // Highlight $ amounts and key action words in action text
+  function buildActionHTML(action, type) {
+    // Highlight dollar amounts in green (withdrawal = proof of earnings)
+    var html = action.replace(/(\$[\d,]+)/g, '<span class="sp-amount">$1</span>');
+    // Highlight "EX-AI Bot" in blue
+    html = html.replace(/(EX-AI Bot)/g, '<span class="sp-highlight">$1</span>');
+    return html;
+  }
+
+  // ============================================================
+  // 8. PROGRESS BAR ANIMATION (requestAnimationFrame-based)
+  // ============================================================
+  var rafId = null;
+
+  function startProgressBar(durationMs) {
+    progressBar.style.transition = 'none';
+    progressBar.style.width = '100%';
+    progStart = performance.now();
+
+    function tick(now) {
+      var elapsed = now - progStart;
+      var pct = Math.max(0, 100 - (elapsed / durationMs) * 100);
+      progressBar.style.width = pct.toFixed(2) + '%';
+      if (elapsed < durationMs && !isPaused) {
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function pauseProgressBar() {
+    cancelAnimationFrame(rafId);
+    pausedAt = performance.now();
+  }
+
+  function resumeProgressBar(newDurationMs) {
+    progStart = performance.now() - (displayMs - newDurationMs);
+    function tick(now) {
+      var elapsed = now - progStart;
+      var pct = Math.max(0, 100 - (elapsed / displayMs) * 100);
+      progressBar.style.width = pct.toFixed(2) + '%';
+      if (elapsed < displayMs && !isPaused) {
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  // ============================================================
+  // 9. SHOW / HIDE LOGIC
+  // ============================================================
+  function showNotification(notif) {
+    if (isSnoozed) return;
+
+    var cfg = TYPE_CONFIG[notif.type] || TYPE_CONFIG.join;
+    var timeLabel = resolveTimeLabel(notif.action);
+
+    // Update avatar
+    avatarCircle.style.background = cfg.grad;
+    initialsEl.textContent = notif.name.charAt(0).toUpperCase();
+    typeIconEl.textContent = cfg.icon;
+
+    // Update text content
+    nameEl.textContent = notif.name;
+    locationEl.textContent = notif.location;
+    actionEl.innerHTML = buildActionHTML(notif.action, notif.type);
+    timeTextEl.textContent = timeLabel;
+
+    // Show/hide timestamp row
+    var timeRow = document.getElementById('aurum-sp-time');
+    timeRow.style.display = timeLabel ? 'flex' : 'none';
+
+    // Reset state
+    isPaused = false;
+    displayMs = rand(5200, 7200);
+    remainingMs = displayMs;
+
+    // Animate card in
+    card.classList.remove('sp-is-exiting');
+    card.style.opacity = '';
+    card.style.transform = '';
+
+    // Small frame delay ensures class swap triggers re-animation
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        card.classList.add('sp-is-entering');
+      });
+    });
+
+    // Start progress bar
+    startProgressBar(displayMs);
+
+    // Auto-dismiss after displayMs
+    clearTimeout(dismissTimer);
+    dismissTimer = setTimeout(function () {
+      if (!isPaused) exitNotification();
+    }, displayMs);
+  }
+
+  function exitNotification() {
+    cancelAnimationFrame(rafId);
+    clearTimeout(dismissTimer);
+
+    card.classList.remove('sp-is-entering');
+    card.classList.add('sp-is-exiting');
+
+    setTimeout(function () {
+      card.classList.remove('sp-is-exiting');
+      card.style.opacity = '0';
+      scheduleNext(rand(8000, 14000));
+    }, 420);
+  }
+
+  function scheduleNext(delayMs) {
+    clearTimeout(gapTimer);
+    gapTimer = setTimeout(function () {
+      if (isSnoozed) return;
+      qIndex++;
+      if (qIndex >= queue.length) {
+        buildQueue();
+        qIndex = 0;
+      }
+      showNotification(queue[qIndex]);
+    }, delayMs);
+  }
+
+  // ============================================================
+  // 10. HOVER — PAUSE / RESUME
+  // ============================================================
+  card.addEventListener('mouseenter', function () {
+    if (!card.classList.contains('sp-is-entering')) return;
+    isPaused = true;
+    pausedAt = performance.now();
+    var elapsed = pausedAt - (progStart);
+    remainingMs = Math.max(0, displayMs - elapsed);
+    pauseProgressBar();
+    clearTimeout(dismissTimer);
+  });
+
+  card.addEventListener('mouseleave', function () {
+    if (!isPaused) return;
+    isPaused = false;
+    // Resume with remaining time (min 2.5s for good UX)
+    remainingMs = Math.max(remainingMs, 2500);
+    displayMs = remainingMs;
+    progStart = performance.now();
+    resumeProgressBar(remainingMs);
+    dismissTimer = setTimeout(function () {
+      exitNotification();
+    }, remainingMs);
+  });
+
+  // ============================================================
+  // 11. CLOSE BUTTON — Snooze for 60 seconds then resume
+  // ============================================================
+  closeBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    isSnoozed = true;
+    cancelAnimationFrame(rafId);
+    clearTimeout(dismissTimer);
+    clearTimeout(gapTimer);
+
+    card.classList.remove('sp-is-entering');
+    card.classList.add('sp-is-exiting');
+
+    setTimeout(function () {
+      card.classList.remove('sp-is-exiting');
+      card.style.opacity = '0';
+    }, 420);
+
+    // Wake up after 60 seconds
+    setTimeout(function () {
+      isSnoozed = false;
+      qIndex++;
+      if (qIndex >= queue.length) { buildQueue(); qIndex = 0; }
+      scheduleNext(rand(2000, 4000));
+    }, 60000);
+  });
+
+  // ============================================================
+  // 12. BOOTSTRAP — Initial delay 4–6 seconds
+  // ============================================================
+  buildQueue();
+
+  setTimeout(function () {
+    showNotification(queue[qIndex]);
+  }, rand(4000, 6000));
+
+})();
+
+    </script>
+
 </body>
 </html>
