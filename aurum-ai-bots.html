@@ -2125,15 +2125,19 @@
 
 
     <!-- ============================================================
-         AURUM SOCIAL PROOF WIDGET | ConversionArchitect AI
-         musathegiant.com | Injected before </body>
+         AURUM SOCIAL PROOF WIDGET v2 | ConversionArchitect AI
+         musathegiant.com | inject before </body>
          ============================================================ -->
     <script>
 /**
  * ============================================================
- *  AURUM FOUNDATION — SOCIAL PROOF NOTIFICATION WIDGET
- *  ConversionArchitect AI | Built for musathegiant.com
- *  Brand: DM Sans · #0073FF · #3898F8 · Dark Glass UI
+ *  AURUM FOUNDATION - SOCIAL PROOF NOTIFICATION WIDGET v2
+ *  ConversionArchitect AI | musathegiant.com
+ *  Optimized using full page content analysis:
+ *  - EX-AI Bot (17.5%/mo) · EX-AI PRO (10%/mo) · Zeus AI Bot (15%/mo)
+ *  - Real amounts: $100 min · $19.99 access · $25 min withdrawal
+ *  - 36 months live data · 50,000+ clients · Partner Program
+ *  Brand: DM Sans · #0073FF · #3898F8 · Dark Glass
  *  Paste this entire <script> block just before </body>
  * ============================================================
  */
@@ -2141,59 +2145,145 @@
   'use strict';
 
   // ============================================================
-  // 1. NOTIFICATION DATA — 27 ENTRIES
+  // 1. NOTIFICATION DATA
+  //
+  //  TYPE TAXONOMY (8 types):
+  //  join      - joined Aurum / paid access fee
+  //  activate  - EX-AI Bot or EX-AI PRO activation
+  //  zeus      - Zeus AI Bot specific actions
+  //  withdraw  - withdrawal requests / profit received (highest converter)
+  //  compound  - compounding / reinvesting profits
+  //  partner   - partner program / referral commission actions
+  //  momentum  - aggregate crowd stats, fires every ~5 regular notifs
+  //  curiosity - question-format hooks that mirror real testimonials
   // ============================================================
   var NOTIFICATIONS = [
-    { name: 'Mike',     location: 'Cape Town, South Africa',       action: 'just joined Aurum',                        type: 'join'     },
-    { name: 'Brandon',  location: 'California, USA',               action: 'just activated his EX-AI Bot',             type: 'activate' },
-    { name: 'Zanele',   location: 'Durban, South Africa',          action: 'just topped up her EX-AI Bot',             type: 'topup'    },
-    { name: 'Oga',      location: 'Lagos, Nigeria',                action: 'just joined Aurum',                        type: 'join'     },
-    { name: 'Sipho',    location: 'Johannesburg, South Africa',    action: 'just started his EX-AI Bot',               type: 'activate' },
-    { name: 'Amara',    location: 'Accra, Ghana',                  action: 'just made her first deposit',              type: 'deposit'  },
-    { name: 'James',    location: 'London, UK',                    action: 'just requested a withdrawal of $480',      type: 'withdraw' },
-    { name: 'Thabo',    location: 'Pretoria, South Africa',        action: 'just activated his EX-AI Bot',             type: 'activate' },
-    { name: 'Keisha',   location: 'Atlanta, USA',                  action: 'joined Aurum 3 minutes ago',               type: 'join'     },
-    { name: 'Liam',     location: 'Sydney, Australia',             action: 'just joined Aurum',                        type: 'join'     },
-    { name: 'Nomvula',  location: 'Soweto, South Africa',          action: 'just received $210 from her EX-AI Bot',    type: 'withdraw' },
-    { name: 'David',    location: 'Toronto, Canada',               action: 'activated his EX-AI Bot 6 min ago',        type: 'activate' },
-    { name: 'Chidi',    location: 'Abuja, Nigeria',                action: 'just topped up his bot wallet',            type: 'topup'    },
-    { name: 'Emma',     location: 'Manchester, UK',                action: 'just joined Aurum',                        type: 'join'     },
-    { name: 'Bongani',  location: 'Durban, South Africa',          action: 'just requested a withdrawal of $630',      type: 'withdraw' },
-    { name: 'Aisha',    location: 'Nairobi, Kenya',                action: 'activated her EX-AI Bot moments ago',      type: 'activate' },
-    { name: 'Tyler',    location: 'Texas, USA',                    action: 'just joined Aurum',                        type: 'join'     },
-    { name: 'Lindiwe',  location: 'Cape Town, South Africa',       action: 'just saw her first bot profit',            type: 'withdraw' },
-    { name: 'Kwame',    location: 'Kumasi, Ghana',                 action: 'joined Aurum 8 minutes ago',               type: 'join'     },
-    { name: 'Sophie',   location: 'Melbourne, Australia',          action: 'just activated her EX-AI Bot',             type: 'activate' },
-    { name: 'Tebogo',   location: 'Bloemfontein, South Africa',    action: 'joined Aurum a few moments ago',           type: 'join'     },
-    { name: 'Marcus',   location: 'Birmingham, UK',                action: 'just requested a withdrawal of $390',      type: 'withdraw' },
-    { name: 'Fatima',   location: 'Dar es Salaam, Tanzania',       action: 'just joined Aurum',                        type: 'join'     },
-    { name: 'Jayden',   location: 'Auckland, New Zealand',         action: 'activated his EX-AI Bot 4 min ago',        type: 'activate' },
-    { name: 'Nandi',    location: 'East London, South Africa',     action: 'just topped up her EX-AI Bot',             type: 'topup'    },
-    { name: 'Samuel',   location: 'Houston, USA',                  action: 'just made his first deposit',              type: 'deposit'  },
-    { name: 'Precious', location: 'Harare, Zimbabwe',              action: 'joined Aurum 11 minutes ago',              type: 'join'     }
+
+    // ── EX-AI BOT: FLAGSHIP ────────────────────────────────────
+    { name: 'Mike',       location: 'Cape Town, South Africa',        action: 'just activated his EX-AI Bot',                       type: 'activate' },
+    { name: 'Zanele',     location: 'Durban, South Africa',           action: 'just topped up her EX-AI Bot',                       type: 'activate' },
+    { name: 'Sipho',      location: 'Johannesburg, South Africa',     action: 'started his EX-AI Bot, from just $100',              type: 'activate' },
+    { name: 'Thabo',      location: 'Pretoria, South Africa',         action: 'just activated his EX-AI Bot',                       type: 'activate' },
+    { name: 'Lindiwe',    location: 'Cape Town, South Africa',        action: 'woke up to profits, EX-AI Bot paid out again',        type: 'withdraw' },
+    { name: 'Nandi',      location: 'East London, South Africa',      action: 'just topped up her EX-AI Bot balance',               type: 'activate' },
+    { name: 'Amahle',     location: 'Pietermaritzburg, South Africa', action: 'just started her EX-AI Bot, $100 entry',             type: 'join'     },
+    { name: 'Priya',      location: 'Johannesburg, South Africa',     action: 'just enabled daily compounding on her EX-AI Bot',    type: 'compound' },
+    { name: 'Sifiso',     location: 'Durban, South Africa',           action: 'just collected a 17.5% monthly profit payout',       type: 'withdraw' },
+    { name: 'Tebogo',     location: 'Bloemfontein, South Africa',     action: 'joined Aurum and paid the $19.99 access fee',        type: 'join'     },
+    { name: 'Nomvula',    location: 'Soweto, South Africa',           action: 'just received $210 from her EX-AI Bot',              type: 'withdraw' },
+    { name: 'Bongani',    location: 'Durban, South Africa',           action: 'just requested a withdrawal of $630',                type: 'withdraw' },
+
+    // ── ZEUS AI BOT ────────────────────────────────────────────
+    { name: 'Aisha',      location: 'Nairobi, Kenya',                 action: 'just activated her Zeus AI Bot on NeoBank',          type: 'zeus'     },
+    { name: 'Kwame',      location: 'Kumasi, Ghana',                  action: 'just opened the NeoBank &amp; activated Zeus',       type: 'zeus'     },
+    { name: 'Fatima',     location: 'Dar es Salaam, Tanzania',        action: 'activated Zeus AI Bot, no lock-up, 15%/mo',          type: 'zeus'     },
+    { name: 'Oluwaseun',  location: 'Ibadan, Nigeria',                action: 'just launched his Zeus AI Bot, live trade feed on',  type: 'zeus'     },
+    { name: 'Miriam',     location: 'Nairobi, Kenya',                 action: 'just received BTC profits from her Zeus AI Bot',     type: 'zeus'     },
+    { name: 'Chidi',      location: 'Abuja, Nigeria',                 action: 'running EX-AI Bot + Zeus AI Bot simultaneously',     type: 'zeus'     },
+    { name: 'Oga',        location: 'Lagos, Nigeria',                 action: 'just joined Aurum and activated Zeus AI Bot',        type: 'zeus'     },
+
+    // ── EX-AI PRO ──────────────────────────────────────────────
+    { name: 'Brandon',    location: 'California, USA',                action: 'just upgraded to EX-AI PRO Bot',                     type: 'activate' },
+    { name: 'Tyler',      location: 'Texas, USA',                     action: 'just activated EX-AI PRO, no lock-up',               type: 'activate' },
+    { name: 'Samuel',     location: 'Houston, USA',                   action: 'running EX-AI Bot &amp; EX-AI PRO, both live',       type: 'activate' },
+
+    // ── WITHDRAWALS ────────────────────────────────────────────
+    { name: 'James',      location: 'London, UK',                     action: 'just requested a withdrawal of $480',                type: 'withdraw' },
+    { name: 'Marcus',     location: 'Birmingham, UK',                 action: 'just requested a withdrawal of $390',                type: 'withdraw' },
+    { name: 'Oxford',     location: 'United Kingdom',                 action: '3 months in, EX-AI Bot profit paid out daily',       type: 'withdraw' },
+    { name: 'Keisha',     location: 'Atlanta, USA',                   action: 'just withdrew her EX-AI Bot profits, 48h payout',    type: 'withdraw' },
+    { name: 'Sophie',     location: 'Melbourne, Australia',           action: 'just received her first bot payout',                 type: 'withdraw' },
+    { name: 'Jayden',     location: 'Auckland, New Zealand',          action: 'just requested a withdrawal of $275',                type: 'withdraw' },
+    { name: 'Precious',   location: 'Harare, Zimbabwe',               action: 'just withdrew $185, 25 USDT min cleared instantly',  type: 'withdraw' },
+
+    // ── JOINS / NEW MEMBERS ────────────────────────────────────
+    { name: 'Liam',       location: 'Sydney, Australia',              action: 'just joined Aurum, $19.99 access unlocked',          type: 'join'     },
+    { name: 'Emma',       location: 'Manchester, UK',                 action: 'just joined Aurum',                                  type: 'join'     },
+    { name: 'David',      location: 'Toronto, Canada',                action: 'just joined, EX-AI Bot activated',                   type: 'join'     },
+    { name: 'Jake',       location: 'Vancouver, Canada',              action: 'just joined Aurum, partner code EXTHT1',             type: 'join'     },
+    { name: 'Remy',       location: 'Paris, France',                  action: 'just joined Aurum, EX-AI Bot live',                  type: 'join'     },
+    { name: 'Amara',      location: 'Accra, Ghana',                   action: 'just made her first $100 deposit',                   type: 'join'     },
+
+    // ── COMPOUNDING ────────────────────────────────────────────
+    { name: 'Hamed',      location: 'Verified Member',                action: 'watching the bot compound while he sleeps',          type: 'compound' },
+    { name: 'Chen',       location: 'Singapore',                      action: 'just enabled monthly compounding on EX-AI Bot',      type: 'compound' },
+    { name: 'Daniel',     location: 'Dublin, Ireland',                action: 'just reinvested his profits, compounding active',    type: 'compound' },
+
+    // ── PARTNER PROGRAM ────────────────────────────────────────
+    { name: 'Amara',      location: 'Accra, Ghana',                   action: 'just earned a partner commission, Profitshare hit',  type: 'partner'  },
+    { name: 'Ian',        location: 'Verified Member',                action: 'just earned a direct referral commission',           type: 'partner'  },
+
+    // ── HIGH-VALUE ACTIVATIONS ─────────────────────────────────
+    { name: 'Riaan',      location: 'Stellenbosch, South Africa',     action: 'just activated his EX-AI Bot with $520',             type: 'activate' },
+    { name: 'Tendai',     location: 'Harare, Zimbabwe',               action: 'just activated her EX-AI Bot with $475',             type: 'activate' },
+    { name: 'Gareth',     location: 'Dublin, Ireland',                action: 'just activated his EX-AI Bot with $2,350',           type: 'activate' },
+    { name: 'Yusuf',      location: 'Cape Town, South Africa',        action: 'just activated his EX-AI Bot with $2,750',           type: 'activate' },
+    { name: 'Natasha',    location: 'Johannesburg, South Africa',     action: 'just activated her EX-AI Bot with $2,100',           type: 'activate' },
+    { name: 'Andrew',     location: 'Edinburgh, Scotland',            action: 'just activated his EX-AI Bot with $6,800',           type: 'activate' },
+    { name: 'Lwazi',      location: 'Durban, South Africa',           action: 'just activated his EX-AI Bot with $7,400',           type: 'activate' },
+    { name: 'Patricia',   location: 'Lagos, Nigeria',                 action: 'just activated her EX-AI Bot with $6,500',           type: 'activate' },
+    { name: 'Richard',    location: 'Toronto, Canada',                action: 'just activated his EX-AI Bot with $13,750',          type: 'activate' },
+    { name: 'Nokuthula',  location: 'Pretoria, South Africa',         action: 'just activated her EX-AI Bot with $14,300',          type: 'activate' },
+    { name: 'Sebastian',  location: 'Zurich, Switzerland',            action: 'just activated his EX-AI Bot with $12,900',          type: 'activate' },
+
+    // ── HIGH-VALUE TOP-UPS ─────────────────────────────────────
+    { name: 'Kabelo',     location: 'Johannesburg, South Africa',     action: 'just topped up his EX-AI Bot by $480',               type: 'activate' },
+    { name: 'Fiona',      location: 'Auckland, New Zealand',          action: 'just topped up her EX-AI Bot by $560',               type: 'activate' },
+    { name: 'Thandeka',   location: 'Durban, South Africa',           action: 'just topped up her EX-AI Bot by $2,200',             type: 'activate' },
+    { name: 'Mohammed',   location: 'Dubai, UAE',                     action: 'just topped up his EX-AI Bot by $2,650',             type: 'activate' },
+    { name: 'Blessing',   location: 'Abuja, Nigeria',                 action: 'just topped up her EX-AI Bot by $1,850',             type: 'activate' },
+    { name: 'Craig',      location: 'Perth, Australia',               action: 'just topped up his EX-AI Bot by $7,200',             type: 'activate' },
+    { name: 'Nhlanhla',   location: 'Soweto, South Africa',           action: 'just topped up his EX-AI Bot by $6,750',             type: 'activate' },
+    { name: 'Ingrid',     location: 'Oslo, Norway',                   action: 'just topped up her EX-AI Bot by $13,400',            type: 'activate' },
+    { name: 'Siyanda',    location: 'East London, South Africa',      action: 'just topped up his EX-AI Bot by $14,600',            type: 'activate' }
+  ];
+
+  // ── MOMENTUM pool - interspersed every ~5 regular notifications ──
+  var MOMENTUM_POOL = [
+    { name: '',  location: 'Aurum Foundation',  action: '14 members joined Aurum in the last hour',              type: 'momentum' },
+    { name: '',  location: 'Aurum Foundation',  action: '9 people activated their EX-AI Bot while you read this', type: 'momentum' },
+    { name: '',  location: 'Aurum Foundation',  action: '6 withdrawals processed in the last 30 minutes',        type: 'momentum' },
+    { name: '',  location: 'Aurum Foundation',  action: '23 active EX-AI Bots running right now',                type: 'momentum' },
+    { name: '',  location: 'Aurum Foundation',  action: '11 new members joined Aurum today',                     type: 'momentum' },
+    { name: '',  location: 'Aurum Foundation',  action: '3 people topped up their bots while you were here',     type: 'momentum' },
+    { name: '',  location: 'Aurum Foundation',  action: '17 EX-AI Bots earning profits at this moment',          type: 'momentum' },
+    { name: '',  location: 'Aurum Foundation',  action: '$4,820 in bot profits paid out in the last hour',       type: 'momentum' }
+  ];
+
+  // ── CURIOSITY pool - question-format hooks ─────────────────────
+  var CURIOSITY_POOL = [
+    { name: 'Oxford',  location: 'United Kingdom',   action: 'asked: does the bot really pay daily? Found out it does, every single day', type: 'curiosity' },
+    { name: 'Ian',     location: 'Verified Member',  action: 'was skeptical. Activated the bot, went to bed, woke up to profits',         type: 'curiosity' },
+    { name: 'Hamed',   location: 'Verified Member',  action: 'wondered if compounding was worth it. His bot proved it is',                type: 'curiosity' },
+    { name: 'Sipho',   location: 'Johannesburg, SA', action: 'asked: can I really start with $100? He did. Bot is live',                  type: 'curiosity' },
+    { name: 'Keisha',  location: 'Atlanta, USA',     action: 'thought AI trading was hype. Her first withdrawal changed that',            type: 'curiosity' },
+    { name: 'Zanele',  location: 'Durban, SA',       action: 'asked: is Aurum legit? Topped up her bot after the first payout',           type: 'curiosity' }
   ];
 
   // ============================================================
-  // 2. TYPE CONFIG — Icon + Avatar gradient per action type
+  // 2. TYPE CONFIG - icon + avatar gradient + accent color
   // ============================================================
   var TYPE_CONFIG = {
-    join:     { icon: '🚀', grad: 'linear-gradient(135deg, #0073FF 0%, #3898F8 100%)' },
-    activate: { icon: '🤖', grad: 'linear-gradient(135deg, #1A5FD4 0%, #2C90FA 100%)' },
-    topup:    { icon: '💰', grad: 'linear-gradient(135deg, #0060DD 0%, #3898F8 100%)' },
-    deposit:  { icon: '💎', grad: 'linear-gradient(135deg, #0073FF 0%, #60BBFF 100%)' },
-    withdraw: { icon: '💸', grad: 'linear-gradient(135deg, #00A87A 0%, #3898F8 100%)' }
+    join:     { icon: '🚀', grad: 'linear-gradient(135deg, #0073FF 0%, #3898F8 100%)',   accent: '#3898F8' },
+    activate: { icon: '🤖', grad: 'linear-gradient(135deg, #1A5FD4 0%, #2C90FA 100%)',   accent: '#2C90FA' },
+    zeus:     { icon: '⚡', grad: 'linear-gradient(135deg, #4B0082 0%, #7B2FBE 60%, #3898F8 100%)', accent: '#9B59F8' },
+    withdraw: { icon: '💸', grad: 'linear-gradient(135deg, #00875A 0%, #00B67A 50%, #2C90FA 100%)', accent: '#00D4A0' },
+    compound: { icon: '📈', grad: 'linear-gradient(135deg, #0073FF 0%, #00B67A 100%)',   accent: '#00C48C' },
+    partner:  { icon: '🤝', grad: 'linear-gradient(135deg, #0060DD 0%, #3898F8 60%, #60CCFF 100%)', accent: '#60CCFF' },
+    momentum: { icon: '👥', grad: 'linear-gradient(135deg, #0073FF 0%, #3898F8 100%)',   accent: '#3898F8' },
+    curiosity:{ icon: '💬', grad: 'linear-gradient(135deg, #1A5FD4 0%, #3898F8 100%)',   accent: '#60CCFF' }
   };
 
   // ============================================================
-  // 3. INJECT STYLES — Scoped under #aurum-social-proof
+  // 3. INJECT STYLES - all scoped under #aurum-social-proof
   // ============================================================
   var css = `
-    /* ── CONTAINER ── */
+    /* ── WRAPPER ── */
     #aurum-social-proof {
       position: fixed;
-      bottom: 24px;
-      left: 20px;
-      width: 308px;
+      bottom: 20px;
+      left: 16px;
+      width: 270px;
       z-index: 9990;
       font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       pointer-events: none;
@@ -2202,255 +2292,296 @@
     /* ── CARD ── */
     #aurum-sp-card {
       position: relative;
-      background: rgba(4, 6, 22, 0.93);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      background: rgba(3, 5, 20, 0.95);
+      backdrop-filter: blur(28px) saturate(160%);
+      -webkit-backdrop-filter: blur(28px) saturate(160%);
       border: 1px solid rgba(255, 255, 255, 0.07);
       border-left: 3px solid #0073FF;
-      border-radius: 14px;
-      padding: 13px 38px 10px 13px;
+      border-radius: 12px;
+      padding: 9px 28px 8px 9px;
       box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.40),
+        0 12px 36px rgba(0, 0, 0, 0.45),
         0 0 0 1px rgba(0, 115, 255, 0.10),
-        0 4px 16px rgba(0, 115, 255, 0.18);
+        0 3px 14px rgba(0, 115, 255, 0.15);
       overflow: hidden;
       pointer-events: all;
       opacity: 0;
       transform: translateX(-120%) translateY(8px);
       will-change: transform, opacity;
+      transition: border-left-color 0.4s ease, box-shadow 0.4s ease;
     }
 
-    /* Top shimmer line */
+    /* shimmer top edge */
     #aurum-sp-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(56, 152, 248, 0.55) 50%, transparent 100%);
-      border-radius: 14px 14px 0 0;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(56, 152, 248, 0.6) 40%,
+        rgba(96, 204, 255, 0.3) 60%,
+        transparent 100%);
+      border-radius: 12px 12px 0 0;
       pointer-events: none;
     }
 
-    /* ── ANIMATIONS ── */
+    /* ── KEYFRAMES ── */
     @keyframes aurumSpIn {
-      0%   { opacity: 0; transform: translateX(-115%) translateY(10px); }
-      65%  { transform: translateX(6px) translateY(-2px); }
-      82%  { transform: translateX(-3px) translateY(0); }
-      100% { opacity: 1; transform: translateX(0) translateY(0); }
+      0%   { opacity: 0; transform: translateX(-112%) translateY(12px) scale(0.96); }
+      55%  { transform: translateX(7px) translateY(-2px) scale(1.01); }
+      78%  { transform: translateX(-3px) translateY(0) scale(1.0); }
+      100% { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
     }
     @keyframes aurumSpOut {
       0%   { opacity: 1; transform: translateX(0) translateY(0); }
-      100% { opacity: 0; transform: translateX(-28px) translateY(6px); }
+      100% { opacity: 0; transform: translateX(-22px) translateY(8px); }
     }
-    @keyframes aurumSpPulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.35; transform: scale(0.65); }
+    @keyframes aurumSpDot {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 212, 160, 0.7); }
+      50%       { opacity: 0.4; transform: scale(0.65); box-shadow: 0 0 0 4px rgba(0, 212, 160, 0); }
     }
-    @keyframes aurumSpShimmer {
-      0%   { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-
-    #aurum-sp-card.sp-is-entering {
-      animation: aurumSpIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-    #aurum-sp-card.sp-is-exiting {
-      animation: aurumSpOut 0.38s ease-in forwards;
+    @keyframes aurumSpGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 115, 255, 0); }
+      20%      { box-shadow: 0 0 12px 2px rgba(0, 115, 255, 0.25); }
+      80%      { box-shadow: 0 0 8px 1px rgba(0, 115, 255, 0.12); }
     }
 
-    /* ── LIVE BADGE ── */
-    #aurum-sp-live {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
+    #aurum-sp-card.sp-entering {
+      animation: aurumSpIn 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+                 aurumSpGlow 0.62s ease forwards;
+    }
+    #aurum-sp-card.sp-exiting {
+      animation: aurumSpOut 0.36s ease-in forwards;
+    }
+
+    /* ── GREEN FLASH for withdrawal notifications ── */
+    @keyframes aurumSpWithdrawFlash {
+      0%   { border-left-color: #00D4A0;
+             box-shadow: 0 12px 36px rgba(0,0,0,0.45),
+                         0 0 0 1px rgba(0,212,160,0.30),
+                         0 3px 22px rgba(0,212,160,0.45); }
+      55%  { border-left-color: #00D4A0;
+             box-shadow: 0 12px 36px rgba(0,0,0,0.45),
+                         0 0 0 1px rgba(0,212,160,0.20),
+                         0 3px 16px rgba(0,212,160,0.28); }
+      100% { border-left-color: #00D4A0;
+             box-shadow: 0 12px 36px rgba(0,0,0,0.45),
+                         0 0 0 1px rgba(0,115,255,0.10),
+                         0 3px 14px rgba(0,212,160,0.18); }
+    }
+    #aurum-sp-card.sp-withdraw-flash {
+      animation: aurumSpIn 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+                 aurumSpWithdrawFlash 1.8s ease-out forwards;
+    }
+
+    /* ── CARD CLICKABLE ── */
+    #aurum-sp-card {
+      cursor: pointer;
+    }
+    #aurum-sp-card:hover {
+      filter: brightness(1.08);
+    }
+
+    /* ── CTA MICRO-TEXT ── */
+    #aurum-sp-cta {
       font-size: 9.5px;
       font-weight: 700;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: #00D4A0;
-      margin-bottom: 7px;
+      color: #3898F8;
+      margin-top: 5px;
+      letter-spacing: 0.02em;
+      display: none;
+    }
+    #aurum-sp-cta.sp-cta-visible {
+      display: block;
+    }
+
+    /* ── LIVE DOT ONLY ── */
+    #aurum-sp-live {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px;
     }
     #aurum-sp-live-dot {
-      width: 6px;
-      height: 6px;
+      width: 6px; height: 6px;
       background: #00D4A0;
       border-radius: 50%;
       flex-shrink: 0;
-      animation: aurumSpPulseDot 1.6s ease-in-out infinite;
+      animation: aurumSpDot 1.8s ease-in-out infinite;
+    }
+
+    /* ── COUNTER BADGE ── */
+    #aurum-sp-counter {
+      font-size: 8.5px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.32);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    #aurum-sp-counter strong {
+      color: rgba(255,255,255,0.55);
+      font-weight: 700;
+    }
+
+    /* ── MOMENTUM: hide name/location, center action ── */
+    #aurum-social-proof.sp-momentum #aurum-sp-name,
+    #aurum-social-proof.sp-momentum #aurum-sp-location {
+      display: none;
+    }
+    #aurum-social-proof.sp-momentum #aurum-sp-action {
+      font-size: 11px;
+      color: rgba(255,255,255,0.88);
+      margin-top: 0;
+    }
+    #aurum-social-proof.sp-momentum #aurum-sp-inner {
+      align-items: center;
     }
 
     /* ── BODY ROW ── */
     #aurum-sp-inner {
       display: flex;
       align-items: flex-start;
-      gap: 11px;
+      gap: 8px;
     }
 
-    /* ── AVATAR ── */
-    #aurum-sp-avatar {
-      position: relative;
-      flex-shrink: 0;
-    }
-    #aurum-sp-avatar-circle {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: 0.01em;
-      transition: background 0.3s ease;
-    }
-    #aurum-sp-badge {
-      position: absolute;
-      bottom: -2px;
-      right: -3px;
-      width: 18px;
-      height: 18px;
-      background: #080B1E;
-      border: 1.5px solid rgba(0, 115, 255, 0.35);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9.5px;
+    /* ── EMOJI (replaces avatar) ── */
+    #aurum-sp-emoji {
+      font-size: 18px;
       line-height: 1;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      text-align: center;
+      /* subtle drop-shadow so emoji pops on dark glass */
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
     }
 
     /* ── TEXT ── */
-    #aurum-sp-content {
-      flex: 1;
-      min-width: 0;
-    }
+    #aurum-sp-content { flex: 1; min-width: 0; }
     #aurum-sp-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: #FFFFFF;
-      line-height: 1.3;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 11.5px; font-weight: 700;
+      color: #FFFFFF; line-height: 1.25;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       letter-spacing: 0.01em;
     }
     #aurum-sp-location {
-      font-size: 11px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.42);
-      margin-top: 0px;
-      line-height: 1.3;
+      font-size: 9.5px; font-weight: 400;
+      color: rgba(255,255,255,0.38);
+      margin-top: 0; line-height: 1.25;
     }
     #aurum-sp-action {
-      font-size: 12.5px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.78);
-      line-height: 1.45;
-      margin-top: 4px;
+      font-size: 11px; font-weight: 400;
+      color: rgba(255,255,255,0.80);
+      line-height: 1.35; margin-top: 3px;
     }
-    #aurum-sp-action .sp-highlight {
-      color: #60CCFF;
-      font-weight: 700;
-    }
-    #aurum-sp-action .sp-amount {
-      color: #00D4A0;
-      font-weight: 700;
-    }
+    /* Highlighted product names */
+    #aurum-sp-action .sp-bot     { color: #60CCFF; font-weight: 700; }
+    /* Dollar amounts */
+    #aurum-sp-action .sp-amount  { color: #00D4A0; font-weight: 700; }
+    /* Percentages */
+    #aurum-sp-action .sp-pct     { color: #7BE0B0; font-weight: 700; }
+    /* Zeus purple accent */
+    #aurum-sp-action .sp-zeus    { color: #B98BFF; font-weight: 700; }
+    /* Partner accent */
+    #aurum-sp-action .sp-partner { color: #60CCFF; font-weight: 700; }
 
     /* ── TIMESTAMP ── */
     #aurum-sp-time {
-      font-size: 10.5px;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.30);
+      font-size: 9px; font-style: italic;
+      color: rgba(255,255,255,0.28);
       margin-top: 3px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      display: flex; align-items: center; gap: 4px;
     }
     #aurum-sp-time-dot {
-      width: 4px;
-      height: 4px;
-      background: #0073FF;
-      border-radius: 50%;
-      flex-shrink: 0;
-      opacity: 0.6;
+      width: 3px; height: 3px;
+      background: rgba(0,115,255,0.6);
+      border-radius: 50%; flex-shrink: 0;
     }
 
-    /* ── CLOSE BUTTON ── */
+    /* ── CLOSE ── */
     #aurum-sp-close {
-      position: absolute;
-      top: 9px;
-      right: 10px;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: absolute; top: 7px; right: 8px;
+      width: 18px; height: 18px;
+      display: flex; align-items: center; justify-content: center;
       cursor: pointer;
-      color: rgba(255, 255, 255, 0.28);
-      font-size: 15px;
-      line-height: 1;
-      border-radius: 50%;
-      border: none;
-      background: transparent;
-      padding: 0;
+      color: rgba(255,255,255,0.25);
+      font-size: 13px; line-height: 1;
+      border-radius: 50%; border: none;
+      background: transparent; padding: 0;
       transition: color 0.2s ease, background 0.2s ease;
-      pointer-events: all;
-      font-family: inherit;
+      pointer-events: all; font-family: inherit;
     }
-    #aurum-sp-close:hover {
-      color: rgba(255, 255, 255, 0.75);
-      background: rgba(255, 255, 255, 0.09);
-    }
-    #aurum-sp-close:focus {
-      outline: 2px solid rgba(0, 115, 255, 0.5);
-      outline-offset: 2px;
-    }
+    #aurum-sp-close:hover { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.09); }
+    #aurum-sp-close:focus { outline: 2px solid rgba(0,115,255,0.5); outline-offset: 2px; }
 
     /* ── PROGRESS BAR ── */
     #aurum-sp-progress-wrap {
-      margin-top: 10px;
-      height: 2.5px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 99px;
-      overflow: hidden;
+      margin-top: 7px; height: 2px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 99px; overflow: hidden;
     }
     #aurum-sp-progress-bar {
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(90deg, #0073FF 0%, #3898F8 60%, #60CCFF 100%);
+      height: 100%; width: 100%;
+      background: linear-gradient(90deg, #0073FF 0%, #3898F8 50%, #60CCFF 100%);
       border-radius: 99px;
       transform-origin: left;
     }
 
-    /* ── MOBILE: bottom-center, full-width ── */
+    /* ── MOBILE: compact mode ── */
     @media (max-width: 480px) {
       #aurum-social-proof {
-        left: 12px;
-        right: 12px;
-        bottom: 16px;
+        left: 10px;
+        right: 10px;
+        bottom: 12px;
         width: auto;
       }
-      #aurum-sp-card {
-        padding: 12px 36px 9px 12px;
+      /* Hide live badge row entirely on mobile */
+      #aurum-sp-live {
+        display: none;
       }
+      /* Hide timestamp row on mobile */
+      #aurum-sp-time {
+        display: none !important;
+      }
+      /* Tighter card padding */
+      #aurum-sp-card {
+        padding: 8px 26px 7px 8px;
+        border-radius: 10px;
+      }
+      /* Tighter inner gap */
+      #aurum-sp-inner {
+        gap: 7px;
+        align-items: center;
+      }
+      /* Slightly smaller type text on mobile */
+      #aurum-sp-action {
+        font-size: 10.5px;
+        line-height: 1.3;
+        margin-top: 2px;
+      }
+      #aurum-sp-name     { font-size: 11px; }
+      #aurum-sp-location { font-size: 9px; }
+      /* Progress bar closer to content */
+      #aurum-sp-progress-wrap { margin-top: 6px; }
     }
 
     @media (max-width: 360px) {
-      #aurum-sp-name    { font-size: 12px; }
-      #aurum-sp-action  { font-size: 11.5px; }
-      #aurum-sp-location{ font-size: 10.5px; }
+      #aurum-sp-name     { font-size: 10.5px; }
+      #aurum-sp-action   { font-size: 10px; }
+      #aurum-sp-location { display: none; }
     }
   `;
 
   var styleEl = document.createElement('style');
-  styleEl.id = 'aurum-sp-css';
+  styleEl.id = 'aurum-sp-css-v2';
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
 
   // ============================================================
-  // 4. BUILD DOM STRUCTURE
+  // 4. BUILD DOM
   // ============================================================
   var wrapper = document.createElement('div');
   wrapper.id = 'aurum-social-proof';
@@ -2459,20 +2590,18 @@
   wrapper.setAttribute('role', 'status');
   wrapper.innerHTML = [
     '<div id="aurum-sp-card">',
-      '<button id="aurum-sp-close" aria-label="Close notification" title="Close">&#x00D7;</button>',
+      '<button id="aurum-sp-close" aria-label="Close notification">&#x00D7;</button>',
       '<div id="aurum-sp-live">',
         '<span id="aurum-sp-live-dot"></span>',
-        'Live Activity',
+        '<span id="aurum-sp-counter"></span>',
       '</div>',
       '<div id="aurum-sp-inner">',
-        '<div id="aurum-sp-avatar">',
-          '<div id="aurum-sp-avatar-circle"><span id="aurum-sp-initials"></span></div>',
-          '<div id="aurum-sp-badge"><span id="aurum-sp-type-icon"></span></div>',
-        '</div>',
+        '<span id="aurum-sp-emoji"></span>',
         '<div id="aurum-sp-content">',
           '<div id="aurum-sp-name"></div>',
           '<div id="aurum-sp-location"></div>',
           '<div id="aurum-sp-action"></div>',
+          '<div id="aurum-sp-cta"></div>',
           '<div id="aurum-sp-time">',
             '<span id="aurum-sp-time-dot"></span>',
             '<span id="aurum-sp-time-text"></span>',
@@ -2487,34 +2616,72 @@
   document.body.appendChild(wrapper);
 
   // ============================================================
-  // 5. ELEMENT REFERENCES
+  // 5. ELEMENT REFS
   // ============================================================
   var card         = document.getElementById('aurum-sp-card');
   var closeBtn     = document.getElementById('aurum-sp-close');
-  var initialsEl   = document.getElementById('aurum-sp-initials');
-  var typeIconEl   = document.getElementById('aurum-sp-type-icon');
-  var avatarCircle = document.getElementById('aurum-sp-avatar-circle');
+  var emojiEl      = document.getElementById('aurum-sp-emoji');
   var nameEl       = document.getElementById('aurum-sp-name');
   var locationEl   = document.getElementById('aurum-sp-location');
   var actionEl     = document.getElementById('aurum-sp-action');
+  var ctaEl        = document.getElementById('aurum-sp-cta');
+  var counterEl    = document.getElementById('aurum-sp-counter');
+  var timeRow      = document.getElementById('aurum-sp-time');
   var timeTextEl   = document.getElementById('aurum-sp-time-text');
   var progressBar  = document.getElementById('aurum-sp-progress-bar');
 
   // ============================================================
   // 6. STATE
   // ============================================================
-  var queue        = [];
-  var qIndex       = 0;
-  var dismissTimer = null;
-  var gapTimer     = null;
-  var isPaused     = false;
-  var isSnoozed    = false;
-  var displayMs    = 6000;
-  var remainingMs  = 6000;
-  var pausedAt     = 0;
-  var progStart    = 0;
+  var queue      = [];
+  var qIndex     = 0;
+  var dispTimer  = null;
+  var gapTimer   = null;
+  var isPaused   = false;
+  var isSnoozed  = false;
+  var displayMs  = 6000;
+  var progStart  = 0;
+  var rafId      = null;
 
-  // Time labels (used when action copy doesn't already carry one)
+  // Counter badge - starts at a believable active-member count
+  var counterBase    = rand(847, 1134);
+  var notifCount     = 0;     // tracks how many notifs shown this session
+  var momentumEvery  = 5;     // fire a momentum notif every N regular ones
+  var curiosityEvery = 8;     // fire a curiosity notif every N regular ones
+  var specialIndex   = 0;     // tracks position in momentum/curiosity pools
+
+  // ── WEB AUDIO CHIME (fires only after first user interaction) ──
+  var audioCtx       = null;
+  var userInteracted = false;
+  function initAudio() {
+    if (audioCtx) return;
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+  }
+  function playChime() {
+    if (!userInteracted || !audioCtx) return;
+    try {
+      var osc  = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(660, audioCtx.currentTime + 0.18);
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.30);
+      osc.start(audioCtx.currentTime);
+      osc.stop(audioCtx.currentTime + 0.30);
+    } catch(e) {}
+  }
+  ['click','touchstart','keydown'].forEach(function(evt) {
+    document.addEventListener(evt, function onFirstInteraction() {
+      userInteracted = true;
+      initAudio();
+      document.removeEventListener(evt, onFirstInteraction);
+    }, { once: true, passive: true });
+  });
+
+  // Varied time labels - mix of how the page describes activity
   var TIME_LABELS = [
     'just now',
     'moments ago',
@@ -2524,11 +2691,12 @@
     '4 min ago',
     '6 min ago',
     '8 min ago',
-    '10 min ago'
+    '11 min ago',
+    'earlier today'
   ];
 
   // ============================================================
-  // 7. UTILITY FUNCTIONS
+  // 7. UTILITIES
   // ============================================================
   function rand(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -2538,7 +2706,7 @@
     var a = arr.slice();
     for (var i = a.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
-      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      var t = a[i]; a[i] = a[j]; a[j] = t;
     }
     return a;
   }
@@ -2547,197 +2715,333 @@
     queue = shuffle(NOTIFICATIONS);
   }
 
-  // Returns a time label only when the action text doesn't already contain one
-  function resolveTimeLabel(action) {
-    var hasTime = /just|moments|ago|few|minutes|min\s/i.test(action);
-    if (hasTime) return '';
-    return TIME_LABELS[rand(0, TIME_LABELS.length - 1)];
+  // Resolve whether action already carries a time reference
+  function resolveTime(action) {
+    return /just|moments|ago|few|minutes|min\s|woke up|earlier/i.test(action)
+      ? ''
+      : TIME_LABELS[rand(0, TIME_LABELS.length - 1)];
   }
 
-  // Highlight $ amounts and key action words in action text
-  function buildActionHTML(action, type) {
-    // Highlight dollar amounts in green (withdrawal = proof of earnings)
-    var html = action.replace(/(\$[\d,]+)/g, '<span class="sp-amount">$1</span>');
-    // Highlight "EX-AI Bot" in blue
-    html = html.replace(/(EX-AI Bot)/g, '<span class="sp-highlight">$1</span>');
+  // ── Page-aware text highlighting ─────────────────────────────
+  //  Knows every product name, percentage, and dollar amount that
+  //  appears on the page and applies the right CSS class.
+  function buildActionHTML(raw) {
+    var html = raw;
+
+    // Dollar amounts → green
+    html = html.replace(/(\$[\d,]+(?:\.\d+)?)/g, '<span class="sp-amount">$1</span>');
+
+    // Percentages from the page → muted green
+    html = html.replace(/(17\.5%|15%|10%|23\.52%)/g, '<span class="sp-pct">$1</span>');
+
+    // Zeus AI Bot → purple (Zeus color from page)
+    html = html.replace(/(Zeus AI Bot|Zeus)/g, '<span class="sp-zeus">$1</span>');
+
+    // EX-AI PRO → blue accent
+    html = html.replace(/(EX-AI PRO(?:\s+Bot)?)/g, '<span class="sp-bot">$1</span>');
+
+    // EX-AI Bot (but not after PRO is already replaced)
+    html = html.replace(/(EX-AI Bot)/g, '<span class="sp-bot">$1</span>');
+
+    // Partner program keywords → light blue
+    html = html.replace(/(Profitshare|partner commission|referral commission|Partner Program)/g, '<span class="sp-partner">$1</span>');
+
+    // NeoBank → subtle highlight
+    html = html.replace(/(NeoBank)/g, '<span class="sp-bot">$1</span>');
+
     return html;
   }
 
-  // ============================================================
-  // 8. PROGRESS BAR ANIMATION (requestAnimationFrame-based)
-  // ============================================================
-  var rafId = null;
+  // ── Update card border/glow accent per type ───────────────────
+  // Withdrawal cards get a green flash animation for 1.8s then settle
+  function applyTypeAccent(type) {
+    var cfg = TYPE_CONFIG[type] || TYPE_CONFIG.join;
+    var a = cfg.accent;
+    card.style.borderLeftColor = a;
+    card.style.boxShadow = [
+      '0 12px 36px rgba(0,0,0,0.45)',
+      '0 0 0 1px rgba(0,115,255,0.10)',
+      '0 3px 14px ' + a.replace(')', ',0.18)').replace('rgb', 'rgba')
+    ].join(', ');
+  }
 
-  function startProgressBar(durationMs) {
-    progressBar.style.transition = 'none';
+  // ============================================================
+  // 8. PROGRESS BAR (rAF-based so it can pause/resume precisely)
+  // ============================================================
+  function startProgress(ms) {
+    cancelAnimationFrame(rafId);
     progressBar.style.width = '100%';
     progStart = performance.now();
+    displayMs = ms;
 
     function tick(now) {
-      var elapsed = now - progStart;
-      var pct = Math.max(0, 100 - (elapsed / durationMs) * 100);
+      if (isPaused) return;
+      var pct = Math.max(0, 100 - ((now - progStart) / ms) * 100);
       progressBar.style.width = pct.toFixed(2) + '%';
-      if (elapsed < durationMs && !isPaused) {
-        rafId = requestAnimationFrame(tick);
-      }
+      if (pct > 0) rafId = requestAnimationFrame(tick);
     }
     rafId = requestAnimationFrame(tick);
   }
 
-  function pauseProgressBar() {
+  function pauseProgress() {
     cancelAnimationFrame(rafId);
-    pausedAt = performance.now();
   }
 
-  function resumeProgressBar(newDurationMs) {
-    progStart = performance.now() - (displayMs - newDurationMs);
+  function resumeProgress(remainMs) {
+    progStart = performance.now() - (displayMs - remainMs);
+    var ms = displayMs;
     function tick(now) {
-      var elapsed = now - progStart;
-      var pct = Math.max(0, 100 - (elapsed / displayMs) * 100);
+      if (isPaused) return;
+      var pct = Math.max(0, 100 - ((now - progStart) / ms) * 100);
       progressBar.style.width = pct.toFixed(2) + '%';
-      if (elapsed < displayMs && !isPaused) {
-        rafId = requestAnimationFrame(tick);
-      }
+      if (pct > 0) rafId = requestAnimationFrame(tick);
     }
     rafId = requestAnimationFrame(tick);
   }
 
   // ============================================================
-  // 9. SHOW / HIDE LOGIC
+  // 9. SHOW / HIDE
   // ============================================================
   function showNotification(notif) {
     if (isSnoozed) return;
 
-    var cfg = TYPE_CONFIG[notif.type] || TYPE_CONFIG.join;
-    var timeLabel = resolveTimeLabel(notif.action);
+    var cfg        = TYPE_CONFIG[notif.type] || TYPE_CONFIG.join;
+    var timeLabel  = resolveTime(notif.action);
+    var duration   = rand(5400, 7400);
+    var isWithdraw = notif.type === 'withdraw';
+    var isHighVal  = /\$[\d,]{4,}/.test(notif.action);
+    var isMomentum = notif.type === 'momentum';
+    var isCuriosity= notif.type === 'curiosity';
 
-    // Update avatar
-    avatarCircle.style.background = cfg.grad;
-    initialsEl.textContent = notif.name.charAt(0).toUpperCase();
-    typeIconEl.textContent = cfg.icon;
+    // ── Counter badge ──
+    notifCount++;
+    var displayed = counterBase + notifCount;
+    counterEl.innerHTML = '<strong>' + displayed + '</strong> active today';
 
-    // Update text content
-    nameEl.textContent = notif.name;
+    // ── Momentum class on wrapper (hides name/location via CSS) ──
+    if (isMomentum) {
+      wrapper.classList.add('sp-momentum');
+    } else {
+      wrapper.classList.remove('sp-momentum');
+    }
+
+    // ── Fill content ──
+    emojiEl.textContent    = cfg.icon;
+    nameEl.textContent     = notif.name;
     locationEl.textContent = notif.location;
-    actionEl.innerHTML = buildActionHTML(notif.action, notif.type);
+    actionEl.innerHTML     = buildActionHTML(notif.action);
     timeTextEl.textContent = timeLabel;
+    timeRow.style.display  = (timeLabel && !isMomentum) ? 'flex' : 'none';
 
-    // Show/hide timestamp row
-    var timeRow = document.getElementById('aurum-sp-time');
-    timeRow.style.display = timeLabel ? 'flex' : 'none';
+    // CTA micro-text: withdrawals, high-value, and curiosity entries
+    if (isWithdraw || isHighVal || isCuriosity) {
+      ctaEl.textContent = 'Start yours from $100 \u2192';
+      ctaEl.classList.add('sp-cta-visible');
+    } else {
+      ctaEl.textContent = '';
+      ctaEl.classList.remove('sp-cta-visible');
+    }
 
-    // Reset state
+    // ── Type accent ──
+    applyTypeAccent(notif.type);
+
+    // ── Sound + vibration ──
+    playChime();
+    if (navigator.vibrate) navigator.vibrate(40);
+
+    // ── State reset ──
     isPaused = false;
-    displayMs = rand(5200, 7200);
-    remainingMs = displayMs;
 
-    // Animate card in
-    card.classList.remove('sp-is-exiting');
-    card.style.opacity = '';
+    // ── Animate in ──
+    card.classList.remove('sp-exiting', 'sp-entering', 'sp-withdraw-flash');
+    card.style.opacity  = '';
     card.style.transform = '';
 
-    // Small frame delay ensures class swap triggers re-animation
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        card.classList.add('sp-is-entering');
+        card.classList.add(isWithdraw ? 'sp-withdraw-flash' : 'sp-entering');
       });
     });
 
-    // Start progress bar
-    startProgressBar(displayMs);
+    startProgress(duration);
 
-    // Auto-dismiss after displayMs
-    clearTimeout(dismissTimer);
-    dismissTimer = setTimeout(function () {
+    clearTimeout(dispTimer);
+    dispTimer = setTimeout(function () {
       if (!isPaused) exitNotification();
-    }, displayMs);
+    }, duration);
   }
 
   function exitNotification() {
     cancelAnimationFrame(rafId);
-    clearTimeout(dismissTimer);
-
-    card.classList.remove('sp-is-entering');
-    card.classList.add('sp-is-exiting');
-
+    clearTimeout(dispTimer);
+    card.classList.remove('sp-entering', 'sp-withdraw-flash');
+    card.classList.add('sp-exiting');
     setTimeout(function () {
-      card.classList.remove('sp-is-exiting');
+      card.classList.remove('sp-exiting');
       card.style.opacity = '0';
-      scheduleNext(rand(8000, 14000));
-    }, 420);
+      scheduleNext(rand(8500, 14500));
+    }, 400);
   }
 
-  function scheduleNext(delayMs) {
+  function scheduleNext(delay) {
+    // Faster cadence on mobile
+    var isMobile = window.innerWidth <= 480;
+    var gap = isMobile ? rand(5000, 9000) : delay;
+
     clearTimeout(gapTimer);
     gapTimer = setTimeout(function () {
       if (isSnoozed) return;
-      qIndex++;
-      if (qIndex >= queue.length) {
-        buildQueue();
-        qIndex = 0;
+
+      // Every momentumEvery regular notifs, interleave a momentum card
+      if (notifCount > 0 && notifCount % momentumEvery === 0) {
+        var mPick = MOMENTUM_POOL[specialIndex % MOMENTUM_POOL.length];
+        specialIndex++;
+        showNotification(mPick);
+        return;
       }
+
+      // Every curiosityEvery regular notifs, interleave a curiosity card
+      if (notifCount > 0 && notifCount % curiosityEvery === 0) {
+        var cPick = CURIOSITY_POOL[specialIndex % CURIOSITY_POOL.length];
+        specialIndex++;
+        showNotification(cPick);
+        return;
+      }
+
+      qIndex++;
+      if (qIndex >= queue.length) { buildQueue(); qIndex = 0; }
       showNotification(queue[qIndex]);
-    }, delayMs);
+    }, gap);
   }
 
   // ============================================================
-  // 10. HOVER — PAUSE / RESUME
+  // 10. HOVER - PAUSE / RESUME
   // ============================================================
   card.addEventListener('mouseenter', function () {
-    if (!card.classList.contains('sp-is-entering')) return;
+    if (!card.classList.contains('sp-entering')) return;
     isPaused = true;
-    pausedAt = performance.now();
-    var elapsed = pausedAt - (progStart);
-    remainingMs = Math.max(0, displayMs - elapsed);
-    pauseProgressBar();
-    clearTimeout(dismissTimer);
+    var elapsed = performance.now() - progStart;
+    var remaining = Math.max(0, displayMs - elapsed);
+    pauseProgress();
+    clearTimeout(dispTimer);
+    card._remaining = remaining;
   });
 
   card.addEventListener('mouseleave', function () {
     if (!isPaused) return;
     isPaused = false;
-    // Resume with remaining time (min 2.5s for good UX)
-    remainingMs = Math.max(remainingMs, 2500);
-    displayMs = remainingMs;
+    var remaining = Math.max(card._remaining || 0, 2800);
+    displayMs = remaining;
     progStart = performance.now();
-    resumeProgressBar(remainingMs);
-    dismissTimer = setTimeout(function () {
+    resumeProgress(remaining);
+    dispTimer = setTimeout(function () {
       exitNotification();
-    }, remainingMs);
+    }, remaining);
   });
 
   // ============================================================
-  // 11. CLOSE BUTTON — Snooze for 60 seconds then resume
+  // 11. CLOSE - 60-second snooze
   // ============================================================
   closeBtn.addEventListener('click', function (e) {
     e.stopPropagation();
     isSnoozed = true;
     cancelAnimationFrame(rafId);
-    clearTimeout(dismissTimer);
+    clearTimeout(dispTimer);
     clearTimeout(gapTimer);
-
-    card.classList.remove('sp-is-entering');
-    card.classList.add('sp-is-exiting');
-
+    card.classList.remove('sp-entering', 'sp-withdraw-flash');
+    card.classList.add('sp-exiting');
     setTimeout(function () {
-      card.classList.remove('sp-is-exiting');
+      card.classList.remove('sp-exiting');
       card.style.opacity = '0';
-    }, 420);
-
-    // Wake up after 60 seconds
+    }, 400);
     setTimeout(function () {
       isSnoozed = false;
       qIndex++;
       if (qIndex >= queue.length) { buildQueue(); qIndex = 0; }
-      scheduleNext(rand(2000, 4000));
+      scheduleNext(rand(1800, 3200));
     }, 60000);
   });
 
   // ============================================================
-  // 12. BOOTSTRAP — Initial delay 4–6 seconds
+  // 12. CARD CLICK - open affiliate link in new tab
+  // ============================================================
+  var AFFILIATE_URL = 'https://backoffice.aurum.foundation/u/EXTHT1';
+  card.addEventListener('click', function () {
+    window.open(AFFILIATE_URL, '_blank', 'noopener,noreferrer');
+  });
+
+  // ============================================================
+  // 13. SCROLL-DEPTH TRIGGER
+  // Fire a high-impact notification the moment the visitor
+  // reaches the final CTA section - peak intent, highest
+  // conversion moment on the page. Fires once per session only.
+  // ============================================================
+  var SCROLL_TRIGGER_NOTIFS = [
+    { name: 'Nokuthula',  location: 'Pretoria, South Africa',   action: 'just activated her EX-AI Bot with $14,300',        type: 'activate' },
+    { name: 'Richard',    location: 'Toronto, Canada',           action: 'just activated his EX-AI Bot with $13,750',        type: 'activate' },
+    { name: 'Bongani',    location: 'Durban, South Africa',      action: 'just requested a withdrawal of $630',              type: 'withdraw' },
+    { name: 'Ingrid',     location: 'Oslo, Norway',              action: 'just topped up her EX-AI Bot by $13,400',          type: 'activate' },
+    { name: 'Siyanda',    location: 'East London, South Africa', action: 'just topped up his EX-AI Bot by $14,600',          type: 'activate' },
+    { name: 'Marcus',     location: 'Birmingham, UK',            action: 'just requested a withdrawal of $390',              type: 'withdraw' }
+  ];
+
+  var scrollTriggered = false;
+  var finalCta = document.getElementById('final-cta');
+
+  if (finalCta && 'IntersectionObserver' in window) {
+    var scrollObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !scrollTriggered && !isSnoozed) {
+          scrollTriggered = true;
+          scrollObserver.disconnect();
+          // Cancel any pending gap timer and fire immediately (600ms soft delay)
+          clearTimeout(gapTimer);
+          clearTimeout(dispTimer);
+          cancelAnimationFrame(rafId);
+          var pick = SCROLL_TRIGGER_NOTIFS[rand(0, SCROLL_TRIGGER_NOTIFS.length - 1)];
+          setTimeout(function () {
+            showNotification(pick);
+          }, 600);
+        }
+      });
+    }, { threshold: 0.25 });
+    scrollObserver.observe(finalCta);
+  }
+
+  // ============================================================
+  // 15. EXIT-INTENT TRIGGER
+  // Fires when the cursor moves toward the top of the browser
+  // (user about to navigate away). Fires once per session only.
+  // Picks a high-impact withdrawal or big activation entry.
+  // ============================================================
+  var EXIT_INTENT_POOL = [
+    { name: 'Bongani',   location: 'Durban, South Africa',      action: 'just requested a withdrawal of $630',              type: 'withdraw' },
+    { name: 'Richard',   location: 'Toronto, Canada',            action: 'just activated his EX-AI Bot with $13,750',        type: 'activate' },
+    { name: 'Nokuthula', location: 'Pretoria, South Africa',     action: 'just activated her EX-AI Bot with $14,300',        type: 'activate' },
+    { name: 'Marcus',    location: 'Birmingham, UK',             action: 'just requested a withdrawal of $390',              type: 'withdraw' },
+    { name: 'Siyanda',   location: 'East London, South Africa',  action: 'just topped up his EX-AI Bot by $14,600',          type: 'activate' },
+    { name: 'Ingrid',    location: 'Oslo, Norway',               action: 'just topped up her EX-AI Bot by $13,400',          type: 'activate' },
+    { name: 'Keisha',    location: 'Atlanta, USA',               action: 'just withdrew her EX-AI Bot profits, 48h payout',  type: 'withdraw' }
+  ];
+
+  var exitTriggered = false;
+  document.addEventListener('mousemove', function onExitIntent(e) {
+    if (exitTriggered || isSnoozed) return;
+    if (e.clientY < 18 && window.scrollY > 200) {
+      exitTriggered = true;
+      document.removeEventListener('mousemove', onExitIntent);
+      clearTimeout(gapTimer);
+      clearTimeout(dispTimer);
+      cancelAnimationFrame(rafId);
+      var pick = EXIT_INTENT_POOL[rand(0, EXIT_INTENT_POOL.length - 1)];
+      showNotification(pick);
+    }
+  });
+
+  // ============================================================
+  // 16. BOOTSTRAP - 4-6s initial delay
   // ============================================================
   buildQueue();
-
   setTimeout(function () {
     showNotification(queue[qIndex]);
   }, rand(4000, 6000));
