@@ -2650,37 +2650,7 @@
   var curiosityEvery = 8;     // fire a curiosity notif every N regular ones
   var specialIndex   = 0;     // tracks position in momentum/curiosity pools
 
-  // ── WEB AUDIO CHIME (fires only after first user interaction) ──
-  var audioCtx       = null;
-  var userInteracted = false;
-  function initAudio() {
-    if (audioCtx) return;
-    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
-  }
-  function playChime() {
-    if (!userInteracted || !audioCtx) return;
-    try {
-      var osc  = audioCtx.createOscillator();
-      var gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(880, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(660, audioCtx.currentTime + 0.18);
-      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.30);
-      osc.start(audioCtx.currentTime);
-      osc.stop(audioCtx.currentTime + 0.30);
-    } catch(e) {}
-  }
-  ['click','touchstart','keydown'].forEach(function(evt) {
-    document.addEventListener(evt, function onFirstInteraction() {
-      userInteracted = true;
-      initAudio();
-      document.removeEventListener(evt, onFirstInteraction);
-    }, { once: true, passive: true });
-  });
-
+  // ── MICRO-VIBRATION on mobile only (no sound) ──────────────────
   // Varied time labels - mix of how the page describes activity
   var TIME_LABELS = [
     'just now',
@@ -2845,8 +2815,7 @@
     // ── Type accent ──
     applyTypeAccent(notif.type);
 
-    // ── Sound + vibration ──
-    playChime();
+    // ── Vibration on mobile ──
     if (navigator.vibrate) navigator.vibrate(40);
 
     // ── State reset ──
