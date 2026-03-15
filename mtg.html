@@ -289,7 +289,7 @@
 
         .hero-title {
             font-family: var(--f-head);
-            font-size: clamp(2.6rem, 6.5vw, 5rem);
+            font-size: clamp(2rem, 7.5vw, 5rem);
             font-weight: 800;
             line-height: 1.08;
             letter-spacing: -0.5px;
@@ -297,6 +297,19 @@
             margin: 0 auto 24px;
             opacity: 0;
             animation: up 0.8s ease 0.2s both;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        /* Force line break on medium+ screens so it reads as two balanced lines */
+        .title-break { display: block; }
+
+        /* On very small screens, let it flow naturally as one block */
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: clamp(1.7rem, 9vw, 2.2rem);
+            }
+            .title-break { display: none; }
         }
 
         .t-blue {
@@ -2041,7 +2054,7 @@
 
 
             <h1 class="hero-title" id="hero-title">
-                Multiple Streams.<br>
+                Multiple Streams<br class="title-break">of Income
             </h1>
 
             <p class="hero-body">
