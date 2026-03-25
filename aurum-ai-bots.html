@@ -345,7 +345,8 @@
            ============================================ */
         .flip-card { width:100%; perspective:1000px; cursor:pointer; }
         .flip-card-inner { position:relative; width:100%; transform-style:preserve-3d; transition:transform 0.7s ease-in-out; }
-        .flip-card:hover .flip-card-inner { transform:rotateY(180deg); }
+        .flip-card:hover .flip-card-inner,
+        .flip-card.flipped .flip-card-inner { transform:rotateY(180deg); }
         .flip-card-front { position:relative; backface-visibility:hidden; -webkit-backface-visibility:hidden; width:100%; }
         .flip-card-back { position:absolute; top:0; left:0; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); }
         .flip-card-front img, .flip-card-back img { max-width:100%; width:100%; height:auto; border-radius:16px; filter:drop-shadow(0 15px 40px rgba(0,115,255,0.1)); display:block; }
@@ -3059,6 +3060,38 @@
 
 })();
 
+    </script>
+
+    <!-- ============================================
+         MOBILE FLIP TOUCH HANDLER
+         ============================================ -->
+    <script>
+    (function () {
+        function initFlipTouch() {
+            var flipCards = document.querySelectorAll('.flip-card');
+            flipCards.forEach(function (card) {
+                card.addEventListener('touchend', function (e) {
+                    e.preventDefault();
+                    var isFlipped = card.classList.contains('flipped');
+                    flipCards.forEach(function (other) {
+                        if (other !== card) other.classList.remove('flipped');
+                    });
+                    card.classList.toggle('flipped', !isFlipped);
+                }, { passive: false });
+            });
+            document.addEventListener('touchend', function (e) {
+                var insideCard = e.target.closest('.flip-card');
+                if (!insideCard) {
+                    flipCards.forEach(function (card) { card.classList.remove('flipped'); });
+                }
+            });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFlipTouch);
+        } else {
+            initFlipTouch();
+        }
+    })();
     </script>
 
 </body>
