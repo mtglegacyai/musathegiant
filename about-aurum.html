@@ -372,7 +372,8 @@
            ============================================ */
         .flip-card { width:100%; perspective:1000px; cursor:pointer; }
         .flip-card-inner { position:relative; width:100%; transform-style:preserve-3d; transition:transform 0.7s ease-in-out; }
-        .flip-card:hover .flip-card-inner { transform:rotateY(180deg); }
+        .flip-card:hover .flip-card-inner,
+        .flip-card.flipped .flip-card-inner { transform:rotateY(180deg); }
         .flip-card-front { position:relative; backface-visibility:hidden; -webkit-backface-visibility:hidden; width:100%; }
         .flip-card-back { position:absolute; top:0; left:0; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); }
         .flip-card-front img, .flip-card-back img { max-width:100%; width:100%; height:auto; border-radius:16px; filter:drop-shadow(0 15px 40px rgba(0,115,255,0.1)); display:block; }
@@ -511,7 +512,8 @@
         .leader-card.flip-leader { perspective:1000px; overflow:visible; }
         .leader-card.flip-leader:hover { transform:none; box-shadow:0 10px 32px rgba(0,115,255,0.06); }
         .flip-leader-inner { position:relative; width:100%; transform-style:preserve-3d; transition:transform 0.7s ease-in-out; }
-        .leader-card.flip-leader:hover .flip-leader-inner { transform:rotateY(180deg); }
+        .leader-card.flip-leader:hover .flip-leader-inner,
+        .leader-card.flip-leader.flipped .flip-leader-inner { transform:rotateY(180deg); }
         .flip-leader-front { backface-visibility:hidden; -webkit-backface-visibility:hidden; }
         .flip-leader-back { position:absolute; top:0; left:0; width:100%; height:100%; min-height:280px; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:10px; overflow:hidden; background:linear-gradient(145deg,#F1F8FF 0%,#E8F2FF 100%); display:flex; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; }
         .flip-leader-back img { width:100%; height:100%; max-height:360px; object-fit:contain; object-position:center center; display:block; border-radius:8px; image-rendering:auto; }
@@ -2627,6 +2629,40 @@
         initAurumVideoPlayer({ playerId:'card-video-player', thumbId:'card-thumb', loadingId:'card-loading', iframeWrapId:'card-iframe-wrap' });
         initAurumVideoPlayer({ playerId:'hq-video-player', thumbId:'hq-thumb', loadingId:'hq-loading', iframeWrapId:'hq-iframe-wrap' });
         initAurumVideoPlayer({ playerId:'shane-video-player', thumbId:'shane-thumb', loadingId:'shane-loading', iframeWrapId:'shane-iframe-wrap' });
+    </script>
+
+    <!-- ============================================
+         MOBILE FLIP TOUCH HANDLER
+         ============================================ -->
+    <script>
+    (function () {
+        function initFlipTouch() {
+            var flipCards = document.querySelectorAll('.flip-card, .leader-card.flip-leader');
+            flipCards.forEach(function (card) {
+                card.addEventListener('touchend', function (e) {
+                    e.preventDefault();
+                    var isFlipped = card.classList.contains('flipped');
+                    // Close any other open flip cards first
+                    flipCards.forEach(function (other) {
+                        if (other !== card) other.classList.remove('flipped');
+                    });
+                    card.classList.toggle('flipped', !isFlipped);
+                }, { passive: false });
+            });
+            // Tap outside any card to close all
+            document.addEventListener('touchend', function (e) {
+                var insideCard = e.target.closest('.flip-card, .leader-card.flip-leader');
+                if (!insideCard) {
+                    flipCards.forEach(function (card) { card.classList.remove('flipped'); });
+                }
+            });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFlipTouch);
+        } else {
+            initFlipTouch();
+        }
+    })();
     </script>
 
 </body>
