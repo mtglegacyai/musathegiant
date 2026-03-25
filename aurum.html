@@ -1318,6 +1318,18 @@
             filter: drop-shadow(0 20px 50px rgba(0, 115, 255, 0.18));
         }
 
+        /* ============================================
+           HERO IMAGE FLIP CARD
+           ============================================ */
+        .flip-card { width:100%; perspective:1000px; cursor:pointer; }
+        .flip-card-inner { position:relative; width:100%; transform-style:preserve-3d; transition:transform 0.7s ease-in-out; }
+        .flip-card:hover .flip-card-inner { transform:rotateY(180deg); }
+        .flip-card-front { position:relative; backface-visibility:hidden; -webkit-backface-visibility:hidden; width:100%; }
+        .flip-card-back { position:absolute; top:0; left:0; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); }
+        .flip-card-front img, .flip-card-back img { max-width:100%; width:100%; height:auto; border-radius:16px; filter:drop-shadow(0 15px 40px rgba(0,115,255,0.1)); display:block; }
+        .flip-card-back img { height:100%; object-fit:cover; }
+        .section-image-col.card-style:hover .flip-card img { transform:none !important; filter:drop-shadow(0 15px 40px rgba(0,115,255,0.1)) !important; }
+
         /* Glass card frame */
         .glass-card {
             background: var(--glass-bg);
@@ -2872,7 +2884,16 @@
                         </ul>
                     </div>
                     <div class="section-image-col card-style reveal from-right stagger-3">
-                        <img src="https://www.musathegiant.com/images/aurum-ex-ai-bot.png" alt="Aurum EX-AI Trading Bot - Autonomous AI crypto trading system" loading="lazy">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="https://www.musathegiant.com/images/aurum-ex-ai-bot.png" alt="Aurum EX-AI Trading Bot - Autonomous AI crypto trading system" loading="lazy">
+                                </div>
+                                <div class="flip-card-back">
+                                    <img src="https://www.musathegiant.com/images/aurum-trading-bot.png" alt="Aurum AI Trading Bot" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="hero-cta-wrap reveal stagger-5">
                         <a href="https://www.musathegiant.com/aurum-ai-bots" class="btn-primary">Explore Aurum AI Bots <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
