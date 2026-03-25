@@ -494,6 +494,17 @@
         .leader-card .leader-quote { font-style:italic; margin-top:12px; padding-top:12px; border-top:1px solid var(--border-card); font-size:0.86rem; color:var(--text-body); }
         .leader-card.featured { border-left:3px solid var(--blue-primary); }
 
+        /* ============================================
+           BRYAN BENSON CARD FLIP
+           ============================================ */
+        .leader-card.flip-leader { perspective:1000px; overflow:visible; }
+        .leader-card.flip-leader:hover { transform:none; box-shadow:0 10px 32px rgba(0,115,255,0.06); }
+        .flip-leader-inner { position:relative; width:100%; transform-style:preserve-3d; transition:transform 0.7s ease-in-out; }
+        .leader-card.flip-leader:hover .flip-leader-inner { transform:rotateY(180deg); }
+        .flip-leader-front { backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+        .flip-leader-back { position:absolute; top:0; left:0; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:10px; overflow:hidden; }
+        .flip-leader-back img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; border-radius:10px; }
+
         /* Steps */
         .steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin:32px 0; }
         .step-card { text-align:center; padding:28px 20px; background:var(--bg-white); border-radius:16px; border:1px solid var(--border-card); position:relative; }
@@ -1370,11 +1381,18 @@
                 </div>
 
                 <div class="leader-grid reveal stagger-4">
-                    <div class="leader-card featured">
-                        <h3>Bryan Benson</h3>
-                        <span class="leader-role">Chief Executive Officer</span>
-                        <p>UC Santa Barbara graduate. Began his career at Morgan Stanley trading derivatives and futures. Entered crypto in 2017 doing Bitcoin arbitrage. Joined Binance in 2019 as Director of Latin America, driving 20% of Binance's global revenue and growing the region from 80,000 customers to millions. Over 27 years of global Web3 and fintech experience. Joined Aurum as adviser in February 2024, became CEO in April 2024.</p>
-                        <p class="leader-quote">"Binance became a fintech unicorn in just one year. At Aurum, we take a more conservative approach, setting this as our goal for the next three years."</p>
+                    <div class="leader-card featured flip-leader">
+                        <div class="flip-leader-inner">
+                            <div class="flip-leader-front">
+                                <h3>Bryan Benson</h3>
+                                <span class="leader-role">Chief Executive Officer</span>
+                                <p>UC Santa Barbara graduate. Began his career at Morgan Stanley trading derivatives and futures. Entered crypto in 2017 doing Bitcoin arbitrage. Joined Binance in 2019 as Director of Latin America, driving 20% of Binance's global revenue and growing the region from 80,000 customers to millions. Over 27 years of global Web3 and fintech experience. Joined Aurum as adviser in February 2024, became CEO in April 2024.</p>
+                                <p class="leader-quote">"Binance became a fintech unicorn in just one year. At Aurum, we take a more conservative approach, setting this as our goal for the next three years."</p>
+                            </div>
+                            <div class="flip-leader-back">
+                                <img src="https://www.musathegiant.com/images/bryan-benson-aurum.jpg" alt="Bryan Benson - CEO, Aurum Foundation" loading="lazy">
+                            </div>
+                        </div>
                     </div>
                     <div class="leader-card featured">
                         <h3>Shane Morand</h3>
