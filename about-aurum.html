@@ -502,8 +502,8 @@
         .flip-leader-inner { position:relative; width:100%; transform-style:preserve-3d; transition:transform 0.7s ease-in-out; }
         .leader-card.flip-leader:hover .flip-leader-inner { transform:rotateY(180deg); }
         .flip-leader-front { backface-visibility:hidden; -webkit-backface-visibility:hidden; }
-        .flip-leader-back { position:absolute; top:0; left:0; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:10px; overflow:hidden; }
-        .flip-leader-back img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; border-radius:10px; }
+        .flip-leader-back { position:absolute; top:0; left:0; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:10px; overflow:hidden; background:var(--bg-section-alt); display:flex; align-items:center; justify-content:center; }
+        .flip-leader-back img { width:100%; height:100%; object-fit:contain; object-position:center center; display:block; border-radius:10px; }
 
         /* Steps */
         .steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin:32px 0; }
