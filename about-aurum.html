@@ -513,8 +513,8 @@
         .flip-leader-inner { position:relative; width:100%; transform-style:preserve-3d; transition:transform 0.7s ease-in-out; }
         .leader-card.flip-leader:hover .flip-leader-inner { transform:rotateY(180deg); }
         .flip-leader-front { backface-visibility:hidden; -webkit-backface-visibility:hidden; }
-        .flip-leader-back { position:absolute; top:0; left:0; width:100%; height:100%; min-height:320px; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:10px; overflow:hidden; background:var(--bg-section-alt); display:flex; align-items:center; justify-content:center; padding:16px; box-sizing:border-box; }
-        .flip-leader-back img { width:100%; height:auto; max-height:100%; object-fit:contain; object-position:center center; display:block; border-radius:8px; }
+        .flip-leader-back { position:absolute; top:0; left:0; width:100%; height:100%; min-height:280px; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); border-radius:10px; overflow:hidden; background:linear-gradient(145deg,#F1F8FF 0%,#E8F2FF 100%); display:flex; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; }
+        .flip-leader-back img { width:100%; height:100%; max-height:360px; object-fit:contain; object-position:center center; display:block; border-radius:8px; image-rendering:auto; }
 
         /* Steps */
         .steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin:32px 0; }
@@ -1414,23 +1414,44 @@
                             </div>
                         </div>
                     </div>
-                    <div class="leader-card featured">
-                        <h3>Shane Morand</h3>
-                        <span class="leader-role">Chief Network Development Officer</span>
-                        <p>Globally recognized business leader and master strategist. Part of the core team that scaled an international company from zero to $1B in total sales in under five years, impacting 2.2 million families across 50+ countries. Napoleon Hill Foundation Gold Medalist. Hosts the weekly Aurum Zone 1 calls every Monday.</p>
-                        <p class="leader-quote">"Scalable growth comes from systems that empower people at scale."</p>
+                    <div class="leader-card featured flip-leader">
+                        <div class="flip-leader-inner">
+                            <div class="flip-leader-front">
+                                <h3>Shane Morand</h3>
+                                <span class="leader-role">Chief Network Development Officer</span>
+                                <p>Globally recognized business leader and master strategist. Part of the core team that scaled an international company from zero to $1B in total sales in under five years, impacting 2.2 million families across 50+ countries. Napoleon Hill Foundation Gold Medalist. Hosts the weekly Aurum Zone 1 calls every Monday.</p>
+                                <p class="leader-quote">"Scalable growth comes from systems that empower people at scale."</p>
+                            </div>
+                            <div class="flip-leader-back">
+                                <img src="https://www.musathegiant.com/images/shane-morand-aurum.png" alt="Shane Morand - Chief Network Development Officer, Aurum Foundation" loading="lazy">
+                            </div>
+                        </div>
                     </div>
-                    <div class="leader-card featured">
-                        <h3>Ahmad Zen</h3>
-                        <span class="leader-role">Co-Founder & Marketing Director</span>
-                        <p>Over 15 years of expertise in crypto and network marketing. Leads brand development and audience growth at Aurum Foundation.</p>
-                        <p class="leader-quote">"My goal at Aurum is to build a leading community of hundreds of thousands of people in the next three years and provide them with financial tools for true financial freedom."</p>
+                    <div class="leader-card featured flip-leader">
+                        <div class="flip-leader-inner">
+                            <div class="flip-leader-front">
+                                <h3>Ahmad Zen</h3>
+                                <span class="leader-role">Co-Founder & Marketing Director</span>
+                                <p>Over 15 years of expertise in crypto and network marketing. Leads brand development and audience growth at Aurum Foundation.</p>
+                                <p class="leader-quote">"My goal at Aurum is to build a leading community of hundreds of thousands of people in the next three years and provide them with financial tools for true financial freedom."</p>
+                            </div>
+                            <div class="flip-leader-back">
+                                <img src="https://www.musathegiant.com/images/ahmad-zen-aurm.png" alt="Ahmad Zen - Co-Founder & Marketing Director, Aurum Foundation" loading="lazy">
+                            </div>
+                        </div>
                     </div>
-                    <div class="leader-card featured">
-                        <h3>Leonardo Galindez</h3>
-                        <span class="leader-role">CEO, Aurum Exchange</span>
-                        <p>Former Binance strategic partner in South America. Founder of Coincoinx and leader of a major Bitcoin mining operation. Launched a Mastercard crypto program in Latin America reaching 300,000+ users.</p>
-                        <p class="leader-quote">"Strong exchanges are defined by execution quality and regulatory resilience."</p>
+                    <div class="leader-card featured flip-leader">
+                        <div class="flip-leader-inner">
+                            <div class="flip-leader-front">
+                                <h3>Leonardo Galindez</h3>
+                                <span class="leader-role">CEO, Aurum Exchange</span>
+                                <p>Former Binance strategic partner in South America. Founder of Coincoinx and leader of a major Bitcoin mining operation. Launched a Mastercard crypto program in Latin America reaching 300,000+ users.</p>
+                                <p class="leader-quote">"Strong exchanges are defined by execution quality and regulatory resilience."</p>
+                            </div>
+                            <div class="flip-leader-back">
+                                <img src="https://www.musathegiant.com/images/leonardo-galindez-aurum.jpg" alt="Leonardo Galindez - CEO Aurum Exchange, Aurum Foundation" loading="lazy">
+                            </div>
+                        </div>
                     </div>
                     <div class="leader-card featured">
                         <h3>Ali Rizqi</h3>
@@ -1438,35 +1459,70 @@
                         <p>Fintech and business development expert with 6+ years across product strategy, market expansion, and digital financial solutions. Shapes product strategy and innovative solutions at Aurum.</p>
                         <p class="leader-quote">"Every product should solve a problem, but the best products anticipate future needs."</p>
                     </div>
-                    <div class="leader-card featured">
-                        <h3>Nicholas Kelland</h3>
-                        <span class="leader-role">Head of Partnerships</span>
-                        <p>Web3 and fintech partnerships executive specializing in institutional relations and global business development with 7+ years of experience.</p>
-                        <p class="leader-quote">"The future of Web3 depends on how well it connects to the real economy."</p>
+                    <div class="leader-card featured flip-leader">
+                        <div class="flip-leader-inner">
+                            <div class="flip-leader-front">
+                                <h3>Nicholas Kelland</h3>
+                                <span class="leader-role">Head of Partnerships</span>
+                                <p>Web3 and fintech partnerships executive specializing in institutional relations and global business development with 7+ years of experience.</p>
+                                <p class="leader-quote">"The future of Web3 depends on how well it connects to the real economy."</p>
+                            </div>
+                            <div class="flip-leader-back">
+                                <img src="https://www.musathegiant.com/images/nicholas-kelland-aurum.jpg" alt="Nicholas Kelland - Head of Partnerships, Aurum Foundation" loading="lazy">
+                            </div>
+                        </div>
                     </div>
-                    <div class="leader-card featured">
-                        <h3>Brent Fulfer</h3>
-                        <span class="leader-role">VC Advisory</span>
-                        <p>Venture and capital markets professional. Has raised $110M+ globally, supporting companies from Seed to Series C across multiple jurisdictions in Web3 and fintech.</p>
-                        <p class="leader-quote">"Capital moves faster when trust, structure, and execution align."</p>
+                    <div class="leader-card featured flip-leader">
+                        <div class="flip-leader-inner">
+                            <div class="flip-leader-front">
+                                <h3>Brent Fulfer</h3>
+                                <span class="leader-role">VC Advisory</span>
+                                <p>Venture and capital markets professional. Has raised $110M+ globally, supporting companies from Seed to Series C across multiple jurisdictions in Web3 and fintech.</p>
+                                <p class="leader-quote">"Capital moves faster when trust, structure, and execution align."</p>
+                            </div>
+                            <div class="flip-leader-back">
+                                <img src="https://www.musathegiant.com/images/brent-fulfer-aurum.jpg" alt="Brent Fulfer - VC Advisory, Aurum Foundation" loading="lazy">
+                            </div>
+                        </div>
                     </div>
-                    <div class="leader-card featured">
-                        <h3>Tobias Bauer</h3>
-                        <span class="leader-role">VC Advisory</span>
-                        <p>Web3 investor and venture partner. Involved in funding, advising, and scaling 100+ startups through leading funds and accelerators.</p>
-                        <p class="leader-quote">"Ecosystems scale through strong venture relationships and aligned execution."</p>
+                    <div class="leader-card featured flip-leader">
+                        <div class="flip-leader-inner">
+                            <div class="flip-leader-front">
+                                <h3>Tobias Bauer</h3>
+                                <span class="leader-role">VC Advisory</span>
+                                <p>Web3 investor and venture partner. Involved in funding, advising, and scaling 100+ startups through leading funds and accelerators.</p>
+                                <p class="leader-quote">"Ecosystems scale through strong venture relationships and aligned execution."</p>
+                            </div>
+                            <div class="flip-leader-back">
+                                <img src="https://www.musathegiant.com/images/tobias-bauer-aurum.jpg" alt="Tobias Bauer - VC Advisory, Aurum Foundation" loading="lazy">
+                            </div>
+                        </div>
                     </div>
-                    <div class="leader-card featured">
-                        <h3>Nick Patel</h3>
-                        <span class="leader-role">RWA Relationships Advisor</span>
-                        <p>Over 25 years of experience in global financial markets, commodities trading, and capital markets, operating across 30+ countries with institutions, governments, and major investment groups. Founder and CEO of Bank of Bullion in Dubai, facilitating 100+ kg of physical gold daily. Founder of Clinq.Gold, focused on gold tokenization and real-world asset (RWA) infrastructure. Has funded and advised 100+ companies across mining, technology, and industrial sectors. Bridges traditional commodities markets with digital asset infrastructure, supporting RWA development within the Aurum ecosystem.</p>
-                        <p class="leader-quote">"The greatest wealth transfer of our generation will happen at the intersection of physical assets and digital ownership."</p>
+                    <div class="leader-card featured flip-leader">
+                        <div class="flip-leader-inner">
+                            <div class="flip-leader-front">
+                                <h3>Nick Patel</h3>
+                                <span class="leader-role">RWA Relationships Advisor</span>
+                                <p>Over 25 years of experience in global financial markets, commodities trading, and capital markets, operating across 30+ countries with institutions, governments, and major investment groups. Founder and CEO of Bank of Bullion in Dubai, facilitating 100+ kg of physical gold daily. Founder of Clinq.Gold, focused on gold tokenization and real-world asset (RWA) infrastructure. Has funded and advised 100+ companies across mining, technology, and industrial sectors. Bridges traditional commodities markets with digital asset infrastructure, supporting RWA development within the Aurum ecosystem.</p>
+                                <p class="leader-quote">"The greatest wealth transfer of our generation will happen at the intersection of physical assets and digital ownership."</p>
+                            </div>
+                            <div class="flip-leader-back">
+                                <img src="https://www.musathegiant.com/images/nick-patel-aurum.jpg" alt="Nick Patel - RWA Relationships Advisor, Aurum Foundation" loading="lazy">
+                            </div>
+                        </div>
                     </div>
-                    <div class="leader-card featured">
-                        <h3>Bockarie Kalokoh</h3>
-                        <span class="leader-role">Chief of Africa Relations</span>
-                        <p>Over 25 years of experience in government finance, banking, and international financial systems. Former Deputy Minister of Finance of Sierra Leone, contributing to national reforms in public financial management, fiscal policy, and international financial cooperation. Former Deputy Managing Director of Sierra Leone Commercial Bank, leading its digital transformation and modernisation. CEO of Clinq Mining SL Ltd and Senior Vice President of Clinq DMCC in Dubai, overseeing global trade operations and financial structuring. Bridges government financial systems, banking infrastructure, and commodity markets to support real-world asset integration within the Aurum ecosystem.</p>
-                        <p class="leader-quote">"Africa's financial future is not about catching up. It is about building the infrastructure the world has not yet imagined."</p>
+                    <div class="leader-card featured flip-leader">
+                        <div class="flip-leader-inner">
+                            <div class="flip-leader-front">
+                                <h3>Bockarie Kalokoh</h3>
+                                <span class="leader-role">Chief of Africa Relations</span>
+                                <p>Over 25 years of experience in government finance, banking, and international financial systems. Former Deputy Minister of Finance of Sierra Leone, contributing to national reforms in public financial management, fiscal policy, and international financial cooperation. Former Deputy Managing Director of Sierra Leone Commercial Bank, leading its digital transformation and modernisation. CEO of Clinq Mining SL Ltd and Senior Vice President of Clinq DMCC in Dubai, overseeing global trade operations and financial structuring. Bridges government financial systems, banking infrastructure, and commodity markets to support real-world asset integration within the Aurum ecosystem.</p>
+                                <p class="leader-quote">"Africa's financial future is not about catching up. It is about building the infrastructure the world has not yet imagined."</p>
+                            </div>
+                            <div class="flip-leader-back">
+                                <img src="https://www.musathegiant.com/images/bockarie-kalokoh-aurum.jpg" alt="Bockarie Kalokoh - Chief of Africa Relations, Aurum Foundation" loading="lazy">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
