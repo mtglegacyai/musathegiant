@@ -1,6 +1,6 @@
 # robots.txt — musathegiant.com
 # MTG 👑 | The Digital Architect
-# Generated: 2026-03-01
+# Updated: 2026-03-27
 # Upload to: https://www.musathegiant.com/robots.txt
 
 # ============================================================
@@ -18,6 +18,10 @@ User-agent: Googlebot-Image
 Allow: /images/
 
 User-agent: Googlebot-Video
+Allow: /
+
+# Google AI / Gemini
+User-agent: Google-Extended
 Allow: /
 
 # Bing / Microsoft
@@ -54,6 +58,9 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 # Anthropic / Claude
 User-agent: ClaudeBot
 Allow: /
@@ -63,6 +70,26 @@ Allow: /
 
 # Perplexity AI
 User-agent: PerplexityBot
+Allow: /
+
+# Google AI / Gemini (repeated for clarity)
+User-agent: Google-Extended
+Allow: /
+
+# xAI / Grok
+User-agent: Grok
+Allow: /
+
+# DeepSeek
+User-agent: DeepSeekBot
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# ByteDance / TikTok
+User-agent: Bytespider
 Allow: /
 
 # Common Crawl (used by many AI training datasets)
@@ -78,6 +105,38 @@ User-agent: Applebot
 Allow: /
 
 # ============================================================
+# SOCIAL PREVIEW BOTS — ALLOW OG/TWITTER CARD RENDERING
+# ============================================================
+
+# Facebook / Meta link previews
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter / X link previews
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn link previews
+User-agent: LinkedInBot
+Allow: /
+
+# WhatsApp link previews
+User-agent: WhatsApp
+Allow: /
+
+# Telegram link previews
+User-agent: TelegramBot
+Allow: /
+
+# Slack link previews
+User-agent: Slackbot
+Allow: /
+
+# Discord link previews
+User-agent: Discordbot
+Allow: /
+
+# ============================================================
 # SITEMAP REFERENCE
 # ============================================================
 
@@ -85,6 +144,7 @@ Sitemap: https://www.musathegiant.com/sitemap.xml
 
 # ============================================================
 # NOTES
-# No pages are blocked — all Aurum content is public and
-# should be indexed by all search engines and AI tools.
+# No pages are blocked. All Aurum content is public and
+# should be indexed by all search engines, AI tools, and
+# social platforms for maximum discoverability and citation.
 # ============================================================
