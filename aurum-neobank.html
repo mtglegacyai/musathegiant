@@ -52,6 +52,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://backoffice.aurum.foundation">
+    <link rel="preconnect" href="https://www.youtube.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://www.musathegiant.com/sitemap.xml">
 
     <!-- Favicon -->
@@ -83,7 +87,39 @@
     }
     </script>
 
-    
+    <!-- 3. FinancialProduct - Aurum NeoBank -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialProduct",
+      "name": "Aurum NeoBank",
+      "description": "Aurum NeoBank is an AI-native crypto banking platform offering Mastercard debit cards with Apple Pay and Google Pay integration, progressive onboarding (no KYC for entry-level cards), fiat-to-crypto conversion, and spending limits up to 100,000 USDT per month. Part of the Aurum Foundation ecosystem.",
+      "provider": {"@type": "Organization", "name": "Aurum Foundation", "url": "https://aurum.foundation"},
+      "url": "https://www.musathegiant.com/aurum-neobank.html",
+      "feesAndCommissionsSpecification": "Card issuance fees range from free (Nova) to 249 USDT (Infinity). Partners earn up to 100% of the allocated commission margin.",
+      "areaServed": "Worldwide"
+    }
+    </script>
+
+    <!-- 4. Product - Aurum World Elite Card -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Aurum World Elite Card",
+      "description": "Aurum World Elite Mastercard: physical metal crypto debit card with 50,000 USDT monthly spending limit, Apple Pay and Google Pay, and up to 10% cashback. Issued by Aurum NeoBank.",
+      "brand": {"@type": "Brand", "name": "Aurum Foundation"},
+      "url": "https://www.musathegiant.com/aurum-neobank.html",
+      "image": "https://www.musathegiant.com/images/aurum-neobank.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "149",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://t.me/aurumneobankbot/aurumneobankapp?startapp=IPIDEXTHT1"
+      }
+    }
+    </script>
 
     <!-- Fonts & Styles (keep existing) -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
@@ -715,7 +751,7 @@
   "@type": "WebPage",
   "@id": "https://www.musathegiant.com/aurum-neobank.html#webpage",
   "url": "https://www.musathegiant.com/aurum-neobank.html",
-  "name": "Aurum NeoBank & Crypto Mastercard Review 2025 | Spend Crypto Anywhere",
+  "name": "Aurum NeoBank & Crypto Mastercard Review 2026 | Spend Crypto Anywhere",
   "description": "Aurum NeoBank review: crypto Mastercard debit cards, Apple Pay, Google Pay, 10% cashback. 4 card tiers from $33. Earn commissions selling cards. Code EXTHT1.",
   "isPartOf": {
     "@id": "https://www.musathegiant.com/#website"
@@ -723,7 +759,10 @@
   "inLanguage": "en",
   "publisher": {
     "@id": "https://www.musathegiant.com/#organization"
-  }
+  },
+  "dateModified": "2026-03-27",
+  "about": [{"@type":"FinancialProduct","name":"Aurum NeoBank"},{"@type":"Product","name":"Aurum Infinity Card"}],
+  "mentions": [{"@type":"Organization","name":"Mastercard"},{"@type":"Organization","name":"Aurum Foundation","url":"https://aurum.foundation"}]
 }
     </script>
     <!-- Speakable Schema (AI Search) -->
