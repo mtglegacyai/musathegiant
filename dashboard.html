@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MTG Dashboard | Income Streams</title>
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Orbitron:wght@600;700;800&family=Outfit:wght@600;700;800&family=Poppins:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050608;--panel:#0c0f13;--panel2:#10141a;--text:#f7f8fb;--muted:#9199a7;--line:rgba(255,255,255,.085);--amber:#f2ad3c;--cyan:#00e5ff;--pink:#ff00df;--green:#3fc11f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--text);font:400 15px/1.6 'DM Sans',sans-serif;overflow-x:hidden}a{text-decoration:none;color:inherit}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:
+radial-gradient(circle at 14% 16%,rgba(242,173,60,.08),transparent 28%),
+radial-gradient(circle at 88% 22%,rgba(0,229,255,.055),transparent 24%),
+radial-gradient(circle at 76% 82%,rgba(255,0,223,.05),transparent 24%),
+linear-gradient(180deg,#080a0d 0%,#050608 65%,#040506 100%)}
+body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(#000,transparent 90%);pointer-events:none}
+.shell{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;padding:20px 16px;border-right:1px solid var(--line);background:rgba(7,9,12,.88);backdrop-filter:blur(18px);z-index:20}.brand{display:flex;align-items:center;gap:10px;padding:8px 10px 22px;font:800 .96rem Outfit,sans-serif;letter-spacing:.11em}.brand b{color:var(--amber)}
+.side-label{padding:0 11px 8px;color:#5f6672;font-size:.63rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.navlink{display:flex;align-items:center;gap:10px;padding:11px 12px;margin:3px 0;border:1px solid transparent;border-radius:10px;color:#a9b0bb;font-size:.82rem;font-weight:750}.navlink span{width:26px;height:26px;display:grid;place-items:center;border-radius:7px;background:#11151a;color:#7f8793;font-size:.7rem}.navlink.active,.navlink:hover{border-color:rgba(242,173,60,.16);background:rgba(242,173,60,.055);color:#fff}.navlink.active span{background:rgba(242,173,60,.15);color:#f2b34a}
+.side-bottom{position:absolute;left:16px;right:16px;bottom:18px;padding-top:16px;border-top:1px solid var(--line)}.side-bottom a{display:block;padding:10px 12px;border-radius:9px;color:#8d95a1;font-size:.78rem}.side-bottom a:hover{background:rgba(255,255,255,.035);color:#fff}
+.main{min-width:0}.topbar{position:sticky;top:0;z-index:15;height:74px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 28px;border-bottom:1px solid var(--line);background:rgba(7,9,12,.78);backdrop-filter:blur(18px)}.topbar h1{margin:0;font:700 1rem Outfit,sans-serif;letter-spacing:.03em}.topbar small{color:#747c88}.dashboard-pill{padding:7px 10px;border:1px solid rgba(242,173,60,.22);border-radius:999px;color:#e8b862;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.content{width:min(1280px,calc(100% - 48px));margin:auto;padding:44px 0 70px}.intro{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:28px}.intro h2{margin:0 0 8px;font:800 clamp(2.1rem,4vw,3.7rem)/1 Outfit,sans-serif;letter-spacing:-.045em}.intro p{margin:0;color:#8e96a2;max-width:650px}.status{display:flex;gap:10px;flex-wrap:wrap}.status span{padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:#0b0e12;color:#858d99;font-size:.72rem;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.card{position:relative;isolation:isolate;overflow:hidden;min-height:430px;padding:1px;border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.025) 36%,rgba(255,255,255,.08));box-shadow:0 26px 80px rgba(0,0,0,.38);transform-style:preserve-3d;transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s ease}.card-inner{height:100%;padding:30px;border-radius:23px;background:linear-gradient(150deg,rgba(15,18,23,.96),rgba(6,8,10,.985));position:relative;overflow:hidden}.card:before{content:"";position:absolute;inset:-40%;z-index:-1;filter:blur(40px);opacity:.6}.card:hover{box-shadow:0 34px 96px rgba(0,0,0,.48)}
+.bw:before{background:radial-gradient(circle,rgba(255,161,1,.22),transparent 45%)}.cbp:before{background:radial-gradient(circle,rgba(0,229,255,.16),rgba(255,0,223,.11) 26%,transparent 48%)}
+.card-inner:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 18%,rgba(255,255,255,.08) 39%,transparent 51%);background-size:220% 100%;background-position:100% 0;opacity:.22;transition:.65s}.card:hover .card-inner:after{background-position:0 0;opacity:.42}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:38px}.logo{display:flex;align-items:center;gap:11px;font-weight:800}.mark{width:42px;height:42px;display:grid;place-items:center;border-radius:12px}.bw .mark{border:2px solid #ffa101;background:#090702;color:#3fc11f;font:800 .78rem Sora,sans-serif}.cbp .mark{border:1px solid rgba(0,229,255,.4);background:linear-gradient(135deg,rgba(0,229,255,.12),rgba(255,0,223,.1));font:800 .7rem Orbitron,sans-serif}.bw .logo{font-family:Sora,sans-serif}.bw .logo .a{color:#ffa101}.bw .logo .g{color:#3fc11f}.cbp .logo{font-family:Orbitron,sans-serif}.cbp .logo strong{background:linear-gradient(90deg,#00e5ff,#a45cff,#ff00df);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tag{padding:7px 10px;border:1px solid var(--line);border-radius:999px;color:#7f8793;font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.card h3{margin:0 0 14px;font-size:clamp(2rem,3.6vw,3.35rem);line-height:1.04;letter-spacing:-.05em;text-wrap:balance}.bw h3{font-family:Sora,sans-serif}.cbp h3{font-family:Orbitron,sans-serif;text-transform:uppercase;font-size:clamp(1.8rem,3.1vw,3rem)}.bw h3 em{font-style:normal;color:#ffa101}.cbp h3 em{font-style:normal;background:linear-gradient(90deg,#00e5ff,#b05cff,#ff00df);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card p{max-width:590px;margin:0 0 24px;color:#a1a8b2;font-size:.95rem}.facts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}.facts span{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.025);color:#c9ced5;font-size:.72rem;font-weight:750}.bw .facts b{color:#c0ff72}.cbp .facts b{color:#00e5ff}
+.cta{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:12px 18px;border-radius:11px;font-weight:900}.bw .cta{background:linear-gradient(135deg,#ffb730,#ffa101);color:#150d00;font-family:Sora,sans-serif}.cbp .cta{background:linear-gradient(100deg,#00e5ff,#7b5cff 55%,#ff00df);color:#080212;font:800 .74rem Orbitron,sans-serif}.cta:hover{filter:brightness(1.08)}
+.disclaimer{margin-top:34px;padding:24px;border:1px solid var(--line);border-radius:18px;background:rgba(11,14,18,.72);color:#7f8792;font-size:.78rem}.disclaimer strong{display:block;color:#c9ced5;margin-bottom:6px}
+.mobile-menu{display:none}
+@media(hover:hover) and (pointer:fine){.card{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--lift,0px))}.card:hover{--lift:-5px}}
+@media(max-width:980px){.shell{grid-template-columns:1fr}.sidebar{position:fixed;inset:0 auto 0 0;width:280px;transform:translateX(-100%);transition:transform .22s ease;box-shadow:24px 0 80px rgba(0,0,0,.45)}.sidebar.open{transform:none}.mobile-menu{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--line);border-radius:10px;background:#0e1115;color:#fff}.topbar{padding:0 18px}.content{width:min(100% - 30px,900px)}.grid{grid-template-columns:1fr}.intro{display:block}.status{margin-top:18px}}
+@media(max-width:600px){.content{padding-top:30px}.intro h2{font-size:2.15rem}.card{min-height:0}.card-inner{padding:22px}.card-head{margin-bottom:26px}.card h3,.cbp h3{font-size:2rem}.cta{width:100%;justify-content:center}.topbar small{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.card-inner:after,.sidebar{transition:none!important}.card{transform:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar" id="sidebar">
+  <a class="brand" href="./">MTG <b>👑</b></a>
+  <div class="side-label">Dashboard</div>
+  <a class="navlink active" href="#opportunities"><span>01</span>Income Streams</a>
+  <a class="navlink" href="#bitcoin"><span>02</span>Bitcoin Wealth</a>
+  <a class="navlink" href="#clickbait"><span>03</span>ClickBaitPays</a>
+  <a class="navlink" href="#disclaimer"><span>04</span>Important Info</a>
+  <div class="side-bottom"><a href="./">← Back to landing page</a></div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div style="display:flex;align-items:center;gap:12px"><button class="mobile-menu" id="menu" aria-label="Open menu">☰</button><div><h1>Income Streams Dashboard</h1><small>Explore opportunities. Learn first. Decide clearly.</small></div></div>
+    <span class="dashboard-pill">MTG 👑</span>
+  </header>
+  <div class="content" id="opportunities">
+    <section class="intro">
+      <div><h2>Your Opportunity Hub</h2><p>One clean dashboard for the income streams I’m currently exploring, using, or sharing. Each option opens its own dedicated learning experience.</p></div>
+      <div class="status"><span>2 active streams</span><span>More can be added later</span></div>
+    </section>
+    <section class="grid">
+      <article class="card bw" id="bitcoin">
+        <div class="card-inner">
+          <div class="card-head"><div class="logo"><span class="mark">BW</span><span><span class="a">Bitcoin</span> <span class="g">Wealth</span></span></div><span class="tag">Community-driven</span></div>
+          <h3>A different way to <em>accumulate Bitcoin.</em></h3>
+          <p>A community-driven system that’s making people rethink how they accumulate Bitcoin. See how it works, where the money moves, and why people are so excited.</p>
+          <div class="facts"><span>Entry point: <b>0.001 BTC</b></span><span>Learn first</span><span>Get started</span></div>
+          <a class="cta" href="https://bitcoinwealthpays.com/mtg/" target="_blank" rel="noopener">Explore Bitcoin Wealth →</a>
+        </div>
+      </article>
+      <article class="card cbp" id="clickbait">
+        <div class="card-inner">
+          <div class="card-head"><div class="logo"><span class="mark">CBP</span><strong>ClickBaitPays</strong></div><span class="tag">Advertise · View · Earn</span></div>
+          <h3>What if your ads could <em>work harder?</em></h3>
+          <p>Advertise. Watch. Earn. One platform connects all three. See the model, the daily activity, and why this approach is getting attention.</p>
+          <div class="facts"><span>Start from <b>$14</b></span><span><b>No recruiting required</b></span><span>Real viewers</span></div>
+          <a class="cta" href="https://clickbaitpaysus.com/" target="_blank" rel="noopener">Explore ClickBaitPays →</a>
+        </div>
+      </article>
+    </section>
+    <section class="disclaimer" id="disclaimer"><strong>Important information</strong>These links lead to independent educational pages. Participation involves costs and risk; earnings are not guaranteed. MTG may benefit from referrals. Review each opportunity and its current terms before making a decision.</section>
+  </div>
+</main>
+</div>
+<script>
+const menu=document.getElementById('menu'),side=document.getElementById('sidebar');
+menu?.addEventListener('click',()=>side.classList.toggle('open'));
+side?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>side.classList.remove('open')));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduce&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+ document.querySelectorAll('.card').forEach(card=>{
+  let r,frame;
+  card.addEventListener('pointerenter',()=>r=card.getBoundingClientRect());
+  card.addEventListener('pointermove',e=>{
+   if(!r)r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+   cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{card.style.setProperty('--ry',((x-.5)*3).toFixed(2)+'deg');card.style.setProperty('--rx',((.5-y)*2.4).toFixed(2)+'deg')})
+  });
+  card.addEventListener('pointerleave',()=>{r=null;card.style.setProperty('--rx','0deg');card.style.setProperty('--ry','0deg')})
+ })
+}
+</script>
+</body></html>
