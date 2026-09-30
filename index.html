@@ -5,6 +5,7 @@
 <title>MTG | Multiple Streams of Income</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="preload" as="image" href="images/mtg-profile.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
@@ -27,6 +28,8 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rg
 nav{min-height:68px;display:flex;align-items:center;justify-content:space-between}
 .brand{font:800 1rem var(--f-display);letter-spacing:.12em;display:inline-flex;align-items:center;gap:.35em}
 .brand b{color:var(--amber);display:inline-block}
+.brand img{width:36px;height:36px;margin-right:.3em;border-radius:50%;object-fit:cover;border:2px solid rgba(242,173,60,.6);box-shadow:0 0 14px rgba(242,173,60,.25)}
+
 .dashboard-link{position:relative;overflow:hidden;padding:8px 12px;border:1px solid rgba(242,173,60,.25);border-radius:10px;color:#e6b760;font-size:.72rem;font-weight:800;letter-spacing:.08em;transition:border-color .2s,background .2s}
 .dashboard-link:hover{border-color:rgba(242,173,60,.45);background:rgba(242,173,60,.05)}
 .dashboard-link:focus-visible,.cta:focus-visible{outline:2px solid var(--amber);outline-offset:4px}
@@ -188,7 +191,7 @@ footer{border-top:1px solid var(--line);background:linear-gradient(180deg,#07080
 </head>
 <body>
 
-<header><nav class="wrap"><a class="brand" href="./">MTG <b>👑</b></a><a class="dashboard-link" href="dashboard.html">Dashboard →</a></nav></header>
+<header><nav class="wrap"><a class="brand" href="./"><img src="images/mtg-profile.jpg" alt="Musa The Giant" width="36" height="36">MTG <b>👑</b></a><a class="dashboard-link" href="dashboard.html">Dashboard →</a></nav></header>
 
 <main class="hero" id="hero">
   <div class="layer beam" aria-hidden="true"></div>
