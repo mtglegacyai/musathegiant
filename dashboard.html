@@ -42,6 +42,15 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
 .back-to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
 .back-to-top:hover{border-color:rgba(242,173,60,.5);background:linear-gradient(145deg,rgba(24,27,33,.99),rgba(9,11,14,.99))}
 .back-to-top svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.stream-no{position:relative;display:flex;align-items:center;gap:10px;margin:-4px 0 22px}
+.stream-no .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px 7px 8px;border-radius:999px;font:800 .7rem Outfit,sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+.stream-no .pill b{display:grid;place-items:center;min-width:26px;height:26px;padding:0 6px;border-radius:999px;font:800 .82rem Outfit,sans-serif;letter-spacing:0}
+.stream-no:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.bw .stream-no .pill{border:1px solid rgba(255,161,1,.38);background:rgba(255,161,1,.07);color:#ffc15a}.bw .stream-no .pill b{background:#ffa101;color:#150d00;box-shadow:0 0 16px rgba(255,161,1,.35)}
+.cbp .stream-no .pill{border:1px solid rgba(0,229,255,.38);background:rgba(0,229,255,.06);color:#7ff1ff}.cbp .stream-no .pill b{background:linear-gradient(135deg,#00e5ff,#ff00df);color:#080212;box-shadow:0 0 16px rgba(0,229,255,.3)}
+.stream-big{position:absolute;right:26px;bottom:18px;font:800 clamp(4.5rem,8vw,7rem)/1 Outfit,sans-serif;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.07);pointer-events:none;user-select:none}
+.bw .stream-big{-webkit-text-stroke-color:rgba(255,161,1,.16)}.cbp .stream-big{-webkit-text-stroke-color:rgba(0,229,255,.15)}
+@media(max-width:600px){.stream-no{margin:-2px 0 18px}.stream-big{right:14px;top:10px;bottom:auto;font-size:4rem}}
 .mobile-menu{display:none}
 @media(hover:hover) and (pointer:fine){.card{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--lift,0px))}.card:hover{--lift:-5px}}
 @media(max-width:980px){.shell{grid-template-columns:1fr}.sidebar{position:fixed;inset:0 auto 0 0;width:min(84vw,300px);transform:translateX(-100%);transition:transform .22s ease;box-shadow:24px 0 80px rgba(0,0,0,.45)}.sidebar.open{transform:none}.mobile-menu{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border:1px solid var(--line);border-radius:10px;background:#0e1115;color:#fff}.topbar{padding:10px 18px}.content{width:min(100% - 30px,900px)}.grid{grid-template-columns:1fr}.intro{display:block}.status{margin-top:18px;justify-content:flex-start}}
@@ -54,9 +63,9 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
 <aside class="sidebar" id="sidebar">
   <a class="brand" href="./">MTG <b>👑</b></a>
   <div class="side-label">Dashboard</div>
-  <a class="navlink active" href="#opportunities"><span>01</span>Income Streams</a>
-  <a class="navlink" href="#bitcoin"><span>02</span>Bitcoin Wealth</a>
-  <a class="navlink" href="#clickbait"><span>03</span>ClickBaitPays</a>
+  <a class="navlink active" href="#opportunities"><span>☰</span>All Income Streams</a>
+  <a class="navlink" href="#bitcoin"><span>#1</span>Bitcoin Wealth</a>
+  <a class="navlink" href="#clickbait"><span>#2</span>ClickBaitPays</a>
   <div class="side-bottom">
     <p class="social-label">Connect with MTG</p>
     <div class="social-links" aria-label="MTG social media">
@@ -89,6 +98,8 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
     <section class="grid">
       <article class="card bw" id="bitcoin">
         <div class="card-inner">
+          <span class="stream-big" aria-hidden="true">#1</span>
+          <div class="stream-no"><span class="pill"><b>#1</b>Income Stream</span></div>
           <div class="card-head"><div class="logo"><span class="mark">BW</span><span><span class="a">Bitcoin</span> <span class="g">Wealth</span></span></div><span class="tag">Community-driven</span></div>
           <h3>A different way to <em>accumulate Bitcoin.</em></h3>
           <p>A community-driven system that’s making people rethink how they accumulate Bitcoin. See how it works, where the money moves, and why Bitcoin Wealth community members are so excited.</p>
@@ -98,6 +109,8 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
       </article>
       <article class="card cbp" id="clickbait">
         <div class="card-inner">
+          <span class="stream-big" aria-hidden="true">#2</span>
+          <div class="stream-no"><span class="pill"><b>#2</b>Income Stream</span></div>
           <div class="card-head"><div class="logo"><span class="mark">CBP</span><strong>ClickBaitPays</strong></div><span class="tag">Advertise · View · Earn</span></div>
           <h3>What if your ads could <em>work harder?</em></h3>
           <p>Advertise. Watch. Earn. One platform connects all three. See the model, the daily activity, and why this approach is getting attention globally.</p>
