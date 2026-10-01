@@ -16,6 +16,13 @@
     <image:image><image:loc>https://www.musathegiant.com/images/og-halving.jpg</image:loc><image:title>Crypto Halving Countdown</image:title></image:image>
   </url>
   <url>
+    <loc>https://www.musathegiant.com/tools/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://www.musathegiant.com/images/og-tools.jpg</image:loc><image:title>Tools by MTG</image:title></image:image>
+  </url>
+  <url>
     <loc>https://www.musathegiant.com/dashboard.html</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>

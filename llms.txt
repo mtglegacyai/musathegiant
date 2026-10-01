@@ -5,6 +5,7 @@
 ## Key pages
 
 - [Home](https://www.musathegiant.com/): Introduction to MTG and the "Multiple Streams of Income" idea, linking to the income streams dashboard.
+- [Tools](https://www.musathegiant.com/tools/): Directory of free tools by MTG, currently the crypto halving countdown and the GitHub Pages custom domain guide. New tools are added here.
 - [Crypto Halving Countdown](https://www.musathegiant.com/halving/): Live countdowns to the next reward halvings for Bitcoin (BTC), Litecoin (LTC), Bitcoin Cash (BCH), Bitcoin SV (BSV), Zcash (ZEC), Bittensor (TAO), Ravencoin (RVN) and Kaspa (KAS). Uses live block heights from public blockchain explorers. Includes Bitcoin halving history and an FAQ.
 - [About MTG](https://www.musathegiant.com/about.html): Who Musa The Giant is, his story, mission and what he checks before sharing any opportunity.
 - [Contact](https://www.musathegiant.com/contact.html): WhatsApp +27 72 171 4626 and social links. MTG never asks for passwords or seed phrases.
