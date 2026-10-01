@@ -1,7 +1,6 @@
-# robots.txt — musathegiant.com
+# robots.txt: musathegiant.com
 # MTG 👑 | The Digital Architect
-# Updated: 2026-03-27
-# Upload to: https://www.musathegiant.com/robots.txt
+# Updated: 2026-10-01
 
 # ============================================================
 # ALLOW ALL MAJOR SEARCH ENGINE CRAWLERS
@@ -48,7 +47,7 @@ User-agent: Baiduspider
 Allow: /
 
 # ============================================================
-# AI SEARCH CRAWLERS — EXPLICITLY ALLOWED FOR AI CITATION
+# AI SEARCH CRAWLERS: EXPLICITLY ALLOWED FOR AI CITATION
 # ============================================================
 
 # OpenAI / ChatGPT
@@ -105,7 +104,7 @@ User-agent: Applebot
 Allow: /
 
 # ============================================================
-# SOCIAL PREVIEW BOTS — ALLOW OG/TWITTER CARD RENDERING
+# SOCIAL PREVIEW BOTS: ALLOW OG/TWITTER CARD RENDERING
 # ============================================================
 
 # Facebook / Meta link previews
@@ -144,7 +143,6 @@ Sitemap: https://www.musathegiant.com/sitemap.xml
 
 # ============================================================
 # NOTES
-# No pages are blocked. All Aurum content is public and
-# should be indexed by all search engines, AI tools, and
-# social platforms for maximum discoverability and citation.
+# All pages are open to search engines, AI assistants and
+# social preview bots. AI summary of this site: /llms.txt
 # ============================================================

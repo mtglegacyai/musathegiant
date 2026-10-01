@@ -1,43 +1,38 @@
-# Musa the Giant (MTG) - Aurum Foundation Affiliate Site
+# MTG (Musa The Giant) | musathegiant.com
 
-> musathegiant.com is the official affiliate and educational resource hub for Musa the Giant (MTG), an independent crypto affiliate marketer and Key Opinion Leader (KOL) promoting the Aurum Foundation platform. The site helps South African and global users understand, join, and grow within the Aurum ecosystem using affiliate code EXTHT1.
+> musathegiant.com is the personal site of Musa The Giant (MTG), a crypto educator and affiliate marketer based in Durban, South Africa. His mission is to help everyday people build generational wealth. The site shares the Bitcoin, crypto, AI and trading income streams he is currently using, and free tools such as a live crypto halving countdown.
 
-## Site Overview
+## Key pages
 
-- **Brand:** MTG (Musa the Giant)
-- **Affiliate Code:** EXTHT1
-- **Primary Platform:** Aurum Foundation
-- **Base:** South Africa
-- **Mission:** Onboarding 1,000 Millionaires through the Aurum Foundation ecosystem
+- [Home](https://www.musathegiant.com/): Introduction to MTG and the "Multiple Streams of Income" idea, linking to the income streams dashboard.
+- [Crypto Halving Countdown](https://www.musathegiant.com/halving/): Live countdowns to the next reward halvings for Bitcoin (BTC), Litecoin (LTC), Bitcoin Cash (BCH), Bitcoin SV (BSV), Zcash (ZEC), Bittensor (TAO), Ravencoin (RVN) and Kaspa (KAS). Uses live block heights from public blockchain explorers. Includes Bitcoin halving history and an FAQ.
+- [Income Streams Dashboard](https://www.musathegiant.com/dashboard.html): The income streams MTG currently shares. Income Stream #1 is Bitcoin Wealth (entry point 0.001 BTC). Income Stream #2 is ClickBaitPays (advertise, view ads and earn, from $14).
 
-## Pages
+## Quick facts: upcoming halvings (estimates)
 
-- [Home](https://www.musathegiant.com/aurum.html): Main landing page introducing the Aurum Foundation, its AI trading bots, and the affiliate opportunity. Entry point for new visitors.
-- [About Aurum](https://www.musathegiant.com/about-aurum.html): Deep-dive into what the Aurum Foundation is, its vision, leadership (including CEO Bryan Benson), and why it stands out in the DeFi space.
-- [Aurum AI Bots](https://www.musathegiant.com/aurum-ai-bots.html): Detailed breakdown of the Aurum AI trading bots, how they work, performance, and how members benefit from automated crypto trading.
-- [Aurum Neobank](https://www.musathegiant.com/aurum-neobank.html): Overview of the Aurum NeoBank features, including banking integrations, crypto-to-fiat capabilities, and member financial tools.
-- [Partner Program](https://www.musathegiant.com/aurum-partner-program.html): Full explanation of the Aurum affiliate and partner program, including the 15-level Legacy Levels commission structure and leadership profiles.
-- [Testimonials](https://www.musathegiant.com/aurum-testimonials.html): Real member reviews, withdrawal proof, and video testimonials from Aurum community members.
-- [Getting Started](https://www.musathegiant.com/getting-started-with-aurum.html): Step-by-step onboarding guide for new members, including VALR account setup, funding, and joining Aurum using affiliate code EXTHT1.
-
-## Key Topics Covered
-
-- Aurum Foundation platform overview and legitimacy
-- AI-powered crypto trading bots and passive income
-- Aurum NeoBank and DeFi banking features
-- 15-level Legacy Levels affiliate/partner compensation plan
-- How to join Aurum (affiliate code: EXTHT1)
-- VALR exchange onboarding for South African users
-- Member testimonials and withdrawal proof
-- Leadership team: Bryan Benson and other key figures
-- Community building and team onboarding strategies
+- Bitcoin: block 1,050,000, around April 2028, reward 3.125 to 1.5625 BTC.
+- Litecoin: block 3,360,000, around July 2027, reward 6.25 to 3.125 LTC.
+- Bitcoin Cash and Bitcoin SV: block 1,050,000, around April 2028.
+- Zcash: around November 2028 (the NU7 upgrade changes block times but keeps the halving date).
+- Bittensor: at 15.75 million TAO issued, around December 2029 at the earliest.
+- Ravencoin: block 6,300,000, around January 2030.
+- Kaspa: reward shrinks about 5.6% every month (halves yearly).
+Live, up-to-date dates: https://www.musathegiant.com/halving/
 
 ## About MTG
 
-Musa the Giant (MTG) is a South Africa-based independent affiliate marketer, KOL, and community builder operating in the crypto and DeFi space. MTG runs live sessions, Zoom presentations, and WhatsApp groups to onboard and support new Aurum members. MTG has achieved Voyager rank within Aurum and is actively building toward the "1,000 Millionaires" mission.
+- Name: Musa The Giant, known as MTG 👑
+- Location: Durban, South Africa
+- Mission: Build Generational Wealth
+- Topics: Bitcoin, cryptocurrency, blockchain, artificial intelligence, crypto trading, affiliate and digital marketing
 
-## Contact & Affiliate Info
+## Contact and social
 
-- **Website:** https://www.musathegiant.com
-- **Affiliate Code:** EXTHT1
-- **Join Aurum:** https://www.musathegiant.com/getting-started-with-aurum.html
+- WhatsApp: https://wa.me/27721714626
+- YouTube: https://www.youtube.com/@MusaTheGiant
+- TikTok: https://www.tiktok.com/@musathegiant
+- Facebook: https://www.facebook.com/Musa.TheMTG
+
+## Disclaimer
+
+Content is educational and is not financial advice. Crypto is volatile and participation in any income stream involves cost and risk. MTG may earn from referrals.
