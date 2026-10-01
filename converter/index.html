@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dollar to Rand &amp; Bitcoin Converter | Live USD/ZAR and BTC/ZAR Rates</title>
+<meta name="description" content="Convert dollars to rand, rand to dollars and Bitcoin to rand or any currency at the live rate. Type an amount and see the exact rand value instantly, with the rate and time shown.">
+<link rel="canonical" href="https://www.musathegiant.com/converter/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="author" content="Musa The Giant (MTG)">
+<meta name="theme-color" content="#040506">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MTG | Musa The Giant">
+<meta property="og:title" content="Dollar to Rand &amp; Bitcoin Converter | Live Rates">
+<meta property="og:description" content="How much is $50 in rand? How much is 0.001 BTC in rand? Get the answer at the live rate, instantly.">
+<meta property="og:url" content="https://www.musathegiant.com/converter/">
+<meta property="og:image" content="https://www.musathegiant.com/images/og-converter.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dollar to Rand and Bitcoin Converter by MTG">
+<meta property="og:locale" content="en_ZA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dollar to Rand &amp; Bitcoin Converter | MTG">
+<meta name="twitter:description" content="Convert USD, ZAR and BTC at the live rate. Free, instant, no sign-up.">
+<meta name="twitter:image" content="https://www.musathegiant.com/images/og-converter.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "@id": "https://www.musathegiant.com/converter/#app",
+   "name": "Dollar to Rand & Bitcoin Converter",
+   "url": "https://www.musathegiant.com/converter/",
+   "description": "Live currency converter for US dollars (USD), South African rand (ZAR), Bitcoin (BTC), satoshis and major world currencies.",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "Any",
+   "browserRequirements": "Requires JavaScript",
+   "inLanguage": "en",
+   "isAccessibleForFree": true,
+   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "ZAR"},
+   "author": {"@id": "https://www.musathegiant.com/#mtg"},
+   "isPartOf": {"@id": "https://www.musathegiant.com/#website"}
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.musathegiant.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.musathegiant.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Dollar to Rand & Bitcoin Converter", "item": "https://www.musathegiant.com/converter/"}
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {"@type": "Question", "name": "How do I convert dollars to rand?", "acceptedAnswer": {"@type": "Answer", "text": "Type the dollar amount in the top box. The rand amount appears in the bottom box straight away, calculated at the live USD/ZAR rate, which is shown under the boxes with the time it was checked."}},
+    {"@type": "Question", "name": "How much is 0.001 BTC in rand?", "acceptedAnswer": {"@type": "Answer", "text": "Tap the Bitcoin to Rand button, type 0.001 in the top box and the bottom box shows the rand value at the current Bitcoin price. 0.001 BTC is 100,000 satoshis."}},
+    {"@type": "Question", "name": "Why is my bank or exchange rate different?", "acceptedAnswer": {"@type": "Answer", "text": "This converter shows the live market rate. Banks, card providers and crypto exchanges usually add a spread or fee on top, so the amount you actually pay or receive can be a little different."}},
+    {"@type": "Question", "name": "How often do the rates update?", "acceptedAnswer": {"@type": "Answer", "text": "The page fetches fresh rates every 30 seconds while it is open, and again whenever you come back to the tab. The exact time of the last check is always shown."}}
+   ]
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://www.musathegiant.com/#website",
+   "url": "https://www.musathegiant.com/",
+   "name": "MTG | Musa The Giant",
+   "publisher": {"@id": "https://www.musathegiant.com/#mtg"}
+  },
+  {
+   "@type": "Person",
+   "@id": "https://www.musathegiant.com/#mtg",
+   "name": "Musa The Giant",
+   "alternateName": ["MTG", "Musa the Giant"],
+   "url": "https://www.musathegiant.com/",
+   "image": "https://www.musathegiant.com/images/mtg-profile.jpg",
+   "jobTitle": "Crypto educator and affiliate marketer",
+   "address": {"@type": "PostalAddress", "addressLocality": "Durban", "addressCountry": "ZA"},
+   "sameAs": ["https://www.facebook.com/Musa.TheMTG", "https://www.tiktok.com/@musathegiant", "https://www.youtube.com/@MusaTheGiant"]
+  }
+ ]
+}
+</script>
+<link rel="preconnect" href="https://api.coinbase.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pages.css">
+<style>
+.phero-in{padding:52px 0 40px}
+.cv-wrap{padding:36px 0 10px}
+.cv{position:relative;max-width:760px;margin:0 auto;padding:26px;border-radius:26px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(150deg,rgba(15,18,23,.97),rgba(6,8,10,.99));box-shadow:0 30px 90px rgba(0,0,0,.45)}
+.cv:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at 85% 0%,rgba(242,173,60,.12),transparent 45%)}
+.cv>*{position:relative}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.preset{flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:9px 14px;border-radius:12px;border:1px solid var(--line);background:#0c0f13;color:#c9ced5;font:800 .84rem var(--f-body);cursor:pointer;transition:border-color .18s,background .18s,color .18s}
+.preset:hover{border-color:rgba(242,173,60,.4);color:#fff}
+.preset[aria-pressed="true"]{border-color:rgba(242,173,60,.75);background:rgba(242,173,60,.12);color:#ffd27e}
+.preset span{color:var(--amber)}
+.box{display:block;padding:16px 18px 14px;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:#090b0e;transition:border-color .18s,box-shadow .18s}
+.box:focus-within{border-color:rgba(242,173,60,.7);box-shadow:0 0 0 4px rgba(242,173,60,.12)}
+.box-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.box-lab{color:#9aa1ab;font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.box-hint{color:#6f7680;font-size:.78rem}
+.box-row{display:flex;align-items:center;gap:12px}
+.box input{flex:1;min-width:0;width:100%;padding:4px 0;border:0;outline:0;background:transparent;color:#fff;font:800 clamp(1.7rem,6vw,2.6rem)/1.15 var(--f-display);letter-spacing:-.03em}
+.box input::placeholder{color:#3c424a}
+.box.out input{color:var(--gold-hi)}
+.cur{position:relative;flex:none}
+.cur select{appearance:none;-webkit-appearance:none;min-height:50px;padding:10px 38px 10px 14px;border-radius:12px;border:1px solid rgba(242,173,60,.35);background:#12151a;color:#fff;font:800 1rem var(--f-body);cursor:pointer}
+.cur select:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.cur:after{content:"";position:absolute;right:15px;top:50%;width:8px;height:8px;margin-top:-6px;border-right:2px solid var(--amber);border-bottom:2px solid var(--amber);transform:rotate(45deg);pointer-events:none}
+.cur option{background:#12151a;color:#fff}
+.swap-row{display:flex;justify-content:center;margin:-10px 0;position:relative;z-index:2}
+.swap{width:46px;height:46px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(255,214,138,.7);background:linear-gradient(180deg,#f6bd59,#dfa02d 58%,#ca8318);color:#1b1102;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.45);transition:transform .25s var(--ease)}
+.swap:hover{transform:rotate(180deg)}
+.swap svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.quick{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.quick button{padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:#b7bdc6;font:700 .78rem var(--f-body);cursor:pointer}
+.quick button:hover{border-color:rgba(242,173,60,.45);color:#fff}
+.answer{margin:22px 0 4px;text-align:center}
+.answer .big{margin:0;font:800 clamp(1.25rem,3.6vw,1.75rem)/1.25 var(--f-display);letter-spacing:-.02em;color:#fff;overflow-wrap:anywhere}
+.answer .big b{color:var(--amber)}
+.answer .sats{margin:6px 0 0;color:#9aa1ab;font-size:.9rem}
+.rate{margin-top:16px;padding:14px 16px;border-radius:14px;border:1px solid var(--line2);background:rgba(255,255,255,.02);display:grid;gap:6px}
+.rate-main{display:flex;flex-wrap:wrap;gap:6px 18px;color:#e3e6ea;font-weight:700;font-size:.95rem}
+.rate-main span{white-space:nowrap}
+.rate-main i{font-style:normal;color:#7d848e;font-weight:500}
+.status{display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:#8a919b;font-size:.8rem}
+.dot{width:8px;height:8px;border-radius:50%;background:#5c636c;flex:none}
+.dot.live{background:#33d17a;box-shadow:0 0 0 0 rgba(51,209,122,.6);animation:pulse 2s infinite}
+.dot.stale{background:#f2ad3c}.dot.err{background:#ff6b5a}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(51,209,122,.55)}70%{box-shadow:0 0 0 8px rgba(51,209,122,0)}100%{box-shadow:0 0 0 0 rgba(51,209,122,0)}}
+.status button{margin-left:auto;padding:5px 10px;border-radius:8px;border:1px solid var(--line);background:#12151a;color:#c9ced5;font:700 .74rem var(--f-body);cursor:pointer}
+.status button:hover{border-color:rgba(242,173,60,.4);color:#fff}
+.acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.acts .btn{min-height:46px;padding:10px 12px;font-size:.86rem;cursor:pointer;font-family:var(--f-body)}
+.acts .btn svg{width:17px;height:17px}
+.others{max-width:760px;margin:26px auto 0}
+.others h2{margin:0 0 4px;font:700 1.2rem var(--f-display);letter-spacing:-.02em}
+.others>p{margin:0 0 14px;color:#8a919b;font-size:.88rem}
+.ogrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ocell{display:block;width:100%;text-align:left;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(160deg,#0f1216,#08090b);color:inherit;font:inherit;cursor:pointer;min-width:0;transition:border-color .18s,transform .18s}
+.ocell:hover{border-color:rgba(242,173,60,.4);transform:translateY(-2px)}
+.ocell small{display:block;color:#7d848e;font-size:.74rem;font-weight:700;letter-spacing:.04em}
+.ocell strong{display:block;color:#fff;font:700 1rem var(--f-display);overflow-wrap:anywhere}
+.info{max-width:760px;margin:0 auto}
+.info .prose{max-width:none}
+.toast{position:fixed;left:50%;bottom:26px;z-index:50;transform:translate(-50%,20px);opacity:0;padding:10px 16px;border-radius:12px;background:#f2ad3c;color:#1b1102;font-weight:800;font-size:.88rem;pointer-events:none;transition:opacity .2s,transform .2s}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(max-width:640px){
+  .phero-in{padding:32px 0 28px}
+  .cv-wrap{padding-top:22px}
+  .cv{padding:18px;border-radius:22px}
+  .preset{flex:1 1 calc(50% - 8px);font-size:.8rem;padding:9px 8px}
+  .box{padding:14px 14px 12px}
+  .box-row{flex-wrap:wrap;gap:8px}
+  .box input{flex:1 1 100%;order:2}
+  .cur{flex:1 1 100%;order:1}
+  .cur select{width:100%}
+  .cur select{padding:10px 32px 10px 11px;font-size:.92rem}
+  .cur:after{right:12px}
+  .acts{grid-template-columns:1fr}
+  .ogrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ocell:nth-child(9){display:none}
+}
+</style>
+</head>
+<body>
+<header class="site-head"><nav class="wrap" aria-label="Main"><a class="brand" href="/"><img src="/images/mtg-profile.jpg" alt="Musa The Giant" width="36" height="36">MTG <b>👑</b></a>
+<div class="navlinks"><a class="hide-sm" href="/about.html">About</a><a class="hide-sm" href="/tools/">Tools</a><a href="/contact.html">Contact</a><a class="box" href="/dashboard.html">Dashboard</a></div></nav></header>
+<main>
+<section class="phero"><div class="beam" aria-hidden="true"></div><canvas aria-hidden="true"></canvas>
+  <div class="wrap"><div class="phero-in"><div class="kicker"><i></i>Free tool · Live rates</div><h1>Dollar to Rand &amp; Bitcoin Converter</h1><p class="lede">How much is $50 in rand? What is 0.001 BTC worth today? Type an amount in the top box and the answer appears below, at the live rate.</p></div></div></section>
+
+<div class="wrap cv-wrap">
+  <section class="cv" aria-label="Currency converter">
+    <div class="presets" role="group" aria-label="Quick choices">
+      <button type="button" class="preset" data-from="USD" data-to="ZAR"><span>$</span> Dollar to Rand</button>
+      <button type="button" class="preset" data-from="ZAR" data-to="USD"><span>R</span> Rand to Dollar</button>
+      <button type="button" class="preset" data-from="BTC" data-to="ZAR"><span>₿</span> Bitcoin to Rand</button>
+      <button type="button" class="preset" data-from="BTC" data-to="USD"><span>₿</span> Bitcoin to Dollar</button>
+    </div>
+
+    <div class="box">
+      <div class="box-top"><label class="box-lab" for="amtA">1. Type your amount</label><span class="box-hint" id="hintA">e.g. 50</span></div>
+      <div class="box-row">
+        <input id="amtA" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="0" value="50" aria-describedby="hintA">
+        <div class="cur"><select id="curA" aria-label="Currency you have"></select></div>
+      </div>
+      <div class="quick" id="quick" aria-label="Quick amounts"></div>
+    </div>
+
+    <div class="swap-row"><button type="button" class="swap" id="swap" aria-label="Swap currencies" title="Swap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16M7 20l-4-4M7 20l4-4M17 20V4M17 4l-4 4M17 4l4 4"/></svg></button></div>
+
+    <div class="box out">
+      <div class="box-top"><label class="box-lab" for="amtB">2. Your answer</label><span class="box-hint">You can type here too</span></div>
+      <div class="box-row">
+        <input id="amtB" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="…">
+        <div class="cur"><select id="curB" aria-label="Currency to convert to"></select></div>
+      </div>
+    </div>
+
+    <div class="answer" aria-live="polite"><p class="big" id="answer">Loading the live rate…</p><p class="sats" id="sats" hidden></p></div>
+
+    <div class="rate">
+      <div class="rate-main" id="rateMain"><span>Fetching live rate…</span></div>
+      <div class="status"><span class="dot" id="dot"></span><span id="statusTxt">Connecting to live market data…</span><button type="button" id="refresh">Refresh now</button></div>
+    </div>
+
+    <div class="acts">
+      <button type="button" class="btn gold" id="copyAns"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1Zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16h-9V7h9v14Z"/></svg>Copy answer</button>
+      <a class="btn wa" id="waShare" href="https://wa.me/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.7 11.7 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.6 4.8Z"/></svg>Send on WhatsApp</a>
+      <button type="button" class="btn" id="copyLink"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.6 13.4a1 1 0 0 1 0-1.4l3.5-3.5a1 1 0 1 1 1.4 1.4L12 13.4a1 1 0 0 1-1.4 0Zm-1.4 5.1a4 4 0 0 1-5.7-5.7l2.8-2.8 1.4 1.4-2.8 2.8a2 2 0 0 0 2.9 2.9l2.8-2.8 1.4 1.4-2.8 2.8Zm9.9-7.1-1.4-1.4 2.8-2.8a2 2 0 0 0-2.9-2.9l-2.8 2.8-1.4-1.4 2.8-2.8a4 4 0 0 1 5.7 5.7l-2.8 2.8Z"/></svg>Copy link</button>
+    </div>
+  </section>
+
+  <section class="others" aria-labelledby="others-h">
+    <h2 id="others-h">Same amount in other currencies</h2>
+    <p>Tap any currency to make it your answer.</p>
+    <div class="ogrid" id="ogrid"></div>
+  </section>
+</div>
+
+<div class="wrap info doc" style="grid-template-columns:minmax(0,1fr)">
+  <article class="prose">
+    <h2 id="how">How to use it</h2>
+    <ol class="steps">
+      <li><h3>Pick what you are converting</h3><p>Tap a quick choice like <strong>Dollar to Rand</strong> or <strong>Bitcoin to Rand</strong>, or choose any currency from the two drop-downs.</p></li>
+      <li><h3>Type your amount in the top box</h3><p>For example <code>50</code> for $50, or <code>0.001</code> for 0.001 BTC. Commas, spaces and symbols like $ or R are fine.</p></li>
+      <li><h3>Read your answer</h3><p>The bottom box shows the converted amount instantly at the live rate. Tap <strong>Send on WhatsApp</strong> to share it, or <strong>Copy link</strong> to send someone this exact conversion.</p></li>
+    </ol>
+    <h2 id="faq">Questions</h2>
+    <h3>Where do the rates come from?</h3>
+    <p>Live market rates from Coinbase, one of the largest regulated exchanges in the world. If Coinbase cannot be reached, the converter switches to a backup source and tells you which one, with its update time. It never shows a made-up number: if no live rate is available, it says so.</p>
+    <h3>How often do the rates update?</h3>
+    <p>Every 30 seconds while the page is open, and again as soon as you come back to the tab. The time of the last check is always shown under the boxes.</p>
+    <h3>Why is my bank or exchange giving me a different amount?</h3>
+    <p>This is the market rate. Banks, card providers and crypto exchanges such as VALR or Luno usually add a spread or fee, and local Bitcoin prices in rand can sit slightly above or below the global price. Use this as an accurate guide, then check the final amount on the platform you pay with.</p>
+    <h3>What are sats?</h3>
+    <p>A satoshi (sat) is the smallest unit of Bitcoin. 1 BTC = 100,000,000 sats, so 0.001 BTC = 100,000 sats. You can pick <strong>Sats</strong> in either drop-down.</p>
+    <div class="callout"><p>Educational tool only, not financial advice. Prices move every second, so always confirm the final amount before you pay or send.</p></div>
+  </article>
+</div>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a class="brand" href="/"><img src="/images/mtg-profile.jpg" alt="" width="36" height="36" loading="lazy">MTG <b>👑</b></a>
+      <p>Musa The Giant, Your Digital Architect. Bitcoin, crypto, AI and trading, explained clearly. Mission: Build Generational Wealth.</p>
+      <div class="socials" aria-label="MTG on social media"><a href="https://wa.me/27721714626?text=Hi%20MTG%2C%20I%20found%20you%20on%20musathegiant.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.7 11.7 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.6 4.8Z"/></svg></a><a href="https://www.facebook.com/Musa.TheMTG" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.1C24 5.4 18.6 0 12 0S0 5.4 0 12.1C0 18.1 4.4 23 10.1 24v-8.4H7.1v-3.5h3v-2.7c0-3 1.8-4.7 4.6-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9v2.3h3.4l-.5 3.5h-2.9V24C19.6 23 24 18.1 24 12.1Z"/></svg></a><a href="https://www.tiktok.com/@musathegiant" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.3 3.4A5.2 5.2 0 0 1 16.1 0h-3.5v15.3a3.1 3.1 0 1 1-2.7-3.1V8.7a6.6 6.6 0 1 0 6.2 6.6V7.5a8.7 8.7 0 0 0 5.1 1.7V5.8a5.3 5.3 0 0 1-1.9-.4Z"/></svg></a><a href="https://www.youtube.com/@MusaTheGiant" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg></a></div></div>
+    <nav aria-label="Explore"><h2>Explore</h2><ul><li><a href="/">Home</a></li><li><a href="/dashboard.html">Income Streams</a></li><li><a href="/tools/">Tools</a></li><li><a href="/converter/">Currency Converter</a></li><li><a href="/halving/">Halving Countdown</a></li><li><a href="/about.html">About MTG</a></li><li><a href="/contact.html">Contact</a></li></ul></nav>
+    <nav aria-label="Legal"><h2>Legal</h2><ul><li><a href="/privacy-policy.html">Privacy Policy</a></li><li><a href="/terms-of-use.html">Terms of Use</a></li><li><a href="/cookie-policy.html">Cookie Policy</a></li><li><a href="/affiliate-disclosure.html">Affiliate Disclosure</a></li><li><a href="/earnings-disclaimer.html">Earnings Disclaimer</a></li><li><a href="/risk-disclaimer.html">Risk Disclaimer</a></li><li><a href="/anti-spam-policy.html">Anti-Spam Policy</a></li><li><a href="/copyright.html">Copyright Notice</a></li></ul></nav>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 MTG (Musa The Giant). All rights reserved.</span><span>Educational content. Not financial advice.</span></div>
+</footer>
+<script src="/assets/pages.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* Currencies. kind: fiat | btc | sats. dp = decimals shown. */
+var CUR=[
+ {c:"USD",n:"US Dollar",f:"🇺🇸",s:"$",dp:2},
+ {c:"ZAR",n:"South African Rand",f:"🇿🇦",s:"R",dp:2},
+ {c:"BTC",n:"Bitcoin",f:"₿",s:"₿",dp:8,k:"btc"},
+ {c:"SATS",n:"Satoshis (sats)",f:"⚡",s:"",dp:0,k:"sats"},
+ {c:"EUR",n:"Euro",f:"🇪🇺",s:"€",dp:2},
+ {c:"GBP",n:"British Pound",f:"🇬🇧",s:"£",dp:2},
+ {c:"NGN",n:"Nigerian Naira",f:"🇳🇬",s:"₦",dp:2},
+ {c:"KES",n:"Kenyan Shilling",f:"🇰🇪",s:"KSh ",dp:2},
+ {c:"GHS",n:"Ghanaian Cedi",f:"🇬🇭",s:"GH₵",dp:2},
+ {c:"BWP",n:"Botswana Pula",f:"🇧🇼",s:"P",dp:2},
+ {c:"NAD",n:"Namibian Dollar",f:"🇳🇦",s:"N$",dp:2},
+ {c:"SZL",n:"Eswatini Lilangeni",f:"🇸🇿",s:"E",dp:2},
+ {c:"LSL",n:"Lesotho Loti",f:"🇱🇸",s:"L",dp:2},
+ {c:"ZMW",n:"Zambian Kwacha",f:"🇿🇲",s:"K",dp:2},
+ {c:"MZN",n:"Mozambican Metical",f:"🇲🇿",s:"MT ",dp:2},
+ {c:"AED",n:"UAE Dirham",f:"🇦🇪",s:"AED ",dp:2},
+ {c:"INR",n:"Indian Rupee",f:"🇮🇳",s:"₹",dp:2},
+ {c:"CNY",n:"Chinese Yuan",f:"🇨🇳",s:"¥",dp:2},
+ {c:"JPY",n:"Japanese Yen",f:"🇯🇵",s:"¥",dp:0},
+ {c:"AUD",n:"Australian Dollar",f:"🇦🇺",s:"A$",dp:2},
+ {c:"CAD",n:"Canadian Dollar",f:"🇨🇦",s:"C$",dp:2},
+ {c:"CHF",n:"Swiss Franc",f:"🇨🇭",s:"CHF ",dp:2},
+ {c:"USDT",n:"Tether (USDT)",f:"₮",s:"",dp:2,k:"crypto"},
+ {c:"ETH",n:"Ethereum",f:"Ξ",s:"",dp:6,k:"crypto"}
+];
+var BY={};CUR.forEach(function(x){BY[x.c]=x});
+var OTHERS=["ZAR","USD","BTC","SATS","EUR","GBP","NGN","KES","BWP"];
+var QUICK={USD:[10,25,50,100,500,1000],ZAR:[100,500,1000,5000,10000],BTC:[0.0001,0.001,0.01,0.1,1],SATS:[1000,10000,100000,1000000],EUR:[10,50,100,500],GBP:[10,50,100,500],ETH:[0.01,0.1,1],USDT:[10,50,100,500]};
+var REFRESH=30000;
+
+var $=function(id){return document.getElementById(id)};
+var amtA=$("amtA"),amtB=$("amtB"),curA=$("curA"),curB=$("curB");
+var rates=null;      /* units of currency per 1 USD */
+var meta={src:"",at:0,note:""};
+var last="A";        /* which box the user typed in last */
+var busy=false;
+
+/* ---------- build selects ---------- */
+function fill(sel){
+  sel.innerHTML=CUR.map(function(x){return '<option value="'+x.c+'">'+x.f+' '+(x.c==="SATS"?"Sats":x.c)+' · '+x.n+'</option>'}).join("");
+}
+fill(curA);fill(curB);
+/* hide currencies the live source does not cover */
+function markAvailable(){
+  [curA,curB].forEach(function(sel){[].forEach.call(sel.options,function(o){var ok=perUsd(o.value)>0;o.disabled=!ok;o.hidden=!ok})});
+}
+
+/* ---------- number parsing and formatting ---------- */
+function parse(str){
+  if(str==null)return NaN;
+  var s=String(str).trim().replace(/[\s '’]/g,"").replace(/[^0-9.,\-]/g,"");
+  if(!s)return NaN;
+  var hasDot=s.indexOf(".")>-1,commas=(s.match(/,/g)||[]).length;
+  if(hasDot&&commas){ /* 1,234.56 or 1.234,56 */
+    if(s.lastIndexOf(",")>s.lastIndexOf(".")) s=s.replace(/\./g,"").replace(",",".");
+    else s=s.replace(/,/g,"");
+  }else if(commas===1){
+    var parts=s.split(",");
+    /* "1,000" is a thousand; "50,5", "0,001" and "12,50" are decimals */
+    if(parts[1].length===3&&parts[0]!=="0"&&parts[0]!=="-0"&&parts[0]!=="") s=parts.join("");
+    else s=parts.join(".");
+  }else if(commas>1){s=s.replace(/,/g,"")}
+  var n=parseFloat(s);
+  return isFinite(n)?n:NaN;
+}
+function group(n,dp,trim){
+  var neg=n<0;n=Math.abs(n);
+  var s=n.toFixed(dp);
+  var p=s.split(".");p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,",");
+  var out=p[1]!==undefined?p[0]+"."+p[1]:p[0];
+  if(trim&&out.indexOf(".")>-1)out=out.replace(/0+$/,"").replace(/\.$/,"");
+  return (neg?"-":"")+out;
+}
+/* decimals for a value: keep fiat at 2dp, but show small fiat values with enough precision */
+function dpFor(code,v){
+  var x=BY[code],a=Math.abs(v);
+  if(x.k==="btc")return 8;
+  if(x.k==="sats")return a<1&&a>0?3:0;
+  if(x.k==="crypto")return a>=1000?2:a>=1?4:8;
+  if(a>0&&a<0.01)return 6;
+  return x.dp;
+}
+function plain(code,v){ /* value for the input boxes */
+  var x=BY[code];
+  return group(v,dpFor(code,v),x.k==="btc"||x.k==="crypto"||(Math.abs(v)<0.01));
+}
+function money(code,v){ /* human sentence form */
+  var x=BY[code],num=plain(code,v);
+  if(x.k==="btc")return num+" BTC";
+  if(x.k==="sats")return num+" sats";
+  if(x.k==="crypto")return num+" "+code;
+  return x.s+num.replace(/\.00$/,"");
+}
+function rateNum(v){ /* rates: more precision */
+  var a=Math.abs(v);
+  var dp=a>=1000?2:a>=1?4:a>=0.01?6:a>=0.0001?8:10;
+  return group(v,dp,a<1);
+}
+
+/* ---------- conversion ---------- */
+function perUsd(code){
+  if(!rates)return NaN;
+  if(code==="SATS")return rates.BTC*1e8;
+  return rates[code];
+}
+function convert(v,from,to){
+  var a=perUsd(from),b=perUsd(to);
+  if(!(a>0)||!(b>0))return NaN;
+  return v/a*b;
+}
+
+/* ---------- render ---------- */
+function update(){
+  var A=curA.value,B=curB.value;
+  var src=last==="A"?amtA:amtB,dst=last==="A"?amtB:amtA;
+  var fromC=last==="A"?A:B,toC=last==="A"?B:A;
+  var v=parse(src.value);
+  var ans=$("answer"),sats=$("sats");
+  sats.hidden=true;
+  if(!rates){ dst.value="";ans.textContent=meta.note||"Loading the live rate…";renderRate();renderOthers(NaN);syncUrl();return; }
+  if(src.value.trim()===""){ dst.value="";ans.innerHTML="Type an amount in the top box to see your answer.";renderRate();renderOthers(NaN);syncUrl();return; }
+  if(isNaN(v)){ dst.value="";ans.textContent="That doesn't look like a number. Try something like 50 or 0.001.";renderRate();renderOthers(NaN);return; }
+  var out=convert(v,fromC,toC);
+  if(isNaN(out)){ dst.value="";ans.textContent="No live rate for "+fromC+"/"+toC+" right now. Try another currency.";renderRate();renderOthers(NaN);return; }
+  dst.value=plain(toC,out);
+  var aVal=last==="A"?v:out,bVal=last==="A"?out:v;
+  ans.innerHTML=esc(money(A,aVal))+" is <b>"+esc(money(B,bVal))+"</b>";
+  /* sats helper when Bitcoin is involved */
+  var btcAmt=A==="BTC"?aVal:B==="BTC"?bVal:NaN;
+  if(!isNaN(btcAmt)){sats.hidden=false;sats.textContent=group(btcAmt,8,true)+" BTC = "+group(btcAmt*1e8,btcAmt*1e8<1?3:0,true)+" sats";}
+  else if(A==="SATS"||B==="SATS"){var s=A==="SATS"?aVal:bVal;sats.hidden=false;sats.textContent=group(s,0)+" sats = "+group(s/1e8,8,true)+" BTC";}
+  renderRate();renderOthers(aVal);syncUrl();
+}
+function renderRate(){
+  var A=curA.value,B=curB.value,el=$("rateMain");
+  if(!rates){el.innerHTML="<span>"+esc(meta.note||"Fetching live rate…")+"</span>";return}
+  var r=convert(1,A,B),ri=convert(1,B,A);
+  if(isNaN(r)){el.innerHTML="<span>No rate available for this pair</span>";return}
+  var unitA=A==="SATS"?"1 sat":"1 "+A,unitB=B==="SATS"?"1 sat":"1 "+B;
+  el.innerHTML='<span>'+esc(unitA)+' = '+esc(fmtRate(B,r))+'</span><span><i>and</i> '+esc(unitB)+' = '+esc(fmtRate(A,ri))+'</span>';
+}
+function fmtRate(code,v){
+  var x=BY[code],n=rateNum(v);
+  if(x.k==="btc")return n+" BTC";
+  if(x.k==="sats")return n+" sats";
+  if(x.k==="crypto")return n+" "+code;
+  return x.s+n;
+}
+function renderOthers(v){
+  var A=curA.value,B=curB.value,g=$("ogrid");
+  var list=[B].concat(OTHERS.filter(function(c){return c!==A&&c!==B})).slice(0,9);
+  g.innerHTML=list.map(function(c){
+    var val=isNaN(v)||!rates?"…":money(c,convert(v,A,c));
+    var x=BY[c];
+    return '<button type="button" class="ocell" data-c="'+c+'"><small>'+x.f+' '+(c==="SATS"?"SATS":c)+' · '+esc(x.n)+'</small><strong>'+esc(val)+'</strong></button>';
+  }).join("");
+}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+/* quick amount chips for the top currency */
+function renderQuick(){
+  var q=QUICK[curA.value]||[10,50,100,1000];
+  $("quick").innerHTML=q.map(function(n){return '<button type="button" data-q="'+n+'">'+esc(money(curA.value,n).replace(/\.00$/,""))+'</button>'}).join("");
+  $("hintA").textContent="e.g. "+plain(curA.value,q[Math.min(2,q.length-1)]).replace(/\.00$/,"");
+}
+function markPresets(){
+  [].forEach.call(document.querySelectorAll(".preset"),function(b){b.setAttribute("aria-pressed",String(b.dataset.from===curA.value&&b.dataset.to===curB.value))});
+}
+
+/* ---------- status line ---------- */
+function timeStr(t){return new Date(t).toLocaleTimeString("en-ZA",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false})}
+function ago(t){var s=Math.round((Date.now()-t)/1000);return s<5?"just now":s<60?s+"s ago":Math.round(s/60)+" min ago"}
+function renderStatus(state){
+  var dot=$("dot"),t=$("statusTxt");
+  dot.className="dot";
+  if(!meta.at){dot.classList.add(state==="err"?"err":"");t.textContent=state==="err"?"Can't reach live market data. Check your connection and tap Refresh.":"Connecting to live market data…";return}
+  var age=Date.now()-meta.at,stale=age>3*REFRESH;
+  dot.classList.add(state==="err"||stale?"stale":"live");
+  t.textContent=(stale?"Last live rate ":"Live rate · checked ")+timeStr(meta.at)+" ("+ago(meta.at)+") · "+meta.src+(meta.note?" · "+meta.note:"")+(state==="err"?" · retrying…":"");
+}
+
+/* ---------- data sources ---------- */
+function getJSON(url,ms){
+  var ctl="AbortController" in window?new AbortController():null;
+  var to=setTimeout(function(){ctl&&ctl.abort()},ms||9000);
+  return fetch(url,{cache:"no-store",signal:ctl?ctl.signal:undefined}).then(function(r){clearTimeout(to);if(!r.ok)throw new Error(r.status);return r.json()});
+}
+function fromCoinbase(){
+  return getJSON("https://api.coinbase.com/v2/exchange-rates?currency=USD").then(function(j){
+    var r=j&&j.data&&j.data.rates;if(!r||!r.ZAR||!r.BTC)throw new Error("bad data");
+    var o={USD:1};Object.keys(r).forEach(function(k){var n=parseFloat(r[k]);if(n>0)o[k]=n});
+    return {rates:o,src:"Coinbase",note:""};
+  });
+}
+/* backup: Bitcoin from CoinGecko, fiat from open.er-api (daily reference rates, clearly labelled) */
+function fromBackup(){
+  var fx=getJSON("https://open.er-api.com/v6/latest/USD").then(function(j){if(j.result!=="success")throw new Error("fx");return j});
+  var btc=getJSON("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether&vs_currencies=usd");
+  return Promise.all([fx,btc]).then(function(res){
+    var o={};Object.keys(res[0].rates).forEach(function(k){o[k]=res[0].rates[k]});
+    o.USD=1;o.BTC=1/res[1].bitcoin.usd;o.ETH=1/res[1].ethereum.usd;o.USDT=1/res[1].tether.usd;
+    var d=new Date(res[0].time_last_update_unix*1000);
+    return {rates:o,src:"CoinGecko + ExchangeRate-API",note:"fiat rates from "+d.toLocaleDateString("en-ZA",{day:"numeric",month:"short"})};
+  });
+}
+function load(){
+  if(busy)return;busy=true;
+  $("refresh").textContent="Checking…";
+  fromCoinbase().catch(fromBackup).then(function(d){
+    rates=d.rates;meta={src:d.src,at:Date.now(),note:d.note};
+    markAvailable();update();renderStatus("ok");
+  }).catch(function(){
+    if(!rates)meta.note="Live rate unavailable right now. No answer is shown until a real rate loads.";
+    update();renderStatus("err");
+  }).then(function(){busy=false;$("refresh").textContent="Refresh now"});
+}
+
+/* ---------- URL sharing ---------- */
+function syncUrl(){
+  try{
+    var p=new URLSearchParams();
+    var v=parse(amtA.value);if(!isNaN(v))p.set("amount",String(v));
+    p.set("from",curA.value);p.set("to",curB.value);
+    history.replaceState(null,"","?"+p.toString());
+  }catch(e){}
+}
+function shareText(){
+  var A=curA.value,B=curB.value,a=parse(amtA.value),b=parse(amtB.value);
+  if(isNaN(a)||isNaN(b)||!rates)return "";
+  var link=location.origin+location.pathname+"?amount="+a+"&from="+A+"&to="+B;
+  return money(A,a)+" = "+money(B,b)+"\nRate: "+(A==="SATS"?"1 sat":"1 "+A)+" = "+fmtRate(B,convert(1,A,B))+" (live, "+timeStr(meta.at)+" on "+new Date(meta.at).toLocaleDateString("en-ZA",{day:"numeric",month:"short",year:"numeric"})+")\nCheck it yourself: "+link;
+}
+function toast(m){var t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(function(){t.classList.remove("on")},1800)}
+function copy(txt,msg){
+  if(!txt){toast("Enter an amount first");return}
+  var done=function(){toast(msg)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback)}else fallback();
+  function fallback(){var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done()}catch(e){toast("Couldn't copy")}ta.remove()}
+}
+
+/* ---------- events ---------- */
+function setPair(from,to,keepAmount){
+  curA.value=from;curB.value=to;last="A";
+  if(!keepAmount){var q=QUICK[from];if(q)amtA.value=plain(from,from==="BTC"?0.001:q[Math.min(2,q.length-1)]).replace(/\.00$/,"")}
+  renderQuick();markPresets();update();
+}
+amtA.addEventListener("input",function(){last="A";update()});
+amtB.addEventListener("input",function(){last="B";update()});
+curA.addEventListener("change",function(){renderQuick();markPresets();update()});
+curB.addEventListener("change",function(){markPresets();update()});
+$("swap").addEventListener("click",function(){
+  var a=curA.value,b=curB.value;
+  if(last==="B"){var v=parse(amtB.value);if(!isNaN(v))amtA.value=plain(b,v)}
+  curA.value=b;curB.value=a;last="A";
+  renderQuick();markPresets();update();amtA.focus();
+});
+[].forEach.call(document.querySelectorAll(".preset"),function(b){b.addEventListener("click",function(){setPair(b.dataset.from,b.dataset.to);amtA.focus();amtA.select()})});
+$("quick").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;e.preventDefault();amtA.value=plain(curA.value,parseFloat(b.dataset.q)).replace(/\.00$/,"");last="A";update()});
+$("ogrid").addEventListener("click",function(e){var b=e.target.closest(".ocell");if(!b)return;curB.value=b.dataset.c;last="A";markPresets();update();document.querySelector(".cv").scrollIntoView({behavior:"smooth",block:"start"})});
+$("refresh").addEventListener("click",load);
+$("copyAns").addEventListener("click",function(){copy(shareText(),"Answer copied")});
+$("copyLink").addEventListener("click",function(){var a=parse(amtA.value);copy(location.origin+location.pathname+"?amount="+(isNaN(a)?"":a)+"&from="+curA.value+"&to="+curB.value,"Link copied")});
+$("waShare").addEventListener("click",function(e){var t=shareText();if(!t){e.preventDefault();toast("Enter an amount first");return}this.href="https://wa.me/?text="+encodeURIComponent(t)});
+/* tidy the top box on blur so 1000 shows as 1,000 */
+amtA.addEventListener("blur",function(){var v=parse(amtA.value);if(!isNaN(v)&&last==="A")amtA.value=plain(curA.value,v).replace(/\.00$/,"")});
+document.addEventListener("visibilitychange",function(){if(!document.hidden&&(!meta.at||Date.now()-meta.at>10000))load()});
+setInterval(function(){if(!document.hidden)load()},REFRESH);
+setInterval(function(){renderStatus(meta.at?"ok":"")},1000);
+
+/* ---------- start ---------- */
+(function init(){
+  var p=new URLSearchParams(location.search);
+  var f=(p.get("from")||"USD").toUpperCase(),t=(p.get("to")||"ZAR").toUpperCase(),a=p.get("amount");
+  if(!BY[f])f="USD";if(!BY[t]||t===f)t=f==="ZAR"?"USD":"ZAR";
+  curA.value=f;curB.value=t;
+  if(a!==null&&!isNaN(parse(a)))amtA.value=plain(f,parse(a));
+  else if(f==="BTC")amtA.value="0.001";
+  renderQuick();markPresets();update();load();
+})();
+})();
+</script>
+</body>
+</html>
