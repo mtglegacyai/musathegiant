@@ -1,296 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | EX-AI BOT | Aurum Partner</title>
-    <meta name="description" content="Privacy policy for MTG Aurum Foundation affiliate partner site. How we collect, use, and protect your data.">
-    <link rel="icon" type="image/png" href="https://www.musathegiant.com/images/aurum-trading-bot.png">
-    <link rel="apple-touch-icon" href="https://www.musathegiant.com/images/aurum-trading-bot.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --blue-primary: #0073FF;
-            --blue-secondary: #3898F8;
-            --blue-accent: #2C90FA;
-            --blue-gradient: linear-gradient(99.52deg, #0073FF, #3898F8);
-            --blue-gradient-hover: linear-gradient(99.52deg, #0060DD, #2C90FA);
-            --blue-glow: rgba(0, 115, 255, 0.2);
-            --blue-glow-strong: rgba(0, 115, 255, 0.35);
-            --bg-page: #EEEEEE;
-            --bg-section-alt: #F1F8FF;
-            --bg-white: #FFFFFF;
-            --text-heading: #03030C;
-            --text-body: #464646;
-            --text-nav: #444967;
-            --text-sub: #6C6C6C;
-            --text-white: #FFFFFF;
-            --border-card: #F6F6F6;
-            --glass-bg: rgba(255, 255, 255, 0.3);
-            --glass-border: rgba(255, 255, 255, 0.5);
-            --glass-strong: rgba(255, 255, 255, 0.85);
-            --font-primary: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
-
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg-page);
-            color: var(--text-body);
-            font-family: var(--font-primary);
-            font-size: 16px;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* NAV */
-        .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: var(--glass-strong); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 115, 255, 0.08);
-            transition: box-shadow 0.4s ease;
-        }
-        .nav-inner {
-            max-width: 1200px; margin: 0 auto;
-            padding: 14px 32px; display: flex;
-            align-items: center; justify-content: space-between;
-        }
-        .nav-logo { display: flex; flex-direction: column; text-decoration: none; }
-        .nav-logo-text { font-family: var(--font-primary); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
-        .nav-logo-text .blue { color: var(--blue-primary); }
-        .nav-logo-text .dark { color: var(--text-heading); }
-        .nav-logo-tag { font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-nav); margin-top: -2px; }
-        .nav-links { display: flex; list-style: none; gap: 32px; }
-        .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--text-nav); text-decoration: none; transition: color 0.3s ease; }
-        .nav-links a:hover { color: var(--blue-primary); }
-        .btn-join {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 10px 14px 10px 22px; border-radius: 50px;
-            font-family: var(--font-primary); font-weight: 600; font-size: 0.78rem;
-            color: var(--text-white); background: var(--blue-gradient);
-            text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .btn-join:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--blue-glow-strong); }
-        .btn-circle {
-            width: 28px; height: 28px; border-radius: 50%; background: #FFF;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .btn-circle i { color: var(--blue-primary); font-size: 0.6rem; }
-        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
-        .hamburger span { width: 22px; height: 2px; background: var(--text-heading); border-radius: 2px; }
-
-        /* LEGAL CONTENT */
-        .legal-page { padding: 140px 0 80px; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
-        .legal-content {
-            max-width: 800px; margin: 0 auto;
-            background: var(--bg-white); border-radius: 20px;
-            padding: 48px 56px; border: 1px solid var(--border-card);
-        }
-        .legal-eyebrow {
-            display: inline-flex; font-size: 0.7rem; font-weight: 500;
-            text-transform: uppercase; letter-spacing: 0.04em; color: var(--blue-primary);
-            padding: 6px 16px; border-radius: 50px; background: var(--bg-section-alt);
-            border: 1px solid rgba(0, 115, 255, 0.15); margin-bottom: 16px;
-        }
-        .legal-heading {
-            font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 700;
-            color: var(--text-heading); line-height: 1.15; margin-bottom: 8px;
-        }
-        .legal-updated { font-size: 0.82rem; color: var(--text-sub); margin-bottom: 36px; }
-        .legal-content h2 {
-            font-size: 1.15rem; font-weight: 700; color: var(--text-heading);
-            margin-top: 36px; margin-bottom: 12px;
-        }
-        .legal-content h3 {
-            font-size: 1rem; font-weight: 600; color: var(--text-heading);
-            margin-top: 24px; margin-bottom: 8px;
-        }
-        .legal-content p { margin-bottom: 14px; color: var(--text-body); line-height: 1.75; }
-        .legal-content ul {
-            margin: 0 0 16px 24px; padding: 0;
-        }
-        .legal-content li { margin-bottom: 8px; line-height: 1.7; color: var(--text-body); }
-        .legal-content a { color: var(--blue-primary); text-decoration: none; }
-        .legal-content a:hover { text-decoration: underline; }
-        .legal-content strong { color: var(--text-heading); }
-
-        /* BACK LINK */
-        .back-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 0.85rem; font-weight: 500; color: var(--blue-primary);
-            text-decoration: none; margin-bottom: 24px; transition: gap 0.3s ease;
-        }
-        .back-link:hover { gap: 12px; }
-
-        /* FOOTER */
-        
-        .footer {
-            background: var(--blue-gradient);
-            padding: 56px 0 0;
-            color: var(--text-white);
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr 1fr;
-            gap: 40px;
-            padding-bottom: 36px;
-        }
-        .footer .nav-logo-text .blue { color: #FFFFFF; }
-        .footer .nav-logo-text .dark { color: var(--text-white); }
-        .footer .nav-logo-tag { color: rgba(255, 255, 255, 0.7); }
-        .footer-brand .nav-logo { margin-bottom: 14px; }
-        
-        .footer-brand .tag {
-            font-family: var(--font-primary);
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.85);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 10px;
-        }
-        
-        .footer-brand p {
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.75);
-            line-height: 1.6;
-            max-width: 320px;
-        }
-        
-        .footer-heading {
-            font-weight: 600;
-            font-size: 0.82rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-white);
-            margin-bottom: 18px;
-        }
-        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        
-        .footer-links a {
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.75);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .footer-links a:hover { color: #FFFFFF; }
-        
-        .social-icons {
-            display: flex;
-            gap: 12px;
-            margin-top: 10px;
-        }
-        .social-icons a {
-            width: 40px; height: 40px; border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.35); display: flex;
-            align-items: center; justify-content: center;
-            color: rgba(255, 255, 255, 0.8); font-size: 0.95rem;
-            text-decoration: none; transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--text-white);
-            border-color: rgba(255, 255, 255, 0.6);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 22px 0;
-        }
-        
-        .disclaimer {
-            font-weight: 300;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.7;
-            margin-bottom: 14px;
-            max-width: 960px;
-        }
-        .disclaimer strong { color: rgba(255, 255, 255, 0.8); }
-        
-        .copyright {
-            font-size: 0.76rem;
-            color: rgba(255, 255, 255, 0.65);
-        }
-        .legal-footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; margin-bottom: 20px; }
-        .legal-footer-links a { font-size: 0.72rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.3s ease; }
-        .legal.footer-links a:hover { color: #FFFFFF; }
-
-        /* RESPONSIVE */
-        /* SCROLL TO TOP */
-        .scroll-to-top {
-            position: fixed; bottom: 28px; right: 28px;
-            width: 50px; height: 50px; border-radius: 50%;
-            background: var(--blue-gradient); background-size: 200% auto;
-            border: none; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 999; opacity: 0; pointer-events: none;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 20px var(--blue-glow);
-        }
-        .scroll-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        .scroll-to-top:hover { transform: translateY(-3px); box-shadow: 0 12px 36px var(--blue-glow-strong); }
-        .scroll-to-top .btn-circle {
-            width: 50px; height: 50px; border-radius: 50%;
-            background: #FFFFFF; display: flex;
-            align-items: center; justify-content: center;
-            transition: transform 0.3s ease;
-        }
-        .scroll-to-top:hover .btn-circle { transform: scale(1.08); }
-        .scroll-to-top .btn-circle i {
-            color: var(--blue-primary); font-size: 0.8rem;
-            transition: transform 0.3s ease;
-            animation: chevron-cascade-up 1.4s ease-in-out infinite;
-            opacity: 0;
-        }
-        .scroll-to-top:hover .btn-circle i { animation: scroll-top-bounce 0.6s ease infinite; opacity: 1; }
-        @keyframes chevron-cascade-up {
-            0%   { opacity: 0; transform: translateY(6px); }
-            30%  { opacity: 1; transform: translateY(0); }
-            60%  { opacity: 1; transform: translateY(-4px); }
-            100% { opacity: 0; transform: translateY(-10px); }
-        }
-        @keyframes scroll-top-bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-
-        @media (max-width: 1024px) {
-            .nav-links { display: none; }
-            .btn-join { display: none; }
-            .hamburger { display: flex; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .footer-brand p { max-width: 100%; }
-            .social-icons { justify-content: center; }
-            .footer-links { align-items: center; }
-        }
-        @media (max-width: 768px) {
-            .scroll-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
-            .scroll-to-top .btn-circle { width: 44px; height: 44px; }
-            .scroll-to-top .btn-circle i { font-size: 0.7rem; }
-            .legal-content { padding: 36px 28px; }
-            .legal-heading { font-size: clamp(1.5rem, 5vw, 2rem); }
-        }
-        @media (max-width: 480px) {
-            .scroll-to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
-            .scroll-to-top .btn-circle { width: 42px; height: 42px; }
-            .container { padding: 0 16px; }
-            .legal-content { padding: 28px 20px; }
-            .legal-content h2 { font-size: 1.05rem; }
-        }
-    </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Privacy Policy | MTG (Musa The Giant)</title>
+<meta name="description" content="How musathegiant.com handles your information. No sign-up forms, no tracking analytics and no advertising cookies. Your rights under POPIA.">
+<link rel="canonical" href="https://www.musathegiant.com/privacy-policy.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="Musa The Giant (MTG)">
+<meta name="theme-color" content="#040506">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MTG | Musa The Giant">
 <meta property="og:title" content="Privacy Policy | MTG">
-<meta property="og:description" content="How musathegiant.com collects, uses and protects your information.">
+<meta property="og:description" content="How musathegiant.com handles your information. No sign-up forms, no tracking analytics and no advertising cookies. Your rights under POPIA.">
 <meta property="og:url" content="https://www.musathegiant.com/privacy-policy.html">
 <meta property="og:image" content="https://www.musathegiant.com/images/og-privacy.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -298,187 +20,128 @@
 <meta property="og:locale" content="en_ZA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Privacy Policy | MTG">
-<meta name="twitter:description" content="How musathegiant.com collects, uses and protects your information.">
+<meta name="twitter:description" content="How musathegiant.com handles your information. No sign-up forms, no tracking analytics and no advertising cookies. Your rights under POPIA.">
 <meta name="twitter:image" content="https://www.musathegiant.com/images/og-privacy.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://www.musathegiant.com/privacy-policy.html#page",
+   "url": "https://www.musathegiant.com/privacy-policy.html",
+   "name": "Privacy Policy",
+   "description": "How musathegiant.com handles your information. No sign-up forms, no tracking analytics and no advertising cookies. Your rights under POPIA.",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@id": "https://www.musathegiant.com/#website"
+   },
+   "author": {
+    "@id": "https://www.musathegiant.com/#mtg"
+   },
+   "dateModified": "2026-10-01",
+   "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+     {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.musathegiant.com/"
+     },
+     {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Privacy Policy",
+      "item": "https://www.musathegiant.com/privacy-policy.html"
+     }
+    ]
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://www.musathegiant.com/#website",
+   "url": "https://www.musathegiant.com/",
+   "name": "MTG | Musa The Giant",
+   "publisher": {
+    "@id": "https://www.musathegiant.com/#mtg"
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://www.musathegiant.com/#mtg",
+   "name": "Musa The Giant",
+   "alternateName": [
+    "MTG",
+    "Musa the Giant"
+   ],
+   "url": "https://www.musathegiant.com/",
+   "image": "https://www.musathegiant.com/images/mtg-profile.jpg",
+   "jobTitle": "Crypto educator and affiliate marketer",
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Durban",
+    "addressCountry": "ZA"
+   },
+   "sameAs": [
+    "https://www.facebook.com/Musa.TheMTG",
+    "https://www.tiktok.com/@musathegiant",
+    "https://www.youtube.com/@MusaTheGiant"
+   ]
+  }
+ ]
+}
+</script>
+<link rel="preload" as="image" href="/images/mtg-profile.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pages.css">
 </head>
 <body>
+<header class="site-head"><nav class="wrap" aria-label="Main"><a class="brand" href="/"><img src="/images/mtg-profile.jpg" alt="Musa The Giant" width="36" height="36">MTG <b>👑</b></a>
+<div class="navlinks"><a class="hide-sm" href="/about.html">About</a><a class="hide-sm" href="/halving/">Halving</a><a href="/contact.html">Contact</a><a class="box" href="/dashboard.html">Dashboard</a></div></nav></header>
+<main>
+<section class="phero"><div class="beam" aria-hidden="true"></div><canvas aria-hidden="true"></canvas>
+  <div class="wrap"><div class="phero-in"><div class="kicker"><i></i>Legal</div><h1>Privacy Policy</h1><p class="lede">This website is built to collect as little about you as possible. Here is exactly what happens to your information when you visit.</p><p class="meta">Last updated 1 October 2026</p></div></div></section>
+<div class="wrap doc"><aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#who-we-are">Who we are</a></li><li><a href="#what-this-website-collects">What this website collects</a></li><li><a href="#services-that-see-your-visit">Services that see your visit</a></li><li><a href="#when-you-contact-me">When you contact me</a></li><li><a href="#links-to-other-websites">Links to other websites</a></li><li><a href="#children">Children</a></li><li><a href="#your-rights">Your rights</a></li><li><a href="#changes-to-this-policy">Changes to this policy</a></li><li><a href="#contact">Contact</a></li></ol></aside>
+  <article class="prose">
+<h2 id="who-we-are">Who we are</h2>
+<p>musathegiant.com is the personal website of Musa The Giant (“MTG”, “I”, “me”), based in Durban, South Africa. I am responsible for the information described in this policy, in line with South Africa’s Protection of Personal Information Act (POPIA).</p>
+<h2 id="what-this-website-collects">What this website collects</h2>
+<p><strong>Nothing directly.</strong> The site has no sign-up forms, no accounts, no comments and no newsletter. It does not run Google Analytics, Facebook Pixel or any other tracking or advertising tools.</p>
+<h2 id="services-that-see-your-visit">Services that see your visit</h2>
+<p>Like every website, some technical information (such as your IP address and browser type) reaches the services that deliver the pages:</p>
+<ul>
+ <li><strong>GitHub Pages</strong> hosts this website and may log visitor IP addresses for security. See the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</li>
+ <li><strong>Google Fonts</strong> delivers the typefaces. Your browser downloads them from Google’s servers. See <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener">Google Fonts privacy</a>.</li>
+ <li><strong>Public blockchain explorers.</strong> On the <a href="/halving/">halving countdown</a>, your browser requests current block heights from public services such as mempool.space. They receive a normal web request from your browser.</li>
+</ul>
+<h2 id="when-you-contact-me">When you contact me</h2>
+<p>If you message me on WhatsApp or social media, I receive your name, number or username and whatever you choose to send. I use it only to reply to you. I don’t sell it, rent it or add you to bulk lists. Those platforms handle your data under their own privacy policies.</p>
+<h2 id="links-to-other-websites">Links to other websites</h2>
+<p>This site links to platforms such as Bitcoin Wealth, ClickBaitPays, YouTube, TikTok and Facebook. Once you leave musathegiant.com, their privacy policies apply, not this one.</p>
+<h2 id="children">Children</h2>
+<p>This website is meant for adults. It is not directed at anyone under 18, and I don’t knowingly collect information from children.</p>
+<h2 id="your-rights">Your rights</h2>
+<p>Under POPIA you can ask what personal information I hold about you, ask me to correct or delete it, and object to its use. If you are unhappy with my response, you can complain to the <a href="https://inforegulator.org.za/" target="_blank" rel="noopener">Information Regulator (South Africa)</a>.</p>
+<h2 id="changes-to-this-policy">Changes to this policy</h2>
+<p>If this policy changes, I will update it on this page and change the “last updated” date above.</p>
+<h2 id="contact">Contact</h2>
+<p>Questions about this page? Message MTG on WhatsApp at <a href="https://wa.me/27721714626" target="_blank" rel="noopener">+27 72 171 4626</a>, or see the <a href="/contact.html">contact page</a>.</p>
 
-    <header class="nav" role="banner">
-        <div class="nav-inner">
-            <a href="aurum.html" class="nav-logo" aria-label="EX-AI BOT Home">
-                <span class="nav-logo-text"><span class="blue">EX-AI</span> <span class="dark">BOT</span></span>
-                <span class="nav-logo-tag">Aurum Partner</span>
-            </a>
-            <nav aria-label="Main Navigation">
-                <ul class="nav-links">
-                    <li><a href="aurum.html#about">About</a></li>
-                    <li><a href="aurum.html#ex-ai-bot">EX-AI Bot</a></li>
-                    <li><a href="aurum.html#aurum-card">Aurum Card</a></li>
-                    <li><a href="aurum.html#partner-program">Partner Program</a></li>
-                    <li><a href="aurum.html#get-started">Get Started</a></li>
-                </ul>
-            </nav>
-            <a href="https://backoffice.aurum.foundation/u/EXTHT1" class="btn-join" target="_blank" rel="noopener noreferrer">Join Now <span class="btn-circle"><i class="fas fa-arrow-right"></i></span></a>
-            <div class="hamburger" aria-label="Toggle Menu" role="button" tabindex="0">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section class="legal-page">
-            <div class="container">
-                <div class="legal-content">
-                    <a href="aurum.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
-                    <div class="legal-eyebrow">Legal</div>
-                    <h1 class="legal-heading">Privacy Policy</h1>
-                    <p class="legal-updated">Last Updated: February 2026</p>
-                    
-      <h2>Introduction</h2>
-      <p>This Privacy Policy explains how MTG ("we," "us," or "our") collects, uses, stores, and protects information when you visit this website. We are committed to protecting your privacy and handling your data transparently and responsibly.</p>
-
-      <h2>Information We Collect</h2>
-      <h3>Information You Provide</h3>
-      <p>When you contact us via WhatsApp, social media, or any communication channel linked from this site, you may voluntarily provide personal information including your name, phone number, and message content. We collect only the information you choose to share.</p>
-
-      <h3>Information Collected Automatically</h3>
-      <p>When you visit this website, we may automatically collect certain technical information, including:</p>
-      <ul>
-        <li>IP address and approximate geographic location</li>
-        <li>Browser type, version, and language settings</li>
-        <li>Device type, operating system, and screen resolution</li>
-        <li>Pages visited, time spent on pages, and referring URLs</li>
-        <li>Cookies and similar tracking technologies (see our Cookie Policy for details)</li>
-      </ul>
-
-      <h3>Third-Party Data Collection</h3>
-      <p>This website embeds content from third-party services (including YouTube videos and Google Fonts) that may independently collect data through their own cookies and tracking technologies. These third parties operate under their own privacy policies, which we encourage you to review.</p>
-
-      <h2>How We Use Your Information</h2>
-      <p>We use collected information to:</p>
-      <ul>
-        <li>Respond to your inquiries and provide information about Aurum Foundation</li>
-        <li>Improve website content, performance, and user experience</li>
-        <li>Analyze website traffic patterns and visitor behavior</li>
-        <li>Comply with legal obligations and protect our rights</li>
-      </ul>
-      <p>We do not sell, rent, or trade your personal information to third parties for marketing purposes.</p>
-
-      <h2>Data Sharing</h2>
-      <p>We may share your information only in the following circumstances:</p>
-      <ul>
-        <li>With Aurum Foundation if you request to be connected to their platform (e.g., by requesting a Zoom link or signing up through an affiliate link)</li>
-        <li>With service providers who assist in website hosting, analytics, or communications, under strict data protection agreements</li>
-        <li>When required by law, regulation, or legal process</li>
-        <li>To protect the rights, safety, or property of MTG, our users, or the public</li>
-      </ul>
-
-      <h2>Data Retention</h2>
-      <p>We retain personal information only for as long as necessary to fulfill the purposes described in this policy, comply with legal obligations, resolve disputes, and enforce agreements. Communication records (WhatsApp messages, social media interactions) are retained for up to 24 months unless you request earlier deletion.</p>
-
-      <h2>Your Rights</h2>
-      <p>Depending on your jurisdiction, you may have the following rights regarding your personal data:</p>
-      <ul>
-        <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
-        <li><strong>Correction:</strong> Request correction of inaccurate or incomplete data</li>
-        <li><strong>Deletion:</strong> Request deletion of your personal data ("right to be forgotten")</li>
-        <li><strong>Portability:</strong> Request your data in a structured, machine-readable format</li>
-        <li><strong>Objection:</strong> Object to certain types of data processing</li>
-        <li><strong>Withdrawal of Consent:</strong> Withdraw consent for data processing at any time</li>
-      </ul>
-      <p>To exercise any of these rights, contact us via WhatsApp at +27 72 171 4626 or through our social media channels. We will respond to all requests within 30 days.</p>
-
-      <h2>International Data Transfers</h2>
-      <p>This website is accessible globally. If you are accessing this site from outside South Africa, your data may be transferred to and processed in South Africa or other jurisdictions where our service providers operate. By using this website, you consent to such transfers, subject to the protections outlined in this policy.</p>
-
-      <h2>Children's Privacy</h2>
-      <p>This website is not intended for individuals under the age of 18. We do not knowingly collect personal information from minors. If we become aware that a minor has provided us with personal data, we will take steps to delete such information promptly.</p>
-
-      <h2>Changes to This Policy</h2>
-      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. The "Last Updated" date at the top of this page indicates when the policy was last revised. We encourage you to review this page periodically.</p>
-
-      <h2>Contact Us</h2>
-      <p>For questions, concerns, or requests related to this Privacy Policy or your personal data, contact us via WhatsApp at +27 72 171 4626 or through the social media channels listed in the footer of this website.</p>
-    
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="nav-logo">
-                        <span class="nav-logo-text"><span class="blue">EX-AI</span> <span class="dark">BOT</span></span>
-                    </div>
-                    <div class="tag">Aurum Affiliate Partner Site</div>
-                    <p>Empowering financial freedom through AI-driven trading and blockchain innovation. This is an independent partner site, not the official Aurum Foundation platform.</p>
-                </div>
-                <div>
-                    <h3 class="footer-heading">Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="aurum.html#about">About</a></li>
-                        <li><a href="aurum.html#ex-ai-bot">EX-AI Bot</a></li>
-                        <li><a href="aurum.html#aurum-card">Aurum Card</a></li>
-                        <li><a href="aurum.html#partner-program">Partner Program</a></li>
-                        <li><a href="aurum.html#faq">FAQ</a></li>
-                        <li><a href="aurum.html#get-started">Get Started</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="footer-heading">Let's Connect</h3>
-                    <div class="social-icons">
-                        <a href="https://wa.me/27721714626" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.tiktok.com/@musathegiant" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="https://www.facebook.com/Musa.TheMTG" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.youtube.com/@MusaTheGiant" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="legal-footer-links">
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms-of-use.html">Terms of Use</a>
-                    <a href="risk-disclaimer.html">Risk Disclaimer</a>
-                    <a href="earnings-disclaimer.html">Earnings Disclaimer</a>
-                    <a href="affiliate-disclosure.html">Affiliate Disclosure</a>
-                    <a href="cookie-policy.html">Cookie Policy</a>
-                    <a href="anti-spam-policy.html">Anti-Spam Policy</a>
-                    <a href="about.html">About</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="copyright.html">Copyright</a>
-                </div>
-                <p class="disclaimer">
-                    <strong>Disclaimer:</strong> This website is an independent Aurum Foundation affiliate partner site operated by MTG. It is NOT owned, operated, or endorsed by Aurum Foundation. Nothing on this website constitutes financial, investment, or legal advice. All information is provided for educational and informational purposes only. Cryptocurrency and trading involve significant risk; you may lose some or all of your investment. Past performance does not guarantee future results. Always do your own research (DYOR) and consult a qualified financial advisor before making any investment decisions.
-                </p>
-                <p class="copyright">&copy; <span id="copyright-year"></span> MTG &bull; The Digital Architect | Built with <span style="color: #FF0000;">&hearts;</span> by MTG</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- SCROLL TO TOP BUTTON -->
-    <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">
-        <span class="btn-circle"><i class="fas fa-arrow-up"></i></span>
-    </button>
-
-    <script>
-        document.getElementById('copyright-year').textContent = new Date().getFullYear();
-        // Scroll to top
-        (function() {
-            var scrollBtn = document.getElementById("scroll-to-top");
-            if (!scrollBtn) return;
-            window.addEventListener("scroll", function() {
-                if (window.scrollY > 600) {
-                    scrollBtn.classList.add("visible");
-                } else {
-                    scrollBtn.classList.remove("visible");
-                }
-            }, { passive: true });
-            scrollBtn.addEventListener("click", function() {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-        })();
-    </script>
+  </article>
+</div>
+</main>
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a class="brand" href="/"><img src="/images/mtg-profile.jpg" alt="" width="36" height="36" loading="lazy">MTG <b>👑</b></a>
+      <p>Musa The Giant, Your Digital Architect. Bitcoin, crypto, AI and trading, explained clearly. Mission: Build Generational Wealth.</p>
+      <div class="socials" aria-label="MTG on social media"><a href="https://wa.me/27721714626?text=Hi%20MTG%2C%20I%20found%20you%20on%20musathegiant.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.7 11.7 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-.9 1.1-.2.2-.4.2-.7.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"/></svg></a><a href="https://www.facebook.com/Musa.TheMTG" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.1C24 5.4 18.6 0 12 0S0 5.4 0 12.1C0 18.1 4.4 23 10.1 24v-8.4H7.1v-3.5h3v-2.7c0-3 1.8-4.7 4.6-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9v2.3h3.4l-.5 3.5h-2.9V24C19.6 23 24 18.1 24 12.1Z"/></svg></a><a href="https://www.tiktok.com/@musathegiant" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.3 3.4A5.2 5.2 0 0 1 16.1 0h-3.5v15.3a3.1 3.1 0 1 1-2.7-3.1V8.7a6.6 6.6 0 1 0 6.2 6.6V7.5a8.7 8.7 0 0 0 5.1 1.7V5.8a5.3 5.3 0 0 1-1.9-.4Z"/></svg></a><a href="https://www.youtube.com/@MusaTheGiant" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg></a></div></div>
+    <nav aria-label="Explore"><h2>Explore</h2><ul><li><a href="/">Home</a></li><li><a href="/dashboard.html">Income Streams</a></li><li><a href="/halving/">Halving Countdown</a></li><li><a href="/about.html">About MTG</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/github-pages-custom-domain-guide.html">GitHub Pages Guide</a></li></ul></nav>
+    <nav aria-label="Legal"><h2>Legal</h2><ul><li><a href="/privacy-policy.html">Privacy Policy</a></li><li><a href="/terms-of-use.html">Terms of Use</a></li><li><a href="/cookie-policy.html">Cookie Policy</a></li><li><a href="/affiliate-disclosure.html">Affiliate Disclosure</a></li><li><a href="/earnings-disclaimer.html">Earnings Disclaimer</a></li><li><a href="/risk-disclaimer.html">Risk Disclaimer</a></li><li><a href="/anti-spam-policy.html">Anti-Spam Policy</a></li><li><a href="/copyright.html">Copyright Notice</a></li></ul></nav>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 MTG (Musa The Giant). All rights reserved.</span><span>Educational content. Not financial advice.</span></div>
+</footer>
+<script src="/assets/pages.js" defer></script>
 </body>
 </html>
