@@ -205,12 +205,21 @@ h1.split .sp{display:inline-block;width:.24em}
 .go h1.split .ch{opacity:1;transform:none;filter:blur(0)}
 /* after the reveal: one continuous surface + light sweep */
 h1.split.lit .ch{transition:none;transform:none;filter:none;opacity:1}
-h1.split.lit .line{background:
+h1.split.lit .line:not(.l2){background:
   linear-gradient(105deg,transparent 42%,rgba(255,228,176,.95) 49%,rgba(242,173,60,.9) 51%,transparent 58%) no-repeat,
   linear-gradient(180deg,#fff,#d8dadd 60%,#aeb2b8);
   background-size:300% 100%,100% 100%;background-position:160% 0,0 0;-webkit-background-clip:text;background-clip:text;color:transparent;
   animation:shine 7s ease-in-out .4s infinite}
 h1.split.lit .ch{background:none;-webkit-background-clip:initial;background-clip:initial}
+/* typewriter on line 2 (fixed line height; long phrases shrink to fit) */
+h1 .l2{height:.92em;display:flex;align-items:center;justify-content:center}
+h1 .tw{display:inline-block;white-space:nowrap;line-height:.92;transition:font-size .25s var(--ease)}
+h1 .l2 .typed{background:linear-gradient(180deg,#fff,#d8dadd 60%,#aeb2b8);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.02em}
+h1 .l2 .typed.amb{background:linear-gradient(180deg,#ffe2aa,#f2ad3c 70%,#d18a1c);-webkit-background-clip:text;background-clip:text}
+h1 .caret{display:none;width:.07em;height:.78em;margin-left:.06em;vertical-align:-.04em;border-radius:2px;background:var(--amber);box-shadow:0 0 14px rgba(242,173,60,.7)}
+h1.typing .caret{display:inline-block;animation:blink 1s steps(1) infinite}
+h1.typing.busy .caret{animation:none}
+@keyframes blink{50%{opacity:0}}
 @keyframes shine{0%{background-position:160% 0,0 0}28%,100%{background-position:-60% 0,0 0}}
 
 .hero p{max-width:780px;margin:0 auto;color:var(--body);font-size:clamp(1rem,2vw,1.18rem);line-height:1.75}
@@ -299,7 +308,7 @@ h1.split.lit .ch{background:none;-webkit-background-clip:initial;background-clip
         <div class="ring" id="ring1"></div><div class="ring r2" id="ring2"></div>
         <div class="glyph">₿</div><div class="glyph">Ξ</div><div class="glyph ai">AI</div><div class="glyph">▲</div>
       </div>
-      <h1 id="h1"><span class="line">Multiple Streams</span><span class="line">of Income</span></h1>
+      <h1 id="h1"><span class="line">Multiple Streams</span><span class="line l2"><span class="tw" id="tw"><span class="typed" id="typed">of Income</span><i class="caret" aria-hidden="true"></i></span></span></h1>
     </div>
     <p id="lede">Unlock your path to financial freedom with exclusive access to meticulously vetted <span class="kw">₿itcoin</span>, <span class="kw">Crypto</span>, <span class="kw">AI</span>, <span class="kw">Trading</span>, <span class="kw">Affiliate</span>, and <span class="kw">Digital Marketing</span> opportunities! Discover more below...</p>
     <div class="cta-mag" id="mag"><i class="halo soft" aria-hidden="true"></i><i class="halo" aria-hidden="true"></i><a class="cta" id="cta" href="dashboard.html">Explore Dashboard <span>→</span></a></div>
@@ -344,7 +353,7 @@ h1.split.lit .ch{background:none;-webkit-background-clip:initial;background-clip
 
   /* ---------- split headline + paragraph ---------- */
   const h1=document.getElementById('h1');let ci=0;
-  h1.querySelectorAll('.line').forEach(line=>{
+  h1.querySelectorAll('.line:not(.l2)').forEach(line=>{
     const t=line.textContent;line.textContent='';
     for(const ch of t){const s=document.createElement('span');
       if(ch===' '){s.className='sp';s.innerHTML='&nbsp;'}else{s.className='ch';s.textContent=ch;s.style.setProperty('--i',ci++)}
@@ -378,6 +387,26 @@ h1.split.lit .ch{background:none;-webkit-background-clip:initial;background-clip
   const kws=[...lede.querySelectorAll('.kw')];let kwi=0,kwTimer;
   function cycle(){kws.forEach(k=>k.classList.remove('hot'));kws[kwi%kws.length].classList.add('hot');kwi++}
 
+  /* ---------- typewriter (line 2) ---------- */
+  const typed=document.getElementById('typed');typed.setAttribute('aria-hidden','true');
+  const phrases=[['of Income',0],['with ₿itcoin',1],['with Crypto',1],['with AI',1],['with Trading',1],['with Affiliate Marketing',1],['with Digital Marketing',1]];
+  const tws=document.getElementById('tw');
+  function fit(txt){tws.style.transition='none';tws.style.fontSize='1em';typed.textContent=txt;
+    const w=tws.getBoundingClientRect().width,av=h1.getBoundingClientRect().width*.97;
+    tws.style.fontSize=Math.min(1,av/w).toFixed(3)+'em';typed.textContent='\u00a0';void tws.offsetWidth;tws.style.transition=''}
+  let tw;typed.textContent='\u00a0';h1.classList.add('typing');
+  function typeLoop(){
+    let p=0,i=0,del=false;clearTimeout(tw);
+    (function tick(){const [txt,amb]=phrases[p];typed.classList.toggle('amb',!!amb);
+      if(!del){if(i===0)fit(txt);i++;typed.textContent=txt.slice(0,i);h1.classList.add('busy');
+        if(i<txt.length){tw=setTimeout(tick,75+Math.random()*55)}
+        else{h1.classList.remove('busy');del=true;tw=setTimeout(tick,p===0?3200:2000)}}
+      else{i--;typed.textContent=i?txt.slice(0,i):'\u00a0';h1.classList.add('busy');
+        if(i>0){tw=setTimeout(tick,38)}
+        else{h1.classList.remove('busy');del=false;p=(p+1)%phrases.length;tw=setTimeout(tick,380)}}
+    })();
+  }
+
   /* ---------- entrance orchestration ---------- */
   let timers=[];
   function play(){
@@ -387,6 +416,7 @@ h1.split.lit .ch{background:none;-webkit-background-clip:initial;background-clip
     requestAnimationFrame(()=>{body.classList.add('go');decode(250);
       timers.push(setTimeout(()=>h1.classList.add('lit'),450+ci*38+1200));
       timers.push(setTimeout(()=>body.classList.add('settled'),3000));
+      timers.push(setTimeout(typeLoop,1300));
       timers.push(setTimeout(()=>{cycle();kwTimer=setInterval(cycle,2200)},3600));
       net.burst();
     });
