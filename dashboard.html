@@ -192,6 +192,13 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
 .profile:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(242,173,60,.16),transparent 60%);pointer-events:none}
 .avatar{position:relative;width:84px;height:84px;margin:0 auto 10px;border-radius:50%;padding:3px;background:conic-gradient(from var(--ang),#f2ad3c,#ffe3a3,#8a5a12,#f2ad3c);animation:ctaSpin 8s linear infinite;box-shadow:0 0 24px rgba(242,173,60,.25)}
 .avatar img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;border:2px solid #07090c}
+/* profile card: never let the flex sidebar squash or clip the photo and name */
+.sidebar{height:100vh;height:100dvh;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.sidebar>*{flex-shrink:0}
+.profile{flex:0 0 auto;min-height:max-content}
+.avatar{flex:0 0 auto}
+.profile strong,.profile .who{white-space:normal;overflow-wrap:anywhere;line-height:1.3}
+@media(max-height:760px){.avatar{width:72px;height:72px;margin-bottom:8px}.profile{padding:12px 12px 10px;margin-bottom:14px}}
 .profile strong{display:block;font:800 .98rem Outfit,sans-serif;letter-spacing:.01em;color:#fff}
 .profile .who{display:block;margin-top:1px;color:#8d95a1;font-size:.7rem;font-weight:700;letter-spacing:.04em}
 .mission{margin-top:12px;padding-top:11px;border-top:1px solid rgba(255,255,255,.07)}
