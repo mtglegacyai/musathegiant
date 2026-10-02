@@ -23,8 +23,15 @@
     <image:image><image:loc>https://www.musathegiant.com/images/og-converter.jpg</image:loc><image:title>Dollar to Rand and Bitcoin Converter</image:title></image:image>
   </url>
   <url>
+    <loc>https://www.musathegiant.com/dca/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://www.musathegiant.com/images/og-dca.jpg</image:loc><image:title>MTG Bitcoin DCA Calculator</image:title></image:image>
+  </url>
+  <url>
     <loc>https://www.musathegiant.com/tools/</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image><image:loc>https://www.musathegiant.com/images/og-tools.jpg</image:loc><image:title>Tools by MTG</image:title></image:image>

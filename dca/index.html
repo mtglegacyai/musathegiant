@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bitcoin DCA Calculator (ZAR &amp; USD) | See What Regular Buying Could Have Made | MTG</title>
+<meta name="description" content="Free Bitcoin dollar-cost averaging calculator in rand or dollars. Pick an amount, weekly or monthly buys and your dates to see total invested, Bitcoin bought, profit or loss and a lump-sum comparison.">
+<link rel="canonical" href="https://www.musathegiant.com/dca/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="author" content="Musa The Giant (MTG)">
+<meta name="theme-color" content="#040506">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MTG | Musa The Giant">
+<meta property="og:title" content="MTG Bitcoin DCA Calculator | ZAR &amp; USD">
+<meta property="og:description" content="What if you had bought Bitcoin every week or month? Pick your amount and dates and see the result, with a lump-sum comparison.">
+<meta property="og:url" content="https://www.musathegiant.com/dca/">
+<meta property="og:image" content="https://www.musathegiant.com/images/og-dca.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MTG Bitcoin DCA Calculator">
+<meta property="og:locale" content="en_ZA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MTG Bitcoin DCA Calculator | ZAR &amp; USD">
+<meta name="twitter:description" content="Free tool: see what regular Bitcoin buying could have looked like in rand or dollars.">
+<meta name="twitter:image" content="https://www.musathegiant.com/images/og-dca.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "@id": "https://www.musathegiant.com/dca/#app",
+   "name": "MTG Bitcoin DCA Calculator",
+   "url": "https://www.musathegiant.com/dca/",
+   "description": "Free dollar-cost averaging calculator for Bitcoin in South African rand (ZAR) or US dollars (USD), using historical daily prices.",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "Any",
+   "browserRequirements": "Requires JavaScript",
+   "inLanguage": "en",
+   "isAccessibleForFree": true,
+   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "ZAR"},
+   "author": {"@id": "https://www.musathegiant.com/#mtg"},
+   "isPartOf": {"@id": "https://www.musathegiant.com/#website"}
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.musathegiant.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.musathegiant.com/tools/"},
+    {"@type": "ListItem", "position": 3, "name": "Bitcoin DCA Calculator", "item": "https://www.musathegiant.com/dca/"}
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {"@type": "Question", "name": "What is dollar-cost averaging (DCA)?", "acceptedAnswer": {"@type": "Answer", "text": "Dollar-cost averaging means investing the same amount of money at regular intervals, such as every week or month, instead of investing everything at once. You buy more when the price is low and less when it is high."}},
+    {"@type": "Question", "name": "Is DCA better than investing a lump sum?", "acceptedAnswer": {"@type": "Answer", "text": "Neither is always better. A lump sum has done better in some periods and DCA in others. DCA mainly helps with timing risk and with building a habit. It does not guarantee a profit or protect against losses."}},
+    {"@type": "Question", "name": "Can this calculator predict future returns?", "acceptedAnswer": {"@type": "Answer", "text": "No. It only shows what would have happened in the past using historical prices. Historical performance does not guarantee future results."}}
+   ]
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://www.musathegiant.com/#website",
+   "url": "https://www.musathegiant.com/",
+   "name": "MTG | Musa The Giant",
+   "publisher": {"@id": "https://www.musathegiant.com/#mtg"}
+  },
+  {
+   "@type": "Person",
+   "@id": "https://www.musathegiant.com/#mtg",
+   "name": "Musa The Giant",
+   "alternateName": ["MTG", "Musa the Giant"],
+   "url": "https://www.musathegiant.com/",
+   "image": "https://www.musathegiant.com/images/mtg-profile.jpg",
+   "jobTitle": "Crypto educator and affiliate marketer",
+   "address": {"@type": "PostalAddress", "addressLocality": "Durban", "addressCountry": "ZA"},
+   "sameAs": ["https://www.facebook.com/Musa.TheMTG", "https://www.tiktok.com/@musathegiant", "https://www.youtube.com/@MusaTheGiant"]
+  }
+ ]
+}
+</script>
+<link rel="preconnect" href="https://api.exchange.coinbase.com" crossorigin>
+<link rel="preconnect" href="https://api.frankfurter.dev" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pages.css">
+<style>
+/* ---- MTG Bitcoin DCA Calculator (uses the shared site tokens from pages.css) ---- */
+:root{--good:#4fe08b;--bad:#ff7a6b;--ink2:#9aa1ab;--chv:#f2ad3c;--chc:#9aa1ab}
+.phero-in{padding:48px 0 38px}
+.dca-wrap{padding:34px 0 8px}
+.panel{position:relative;max-width:1000px;margin:0 auto;padding:26px;border-radius:26px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(150deg,rgba(15,18,23,.97),rgba(6,8,10,.99));box-shadow:0 30px 90px rgba(0,0,0,.45)}
+.panel:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at 85% 0%,rgba(242,173,60,.1),transparent 45%)}
+.panel>*{position:relative}
+.panel h2{margin:0 0 4px;font:700 1.35rem/1.2 var(--f-display);letter-spacing:-.02em}
+.panel .sub{margin:0 0 20px;color:var(--ink2);font-size:.95rem}
+
+/* form */
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+.fld{min-width:0;margin:0;padding:0;border:0}
+.fld>label,.fld>legend{display:block;padding:0;margin:0 0 7px;color:#d3d7dd;font-size:.86rem;font-weight:800;letter-spacing:.02em}
+.fld .opt{color:var(--ink2);font-weight:500}
+.hint{margin:6px 0 0;color:var(--ink2);font-size:.8rem;line-height:1.45}
+.err{margin:6px 0 0;color:#ff9b8f;font-size:.84rem;font-weight:700}
+.err:empty{display:none}
+.inp{display:flex;align-items:center;min-height:54px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:#090b0e;transition:border-color .18s,box-shadow .18s}
+.inp:focus-within{border-color:rgba(242,173,60,.7);box-shadow:0 0 0 4px rgba(242,173,60,.12)}
+.inp.bad{border-color:rgba(255,122,107,.8)}
+.inp .pre,.inp .suf{flex:none;padding:0 4px 0 15px;color:var(--amber);font:800 1.05rem var(--f-display)}
+.inp .suf{padding:0 15px 0 4px}
+.inp input{flex:1;min-width:0;width:100%;min-height:52px;padding:0 15px;border:0;outline:0;background:transparent;color:#fff;font:700 1.1rem var(--f-body)}
+.inp .pre+input{padding-left:6px}
+.inp input::placeholder{color:#555c66}
+.inp input[type=date]{font-size:1rem;cursor:pointer}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px}
+.seg label{position:relative;display:block}
+.seg input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.seg span{display:flex;align-items:center;justify-content:center;min-height:54px;padding:8px 10px;border-radius:14px;border:1px solid var(--line);background:#0c0f13;color:#c9ced5;font:800 .95rem var(--f-body);text-align:center;transition:border-color .18s,background .18s,color .18s}
+.seg label:hover span{border-color:rgba(242,173,60,.4);color:#fff}
+.seg input:checked+span{border-color:rgba(242,173,60,.8);background:rgba(242,173,60,.13);color:#ffd27e}
+.seg input:focus-visible+span{outline:2px solid var(--amber);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{min-height:44px;padding:6px 16px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:#c3c8cf;font:700 .8rem var(--f-body);cursor:pointer;transition:border-color .18s,color .18s,transform .18s}
+.chip:hover{border-color:rgba(242,173,60,.45);color:#fff;transform:translateY(-1px)}
+.span2{grid-column:1/-1}
+.fbtns{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.gbtn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:12px 26px;border-radius:12px;border:1px solid rgba(255,214,138,.7);background:linear-gradient(180deg,#f6bd59,#dfa02d 58%,#ca8318);color:#1b1102;font:900 1rem var(--f-body);cursor:pointer;box-shadow:0 7px 0 rgba(113,67,6,.42),0 14px 30px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .18s cubic-bezier(.2,.7,.2,1),filter .18s,box-shadow .18s}
+.gbtn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.gbtn:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(113,67,6,.42),0 8px 20px rgba(0,0,0,.3)}
+.gbtn[disabled]{filter:grayscale(.5) brightness(.8);cursor:progress;transform:none}
+.sbtn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:54px;padding:11px 20px;border-radius:12px;border:1px solid var(--line);background:#0d1014;color:#e3e6ea;font:800 .95rem var(--f-body);cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.35),0 10px 22px rgba(0,0,0,.25);transition:transform .18s cubic-bezier(.2,.7,.2,1),border-color .18s}
+.sbtn:hover{transform:translateY(-2px);border-color:rgba(242,173,60,.45)}
+.sbtn svg,.gbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.msg{margin:18px 0 0;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,122,107,.4);background:rgba(255,122,107,.07);color:#ffc2b9;font-size:.95rem}
+.msg strong{color:#fff}
+.msg.info{border-color:rgba(242,173,60,.3);background:rgba(242,173,60,.06);color:#e8d3a6}
+.msg[hidden]{display:none}
+
+/* results */
+#results{max-width:1000px;margin:26px auto 0}
+#results[hidden]{display:none}
+.sum{margin:0 0 18px;color:#d3d7dd;font-size:1.02rem}
+.sum b{color:#fff}
+.tiles{display:grid;gap:12px;margin-bottom:12px}
+.tiles.t3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tiles.t4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tile{min-width:0;padding:16px 16px 15px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(160deg,#0f1216,#08090b)}
+.tile small{display:block;margin-bottom:5px;color:var(--ink2);font-size:.76rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.tile strong{display:block;color:#fff;font:800 clamp(1.15rem,2.2vw,1.55rem)/1.2 var(--f-display);letter-spacing:-.02em;overflow-wrap:anywhere}
+.tile em{display:block;margin-top:4px;color:var(--ink2);font-size:.8rem;font-style:normal;line-height:1.4}
+.tile.big strong{font-size:clamp(1.35rem,3vw,1.95rem)}
+.tile.good strong{color:var(--good)}.tile.bad strong{color:var(--bad)}
+.rs{margin-top:28px;padding-top:6px}
+.rs h3{margin:0 0 6px;font:700 1.15rem/1.3 var(--f-display);letter-spacing:-.01em}
+.rs>p{margin:0 0 12px;color:var(--ink2);font-size:.9rem}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 10px;color:#c9ced5;font-size:.84rem;font-weight:700}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{display:inline-block;width:26px;height:0;border-top:3px solid var(--chv)}
+.legend i.dash{border-top:3px dashed var(--chc)}
+.chartbox{position:relative;border-radius:16px;border:1px solid var(--line);background:#07090c;padding:10px 6px 4px;touch-action:pan-y}
+.chartbox:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.chartbox svg{display:block;width:100%;height:auto;overflow:visible}
+.ch-g{stroke:rgba(255,255,255,.08);stroke-width:1}
+.ch-t{fill:#9aa1ab;font:600 11px var(--f-body)}
+.ch-c{fill:none;stroke:var(--chc);stroke-width:2;stroke-dasharray:6 5}
+.ch-v{fill:none;stroke:var(--chv);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
+.ch-a{fill:url(#cg)}
+.ch-x{stroke:rgba(255,255,255,.35);stroke-width:1}
+.ch-d1{fill:var(--chv);stroke:#07090c;stroke-width:2}.ch-d2{fill:var(--chc);stroke:#07090c;stroke-width:2}
+.readout{margin:10px 2px 0;color:#d3d7dd;font-size:.9rem;min-height:1.4em}
+.readout b{color:#fff}
+.cmp{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#090b0e}
+.cmp-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:0 12px;padding:12px 16px;border-bottom:1px solid var(--line2);align-items:baseline}
+.cmp-row:last-child{border-bottom:0}
+.cmp-row.h{background:#0b0e12;color:var(--ink2);font-size:.78rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.cmp-row .lab{color:var(--ink2);font-size:.88rem;font-weight:700}
+.cmp-row .v{color:#fff;font-weight:800;overflow-wrap:anywhere}
+.cmp-row .v.good{color:var(--good)}.cmp-row .v.bad{color:var(--bad)}
+.verdict{margin:14px 0 0;padding:14px 16px;border-radius:14px;border:1px solid rgba(242,173,60,.25);background:linear-gradient(120deg,rgba(242,173,60,.07),rgba(12,15,19,.6));color:#e3e6ea}
+.verdict small{display:block;margin-top:6px;color:var(--ink2);font-size:.84rem}
+details.more{margin-top:22px;border:1px solid var(--line);border-radius:16px;background:#090b0e}
+details.more summary{min-height:50px;padding:14px 16px;cursor:pointer;color:#e3e6ea;font-weight:800;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px;border-radius:16px}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary:after{content:"+";color:var(--amber);font:800 1.3rem var(--f-display)}
+details.more[open] summary:after{content:"\2212"}
+details.more summary:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.ptable{padding:0 6px 8px}
+.ptable table{width:100%;border-collapse:collapse;font-size:.88rem}
+.ptable th,.ptable td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line2);font-variant-numeric:tabular-nums}
+.ptable th:first-child,.ptable td:first-child{text-align:left}
+.ptable th{position:sticky;top:0;background:#0b0e12;color:var(--ink2);font-size:.74rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.ptable td{color:#d3d7dd}
+.ptscroll{max-height:420px;overflow:auto}
+.datanote{margin:18px 0 0;padding:12px 14px;border-radius:12px;border:1px solid var(--line2);background:rgba(255,255,255,.02);color:var(--ink2);font-size:.84rem;line-height:1.55}
+.datanote b{color:#d3d7dd}
+.ract{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
+.ract .sbtn,.ract .gbtn{min-height:52px;padding:10px 12px;font-size:.9rem}
+
+/* disclaimer, affiliate, education */
+.discl{max-width:1000px;margin:26px auto 0}
+.callout.warn{margin:0}
+.callout.warn p{color:#e7cfc9;font-size:.95rem}
+.callout.warn strong{color:#fff}
+.aff{max-width:1000px;margin:34px auto 0;padding:26px;border-radius:24px;border:1px solid rgba(242,173,60,.3);background:linear-gradient(135deg,rgba(242,173,60,.07),rgba(10,12,15,.96) 55%)}
+.aff .tag{display:inline-block;margin:0 0 10px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.aff h2{margin:0 0 6px;font:800 clamp(1.5rem,3vw,2rem)/1.15 var(--f-display);letter-spacing:-.03em}
+.aff>p{margin:0 0 14px;color:var(--body)}
+.aff .disc{margin:0 0 20px;padding:11px 14px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line2);color:#c3c8cf;font-size:.86rem;line-height:1.55}
+.agrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.acell{display:flex;flex-direction:column;gap:8px;min-width:0}
+.acell .btn{width:100%;min-height:54px;text-align:center;line-height:1.2}
+.acell .btn.gold{font-size:.95rem}
+.acell p{margin:0;color:var(--ink2);font-size:.82rem;line-height:1.45;text-align:center}
+.btn.off{border-style:dashed;border-color:rgba(255,255,255,.18);background:#0b0d10;color:#8a919b;box-shadow:none;cursor:not-allowed;flex-direction:column;gap:2px}
+.btn.off:hover{transform:none;border-color:rgba(255,255,255,.18)}
+.btn.off small{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.edu{max-width:820px;margin:44px auto 0}
+.edu .prose{max-width:none}
+.edu .tbl table{min-width:0}
+.edu .tbl{overflow:visible}
+.edu .tbl td,.edu .tbl th{overflow-wrap:anywhere}
+.edu-eg{margin:14px 0 18px;padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:#0a0c0f;color:var(--body);font-size:.95rem}
+.edu-eg b{color:#fff}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:26px;z-index:50;transform:translate(-50%,20px);opacity:0;padding:10px 16px;border-radius:12px;background:#f2ad3c;color:#1b1102;font-weight:800;font-size:.88rem;pointer-events:none;transition:opacity .2s,transform .2s;max-width:calc(100% - 30px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.print-only{display:none}
+
+@media(max-width:900px){
+  .tiles.t4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .agrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:640px){
+  .phero-in{padding:32px 0 26px}
+  .dca-wrap{padding-top:22px}
+  .panel{padding:18px;border-radius:22px}
+  .fgrid{grid-template-columns:minmax(0,1fr);gap:18px}
+  .tiles.t3{grid-template-columns:minmax(0,1fr)}
+  .tiles.t4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tile{padding:14px 12px}
+  .fbtns .gbtn,.fbtns .sbtn{flex:1 1 100%}
+  .ract{grid-template-columns:minmax(0,1fr)}
+  .cmp-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:11px 12px}
+  .cmp-row .lab{grid-column:1/-1;margin-bottom:2px}
+  .cmp-row.h .lab{display:none}
+  .agrid{grid-template-columns:minmax(0,1fr)}
+  .aff{padding:20px;border-radius:20px}
+  .ptscroll{max-height:520px}
+  .ptable table,.ptable tbody,.ptable tr,.ptable td{display:block}
+  .ptable thead{display:none}
+  .ptable tr{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px;padding:10px 8px;border-bottom:1px solid var(--line2)}
+  .ptable td{padding:2px 0;border:0;text-align:left!important}
+  .ptable td:before{content:attr(data-l);display:block;color:var(--ink2);font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+  .ptable td:first-child{grid-column:1/-1;color:#fff;font-weight:800}
+  .ptable td:first-child:before{display:none}
+}
+@media(max-width:360px){
+  /* the shared header is 5px too wide at 320px, so tighten it on this page only */
+  .site-head nav{gap:8px}.brand{letter-spacing:.06em}.navlinks{gap:0}.navlinks a{padding:8px 7px}.navlinks a.box{margin-left:2px}
+  .seg span{font-size:.85rem;padding:6px}
+  .tile strong{font-size:1.05rem}
+}
+
+/* print / save as PDF */
+@media print{
+  :root{--chv:#b36b00;--chc:#555}
+  body{background:#fff!important;color:#000!important;font-size:11pt;min-width:0}
+  .site-head,.phero,.site-foot,#calc,.ract,.aff,.edu,.toast,.chips,.skip{display:none!important}
+  .print-only{display:block;margin:0 0 12px;color:#000;font-size:10pt}
+  .print-only h1{margin:0;font:800 18pt var(--f-display);color:#000}
+  main{display:block}.dca-wrap{padding:0}
+  #results{max-width:none;margin:0}
+  .panel{background:#fff!important;border:0!important;box-shadow:none!important;padding:0!important;max-width:none}
+  .panel:before{display:none!important}
+  .panel h2,.rs h3{color:#000!important}
+  .hint,.readout,#chartNote{color:#333!important}
+  .rs{break-inside:avoid-page}
+  .tile,.cmp,.verdict,.chartbox,.datanote,.discl .callout{background:#fff!important;color:#000!important;border:1px solid #999!important;box-shadow:none!important;break-inside:avoid}
+  .tile strong,.cmp-row .v,.sum,.sum b,.readout,.readout b,.verdict,.rs h3,.legend,.ptable td{color:#000!important}
+  .tile small,.tile em,.cmp-row .lab,.cmp-row.h,.datanote,.datanote b,.verdict small,.rs>p{color:#333!important}
+  .tile.good strong,.cmp-row .v.good{color:#0a6b2e!important}.tile.bad strong,.cmp-row .v.bad{color:#b3261e!important}
+  .ch-g{stroke:#ddd}.ch-t{fill:#333}.ch-a{display:none}
+  details.more{border:1px solid #999;background:#fff}
+  details.more summary:after{display:none}
+  .ptscroll{max-height:none;overflow:visible}
+  .ptable th{background:#eee;color:#000;position:static}
+  .discl{margin-top:14px}.discl .callout p{color:#000!important}.discl .callout strong{color:#000}
+  .tiles.t3{grid-template-columns:repeat(3,1fr)}.tiles.t4{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+<header class="site-head"><nav class="wrap" aria-label="Main"><a class="brand" href="/"><img src="/images/mtg-profile.jpg" alt="Musa The Giant" width="36" height="36">MTG <b>👑</b></a>
+<div class="navlinks"><a class="hide-sm" href="/about.html">About</a><a class="hide-sm" href="/tools/">Tools</a><a href="/contact.html">Contact</a><a class="box" href="/dashboard.html">Dashboard</a></div></nav></header>
+<main>
+<section class="phero"><div class="beam" aria-hidden="true"></div>
+  <div class="wrap"><div class="phero-in"><div class="kicker"><i></i>Free tool · Historical data</div><h1>MTG Bitcoin DCA Calculator</h1><p class="lede">What if you had bought a little Bitcoin every week or every month? Choose an amount and your dates, and see what it would have added up to in rand or dollars.</p></div></div></section>
+
+<div class="wrap dca-wrap">
+  <div class="print-only" id="printHead"><h1>MTG Bitcoin DCA Calculator</h1><div>musathegiant.com/dca · <span id="printDate"></span></div></div>
+
+  <section class="panel" id="calc" aria-labelledby="calc-h">
+    <h2 id="calc-h">Set up your plan</h2>
+    <p class="sub">Fill in the boxes below, then press <strong>Calculate</strong>. Everything is worked out in your browser.</p>
+    <form id="f" novalidate autocomplete="off">
+      <div class="fgrid">
+        <div class="fld">
+          <label for="amount">Amount to invest each time</label>
+          <div class="inp" id="amountBox"><span class="pre" id="sym" aria-hidden="true">R</span><input id="amount" name="amount" type="text" inputmode="decimal" placeholder="500" value="500" aria-describedby="amountHint e-amount" aria-required="true"></div>
+          <p class="hint" id="amountHint">For example 500. This is the amount for one purchase.</p>
+          <p class="err" id="e-amount" role="alert"></p>
+        </div>
+        <fieldset class="fld">
+          <legend>Currency</legend>
+          <div class="seg" role="radiogroup" aria-label="Currency">
+            <label><input type="radio" name="currency" value="ZAR" checked><span>ZAR (rand)</span></label>
+            <label><input type="radio" name="currency" value="USD"><span>USD (dollar)</span></label>
+          </div>
+          <p class="hint">Prices and results are shown in this currency.</p>
+        </fieldset>
+        <fieldset class="fld">
+          <legend>How often do you invest?</legend>
+          <div class="seg" role="radiogroup" aria-label="Investment frequency">
+            <label><input type="radio" name="freq" value="weekly"><span>Weekly</span></label>
+            <label><input type="radio" name="freq" value="monthly" checked><span>Monthly</span></label>
+          </div>
+          <p class="hint">Weekly buys happen every 7 days. Monthly buys happen on the same date each month.</p>
+        </fieldset>
+        <div class="fld">
+          <label for="fee">Estimated transaction fee <span class="opt">(optional, %)</span></label>
+          <div class="inp" id="feeBox"><input id="fee" name="fee" type="text" inputmode="decimal" placeholder="0" aria-describedby="feeHint e-fee"><span class="suf" aria-hidden="true">%</span></div>
+          <p class="hint" id="feeHint">Taken from each purchase. Check your exchange for its real fee. Leave blank to ignore fees.</p>
+          <p class="err" id="e-fee" role="alert"></p>
+        </div>
+        <div class="fld">
+          <label for="start">Start date</label>
+          <div class="inp" id="startBox"><input id="start" name="start" type="date" aria-describedby="e-start" aria-required="true"></div>
+          <p class="err" id="e-start" role="alert"></p>
+        </div>
+        <div class="fld">
+          <label for="end">End date</label>
+          <div class="inp" id="endBox"><input id="end" name="end" type="date" aria-describedby="e-end" aria-required="true"></div>
+          <p class="err" id="e-end" role="alert"></p>
+        </div>
+        <div class="fld span2">
+          <span class="hint" style="margin:0 0 6px;display:block" id="chipsLab">Quick start dates, counted back from your end date:</span>
+          <div class="chips" role="group" aria-labelledby="chipsLab"><button type="button" class="chip" data-y="1">Last 1 year</button><button type="button" class="chip" data-y="3">Last 3 years</button><button type="button" class="chip" data-y="5">Last 5 years</button><button type="button" class="chip" data-y="8">Last 8 years</button></div>
+        </div>
+      </div>
+      <div class="fbtns">
+        <button type="submit" class="gbtn" id="go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg><span id="goTxt">Calculate</span></button>
+        <button type="button" class="sbtn" id="reset"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>Reset</button>
+      </div>
+      <div class="msg info" id="loadMsg" role="status" aria-live="polite" hidden></div>
+      <div class="msg" id="errMsg" role="alert" hidden></div>
+    </form>
+  </section>
+
+  <section id="results" aria-labelledby="res-h" tabindex="-1" hidden>
+    <div class="panel">
+      <h2 id="res-h">Your results</h2>
+      <p class="sum" id="resSum"></p>
+      <div class="tiles t3" id="tilesHero"></div>
+      <div class="tiles t4" id="tiles"></div>
+
+      <div class="rs">
+        <h3>Money put in vs. what it is worth</h3>
+        <p>The dashed line is the total money you put in. The solid line is what your Bitcoin was worth on each date.</p>
+        <div class="legend" aria-hidden="true"><span><i class="dash"></i>Total contributed</span><span><i></i>Portfolio value</span></div>
+        <div class="chartbox" id="chartbox" tabindex="0" role="group" aria-label="Chart of money contributed and portfolio value over time. Use the left and right arrow keys to move between purchases. A full table of every purchase is below the chart."></div>
+        <p class="readout" id="readout"></p>
+        <p class="hint" id="chartNote" hidden></p>
+      </div>
+
+      <div class="rs">
+        <h3>DCA vs. investing it all on day one</h3>
+        <p>Same total money, but all invested on your start date instead of spread out.</p>
+        <div class="cmp" id="cmp" role="table" aria-label="Comparison of DCA and lump sum"></div>
+        <div class="verdict" id="verdict"></div>
+      </div>
+
+      <details class="more" id="moreD"><summary>See every purchase</summary><div class="ptable"><div class="ptscroll" id="ptbl"></div></div></details>
+
+      <p class="datanote" id="dataNote"></p>
+
+      <div class="ract">
+        <button type="button" class="sbtn" id="copyRes"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>Copy Results</button>
+        <button type="button" class="sbtn" id="shareRes"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg>Share Results</button>
+        <button type="button" class="sbtn" id="printRes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z"/></svg>Print or Save as PDF</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="discl" aria-label="Disclaimer"><div class="callout warn"><p><strong>Important Disclaimer:</strong> This calculator is provided for educational and informational purposes only. It does not provide financial, investment, tax or legal advice. Historical performance does not guarantee future results. Cryptocurrency is highly volatile, and you may lose some or all of the money you invest. Results may vary because of market prices, exchange rates, fees, spreads and data limitations. Always conduct your own research and consider consulting a qualified financial professional.</p></div></section>
+
+  <section class="aff" id="next" aria-labelledby="aff-h">
+    <span class="tag">Sponsored links, not calculator results</span>
+    <h2 id="aff-h">Ready to Take the Next Step?</h2>
+    <p>If you decide to explore Bitcoin for yourself, these are places to start. They are separate from the calculation above and do not change it.</p>
+    <p class="disc" id="affDisc"></p>
+    <div class="agrid" id="agrid"></div>
+  </section>
+
+  <section class="edu" aria-label="Learn about dollar-cost averaging">
+    <article class="prose">
+      <h2 id="what">What is dollar-cost averaging (DCA)?</h2>
+      <p>Dollar-cost averaging means investing the <strong>same amount of money at regular times</strong>, such as R500 on the 1st of every month, no matter what the price is that day. You do not try to pick the perfect moment to buy.</p>
+
+      <h2 id="how">How does DCA work?</h2>
+      <p>A fixed amount buys <strong>more Bitcoin when the price is low</strong> and <strong>less when the price is high</strong>. Over time, your average price per Bitcoin ends up between the highs and the lows. Here is a small example with R1,000 a month:</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Month</th><th>Bitcoin price</th><th>Bitcoin bought</th></tr></thead>
+        <tbody><tr><td>1</td><td>R1,000,000</td><td>0.00100000</td></tr><tr><td>2</td><td>R500,000</td><td>0.00200000</td></tr><tr><td>3</td><td>R1,000,000</td><td>0.00100000</td></tr></tbody>
+      </table></div>
+      <p>You spent R3,000 and bought 0.004 Bitcoin, so your average price was <strong>R750,000</strong>. That is lower than the simple average of the three prices (R833,333), because the cheap month bought you more.</p>
+
+      <h2 id="benefits">Possible benefits</h2>
+      <ul>
+        <li><strong>Less timing stress.</strong> You do not need to guess the best day to buy.</li>
+        <li><strong>Smaller regular amounts.</strong> It can suit people who invest from their monthly income rather than from a large saved sum.</li>
+        <li><strong>Builds a habit.</strong> A fixed schedule can make it easier to stay consistent.</li>
+        <li><strong>Softens the effect of a badly timed purchase.</strong> One purchase at a high price is only part of the total.</li>
+      </ul>
+
+      <h2 id="risks">Limitations and risks</h2>
+      <ul>
+        <li><strong>It does not remove risk.</strong> If the price keeps falling, a DCA plan can still lose money.</li>
+        <li><strong>Bitcoin is very volatile.</strong> Prices can swing sharply in a short time, and you may lose some or all of what you invest.</li>
+        <li><strong>Fees add up.</strong> Many small purchases can cost more in fees than a few large ones. Check your exchange's fees and spreads.</li>
+        <li><strong>It can lag in a rising market.</strong> If the price climbs steadily, money that is still waiting to be invested misses part of the rise.</li>
+        <li><strong>Taxes and rules apply.</strong> This calculator does not include tax, and rules differ by country.</li>
+      </ul>
+
+      <h2 id="vs">DCA vs. lump-sum investing</h2>
+      <div class="tbl"><table>
+        <thead><tr><th></th><th>DCA</th><th>Lump sum</th></tr></thead>
+        <tbody>
+          <tr><td>How it works</td><td>Same amount, regular intervals</td><td>Everything at once</td></tr>
+          <tr><td>Money needed up front</td><td>Only the first amount</td><td>The full amount</td></tr>
+          <tr><td>Timing risk</td><td>Spread across many dates</td><td>Depends on one date</td></tr>
+          <tr><td>Time in the market</td><td>Part of your money waits</td><td>All of it invested from day one</td></tr>
+          <tr><td>Fees</td><td>Charged on every purchase</td><td>Charged once</td></tr>
+        </tbody>
+      </table></div>
+      <p>Neither approach is always better. In some periods a lump sum came out ahead, and in others DCA did. Use the comparison above to see how your chosen dates played out, not to predict what comes next.</p>
+
+      <h2 id="past">Why past results do not guarantee future results</h2>
+      <p>This calculator shows what <strong>would have happened</strong> with prices from the past. Markets change, and Bitcoin has had large rises and large falls. A result that looks good for one set of dates can look very different for another. Nothing here predicts, promises or guarantees what you could earn or lose in future.</p>
+
+      <h2 id="method">How this calculator works</h2>
+      <ul>
+        <li><strong>Purchase dates.</strong> Weekly means every 7 days from your start date. Monthly means the same day each month, and if a month is shorter (for example 31 January then February), the last day of that month is used.</li>
+        <li><strong>Prices.</strong> Each purchase uses the Bitcoin opening price in US dollars at 00:00 UTC on that day, from Coinbase Exchange daily data.</li>
+        <li><strong>Rand results.</strong> Rand prices are the dollar price multiplied by that day's USD/ZAR reference rate from the European Central Bank (via Frankfurter). On weekends and holidays the most recent rate is used. This is an estimate, not a price from a South African exchange, which can be higher or lower.</li>
+        <li><strong>Fees.</strong> If you enter a fee, that percentage is taken off each purchase before Bitcoin is bought. The lump-sum comparison pays the fee once.</li>
+        <li><strong>Average purchase price.</strong> Money actually used to buy Bitcoin (after fees) divided by the Bitcoin you bought.</li>
+        <li><strong>Current value.</strong> Your total Bitcoin multiplied by the latest Bitcoin price, converted to rand with the latest reference rate when you choose ZAR.</li>
+        <li><strong>Rounding.</strong> Nothing is rounded while calculating. Numbers are rounded only when shown on screen.</li>
+        <li><strong>Not included.</strong> Exchange spreads, withdrawal and network fees, and taxes.</li>
+      </ul>
+
+      <h2 id="faq">Common questions</h2>
+      <h3>What is dollar-cost averaging (DCA)?</h3>
+      <p>It means investing the same amount of money at regular intervals, such as every week or month, instead of investing everything at once. You buy more when the price is low and less when it is high.</p>
+      <h3>Is DCA better than investing a lump sum?</h3>
+      <p>Neither is always better. A lump sum has done better in some periods and DCA in others. DCA mainly helps with timing risk and with building a habit. It does not guarantee a profit or protect against losses.</p>
+      <h3>Can this calculator predict future returns?</h3>
+      <p>No. It only shows what would have happened in the past using historical prices. Historical performance does not guarantee future results.</p>
+    </article>
+  </section>
+</div>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a class="brand" href="/"><img src="/images/mtg-profile.jpg" alt="" width="36" height="36" loading="lazy">MTG <b>👑</b></a>
+      <p>Musa The Giant, Your Digital Architect. Bitcoin, crypto, AI and trading, explained clearly. Mission: Build Generational Wealth.</p>
+      <div class="socials" aria-label="MTG on social media"><a href="https://wa.me/27721714626?text=Hi%20MTG%2C%20I%20found%20you%20on%20musathegiant.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L0 24l6.5-1.7a11.7 11.7 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-.9 1.1-.2.2-.4.2-.7.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"/></svg></a><a href="https://www.facebook.com/Musa.TheMTG" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.1C24 5.4 18.6 0 12 0S0 5.4 0 12.1C0 18.1 4.4 23 10.1 24v-8.4H7.1v-3.5h3v-2.7c0-3 1.8-4.7 4.6-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9v2.3h3.4l-.5 3.5h-2.9V24C19.6 23 24 18.1 24 12.1Z"/></svg></a><a href="https://www.tiktok.com/@musathegiant" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.3 3.4A5.2 5.2 0 0 1 16.1 0h-3.5v15.3a3.1 3.1 0 1 1-2.7-3.1V8.7a6.6 6.6 0 1 0 6.2 6.6V7.5a8.7 8.7 0 0 0 5.1 1.7V5.8a5.3 5.3 0 0 1-1.9-.4Z"/></svg></a><a href="https://www.youtube.com/@MusaTheGiant" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg></a></div></div>
+    <nav aria-label="Explore"><h2>Explore</h2><ul><li><a href="/">Home</a></li><li><a href="/dashboard.html">Income Streams</a></li><li><a href="/tools/">Tools</a></li><li><a href="/converter/">Currency Converter</a></li><li><a href="/dca/">Bitcoin DCA Calculator</a></li><li><a href="/halving/">Halving Countdown</a></li><li><a href="/about.html">About MTG</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/github-pages-custom-domain-guide.html">GitHub Pages Guide</a></li></ul></nav>
+    <nav aria-label="Legal"><h2>Legal</h2><ul><li><a href="/privacy-policy.html">Privacy Policy</a></li><li><a href="/terms-of-use.html">Terms of Use</a></li><li><a href="/cookie-policy.html">Cookie Policy</a></li><li><a href="/affiliate-disclosure.html">Affiliate Disclosure</a></li><li><a href="/earnings-disclaimer.html">Earnings Disclaimer</a></li><li><a href="/risk-disclaimer.html">Risk Disclaimer</a></li><li><a href="/anti-spam-policy.html">Anti-Spam Policy</a></li><li><a href="/copyright.html">Copyright Notice</a></li></ul></nav>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 MTG (Musa The Giant). All rights reserved.</span><span>Educational content. Not financial advice.</span></div>
+</footer>
+<script src="/assets/pages.js" defer></script>
+<script src="/assets/dca-core.js"></script>
+<script src="/assets/dca-config.js"></script>
+<script>
+(function(){
+"use strict";
+var D=window.DCA;
+function $(id){return document.getElementById(id)}
+var MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var form=$("f"),goBtn=$("go"),goTxt=$("goTxt"),loadMsg=$("loadMsg"),errMsg=$("errMsg"),results=$("results");
+var runId=0,lastResult=null,lastInput=null,cache={btc:null,fx:null,now:null,day:null};
+
+/* ---------- small helpers ---------- */
+function p2(n){return n<10?"0"+n:""+n}
+/* The latest date we allow: the earlier of the visitor's local date and the UTC date,
+   so the chosen end date always has a price candle. */
+function todayISO(){var n=new Date(),l=n.getFullYear()+"-"+p2(n.getMonth()+1)+"-"+p2(n.getDate()),u=n.toISOString().slice(0,10);return l<u?l:u}
+function fmtDate(iso){var p=D.parseISO(iso);return p?p.d+" "+MONTHS[p.m-1]+" "+p.y:iso}
+function nf(n,dp){return n.toLocaleString("en-US",{minimumFractionDigits:dp,maximumFractionDigits:dp})}
+function sym(c){return c==="ZAR"?"R":"$"}
+function money(n,c,dp){if(dp==null)dp=2;var r=Math.round(Math.abs(n)*Math.pow(10,dp))/Math.pow(10,dp);return (n<0&&r!==0?"-":"")+sym(c)+nf(r,dp)}
+function signed(n,c){var r=Math.round(Math.abs(n)*100)/100;return (r===0?"":(n>0?"+":"-"))+sym(c)+nf(r,2)}
+function pct(n){var r=Math.round(Math.abs(n)*100)/100;return (r===0?"":(n>0?"+":"-"))+nf(r,2)+"%"}
+function btcf(n){return n.toFixed(8)}
+function sign(n){var r=Math.round(n*100)/100;return r>0?"good":r<0?"bad":""}
+function toast(t){var el=$("toast");el.textContent=t;el.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(function(){el.classList.remove("on")},2200)}
+function when(ms){try{return new Date(ms).toLocaleString("en-ZA",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",hour12:false})}catch(e){return new Date(ms).toString()}}
+function val(name){var els=form.elements[name];return els&&els.value}
+function setVal(name,v){var els=form.elements[name];if(!els)return;if(els.length&&els[0].type==="radio"){for(var i=0;i<els.length;i++)els[i].checked=els[i].value===v}else els.value=v}
+
+/* ---------- form state ---------- */
+var TODAY=todayISO();
+function limits(){
+  var s=$("start"),e=$("end");
+  s.min=D.MIN_DATE;s.max=e.value&&e.value<=TODAY?e.value:TODAY;
+  e.min=s.value&&s.value>=D.MIN_DATE?s.value:D.MIN_DATE;e.max=TODAY;
+}
+function defaults(){
+  setVal("amount","500");setVal("currency","ZAR");setVal("freq","monthly");setVal("fee","");
+  $("end").value=TODAY;
+  var s=D.addMonths(TODAY,-36);$("start").value=s<D.MIN_DATE?D.MIN_DATE:s;
+  syncSym();limits();
+}
+function syncSym(){$("sym").textContent=sym(val("currency"))}
+function clearErrors(){
+  ["amount","fee","start","end"].forEach(function(k){var e=$("e-"+k);e.textContent="";var b=$(k+"Box");b&&b.classList.remove("bad");var i=$(k);i&&i.removeAttribute("aria-invalid")});
+  errMsg.hidden=true;errMsg.textContent="";
+}
+function showErrors(errs){
+  var first=null;
+  ["amount","fee","start","end"].forEach(function(k){
+    var m=errs[k==="fee"?"feePct":k];
+    if(m){$("e-"+k).textContent=m;var b=$(k+"Box");b&&b.classList.add("bad");$(k).setAttribute("aria-invalid","true");if(!first)first=$(k)}
+  });
+  if(errs.currency||errs.freq){errMsg.hidden=false;errMsg.innerHTML="<strong>Please check your choices.</strong> "+(errs.currency||errs.freq)}
+  if(first)first.focus();
+}
+function readInput(){return {amount:val("amount"),currency:val("currency"),freq:val("freq"),feePct:val("fee"),start:$("start").value,end:$("end").value}}
+
+/* ---------- data (with in-page cache so re-calculating does not refetch) ---------- */
+function getJSON(url){
+  return new Promise(function(resolve,reject){
+    var ctl="AbortController" in window?new AbortController():null;
+    var to=setTimeout(function(){if(ctl)ctl.abort();var e=new Error("timeout");e.kind="timeout";reject(e)},15000);
+    fetch(url,{signal:ctl?ctl.signal:undefined,headers:{Accept:"application/json"}}).then(function(r){
+      clearTimeout(to);
+      if(!r.ok){var e=new Error("HTTP "+r.status);e.status=r.status;throw e}
+      return r.json();
+    }).then(resolve,function(e){clearTimeout(to);reject(e)});
+  });
+}
+function fresh(){if(cache.day!==TODAY){cache={btc:null,fx:null,now:null,day:TODAY}}}
+function ensureBtc(s,e){
+  fresh();
+  if(cache.btc&&cache.btc.from<=s&&cache.btc.to>=e)return Promise.resolve(cache.btc.series);
+  return D.loadBtcUsd(s,e,getJSON).then(function(m){var ser=D.makeSeries(m);cache.btc={from:s,to:e,series:ser};return ser});
+}
+function ensureFx(s,e){
+  fresh();
+  if(cache.fx&&cache.fx.from<=s&&cache.fx.to>=e)return Promise.resolve(cache.fx.series);
+  return D.loadUsdZar(s,e,getJSON).then(function(m){var ser=D.makeSeries(m);cache.fx={from:s,to:e,series:ser};return ser});
+}
+function ensureNow(cur){
+  if(cache.now&&Date.now()-cache.now.t<60000&&(cur!=="ZAR"||cache.now.data.usdZar))return Promise.resolve(cache.now.data);
+  return D.loadNow(cur,getJSON).then(function(d){cache.now={t:Date.now(),data:d};return d});
+}
+
+/* ---------- run ---------- */
+function setBusy(b,text){
+  goBtn.disabled=b;goTxt.textContent=b?"Calculating…":"Calculate";
+  form.setAttribute("aria-busy",b?"true":"false");
+  if(b){loadMsg.hidden=false;loadMsg.textContent=text||"Loading price history…"}else{loadMsg.hidden=true;loadMsg.textContent=""}
+}
+function friendly(e){
+  if(e&&e.code==="NO_PRICE")return "<strong>No Bitcoin price was found for "+fmtDate(e.date)+".</strong> Price history may not reach back that far. Try a later start date.";
+  if(e&&e.code==="NO_FX")return "<strong>No USD to rand rate was found for "+fmtDate(e.date)+".</strong> Try a later start date, or switch to USD.";
+  if(e&&(e.status===429))return "<strong>The price service is busy right now.</strong> Too many requests were made. Please wait a minute and press Calculate again.";
+  if(e&&e.kind==="timeout")return "<strong>The price data took too long to load.</strong> Your connection may be slow. Please try again, or try a shorter date range.";
+  if(e&&e.status)return "<strong>The price service returned an error ("+e.status+").</strong> Please try again in a moment. No results are shown, so you never see wrong numbers.";
+  return "<strong>We could not load live price data.</strong> Check your internet connection and press Calculate again. No results are shown, so you never see wrong numbers.";
+}
+function run(){
+  clearErrors();
+  var inp=readInput(),v=D.validate(inp,TODAY);
+  if(!v.ok){showErrors(v.errors);return}
+  var x=v.values,id=++runId;
+  setBusy(true,"Loading price history…");
+  var slow=setTimeout(function(){if(id===runId)loadMsg.textContent="Still working. Longer date ranges need more data, so this can take a few seconds…"},5000);
+  Promise.all([ensureBtc(x.start,x.end),x.currency==="ZAR"?ensureFx(x.start,x.end):null,ensureNow(x.currency)]).then(function(r){
+    if(id!==runId)return;
+    var now=r[2],nowPrice=x.currency==="ZAR"?now.btcUsd*now.usdZar:now.btcUsd;
+    var res=D.simulate({amount:x.amount,freq:x.freq,start:x.start,end:x.end,feePct:x.feePct,currency:x.currency,btcUsd:r[0],usdZar:r[1],nowPrice:nowPrice,nowDate:TODAY});
+    lastResult=res;lastInput=x;
+    render(res,now,x);
+    syncUrl(x);
+  }).catch(function(e){
+    if(id!==runId)return;
+    errMsg.hidden=false;errMsg.innerHTML=friendly(e);
+    results.hidden=true;lastResult=null;
+  }).then(function(){clearTimeout(slow);if(id===runId)setBusy(false)});
+}
+
+/* ---------- render ---------- */
+function tile(label,value,note,cls){return '<div class="tile '+(cls||"")+'"><small>'+label+'</small><strong>'+value+'</strong>'+(note?'<em>'+note+'</em>':"")+'</div>'}
+function render(r,now,x){
+  var c=r.currency,fee=x.feePct>0;
+  $("resSum").innerHTML="<b>"+money(x.amount,c,x.amount%1?2:0)+"</b> "+(r.freq==="weekly"?"every week":"every month")+", from <b>"+fmtDate(r.start)+"</b> to <b>"+fmtDate(r.end)+"</b>"+(fee?", with an estimated <b>"+nf(x.feePct,x.feePct%1?2:0)+"%</b> fee per purchase":"")+".";
+  $("tilesHero").innerHTML=
+    tile("Current Bitcoin value",money(r.currentValue,c),"At today's price of "+money(r.nowPrice,c,0)+" per Bitcoin")+
+    tile(r.profit<0?"Total loss":"Total profit",signed(r.profit,c),"Current value minus total contributed",sign(r.profit)+" big")+
+    tile("Percentage return",pct(r.returnPct),"Profit or loss divided by total contributed",sign(r.returnPct)+" big");
+  $("tiles").innerHTML=
+    tile("Total contributed",money(r.contributed,c),fee?"Includes "+money(r.feesPaid,c)+" in estimated fees":"Money you put in")+
+    tile("Purchases",nf(r.purchases,0),r.freq==="weekly"?"One every 7 days":"One every month")+
+    tile("Bitcoin accumulated (BTC)",btcf(r.btc),nf(r.btc*1e8,0)+" sats")+
+    tile("Average purchase price",money(r.avgPrice,c,0),"Per Bitcoin, before fees");
+  drawChart(r);
+  var cn=$("chartNote");
+  if(r.end<r.nowDate){cn.hidden=false;cn.textContent="The chart stops on your end date, "+fmtDate(r.end)+". The result tiles above value your Bitcoin at today's price."}else{cn.hidden=true;cn.textContent=""}
+  /* comparison */
+  var L=r.lump;
+  function row(l,a,b,ca,cb){return '<div class="cmp-row" role="row"><span class="lab" role="rowheader">'+l+'</span><span class="v '+(ca||"")+'" role="cell">'+a+'</span><span class="v '+(cb||"")+'" role="cell">'+b+'</span></div>'}
+  $("cmp").innerHTML=
+    '<div class="cmp-row h" role="row"><span class="lab" role="columnheader"></span><span role="columnheader">Your DCA plan</span><span role="columnheader">Lump sum on '+fmtDate(r.start)+'</span></div>'+
+    row("Total invested",money(r.contributed,c),money(r.contributed,c))+
+    row("Bitcoin bought",btcf(r.btc),btcf(L.btc))+
+    row("Average price per Bitcoin",money(r.avgPrice,c,0),money(L.startPrice,c,0))+
+    row("Value today",money(r.currentValue,c),money(L.value,c))+
+    row("Profit or loss",signed(r.profit,c),signed(L.profit,c),sign(r.profit),sign(L.profit))+
+    row("Return",pct(r.returnPct),pct(L.returnPct),sign(r.returnPct),sign(L.returnPct));
+  var d=r.currentValue-L.value,ad=Math.abs(d),msg;
+  if(r.purchases===1)msg="With only one purchase, DCA and a lump sum are the same thing.";
+  else if(Math.round(ad*100)===0)msg="In this period, DCA and the lump sum ended up the same.";
+  else if(d>0)msg="In this period, spreading your purchases out ended <b>"+money(ad,c)+" ahead</b> of investing everything on the start date.";
+  else msg="In this period, investing everything on the start date would have ended <b>"+money(ad,c)+" ahead</b> of spreading it out.";
+  $("verdict").innerHTML=msg+"<small>This describes the past only. A lump sum needs all the money on day one, and the result can be very different for other dates.</small>";
+  /* table (built when opened, to keep large ranges fast) */
+  $("ptbl").innerHTML="";$("moreD").open=false;$("moreD")._built=false;
+  /* data note */
+  var fx=r.currency==="ZAR"?" USD/ZAR rate from the "+now.fxSrc+(now.fxDate?" dated "+fmtDate(now.fxDate):"")+".":"";
+  $("dataNote").innerHTML="<b>Market data last updated:</b> "+when(now.at)+" (your time). Bitcoin prices from "+now.btcSrc+"; history is daily at 00:00 UTC."+fx+(c==="ZAR"?" Rand figures are estimates converted from dollar prices and can differ from prices on South African exchanges.":"")+" Fees, spreads and taxes are not included unless you entered a fee.";
+  $("printDate").textContent="Generated "+when(Date.now());
+  results.hidden=false;
+  try{results.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})}catch(e){}
+  results.focus({preventScroll:true});
+}
+function buildTable(){
+  var r=lastResult,c=r.currency,h='<table><thead><tr><th scope="col">Date</th><th scope="col">Price per Bitcoin</th><th scope="col">Spent (fee)</th><th scope="col">Bitcoin bought</th><th scope="col">Total Bitcoin</th><th scope="col">Value then</th></tr></thead><tbody>';
+  for(var i=0;i<r.rows.length;i++){var w=r.rows[i];
+    h+='<tr><td data-l="Date">'+fmtDate(w.date)+'</td><td data-l="Price per Bitcoin">'+money(w.price,c,0)+'</td><td data-l="Spent (fee)">'+money(w.spent,c)+(w.fee>0?' ('+money(w.fee,c)+')':'')+'</td><td data-l="Bitcoin bought">'+btcf(w.btcBought)+'</td><td data-l="Total Bitcoin">'+btcf(w.btcTotal)+'</td><td data-l="Value then">'+money(w.value,c)+'</td></tr>'}
+  $("ptbl").innerHTML=h+'</tbody></table>';$("moreD")._built=true;
+}
+$("moreD").addEventListener("toggle",function(){if(this.open&&!this._built&&lastResult)buildTable()});
+
+/* ---------- chart (inline SVG, drawn at the real width so text stays readable) ---------- */
+var chartState=null;
+function niceTicks(max){
+  if(!(max>0))max=1;
+  var raw=max/4,mag=Math.pow(10,Math.floor(Math.log(raw)/Math.LN10)),f=raw/mag,s=f<=1?1:f<=2?2:f<=5?5:10,step=s*mag,t=[];
+  for(var v=0,n=0;n<12;n++,v+=step){t.push(v);if(v>=max)break}
+  return {ticks:t,step:step,top:t[t.length-1]};
+}
+function compact(n,c,step){
+  var s=sym(c),a=Math.abs(n);
+  function t(x,u){return s+(Math.round(x*10)/10).toString().replace(/\.0$/,"")+u}
+  if(a>=1e9)return t(n/1e9,"B");if(a>=1e6)return t(n/1e6,"M");if(a>=1e3)return t(n/1e3,"k");
+  return s+(step<1?n.toFixed(2):Math.round(n));
+}
+function drawChart(r){
+  var box=$("chartbox"),S=r.series,c=r.currency;
+  var W=Math.max(260,Math.floor(box.clientWidth-12)),H=W<520?250:340;
+  var max=0,i;for(i=0;i<S.length;i++)max=Math.max(max,S[i].contributed,S[i].value);
+  var nt=niceTicks(max*1.04),lab=nt.ticks.map(function(v){return compact(v,c,nt.step)});
+  var mL=Math.max.apply(null,lab.map(function(s){return s.length}))*6.4+14,mR=14,mT=12,mB=28,iw=W-mL-mR,ih=H-mT-mB;
+  var d0=r.series[0].date,span=Math.max(1,D.diffDays(d0,S[S.length-1].date));
+  function X(p){return mL+(S.length===1?iw/2:(D.diffDays(d0,p.date)/span)*iw)}
+  function Y(v){return mT+ih-(v/nt.top)*ih}
+  var xs=S.map(X),g="",pc="",pv="",area="";
+  nt.ticks.forEach(function(v,k){var y=Y(v);g+='<line class="ch-g" x1="'+mL+'" x2="'+(W-mR)+'" y1="'+y+'" y2="'+y+'"/><text class="ch-t" x="'+(mL-8)+'" y="'+(y+4)+'" text-anchor="end">'+lab[k]+'</text>'});
+  for(i=0;i<S.length;i++){
+    pv+=(i?"L":"M")+xs[i].toFixed(1)+" "+Y(S[i].value).toFixed(1);
+    if(i===0)pc+="M"+xs[i].toFixed(1)+" "+Y(S[i].contributed).toFixed(1);else pc+="H"+xs[i].toFixed(1)+"V"+Y(S[i].contributed).toFixed(1);
+  }
+  if(S.length>1)pc+="H"+xs[S.length-1].toFixed(1);
+  area=pv+"L"+xs[S.length-1].toFixed(1)+" "+(mT+ih)+"L"+xs[0].toFixed(1)+" "+(mT+ih)+"Z";
+  var long=span>400,nx=Math.max(2,Math.min(6,Math.floor(iw/105))),xl="";
+  for(var k=0;k<nx;k++){
+    var frac=nx===1?0:k/(nx-1),iso=D.addDays(d0,Math.round(span*frac)),p=D.parseISO(iso),xx=mL+frac*iw;
+    xl+='<text class="ch-t" x="'+xx+'" y="'+(H-8)+'" text-anchor="'+(k===0?"start":k===nx-1?"end":"middle")+'">'+(long?MONTHS[p.m-1]+" "+p.y:p.d+" "+MONTHS[p.m-1])+'</text>';
+  }
+  box.innerHTML='<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" aria-hidden="true" focusable="false"><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2ad3c" stop-opacity=".22"/><stop offset="1" stop-color="#f2ad3c" stop-opacity="0"/></linearGradient></defs>'+g+xl+
+    (S.length>1?'<path class="ch-a" d="'+area+'"/><path class="ch-c" d="'+pc+'"/><path class="ch-v" d="'+pv+'"/>':"")+
+    '<line class="ch-x" id="chx" x1="0" x2="0" y1="'+mT+'" y2="'+(mT+ih)+'" style="display:none"/><circle class="ch-d2" id="chd2" r="4.5" cx="0" cy="0" style="display:none"/><circle class="ch-d1" id="chd1" r="5.5" cx="0" cy="0" style="display:none"/></svg>';
+  chartState={xs:xs,Y:Y,S:S,c:c,mT:mT,ih:ih,idx:S.length-1,W:W};
+  select(S.length-1,false);
+}
+function select(i,show){
+  var st=chartState;if(!st)return;i=Math.max(0,Math.min(st.S.length-1,i));st.idx=i;
+  var p=st.S[i],x=st.xs[i];
+  var ln=$("chx"),d1=$("chd1"),d2=$("chd2");
+  if(ln){ln.setAttribute("x1",x);ln.setAttribute("x2",x);d1.setAttribute("cx",x);d1.setAttribute("cy",st.Y(p.value));d2.setAttribute("cx",x);d2.setAttribute("cy",st.Y(p.contributed));
+    var disp=show?"":"none";ln.style.display=disp;d1.style.display=disp;d2.style.display=disp}
+  $("readout").innerHTML="<b>"+fmtDate(p.date)+(p.today?" (today)":p.endPoint?" (end date)":"")+":</b> you had put in <b>"+money(p.contributed,st.c)+"</b>, and it was worth <b>"+money(p.value,st.c)+"</b>.";
+}
+(function(){
+  var box=$("chartbox");
+  function at(e){var st=chartState;if(!st)return;var rect=box.getBoundingClientRect(),x=e.clientX-rect.left-6,best=0,bd=1e9;for(var i=0;i<st.xs.length;i++){var d=Math.abs(st.xs[i]-x);if(d<bd){bd=d;best=i}}select(best,true)}
+  box.addEventListener("pointermove",at);box.addEventListener("pointerdown",at);
+  box.addEventListener("pointerleave",function(){if(chartState)select(chartState.S.length-1,false)});
+  box.addEventListener("keydown",function(e){
+    var st=chartState;if(!st)return;var k=e.key,i=st.idx;
+    if(k==="ArrowLeft")i--;else if(k==="ArrowRight")i++;else if(k==="Home")i=0;else if(k==="End")i=st.S.length-1;else return;
+    e.preventDefault();select(i,true);
+  });
+  box.addEventListener("blur",function(){if(chartState)select(chartState.S.length-1,false)});
+  var t;function rs(){if(!lastResult||results.hidden)return;var w=box.clientWidth;if(chartState&&Math.abs(w-12-chartState.W)<2)return;clearTimeout(t);t=setTimeout(function(){drawChart(lastResult)},120)}
+  window.addEventListener("resize",rs);
+})();
+
+/* ---------- copy / share / print / URL ---------- */
+function shareUrl(x){
+  var u=location.origin+location.pathname,q=[["a",x.amount],["c",x.currency],["f",x.freq==="weekly"?"w":"m"],["s",x.start],["e",x.end]];
+  if(x.feePct>0)q.push(["fee",x.feePct]);
+  return u+"?"+q.map(function(p){return p[0]+"="+encodeURIComponent(p[1])}).join("&");
+}
+function syncUrl(x){try{history.replaceState(null,"",shareUrl(x).replace(location.origin,""))}catch(e){}}
+function plainText(){
+  var r=lastResult,x=lastInput,c=r.currency,L=r.lump,t=[];
+  t.push("MTG Bitcoin DCA Calculator");
+  t.push(money(x.amount,c,x.amount%1?2:0)+" "+(r.freq==="weekly"?"every week":"every month")+", "+fmtDate(r.start)+" to "+fmtDate(r.end)+(x.feePct>0?", "+x.feePct+"% fee per purchase":""));
+  t.push("");
+  t.push("Total contributed: "+money(r.contributed,c));
+  t.push("Purchases: "+r.purchases);
+  t.push("Bitcoin accumulated: "+btcf(r.btc)+" BTC");
+  t.push("Average purchase price: "+money(r.avgPrice,c,0)+" per Bitcoin");
+  t.push("Current value: "+money(r.currentValue,c));
+  t.push("Profit or loss: "+signed(r.profit,c)+" ("+pct(r.returnPct)+")");
+  t.push("Lump sum on start date: worth "+money(L.value,c)+", "+signed(L.profit,c)+" ("+pct(L.returnPct)+")");
+  t.push("");
+  t.push("Past results only. Not financial advice. Historical performance does not guarantee future results.");
+  t.push("Try it yourself: "+shareUrl(x));
+  return t.join("\n");
+}
+function copyText(txt,ok){
+  function fb(){var a=document.createElement("textarea");a.value=txt;a.setAttribute("readonly","");a.style.cssText="position:fixed;left:-9999px;top:0";document.body.appendChild(a);a.select();var done=false;try{done=document.execCommand("copy")}catch(e){}document.body.removeChild(a);toast(done?ok:"Copy failed. Please select the text manually.")}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){toast(ok)},fb);else fb();
+}
+$("copyRes").addEventListener("click",function(){if(lastResult)copyText(plainText(),"Results copied")});
+$("shareRes").addEventListener("click",function(){
+  if(!lastResult)return;
+  var txt=plainText(),url=shareUrl(lastInput);
+  if(navigator.share){navigator.share({title:"MTG Bitcoin DCA Calculator",text:txt.split("\nTry it yourself")[0],url:url}).catch(function(e){if(e&&e.name!=="AbortError")copyText(txt,"Results copied")})}
+  else{var w=window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank","noopener");if(!w)copyText(txt,"Results copied. Paste them anywhere to share.")}
+});
+$("printRes").addEventListener("click",function(){if(lastResult)window.print()});
+(function(){var was=false;
+  window.addEventListener("beforeprint",function(){var d=$("moreD");was=d.open;if(lastResult&&!d._built)buildTable();d.open=true;if(lastResult)drawChart(lastResult)});
+  window.addEventListener("afterprint",function(){$("moreD").open=was;if(lastResult)drawChart(lastResult)});
+})();
+
+/* ---------- wiring ---------- */
+form.addEventListener("submit",function(e){e.preventDefault();run()});
+$("reset").addEventListener("click",function(){
+  runId++;setBusy(false);clearErrors();defaults();results.hidden=true;lastResult=null;lastInput=null;
+  try{history.replaceState(null,"",location.pathname)}catch(e){}
+  $("amount").focus();
+});
+form.addEventListener("change",function(e){
+  if(e.target.name==="currency")syncSym();
+  if(e.target.name==="start"||e.target.name==="end")limits();
+});
+["amount","fee","start","end"].forEach(function(k){
+  $(k).addEventListener("input",function(){$("e-"+k).textContent="";var b=$(k+"Box");b&&b.classList.remove("bad");this.removeAttribute("aria-invalid")});
+});
+document.querySelectorAll(".chip").forEach(function(b){
+  b.addEventListener("click",function(){
+    var end=$("end").value&&D.parseISO($("end").value)?$("end").value:TODAY,s=D.addMonths(end,-12*(+b.getAttribute("data-y")));
+    if(s<D.MIN_DATE)s=D.MIN_DATE;
+    $("end").value=end;$("start").value=s;limits();
+    ["start","end"].forEach(function(k){$("e-"+k).textContent="";$(k+"Box").classList.remove("bad")});
+  });
+});
+
+/* ---------- affiliate section (links come from /assets/dca-config.js) ---------- */
+(function(){
+  $("affDisc").textContent=window.MTG_DCA_DISCLOSURE||"Affiliate Disclosure: Some links on this page may be affiliate links. If you use one of these links, MTG may earn a commission at no additional cost to you.";
+  var list=window.MTG_DCA_AFFILIATES||[],h="";
+  list.forEach(function(o,i){
+    var safe=/^https:\/\//i.test(o.url||"");
+    var label=String(o.button||"").replace(/</g,"&lt;");
+    h+='<div class="acell">'+(safe
+      ?'<a class="btn gold" href="'+o.url.replace(/"/g,"&quot;")+'" target="_blank" rel="sponsored noopener noreferrer">'+label+'</a>'
+      :'<span class="btn off" role="link" aria-disabled="true" tabindex="0">'+label+'<small>Link coming soon</small></span>')+
+      '<p>'+String(o.blurb||"").replace(/</g,"&lt;")+'</p></div>';
+  });
+  $("agrid").innerHTML=h;
+})();
+
+/* ---------- start-up: defaults, then restore a shared link if there is one ---------- */
+defaults();
+(function(){
+  var q;try{q=new URLSearchParams(location.search)}catch(e){return}
+  if(!q.has("a")&&!q.has("s")&&!q.has("e"))return;
+  if(q.get("a"))setVal("amount",q.get("a"));
+  if(q.get("c")==="USD"||q.get("c")==="ZAR")setVal("currency",q.get("c"));
+  if(q.get("f")==="w")setVal("freq","weekly");else if(q.get("f")==="m")setVal("freq","monthly");
+  if(q.get("fee"))setVal("fee",q.get("fee"));
+  if(q.get("s")&&D.parseISO(q.get("s")))$("start").value=q.get("s");
+  if(q.get("e")&&D.parseISO(q.get("e")))$("end").value=q.get("e");
+  syncSym();limits();
+  run();
+})();
+})();
+</script>
+</body>
+</html>
