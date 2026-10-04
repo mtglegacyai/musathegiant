@@ -9,6 +9,13 @@
     <image:image><image:loc>https://www.musathegiant.com/images/og-mtg.jpg</image:loc><image:title>MTG | Multiple Streams of Income</image:title></image:image>
   </url>
   <url>
+    <loc>https://www.musathegiant.com/101/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://www.musathegiant.com/images/og-101.jpg</image:loc><image:title>Free Crypto 101 Crash Course by MTG</image:title></image:image>
+  </url>
+  <url>
     <loc>https://www.musathegiant.com/halving/</loc>
     <lastmod>2026-10-01</lastmod>
     <changefreq>daily</changefreq>
