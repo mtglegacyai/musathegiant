@@ -276,18 +276,13 @@
       chapters.forEach(function(c,i){c.els.forEach(function(el){if(i>0||el!==c.els[0]) el.setAttribute('hidden','until-found');});});
       chapters[0].els[0].classList.add('chap-peek');
       bar=d.createElement('div'); bar.className='upnext';
-      bar.innerHTML='<button type="button" class="un-go" aria-label="Open the next section"><span class="un-ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.5"/><circle class="fg" cx="18" cy="18" r="15.5"/></svg><i></i></span><span class="un-tx"><small></small><b></b></span><span class="un-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button><button type="button" class="un-all">Show all</button>';
+      bar.innerHTML='<button type="button" class="un-go" aria-label="Open the next section" title="Open this section"><span class="un-ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.5"/><circle class="fg" cx="18" cy="18" r="15.5"/></svg><i></i></span><span class="un-tx"><small></small><b></b></span><span class="un-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button><button type="button" class="un-all">Show all</button>';
       placeBar();
       $('.un-go',bar).addEventListener('click',function(){revealNext(true);});
       $('.un-all',bar).addEventListener('click',function(){revealUpTo(chapters.length-1,true);});
       d.addEventListener('beforematch',function(e){var i=indexOf(e.target);if(i>=0) revealUpTo(i,false);},true);
-      if('IntersectionObserver' in window){
-        var bio=new IntersectionObserver(function(es){es.forEach(function(e){
-          if(e.isIntersecting&&e.intersectionRatio>.95&&dirDown&&Date.now()>cool){setTimeout(function(){var r=bar.getBoundingClientRect();if(r.bottom<innerHeight*.94&&r.top>0&&dirDown) revealNext(false);},380);}
-        });},{threshold:[.95,1],rootMargin:'0px 0px -6% 0px'});
-        bio.observe(bar);
-      }
-      window.addEventListener('scroll',function(){var yy=window.scrollY;dirDown=yy>lastY;lastY=yy;},{passive:true});
+      /* sections open only when the visitor asks: the Up next bar, Show all, the section navigator or a link */
+
     }
 
     function placeBar(){
@@ -295,7 +290,7 @@
       if(done>=chapters.length){bar.remove();bar=null;updateNav();return;}
       var c=chapters[done], anchorEl=c.els[0];
       anchorEl.parentNode.insertBefore(bar,anchorEl.nextSibling);
-      $('small',bar).textContent='Up next, '+(done+1)+' of '+chapters.length;
+      $('small',bar).textContent='Tap to open, '+(done+1)+' of '+chapters.length;
       $('b',bar).textContent=c.title;
       bar.style.setProperty('--p',(done/chapters.length).toFixed(3));
       bar.classList.remove('un-pop'); void bar.offsetWidth; bar.classList.add('un-pop');
