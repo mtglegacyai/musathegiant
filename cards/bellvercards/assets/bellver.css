@@ -222,6 +222,21 @@ strong,b{font-weight:800;color:#fff}
 .player .plabel{position:absolute;left:14px;bottom:14px;z-index:2;padding:7px 12px;border-radius:999px;background:rgba(2,12,6,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:.78rem;font-weight:800;color:#fff;border:1px solid rgba(255,255,255,.14)}
 .player.playing{cursor:default}
 .player.playing .pbtn,.player.playing .plabel,.player.playing img{display:none}
+.player iframe,.player>div:not(.vlayer){position:absolute;inset:0;width:100%;height:100%;border:0}
+.vlayer{position:absolute;z-index:4;display:grid;place-items:center;text-align:center}
+.vlayer[hidden]{display:none!important}
+.vend{inset:0;padding:20px;background:radial-gradient(500px 260px at 50% 30%,rgba(52,204,136,.22),transparent 70%),rgba(2,12,6,.96);animation:fadeIn .4s var(--ease)}
+.vend-k{margin:0 0 4px;color:var(--green-hi);font-size:.82rem;font-weight:800}
+.vend h3{margin:0 0 16px;font:400 clamp(1.5rem,3.4vw,2.3rem)/1 var(--display);text-transform:uppercase;color:#fff}
+.vend-b{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.vend .btn{width:auto}
+.vpause{left:0;right:0;top:0;bottom:54px;gap:10px;align-content:center;background:rgba(2,12,6,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);cursor:pointer;color:var(--soft);font-size:.86rem;font-weight:700}
+.vresume{display:grid;place-items:center;width:76px;height:76px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:var(--green);color:#03140b;cursor:pointer;box-shadow:0 0 0 8px rgba(52,204,136,.15)}
+.vresume svg{width:28px;height:28px;margin-left:4px}
+.vfs{position:absolute;right:10px;top:10px;z-index:5;display:grid;place-items:center;width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(2,12,6,.7);color:#fff;cursor:pointer;opacity:.75;transition:opacity .2s}
+.vfs:hover{opacity:1}.vfs svg{width:18px;height:18px}
+.player:fullscreen{border-radius:0;border:0}
+@media (max-width:640px){.vend .btn{width:100%}.vend-b{flex-direction:column;width:100%;max-width:280px}.vpause{bottom:48px}}
 .vnote{color:var(--faint);font-size:.74rem;line-height:1.45}
 
 /* ---------- feature list ---------- */

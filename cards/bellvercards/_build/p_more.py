@@ -46,9 +46,10 @@ VIDS = [
 def player(v, H, eager=False):
     vid, title, kind, dur, typ, src, img, desc, link, iso = v
     data = f'data-yt="{src}"' if typ == 'yt' else f'data-src="{L(src, H)}"'
-    lab = f'{dur} on YouTube' if typ == 'yt' and dur != 'Full length' else (f'Watch on YouTube' if typ == 'yt' else dur)
+    lab = 'Full webinar' if dur == 'Full length' else dur
+    more = f' data-more="{L(link, H)}"' if link and H != link else ''
     load = '' if eager else ' loading="lazy"'
-    return f'''<div class="player" id="{vid}" role="button" tabindex="0" aria-label="Play: {title}" {data} data-title="{title}">
+    return f'''<div class="player" id="{vid}" role="button" tabindex="0" aria-label="Play: {title}" {data} data-title="{title}"{more}>
  <img src="{L(img + '-640.webp', H)}" srcset="{L(img + '-640.webp', H)} 640w, {L(img + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 760px" alt="{title}, video thumbnail" width="1280" height="720"{load}>
  <span class="pbtn">{ic('play')}</span><span class="plabel">{lab}</span></div>'''
 

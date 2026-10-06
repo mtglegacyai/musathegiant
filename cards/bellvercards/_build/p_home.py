@@ -93,9 +93,9 @@ def build(here=''):
    </div>
    <div class="vcard rv" style="--d:.1s">
     <div class="vmeta"><span class="dur">27<small>MIN</small></span><div><h3>Full presentation</h3><p>Card, wallet, prices and rewards, explained</p></div></div>
-    <div class="player" role="button" tabindex="0" aria-label="Play the 27-minute Bellver Card presentation" data-yt="{YT_27}" data-title="Bellver Card explained in 27 minutes">
+    <div class="player" role="button" tabindex="0" aria-label="Play the 27-minute Bellver Card presentation" data-yt="{YT_27}" data-title="Bellver Card explained in 27 minutes" data-more="{L('videos/bellver-card-explained/', H)}">
      <img src="{L('images/bellver-card-explained-27-minutes-thumbnail-640.webp', H)}" srcset="{L('images/bellver-card-explained-27-minutes-thumbnail-640.webp', H)} 640w, {L('images/bellver-card-explained-27-minutes-thumbnail.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="Beach celebration in front of a Bellver Card sign with the slogan Let's make it happen" width="1280" height="720" loading="lazy">
-     <span class="pbtn">{ic('play')}</span><span class="plabel">27 min on YouTube</span>
+     <span class="pbtn">{ic('play')}</span><span class="plabel">27 min</span>
     </div>
    </div>
   </div>
