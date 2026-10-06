@@ -8,6 +8,7 @@
 
 User-agent: *
 Allow: /
+Disallow: /cards/bellvercards/_build/
 
 # Google
 User-agent: Googlebot

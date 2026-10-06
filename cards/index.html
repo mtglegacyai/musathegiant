@@ -39,7 +39,8 @@
    "author": {
     "@id": "https://www.musathegiant.com/#mtg"
    },
-   "dateModified": "2026-10-02",
+   "dateModified": "2026-10-06",
+   "hasPart": [{"@type": "WebPage", "name": "Bellver Card", "url": "https://www.musathegiant.com/cards/bellvercards/"}],
    "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
@@ -280,6 +281,17 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
 @media(max-width:600px){.ov{grid-template-columns:1fr}.ovt{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:2px 16px}.ovt small{grid-column:2}.ovt b{grid-row:1/3;grid-column:1;margin:0;font-size:2.1rem}.ovt span{grid-column:2}.cover{grid-template-columns:1fr}.cx .ccta{align-self:stretch;justify-content:center}.cvis{max-width:none}.cvis .qm{font-size:4.4rem}}
 @media(prefers-reduced-motion:reduce){.cvis{transform:none}.card:hover .cvis{transform:none}.state i,.ccta.wait .dot{animation:none}}
 
+.bvx:before{background:radial-gradient(circle,rgba(52,204,136,.22),transparent 45%)}
+.bvx .cname{color:#34cc88}.bvx h3 em{color:#34cc88}.bvx .facts b{color:#7dffc0}
+.bvx .stream-no .pill{border:1px solid rgba(52,204,136,.38);background:rgba(52,204,136,.07);color:#7dffc0}.bvx .stream-no .pill b{background:#34cc88;color:#03140b;box-shadow:0 0 16px rgba(52,204,136,.35)}
+.tag.live{border-color:rgba(52,204,136,.35);color:#7dffc0}.tag.live i{background:#34cc88!important;box-shadow:0 0 10px rgba(52,204,136,.7)!important}
+.bvimg{display:block;width:100%;max-width:360px;margin:0 0 26px;transform:perspective(900px) rotateX(6deg) rotateY(-10deg);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.bvimg img{width:100%;height:auto;filter:drop-shadow(0 22px 26px rgba(0,0,0,.55))}
+.card:hover .bvimg{transform:perspective(900px) rotateX(0) rotateY(0) translateY(-4px)}
+.bvx .cta{--c1:#b6ffd9;--c2:#34cc88;margin-top:auto;align-self:flex-start;color:#03140b;border-color:rgba(140,255,195,.6);background:linear-gradient(100deg,transparent 38%,rgba(255,255,255,.5) 50%,transparent 62%) no-repeat,linear-gradient(180deg,#46d995,#2bb673 58%,#1d8f57);background-size:260% 100%,100% 100%;background-position:180% 0,0 0;box-shadow:0 8px 0 rgba(20,107,65,.6),0 16px 34px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.35);animation:ctaGlint 6.5s ease-in-out 1.5s infinite}
+.bvx .cta:hover{box-shadow:0 10px 0 rgba(20,107,65,.5),0 22px 42px rgba(0,0,0,.42),0 0 28px rgba(52,204,136,.25),inset 0 1px 0 rgba(255,255,255,.42)}
+@media(max-width:600px){.bvx .cta{align-self:stretch}}
+@media(prefers-reduced-motion:reduce){.bvimg,.card:hover .bvimg{transform:none}.bvx .cta{animation:none}}
 </style>
 </head>
 <body>
@@ -296,7 +308,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
   <a class="navlink active" href="#cards"><span>☰</span><i class="nn">All Crypto Cards</i></a>
   <div class="side-label" style="margin-top:14px">Cards</div>
   <!-- CARD MENU: when a card's page is ready, set its href to that page (for example /cards/card-name/), change the name, and delete the "Soon" tag and the "pending" class. Add one line like these per card. -->
-  <a class="navlink pending" href="#card-1"><span>#1</span><i class="nn">First card</i><em class="ns">Soon</em></a>
+  <a class="navlink" href="/cards/bellvercards/"><span>#1</span><i class="nn">Bellver Card</i></a>
   <a class="navlink pending" href="#card-2"><span>#2</span><i class="nn">Next card</i><em class="ns">Soon</em></a>
   <div class="side-label" style="margin-top:14px">Explore</div>
   <a class="navlink" href="/dashboard.html"><span>$</span><i class="nn">Income Streams</i></a>
@@ -329,7 +341,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
   <div class="content" id="cards">
     <section class="intro">
       <div class="intro-copy"><p class="welcome">Spend your crypto in the real world.</p><h1>Crypto Card Hub</h1><p>One clean dashboard for the crypto debit cards I review. Pick a card from the menu or the list below to see its fees, limits and who it suits.</p></div>
-      <div class="status"><span>1 review in progress</span><span>More cards coming</span></div>
+      <div class="status"><span>1 review live</span><span>More cards coming</span></div>
     </section>
 
     <section class="ov" aria-label="Overview">
@@ -341,16 +353,16 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
     <section class="grid">
       <!-- CARD LISTING: when a card's page is ready, change data-status to "live", change the heading and text, and swap the grey "Review coming soon" button for:
            <a class="cta" href="/cards/card-name/">Read the review <span class="arr" aria-hidden="true">→</span></a> -->
-      <article class="card cx" id="card-1" data-status="progress">
+      <article class="card cx bvx" id="card-1" data-status="live">
         <div class="card-inner">
           <span class="stream-big" aria-hidden="true">#1</span>
-          <div class="stream-no"><span class="pill"><b>#1</b>Card</span><span class="tag state"><i aria-hidden="true"></i>Review in progress</span></div>
-          <div class="cvis" aria-hidden="true"><div class="ctop"><span class="chip"></span><svg class="nfc" viewBox="0 0 24 24"><path d="M8 7.5a7 7 0 0 1 0 9"/><path d="M12 5a11 11 0 0 1 0 14"/><path d="M16 2.5a15 15 0 0 1 0 19"/></svg></div><div class="cmid">•••• •••• •••• ••••</div><div class="cbot"><div class="cbar"><span></span><span></span></div><span class="cmark">DEBIT</span></div></div>
-          <p class="cname">First card, review coming</p>
-          <h3>Your first <em>crypto card</em> lands here.</h3>
-          <p>The full breakdown is being put together: what it costs, what it pays back, which coins it spends and how to apply. It appears on this card as soon as it is ready.</p>
-          <div class="facts"><span class="dim">Fees</span><span class="dim">Cashback</span><span class="dim">Supported coins</span><span class="dim">Countries</span></div>
-          <span class="ccta wait" role="note"><span class="dot" aria-hidden="true"></span>Review coming soon</span>
+          <div class="stream-no"><span class="pill"><b>#1</b>Card</span><span class="tag state live"><i aria-hidden="true"></i>Review live</span></div>
+          <a class="bvimg" href="/cards/bellvercards/" tabindex="-1" aria-hidden="true"><img src="/cards/bellvercards/images/bellver-card-black-visa-640.webp" alt="" width="640" height="385" loading="lazy"></a>
+          <p class="cname">Bellver Card</p>
+          <h3>The card that can <em>pay your bills.</em></h3>
+          <p>A crypto-funded Visa card, physical or instant virtual, with limits up to $250,000 a day, your own Fireblocks wallet and an optional rewards program. Prices, fees, the rewards rules and a step-by-step setup guide, all in plain words.</p>
+          <div class="facts"><span>From <b>$99</b></span><span>Up to <b>$250,000</b> a day</span><span>Funds: <b>USDT</b> and <b>USDC</b></span><span>Physical or <b>virtual</b></span></div>
+          <a class="cta" href="/cards/bellvercards/">See the Bellver Card <span class="arr" aria-hidden="true">→</span></a>
         </div>
       </article>
       <article class="card cx soon" id="card-2" data-status="soon">
