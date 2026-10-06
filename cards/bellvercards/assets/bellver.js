@@ -115,7 +115,7 @@
       requestAnimationFrame(function(){th.classList.add('on');});
       th.querySelector('.vback').addEventListener('click',function(){closeT(true);});
       th.querySelector('.vclose').addEventListener('click',function(e){e.stopPropagation();closeT(true);});
-      T={th:th,sp:sp,back:d.activeElement,fs:false};
+      T={th:th,sp:sp,back:d.activeElement,fs:false,top:r.top,y:window.scrollY};
       openTheater=closeT;
       setTimeout(function(){var c=th.querySelector('.vclose');if(c)c.focus({preventScroll:true});},60);
       /* phones: try real full screen + landscape (Android); otherwise CSS turns the video sideways */
@@ -133,6 +133,13 @@
       if(d.fullscreenElement) d.exitFullscreen().catch(function(){});
       if(reset) reset_();
       t.sp.parentNode.insertBefore(p,t.sp); t.sp.remove();
+      /* put the visitor back exactly where the video was: same spot on the page, same distance from the top of the screen */
+      var htmlEl=d.documentElement, prevSB=htmlEl.style.scrollBehavior; htmlEl.style.scrollBehavior='auto';
+      function backToVideo(){var dy=p.getBoundingClientRect().top-t.top; if(Math.abs(dy)>1) window.scrollTo(0,Math.max(0,window.scrollY+dy));}
+      backToVideo();
+      requestAnimationFrame(backToVideo);
+      setTimeout(backToVideo,120); setTimeout(backToVideo,380);
+      setTimeout(function(){backToVideo();htmlEl.style.scrollBehavior=prevSB;},700);
       t.th.classList.remove('on'); setTimeout(function(){t.th.remove();},260);
       root.classList.remove('vt-open');
       if(t.back&&t.back.focus) try{t.back.focus({preventScroll:true});}catch(_){}
