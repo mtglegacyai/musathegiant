@@ -96,7 +96,7 @@
   /* Focused ("theater") video: the player lifts out of the page, zooms to the centre over a dim
      backdrop, gets a close button, and turns landscape on phones. It returns to its place when the
      video ends or the visitor closes it. */
-  var mqRotate=window.matchMedia('(orientation: portrait) and (max-width: 900px)');
+  var mqRotate=window.matchMedia('(orientation: portrait) and (max-width: 640px)');
   var coarse=window.matchMedia('(pointer: coarse)').matches;
   var openTheater=null;
   d.addEventListener('keydown',function(e){if(e.key==='Escape'&&openTheater) openTheater(true);});
@@ -108,9 +108,9 @@
       var r=p.getBoundingClientRect();
       var sp=d.createElement('div'); sp.className='pspacer'; sp.style.height=r.height+'px'; p.parentNode.insertBefore(sp,p);
       var th=d.createElement('div'); th.className='vtheater'; th.setAttribute('role','dialog'); th.setAttribute('aria-modal','true'); th.setAttribute('aria-label',title);
-      th.innerHTML='<div class="vback"></div><div class="vbox"><button type="button" class="vclose" aria-label="Close video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>';
-      var box=th.querySelector('.vbox'); box.insertBefore(p,box.firstChild);
-      if(canFS&&!coarse){var fb=d.createElement('button');fb.type='button';fb.className='vfs';fb.setAttribute('aria-label','Full screen');fb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';fb.addEventListener('click',function(e){e.stopPropagation();fsToggle(th);});box.appendChild(fb);}
+      th.innerHTML='<div class="vback"></div><button type="button" class="vclose" aria-label="Close video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="vbox"><div class="vlid"><i class="vcam" aria-hidden="true"></i><div class="vscr"></div></div><div class="vbase" aria-hidden="true"><i></i></div></div>';
+      var box=th.querySelector('.vscr'); box.insertBefore(p,box.firstChild);
+      if(canFS&&!coarse){var fb=d.createElement('button');fb.type='button';fb.className='vfs';fb.setAttribute('aria-label','Full screen');fb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';fb.addEventListener('click',function(e){e.stopPropagation();th.classList.add('ufs');fsToggle(th);});box.appendChild(fb);}
       d.body.appendChild(th); root.classList.add('vt-open');
       requestAnimationFrame(function(){th.classList.add('on');});
       th.querySelector('.vback').addEventListener('click',function(){closeT(true);});
@@ -137,7 +137,7 @@
       root.classList.remove('vt-open');
       if(t.back&&t.back.focus) try{t.back.focus({preventScroll:true});}catch(_){}
     }
-    d.addEventListener('fullscreenchange',function(){if(T&&T.fs&&!d.fullscreenElement){T.fs=false;closeT(true);}});
+    d.addEventListener('fullscreenchange',function(){if(!d.fullscreenElement){var u=d.querySelector('.vtheater.ufs');if(u)u.classList.remove('ufs');}if(T&&T.fs&&!d.fullscreenElement){T.fs=false;closeT(true);}});
     function finished(){
       closeT(true);
       if(endL) endL.remove();

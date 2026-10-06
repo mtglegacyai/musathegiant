@@ -813,28 +813,47 @@ html.vt-open,html.vt-open body{overflow:hidden}
 .vtheater{position:fixed;inset:0;z-index:300;opacity:0;transition:opacity .28s var(--ease)}
 .vtheater.on{opacity:1}
 .vback{position:absolute;inset:0;background:radial-gradient(900px 600px at 50% 50%,rgba(6,30,18,.72),rgba(1,5,3,.94));backdrop-filter:blur(10px) saturate(.8);-webkit-backdrop-filter:blur(10px) saturate(.8);cursor:zoom-out}
-.vbox{position:absolute;left:50%;top:50%;width:min(92vw,calc((92vh - 40px) * 16 / 9),1400px);transform:translate(-50%,-50%) scale(.86);transition:transform .45s var(--spring)}
+/* laptop frame: sizes come from the screen (video) width W; bezel and base are fixed so nothing is ever cut off */
+.vtheater{--bz:14px;--bs:20px;--oh:22px;--top:116px;--bot:34px;--vh:100dvh}
+.vbox{position:absolute;left:50%;top:calc(var(--top) + (var(--vh) - var(--top) - var(--bot)) / 2);
+  --W:min(calc(100vw - 2 * var(--oh) - 28px),1240px,calc((var(--vh) - var(--top) - var(--bot) - 2 * var(--bz) - var(--bs)) * 16 / 9 + 2 * var(--bz)));
+  width:var(--W);transform:translate(-50%,-50%) scale(.86);transition:transform .45s var(--spring)}
 .vtheater.on .vbox{transform:translate(-50%,-50%) scale(1)}
-.vbox .player{width:100%;max-width:100%;border-radius:16px;box-shadow:0 40px 120px rgba(0,0,0,.75),0 0 0 1px rgba(52,204,136,.35),0 0 80px rgba(52,204,136,.18);cursor:default}
+.vlid{position:relative;padding:var(--bz);border-radius:18px 18px 6px 6px;background:linear-gradient(160deg,#47584f,#212f28 50%,#2f3f36);border:1px solid rgba(190,255,220,.38);box-shadow:0 40px 110px rgba(0,0,0,.75),0 0 100px rgba(52,204,136,.22),inset 0 1px 0 rgba(255,255,255,.22)}
+.vcam{position:absolute;left:50%;top:calc(var(--bz) / 2 - 2px);width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#0b1410;box-shadow:0 0 0 1px rgba(190,255,220,.25)}
+.vscr{position:relative;border-radius:6px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(0,0,0,.8)}
+.vbase{position:relative;height:var(--bs);width:calc(100% + 2 * var(--oh));margin:0 calc(-1 * var(--oh));border-radius:0 0 22px 22px / 0 0 14px 14px;background:linear-gradient(180deg,#5b6d63,#2a3830 55%,#121b16);border:1px solid rgba(190,255,220,.3);border-top:0;box-shadow:0 26px 50px rgba(0,0,0,.65),0 0 60px rgba(52,204,136,.12),inset 0 1px 0 rgba(255,255,255,.3)}
+.vbase i{position:absolute;left:50%;top:0;width:min(22%,150px);height:7px;margin-left:calc(min(22%,150px) / -2);border-radius:0 0 10px 10px;background:linear-gradient(180deg,#0b1410,#2c3c33);box-shadow:inset 0 -1px 0 rgba(255,255,255,.14)}
+.vbox .player{width:100%;max-width:100%;border:0;border-radius:0;box-shadow:none;cursor:default}
 .vbox .player:hover img{transform:none}
-.vclose{position:absolute;right:-14px;top:-14px;z-index:6;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(2,12,6,.92);color:#fff;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.6);transition:transform .25s var(--spring),background .2s}
-.vclose svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.vclose{position:fixed;z-index:8;right:max(14px,env(safe-area-inset-right));top:max(14px,env(safe-area-inset-top));display:grid;place-items:center;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(2,12,6,.94);color:#fff;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.6),0 0 0 4px rgba(52,204,136,.12);transition:transform .25s var(--spring),background .2s}
+.vclose svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
 .vclose:hover{transform:rotate(90deg) scale(1.06);background:var(--red)}
 .vclose:focus-visible{outline:2px solid var(--green-hi);outline-offset:3px}
 .vbox .vfs{right:auto;left:10px;top:10px}
-.vtheater:fullscreen{background:#000}
-.vtheater:fullscreen .vbox{width:min(100vw,calc(100vh * 16 / 9))}
-.vtheater:fullscreen .vbox .player{border-radius:0;box-shadow:none}
-.vtheater:fullscreen .vclose{right:12px;top:12px}
+/* desktop full screen: drop the laptop and show the video edge to edge */
+.vtheater.ufs:fullscreen{background:#000}
+.vtheater.ufs:fullscreen .vbox{--oh:0px;--bz:0px;--bs:0px;--top:0px;--bot:0px;top:50%;--W:min(100vw,calc(100dvh * 16 / 9))}
+.vtheater.ufs:fullscreen .vlid{padding:0;border:0;border-radius:0;background:none;box-shadow:none}
+.vtheater.ufs:fullscreen .vscr{border-radius:0}
+.vtheater.ufs:fullscreen .vcam,.vtheater.ufs:fullscreen .vbase{display:none}
 @media (max-width:900px){
-  .vbox{width:min(calc(100vw - 24px),calc((100dvh - 24px) * 16 / 9))}
-  .vclose{right:6px;top:6px;width:40px;height:40px}
-  .vbox .player{border-radius:10px}
+  .vtheater{--bz:9px;--bs:13px;--oh:12px;--top:88px;--bot:20px}
+  .vlid{border-radius:12px 12px 4px 4px}
+  .vscr{border-radius:4px}
+  .vbase{border-radius:0 0 14px 14px / 0 0 10px 10px}
+  .vclose{width:46px;height:46px}
 }
-/* phone held upright: turn the video sideways so it fills the screen */
-@media (orientation:portrait) and (max-width:900px){
-  .vtheater:not(.locked) .vbox{width:min(calc(100vh - 28px),calc(100dvh - 28px),calc((100vw - 12px) * 16 / 9));transform:translate(-50%,-50%) rotate(90deg) scale(.9)}
+/* phone held upright: turn the laptop sideways so the video is as big as possible */
+@media (orientation:portrait) and (max-width:640px){
+  .vtheater:not(.locked) .vbox{--W:min(calc(var(--vh) - 110px - 2 * var(--oh)),calc((100vw - 28px - 2 * var(--bz) - var(--bs)) * 16 / 9 + 2 * var(--bz)))}
+  .vtheater:not(.locked) .vbox{top:calc(50% + 24px);width:var(--W);transform:translate(-50%,-50%) rotate(90deg) scale(.9)}
   .vtheater.on:not(.locked) .vbox{transform:translate(-50%,-50%) rotate(90deg) scale(1)}
+}
+/* short landscape phones: less chrome so the video keeps its height */
+@media (max-height:480px){
+  .vtheater{--top:64px;--bot:10px}
+  .vclose{width:42px;height:42px}
 }
 @media (prefers-reduced-motion:reduce){.vbox{transition:none}}
 
