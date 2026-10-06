@@ -205,7 +205,10 @@ def prices(H='prices/'):
 # ------------------------------------------------------------------ REWARDS
 def rewards(H='rewards/'):
     trail = T(('Rewards Program', abs_url(H)))
-    art = f'<div data-tilt="img" data-max="12" style="perspective:1000px"><img src="{L("images/bellver-card-special-edition-700.webp", H)}" srcset="{L("images/bellver-card-special-edition-700.webp", H)} 700w, {L("images/bellver-card-special-edition.webp", H)} 1400w" sizes="(max-width:860px) 90vw, 440px" alt="Bellver Card Special Edition, which pays higher referral commissions" width="1400" height="831" fetchpriority="high"></div>'
+    art = f'''<div class="player" role="button" tabindex="0" aria-label="Play the 27-minute Bellver Card presentation" data-yt="{YT_27}" data-title="Bellver Card explained in 27 minutes" data-more="{L('videos/#explained', H)}">
+     <img src="{L('images/bellver-card-explained-27-minutes-thumbnail-640.webp', H)}" srcset="{L('images/bellver-card-explained-27-minutes-thumbnail-640.webp', H)} 640w, {L('images/bellver-card-explained-27-minutes-thumbnail.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 520px" alt="Beach celebration in front of a Bellver Card sign with the slogan Let's make it happen" width="1280" height="720" fetchpriority="high">
+     <span class="pbtn">{ic('play')}</span><span class="plabel">27 min</span>
+    </div>'''
     top = phero(H, trail, ['The rewards', 'program'], 'Optional, and simple at its core: recommend the card to two people. Below are the full rules, so you know how to qualify, how you are paid and how to stay qualified.', art,
                 order_btn('Order and get your link') + dl_btn('plan', H, 'Compensation plan (PDF)'))
 
