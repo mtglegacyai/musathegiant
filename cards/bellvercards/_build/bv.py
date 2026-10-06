@@ -320,7 +320,7 @@ def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None
 {ld}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
 {pre}
 <link rel="stylesheet" href="{L('assets/bellver.css', here)}">
 </head>

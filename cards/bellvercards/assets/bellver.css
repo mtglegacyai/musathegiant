@@ -586,7 +586,7 @@ table.tbl{width:100%;border-collapse:collapse;min-width:640px;font-size:.92rem}
   .player .pbtn{width:68px;height:68px;margin:-34px 0 0 -34px}
 }
 @media (prefers-reduced-motion:reduce){
-  *,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  *,*:before,*:after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
   .rv{opacity:1;transform:none}
   .hero h1 .ln>span,.phero .ln>span{transform:none}
   ::view-transition-old(root),::view-transition-new(root){animation:none}
@@ -774,3 +774,73 @@ table.tbl{width:100%;border-collapse:collapse;min-width:640px;font-size:.92rem}
 .by .aff-s{text-decoration:none;border:0;cursor:help}
 .by .aff-l{display:none}
 @media (min-width:1200px){.by .aff-l{display:inline}.by .aff-s{display:none}}
+
+/* =====================================================================
+   OFFICIAL-STYLE CTA BUTTONS: uppercase, Bellver green gradient (as on
+   the official LOGIN / SIGN UP buttons), with our motion kept
+   ===================================================================== */
+.btn{text-transform:uppercase;letter-spacing:.14em;font-weight:800;font-size:.86rem;border-radius:7px;min-height:52px;padding:0 28px}
+.btn-sm{min-height:42px;padding:0 18px;font-size:.74rem;letter-spacing:.12em;border-radius:6px}
+.btn-go{color:#fff;background:linear-gradient(90deg,#1f8a5a 0%,#26a06f 55%,#2bab7c 100%);box-shadow:0 10px 26px rgba(33,150,100,.28),0 2px 0 rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.22);text-shadow:0 1px 1px rgba(0,0,0,.18)}
+.btn-go:hover{filter:brightness(1.08);transform:translateY(-2px);box-shadow:0 16px 36px rgba(33,150,100,.38),0 0 0 1px rgba(125,255,192,.35),inset 0 1px 0 rgba(255,255,255,.28)}
+.btn-go:active{transform:translateY(1px) scale(.985);box-shadow:0 4px 12px rgba(33,150,100,.3),inset 0 2px 4px rgba(0,0,0,.2)}
+.btn-sm.btn-go{box-shadow:0 8px 20px rgba(33,150,100,.25),inset 0 1px 0 rgba(255,255,255,.2)}
+.btn-sm.btn-go:active{transform:translateY(1px) scale(.985)}
+.btn-ghost{color:var(--green-hi);background:rgba(2,12,6,.35);box-shadow:inset 0 0 0 1.5px rgba(43,171,124,.75)}
+.btn-ghost:hover{color:#fff;background:rgba(43,171,124,.14);box-shadow:inset 0 0 0 1.5px #2bab7c,0 12px 28px rgba(0,0,0,.35);transform:translateY(-2px)}
+.btn-ghost:active{transform:translateY(1px) scale(.985)}
+.btn-ghost svg,.btn-go svg{width:17px;height:17px}
+.btn-ghost .play{background:rgba(43,171,124,.18)}
+.btn-wa{color:#fff;background:linear-gradient(90deg,#1aa851,#25d366);box-shadow:0 10px 26px rgba(37,211,102,.25),inset 0 1px 0 rgba(255,255,255,.25);text-shadow:0 1px 1px rgba(0,0,0,.18)}
+.btn-wa:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn-wa:active{transform:translateY(1px) scale(.985);box-shadow:0 4px 12px rgba(37,211,102,.25)}
+.btn-gold{border-radius:7px}
+.mobile-cta .btn{box-shadow:0 14px 34px rgba(0,0,0,.55),0 8px 22px rgba(33,150,100,.35),inset 0 1px 0 rgba(255,255,255,.22)}
+.tier .btn{align-self:stretch;width:auto!important;margin-left:16px;margin-right:16px;padding:0 12px;letter-spacing:.1em}
+.vend .btn{letter-spacing:.1em}
+@media (max-width:640px){
+  .btn{letter-spacing:.1em;padding:12px 18px;font-size:.82rem}
+  .btn-sm{padding:0 14px;font-size:.72rem}
+}
+@media (max-width:380px){.btn{letter-spacing:.06em}}
+
+/* =====================================================================
+   FOCUSED VIDEO (theater): zoom to centre, dim everything behind,
+   close button, landscape on phones
+   ===================================================================== */
+html.vt-open,html.vt-open body{overflow:hidden}
+.pspacer{width:100%;border-radius:var(--r-lg);background:radial-gradient(closest-side,rgba(52,204,136,.12),transparent),#04100a;border:1px dashed var(--line-2)}
+.vtheater{position:fixed;inset:0;z-index:300;opacity:0;transition:opacity .28s var(--ease)}
+.vtheater.on{opacity:1}
+.vback{position:absolute;inset:0;background:radial-gradient(900px 600px at 50% 50%,rgba(6,30,18,.72),rgba(1,5,3,.94));backdrop-filter:blur(10px) saturate(.8);-webkit-backdrop-filter:blur(10px) saturate(.8);cursor:zoom-out}
+.vbox{position:absolute;left:50%;top:50%;width:min(92vw,calc((92vh - 40px) * 16 / 9),1400px);transform:translate(-50%,-50%) scale(.86);transition:transform .45s var(--spring)}
+.vtheater.on .vbox{transform:translate(-50%,-50%) scale(1)}
+.vbox .player{width:100%;max-width:100%;border-radius:16px;box-shadow:0 40px 120px rgba(0,0,0,.75),0 0 0 1px rgba(52,204,136,.35),0 0 80px rgba(52,204,136,.18);cursor:default}
+.vbox .player:hover img{transform:none}
+.vclose{position:absolute;right:-14px;top:-14px;z-index:6;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(2,12,6,.92);color:#fff;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.6);transition:transform .25s var(--spring),background .2s}
+.vclose svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.vclose:hover{transform:rotate(90deg) scale(1.06);background:var(--red)}
+.vclose:focus-visible{outline:2px solid var(--green-hi);outline-offset:3px}
+.vbox .vfs{right:auto;left:10px;top:10px}
+.vtheater:fullscreen{background:#000}
+.vtheater:fullscreen .vbox{width:min(100vw,calc(100vh * 16 / 9))}
+.vtheater:fullscreen .vbox .player{border-radius:0;box-shadow:none}
+.vtheater:fullscreen .vclose{right:12px;top:12px}
+@media (max-width:900px){
+  .vbox{width:min(calc(100vw - 24px),calc((100dvh - 24px) * 16 / 9))}
+  .vclose{right:6px;top:6px;width:40px;height:40px}
+  .vbox .player{border-radius:10px}
+}
+/* phone held upright: turn the video sideways so it fills the screen */
+@media (orientation:portrait) and (max-width:900px){
+  .vtheater:not(.locked) .vbox{width:min(calc(100vh - 28px),calc(100dvh - 28px),calc((100vw - 12px) * 16 / 9));transform:translate(-50%,-50%) rotate(90deg) scale(.9)}
+  .vtheater.on:not(.locked) .vbox{transform:translate(-50%,-50%) rotate(90deg) scale(1)}
+}
+@media (prefers-reduced-motion:reduce){.vbox{transition:none}}
+
+/* hero pills: keep both readable on phones */
+@media (max-width:640px){
+  .tagpill.t1{left:0;top:2%;bottom:auto}
+  .tagpill.t2{right:0;bottom:0}
+}
+.hero{overflow-x:clip}

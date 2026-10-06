@@ -93,58 +93,98 @@
     if(d.fullscreenElement||d.webkitFullscreenElement){(d.exitFullscreen||d.webkitExitFullscreen).call(d);}
     else {var r=el.requestFullscreen||el.webkitRequestFullscreen; if(r) r.call(el);}
   }
+  /* Focused ("theater") video: the player lifts out of the page, zooms to the centre over a dim
+     backdrop, gets a close button, and turns landscape on phones. It returns to its place when the
+     video ends or the visitor closes it. */
+  var mqRotate=window.matchMedia('(orientation: portrait) and (max-width: 900px)');
+  var coarse=window.matchMedia('(pointer: coarse)').matches;
+  var openTheater=null;
+  d.addEventListener('keydown',function(e){if(e.key==='Escape'&&openTheater) openTheater(true);});
   function bindPlayer(p){
     if(p.bvBound) return; p.bvBound=true;
-    var yt=p.getAttribute('data-yt'), title=p.getAttribute('data-title')||'Video', more=p.getAttribute('data-more'), player=null, media=null;
+    var yt=p.getAttribute('data-yt'), title=p.getAttribute('data-title')||'Video', more=p.getAttribute('data-more'), player=null, media=null, T=null, endL=null;
     function layer(cls,html){var l=d.createElement('div');l.className='vlayer '+cls;l.innerHTML=html;l.hidden=true;p.appendChild(l);return l;}
-    function setup(){
-      var endHtml='<div class="vend-in"><p class="vend-k">Thanks for watching</p><h3>Ready to get your card?</h3><div class="vend-b"><a class="btn btn-go btn-sm" href="'+orderHref+'" target="_blank" rel="sponsored noopener">Order your card</a><button type="button" class="btn btn-ghost btn-sm" data-replay>Watch again</button>'+(more?'<a class="btn btn-ghost btn-sm" href="'+more+'">Read the summary</a>':'')+'</div></div>';
-      var end=layer('vend',endHtml);
-      var pause=layer('vpause','<button type="button" class="vresume" aria-label="Resume video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5L7 4.5z" fill="currentColor"/></svg></button><span>Paused</span>');
-      $('[data-replay]',end).addEventListener('click',function(){end.hidden=true;if(player){player.seekTo(0,true);player.playVideo();}else if(media){media.currentTime=0;media.play();}});
-      pause.addEventListener('click',function(){if(player) player.playVideo();});
-      if(canFS){var fb=d.createElement('button');fb.type='button';fb.className='vfs';fb.setAttribute('aria-label','Full screen');fb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';fb.addEventListener('click',function(e){e.stopPropagation();fsToggle(p);});p.appendChild(fb);}
-      return {end:end,pause:pause};
+    function enterTheater(){
+      var r=p.getBoundingClientRect();
+      var sp=d.createElement('div'); sp.className='pspacer'; sp.style.height=r.height+'px'; p.parentNode.insertBefore(sp,p);
+      var th=d.createElement('div'); th.className='vtheater'; th.setAttribute('role','dialog'); th.setAttribute('aria-modal','true'); th.setAttribute('aria-label',title);
+      th.innerHTML='<div class="vback"></div><div class="vbox"><button type="button" class="vclose" aria-label="Close video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>';
+      var box=th.querySelector('.vbox'); box.insertBefore(p,box.firstChild);
+      if(canFS&&!coarse){var fb=d.createElement('button');fb.type='button';fb.className='vfs';fb.setAttribute('aria-label','Full screen');fb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';fb.addEventListener('click',function(e){e.stopPropagation();fsToggle(th);});box.appendChild(fb);}
+      d.body.appendChild(th); root.classList.add('vt-open');
+      requestAnimationFrame(function(){th.classList.add('on');});
+      th.querySelector('.vback').addEventListener('click',function(){closeT(true);});
+      th.querySelector('.vclose').addEventListener('click',function(e){e.stopPropagation();closeT(true);});
+      T={th:th,sp:sp,back:d.activeElement,fs:false};
+      openTheater=closeT;
+      setTimeout(function(){var c=th.querySelector('.vclose');if(c)c.focus({preventScroll:true});},60);
+      /* phones: try real full screen + landscape (Android); otherwise CSS turns the video sideways */
+      if(coarse&&mqRotate.matches&&th.requestFullscreen&&screen.orientation&&screen.orientation.lock){
+        th.requestFullscreen({navigationUI:'hide'}).then(function(){
+          T&&(T.fs=true);
+          return screen.orientation.lock('landscape').then(function(){th.classList.add('locked');setTimeout(function(){if(innerWidth<innerHeight) th.classList.remove('locked');},450);});
+        }).catch(function(){if(d.fullscreenElement===th) d.exitFullscreen().catch(function(){}); if(T) T.fs=false;});
+      }
+    }
+    function closeT(reset){
+      if(!T) return;
+      var t=T; T=null; openTheater=null;
+      try{if(screen.orientation&&screen.orientation.unlock) screen.orientation.unlock();}catch(_){}
+      if(d.fullscreenElement) d.exitFullscreen().catch(function(){});
+      if(reset) reset_();
+      t.sp.parentNode.insertBefore(p,t.sp); t.sp.remove();
+      t.th.classList.remove('on'); setTimeout(function(){t.th.remove();},260);
+      root.classList.remove('vt-open');
+      if(t.back&&t.back.focus) try{t.back.focus({preventScroll:true});}catch(_){}
+    }
+    d.addEventListener('fullscreenchange',function(){if(T&&T.fs&&!d.fullscreenElement){T.fs=false;closeT(true);}});
+    function finished(){
+      closeT(true);
+      if(endL) endL.remove();
+      endL=d.createElement('div'); endL.className='vlayer vend';
+      endL.innerHTML='<div class="vend-in"><p class="vend-k">Thanks for watching</p><h3>Ready to get your card?</h3><div class="vend-b"><a class="btn btn-go btn-sm" href="'+orderHref+'" target="_blank" rel="sponsored noopener">Order your card</a><button type="button" class="btn btn-ghost btn-sm" data-replay>Watch again</button>'+(more?'<a class="btn btn-ghost btn-sm" href="'+more+'">Read the summary</a>':'')+'</div></div>';
+      endL.addEventListener('click',function(e){e.stopPropagation();});
+      endL.querySelector('[data-replay]').addEventListener('click',function(){endL.remove();endL=null;play();});
+      p.appendChild(endL);
     }
     function play(){
       if(p.classList.contains('playing')) return;
+      if(endL){endL.remove();endL=null;}
+      enterTheater();
       p.classList.add('playing');
       p.removeAttribute('role'); p.removeAttribute('tabindex');
-      var L=setup();
+      var pause=layer('vpause','<button type="button" class="vresume" aria-label="Resume video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5L7 4.5z" fill="currentColor"/></svg></button><span>Paused</span>');
+      pause.addEventListener('click',function(e){e.stopPropagation();if(player) player.playVideo();});
       if(yt){
-        var mount=d.createElement('div'); p.appendChild(mount);
+        var mount=d.createElement('div'); mount.className='ytmount'; p.insertBefore(mount,pause);
         withYT(function(){
+          if(!p.classList.contains('playing')) return;
           player=new YT.Player(mount,{host:'https://www.youtube-nocookie.com',videoId:yt,width:'100%',height:'100%',
-            playerVars:{autoplay:1,rel:0,iv_load_policy:3,playsinline:1,modestbranding:1,fs:canFS?0:1,disablekb:0,cc_load_policy:0,origin:location.origin},
+            playerVars:{autoplay:1,rel:0,iv_load_policy:3,playsinline:1,modestbranding:1,fs:0,disablekb:0,cc_load_policy:0,origin:location.origin},
             events:{
-              onReady:function(e){var f=e.target.getIframe();f.title=title;e.target.playVideo();},
-              onStateChange:function(e){
-                var st=e.data;
-                L.pause.hidden=(st!==2);
-                if(st===0){L.end.hidden=false;try{player.stopVideo();}catch(_){} if(d.fullscreenElement===p) fsToggle(p);}
-                if(st===1){L.end.hidden=true;}
-              }}});
+              onReady:function(e){try{e.target.getIframe().title=title;}catch(_){} e.target.playVideo();},
+              onStateChange:function(e){var st=e.data; pause.hidden=(st!==2); if(st===0) finished();}
+            }});
         });
       } else {
         var v=d.createElement('video'); media=v;
-        v.src=p.getAttribute('data-src'); v.controls=true; v.playsInline=true; v.preload='auto'; v.setAttribute('title',title);
-        v.setAttribute('controlsList','nodownload');
+        v.src=p.getAttribute('data-src'); v.controls=true; v.playsInline=true; v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline',''); v.preload='auto'; v.setAttribute('title',title);
+        v.setAttribute('controlsList','nodownload noremoteplayback'); v.disablePictureInPicture=false;
         var poster=p.querySelector('img'); if(poster) v.poster=poster.currentSrc||poster.src;
-        v.addEventListener('ended',function(){L.end.hidden=false;});
-        v.addEventListener('play',function(){L.end.hidden=true;});
-        p.insertBefore(v,L.end); var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
+        v.addEventListener('ended',finished);
+        p.insertBefore(v,pause); var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
       }
     }
-    p.addEventListener('click',function(e){if(!p.classList.contains('playing')) play();});
-    p.addEventListener('keydown',function(e){if(!p.classList.contains('playing')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();play();}});
-    p.bvReset=function(){
-      if(!p.classList.contains('playing')) return;
+    function reset_(){
       try{if(player&&player.destroy) player.destroy();}catch(_){}
+      try{if(media){media.pause();media.removeAttribute('src');media.load();}}catch(_){}
       player=null; media=null;
-      $$('video,iframe,.vlayer,.vfs',p).forEach(function(n){n.remove();});
-      $$(':scope>div:not(.tposter)',p).forEach(function(n){n.remove();});
+      $$('video,iframe,.ytmount,.vpause',p).forEach(function(n){n.remove();});
       p.classList.remove('playing'); p.setAttribute('role','button'); p.setAttribute('tabindex','0');
-    };
+    }
+    p.addEventListener('click',function(){if(!p.classList.contains('playing')) play();});
+    p.addEventListener('keydown',function(e){if(!p.classList.contains('playing')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();play();}});
+    p.bvReset=function(){ if(T) closeT(true); else if(p.classList.contains('playing')) reset_(); if(endL){endL.remove();endL=null;} };
   }
   $$('.player[data-src],.player[data-yt]').forEach(bindPlayer);
 
@@ -175,7 +215,7 @@
     show((location.hash||'').slice(1)||panels[0].id,false);
     window.addEventListener('hashchange',function(){show(location.hash.slice(1),true);});
   }
-  $$('[data-play]').forEach(function(a){a.addEventListener('click',function(e){var t=$(a.getAttribute('data-play'));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});setTimeout(function(){t.click();},reduce?0:650);});});
+  $$('[data-play]').forEach(function(a){a.addEventListener('click',function(e){var t=$(a.getAttribute('data-play'));if(!t)return;e.preventDefault();t.click();});});
 
   /* card-pays-for-itself calculator */
   var calc=$('[data-calc="payback"]');
