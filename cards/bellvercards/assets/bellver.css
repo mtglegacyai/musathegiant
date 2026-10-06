@@ -769,3 +769,8 @@ table.tbl{width:100%;border-collapse:collapse;min-width:640px;font-size:.92rem}
   .docband .btn{width:100%}
 }
 @media (prefers-reduced-motion:reduce){.side{transition:none}}
+
+/* affiliate label: full word on wide screens, AFF when space is tight */
+.by .aff-s{text-decoration:none;border:0;cursor:help}
+.by .aff-l{display:none}
+@media (min-width:1200px){.by .aff-l{display:inline}.by .aff-s{display:none}}

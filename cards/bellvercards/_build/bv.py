@@ -122,7 +122,7 @@ def header(here, key):
  <div class="wrap hdr-in">
   <a class="brand" href="{L('', here)}" aria-label="Bellver Cards by MTG, home">
    <img src="{L('images/bellver-cards-logo-white-360.webp', here)}" alt="Bellver Card logo" width="360" height="106">
-   <span class="by">Bellver Cards<b>by MTG 👑</b></span>
+   <span class="by">Bellver Cards<b>by <span class="aff-l">Affiliate</span><abbr class="aff-s" title="Affiliate">AFF</abbr> MTG 👑</b></span>
   </a>
   <div class="hdr-act">
    <a class="btn btn-ghost btn-sm learn-btn" href="{L('learn/', here)}">{ic('book')}Learn more</a>
@@ -146,7 +146,7 @@ def sidebar(here, key):
     return f'''<aside class="side" id="bv-menu" aria-label="Bellver Card guide">
  <div class="side-top">
   <a class="sbrand" href="{L('', here)}" aria-label="Bellver Cards home"><img src="{L('images/bellver-cards-logo-white-360.webp', here)}" alt="Bellver Card logo" width="360" height="106"></a>
-  <span class="sby">Card guide by MTG 👑</span>
+  <span class="sby">Card guide by Affiliate MTG 👑</span>
  </div>
  <nav class="snavs">{nav}</nav>
  <div class="side-bot">

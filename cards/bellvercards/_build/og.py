@@ -20,7 +20,7 @@ def shadowed(im,blur=26,off=(0,24),alpha=170):
 def make(name,l1,l2,sub,art='card',green=2):
     im=base().convert('RGBA'); d=ImageDraw.Draw(im)
     lg=logo.resize((250,round(250*logo.height/logo.width)),Image.LANCZOS); im.alpha_composite(lg,(64,54))
-    fm=ImageFont.truetype(FM.format(700),24); d.text((64+262,82),'by MTG',font=fm,fill=(195,210,202))
+    fm=ImageFont.truetype(FM.format(700),24); d.text((64+262,82),'by Affiliate MTG',font=fm,fill=(195,210,202))
     if art=='both':
         s=se.resize((470,round(470*se.height/se.width)),Image.LANCZOS).rotate(9,expand=True,resample=Image.BICUBIC); im.alpha_composite(shadowed(s),(640,10))
     c=card.resize((560,round(560*card.height/card.width)),Image.LANCZOS)
