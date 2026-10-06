@@ -992,3 +992,7 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
 .ftr-top>div:not(.logo){padding-top:8px}
 .ftr ul a{padding:2px 0}
 @media (max-width:640px){.ftr ul{gap:0 14px}.ftr ul a{font-size:.82rem;padding:5px 0}.ftr-top>div:not(.logo){padding-top:10px}}
+/* hero with a video instead of artwork: give it more room */
+.phero-grid:has(.player){grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.phero-art .player img{filter:none}
+@media (max-width:860px){.phero-grid:has(.player){grid-template-columns:minmax(0,1fr)}.phero-art{max-width:none}}
