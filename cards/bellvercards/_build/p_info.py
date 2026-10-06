@@ -28,7 +28,7 @@ def how(H='how-it-works/'):
  <div class="sec-head rv"><h2 class="h2">The <em>card</em></h2><p class="lead">A US dollar card account you fund with crypto and spend like any other card.</p></div>
  <div class="grid3">
   <div class="box rv"><div class="ico">{ic('globe')}</div><h3 class="h3">Pay worldwide</h3><p>Pay in shops and online in any local currency. The card account itself is kept in US dollars.</p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('card')}</div><h3 class="h3">Physical or virtual</h3><p>The physical card is a Visa you can also use for cash at ATMs. The virtual card is ready as soon as you order.</p></div>
+  <div class="box rv" style="--d:.06s"><div class="ico">{ic('card')}</div><h3 class="h3">Physical or virtual</h3><p>Both are Visa cards. The physical card also works for cash at ATMs. The virtual card is ready as soon as you order.</p></div>
   <div class="box rv" style="--d:.12s"><div class="ico">{ic('phone')}</div><h3 class="h3">Phone, ring or card</h3><p>Add it to Apple Pay or Google Pay, or connect an NFC ring or wristband for tap-to-pay.</p></div>
  </div>
 </div></section>'''
@@ -62,7 +62,7 @@ def how(H='how-it-works/'):
     pv = f'''<section class="sec" id="physical-or-virtual"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Physical <em>or</em> virtual?</h2><p class="lead">Both carry the same limits and the same rewards. The difference is how fast you get it and where you can use it.</p></div>
  <div class="tbl-wrap rv"><table class="tbl">
-  <thead><tr><th scope="col"></th><th scope="col">Virtual card</th><th scope="col">Physical Visa card</th></tr></thead>
+  <thead><tr><th scope="col"></th><th scope="col">Virtual card</th><th scope="col">Physical card</th></tr></thead>
   <tbody>
    <tr><td><b>Ready to use</b></td><td>As soon as it is issued</td><td>After delivery. Bellver's terms allow up to four weeks; early users reported about five days</td></tr>
    <tr><td><b>Shipping fee</b></td><td>None</td><td>$85 Europe, $149 rest of world</td></tr>
@@ -72,7 +72,7 @@ def how(H='how-it-works/'):
    <tr><td><b>Cash at ATMs</b></td><td>No</td><td>Yes, 2% fee</td></tr>
   </tbody>
  </table></div>
- <p class="muted small rv" style="margin-top:12px">At the launch webinar Bellver said the virtual card runs on Mastercard and the physical card on Visa. Check the order form for the current network.</p>
+ <p class="muted small rv" style="margin-top:12px">Both the physical and the virtual card are Visa cards.</p>
 </div></section>'''
 
     se = f'''<section class="sec-tight" id="special-edition"><div class="wrap"><div class="panel se rv">

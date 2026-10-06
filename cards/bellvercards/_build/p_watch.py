@@ -57,7 +57,7 @@ def videos(H='videos/'):
   <ul>
    <li>A US dollar card account you can spend worldwide in any local currency</li>
    <li>Limits up to $250,000 a day and $20,000 per payment on Gold</li>
-   <li>A physical Visa or a virtual card, with Apple Pay and Google Pay</li>
+   <li>A physical or a virtual Visa card, with Apple Pay and Google Pay</li>
    <li>Four levels: Basic, Premium, Business and Gold. Most people choose Business</li>
    <li>Recommend it to two people and you join the rewards program</li>
   </ul>
@@ -70,7 +70,7 @@ def videos(H='videos/'):
   <ul>
    <li>Why your money sits in your own Fireblocks wallet, not on the card</li>
    <li>Every way to fund it: USDT and USDC first, other crypto, credit card, SEPA and PayPal</li>
-   <li>Physical Visa vs virtual card, Apple Pay, Google Pay and NFC rings</li>
+   <li>Physical vs virtual card, Apple Pay, Google Pay and NFC rings</li>
    <li>The four levels, their limits and their prices</li>
    <li>How the 2x2 matrix fills itself with spillover</li>
    <li>The star ranks that unlock 12, 15 or 18 levels of rewards</li>

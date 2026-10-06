@@ -55,7 +55,7 @@ def build(here=''):
  <div class="wrap">
   <div class="hero-grid">
    <div>
-    <span class="kicker"><i>{ic('check')}</i>Physical Visa or instant virtual card</span>
+    <span class="kicker"><i>{ic('check')}</i>Physical or instant virtual Visa card</span>
     <h1 class="display"><span class="ln"><span style="--l:0">The card<span class="tri" aria-hidden="true"></span></span></span><span class="ln"><span style="--l:1">that can <span class="pay">pay</span></span></span><span class="ln"><span style="--l:2">your bills</span></span></h1>
     <p class="lead">Fund it with crypto. Spend in any currency, anywhere in the world. And when the people you recommend load their cards, you earn a share every month.</p>
     <div class="btn-row">
