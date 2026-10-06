@@ -93,13 +93,13 @@ def build(here=''):
    </div>
    <div class="vcard rv" style="--d:.1s">
     <div class="vmeta"><span class="dur">27<small>MIN</small></span><div><h3>Full presentation</h3><p>Card, wallet, prices and rewards, explained</p></div></div>
-    <div class="player" role="button" tabindex="0" aria-label="Play the 27-minute Bellver Card presentation" data-yt="{YT_27}" data-title="Bellver Card explained in 27 minutes" data-more="{L('videos/bellver-card-explained/', H)}">
+    <div class="player" role="button" tabindex="0" aria-label="Play the 27-minute Bellver Card presentation" data-yt="{YT_27}" data-title="Bellver Card explained in 27 minutes" data-more="{L('videos/#explained', H)}">
      <img src="{L('images/bellver-card-explained-27-minutes-thumbnail-640.webp', H)}" srcset="{L('images/bellver-card-explained-27-minutes-thumbnail-640.webp', H)} 640w, {L('images/bellver-card-explained-27-minutes-thumbnail.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="Beach celebration in front of a Bellver Card sign with the slogan Let's make it happen" width="1280" height="720" loading="lazy">
      <span class="pbtn">{ic('play')}</span><span class="plabel">27 min</span>
     </div>
    </div>
   </div>
-  <p class="vnote rv" style="margin-top:14px">Videos are Bellver's official presentations. Parts of the voice-over and graphics were created with AI. <a class="inl" href="{L('videos/bellver-card-explained/', H)}">Read the 27-minute summary</a></p>
+  <p class="vnote rv" style="margin-top:14px">Videos are Bellver's official presentations. Parts of the voice-over and graphics were created with AI. <a class="inl" href="{L('videos/#explained', H)}">Read the 27-minute summary</a></p>
  </div>
 </section>'''
 
@@ -136,6 +136,7 @@ def build(here=''):
    <span>{ic('check')}Upgrade later and pay only the difference</span>
    <span>{ic('check')}Virtual card: no shipping fee</span>
    <span>{ic('check')}Physical card shipping: $85 Europe, $149 worldwide</span>
+   <span><a class="inl" href="{L(DOCS_PDF['price'], H)}" download>{ic('download')}Download the official price list</a></span>
   </div>
   <p class="rv" style="text-align:center;margin-top:22px"><a class="tlink" href="{L('prices/', H)}">See every price, fee and add-on {ic('arrow')}</a></p>
  </div>
@@ -220,7 +221,11 @@ def build(here=''):
  </div>
 </section>'''
 
-    body = hero + videos + feats + flow + tiers + virtual + rewards + se + steps + help_band(H) + faq + final_cta(H)
+    learn = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap"><div class="panel learnband rv">
+  <div><h2 class="h2">Want the <em>full picture?</em></h2><p class="lead" style="margin-top:12px">Wallet and security, every price and fee, the rewards rules, a step-by-step setup guide, tutorial videos and the official PDFs. All in one place.</p></div>
+  <div class="btn-row"><a class="btn btn-go" href="{L('learn/', H)}">{ic('book')}Learn more</a>{dl_btn('price', H, 'Price list (PDF)')}</div>
+ </div></div></section>'''
+    body = hero + videos + feats + flow + tiers + virtual + rewards + se + learn + steps + help_band(H) + faq + final_cta(H, second=f'<a class="btn btn-ghost" href="{L("learn/", H)}">Learn more</a>')
 
     product = {"@type": "Product", "@id": abs_url('') + "#product", "name": "Bellver Card", "description": "Crypto-funded Visa debit card, physical or virtual, with a US dollar account, a non-custodial Fireblocks wallet and an optional rewards program.",
                "brand": {"@type": "Brand", "name": "Bellver"}, "image": [abs_url('images/bellver-card-black-visa.webp'), abs_url('images/bellver-card-special-edition.webp')],
@@ -228,9 +233,9 @@ def build(here=''):
     v3 = {"@type": "VideoObject", "name": "Bellver Card in 3 minutes", "description": "A quick overview of the Bellver Card: limits, privacy, physical and virtual cards, and the rewards program.",
           "thumbnailUrl": abs_url('images/bellver-card-3-minute-video-thumbnail.webp'), "uploadDate": "2026-10-06", "duration": "PT3M31S", "contentUrl": abs_url(MP4_3MIN), "embedUrl": abs_url('') + "#watch", "inLanguage": "en"}
     v27 = {"@type": "VideoObject", "name": "Bellver Card explained in 27 minutes", "description": "Bellver's complete video presentation of the card, the Fireblocks wallet, prices and the rewards program.",
-           "thumbnailUrl": abs_url('images/bellver-card-explained-27-minutes-thumbnail.webp'), "embedUrl": f"https://www.youtube.com/embed/{YT_27}", "url": abs_url('videos/bellver-card-explained/'), "inLanguage": "en"}
+           "thumbnailUrl": abs_url('images/bellver-card-explained-27-minutes-thumbnail.webp'), "embedUrl": f"https://www.youtube.com/embed/{YT_27}", "url": abs_url('videos/') + '#explained', "inLanguage": "en"}
     return page(H, 'home',
                 'Bellver Card: The Crypto Visa Card That Can Pay Your Bills | MTG',
                 'Order the Bellver Card from $99. A crypto-funded Visa card with limits up to $250,000 a day, your own private-key wallet and monthly rewards when your referrals use their cards.',
                 'images/og/og-bellver-cards.jpg', 'Bellver Card, the card that can pay your bills', body,
-                ld_extra=[product, v3, v27], preload='images/bellver-card-black-visa.webp')
+                ld_extra=[product, v3, v27], preload='images/bellver-card-black-visa.webp', dash=False)

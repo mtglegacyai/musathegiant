@@ -76,6 +76,7 @@ I = {
  'chev-r': '<path d="M9 6l6 6-6 6"/>',
  'up': '<path d="M12 19V5M6 11l6-6 6 6"/>',
  'check': '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+ 'play-c': '<circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="currentColor"/>',
  'rocket': '<path d="M5 15c-1.5 1-2 3.5-2 6 2.5 0 5-.5 6-2M14.5 4.5c3-1.5 5.5-1.5 5.5-1.5s0 2.5-1.5 5.5L12 15l-3-3 5.5-7.5z"/><path d="M9 12l-3.5-.5L8 8.5h4M12 15l.5 3.5L15.5 16v-4"/>',
  'calendar': '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
  'pin': '<path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>',
@@ -94,24 +95,27 @@ def order_btn(label='Order your card', cls='btn btn-go', here='', icon=True):
     return f'<a class="{cls}" href="{REF}" target="_blank" rel="sponsored noopener">{label}</a>'
 
 
-# menu: (key, path, label, sub, icon)
+# guide pages: (key, path, label, sub, icon, group). Sidebar and Previous/Next follow this order.
 NAV = [
- ('home', '', 'Home', 'The card in two minutes', 'home'),
- ('how', 'how-it-works/', 'How It Works', 'Wallet, funding and security', 'layers'),
- ('prices', 'prices/', 'Prices & Limits', 'Four levels, fees, add-ons', 'tag'),
- ('rewards', 'rewards/', 'Rewards Program', 'Commissions, matrix, ranks', 'users'),
- ('start', 'get-started/', 'Get Started', 'Order your card step by step', 'rocket'),
- ('videos', 'videos/', 'Videos', 'Overview, full talk, dashboard', 'video'),
- ('faq', 'faq/', 'FAQ & Glossary', 'Straight answers, plain words', 'help'),
- ('downloads', 'downloads/', 'Downloads', 'Price list, plan, slides', 'download'),
+ ('learn', 'learn/', 'Overview', 'Everything in one place', 'grid', 'Start here'),
+ ('start', 'get-started/', 'Get Started', 'Order your card step by step', 'rocket', 'Start here'),
+ ('how', 'how-it-works/', 'How It Works', 'Wallet, funding and security', 'layers', 'The card'),
+ ('prices', 'prices/', 'Prices & Limits', 'Four levels, fees, add-ons', 'tag', 'The card'),
+ ('rewards', 'rewards/', 'Rewards Program', 'Commissions, matrix, ranks', 'users', 'Earn'),
+ ('videos', 'videos/', 'Presentation Videos', '3 min, 27 min and the full talk', 'video', 'Watch'),
+ ('tutorials', 'tutorials/', 'Tutorial Videos', 'Short how-to guides', 'play-c', 'Watch'),
+ ('faq', 'faq/', 'FAQ & Glossary', 'Straight answers, plain words', 'help', 'Help'),
+ ('docs', 'docs/', 'Documents', 'Price list, plan, slides (PDF)', 'download', 'Help'),
 ]
+DOCS_PDF = {'price': 'docs/bellver-card-price-list.pdf', 'plan': 'docs/bellver-card-compensation-plan.pdf', 'slides': 'docs/bellver-card-presentation.pdf'}
+
+
+def dl_btn(kind, here, label, cls='btn btn-ghost'):
+    return f'<a class="{cls}" href="{L(DOCS_PDF[kind], here)}" download>{ic("download")}{label}</a>'
 
 
 def header(here, key):
-    links = []
-    for i, (k, path, label, sub, icn) in enumerate(NAV):
-        cur = ' aria-current="page"' if k == key else ''
-        links.append(f'<a class="mlink" style="--i:{i}" href="{L(path, here)}"{cur}><span class="ic">{ic(icn)}</span><span><b>{label}</b><small>{sub}</small></span></a>')
+    """Landing page header: logo, Learn more, Order."""
     return f'''<a class="skip" href="#main">Skip to content</a>
 <div class="progress" aria-hidden="true"></div>
 <header class="hdr">
@@ -121,25 +125,91 @@ def header(here, key):
    <span class="by">Bellver Cards<b>by MTG 👑</b></span>
   </a>
   <div class="hdr-act">
+   <a class="btn btn-ghost btn-sm learn-btn" href="{L('learn/', here)}">{ic('book')}Learn more</a>
    {order_btn('Order your card', 'btn btn-go btn-sm')}
-   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="bv-menu"><span class="bars" aria-hidden="true"></span><span class="lbl">Menu</span>{ic('chevron','chev')}</button>
   </div>
  </div>
- <div class="menu" id="bv-menu">
-  <div class="wrap"><nav class="menu-panel" aria-label="Bellver Cards pages">
-   <div class="menu-grid">{''.join(links)}</div>
-   <div class="menu-foot">
-    <div class="row">
-     <a class="chiplink" href="{LOGIN}" target="_blank" rel="noopener">{ic('login')}Member login</a>
-     <a class="chiplink" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}WhatsApp MTG</a>
-     <a class="chiplink" href="{L('/cards/', here)}">{ic('grid')}All crypto cards</a>
-    </div>
-    {order_btn('Order your card', 'btn btn-go btn-sm')}
-   </div>
-  </nav></div>
+</header>'''
+
+
+def sidebar(here, key):
+    groups = []; cur_g = None; items = ''
+    for k, path, label, sub, icn, g in NAV:
+        if g != cur_g:
+            if cur_g is not None:
+                groups.append((cur_g, items))
+            cur_g, items = g, ''
+        on = ' aria-current="page"' if k == key else ''
+        items += f'<a class="snav" href="{L(path, here)}"{on}><span class="ic">{ic(icn)}</span><span class="tx"><b>{label}</b><small>{sub}</small></span></a>'
+    groups.append((cur_g, items))
+    nav = ''.join(f'<div class="sgroup"><p class="slabel">{g}</p>{it}</div>' for g, it in groups)
+    return f'''<aside class="side" id="bv-menu" aria-label="Bellver Card guide">
+ <div class="side-top">
+  <a class="sbrand" href="{L('', here)}" aria-label="Bellver Cards home"><img src="{L('images/bellver-cards-logo-white-360.webp', here)}" alt="Bellver Card logo" width="360" height="106"></a>
+  <span class="sby">Card guide by MTG 👑</span>
  </div>
-</header>
+ <nav class="snavs">{nav}</nav>
+ <div class="side-bot">
+  {order_btn('Order your card', 'btn btn-go btn-sm sorder')}
+  <div class="srow">
+   <a class="slink" href="{LOGIN}" target="_blank" rel="noopener">{ic('login')}Member login</a>
+   <a class="slink" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}WhatsApp MTG</a>
+  </div>
+  <div class="srow">
+   <a class="slink" href="{L('', here)}">{ic('home')}Bellver home</a>
+   <a class="slink" href="{L('/cards/', here)}">{ic('card')}All cards</a>
+  </div>
+ </div>
+</aside>
 <div class="scrim" aria-hidden="true"></div>'''
+
+
+def topbar(here, key):
+    label = next(n[2] for n in NAV if n[0] == key)
+    return f'''<header class="dtop">
+ <button class="menu-btn" type="button" aria-expanded="false" aria-controls="bv-menu"><span class="bars" aria-hidden="true"></span><span class="lbl">Menu</span></button>
+ <nav class="dcrumb" aria-label="You are here"><a href="{L('learn/', here)}">Card guide</a>{ic('chev-r')}<span aria-current="page">{label}</span></nav>
+ <div class="dtop-act">{order_btn('Order your card', 'btn btn-go btn-sm')}</div>
+</header>'''
+
+
+def pager(here, key):
+    keys = [n[0] for n in NAV]
+    i = keys.index(key)
+    prev = NAV[i - 1] if i > 0 else None
+    nxt = NAV[i + 1] if i < len(NAV) - 1 else None
+
+    def cell(n, cls, lab):
+        if not n:
+            return f'<a class="pg {cls}" href="{L("", here)}"><small>{lab}</small><b>Bellver Card home</b></a>'
+        return f'<a class="pg {cls}" href="{L(n[1], here)}"><small>{lab}</small><b>{n[2]}</b></a>'
+    return f'<section class="sec-tight pager-sec"><div class="wrap"><nav class="pager" aria-label="Previous and next page">{cell(prev, "prev", "Previous")}{cell(nxt, "next", "Next")}</nav></div></section>'
+
+
+def dash_footer(here):
+    return f'''<footer class="dfoot"><div class="wrap">
+  <div class="disc">Bellver Card is a product of Bellver Markets Ltd. This guide is run independently by MTG and is not the official Bellver website or back office. Order buttons link to app.bellvercards.com with MTG's referral code, so MTG may earn a commission if you order, at no extra cost to you. Prices, fees and the compensation plan come from Bellver's official documents (version 08/2026) and can change. Rewards depend on real card activity and are never guaranteed. Nothing here is financial, tax or legal advice. Read the <a href="{L('/affiliate-disclosure.html', here)}">Affiliate Disclosure</a>, <a href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a> and <a href="{L('/risk-disclaimer.html', here)}">Risk Disclaimer</a>.</div>
+  <div class="ftr-bot"><span>© <span data-year>2026</span> MTG | Musa The Giant. <a href="{L('/privacy-policy.html', here)}">Privacy</a> &nbsp; <a href="{L('/terms-of-use.html', here)}">Terms</a></span><span class="sig">Let's Get This Crypto! 💰 Crypto-Regards, MTG 👑</span></div>
+ </div></footer>'''
+
+
+def shell(here, key, body, dash):
+    if not dash:
+        return f'{header(here, key)}\n<main id="main">\n{body}\n</main>\n{footer(here)}'
+    tail = footer(here).split('</footer>', 1)[1]
+    return f'''<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+<div class="dash">
+{sidebar(here, key)}
+<div class="dmain">
+{topbar(here, key)}
+<main id="main">
+{body}
+{pager(here, key)}
+</main>
+{dash_footer(here)}
+</div>
+</div>{tail}'''
 
 
 def help_band(here, title="Stuck? I'll walk you through it.", text="I'm MTG. Message me on WhatsApp and I'll help you register, fund your wallet and choose the right card for you."):
@@ -162,8 +232,8 @@ def final_cta(here, title='Let\'s make it <span class="hap">happen</span>', text
 
 def footer(here):
     cols = [
-     ('The card', [('How it works', 'how-it-works/'), ('Prices & limits', 'prices/'), ('Rewards program', 'rewards/'), ('Get started', 'get-started/')]),
-     ('Learn', [('Videos', 'videos/'), ('Dashboard walkthrough', 'videos/dashboard-walkthrough/'), ('FAQ & glossary', 'faq/'), ('Downloads', 'downloads/')]),
+     ('The card', [('Overview', 'learn/'), ('How it works', 'how-it-works/'), ('Prices & limits', 'prices/'), ('Rewards program', 'rewards/'), ('Get started', 'get-started/')]),
+     ('Learn', [('Presentation videos', 'videos/'), ('Tutorial videos', 'tutorials/'), ('FAQ & glossary', 'faq/'), ('Documents', 'docs/')]),
      ('MTG', [('All crypto cards', '/cards/'), ('Income streams', '/dashboard.html'), ('Tools', '/tools/'), ('About MTG', '/about.html')]),
     ]
     html = ''
@@ -208,7 +278,7 @@ def crumbs_html(trail, here):
     return '<nav class="crumbs" aria-label="Breadcrumb">' + ''.join(out) + '</nav>'
 
 
-def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None, preload=None, robots='index,follow,max-image-preview:large,max-video-preview:-1'):
+def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None, preload=None, robots='index,follow,max-image-preview:large,max-video-preview:-1', dash=True):
     url = abs_url(here)
     trail = trail or [('Home', SITE + '/'), ('Cards', SITE + '/cards/'), ('Bellver Cards', SITE + BASE)]
     graph = [{"@type": "WebPage", "@id": url + "#page", "url": url, "name": title, "description": desc, "inLanguage": "en",
@@ -254,12 +324,8 @@ def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None
 {pre}
 <link rel="stylesheet" href="{L('assets/bellver.css', here)}">
 </head>
-<body>
-{header(here, key)}
-<main id="main">
-{body}
-</main>
-{footer(here)}
+<body{' class="is-dash"' if dash else ''}>
+{shell(here, key, body, dash)}
 </body>
 </html>
 '''

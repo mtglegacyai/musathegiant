@@ -22,7 +22,7 @@ def how(H='how-it-works/'):
     trail = T(('How It Works', abs_url(H)))
     art = f'<div data-tilt="img" data-max="12" style="perspective:1000px"><img src="{L("images/bellver-card-black-visa.webp", H)}" alt="Black Bellver Visa Business card" width="1087" height="654" fetchpriority="high"></div>'
     top = phero(H, trail, ['How the', 'card works'], 'One card with your own wallet behind it. Here is where your money sits, how it reaches the card, and what keeps it yours.', art,
-                order_btn('Order your card') + f'<a class="btn btn-ghost" href="{L("prices/", H)}">See prices</a>')
+                order_btn('Order your card') + dl_btn('slides', H, 'Presentation (PDF)'))
 
     card = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">The <em>card</em></h2><p class="lead">A US dollar card account you fund with crypto and spend like any other card.</p></div>
@@ -91,7 +91,7 @@ def how(H='how-it-works/'):
    <h2 class="h2">Who is <em>behind</em> it</h2>
    <p class="lead" style="margin-top:16px">Bellver Markets Ltd, based in St Julian's, Malta, runs the program and the rewards. The card itself is registered in Singapore, one of Asia's leading financial centres.</p>
    <p class="muted">At the launch webinar, Bellver's head of operations in Singapore said the card provider is licensed by the Monetary Authority of Singapore and works with major banks, and that the wallets run on Fireblocks technology. Bellver itself describes its role as the marketing company: it does not hold your money.</p>
-   <p class="muted">The founder was open that the platform launched as version 1.0 in September 2026 and that improvements are still being rolled out. <a class="inl" href="{L('videos/launch-webinar/', H)}">Watch the launch webinar</a></p>
+   <p class="muted">The founder was open that the platform launched as version 1.0 in September 2026 and that improvements are still being rolled out. <a class="inl" href="{L('videos/#webinar', H)}">Watch the launch webinar</a></p>
   </div>
   <div class="box rv" style="--d:.1s">
    <div class="ico">{ic('users')}</div>
@@ -107,7 +107,7 @@ def how(H='how-it-works/'):
  </div>
 </div></section>'''
 
-    body = top + card + wallet + fund + pv + se + who + help_band(H) + final_cta(H)
+    body = top + card + wallet + fund + pv + se + who + help_band(H)
     howto = {"@type": "HowTo", "name": "How to fund and use the Bellver Card", "step": [
         {"@type": "HowToStep", "position": 1, "name": "Send USDT or USDC", "text": "Send USDT or USDC from any external wallet or exchange, ideally on BNB Smart Chain, plus a little BNB or TRX for gas."},
         {"@type": "HowToStep", "position": 2, "name": "Receive it in your Fireblocks wallet", "text": "Funds arrive in your own non-custodial Fireblocks dynamic wallet, protected by your private key."},
@@ -122,7 +122,7 @@ def how(H='how-it-works/'):
 def prices(H='prices/'):
     trail = T(('Prices & Limits', abs_url(H)))
     top = phero(H, trail, ['Prices,', 'fees & limits'], 'One-time card price, clear limits, published fees. Everything below comes from Bellver\'s official price list and compensation plan, version 08/2026.', None,
-                order_btn('Order your card') + f'<a class="btn btn-ghost" href="{L("downloads/", H)}">Download the price list</a>')
+                order_btn('Order your card') + dl_btn('price', H, 'Price list (PDF)'))
 
     levels = f'''<section class="sec-tight"><div class="wrap">{tiers_html(H)}</div></section>'''
 
@@ -192,7 +192,7 @@ def prices(H='prices/'):
  {payback_calc(H)}
 </div></section>'''
 
-    body = top + levels + compare + fees + addons + upgrade + calc + help_band(H) + final_cta(H)
+    body = top + levels + compare + fees + addons + upgrade + calc + help_band(H)
     offers = [{"@type": "Offer", "name": f"Bellver Card {n}", "price": str(p), "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": REF}
               for n, p in [('Basic', 99), ('Premium', 270), ('Business', 490), ('Gold', 990)]]
     product = {"@type": "Product", "name": "Bellver Card", "brand": {"@type": "Brand", "name": "Bellver"}, "image": abs_url('images/bellver-card-black-visa.webp'),
@@ -207,7 +207,7 @@ def rewards(H='rewards/'):
     trail = T(('Rewards Program', abs_url(H)))
     art = f'<div data-tilt="img" data-max="12" style="perspective:1000px"><img src="{L("images/bellver-card-special-edition-700.webp", H)}" srcset="{L("images/bellver-card-special-edition-700.webp", H)} 700w, {L("images/bellver-card-special-edition.webp", H)} 1400w" sizes="(max-width:860px) 90vw, 440px" alt="Bellver Card Special Edition, which pays higher referral commissions" width="1400" height="831" fetchpriority="high"></div>'
     top = phero(H, trail, ['The rewards', 'program'], 'Optional, and simple at its core: recommend the card to two people. Below are the full rules, so you know how to qualify, how you are paid and how to stay qualified.', art,
-                order_btn('Order and get your link') + f'<a class="btn btn-ghost" href="#rules">Read the rules</a>')
+                order_btn('Order and get your link') + dl_btn('plan', H, 'Compensation plan (PDF)'))
 
     ways = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Two ways <em>to earn</em></h2></div>
@@ -287,7 +287,7 @@ def rewards(H='rewards/'):
  </div>
 </div></section>'''
 
-    body = top + ways + matrix + ranks + rules + est + help_band(H, "Want to build this properly?", "I'm MTG. Message me and I'll show you how I share the card without pressure, and help your first two referrals get set up.") + final_cta(H, text='Order your card first so the people you refer are placed in your matrix.')
+    body = top + ways + matrix + ranks + rules + est + help_band(H, "Want to build this properly?", "I'm MTG. Message me and I'll show you how I share the card without pressure, and help your first two referrals get set up.")
     return page(H, 'rewards', 'Bellver Card Rewards Program and 2x2 Matrix Explained | MTG',
                 'The Bellver Card rewards program in plain words: direct commissions from $10 to $500, 0.1% monthly rewards per level in a 2x2 matrix, star ranks, the $100 monthly rule and honest math.',
                 'images/og/og-bellver-rewards.jpg', 'Bellver Card rewards program and 2x2 matrix', body, trail=trail)
