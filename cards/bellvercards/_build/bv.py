@@ -152,12 +152,12 @@ def sidebar(here, key):
  <div class="side-bot">
   {order_btn('Order your card', 'btn btn-go btn-sm sorder')}
   <div class="srow">
-   <a class="slink" href="{LOGIN}" target="_blank" rel="noopener">{ic('login')}Member login</a>
+   <a class="slink" href="{LOGIN}" target="_blank" rel="noopener">{ic('login')}Member Login</a>
    <a class="slink" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}WhatsApp MTG</a>
   </div>
   <div class="srow">
-   <a class="slink" href="{L('', here)}">{ic('home')}Bellver home</a>
-   <a class="slink" href="{L('/cards/', here)}">{ic('card')}All cards</a>
+   <a class="slink" href="{REF}" target="_blank" rel="sponsored noopener">{ic('home')}Bellver Home</a>
+   <a class="slink" href="{L('/cards/', here)}">{ic('card')}All Cards</a>
   </div>
  </div>
 </aside>
@@ -169,7 +169,7 @@ def topbar(here, key):
     return f'''<header class="dtop">
  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="bv-menu"><span class="bars" aria-hidden="true"></span><span class="lbl">Menu</span></button>
  <nav class="dcrumb" aria-label="You are here"><a href="{L('learn/', here)}">Card guide</a>{ic('chev-r')}<span aria-current="page">{label}</span></nav>
- <div class="dtop-act">{order_btn('Order your card', 'btn btn-go btn-sm')}</div>
+ <div class="dtop-act"><a class="btn btn-ghost btn-sm gohome" href="{L('', here)}" aria-label="Go to the Bellver Cards home page">{ic('home')}Go Home</a>{order_btn('Order your card', 'btn btn-go btn-sm orderbtn')}</div>
 </header>'''
 
 
@@ -181,7 +181,7 @@ def pager(here, key):
 
     def cell(n, cls, lab):
         if not n:
-            return f'<a class="pg {cls}" href="{L("", here)}"><small>{lab}</small><b>Bellver Card home</b></a>'
+            return f'<a class="pg {cls}" href="{L("", here)}"><small>{lab}</small><b>Bellver Card Home</b></a>'
         return f'<a class="pg {cls}" href="{L(n[1], here)}"><small>{lab}</small><b>{n[2]}</b></a>'
     return f'<section class="sec-tight pager-sec"><div class="wrap"><nav class="pager" aria-label="Previous and next page">{cell(prev, "prev", "Previous")}{cell(nxt, "next", "Next")}</nav></div></section>'
 
@@ -232,9 +232,9 @@ def final_cta(here, title='Let\'s make it <span class="hap">happen</span>', text
 
 def footer(here):
     cols = [
-     ('The card', [('Overview', 'learn/'), ('How it works', 'how-it-works/'), ('Prices & limits', 'prices/'), ('Rewards program', 'rewards/'), ('Get started', 'get-started/')]),
-     ('Learn', [('Presentation videos', 'videos/'), ('Tutorial videos', 'tutorials/'), ('FAQ & glossary', 'faq/'), ('Documents', 'docs/')]),
-     ('MTG', [('All crypto cards', '/cards/'), ('Income streams', '/dashboard.html'), ('Tools', '/tools/'), ('About MTG', '/about.html')]),
+     ('The card', [('Overview', 'learn/'), ('How It Works', 'how-it-works/'), ('Prices & Limits', 'prices/'), ('Rewards Program', 'rewards/'), ('Get Started', 'get-started/')]),
+     ('Learn', [('Presentation Videos', 'videos/'), ('Tutorial Videos', 'tutorials/'), ('FAQ & Glossary', 'faq/'), ('Documents', 'docs/')]),
+     ('MTG', [('All Crypto Cards', '/cards/'), ('Income Streams', '/dashboard.html'), ('Tools', '/tools/'), ('About MTG', '/about.html')]),
     ]
     html = ''
     for t, items in cols:

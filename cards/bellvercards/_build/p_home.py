@@ -176,7 +176,7 @@ def build(here=''):
     <div style="--m1:var(--gold-1);--m2:var(--gold-2)"><span>Gold</span><b>$400</b><small>$500 Special Edition</small></div>
    </div>
    <div class="btn-row"><a class="btn btn-ghost" href="{L('rewards/', H)}">How rewards work</a>{order_btn('Order and get your link')}</div>
-   <p class="fine">To receive monthly rewards you top up your own card with at least $100 a month. Basic cardholders earn direct commissions only. Earnings are not guaranteed.</p>
+   <p class="fine">To receive monthly rewards you load at least $100 a month onto your own card. That is not a subscription fee, it is your own money to spend. Basic cardholders earn direct commissions only. Earnings are not guaranteed.</p>
   </div>
   {payback_calc(H)}
  </div>
@@ -208,7 +208,7 @@ def build(here=''):
 </section>'''
 
     faqs = [
-     ('How much does the Bellver Card cost?', f'A one-time $99 for Basic, $270 for Premium, $490 for Business or $990 for Gold. Physical cards add shipping ($85 Europe, $149 rest of world). Using the card has published fees: 4.95% when you top up, 1.75% per transaction and 2% at ATMs. <a class="inl" href="{L("prices/", H)}">Full price list</a>'),
+     ('How much does the Bellver Card cost?', f'A one-time $99 for Basic, $270 for Premium, $490 for Business or $990 for Gold. Physical cards add shipping ($85 Europe, $149 rest of world). Using the card has published fees: 4.95% when you top up, 1.75% per transaction and 2% at ATMs. The top-up fee helps keep Bellver profitable and around for the long term. <a class="inl" href="{L("prices/", H)}">Full price list</a>'),
      ('Do I need crypto to get one?', 'It helps, but no. Card balances run on USDT or USDC, and sending those from any wallet is the cheapest route. You can also buy crypto with a credit card inside the dashboard, and in Europe pay by bank transfer or PayPal.'),
      ('Who controls my money?', 'You do. Deposits go into your own non-custodial Fireblocks wallet protected by your private key. Bellver cannot freeze or access it. The flip side: keep your key safe, because nobody can recover it for you.'),
      ('Do I have to refer anyone?', 'No. The rewards program is optional. Many people simply want a crypto card with high limits. If you do share it, two referrals are enough to qualify.'),

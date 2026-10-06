@@ -276,7 +276,7 @@
       chapters.forEach(function(c,i){c.els.forEach(function(el){if(i>0||el!==c.els[0]) el.setAttribute('hidden','until-found');});});
       chapters[0].els[0].classList.add('chap-peek');
       bar=d.createElement('div'); bar.className='upnext';
-      bar.innerHTML='<button type="button" class="un-go" aria-label="Open the next section" title="Open this section"><span class="un-ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.5"/><circle class="fg" cx="18" cy="18" r="15.5"/></svg><i></i></span><span class="un-tx"><small></small><b></b></span><span class="un-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button><button type="button" class="un-all">Show all</button>';
+      bar.innerHTML='<button type="button" class="un-go" aria-label="Open the next section" title="Open this section"><span class="un-ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.5"/><circle class="fg" cx="18" cy="18" r="15.5"/></svg><i></i></span><span class="un-tx"><small></small><b></b></span><span class="un-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button><button type="button" class="un-all">Show All</button>';
       placeBar();
       $('.un-go',bar).addEventListener('click',function(){revealNext(true);});
       $('.un-all',bar).addEventListener('click',function(){revealUpTo(chapters.length-1,true);});

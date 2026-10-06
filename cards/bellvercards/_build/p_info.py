@@ -120,8 +120,12 @@ def how(H='how-it-works/'):
 
 # ------------------------------------------------------------------ PRICES
 def prices(H='prices/'):
+    art3 = f'''<div class="player" role="button" tabindex="0" aria-label="Play the 3-minute Bellver Card video" data-src="{L(MP4_3MIN, H)}" data-title="Bellver Card in 3 minutes">
+     <img src="{L('images/bellver-card-3-minute-video-thumbnail-640.webp', H)}" srcset="{L('images/bellver-card-3-minute-video-thumbnail-640.webp', H)} 640w, {L('images/bellver-card-3-minute-video-thumbnail.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 520px" alt="Man holding a black Bellver Card under the headline The card that can pay your bills" width="1280" height="720" fetchpriority="high">
+     <span class="pbtn">{ic('play')}</span><span class="plabel">3 min</span>
+    </div>'''
     trail = T(('Prices & Limits', abs_url(H)))
-    top = phero(H, trail, ['Prices,', 'fees & limits'], 'One-time card price, clear limits, published fees. Everything below comes from Bellver\'s official price list and compensation plan, version 08/2026.', None,
+    top = phero(H, trail, ['Prices,', 'fees & limits'], 'One-time card price, clear limits, published fees. Everything below comes from Bellver\'s official price list and compensation plan, version 08/2026.', art3,
                 order_btn('Order your card') + dl_btn('price', H, 'Price list (PDF)'))
 
     levels = f'''<section class="sec-tight"><div class="wrap">{tiers_html(H)}</div></section>'''
@@ -145,6 +149,7 @@ def prices(H='prices/'):
    <h2 class="h2">Fees, <em>in plain numbers</em></h2>
    <p class="lead" style="margin-top:16px">No hidden extras. These are the fees on Bellver's official price list.</p>
    <p class="muted">Bellver is open that these fees are higher than a typical bank card. The top-up fee is what funds the commissions and monthly rewards, which is why this card can earn for you and an ordinary one cannot.</p>
+   <div class="note g" style="margin-top:20px">{ic('shield')}<span><b>Why 4.95%?</b> Yes, 4.95% can sound high. It is what helps keep Bellver sustainable. A company has to pay for its team, offices, payment partners, security and support, and a profitable company is one that stays around for the long run. That is what you want from the company that holds your card.</span></div>
    <div class="note g" style="margin-top:20px">{ic('info')}<span><b>Example:</b> top up $100 and $4.95 goes to the deposit fee, leaving $95.05 to spend. Pay $50 at a shop and the 1.75% transaction fee is about $0.88.</span></div>
   </div>
   <div class="grid2 rv" style="--d:.1s;align-content:start">
@@ -256,7 +261,7 @@ def rewards(H='rewards/'):
     rules = f'''<section class="sec" id="rules"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Staying <em>qualified</em></h2><p class="lead">The terms that decide whether you are paid each month. Read these before anything else.</p></div>
  <div class="grid2">
-  <div class="box rv"><div class="ico">{ic('calendar')}</div><h3 class="h3">Top up $100 a month</h3><p>To receive rewards for a month, you must load at least $100 onto your own card that month. Miss it and that month's rewards are forfeited in full.</p></div>
+  <div class="box rv"><div class="ico">{ic('calendar')}</div><h3 class="h3">Load $100 a month. It stays yours.</h3><p>To receive rewards for a month, you must load at least $100 onto your own card that month. This is <b>not a subscription fee</b>. It is your own money, loaded onto your own card, and it is yours to spend however you like. Miss it and that month's rewards are forfeited in full.</p><p class="muted small" style="margin-top:12px">The only cost is the 4.95% top-up fee. <b>Why?</b> A profitable company is one that lasts. The fee helps Bellver cover its running costs, such as its team, offices and payment partners, so the card is still here for the long term.</p></div>
   <div class="box warn rv" style="--d:.06s"><div class="ico">{ic('alert')}</div><h3 class="h3">Three misses and the position is gone</h3><p>Miss the $100 minimum three months in a row and you permanently lose your position in the matrix. Rewards built up until then are forfeited and roll up to the next qualified position. You cannot requalify for the old position.</p></div>
   <div class="box rv"><div class="ico">{ic('coins')}</div><h3 class="h3">How and when you are paid</h3><p>Commissions and rewards are paid in USDT. Rewards settle monthly and payday is the 15th. Top-ups made in the final seven business days before settlement count toward the following month. The minimum withdrawal is $100.</p></div>
   <div class="box rv" style="--d:.06s"><div class="ico">{ic('info')}</div><h3 class="h3">The fine print</h3><p>Basic cards earn direct commissions only. Rewards are not paid back-dated after an upgrade. Bellver Markets can change the plan with one month's notice, and payments made within four weeks count as on time.</p></div>

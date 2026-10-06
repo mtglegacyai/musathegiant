@@ -18,15 +18,9 @@ WALK = ('walk', 'Bellver dashboard walkthrough', 'Back office tour', '11:53', 'm
 # Tutorial placeholders. Upload an MP4 with exactly this name into cards/bellvercards/videos/tutorials/
 # and the matching tile switches from "Coming soon" to a playable video by itself.
 TUTS = [
- ('01-register-with-mtg-link.mp4', 'Register with MTG\'s link', 'Create your free account and find your way around.', 'login', 1),
- ('02-secure-your-account.mp4', 'Secure your account', 'Two-factor login, a transaction password and saving your private key.', 'lock', 2),
- ('03-deposit-usdt-or-usdc.mp4', 'Deposit USDT or USDC', 'Send stablecoins on BNB Smart Chain, plus a little BNB for gas.', 'coins', 3),
- ('04-buy-crypto-with-a-card.mp4', 'No crypto yet? Buy with a card', 'Use Buy crypto in the dashboard to fund your wallet.', 'card', 3),
- ('05-order-your-virtual-card.mp4', 'Order your virtual card', 'Choose your level and options, then pay from your wallet.', 'phone', 4),
- ('06-top-up-your-card.mp4', 'Top up your card', 'Move money from your wallet to your card in one click.', 'swap', 5),
- ('07-add-to-apple-pay-google-pay.mp4', 'Add it to Apple Pay or Google Pay', 'Pay with your phone anywhere contactless is accepted.', 'nfc', 5),
- ('08-share-your-referral-link.mp4', 'Share your referral link', 'Find your link and share it the easy way.', 'users', 6),
- ('09-withdraw-your-earnings.mp4', 'Withdraw your earnings', 'Request a payout and see it arrive in your wallet.', 'download', 7),
+ ('01-register-and-secure-your-account.mp4', 'Register and secure your account', 'Sign up with MTG\'s link, switch on two-factor login and save your private key.', 'login', 1),
+ ('02-fund-your-wallet-and-order-your-card.mp4', 'Fund your wallet and order your card', 'Deposit USDT or USDC, choose your level and pay from your wallet.', 'card', 3),
+ ('03-top-up-and-pay-with-your-phone.mp4', 'Top up and pay with your phone', 'Load your card, add it to Apple Pay or Google Pay and start paying.', 'nfc', 5),
 ]
 
 
@@ -161,7 +155,7 @@ def tutorials(H='tutorials/'):
     tiles = ''
     for i, (f, t, d, icn, step) in enumerate(TUTS):
         n = f[:2]
-        tiles += f'''<article class="tut rv" id="tut-{n}" style="--d:{(i % 3) * 0.06:.2f}s">
+        tiles += f'''<article class="tut rv" id="tut-{n}" style="--d:{i * 0.06:.2f}s">
   <div class="player tplayer soon" data-wait="{L('videos/tutorials/' + f, H)}" data-title="{t}">
    <div class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></div>
    <span class="pbtn">{ic('play')}</span><span class="plabel">Coming soon</span>
@@ -169,7 +163,7 @@ def tutorials(H='tutorials/'):
   <div class="ttx"><h3>{t}</h3><p>{d}</p><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></div>
  </article>'''
     grid = f'''<section class="sec-tight"><div class="wrap">
- <div class="sec-head rv"><h2 class="h2">Step-by-step <em>tutorials</em></h2><p class="lead">Follow them in order, from your first sign-up to your first payout. Each one matches a step in the written setup guide.</p></div>
+ <div class="sec-head rv"><h2 class="h2">Step-by-step <em>tutorials</em></h2><p class="lead">Three short videos that take you from your first sign-up to your first payment. Each one matches steps in the written setup guide.</p></div>
  <div class="tgrid">{tiles}</div>
 </div></section>'''
     body = top + walk + grid + help_band(H, 'Need a tutorial that is not here?', 'Tell me what you are stuck on and I will make a video for it, or walk you through it on WhatsApp.')

@@ -14,12 +14,12 @@ def start(H='get-started/'):
      ('Secure your account first', '''<ul><li>Go to <span class="path">Settings</span> and switch on the <b>authenticator app</b> for two-factor login.</li><li>Go to <span class="path">My Wallet › Settings › Account and security</span>, set a <b>transaction password</b>, then use <b>Export private key</b>.</li><li>Write the key down, store it offline and never share it. If you lose it, nobody can recover your funds.</li></ul>'''),
      ('Fund your wallet', '''<p>Open <span class="path">My Wallet › Deposit</span>.</p><ul><li><b>Best:</b> send USDT or USDC on BNB Smart Chain from any wallet or exchange.</li><li><b>Add gas:</b> send about $10 to $20 of BNB (or TRX if you use Tron) for network fees.</li><li><b>No crypto?</b> Use Buy crypto to pay by credit card, or SEPA and PayPal in Europe.</li></ul><p>The deposit page has a calculator that shows how much you need for your card. Add a little extra: it stays your money.</p>'''),
      ('Order your card', '''<p>Open <span class="path">My Cards</span> and choose:</p><ul><li>Your level: Basic, Premium, Business or Gold</li><li>Virtual (instant, no shipping) or physical Visa</li><li>Optional Special Edition (+$390) and your printed name (+$49)</li></ul><p>Pay from your wallet. Your new card can take a few minutes to appear. Once it does, you receive the next free place in the 2x2 matrix.</p>'''),
-     ('Load it and pay', '''<p>Move the amount you want to spend from your wallet to your card. Then add the card to Apple Pay or Google Pay, or start paying online right away.</p><p>Remember the $100 monthly top-up if you want to receive rewards.</p>'''),
+     ('Load it and pay', '''<p>Move the amount you want to spend from your wallet to your card. Then add the card to Apple Pay or Google Pay, or start paying online right away.</p><p>If you want to receive rewards, load at least $100 onto your card each month. It is not a fee. It is your own money to spend.</p>'''),
      ('Share your link, if you want to', '''<p>Your personal referral link sits at the top of your dashboard. Share it with people who would value the card. You earn a direct commission for every card ordered through it.</p><p>The easiest way: send them to a page like this one with the words "Take a look at the two videos, it's worth it."</p>'''),
      ('Get paid', '''<p>Your current month's commissions and rewards show in the green fields. On the 15th they move to <b>Earnings available</b>.</p><p>Open <span class="path">Withdraw</span>, enter the amount (minimum $100) and request it. It shows as pending, then arrives in My Wallet.</p>'''),
     ]
-    TUT = ['01', '02', '03', '05', '06', '08', '09']
-    steps = ''.join(f'<article class="gstep rv" id="step-{i+1}"><span class="gn">{i+1}</span><div><h2>{t}</h2>{b}<p class="gtut"><a class="tlink" href="{L("tutorials/#tut-" + TUT[i], H)}">{ic("play-c")}Watch the tutorial</a></p></div></article>' for i, (t, b) in enumerate(S))
+    TUT = ['01', '01', '02', '02', '03', None, None]
+    steps = ''.join(f'<article class="gstep rv" id="step-{i+1}"><span class="gn">{i+1}</span><div><h2>{t}</h2>{b}{(f'<p class="gtut"><a class="tlink" href="{L("tutorials/#tut-" + TUT[i], H)}">{ic("play-c")}Watch the tutorial</a></p>' if TUT[i] else '')}</div></article>' for i, (t, b) in enumerate(S))
     body = top + f'''<section class="sec-tight"><div class="wrap"><div class="split guide-split">
  <div class="guide">{steps}</div>
  <aside class="rv" style="position:sticky;top:96px;display:grid;gap:16px">
@@ -40,7 +40,7 @@ FAQ = [
  ('The card', [
   ('What is the Bellver Card?', 'A crypto-funded payment card, physical Visa or virtual, with a US dollar account. Bellver calls it the world\'s first network card because it also has an optional rewards program. It is a product of Bellver Markets Ltd.'),
   ('How much does it cost?', 'A one-time $99 (Basic), $270 (Premium), $490 (Business) or $990 (Gold). Add-ons: Special Edition +$390, printed name +$49. Physical cards add shipping: $85 Europe, $149 rest of world. <a class="inl" href="{PL}" download>Download the price list</a>'),
-  ('Is there a monthly or annual fee?', 'The official price list shows no monthly or annual card fee. You pay usage fees: 4.95% when you top up the card, 1.75% per transaction and 2% for ATM withdrawals.'),
+  ('Is there a monthly or annual fee?', 'The official price list shows no monthly or annual card fee. You pay usage fees: 4.95% when you top up the card, 1.75% per transaction and 2% for ATM withdrawals. The 4.95% top-up fee helps Bellver cover its running costs, so the company stays profitable and around for the long term.'),
   ('What are the daily and per-transaction limits?', 'Basic $1,000 a day and $500 per transaction. Premium $10,000 and $5,000. Business $50,000 and $10,000. Gold $250,000 and $20,000.'),
   ('Physical or virtual: which should I choose?', 'Virtual if you want to start today: no shipping wait, no shipping fee, and it works with Apple Pay, Google Pay and NFC rings. Choose physical if you need cash from ATMs.'),
   ('Can I use it with Apple Pay and Google Pay?', 'Yes. You can also connect it to an NFC ring or wristband and pay with a tap.'),
@@ -61,7 +61,7 @@ FAQ = [
   ('Do I have to refer anyone?', 'No. The rewards program is optional. If you do want to take part, two referrals who order a card are enough to qualify.'),
   ('How much do I earn per referral?', 'A one-time commission of $10 for Basic, $100 for Premium, $200 for Business or $400 for Gold. With the Special Edition: $150, $300 or $500. Upgrades pay an extra 50% of the new level\'s commission.'),
   ('How do monthly rewards work?', '0.1% of every completed card top-up by cardholders in your 2x2 matrix, on each level you qualify for: up to 12 levels with Premium, 15 with Business and 18 to 20 with Gold, depending on your star rank.'),
-  ('What do I need to stay qualified?', 'Top up your own card with at least $100 every month. Miss a month and that month\'s rewards are forfeited. Miss three months in a row and you permanently lose your matrix position. <a class="inl" href="{CP}" download>Download the compensation plan</a>'),
+  ('What do I need to stay qualified?', 'Load at least $100 onto your own card every month. This is not a subscription fee: it is your own money, and it stays yours to spend. Miss a month and that month\'s rewards are forfeited. Miss three months in a row and you permanently lose your matrix position. <a class="inl" href="{CP}" download>Download the compensation plan</a>'),
   ('When and how am I paid?', 'In USDT. Direct commissions arrive within seven business days of the payment. Monthly rewards are paid on the 15th. The minimum withdrawal is $100.'),
   ('Is income guaranteed?', 'No. Bellver\'s own examples state they are not a guarantee of income. What you earn depends on how many cardholders are placed in your levels and how much they load.'),
  ]),
@@ -78,7 +78,7 @@ GLOSSARY = [
  ('USDT and USDC', 'Stablecoins worth one US dollar each. Card balances run on them.'),
  ('BNB Smart Chain', 'The recommended network for sending USDT or USDC: fast and low-cost.'),
  ('Gas fee', 'The small network fee for sending tokens, paid in BNB, TRX or ETH depending on the chain.'),
- ('Top-up (deposit)', 'Moving money onto your card balance. Carries a 4.95% fee and is what rewards are calculated on.'),
+ ('Top-up (deposit)', 'Moving money onto your card balance. Carries a 4.95% fee, which helps keep the company sustainable, and is what rewards are calculated on.'),
  ('Direct commission', 'A one-time payment for each card ordered through your referral link.'),
  ('Rewards', 'Your monthly 0.1% share of top-ups by cardholders on your qualified levels.'),
  ('2x2 matrix', 'Your team structure: two places under each person, filled top to bottom, left to right.'),

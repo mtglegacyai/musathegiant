@@ -58,11 +58,12 @@ strong,b{font-weight:800;color:#fff}
 .menu-btn{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:0 16px;border:1px solid var(--line-2);border-radius:999px;background:rgba(12,26,18,.7);color:var(--text);font:800 .86rem var(--body);cursor:pointer;transition:border-color .2s,background .2s,transform .2s var(--ease)}
 .menu-btn:hover{border-color:rgba(52,204,136,.45);background:rgba(16,34,26,.9)}
 .menu-btn:active{transform:scale(.97)}
-.menu-btn .bars{position:relative;width:16px;height:10px}
+.menu-btn .bars{position:relative;width:18px;height:14px;background:linear-gradient(currentColor,currentColor) center/100% 2px no-repeat;border-radius:2px;transition:background-size .2s}
 .menu-btn .bars:before,.menu-btn .bars:after{content:"";position:absolute;left:0;right:0;height:2px;border-radius:2px;background:currentColor;transition:transform .35s var(--spring),top .35s var(--ease)}
-.menu-btn .bars:before{top:0}.menu-btn .bars:after{top:8px}
-.menu-btn[aria-expanded="true"] .bars:before{top:4px;transform:rotate(45deg)}
-.menu-btn[aria-expanded="true"] .bars:after{top:4px;transform:rotate(-45deg)}
+.menu-btn .bars:before{top:0}.menu-btn .bars:after{top:12px}
+.menu-btn[aria-expanded="true"] .bars{background-size:0 2px}
+.menu-btn[aria-expanded="true"] .bars:before{top:6px;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] .bars:after{top:6px;transform:rotate(-45deg)}
 .menu-btn .chev{width:12px;height:12px;transition:transform .35s var(--ease)}
 .menu-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
 .hdr .btn-sm{display:inline-flex}
@@ -760,7 +761,8 @@ table.tbl{width:100%;border-collapse:collapse;min-width:640px;font-size:.92rem}
 @media (max-width:640px){
   .hdr-act .learn-btn{display:inline-flex;width:auto}
   .hdr-act .btn{width:auto}
-  .dtop-act{display:none}
+  .dtop-act .orderbtn{display:none}
+  .dtop-act .gohome{padding:0 12px;min-height:40px}
   .dtop{min-height:58px}
   .dcrumb a,.dcrumb svg{display:none}
   .dash .tiers,.ggrid,.tgrid{grid-template-columns:minmax(0,1fr)}
@@ -996,3 +998,9 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
 .phero-grid:has(.player){grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .phero-art .player img{filter:none}
 @media (max-width:860px){.phero-grid:has(.player){grid-template-columns:minmax(0,1fr)}.phero-art{max-width:none}}
+/* sidebar: the bottom links (Member Login, WhatsApp, Bellver Home, All Cards) stay pinned and visible */
+.side-bot{position:sticky;bottom:-16px;z-index:2;margin:auto -14px -16px;padding:12px 14px 16px;background:linear-gradient(180deg,rgba(3,12,7,.9),rgba(3,12,7,.99) 22%)}
+@media (max-height:720px){.side-bot .sorder{display:none}}
+.gohome{white-space:nowrap}
+.gohome svg{width:16px;height:16px;flex:none}
+@media (max-width:380px){.dtop .menu-btn .lbl{display:none}.dtop .menu-btn{padding:0 12px}.dtop{gap:10px}.dtop .gohome{letter-spacing:.06em;padding:0 10px}}
