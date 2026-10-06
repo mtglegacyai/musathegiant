@@ -195,7 +195,7 @@ def dash_footer(here):
 
 def shell(here, key, body, dash):
     if not dash:
-        return f'{header(here, key)}\n<main id="main">\n{body}\n</main>\n{footer(here)}'
+        return f'{header(here, key)}\n<main id="main" data-open="2">\n{body}\n</main>\n{footer(here)}'
     tail = footer(here).split('</footer>', 1)[1]
     return f'''<a class="skip" href="#main">Skip to content</a>
 <div class="progress" aria-hidden="true"></div>
@@ -203,7 +203,7 @@ def shell(here, key, body, dash):
 {sidebar(here, key)}
 <div class="dmain">
 {topbar(here, key)}
-<main id="main">
+<main id="main" data-open="2">
 {body}
 {pager(here, key)}
 </main>
