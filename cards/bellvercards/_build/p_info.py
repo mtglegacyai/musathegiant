@@ -107,7 +107,7 @@ def how(H='how-it-works/'):
  </div>
 </div></section>'''
 
-    body = top + card + wallet + fund + pv + se + who + help_band(H)
+    body = top + card + wallet + fund + pv + se + who + earn_section(H) + help_band(H)
     howto = {"@type": "HowTo", "name": "How to fund and use the Bellver Card", "step": [
         {"@type": "HowToStep", "position": 1, "name": "Send USDT or USDC", "text": "Send USDT or USDC from any external wallet or exchange, ideally on BNB Smart Chain, plus a little BNB or TRX for gas."},
         {"@type": "HowToStep", "position": 2, "name": "Receive it in your Fireblocks wallet", "text": "Funds arrive in your own non-custodial Fireblocks dynamic wallet, protected by your private key."},
@@ -295,7 +295,7 @@ def rewards(H='rewards/'):
  </div>
 </div></section>'''
 
-    body = top + ways + matrix + ranks + rules + est + help_band(H, "Want to build this properly?", "I'm MTG. Message me and I'll show you how I share the card without pressure, and help your first two referrals get set up.")
+    body = top + ways + matrix + ranks + rules + est + earn_section(H, 'rewards') + help_band(H, "Want to build this properly?", "I'm MTG. Message me and I'll show you how I share the card without pressure, and help your first two referrals get set up.")
     return page(H, 'rewards', 'Bellver Card Rewards Program and 2x2 Matrix Explained | MTG',
                 'The Bellver Card rewards program in plain words: direct commissions from $10 to $500, 0.1% monthly rewards per level in a 2x2 matrix, star ranks, the $100 monthly rule and honest math.',
                 'images/og/og-bellver-rewards.jpg', 'Bellver Card rewards program and 2x2 matrix', body, trail=trail)

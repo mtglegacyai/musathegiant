@@ -143,6 +143,30 @@ def header(here, key):
 </header>'''
 
 
+EARN = [
+ ('users', 'Network marketers', 'Give your team a card they can order, use and share. Rewards come from real card activity in your team.'),
+ ('tag', 'Affiliate marketers', 'Share a product you actually use, with an order link that carries your own referral code.'),
+ ('bolt', 'Side hustlers', 'One more stream next to your job or business, built by sharing with the people you already know.'),
+ ('layers', 'Multiple streams of income', 'Add card rewards next to the other income streams you are building.'),
+ ('coins', 'Salary supplement', 'Employees who want to top up their salary. Start small: the Prices page has a calculator that shows how many referrals it takes to cover your own card.'),
+ ('star', 'Influencers and sales people', 'Creators and sales people with an audience who already ask which card to use.'),
+]
+
+
+def earn_section(here, page=''):
+    cards = ''.join(f'''<article class="box earn-c rv" style="--d:{i * 0.07:.2f}s"><div class="ico">{ic(icn)}</div><h3 class="h3">{t}</h3><p>{d}</p></article>''' for i, (icn, t, d) in enumerate(EARN))
+    if page == 'rewards':
+        second = f'<a class="btn btn-ghost" href="{L("get-started/", here)}">See the setup guide</a>'
+    else:
+        second = f'<a class="btn btn-ghost" href="{L("rewards/", here)}">See how the rewards work</a>'
+    return f'''<section class="sec" id="earn"><div class="wrap">
+ <div class="sec-head rv"><h2 class="h2">Who can <em>earn</em> with it</h2><p class="lead">The Bellver Card is also easy to share. If you build income by sharing products, here is where it fits.</p></div>
+ <div class="earn-grid">{cards}</div>
+ <div class="btn-row earn-cta rv">{order_btn('Order your card')}{second}</div>
+ <p class="fine rv" style="margin-top:16px">Rewards depend on real card activity and are never guaranteed. Read the <a class="inl" href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a> before you decide.</p>
+</div></section>'''
+
+
 def sidebar(here, key):
     groups = []; cur_g = None; items = ''
     for k, path, label, sub, icn, g in NAV:
