@@ -16,6 +16,16 @@ MP4_3MIN = 'videos/bellvercard-in-3minutes.mp4'
 MP4_DASH = 'videos/bellvercards-dashboard-walkthrough.mp4'
 UPDATED = '2026-10-06'
 
+import hashlib, os
+
+
+def asset(name, here=''):
+    """Asset URL with a content hash, so phones and browsers never keep serving a stale stylesheet or script."""
+    f = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', name)
+    v = hashlib.md5(open(f, 'rb').read()).hexdigest()[:8]
+    return L(name, here) + '?v=' + v
+
+
 MODE = 'prod'   # set by build.py: 'prod' writes site paths, 'preview' writes relative links for the preview copy
 
 
@@ -258,7 +268,7 @@ def footer(here):
 </footer>
 <a class="mobile-cta" href="{REF}" target="_blank" rel="sponsored noopener" aria-hidden="true" tabindex="-1"><span class="btn btn-go">Order your Bellver Card</span></a>
 <button class="totop" type="button" aria-label="Back to top"><svg class="ring" viewBox="0 0 54 54" aria-hidden="true"><circle class="bg" cx="27" cy="27" r="25"/><circle class="fg" cx="27" cy="27" r="25"/></svg>{ic('up','arr')}</button>
-<script src="{L('assets/bellver.js', here)}" defer></script>'''
+<script src="{asset('assets/bellver.js', here)}" defer></script>'''
 
 
 PERSON = {"@type": "Person", "@id": SITE + "/#mtg", "name": "Musa The Giant", "alternateName": ["MTG", "Musa the Giant"], "url": SITE + "/", "image": SITE + "/images/mtg-profile.jpg",
@@ -325,7 +335,7 @@ def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
 {pre}
-<link rel="stylesheet" href="{L('assets/bellver.css', here)}">
+<link rel="stylesheet" href="{asset('assets/bellver.css', here)}">
 </head>
 <body{' class="is-dash"' if dash else ''}>
 {shell(here, key, body, dash)}
