@@ -15,7 +15,7 @@
 - [About MTG](https://www.musathegiant.com/about.html): Who Musa The Giant is, his story, mission and what he checks before sharing any opportunity.
 - [Contact](https://www.musathegiant.com/contact.html): WhatsApp +27 72 171 4626 and social links. MTG never asks for passwords or seed phrases.
 - [GitHub Pages Custom Domain Guide](https://www.musathegiant.com/github-pages-custom-domain-guide.html): Step-by-step guide to hosting a free website on GitHub Pages with a custom domain, including exact DNS records and HTTPS.
-- [Income Streams Dashboard](https://www.musathegiant.com/dashboard.html): The income streams MTG currently shares. Income Stream #1 is Bitcoin Wealth (entry point 0.001 BTC). Income Stream #2 is ClickBaitPays (advertise, view ads and earn, from $14). Income Stream #3 is Crypto Cards (crypto debit cards reviewed side by side, linking to the Crypto Debit Cards dashboard at /cards/).
+- [Income Streams Dashboard](https://www.musathegiant.com/dashboard.html): The income streams MTG currently shares. Income Stream #1 is Crypto Cards (crypto debit cards reviewed side by side, linking to the Crypto Debit Cards dashboard at /cards/). Income Stream #2 is Bitcoin Wealth (entry point 0.001 BTC). Income Stream #3 is ClickBaitPays (advertise, view ads and earn, from $14).
 
 ## Quick facts: upcoming halvings (estimates)
 
