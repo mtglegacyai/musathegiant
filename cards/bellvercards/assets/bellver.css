@@ -1009,3 +1009,10 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
 .gohome{white-space:nowrap}
 .gohome svg{width:16px;height:16px;flex:none}
 @media (max-width:380px){.dtop .menu-btn .lbl{display:none}.dtop .menu-btn{padding:0 12px}.dtop{gap:10px}.dtop .gohome{letter-spacing:.06em;padding:0 10px}}
+
+/* gold play badge: same gold as the 3 MIN / 27 MIN circles, with the pulsing ring used on the video play buttons */
+.btn .play,.btn-ghost .play{position:relative;flex:none;display:grid;place-items:center;width:30px;height:30px;margin-left:-8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffd96b,#fcbe25 55%,#d99400);color:#1d1300;box-shadow:0 0 0 3px rgba(252,190,37,.16),0 4px 12px rgba(0,0,0,.35)}
+.btn .play:before{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(252,190,37,.6);animation:ping 2.4s var(--ease) infinite;pointer-events:none}
+.btn .play svg{position:relative;width:13px;height:13px;margin-left:2px;fill:currentColor}
+.btn-sm .play{width:26px;height:26px}.btn-sm .play svg{width:11px;height:11px}
+@media (prefers-reduced-motion:reduce){.btn .play:before{animation:none;opacity:.5}}
