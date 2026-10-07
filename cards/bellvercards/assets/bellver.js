@@ -220,6 +220,7 @@
       p.setAttribute('data-src',url); p.classList.remove('soon'); p.classList.add('ready');
       p.setAttribute('role','button'); p.setAttribute('tabindex','0'); p.setAttribute('aria-label','Play: '+(p.getAttribute('data-title')||'tutorial'));
       var lb=$('.plabel',p); if(lb) lb.textContent='Watch now';
+      var pn=p.closest('.vpanel'); if(pn){var vi=$('.vitem[data-show="'+pn.id+'"] .vdur'); if(vi) vi.textContent='Watch';}
       bindPlayer(p);
     }).catch(function(){});
   });

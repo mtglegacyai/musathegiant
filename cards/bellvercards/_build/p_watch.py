@@ -143,7 +143,7 @@ def videos(H='videos/'):
 # ------------------------------------------------------------------ TUTORIAL VIDEOS
 def tutorials(H='tutorials/'):
     trail = T(('Tutorial Videos', abs_url(H)))
-    top = phero(H, trail, ['Tutorial', 'videos'], 'Short step-by-step videos that show you exactly where to click. Start with the dashboard tour, then follow the tutorials in order. New tutorials appear here as soon as they are ready.')
+    top = phero(H, trail, ['Tutorial', 'videos'], 'Short step-by-step videos that show you exactly where to click. Pick a video from the playlist, press play, and follow along. New tutorials appear here as soon as they are ready.')
     F = [('#fcbe25', 'Yellow: wallet balance', 'Your USDT and USDC balance in your dynamic wallet. Other coins are not shown here. You pay for cards from this balance.'),
          ('#21c06c', 'Green: this month\'s earnings', 'Direct commissions and rewards earned in the current billing month.'),
          ('#e5484d', 'Red: missed rewards', 'Rewards you did not receive because you were not qualified in time. Ideally always zero.'),
@@ -151,11 +151,7 @@ def tutorials(H='tutorials/'):
          ('#8a96a0', 'Grey: lifetime totals', 'Everything you have ever earned in commissions and rewards.'),
          ('#3b6fd6', 'Dark blue: earnings available', 'Once a month the green fields move here, ready to withdraw. Payout day is the 15th.')]
     lg = ''.join(f'<div class="lg"><i style="background:{c}"></i><div><b>{t}</b><span>{d}</span></div></div>' for c, t, d in F)
-    walk = f'''<section class="sec-tight" id="walkthrough" style="padding-top:0"><div class="wrap">
- <div class="featured rv">
-  <div class="fhead"><span class="badge green">{ic('star')}Start here, 12 minutes</span><h2 class="h2" style="font-size:clamp(1.8rem,3.4vw,2.6rem)">Dashboard <em>walkthrough</em></h2><p class="muted">Watch this once after you register and you will know where everything is in your back office.</p></div>
-  {pplayer(WALK, H, True)}
-  <details class="qa more"><summary>What each coloured field means<span class="pm" aria-hidden="true"></span></summary><div class="ans"><div class="legend">{lg}</div></div></details>
+    walk_det = f'''<details class="qa more"><summary>What each coloured field means<span class="pm" aria-hidden="true"></span></summary><div class="ans"><div class="legend">{lg}</div></div></details>
   <details class="qa more"><summary>Menu by menu<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">
    <p><b>My Wallet:</b> your Fireblocks wallet. Swap currencies, send funds, set a transaction password and export your private key under Settings, then Account and security.</p>
    <p><b>Deposit:</b> fund with crypto (USDT or USDC recommended, plus BNB or TRX for gas), credit card, or SEPA and PayPal in Europe. A calculator shows how much you need.</p>
@@ -163,24 +159,37 @@ def tutorials(H='tutorials/'):
    <p><b>My Cards:</b> order cards and see each card's balance and transactions. When your card appears you get the next free place in the 2x2 matrix.</p>
    <p><b>Referral:</b> your matrix, direct referrals, people per level, card levels and ranks in your team, including spillover.</p>
    <p><b>Settings:</b> switch on two-factor authentication. Bellver strongly recommends it.</p>
-  </div></details>
- </div>
-</div></section>'''
-    tiles = ''
+  </div></details>'''
+    vid, title, kind, dur, typ, src, img, desc, iso = WALK
+    panels = f'''<article class="vpanel" id="walkthrough" data-panel="walkthrough" aria-labelledby="t-walkthrough">
+  {pplayer(WALK, H, True)}
+  <div class="vhead"><span class="badge green">{ic('star')}Start here, {dur}</span><h2 id="t-walkthrough">Dashboard <em>walkthrough</em></h2><p class="muted">Watch this once after you register and you will know where everything is in your back office.</p></div>
+  <div class="vsum-d">{walk_det}</div>
+ </article>'''
+    items = f'''<button class="vitem" type="button" data-show="walkthrough" aria-controls="walkthrough" aria-current="true">
+  <span class="vthumb"><img src="{L(img + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{dur}</span></span>
+  <span class="vtx"><b>{title}</b><small>Start here, back office tour</small></span></button>'''
     for i, (f, t, d, icn, step) in enumerate(TUTS):
         n = f[:2]
-        tiles += f'''<article class="tut rv" id="tut-{n}" style="--d:{i * 0.06:.2f}s">
+        panels += f'''<article class="vpanel" id="tut-{n}" data-panel="tut-{n}" aria-labelledby="t-tut-{n}">
   <div class="player tplayer soon" data-wait="{L('videos/tutorials/' + f, H)}" data-title="{t}">
    <div class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></div>
    <span class="pbtn">{ic('play')}</span><span class="plabel">Coming soon</span>
   </div>
-  <div class="ttx"><h3>{t}</h3><p>{d}</p><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></div>
+  <div class="vhead"><span class="badge green">Tutorial {i + 1} of {len(TUTS)}</span><h2 id="t-tut-{n}">{t}</h2><p class="muted">{d}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></p></div>
  </article>'''
-    grid = f'''<section class="sec-tight"><div class="wrap">
- <div class="sec-head rv"><h2 class="h2">Step-by-step <em>tutorials</em></h2><p class="lead">Three short videos that take you from your first sign-up to your first payment. Each one matches steps in the written setup guide.</p></div>
- <div class="tgrid">{tiles}</div>
+        items += f'''<button class="vitem" type="button" data-show="tut-{n}" aria-controls="tut-{n}">
+  <span class="vthumb"><span class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></span><span class="vdur">Soon</span></span>
+  <span class="vtx"><b>{t}</b><small>Tutorial {i + 1}</small></span></button>'''
+    lib = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap">
+ <div class="vlib">
+  <div class="vstage">{panels}</div>
+  <aside class="vlist" aria-label="Choose a video"><p class="slabel">Playlist</p>{items}
+   <a class="vtut" href="{L('videos/', H)}">{ic('play-c')}<span><b>Looking for the presentations?</b><small>Open the presentation videos</small></span></a>
+  </aside>
+ </div>
 </div></section>'''
-    body = top + walk + grid + help_band(H, 'Need a tutorial that is not here?', 'Tell me what you are stuck on and I will make a video for it, or walk you through it on WhatsApp.')
+    body = top + lib + help_band(H, 'Need a tutorial that is not here?', 'Tell me what you are stuck on and I will make a video for it, or walk you through it on WhatsApp.')
     return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Step-by-Step How-To Guides | MTG',
                 'Step-by-step Bellver Card tutorial videos: the dashboard walkthrough, registering, securing your account, depositing USDT, ordering a virtual card, topping up and withdrawing.',
                 'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[vld(WALK, H)], trail=trail)

@@ -1060,3 +1060,14 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
   .dash.side-off .tiers{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 @media (prefers-reduced-motion:reduce){.dash,.dash .wrap,.side,.side-toggle,.side-toggle svg{transition:none!important}}
+
+/* ---- Tutorial videos use the same playlist layout as the presentations ---- */
+.vthumb .tposter{border-radius:inherit}
+.vthumb .tnum{left:8px;top:2px;font-size:2.1rem}
+.vthumb .tic{width:34px;height:34px;border-radius:10px}.vthumb .tic svg{width:17px;height:17px}
+.vitem[aria-current="true"] .vthumb .tposter{background:radial-gradient(160px 90px at 70% 30%,rgba(52,204,136,.35),transparent 70%),linear-gradient(150deg,#12331f,#06140c)}
+.vsum-d{display:grid;gap:10px;margin-top:14px}
+.vpanel .vhead .vwait{margin-top:6px}
+.vpanel .player.soon{aspect-ratio:16/9}
+.vthumb .tposter{padding-bottom:12px}
+@media (max-width:640px){.side-toggle[aria-expanded="false"]{width:15px;border-radius:0 12px 12px 0}.side-toggle[aria-expanded="false"] svg{width:14px;height:14px;margin-left:-2px}}
