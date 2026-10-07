@@ -1016,3 +1016,22 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
 .btn .play svg{position:relative;width:13px;height:13px;margin-left:2px;fill:currentColor}
 .btn-sm .play{width:26px;height:26px}.btn-sm .play svg{width:11px;height:11px}
 @media (prefers-reduced-motion:reduce){.btn .play:before{animation:none;opacity:.5}}
+
+/* ---- CTA motion: slow orbiting light ring (same effect as the landing page), Bellver colours ---- */
+@property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+.btn{overflow:visible}
+.btn:not(.gohome):not(.menu-btn):after{content:"";position:absolute;inset:-3px;padding:2px;border-radius:10px;pointer-events:none;z-index:2;background:conic-gradient(from var(--ang),transparent 0 58%,var(--c1) 74%,var(--c2) 82%,transparent 94%);-webkit-mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);-webkit-mask-composite:xor;filter:drop-shadow(0 0 5px var(--c2));animation:ctaSpin 6s linear infinite}
+.btn-sm:not(.gohome):not(.menu-btn):after{border-radius:9px}
+.btn-go{--c1:#c8ffe3;--c2:#34cc88}
+.btn-ghost{--c1:#8ff0c0;--c2:#2bab7c}
+.btn-gold{--c1:#fff0b8;--c2:#fcbe25}
+.btn-wa{--c1:#c9ffdc;--c2:#25d366}
+.btn-row .btn:nth-child(2):after{animation-delay:-3s}
+.btn-row .btn:nth-child(3):after{animation-delay:-1.5s}
+.btn:not(.gohome):not(.menu-btn):hover:after{filter:drop-shadow(0 0 9px var(--c2)) brightness(1.2)}
+/* shine now lives in the button background so the button itself can stay unclipped for the ring */
+.btn-go:before{display:none}
+.btn-go{background:linear-gradient(100deg,transparent 38%,rgba(255,255,255,.5) 50%,transparent 62%) no-repeat,linear-gradient(90deg,#1f8a5a 0%,#26a06f 55%,#2bab7c 100%);background-size:260% 100%,100% 100%;background-position:180% 0,0 0;animation:ctaGlint 6.5s ease-in-out 2s infinite}
+@keyframes ctaSpin{to{--ang:360deg}}
+@keyframes ctaGlint{0%{background-position:180% 0,0 0}24%,100%{background-position:-80% 0,0 0}}
+@media (prefers-reduced-motion:reduce){.btn:after,.btn-go{animation:none!important}}
