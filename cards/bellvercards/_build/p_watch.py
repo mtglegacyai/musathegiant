@@ -24,19 +24,32 @@ TUTS = [
 ]
 
 
+def live_thumb(v, H, local_suffix, w, h, load, alt):
+    """Webinar only: pull the thumbnail straight from YouTube so it always matches the video; fall back to the local copy."""
+    vid, typ, src, img = v[0], v[4], v[5], v[6]
+    if vid != 'webinar' or typ != 'yt':
+        return None
+    local = L(img + local_suffix, H)
+    onerr = "this.onerror=null;this.src='" + local + "'"
+    return (f'<img src="https://i.ytimg.com/vi/{src}/maxresdefault.jpg" alt="{alt}" width="{w}" height="{h}"{load} '
+            f'referrerpolicy="no-referrer" onerror="{onerr}">')
+
+
 def pplayer(v, H, eager=False, more=None):
     vid, title, kind, dur, typ, src, img, desc, iso = v
     data = f'data-yt="{src}"' if typ == 'yt' else f'data-src="{L(src, H)}"'
     m = f' data-more="{more}"' if more else ''
     load = '' if eager else ' loading="lazy"'
+    pimg = live_thumb(v, H, '.webp', 1280, 720, load, title + ', video thumbnail') or (
+        f'<img src="{L(img + "-640.webp", H)}" srcset="{L(img + "-640.webp", H)} 640w, {L(img + ".webp", H)} 1280w" sizes="(max-width:860px) 100vw, 820px" alt="{title}, video thumbnail" width="1280" height="720"{load}>')
     return f'''<div class="player" id="p-{vid}" role="button" tabindex="0" aria-label="Play: {title}" {data} data-title="{title}"{m}>
- <img src="{L(img + '-640.webp', H)}" srcset="{L(img + '-640.webp', H)} 640w, {L(img + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 820px" alt="{title}, video thumbnail" width="1280" height="720"{load}>
+{pimg}
  <span class="pbtn">{ic('play')}</span><span class="plabel">{dur}</span></div>'''
 
 
 def vld(v, page_path):
     vid, title, kind, dur, typ, src, img, desc, iso = v
-    d = {"@type": "VideoObject", "name": title, "description": desc, "thumbnailUrl": abs_url(img + '.webp'), "inLanguage": "en", "url": abs_url(page_path) + '#' + vid}
+    d = {"@type": "VideoObject", "name": title, "description": desc, "thumbnailUrl": (f"https://i.ytimg.com/vi/{src}/maxresdefault.jpg" if vid == "webinar" else abs_url(img + ".webp")), "inLanguage": "en", "url": abs_url(page_path) + '#' + vid}
     if typ == 'yt':
         d["embedUrl"] = f"https://www.youtube.com/embed/{src}"
     else:
@@ -108,8 +121,9 @@ def videos(H='videos/'):
   <div class="vhead"><span class="badge green">{kind}, {dur}</span><h2 id="t-{vid}">{title}</h2><p class="muted">{desc}</p></div>
   {sums[vid]}
  </article>'''
+        lthumb = live_thumb(v, H, '-640.webp', 640, 360, ' loading="lazy"', '') or f'<img src="{L(img + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy">'
         items += f'''<button class="vitem" type="button" data-show="{vid}" aria-controls="{vid}"{' aria-current="true"' if i == 0 else ''}>
-  <span class="vthumb"><img src="{L(img + '-640.webp', H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{dur}</span></span>
+  <span class="vthumb">{lthumb}<span class="vdur">{dur}</span></span>
   <span class="vtx"><b>{title}</b><small>{kind}</small></span></button>'''
     lib = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap">
  <div class="vlib">
