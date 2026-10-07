@@ -8,6 +8,7 @@ SITE = 'https://www.musathegiant.com'
 BASE = '/cards/bellvercards/'
 REF = 'https://app.bellvercards.com?ref=mtg'            # MTG affiliate link (every order button)
 LOGIN = 'https://app.bellvercards.com/login'            # member login
+CHANNEL = 'https://whatsapp.com/channel/0029Vb8dmcwKrWQnaLoRUv1J'   # official Bellver Card WhatsApp channel
 WA = 'https://wa.me/27721714626'                        # MTG WhatsApp
 WA_MSG = WA + '?text=' + 'Hi%20MTG%2C%20I%20am%20interested%20in%20the%20Bellver%20Card.%20Can%20you%20help%20me%20get%20started%3F'
 YT_27 = '_Ptm2Bj6gm4'
@@ -91,6 +92,18 @@ def ic(name, cls=''):
     return f'<svg{c} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{I[name]}</svg>'
 
 
+def chan_btn(label='Follow on WhatsApp', cls='btn btn-wa btn-chan'):
+    return f'<a class="{cls}" href="{CHANNEL}" target="_blank" rel="noopener"><span class="wic">{ic("wa")}</span><span class="lbl">{label}</span></a>'
+
+
+def chan_band():
+    return f'''<section class="sec-tight"><div class="wrap"><div class="panel chan-band rv">
+  <div class="cb-ic"><span class="wic">{ic("wa")}</span></div>
+  <div><p class="cb-k">Official channel</p><h2>Follow the Bellver Card channel</h2><p>News, updates and announcements from the company, straight to your WhatsApp. One tap to follow.</p></div>
+  {chan_btn("Follow the Channel")}
+ </div></div></section>'''
+
+
 def order_btn(label='Order your card', cls='btn btn-go', here='', icon=True):
     return f'<a class="{cls}" href="{REF}" target="_blank" rel="sponsored noopener">{label}</a>'
 
@@ -151,6 +164,7 @@ def sidebar(here, key):
  <nav class="snavs">{nav}</nav>
  <div class="side-bot">
   {order_btn('Order your card', 'btn btn-go btn-sm sorder')}
+  {chan_btn('Follow Official Channel', 'btn btn-wa btn-chan btn-sm schan')}
   <div class="srow">
    <a class="slink" href="{LOGIN}" target="_blank" rel="noopener">{ic('login')}Member Login</a>
    <a class="slink" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}WhatsApp MTG</a>
@@ -188,6 +202,7 @@ def pager(here, key):
 
 def dash_footer(here):
     return f'''<footer class="dfoot"><div class="wrap">
+  <div class="ftr-chan"><span>Official Bellver Card updates on WhatsApp</span>{chan_btn('Follow the Channel', 'btn btn-wa btn-chan btn-sm')}</div>
   <div class="disc">Bellver Card is a product of Bellver Markets Ltd. This guide is run independently by MTG and is not the official Bellver website or back office. Order buttons link to app.bellvercards.com with MTG's referral code, so MTG may earn a commission if you order, at no extra cost to you. Prices, fees and the compensation plan come from Bellver's official documents (version 08/2026) and can change. Rewards depend on real card activity and are never guaranteed. Nothing here is financial, tax or legal advice. Read the <a href="{L('/affiliate-disclosure.html', here)}">Affiliate Disclosure</a>, <a href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a> and <a href="{L('/risk-disclaimer.html', here)}">Risk Disclaimer</a>.</div>
   <div class="ftr-bot"><span>© <span data-year>2026</span> MTG | Musa The Giant. <a href="{L('/privacy-policy.html', here)}">Privacy</a> &nbsp; <a href="{L('/terms-of-use.html', here)}">Terms</a></span><span class="sig">Let's Get This Crypto! 💰 Crypto-Regards, MTG 👑</span></div>
  </div></footer>'''
@@ -213,7 +228,7 @@ def shell(here, key, body, dash):
 
 
 def help_band(here, title="Stuck? I'll walk you through it.", text="I'm MTG. Message me on WhatsApp and I'll help you register, fund your wallet and choose the right card for you."):
-    return f'''<section class="sec-tight"><div class="wrap"><div class="panel help rv">
+    return chan_band() + f'''<section class="sec-tight"><div class="wrap"><div class="panel help rv">
   <div class="face"><img src="{L('/images/mtg-profile.jpg', here)}" alt="MTG, Musa The Giant" width="88" height="88" loading="lazy"></div>
   <div><h2>{title}</h2><p>{text}</p></div>
   <a class="btn btn-wa" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}WhatsApp MTG</a>
@@ -249,6 +264,7 @@ def footer(here):
    </div>
    {html}
   </div>
+  <div class="ftr-chan"><span>Official Bellver Card updates on WhatsApp</span>{chan_btn('Follow the Channel', 'btn btn-wa btn-chan btn-sm')}</div>
   <div class="disc">Bellver Card is a product of Bellver Markets Ltd. This site is run independently by MTG and is not the official Bellver website. Order buttons link to app.bellvercards.com with MTG's referral code, so MTG may earn a commission if you order, at no extra cost to you. Prices, fees and the compensation plan come from Bellver's official documents (version 08/2026) and can change. Rewards depend on real card activity and are never guaranteed. Nothing here is financial, tax or legal advice. Read the <a href="{L('/affiliate-disclosure.html', here)}">Affiliate Disclosure</a>, <a href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a> and <a href="{L('/risk-disclaimer.html', here)}">Risk Disclaimer</a>.</div>
   <div class="ftr-bot"><span>© <span data-year>2026</span> MTG | Musa The Giant. <a href="{L('/privacy-policy.html', here)}">Privacy</a> &nbsp; <a href="{L('/terms-of-use.html', here)}">Terms</a></span><span class="sig">Let's Get This Crypto! 💰 Crypto-Regards, MTG 👑</span></div>
  </div>

@@ -1016,3 +1016,27 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
 .btn .play svg{position:relative;width:13px;height:13px;margin-left:2px;fill:currentColor}
 .btn-sm .play{width:26px;height:26px}.btn-sm .play svg{width:11px;height:11px}
 @media (prefers-reduced-motion:reduce){.btn .play:before{animation:none;opacity:.5}}
+
+/* ---- Official WhatsApp channel: animated follow buttons ---- */
+.btn-chan{position:relative;overflow:hidden;gap:10px;color:#032e14;background:linear-gradient(180deg,#5cf08f,#25d366 55%,#1aa851);border:1px solid rgba(190,255,215,.6);animation:chanPulse 2.8s ease-in-out infinite}
+.btn-chan:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 36%,rgba(255,255,255,.65) 50%,transparent 64%);transform:translateX(-120%);animation:shine 4.2s var(--ease) 1.2s infinite;pointer-events:none}
+.btn-chan .wic{position:relative;flex:none;display:grid;place-items:center;width:28px;height:28px;margin-left:-6px;border-radius:50%;background:#032e14;color:#5cf08f}
+.btn-chan .wic:before{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid rgba(3,46,20,.55);animation:ping 2.2s var(--ease) infinite;pointer-events:none}
+.btn-chan .wic svg{position:relative;width:15px;height:15px;fill:currentColor;stroke:none;animation:chanWiggle 4.2s ease-in-out infinite}
+.btn-chan .lbl{position:relative}
+.btn-chan.btn-sm .wic{width:24px;height:24px}.btn-chan.btn-sm .wic svg{width:13px;height:13px}
+@keyframes chanPulse{0%,100%{box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 6px 0 #0d6b31,0 14px 30px rgba(0,0,0,.45),0 0 0 0 rgba(37,211,102,.5)}60%{box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 6px 0 #0d6b31,0 14px 30px rgba(0,0,0,.45),0 0 0 14px rgba(37,211,102,0)}}
+@keyframes chanWiggle{0%,86%,100%{transform:none}90%{transform:rotate(-14deg) scale(1.1)}94%{transform:rotate(12deg) scale(1.1)}98%{transform:rotate(-6deg)}}
+.chan-band{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(18px,3vw,32px);align-items:center;padding:clamp(20px,3vw,30px) clamp(22px,3.4vw,36px);border-color:rgba(37,211,102,.35);background:radial-gradient(120% 140% at 0 0,rgba(37,211,102,.16),transparent 55%),linear-gradient(160deg,rgba(14,30,21,.85),rgba(6,16,10,.92))}
+.chan-band .cb-ic{position:relative;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#5cf08f,#25d366 55%,#1aa851);color:#032e14;box-shadow:0 0 0 6px rgba(37,211,102,.12),0 12px 30px rgba(0,0,0,.4)}
+.chan-band .cb-ic:before,.chan-band .cb-ic:after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(37,211,102,.6);animation:ping 2.6s var(--ease) infinite;pointer-events:none}
+.chan-band .cb-ic:after{animation-delay:1.3s}
+.chan-band .cb-ic .wic{display:grid;place-items:center;animation:chanWiggle 4.2s ease-in-out infinite}
+.chan-band .cb-ic svg{width:32px;height:32px;fill:currentColor;stroke:none}
+.chan-band .cb-k{margin:0 0 4px;color:#5cf08f;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.chan-band h2{font:400 clamp(1.4rem,2.6vw,2rem)/1.05 var(--display);text-transform:uppercase;color:#fff;margin:0 0 6px}
+.chan-band p:last-of-type{margin:0;color:var(--muted)}
+.schan{width:100%}
+.ftr-chan{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:20px 0 4px;padding:14px 18px;border:1px solid rgba(37,211,102,.28);border-radius:16px;background:rgba(37,211,102,.05);color:#cfe8d8;font-weight:700;font-size:.9rem}
+@media (max-width:760px){.chan-band{grid-template-columns:auto minmax(0,1fr)}.chan-band .btn{grid-column:1/-1;justify-self:stretch;justify-content:center}.ftr-chan .btn{width:100%;justify-content:center}}
+@media (prefers-reduced-motion:reduce){.btn-chan,.btn-chan:after,.btn-chan .wic:before,.btn-chan .wic svg,.chan-band .cb-ic:before,.chan-band .cb-ic:after,.chan-band .cb-ic .wic{animation:none!important}.btn-chan .wic:before,.chan-band .cb-ic:after{opacity:.4}}
