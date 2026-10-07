@@ -74,6 +74,7 @@ I = {
  'alert': '<path d="M12 3.5l9.5 16.5h-19L12 3.5z"/><path d="M12 10v4.5M12 17.4h.01"/>',
  'chevron': '<path d="M6 9l6 6 6-6"/>',
  'chev-r': '<path d="M9 6l6 6-6 6"/>',
+ 'chev-l': '<path d="M15 6l-6 6 6 6"/>',
  'up': '<path d="M12 19V5M6 11l6-6 6 6"/>',
  'check': '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
  'play-c': '<circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="currentColor"/>',
@@ -161,13 +162,14 @@ def sidebar(here, key):
   </div>
  </div>
 </aside>
+<button class="side-toggle" type="button" aria-controls="bv-menu" aria-expanded="true" aria-label="Collapse menu" title="Collapse menu">{ic('chev-l')}</button>
 <div class="scrim" aria-hidden="true"></div>'''
 
 
 def topbar(here, key):
     label = next(n[2] for n in NAV if n[0] == key)
     return f'''<header class="dtop">
- <button class="menu-btn" type="button" aria-expanded="false" aria-controls="bv-menu" title="Show or hide the menu"><span class="bars" aria-hidden="true"></span><span class="lbl">Menu</span></button>
+ <button class="menu-btn" type="button" aria-expanded="false" aria-controls="bv-menu"><span class="bars" aria-hidden="true"></span><span class="lbl">Menu</span></button>
  <nav class="dcrumb" aria-label="You are here"><a href="{L('learn/', here)}">Card guide</a>{ic('chev-r')}<span aria-current="page">{label}</span></nav>
  <div class="dtop-act"><a class="btn btn-ghost btn-sm gohome" href="{L('', here)}" aria-label="Go to the Bellver Cards home page">{ic('home')}Go Home</a>{order_btn('Order your card', 'btn btn-go btn-sm orderbtn')}</div>
 </header>'''

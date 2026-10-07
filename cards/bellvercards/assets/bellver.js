@@ -22,14 +22,15 @@
   if(top) top.addEventListener('click',function(){window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});});
 
   /* pull-down menu: slide-out drawer on tablets and phones, collapsible side panel on laptops and desktops */
-  var btn=$('.menu-btn'), menu=$('#bv-menu'), scrim=$('.scrim'), dash=$('.dash'), menuOpen=false;
+  var btn=$('.menu-btn'), tog=$('.side-toggle'), menu=$('#bv-menu'), scrim=$('.scrim'), dash=$('.dash'), menuOpen=false;
   var wide=window.matchMedia('(min-width:1061px)');
   function store(v){try{localStorage.setItem('bv-side',v);}catch(_){}}
   function setMenu(open){
     menuOpen=open;
     if(!btn||!menu) return;
     btn.setAttribute('aria-expanded',open?'true':'false');
-    btn.querySelector('.lbl').textContent=wide.matches?(open?'Hide menu':'Show menu'):(open?'Close':'Menu');
+    btn.querySelector('.lbl').textContent=open?'Close':'Menu';
+    if(tog){tog.setAttribute('aria-expanded',open?'true':'false');var tl=open?'Collapse menu':'Expand menu';tog.setAttribute('aria-label',tl);tog.setAttribute('title',tl);}
     if(wide.matches){
       if(dash) dash.classList.toggle('side-off',!open);
       menu.classList.remove('open'); if(scrim) scrim.classList.remove('on');
@@ -47,7 +48,9 @@
   }
   syncMenu();
   if(wide.addEventListener) wide.addEventListener('change',syncMenu); else if(wide.addListener) wide.addListener(syncMenu);
-  if(btn) btn.addEventListener('click',function(){var next=!menuOpen;setMenu(next);if(wide.matches) store(next?'on':'off');});
+  function flip(){var next=!menuOpen;setMenu(next);if(wide.matches) store(next?'on':'off');}
+  if(btn) btn.addEventListener('click',flip);
+  if(tog) tog.addEventListener('click',flip);
   if(scrim) scrim.addEventListener('click',function(){setMenu(false);});
   d.addEventListener('keydown',function(e){if(e.key==='Escape'&&menuOpen&&!wide.matches){setMenu(false);btn.focus();}});
   if(menu) $$('a',menu).forEach(function(a){a.addEventListener('click',function(){if(!wide.matches&&a.getAttribute('href').charAt(0)==='#') setMenu(false);});});

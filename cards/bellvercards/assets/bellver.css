@@ -1038,7 +1038,15 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
 
 /* ---- Collapsible side menu on every screen size ---- */
 .dtop .menu-btn{display:inline-flex}
+.side-toggle{display:none}
 @media (min-width:1061px){
+  .dtop .menu-btn{display:none}
+  .side-toggle{display:grid;place-items:center;position:fixed;z-index:70;top:18px;left:261px;width:30px;height:30px;padding:0;border-radius:15px;border:1px solid rgba(52,204,136,.5);background:#07150e;color:var(--green-hi);cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 0 4px rgba(52,204,136,.08);transition:left .38s var(--ease),width .38s var(--ease),border-radius .38s var(--ease),background .2s,color .2s,box-shadow .2s}
+  .side-toggle svg{width:16px;height:16px;transition:transform .38s var(--ease)}
+  .side-toggle:hover{background:var(--green-hi);color:#03140b;box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 0 4px rgba(52,204,136,.22),0 0 22px rgba(52,204,136,.45)}
+  .side-toggle:focus-visible{outline:2px solid var(--green-hi);outline-offset:3px}
+  .dash.side-off .side-toggle{left:0;width:24px;height:48px;border-radius:0 14px 14px 0;border-left-color:transparent}
+  .dash.side-off .side-toggle svg{transform:rotate(180deg)}
   .dash{transition:grid-template-columns .38s var(--ease)}
   .side{transition:opacity .25s,transform .38s var(--ease),visibility 0s}
   .dash.side-off{grid-template-columns:0 minmax(0,1fr)}
@@ -1046,9 +1054,5 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
   .dash .wrap{transition:width .38s var(--ease)}
   .dash.side-off .wrap{width:min(1320px,100% - var(--gut)*2)}
   .dash.side-off .tiers{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .dtop .menu-btn .bars{background-size:100% 2px}
-  .dtop .menu-btn[aria-expanded="true"] .bars{background-size:100% 2px}
-  .dtop .menu-btn[aria-expanded="true"] .bars:before{top:0;transform:none}
-  .dtop .menu-btn[aria-expanded="true"] .bars:after{top:12px;transform:none}
 }
-@media (prefers-reduced-motion:reduce){.dash,.dash .wrap,.side{transition:none!important}}
+@media (prefers-reduced-motion:reduce){.dash,.dash .wrap,.side,.side-toggle,.side-toggle svg{transition:none!important}}
