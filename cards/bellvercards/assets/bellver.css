@@ -1035,3 +1035,20 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
 @keyframes ctaSpin{to{--ang:360deg}}
 @keyframes ctaGlint{0%{background-position:180% 0,0 0}24%,100%{background-position:-80% 0,0 0}}
 @media (prefers-reduced-motion:reduce){.btn:after,.btn-go{animation:none!important}}
+
+/* ---- Collapsible side menu on every screen size ---- */
+.dtop .menu-btn{display:inline-flex}
+@media (min-width:1061px){
+  .dash{transition:grid-template-columns .38s var(--ease)}
+  .side{transition:opacity .25s,transform .38s var(--ease),visibility 0s}
+  .dash.side-off{grid-template-columns:0 minmax(0,1fr)}
+  .dash.side-off .side{opacity:0;visibility:hidden;transform:translateX(-24px);border-right-color:transparent;padding-left:0;padding-right:0;overflow:hidden;transition:opacity .2s,transform .38s var(--ease),visibility 0s .38s}
+  .dash .wrap{transition:width .38s var(--ease)}
+  .dash.side-off .wrap{width:min(1320px,100% - var(--gut)*2)}
+  .dash.side-off .tiers{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .dtop .menu-btn .bars{background-size:100% 2px}
+  .dtop .menu-btn[aria-expanded="true"] .bars{background-size:100% 2px}
+  .dtop .menu-btn[aria-expanded="true"] .bars:before{top:0;transform:none}
+  .dtop .menu-btn[aria-expanded="true"] .bars:after{top:12px;transform:none}
+}
+@media (prefers-reduced-motion:reduce){.dash,.dash .wrap,.side{transition:none!important}}

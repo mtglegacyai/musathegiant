@@ -21,23 +21,36 @@
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
   if(top) top.addEventListener('click',function(){window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});});
 
-  /* pull-down menu */
-  var btn=$('.menu-btn'), menu=$('#bv-menu'), scrim=$('.scrim'), menuOpen=false;
+  /* pull-down menu: slide-out drawer on tablets and phones, collapsible side panel on laptops and desktops */
+  var btn=$('.menu-btn'), menu=$('#bv-menu'), scrim=$('.scrim'), dash=$('.dash'), menuOpen=false;
+  var wide=window.matchMedia('(min-width:1061px)');
+  function store(v){try{localStorage.setItem('bv-side',v);}catch(_){}}
   function setMenu(open){
     menuOpen=open;
     if(!btn||!menu) return;
     btn.setAttribute('aria-expanded',open?'true':'false');
-    btn.querySelector('.lbl').textContent=open?'Close':'Menu';
-    menu.classList.toggle('open',open);
-    if(scrim) scrim.classList.toggle('on',open);
-    if(hdr) hdr.classList.toggle('scrolled',open||window.scrollY>12);
-    if(open){var first=menu.querySelector('a');if(first) setTimeout(function(){first.focus({preventScroll:true});},60);}
+    btn.querySelector('.lbl').textContent=wide.matches?(open?'Hide menu':'Show menu'):(open?'Close':'Menu');
+    if(wide.matches){
+      if(dash) dash.classList.toggle('side-off',!open);
+      menu.classList.remove('open'); if(scrim) scrim.classList.remove('on');
+    } else {
+      menu.classList.toggle('open',open);
+      if(scrim) scrim.classList.toggle('on',open);
+      if(open){var first=menu.querySelector('a');if(first) setTimeout(function(){first.focus({preventScroll:true});},60);}
+    }
+    if(hdr) hdr.classList.toggle('scrolled',(!wide.matches&&open)||window.scrollY>12);
     onScroll();
   }
-  if(btn) btn.addEventListener('click',function(){setMenu(!menuOpen);});
+  function syncMenu(){
+    var off=false; try{off=localStorage.getItem('bv-side')==='off';}catch(_){}
+    setMenu(wide.matches?!off:false);
+  }
+  syncMenu();
+  if(wide.addEventListener) wide.addEventListener('change',syncMenu); else if(wide.addListener) wide.addListener(syncMenu);
+  if(btn) btn.addEventListener('click',function(){var next=!menuOpen;setMenu(next);if(wide.matches) store(next?'on':'off');});
   if(scrim) scrim.addEventListener('click',function(){setMenu(false);});
-  d.addEventListener('keydown',function(e){if(e.key==='Escape'&&menuOpen){setMenu(false);btn.focus();}});
-  if(menu) $$('a',menu).forEach(function(a){a.addEventListener('click',function(){if(a.getAttribute('href').charAt(0)==='#') setMenu(false);});});
+  d.addEventListener('keydown',function(e){if(e.key==='Escape'&&menuOpen&&!wide.matches){setMenu(false);btn.focus();}});
+  if(menu) $$('a',menu).forEach(function(a){a.addEventListener('click',function(){if(!wide.matches&&a.getAttribute('href').charAt(0)==='#') setMenu(false);});});
 
   /* reveal on scroll */
   var rvs=$$('.rv');

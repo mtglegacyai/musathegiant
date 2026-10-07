@@ -167,7 +167,7 @@ def sidebar(here, key):
 def topbar(here, key):
     label = next(n[2] for n in NAV if n[0] == key)
     return f'''<header class="dtop">
- <button class="menu-btn" type="button" aria-expanded="false" aria-controls="bv-menu"><span class="bars" aria-hidden="true"></span><span class="lbl">Menu</span></button>
+ <button class="menu-btn" type="button" aria-expanded="false" aria-controls="bv-menu" title="Show or hide the menu"><span class="bars" aria-hidden="true"></span><span class="lbl">Menu</span></button>
  <nav class="dcrumb" aria-label="You are here"><a href="{L('learn/', here)}">Card guide</a>{ic('chev-r')}<span aria-current="page">{label}</span></nav>
  <div class="dtop-act"><a class="btn btn-ghost btn-sm gohome" href="{L('', here)}" aria-label="Go to the Bellver Cards home page">{ic('home')}Go Home</a>{order_btn('Order your card', 'btn btn-go btn-sm orderbtn')}</div>
 </header>'''
@@ -200,6 +200,7 @@ def shell(here, key, body, dash):
     return f'''<a class="skip" href="#main">Skip to content</a>
 <div class="progress" aria-hidden="true"></div>
 <div class="dash">
+<script>try{{if(localStorage.getItem("bv-side")==="off"&&innerWidth>1060)document.querySelector(".dash").classList.add("side-off")}}catch(e){{}}</script>
 {sidebar(here, key)}
 <div class="dmain">
 {topbar(here, key)}
