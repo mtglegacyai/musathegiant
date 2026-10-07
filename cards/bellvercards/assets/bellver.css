@@ -1038,7 +1038,11 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
 
 /* ---- Collapsible side menu on every screen size ---- */
 .dtop .menu-btn{display:inline-flex}
-.side-toggle{display:none}
+.side-toggle{display:grid;place-items:center;position:fixed;z-index:130;top:50%;margin-top:-34px;left:calc(min(300px,86vw) - 16px);width:32px;height:68px;padding:0;border-radius:18px;border:1px solid rgba(52,204,136,.55);background:#07150e;color:var(--green-hi);cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 0 4px rgba(52,204,136,.1);transition:left .4s var(--ease),width .4s var(--ease),border-radius .4s var(--ease),background .2s,color .2s}
+.side-toggle svg{width:20px;height:20px;transition:transform .4s var(--ease)}
+.side-toggle:active{background:var(--green-hi);color:#03140b}
+.side-toggle[aria-expanded="false"]{left:0;width:26px;border-radius:0 18px 18px 0;border-left-color:transparent}
+.side-toggle[aria-expanded="false"] svg{transform:rotate(180deg)}
 @media (min-width:1061px){
   .dtop .menu-btn{display:none}
   .side-toggle{display:grid;place-items:center;position:fixed;z-index:130;top:50%;margin-top:-34px;left:258px;width:36px;height:68px;padding:0;border-radius:18px;border:1px solid rgba(52,204,136,.5);background:#07150e;color:var(--green-hi);cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 0 4px rgba(52,204,136,.08);transition:left .38s var(--ease),width .38s var(--ease),border-radius .38s var(--ease),background .2s,color .2s,box-shadow .2s}
