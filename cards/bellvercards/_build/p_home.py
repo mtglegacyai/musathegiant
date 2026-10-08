@@ -55,7 +55,7 @@ def build(here=''):
  <div class="wrap">
   <div class="hero-grid">
    <div>
-    <span class="kicker"><i>{ic('check')}</i>Physical or instant virtual Visa card</span>
+    <span class="kicker"><i>{ic('check')}</i>Physical Visa or instant virtual Mastercard</span>
     <h1 class="display"><span class="ln"><span style="--l:0">The card<span class="tri" aria-hidden="true"></span></span></span><span class="ln"><span style="--l:1">that can <span class="pay">pay</span></span></span><span class="ln"><span style="--l:2">your bills</span></span></h1>
     <p class="lead">Fund it with crypto. Spend in any currency, anywhere in the world. And when the people you recommend load their cards, you earn a share every month.</p>
     <div class="btn-row">
@@ -145,7 +145,7 @@ def build(here=''):
     virtual = f'''<section class="sec" style="padding-top:0">
  <div class="wrap split">
   <div class="media-duo rv">
-   <figure class="media" style="margin:0"><img src="{L('images/bellver-virtual-card-apple-pay-google-pay.webp', H)}" alt="Paying contactless with a Bellver Visa card on a smartphone" width="1000" height="566" loading="lazy"></figure>
+   <figure class="media" style="margin:0"><img src="{L('images/bellver-virtual-card-apple-pay-google-pay.webp', H)}" alt="Paying contactless with a Bellver virtual Mastercard on a smartphone" width="1000" height="566" loading="lazy"></figure>
    <figure class="media" style="margin:0"><img src="{L('images/bellver-card-nfc-ring-contactless-payment.webp', H)}" alt="Paying at a card terminal with an NFC ring linked to a Bellver card" width="1000" height="715" loading="lazy"></figure>
   </div>
   <div class="rv" style="--d:.1s">
@@ -227,7 +227,7 @@ def build(here=''):
  </div></div></section>'''
     body = hero + videos + feats + flow + tiers + virtual + rewards + se + learn + steps + help_band(H) + faq + final_cta(H, second=f'<a class="btn btn-ghost" href="{L("learn/", H)}">Learn more</a>')
 
-    product = {"@type": "Product", "@id": abs_url('') + "#product", "name": "Bellver Card", "description": "Crypto-funded Visa debit card, physical or virtual, with a US dollar account, a non-custodial Fireblocks wallet and an optional rewards program.",
+    product = {"@type": "Product", "@id": abs_url('') + "#product", "name": "Bellver Card", "description": "Crypto-funded debit card, a Visa when physical and a Mastercard when virtual, with a US dollar account, a non-custodial Fireblocks wallet and an optional rewards program.",
                "brand": {"@type": "Brand", "name": "Bellver"}, "image": [abs_url('images/bellver-card-black-visa.webp'), abs_url('images/bellver-card-special-edition.webp')],
                "offers": {"@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": "99", "highPrice": "990", "offerCount": "4", "availability": "https://schema.org/InStock", "url": REF}}
     v3 = {"@type": "VideoObject", "name": "Bellver Card in 3 minutes", "description": "A quick overview of the Bellver Card: limits, privacy, physical and virtual cards, and the rewards program.",
@@ -235,7 +235,7 @@ def build(here=''):
     v27 = {"@type": "VideoObject", "name": "Bellver Card explained in 27 minutes", "description": "Bellver's complete video presentation of the card, the Fireblocks wallet, prices and the rewards program.",
            "thumbnailUrl": abs_url('images/bellver-card-explained-27-minutes-thumbnail.webp'), "embedUrl": f"https://www.youtube.com/embed/{YT_27}", "url": abs_url('videos/') + '#explained', "inLanguage": "en"}
     return page(H, 'home',
-                'Bellver Card: The Crypto Visa Card That Can Pay Your Bills | MTG',
-                'Order the Bellver Card from $99. A crypto-funded Visa card with limits up to $250,000 a day, your own private-key wallet and monthly rewards when your referrals use their cards.',
+                'Bellver Card: The Crypto Card That Can Pay Your Bills | MTG',
+                'Order the Bellver Card from $99. A crypto-funded card (Visa physical, Mastercard virtual) with limits up to $250,000 a day, your own private-key wallet and monthly rewards when your referrals use their cards.',
                 'images/og/og-bellver-cards.jpg', 'Bellver Card, the card that can pay your bills', body,
                 ld_extra=[product, v3, v27], preload='images/bellver-card-black-visa.webp', dash=False)

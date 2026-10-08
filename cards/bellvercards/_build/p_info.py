@@ -28,7 +28,7 @@ def how(H='how-it-works/'):
  <div class="sec-head rv"><h2 class="h2">The <em>card</em></h2><p class="lead">A US dollar card account you fund with crypto and spend like any other card.</p></div>
  <div class="grid3">
   <div class="box rv"><div class="ico">{ic('globe')}</div><h3 class="h3">Pay worldwide</h3><p>Pay in shops and online in any local currency. The card account itself is kept in US dollars.</p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('card')}</div><h3 class="h3">Physical or virtual</h3><p>Both are Visa cards. The physical card also works for cash at ATMs. The virtual card is ready as soon as you order.</p></div>
+  <div class="box rv" style="--d:.06s"><div class="ico">{ic('card')}</div><h3 class="h3">Physical or virtual</h3><p>The physical card is a Visa and the virtual card is a Mastercard. The physical card also works for cash at ATMs. The virtual card is ready as soon as you order.</p></div>
   <div class="box rv" style="--d:.12s"><div class="ico">{ic('phone')}</div><h3 class="h3">Phone, ring or card</h3><p>Add it to Apple Pay or Google Pay, or connect an NFC ring or wristband for tap-to-pay.</p></div>
  </div>
 </div></section>'''
@@ -72,7 +72,7 @@ def how(H='how-it-works/'):
    <tr><td><b>Cash at ATMs</b></td><td>No</td><td>Yes, 2% fee</td></tr>
   </tbody>
  </table></div>
- <p class="muted small rv" style="margin-top:12px">Both the physical and the virtual card are Visa cards.</p>
+ <p class="muted small rv" style="margin-top:12px">The physical card is a Visa and the virtual card is a Mastercard.</p>
 </div></section>'''
 
     se = f'''<section class="sec-tight" id="special-edition"><div class="wrap"><div class="panel se rv">
@@ -201,7 +201,7 @@ def prices(H='prices/'):
     offers = [{"@type": "Offer", "name": f"Bellver Card {n}", "price": str(p), "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": REF}
               for n, p in [('Basic', 99), ('Premium', 270), ('Business', 490), ('Gold', 990)]]
     product = {"@type": "Product", "name": "Bellver Card", "brand": {"@type": "Brand", "name": "Bellver"}, "image": abs_url('images/bellver-card-black-visa.webp'),
-               "description": "Crypto-funded Visa card in four levels with daily limits from $1,000 to $250,000.", "offers": offers}
+               "description": "Crypto-funded card (Visa physical, Mastercard virtual) in four levels with daily limits from $1,000 to $250,000.", "offers": offers}
     return page(H, 'prices', 'Bellver Card Prices, Fees and Limits (2026) | MTG',
                 'Bellver Card prices: Basic $99, Premium $270, Business $490, Gold $990. Daily limits up to $250,000, fees of 4.95% top-up, 1.75% per transaction, 2% ATM, plus add-ons and upgrades.',
                 'images/og/og-bellver-prices.jpg', 'Bellver Card prices and limits', body, ld_extra=[product], trail=trail)
