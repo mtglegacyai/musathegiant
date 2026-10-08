@@ -247,7 +247,7 @@ def footer(here):
     cols = [
      ('The card', [('Overview', 'learn/'), ('How It Works', 'how-it-works/'), ('Prices & Limits', 'prices/'), ('Rewards Program', 'rewards/'), ('Get Started', 'get-started/')]),
      ('Learn', [('Presentation Videos', 'videos/'), ('Tutorial Videos', 'tutorials/'), ('FAQ & Glossary', 'faq/'), ('Documents', 'docs/')]),
-     ('MTG', [('All Crypto Cards', '/cards/'), ('Income Streams', '/dashboard.html'), ('Tools', '/tools/'), ('About MTG', '/about.html')]),
+     ('MTG', [('All Crypto Cards', '/cards/'), ('About MTG', '/about.html')]),
     ]
     html = ''
     for t, items in cols:
