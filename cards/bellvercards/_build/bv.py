@@ -15,6 +15,10 @@ YT_WEBINAR = 'jeB_kZinnCg'
 MP4_3MIN = 'videos/bellvercard-in-3minutes.mp4'
 MP4_DASH = 'videos/bellvercards-dashboard-walkthrough.mp4'
 UPDATED = '2026-10-06'
+# Analytics: leave None until MTG creates a free GoatCounter site, then set e.g. 'musathegiant' (the site code).
+ANALYTICS_GOATCOUNTER = None
+CHECKLIST_MSG = WA + '?text=' + 'Hi%20MTG%2C%20please%20send%20me%20the%20free%20Bellver%20Starter%20Checklist.'
+PARTNER_MSG = WA + '?text=' + 'Hi%20MTG%2C%20I%20would%20like%20to%20become%20a%20Bellver%20partner.%20Can%20you%20help%20me%20get%20started%3F'
 
 import hashlib, os
 
@@ -113,6 +117,7 @@ NAV = [
  ('how', 'how-it-works/', 'How It Works', 'Wallet, funding and security', 'layers', 'The card'),
  ('prices', 'prices/', 'Prices & Limits', 'Four levels, fees, add-ons', 'tag', 'The card'),
  ('rewards', 'rewards/', 'Rewards Program', 'Commissions, matrix, ranks', 'users', 'Earn'),
+ ('partner', 'partner/', 'Become a Partner', 'Share the card, step by step', 'rocket', 'Earn'),
  ('videos', 'videos/', 'Presentation Videos', '3 min, 27 min and the full talk', 'video', 'Watch'),
  ('tutorials', 'tutorials/', 'Tutorial Videos', 'Short how-to guides', 'play-c', 'Watch'),
  ('faq', 'faq/', 'FAQ & Glossary', 'Straight answers, plain words', 'help', 'Help'),
@@ -233,6 +238,15 @@ def help_band(here, title="Stuck? I'll walk you through it.", text="I'm MTG. Mes
  </div></div></section>'''
 
 
+def checklist_band(here, title='Not ready to order yet? <em>Take the free checklist.</em>', text='A two-page Bellver Starter Checklist: what to prepare, how to secure your wallet, how to fund it, which level to pick and the rules that decide whether you get paid. Message me on WhatsApp and I will send it to you personally.'):
+    return f'''<section class="sec-tight" id="checklist"><div class="wrap"><div class="panel checklist rv">
+  <div class="ck-ico">{ic('book')}</div>
+  <div class="ck-tx"><h2 class="h2">{title}</h2><p>{text}</p>
+   <ul class="ck-pts"><li>{ic('check')}Free, no obligation</li><li>{ic('check')}Plain words, two pages</li><li>{ic('check')}Sent to you on WhatsApp</li></ul></div>
+  <a class="btn btn-wa" data-track="checklist" href="{CHECKLIST_MSG}" target="_blank" rel="noopener">{ic('wa')}Get the checklist on WhatsApp</a>
+ </div></div></section>'''
+
+
 def final_cta(here, title='Let\'s make it <span class="hap">happen</span>', text='Order your Bellver Card from $99. Go virtual and you can start paying today.', second=None):
     sec = second or f'<a class="btn btn-ghost" href="{L("get-started/", here)}">See the setup guide</a>'
     return f'''<section class="sec-tight"><div class="wrap"><div class="panel final rv rv-scale">
@@ -291,6 +305,12 @@ def crumbs_html(trail, here):
     return '<nav class="crumbs" aria-label="Breadcrumb">' + ''.join(out) + '</nav>'
 
 
+def gc_snippet():
+    if not ANALYTICS_GOATCOUNTER:
+        return ''
+    return f'<script data-goatcounter="https://{ANALYTICS_GOATCOUNTER}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
+
+
 def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None, preload=None, robots='index,follow,max-image-preview:large,max-video-preview:-1', dash=True):
     url = abs_url(here)
     trail = trail or [('Home', SITE + '/'), ('Cards', SITE + '/cards/'), ('Bellver Cards', SITE + BASE)]
@@ -336,6 +356,7 @@ def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
 {pre}
 <link rel="stylesheet" href="{asset('assets/bellver.css', here)}">
+{gc_snippet()}
 </head>
 <body{' class="is-dash"' if dash else ''}>
 {shell(here, key, body, dash)}

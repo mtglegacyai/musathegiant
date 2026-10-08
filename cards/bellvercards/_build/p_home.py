@@ -225,7 +225,7 @@ def build(here=''):
   <div><h2 class="h2">Want the <em>full picture?</em></h2><p class="lead" style="margin-top:12px">Wallet and security, every price and fee, the rewards rules, a step-by-step setup guide, tutorial videos and the official PDFs. All in one place.</p></div>
   <div class="btn-row"><a class="btn btn-go" href="{L('learn/', H)}">{ic('book')}Learn more</a>{dl_btn('price', H, 'Price list (PDF)')}</div>
  </div></div></section>'''
-    body = hero + videos + feats + flow + tiers + virtual + rewards + se + learn + steps + help_band(H) + faq + final_cta(H, second=f'<a class="btn btn-ghost" href="{L("learn/", H)}">Learn more</a>')
+    body = hero + videos + feats + flow + tiers + virtual + rewards + se + learn + steps + checklist_band(H) + help_band(H) + faq + final_cta(H, second=f'<a class="btn btn-ghost" href="{L("learn/", H)}">Learn more</a>')
 
     product = {"@type": "Product", "@id": abs_url('') + "#product", "name": "Bellver Card", "description": "Crypto-funded debit card, a Visa when physical and a Mastercard when virtual, with a US dollar account, a non-custodial Fireblocks wallet and an optional rewards program.",
                "brand": {"@type": "Brand", "name": "Bellver"}, "image": [abs_url('images/bellver-card-black-visa.webp'), abs_url('images/bellver-card-special-edition.webp')],

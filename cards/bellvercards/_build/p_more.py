@@ -26,7 +26,7 @@ def start(H='get-started/'):
   <figure class="media" style="margin:0"><img src="{L('images/bellver-card-dashboard-login.webp', H)}" alt="Bellver Card dashboard login page with username and password fields" width="1024" height="933" loading="lazy"><figcaption class="cap">Already registered? Log in at app.bellvercards.com</figcaption></figure>
   <div class="box"><h3 class="h3">Before you start</h3><ul><li>A phone with an authenticator app</li><li>USDT or USDC, or a credit card</li><li>A little BNB or TRX for gas</li><li>Pen and paper for your private key</li></ul><div class="btn-row" style="margin-top:18px">{order_btn('Register now', 'btn btn-go btn-sm')}<a class="btn btn-ghost btn-sm" href="{LOGIN}" target="_blank" rel="noopener">Member login</a></div></div>
  </aside>
-</div></div></section>''' + help_band(H)
+</div></div></section>''' + checklist_band(H) + help_band(H)
     howto = {"@type": "HowTo", "name": "How to order a Bellver Card", "totalTime": "PT20M",
              "supply": [{"@type": "HowToSupply", "name": "USDT or USDC"}, {"@type": "HowToSupply", "name": "BNB or TRX for gas fees"}],
              "step": [{"@type": "HowToStep", "position": i + 1, "name": t, "url": abs_url(H) + f"#step-{i+1}"} for i, (t, _) in enumerate(S)]}

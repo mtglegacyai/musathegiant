@@ -413,6 +413,32 @@
     watch.observe(d.body,{childList:true,subtree:true});
   })();
 
+  /* click tracking: names the action, sends it to whichever analytics is on the page, never blocks the click */
+  (function(){
+    var page=location.pathname.replace(/^\/cards\/bellvercards\/?/,'').replace(/\/$/,'')||'home';
+    function send(name,label){
+      var path='event/'+name+'/'+page+(label?'/'+label:'');
+      try{(window.dataLayer=window.dataLayer||[]).push({event:'bv_'+name,bv_page:page,bv_label:label||''});}catch(e){}
+      try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:path,title:name,event:true});}catch(e){}
+      try{if(window.plausible)window.plausible(name,{props:{page:page,label:label||''}});}catch(e){}
+      try{if(window.gtag)window.gtag('event',name,{page:page,label:label||''});}catch(e){}
+    }
+    var seen={};
+    d.addEventListener('click',function(e){
+      var a=e.target.closest&&e.target.closest('a[href],.player,.un-go');if(!a)return;
+      if(a.classList.contains('un-go')){send('open-section',(a.querySelector('b')||{}).textContent||'');return;}
+      if(a.classList.contains('player')){send('video-play',a.getAttribute('data-title')||'');return;}
+      var h=a.getAttribute('href')||'', tr=a.getAttribute('data-track');
+      if(tr){send(tr,'');return;}
+      if(h.indexOf('app.bellvercards.com')>-1){send('order',(a.textContent||'').trim().slice(0,40));return;}
+      if(h.indexOf('wa.me')>-1){send('whatsapp','');return;}
+      if(/\.pdf(\?|$)/.test(h)){send('pdf',h.split('/').pop());return;}
+    },true);
+    d.addEventListener('input',function(e){var c=e.target.closest&&e.target.closest('[data-calc]');if(c&&!seen[c.getAttribute('data-calc')]){seen[c.getAttribute('data-calc')]=1;send('calculator',c.getAttribute('data-calc'));}},true);
+    d.addEventListener('change',function(e){var c=e.target.closest&&e.target.closest('[data-calc]');if(c&&!seen[c.getAttribute('data-calc')]){seen[c.getAttribute('data-calc')]=1;send('calculator',c.getAttribute('data-calc'));}},true);
+    d.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('[data-calc] button');if(c&&!seen['b'+c.closest('[data-calc]').getAttribute('data-calc')]){seen['b'+c.closest('[data-calc]').getAttribute('data-calc')]=1;send('calculator',c.closest('[data-calc]').getAttribute('data-calc'));}},true);
+  })();
+
   onScroll();
   var y=d.querySelector('[data-year]'); if(y) y.textContent=new Date().getFullYear();
 })();

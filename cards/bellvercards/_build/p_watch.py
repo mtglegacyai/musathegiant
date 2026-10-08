@@ -201,6 +201,7 @@ MORE = {
  'how': 'Where your money sits, how it reaches the card, physical vs virtual, and who is behind Bellver.',
  'prices': 'All four levels side by side, every published fee, add-ons, shipping and upgrades.',
  'rewards': 'Direct commissions, the 2x2 matrix, the six ranks and the rules for staying qualified.',
+ 'partner': 'Who it suits, what you earn, a first-week plan and the honest way to share the card.',
  'videos': 'The 3-minute overview, the 27-minute presentation and the launch webinar, with summaries.',
  'tutorials': 'The dashboard walkthrough plus short how-to videos for every step.',
  'faq': 'Two dozen straight answers and a plain-words glossary.',

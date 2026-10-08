@@ -107,7 +107,7 @@ def how(H='how-it-works/'):
  </div>
 </div></section>'''
 
-    body = top + card + wallet + fund + pv + se + who + help_band(H)
+    body = top + card + wallet + fund + pv + se + who + checklist_band(H) + help_band(H)
     howto = {"@type": "HowTo", "name": "How to fund and use the Bellver Card", "step": [
         {"@type": "HowToStep", "position": 1, "name": "Send USDT or USDC", "text": "Send USDT or USDC from any external wallet or exchange, ideally on BNB Smart Chain, plus a little BNB or TRX for gas."},
         {"@type": "HowToStep", "position": 2, "name": "Receive it in your Fireblocks wallet", "text": "Funds arrive in your own non-custodial Fireblocks dynamic wallet, protected by your private key."},
@@ -197,7 +197,7 @@ def prices(H='prices/'):
  {payback_calc(H)}
 </div></section>'''
 
-    body = top + levels + compare + fees + addons + upgrade + calc + help_band(H)
+    body = top + levels + compare + fees + addons + upgrade + calc + checklist_band(H) + help_band(H)
     offers = [{"@type": "Offer", "name": f"Bellver Card {n}", "price": str(p), "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": REF}
               for n, p in [('Basic', 99), ('Premium', 270), ('Business', 490), ('Gold', 990)]]
     product = {"@type": "Product", "name": "Bellver Card", "brand": {"@type": "Brand", "name": "Bellver"}, "image": abs_url('images/bellver-card-black-visa.webp'),
