@@ -7,9 +7,9 @@ from p_info import phero, T
 def partner(H='partner/'):
     trail = T(('Become a Partner', abs_url(H)))
     top = phero(H, trail, ['Share the card,', 'the honest way'],
-                'If you already like the Bellver Card, you can share it and earn a commission when people order through your link. It suits TikTok LIVE hosts and other creators whose audiences already trust them. Here is exactly how it works, what you need first and what to expect.',
+                'You become a Bellver affiliate partner when you use the card and share it with two or more people. There is nothing to apply for and nobody to sign up with: your referral link is your partnership. It suits TikTok LIVE hosts and other creators whose audiences already trust them.',
                 None,
-                f'<a class="btn btn-wa" href="{PARTNER_MSG}" target="_blank" rel="noopener" data-track="partner-whatsapp">{ic("wa")}Talk to MTG about partnering</a>' +
+                order_btn('Order your card') +
                 f'<a class="btn btn-ghost" href="{L("rewards/", H)}">See the rewards plan</a>')
 
     who = f'''<section class="sec-tight"><div class="wrap">
@@ -77,11 +77,12 @@ def partner(H='partner/'):
  <div class="grid3">
   <div class="box rv"><div class="ico">{ic('video')}</div><h3 class="h3">Videos</h3><p>The 3-minute overview, the 27-minute presentation and the launch webinar, plus short tutorials. <a class="inl" href="{L('videos/', H)}">Presentation videos</a></p></div>
   <div class="box rv" style="--d:.06s"><div class="ico">{ic('book')}</div><h3 class="h3">Starter Checklist</h3><p>A free two-page checklist for new cardholders. Message me on WhatsApp and I will send it.</p><div class="btn-row" style="margin-top:12px"><a class="btn btn-ghost btn-sm" data-track="checklist" href="{CHECKLIST_MSG}" target="_blank" rel="noopener">Get the checklist</a></div></div>
-  <div class="box rv" style="--d:.12s"><div class="ico">{ic('wa')}</div><h3 class="h3">Personal help</h3><p>Stuck on registration, funding or your first referral? Message me and I will walk you through it.</p></div>
+  <div class="box rv" style="--d:.12s"><div class="ico">{ic('wa')}</div><h3 class="h3">Questions? Ask me</h3><p>You do not need my permission to partner. If you get stuck on registration, funding or your first referral, you are welcome to message me.</p><div class="btn-row" style="margin-top:12px"><a class="btn btn-ghost btn-sm" data-track="partner-whatsapp" href="{PARTNER_MSG}" target="_blank" rel="noopener">Ask MTG a question</a></div></div>
  </div>
 </div></section>'''
 
     faq = [('Can I share it on TikTok LIVE?', 'Many people share products on TikTok LIVE, but you must follow TikTok\'s rules for your country. TikTok\'s advertising policy (updated June 2026) restricts crypto promotion in many markets and lists crypto debit cards as not allowed in some. Disclose that you earn a commission, never promise income and check the current rules before you go live.'),
+           ('Do I need to talk to MTG or apply to become a partner?', 'No. Partner simply means you are an affiliate of Bellver Cards. Once you have your own card and share it with two or more people through your referral link, you are an affiliate partner. There is no application and no approval from MTG. You are welcome to message MTG with questions, but you never have to.'),
            ('Do I need to buy a card to become a partner?', 'Yes. You need at least a Basic card before you start sharing your referral link. Bellver\'s compensation plan ranks you by the card you have personally bought, and the official steps are: request your registration link, order and load your card, then spread the word. Basic earns direct commissions only. Monthly rewards need your own card at Premium or higher plus two personal referrals who each have Premium or higher.'),
            ('Do I have to refer anyone?', 'No. The rewards program is optional. Many people just want a crypto card with high limits.'),
            ('When are commissions paid?', 'This month\'s commissions show in your dashboard. On the 15th they move to Earnings available, and you can withdraw from $100.'),
@@ -93,9 +94,17 @@ def partner(H='partner/'):
 </div></section>'''
 
     cta = final_cta(H, 'Ready to <span class="hap">start?</span>', 'You need at least a Basic card before you share your link. Order yours first, then share it when you are ready.',
-                    second=f'<a class="btn btn-wa" href="{PARTNER_MSG}" target="_blank" rel="noopener" data-track="partner-whatsapp">{ic("wa")}Message MTG</a>')
-    body = top + audience_band(H, chips=False, cta=False) + who + earn + week + honest + tiktok + tools + checklist_band(H) + faqs + cta
+                    second=f'<a class="btn btn-ghost" href="{L("rewards/", H)}">See the rewards plan</a>')
+    mean = f'''<section class="sec-tight"><div class="wrap">
+ <div class="sec-head rv"><h2 class="h2">What "partner" <em>means</em></h2><p class="lead">No forms, no approval, no call with me.</p></div>
+ <div class="grid3">
+  <div class="box rv"><div class="ico">{ic('card')}</div><h3 class="h3">1. Use the card</h3><p>Order at least a Basic card and load it.</p></div>
+  <div class="box rv" style="--d:.06s"><div class="ico">{ic('users')}</div><h3 class="h3">2. Share it</h3><p>Share your referral link with two or more people.</p></div>
+  <div class="box rv" style="--d:.12s"><div class="ico">{ic('check')}</div><h3 class="h3">3. You are a partner</h3><p>You are now an affiliate partner of Bellver Cards. Commissions follow the plan.</p></div>
+ </div>
+</div></section>'''
+    body = top + mean + audience_band(H, chips=False, cta=False) + who + earn + week + honest + tiktok + tools + checklist_band(H) + faqs + cta
     faq_ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     return page(H, 'partner', 'Become a Bellver Card Partner: How to Share It and Earn | MTG',
-                'How to share the Bellver Card and earn commissions: made for TikTok LIVE hosts and creators with a trusting audience, the $10 to $500 direct commissions, a first-week plan, honest sharing rules and help from MTG.',
+                'How to share the Bellver Card and earn commissions: made for TikTok LIVE hosts and creators with a trusting audience, the $10 to $500 direct commissions, a first-week plan, honest sharing rules and a plain explanation of what partner means.',
                 'images/og/og-bellver-guide.jpg', 'Become a Bellver Card partner', body, ld_extra=[faq_ld], trail=trail)

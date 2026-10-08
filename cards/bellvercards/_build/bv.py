@@ -18,7 +18,7 @@ UPDATED = '2026-10-08'
 # Analytics: leave None until MTG creates a free GoatCounter site, then set e.g. 'musathegiant' (the site code).
 ANALYTICS_GOATCOUNTER = None
 CHECKLIST_MSG = WA + '?text=' + 'Hi%20MTG%2C%20please%20send%20me%20the%20free%20Bellver%20Starter%20Checklist.'
-PARTNER_MSG = WA + '?text=' + 'Hi%20MTG%2C%20I%20would%20like%20to%20become%20a%20Bellver%20partner.%20Can%20you%20help%20me%20get%20started%3F'
+PARTNER_MSG = WA + '?text=' + 'Hi%20MTG%2C%20I%20have%20a%20question%20about%20the%20Bellver%20Card.'
 
 import hashlib, os
 
