@@ -41,7 +41,7 @@ def make(name,l1,l2,sub,art='card',green=2):
     d.rounded_rectangle((64,H-74,64+12,H-62),3,fill=(252,190,37))
     d.text((86,H-82),'musathegiant.com/cards/bellvercards',font=ImageFont.truetype(FM.format(700),22),fill=(142,163,154))
     im.convert('RGB').save(os.path.join(IMG,'og',name),'JPEG',quality=86,optimize=True,progressive=True); print(name)
-make('og-bellver-cards.jpg','THE CARD THAT','CAN PAY YOUR BILLS','Crypto-funded Visa card. Limits up to $250,000 a day. From $99.','both')
+make('og-bellver-cards.jpg','THE CARD THAT','CAN PAY YOUR BILLS','Crypto-funded card, physical Visa or virtual Mastercard. Limits up to $250,000 a day. From $99.','both')
 make('og-bellver-how-it-works.jpg','HOW THE','CARD WORKS','Your own Fireblocks wallet, funding with USDT or USDC, physical or virtual.')
 make('og-bellver-prices.jpg','PRICES, FEES','AND LIMITS','Basic $99, Premium $270, Business $490, Gold $990. Every fee in plain numbers.')
 make('og-bellver-rewards.jpg','THE REWARDS','PROGRAM','Commissions, the 2x2 matrix, star ranks and the rules to stay qualified.','both')
