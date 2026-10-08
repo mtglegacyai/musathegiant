@@ -72,7 +72,7 @@ def videos(H='videos/'):
    <li>Limits up to $250,000 a day and $20,000 per payment on Gold</li>
    <li>A physical Visa or a virtual Mastercard, with Apple Pay and Google Pay</li>
    <li>Four levels: Basic, Premium, Business and Gold. Most people choose Business</li>
-   <li>Recommend it to two people and you join the rewards program</li>
+   <li>Own Premium or higher and recommend it to two people who also choose Premium or higher to qualify for monthly rewards</li>
   </ul>
  </div>
  <div class="box"><div class="ico">{ic('info')}</div><h3 class="h3">Next step</h3><p>Liked what you saw? The 27-minute presentation covers every detail, or jump straight to <a class="inl" href="{L('prices/', H)}">prices and limits</a>.</p></div>
@@ -217,7 +217,7 @@ def learn(H='learn/'):
   <div class="fact"><span class="ic">{ic('tag')}</span><div><b>From $99</b><span>one-time, four levels</span></div></div>
   <div class="fact"><span class="ic">{ic('bolt')}</span><div><b>Up to $250,000</b><span>daily limit on Gold</span></div></div>
   <div class="fact"><span class="ic">{ic('key')}</span><div><b>Your own key</b><span>non-custodial wallet</span></div></div>
-  <div class="fact"><span class="ic">{ic('gift')}</span><div><b>Two referrals</b><span>to join the rewards</span></div></div>
+  <div class="fact"><span class="ic">{ic('gift')}</span><div><b>Two referrals</b><span>Premium or higher, for rewards</span></div></div>
  </div></div></section>'''
     tiles = ''
     for i, (k, path, label, sub, icn, g) in enumerate([n for n in NAV if n[0] != 'learn']):

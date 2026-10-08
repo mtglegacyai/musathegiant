@@ -75,7 +75,7 @@ def build(here=''):
    <div class="fact"><span class="ic">{ic('bolt')}</span><div><b>Up to $20,000</b><span>per payment, worldwide</span></div></div>
    <div class="fact"><span class="ic">{ic('key')}</span><div><b>Your own key</b><span>Fireblocks wallet only you control</span></div></div>
    <div class="fact"><span class="ic">{ic('phone')}</span><div><b>Apple Pay & Google Pay</b><span>or tap with an NFC ring</span></div></div>
-   <div class="fact"><span class="ic">{ic('gift')}</span><div><b>Two referrals</b><span>to join the rewards program</span></div></div>
+   <div class="fact"><span class="ic">{ic('gift')}</span><div><b>Two referrals</b><span>Premium or higher, for rewards</span></div></div>
   </div>
  </div>
 </section>'''
@@ -110,7 +110,7 @@ def build(here=''):
    <div class="feat rv">{ic('bolt','ico')}<span class="big" data-count="250000" data-pre="$">$250,000</span><h3 class="h3">Limits that keep up with you</h3><p>Spend up to $250,000 a day and $20,000 per payment on Gold. Even Basic gives you $1,000 a day, in any local currency.</p></div>
    <div class="feat rv" style="--d:.08s">{ic('key','ico')}<span class="big">Your keys</span><h3 class="h3">Your money stays in your wallet</h3><p>Funds sit in your own Fireblocks non-custodial wallet, protected by your private key. You move only what you need onto the card, in one click.</p></div>
    <div class="feat rv">{ic('phone','ico')}<span class="big y">Today</span><h3 class="h3">A virtual card you can use now</h3><p>No shipping and no waiting. Add it to Apple Pay or Google Pay, or link an NFC ring and pay with a tap of your finger.</p></div>
-   <div class="feat rv" style="--d:.08s">{ic('users','ico')}<span class="big" data-count="2" data-suf=" referrals">2 referrals</span><h3 class="h3">A card that can earn</h3><p>Recommend it to two people and you join the rewards program: a share of what cardholders in your team load onto their cards, paid monthly.</p></div>
+   <div class="feat rv" style="--d:.08s">{ic('users','ico')}<span class="big" data-count="2" data-suf=" referrals">2 referrals</span><h3 class="h3">A card that can earn</h3><p>Buy Premium or higher and recommend it to two people who also choose Premium or higher, and you qualify for monthly rewards: a share of what cardholders in your team load onto their cards.</p></div>
   </div>
  </div>
 </section>'''
@@ -168,7 +168,7 @@ def build(here=''):
   <div class="rv">
    <span class="badge gold">{ic('star')}Optional rewards program</span>
    <h2 class="h2" style="margin-top:16px">Two referrals. <em>Paid</em> every month.</h2>
-   <p class="lead" style="margin-top:16px">Instead of paying for advertising, Bellver shares its card fees with cardholders who spread the word. Refer two people who order a card and you qualify for monthly rewards from cardholders across your 2x2 matrix, including people placed under you by others.</p>
+   <p class="lead" style="margin-top:16px">Instead of paying for advertising, Bellver shares its card fees with cardholders who spread the word. Buy Premium or higher, then refer two people who also choose Premium or higher, and you qualify for monthly rewards from cardholders across your 2x2 matrix, including people placed under you by others.</p>
    <div class="comm">
     <div style="--m1:var(--basic-1);--m2:var(--basic-2)"><span>Basic</span><b>$10</b><small>per referral</small></div>
     <div style="--m1:var(--prem-1);--m2:var(--prem-2)"><span>Premium</span><b>$100</b><small>$150 Special Edition</small></div>
@@ -211,7 +211,7 @@ def build(here=''):
      ('How much does the Bellver Card cost?', f'A one-time $99 for Basic, $270 for Premium, $490 for Business or $990 for Gold. Physical cards add shipping ($85 Europe, $149 rest of world). Using the card has published fees: 4.95% when you top up, 1.75% per transaction and 2% at ATMs. The top-up fee helps keep Bellver profitable and around for the long term. <a class="inl" href="{L("prices/", H)}">Full price list</a>'),
      ('Do I need crypto to get one?', 'It helps, but no. Card balances run on USDT or USDC, and sending those from any wallet is the cheapest route. You can also buy crypto with a credit card inside the dashboard, and in Europe pay by bank transfer or PayPal.'),
      ('Who controls my money?', 'You do. Deposits go into your own non-custodial Fireblocks wallet protected by your private key. Bellver cannot freeze or access it. The flip side: keep your key safe, because nobody can recover it for you.'),
-     ('Do I have to refer anyone?', 'No. The rewards program is optional. Many people simply want a crypto card with high limits. If you do share it, two referrals are enough to qualify.'),
+     ('Do I have to refer anyone?', 'No. The rewards program is optional. Many people simply want a crypto card with high limits. If you do share it, two referrals with Premium or higher, together with your own Premium card, are enough to start earning monthly rewards.'),
     ]
     faq_html = ''.join(f'<details class="qa"><summary>{q}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{a}</p></div></details>' for q, a in faqs)
     faq = f'''<section class="sec" style="padding-top:0">

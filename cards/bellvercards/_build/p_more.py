@@ -58,7 +58,7 @@ FAQ = [
   ('Is this an investment?', 'No. Bellver presents it as a product: a payment card. The card price and fees are real costs, and rewards depend entirely on real card activity in your matrix.'),
  ]),
  ('Rewards', [
-  ('Do I have to refer anyone?', 'No. The rewards program is optional. If you do want to take part, two referrals who order a card are enough to qualify.'),
+  ('Do I have to refer anyone?', 'No. The rewards program is optional. If you do want to take part, you need your own Premium card or higher and two personal referrals who each have Premium or higher. Basic cardholders earn direct commissions only.'),
   ('Who is the rewards program for?', 'Anyone with people who trust them: TikTok LIVE hosts and other creators, YouTubers and streamers, community and group admins, network marketers, affiliate marketers and side hustlers. It is optional, and you can use the card without ever referring anyone. <a class="inl" href="{PT}">See the partner page</a>'),
   ('Can I share the card on TikTok LIVE?', 'Many people share products on TikTok LIVE, but you must follow TikTok\'s rules for your country. TikTok\'s advertising policy (updated June 2026) restricts crypto promotion in many markets and lists crypto debit cards as not allowed in some. Disclose that you earn a commission, never promise income, and check the current rules before you go live. This is general information, not legal advice. <a class="inl" href="{PTT}">Read the partner page guidance</a>'),
   ('How much do I earn per referral?', 'A one-time commission of $10 for Basic, $100 for Premium, $200 for Business or $400 for Gold. With the Special Edition: $150, $300 or $500. Upgrades pay an extra 50% of the new level\'s commission.'),
