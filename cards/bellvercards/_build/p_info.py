@@ -246,6 +246,24 @@ def rewards(H='rewards/'):
  </div>
 </div></section>'''
 
+    lv_id = 'zEYKhn6ek1M'
+    launch = f'''<section class="sec-tight" id="launch-video"><div class="wrap split">
+ <div class="player rv" id="p-launch" role="button" tabindex="0" aria-label="Play: BellverCard Official Launch Presentation" data-yt="{lv_id}" data-title="BellverCard Official Launch Presentation" style="background:linear-gradient(135deg,#0b2a1f,#14452f)">
+  <img src="https://i.ytimg.com/vi/{lv_id}/maxresdefault.jpg" alt="BellverCard Official Launch Presentation, video thumbnail" width="1280" height="720" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+  <span class="pbtn">{ic('play')}</span><span class="plabel">28 min</span></div>
+ <div class="rv" style="--d:.1s">
+  <h2 class="h2">Watch the <em>official launch</em> presentation</h2>
+  <p>The full 28 minute walkthrough of the matrix, spillover, stars and levels, with the commission structure and the product roadmap. Presentation videos are also available in 14 languages.</p>
+  <ul class="checks">
+   <li>How the 2x2 matrix fills and where spillover goes</li>
+   <li>How stars unlock deeper reward levels</li>
+   <li>Direct commissions by card level</li>
+   <li>The roadmap for the card</li>
+  </ul>
+  <p class="fine" style="opacity:.75;font-size:.9em">Any earnings mentioned in a video are examples, not promises. Read the <a href="{L('/earnings-disclaimer.html', H)}">Earnings Disclaimer</a>.</p>
+ </div>
+</div></section>'''
+
     R = [('basic', 'Rank 1: Basic', '', 'Basic card', '0', ['Direct commissions: yes', 'Monthly rewards: no']),
          ('prem', 'Rank 2: Premium, 1 Star', '★', 'Premium card or higher', '12', ['Two personal referrals, each with Premium or higher: rewards to level 10', 'Each of those two refers two cardholders: level 12 and your first star']),
          ('biz', 'Rank 3: 2 Stars', '★★', 'Business card', '15', ['Two personal referrals who each hold 1 Star', 'Rewards to level 15']),
@@ -295,7 +313,7 @@ def rewards(H='rewards/'):
  </div>
 </div></section>'''
 
-    body = top + ways + matrix + ranks + rules + est + help_band(H, "Want to build this properly?", "I'm MTG. Message me and I'll show you how I share the card without pressure, and help your first two referrals get set up.")
+    body = top + ways + matrix + launch + ranks + rules + est + help_band(H, "Want to build this properly?", "I'm MTG. Message me and I'll show you how I share the card without pressure, and help your first two referrals get set up.")
     return page(H, 'rewards', 'Bellver Card Rewards Program and 2x2 Matrix Explained | MTG',
                 'The Bellver Card rewards program in plain words: direct commissions from $10 to $500, 0.1% monthly rewards per level in a 2x2 matrix, star ranks, the $100 monthly rule and honest math.',
                 'images/og/og-bellver-rewards.jpg', 'Bellver Card rewards program and 2x2 matrix', body, trail=trail)
