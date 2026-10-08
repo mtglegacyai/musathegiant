@@ -1116,3 +1116,6 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
 
 /* ---- Do not lists: red cross instead of the green tick ---- */
 .dd .box.dont .checks li:before{background:rgba(255,100,80,.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff7a66' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E") center/13px no-repeat;border-color:rgba(255,122,102,.55)}
+
+/* partner who-table */
+.who-tbl{min-width:760px}.who-tbl th[scope=row]{color:#fff;font-weight:800;white-space:nowrap;background:rgba(52,176,112,.05)}.who-tbl .ctr{text-align:center;width:1%;white-space:nowrap}.who-tbl thead th{text-transform:uppercase;letter-spacing:.06em;font-size:.72rem}.who-tbl tbody tr:nth-child(even) td{background:rgba(255,255,255,.015)}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
