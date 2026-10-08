@@ -40,7 +40,8 @@
       if(open){var first=menu.querySelector('a');if(first) setTimeout(function(){first.focus({preventScroll:true});},60);}
     }
     if(hdr) hdr.classList.toggle('scrolled',(!wide.matches&&open)||window.scrollY>12);
-    onScroll();
+    
+onScroll();
   }
   function syncMenu(){
     var off=false; try{off=localStorage.getItem('bv-side')==='off';}catch(_){}
@@ -437,6 +438,12 @@
     d.addEventListener('input',function(e){var c=e.target.closest&&e.target.closest('[data-calc]');if(c&&!seen[c.getAttribute('data-calc')]){seen[c.getAttribute('data-calc')]=1;send('calculator',c.getAttribute('data-calc'));}},true);
     d.addEventListener('change',function(e){var c=e.target.closest&&e.target.closest('[data-calc]');if(c&&!seen[c.getAttribute('data-calc')]){seen[c.getAttribute('data-calc')]=1;send('calculator',c.getAttribute('data-calc'));}},true);
     d.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('[data-calc] button');if(c&&!seen['b'+c.closest('[data-calc]').getAttribute('data-calc')]){seen['b'+c.closest('[data-calc]').getAttribute('data-calc')]=1;send('calculator',c.closest('[data-calc]').getAttribute('data-calc'));}},true);
+  })();
+
+  /* who-table filter */
+  (function(){var bar=$('[data-who-filter]'),tb=$('[data-who-table]');if(!bar||!tb)return;var rows=[].slice.call(tb.querySelectorAll('tbody tr')),cnt=$('[data-who-count]');
+    function apply(f){var n=0;rows.forEach(function(r){var show=f==='all'||(f==='bl'?r.getAttribute('data-bl')==='1':r.getAttribute('data-cat')===f);r.hidden=!show;if(show)n++;});if(cnt)cnt.textContent=f==='all'?'':'Showing '+n+' of '+rows.length+' groups.';}
+    bar.addEventListener('click',function(e){var b=e.target.closest('button[data-f]');if(!b)return;[].forEach.call(bar.querySelectorAll('button'),function(x){x.classList.toggle('on',x===b);});apply(b.getAttribute('data-f'));try{(window.dataLayer=window.dataLayer||[]).push({event:'who_filter',label:b.textContent});}catch(_){}});
   })();
 
   onScroll();
