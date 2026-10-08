@@ -1036,6 +1036,14 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
 @keyframes ctaGlint{0%{background-position:180% 0,0 0}24%,100%{background-position:-80% 0,0 0}}
 @media (prefers-reduced-motion:reduce){.btn:after,.btn-go{animation:none!important}}
 
+/* ---- Tap to open bar: same orbiting light ring as the CTA buttons, bolder so it is hard to miss ---- */
+.un-go{position:relative;overflow:visible;--c1:#fff0b8;--c2:#fcbe25}
+.un-go:after{content:"";position:absolute;inset:-4px;padding:3px;border-radius:22px;pointer-events:none;z-index:2;background:conic-gradient(from var(--ang),transparent 0 40%,#34cc88 56%,var(--c1) 72%,var(--c2) 80%,transparent 94%);-webkit-mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);-webkit-mask-composite:xor;filter:drop-shadow(0 0 8px var(--c2));animation:ctaSpin 4s linear infinite}
+.un-go{animation:unBeat 2.4s ease-in-out infinite}
+@keyframes unBeat{0%,100%{box-shadow:0 22px 50px rgba(0,0,0,.55),0 0 0 0 rgba(252,190,37,0)}50%{box-shadow:0 22px 50px rgba(0,0,0,.55),0 0 26px 2px rgba(252,190,37,.32)}}
+.un-go:hover:after{filter:drop-shadow(0 0 12px var(--c2)) brightness(1.2)}
+@media (prefers-reduced-motion:reduce){.un-go,.un-go:after{animation:none!important}}
+
 /* ---- Collapsible side menu on every screen size ---- */
 .dtop .menu-btn{display:inline-flex}
 .side-toggle{display:grid;place-items:center;position:fixed;z-index:130;top:50%;margin-top:-34px;left:calc(min(300px,86vw) - 16px);width:32px;height:68px;padding:0;border-radius:18px;border:1px solid rgba(52,204,136,.55);background:#07150e;color:var(--green-hi);cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 0 4px rgba(52,204,136,.1);transition:left .4s var(--ease),width .4s var(--ease),border-radius .4s var(--ease),background .2s,color .2s}
