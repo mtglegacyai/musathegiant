@@ -100,7 +100,7 @@ def how(H='how-it-works/'):
     <li>Anyone who wants a crypto card with high limits</li>
     <li>People who pay or travel internationally</li>
     <li>Crypto holders who want to spend their stablecoins anywhere</li>
-    <li>Influencers and sales people with an audience</li>
+    <li>TikTok LIVE hosts, influencers and sales people with an audience</li>
     <li>Companies (cards can carry your company logo on request)</li>
    </ul>
   </div>
@@ -313,7 +313,7 @@ def rewards(H='rewards/'):
  </div>
 </div></section>'''
 
-    body = top + ways + matrix + launch + ranks + rules + est + help_band(H, "Want to build this properly?", "I'm MTG. Message me and I'll show you how I share the card without pressure, and help your first two referrals get set up.")
+    body = top + ways + audience_band(H) + matrix + launch + ranks + rules + est + help_band(H, "Want to build this properly?", "I'm MTG. Message me and I'll show you how I share the card without pressure, and help your first two referrals get set up.")
     return page(H, 'rewards', 'Bellver Card Rewards Program and 2x2 Matrix Explained | MTG',
                 'The Bellver Card rewards program in plain words: direct commissions from $10 to $500, 0.1% monthly rewards per level in a 2x2 matrix, star ranks, the $100 monthly rule and honest math.',
                 'images/og/og-bellver-rewards.jpg', 'Bellver Card rewards program and 2x2 matrix', body, trail=trail)

@@ -227,7 +227,7 @@ def learn(H='learn/'):
   <div><h2 class="h3" style="font-size:1.3rem">Official documents</h2><p class="muted" style="margin:4px 0 0">Version 08/2026, straight from Bellver. Save them or share them.</p></div>
   <div class="btn-row">{dl_btn('price', H, 'Price list')}{dl_btn('plan', H, 'Compensation plan')}{dl_btn('slides', H, 'Presentation')}</div>
  </div></div></section>'''
-    body = top + facts + grid + docs + help_band(H)
+    body = top + facts + audience_band(H) + grid + docs + help_band(H)
     return page(H, 'learn', 'Bellver Card Guide: Everything About the Card in One Place | MTG',
                 'Your complete Bellver Card guide by MTG: how it works, prices and fees, the rewards program, a setup guide, presentation and tutorial videos, FAQ and official PDFs.',
                 'images/og/og-bellver-guide.jpg', 'Bellver Card guide by MTG', body, trail=trail)

@@ -7,7 +7,7 @@ from p_info import phero, T
 def partner(H='partner/'):
     trail = T(('Become a Partner', abs_url(H)))
     top = phero(H, trail, ['Share the card,', 'the honest way'],
-                'If you already like the Bellver Card, you can share it and earn a commission when people order through your link. Here is exactly how it works, what you need first and what to expect.',
+                'If you already like the Bellver Card, you can share it and earn a commission when people order through your link. It suits TikTok LIVE hosts and other creators whose audiences already trust them. Here is exactly how it works, what you need first and what to expect.',
                 None,
                 f'<a class="btn btn-wa" href="{PARTNER_MSG}" target="_blank" rel="noopener" data-track="partner-whatsapp">{ic("wa")}Talk to MTG about partnering</a>' +
                 f'<a class="btn btn-ghost" href="{L("rewards/", H)}">See the rewards plan</a>')
@@ -15,6 +15,7 @@ def partner(H='partner/'):
     who = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Who this is <em>for</em></h2><p class="lead">The people who do well sharing a product are the ones who use it and explain it plainly.</p></div>
  <div class="grid3">
+  <div class="box rv"><div class="ico">{ic('video')}</div><h3 class="h3">TikTok LIVE hosts</h3><p>You go live regularly, your followers trust you, and you can show a product working in front of them.</p></div>
   <div class="box rv"><div class="ico">{ic('card')}</div><h3 class="h3">Cardholders who like it</h3><p>You use the card, you can show it working, and friends already ask you about it.</p></div>
   <div class="box rv" style="--d:.06s"><div class="ico">{ic('users')}</div><h3 class="h3">Network marketers</h3><p>You already build teams. This gives you a modern product with clear numbers to talk about.</p></div>
   <div class="box rv" style="--d:.12s"><div class="ico">{ic('video')}</div><h3 class="h3">Content creators</h3><p>You make videos, posts or a community, and want a crypto spending product your audience can use.</p></div>
@@ -54,6 +55,15 @@ def partner(H='partner/'):
  <div class="wk">{wk}</div>
 </div></section>'''
 
+    tiktok = f'''<section class="sec-tight" id="tiktok"><div class="wrap">
+ <div class="sec-head rv"><h2 class="h2">Going live on <em>TikTok</em></h2><p class="lead">Live selling works because people trust the host. Keep that trust, and keep your account safe, by following these rules.</p></div>
+ <div class="dd">
+  <div class="box do rv"><div class="ico">{ic('check')}</div><h3 class="h3">Do</h3><ul class="checks"><li>Say on screen and out loud that you earn a commission if people order through your link.</li><li>Use TikTok's branded content disclosure where it applies to your account and country.</li><li>Show the card working: a real payment, the app, the limits and the fees.</li><li>Pin a short note that points viewers to this guide for prices, fees and rules.</li><li>Read TikTok's current rules for your country before every campaign.</li></ul></div>
+  <div class="box dont rv" style="--d:.08s"><div class="ico">{ic('alert')}</div><h3 class="h3">Do not</h3><ul class="checks"><li>Promise or hint at income, or say "passive", "risk free" or "guaranteed".</li><li>Show your private key, your full balance or any login screen.</li><li>Ask viewers to send you money or crypto for any reason.</li><li>Lead with recruiting. Lead with the card and what it does.</li><li>Pressure anyone with countdowns, "last chance" or "limited spots".</li></ul></div>
+ </div>
+ <div class="box warn rv" style="margin-top:22px"><div class="ico">{ic('info')}</div><h3 class="h3">Check TikTok's rules for your country</h3><p>TikTok's advertising policy (updated June 2026) restricts cryptocurrency promotion in many markets, lists crypto debit cards as not allowed in some, and restricts multi-level marketing. Organic live content and paid ads follow different rules, and the rules change, so read the current policy for your country. This is general information, not legal advice.</p></div>
+</div></section>'''
+
     honest = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">How to share it <em>honestly</em></h2><p class="lead">Trust is what makes people order. It also keeps you on the right side of advertising rules.</p></div>
  <div class="dd">
@@ -71,7 +81,8 @@ def partner(H='partner/'):
  </div>
 </div></section>'''
 
-    faq = [('Do I need to buy a card to become a partner?', 'You can share your link without a card, and direct commissions are paid when people order through it. Monthly rewards need your own card at Premium level or higher, plus two referrals who order a card. Basic cardholders earn direct commissions only.'),
+    faq = [('Can I share it on TikTok LIVE?', 'Many people share products on TikTok LIVE, but you must follow TikTok\'s rules for your country. TikTok\'s advertising policy (updated June 2026) restricts crypto promotion in many markets and lists crypto debit cards as not allowed in some. Disclose that you earn a commission, never promise income and check the current rules before you go live.'),
+           ('Do I need to buy a card to become a partner?', 'You can share your link without a card, and direct commissions are paid when people order through it. Monthly rewards need your own card at Premium level or higher, plus two referrals who order a card. Basic cardholders earn direct commissions only.'),
            ('Do I have to refer anyone?', 'No. The rewards program is optional. Many people just want a crypto card with high limits.'),
            ('When are commissions paid?', 'This month\'s commissions show in your dashboard. On the 15th they move to Earnings available, and you can withdraw from $100.'),
            ('Is it guaranteed income?', 'No. Commissions depend on real people ordering real cards. Read the Earnings Disclaimer before you decide.')]
@@ -83,8 +94,8 @@ def partner(H='partner/'):
 
     cta = final_cta(H, 'Ready to <span class="hap">start?</span>', 'Order your own card first, then share it when you are ready.',
                     second=f'<a class="btn btn-wa" href="{PARTNER_MSG}" target="_blank" rel="noopener" data-track="partner-whatsapp">{ic("wa")}Message MTG</a>')
-    body = top + who + earn + week + honest + tools + checklist_band(H) + faqs + cta
+    body = top + audience_band(H, chips=False, cta=False) + who + earn + week + honest + tiktok + tools + checklist_band(H) + faqs + cta
     faq_ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     return page(H, 'partner', 'Become a Bellver Card Partner: How to Share It and Earn | MTG',
-                'How to share the Bellver Card and earn commissions: who it suits, the $10 to $500 direct commissions, the first-week plan, honest sharing rules and personal help from MTG.',
+                'How to share the Bellver Card and earn commissions: made for TikTok LIVE hosts and creators with a trusting audience, the $10 to $500 direct commissions, a first-week plan, honest sharing rules and help from MTG.',
                 'images/og/og-bellver-guide.jpg', 'Become a Bellver Card partner', body, ld_extra=[faq_ld], trail=trail)

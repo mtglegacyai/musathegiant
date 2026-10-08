@@ -14,7 +14,7 @@ YT_27 = '_Ptm2Bj6gm4'
 YT_WEBINAR = 'jeB_kZinnCg'
 MP4_3MIN = 'videos/bellvercard-in-3minutes.mp4'
 MP4_DASH = 'videos/bellvercards-dashboard-walkthrough.mp4'
-UPDATED = '2026-10-06'
+UPDATED = '2026-10-08'
 # Analytics: leave None until MTG creates a free GoatCounter site, then set e.g. 'musathegiant' (the site code).
 ANALYTICS_GOATCOUNTER = None
 CHECKLIST_MSG = WA + '?text=' + 'Hi%20MTG%2C%20please%20send%20me%20the%20free%20Bellver%20Starter%20Checklist.'
@@ -245,6 +245,31 @@ def checklist_band(here, title='Not ready to order yet? <em>Take the free checkl
    <ul class="ck-pts"><li>{ic('check')}Free, no obligation</li><li>{ic('check')}Plain words, two pages</li><li>{ic('check')}Sent to you on WhatsApp</li></ul></div>
   <a class="btn btn-wa" data-track="checklist" href="{CHECKLIST_MSG}" target="_blank" rel="noopener">{ic('wa')}Get the checklist on WhatsApp</a>
  </div></div></section>'''
+
+
+def audience_band(here, chips=True, cta=True):
+    """Featured audience block: TikTok LIVE hosts first, then the other people the card and rewards suit."""
+    others = ['YouTubers and streamers', 'Instagram and Facebook creators', 'WhatsApp and Telegram group admins', 'Network marketers', 'Affiliate marketers', 'Community leaders', 'Side hustlers']
+    chip = ''.join(f'<li>{o}</li>' for o in others)
+    chips_html = f'<ul class="aud-chips" aria-label="Other people the card suits">{chip}</ul>' if chips else ''
+    link = f'<a class="btn btn-ghost" href="{L("partner/#tiktok", here)}">{ic("shield")}Going live? Read this first</a>' if cta else ''
+    return f'''<section class="sec-tight" id="audience"><div class="wrap">
+ <div class="sec-head rv"><h2 class="h2">Built for people who <em>go live</em></h2><p class="lead">If you host TikTok LIVEs, your audience already knows how you talk about products and services. That trust took you years to build, and it is the hardest part of sharing anything.</p></div>
+ <div class="aud rv">
+  <div class="aud-main">
+   <span class="badge gold">{ic('star')}One of the best fits</span>
+   <h3 class="h3">TikTok LIVE hosts and creators</h3>
+   <ul class="checks">
+    <li><b>Show it, do not just say it.</b> Pay for something live, add the card to your phone, show the dashboard (never your private key).</li>
+    <li><b>Your viewers already trust you.</b> People who watch you regularly believe what you tell them, so honesty matters most.</li>
+    <li><b>Something real to offer.</b> A card with high limits and a wallet they control, plus a clear commission table and a link that tracks.</li>
+    <li><b>Stay within the rules.</b> Disclose that you earn a commission and check TikTok's current rules for your country first.</li>
+   </ul>
+   <div class="btn-row">{order_btn('Order your card')}{link}</div>
+  </div>
+  {chips_html}
+ </div>
+</div></section>'''
 
 
 def final_cta(here, title='Let\'s make it <span class="hap">happen</span>', text='Order your Bellver Card from $99. Go virtual and you can start paying today.', second=None):

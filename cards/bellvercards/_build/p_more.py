@@ -15,7 +15,7 @@ def start(H='get-started/'):
      ('Fund your wallet', '''<p>Open <span class="path">My Wallet › Deposit</span>.</p><ul><li><b>Best:</b> send USDT or USDC on BNB Smart Chain from any wallet or exchange.</li><li><b>Add gas:</b> send about $10 to $20 of BNB (or TRX if you use Tron) for network fees.</li><li><b>No crypto?</b> Use Buy crypto to pay by credit card, or SEPA and PayPal in Europe.</li></ul><p>The deposit page has a calculator that shows how much you need for your card. Add a little extra: it stays your money.</p>'''),
      ('Order your card', '''<p>Open <span class="path">My Cards</span> and choose:</p><ul><li>Your level: Basic, Premium, Business or Gold</li><li>Virtual (instant, no shipping, Mastercard) or physical (Visa)</li><li>Optional Special Edition (+$390) and your printed name (+$49)</li></ul><p>Pay from your wallet. Your new card can take a few minutes to appear. Once it does, you receive the next free place in the 2x2 matrix.</p>'''),
      ('Load it and pay', '''<p>Move the amount you want to spend from your wallet to your card. Then add the card to Apple Pay or Google Pay, or start paying online right away.</p><p>If you want to receive rewards, load at least $100 onto your card each month. It is not a fee. It is your own money to spend.</p>'''),
-     ('Share your link, if you want to', '''<p>Your personal referral link sits at the top of your dashboard. Share it with people who would value the card. You earn a direct commission for every card ordered through it.</p><p>The easiest way: send them to a page like this one with the words "Take a look at the two videos, it's worth it."</p>'''),
+     ('Share your link, if you want to', '''<p>Your personal referral link sits at the top of your dashboard. Share it with people who would value the card. You earn a direct commission for every card ordered through it.</p><p>The easiest way: send them to a page like this one with the words "Take a look at the two videos, it's worth it."</p><p>Going live on TikTok? Show the card working, say that you earn a commission, and read <a class="inl" href="{L("partner/#tiktok", H)}">the rules for sharing it on TikTok</a> first.</p>'''),
      ('Get paid', '''<p>Your current month's commissions and rewards show in the green fields. On the 15th they move to <b>Earnings available</b>.</p><p>Open <span class="path">Withdraw</span>, enter the amount (minimum $100) and request it. It shows as pending, then arrives in My Wallet.</p>'''),
     ]
     TUT = ['01', '01', '02', '02', '03', None, None]
@@ -59,6 +59,8 @@ FAQ = [
  ]),
  ('Rewards', [
   ('Do I have to refer anyone?', 'No. The rewards program is optional. If you do want to take part, two referrals who order a card are enough to qualify.'),
+  ('Who is the rewards program for?', 'Anyone with people who trust them: TikTok LIVE hosts and other creators, YouTubers and streamers, community and group admins, network marketers, affiliate marketers and side hustlers. It is optional, and you can use the card without ever referring anyone. <a class="inl" href="{PT}">See the partner page</a>'),
+  ('Can I share the card on TikTok LIVE?', 'Many people share products on TikTok LIVE, but you must follow TikTok\'s rules for your country. TikTok\'s advertising policy (updated June 2026) restricts crypto promotion in many markets and lists crypto debit cards as not allowed in some. Disclose that you earn a commission, never promise income, and check the current rules before you go live. This is general information, not legal advice. <a class="inl" href="{PTT}">Read the partner page guidance</a>'),
   ('How much do I earn per referral?', 'A one-time commission of $10 for Basic, $100 for Premium, $200 for Business or $400 for Gold. With the Special Edition: $150, $300 or $500. Upgrades pay an extra 50% of the new level\'s commission.'),
   ('How do monthly rewards work?', '0.1% of every completed card top-up by cardholders in your 2x2 matrix, on each level you qualify for: up to 12 levels with Premium, 15 with Business and 18 to 20 with Gold, depending on your star rank.'),
   ('What do I need to stay qualified?', 'Load at least $100 onto your own card every month. This is not a subscription fee: it is your own money, and it stays yours to spend. Miss a month and that month\'s rewards are forfeited. Miss three months in a row and you permanently lose your matrix position. <a class="inl" href="{CP}" download>Download the compensation plan</a>'),
@@ -96,7 +98,7 @@ def faq(H='faq/'):
     for gi, (g, qs) in enumerate(FAQ):
         items = ''
         for q, a in qs:
-            a2 = a.replace('{GS}', L('get-started/', H)).replace('{PL}', L(DOCS_PDF['price'], H)).replace('{CP}', L(DOCS_PDF['plan'], H))
+            a2 = a.replace('{GS}', L('get-started/', H)).replace('{PL}', L(DOCS_PDF['price'], H)).replace('{CP}', L(DOCS_PDF['plan'], H)).replace('{PTT}', L('partner/#tiktok', H)).replace('{PT}', L('partner/', H))
             items += f'<details class="qa"><summary>{q}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{a2}</p></div></details>'
             ld_q.append({"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": __import__('re').sub('<[^>]+>', '', a2)}})
         slug = g.lower().replace(' ', '-')

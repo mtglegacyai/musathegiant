@@ -1104,3 +1104,12 @@ main [hidden]{padding:0!important;margin:0!important;border:0!important;min-heig
 .dd .box.do{border-color:rgba(52,204,136,.45)}
 .dd .box.dont{border-color:rgba(255,120,100,.4)}
 @media (max-width:760px){.dd{grid-template-columns:1fr}}
+
+
+/* ---- Audience band (TikTok LIVE hosts first) ---- */
+.aud{display:grid;gap:18px}
+.aud-main{padding:clamp(22px,3.4vw,38px);border:1px solid rgba(252,190,37,.4);border-radius:22px;background:linear-gradient(160deg,rgba(40,32,8,.55),rgba(5,18,11,.92));box-shadow:0 0 0 1px rgba(52,204,136,.1),0 24px 60px rgba(0,0,0,.4)}
+.aud-main .h3{font-size:clamp(1.4rem,2.6vw,1.9rem);margin:14px 0 4px}
+.aud-main .btn-row{margin-top:20px}
+.aud-chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin:0;padding:0}
+.aud-chips li{padding:8px 16px;border:1px solid rgba(52,204,136,.35);border-radius:999px;background:rgba(8,26,17,.7);font-weight:700;font-size:.9rem;color:var(--text)}
