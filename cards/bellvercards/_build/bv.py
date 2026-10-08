@@ -291,12 +291,20 @@ def crumbs_html(trail, here):
     return '<nav class="crumbs" aria-label="Breadcrumb">' + ''.join(out) + '</nav>'
 
 
+def og_version_url(og_img):
+    """Absolute share-image URL stamped with the file's content hash: a changed image is always a new URL, so WhatsApp, Facebook and X re-fetch it."""
+    f = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', og_img)
+    v = hashlib.md5(open(f, 'rb').read()).hexdigest()[:8]
+    return abs_url(og_img) + '?v=' + v
+
+
 def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None, preload=None, robots='index,follow,max-image-preview:large,max-video-preview:-1', dash=True):
+    og_url = og_version_url(og_img)
     url = abs_url(here)
     trail = trail or [('Home', SITE + '/'), ('Cards', SITE + '/cards/'), ('Bellver Cards', SITE + BASE)]
     graph = [{"@type": "WebPage", "@id": url + "#page", "url": url, "name": title, "description": desc, "inLanguage": "en",
               "isPartOf": {"@id": SITE + "/#website"}, "author": {"@id": SITE + "/#mtg"}, "dateModified": UPDATED,
-              "primaryImageOfPage": {"@type": "ImageObject", "url": abs_url(og_img)}, "breadcrumb": crumbs_ld(trail)},
+              "primaryImageOfPage": {"@type": "ImageObject", "url": og_url}, "breadcrumb": crumbs_ld(trail)},
              {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "MTG | Musa The Giant", "publisher": {"@id": SITE + "/#mtg"}},
              PERSON]
     graph += (ld_extra or [])
@@ -321,14 +329,16 @@ def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="{abs_url(og_img)}">
+<meta property="og:image" content="{og_url}">
+<meta property="og:image:secure_url" content="{og_url}">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{og_alt}">
 <meta property="og:locale" content="en_ZA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
-<meta name="twitter:image" content="{abs_url(og_img)}">
+<meta name="twitter:image" content="{og_url}">
 <script type="application/ld+json">
 {ld}
 </script>
