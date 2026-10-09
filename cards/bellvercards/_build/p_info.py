@@ -42,7 +42,7 @@ def how(H='how-it-works/'):
    <li><b>Only you hold the private key.</b> Bellver cannot freeze or access your funds.</li>
    <li><b>Move only what you need.</b> Top up the card from your wallet in one click, whenever you want to spend.</li>
    <li><b>Export your key any time</b> and take your funds to another wallet.</li>
-   <li><b>Add a transaction password</b> and two-factor authentication for extra protection.</li>
+   <li><b>Add a transaction password</b> and two-factor authentication or a passkey for extra protection.</li>
   </ul>
   <div class="note">{ic('alert')}<span><b>Freedom comes with responsibility.</b> There is no bank to call if you lose your private key. Write it down, store it offline and never share it.</span></div>
  </div>
@@ -66,6 +66,7 @@ def how(H='how-it-works/'):
   <tbody>
    <tr><td><b>Ready to use</b></td><td>As soon as it is issued</td><td>After delivery. Bellver's terms allow up to four weeks; early users reported about five days</td></tr>
    <tr><td><b>Shipping fee</b></td><td>None</td><td>$85 Europe, $149 rest of world</td></tr>
+   <tr><td><b>What you must give when ordering</b></td><td>No delivery details needed</td><td>A complete, accurate shipping address and a valid mobile number from the delivery country. The courier uses the number, and Bellver says it is not stored. If either is missing or wrong, the card cannot be delivered</td></tr>
    <tr><td><b>Apple Pay and Google Pay</b></td><td>Yes</td><td>Yes</td></tr>
    <tr><td><b>Best for</b></td><td>Starting today, phone and NFC ring payments</td><td>Cash withdrawals and places that ask for a plastic card</td></tr>
    <tr><td><b>Online payments</b></td><td>Yes</td><td>Yes</td></tr>
@@ -79,7 +80,7 @@ def how(H='how-it-works/'):
  <div class="art" data-tilt="img" data-max="10"><img src="{L('images/bellver-card-special-edition-700.webp', H)}" srcset="{L('images/bellver-card-special-edition-700.webp', H)} 700w, {L('images/bellver-card-special-edition.webp', H)} 1400w" sizes="(max-width:860px) 90vw, 520px" alt="Bellver Card Special Edition" width="1400" height="831" loading="lazy"></div>
  <div>
   <h2 class="h2">Regular or <em>Special</em> Edition</h2>
-  <p class="lead" style="margin-top:14px">Every level comes as a Regular card. Add the Special Edition for $390 on top and, in Bellver's words, you get even more security and privacy, as a physical or virtual card.</p>
+  <p class="lead" style="margin-top:14px">Every level comes as a Regular card. Choose the Special Edition when you buy and it is $370 on top, down from $390. In Bellver's words, you get even more security and privacy, as a physical or virtual card. Already own a regular card? Upgrading it to the Special Edition costs $470.</p>
   <ul class="checks"><li>Available on Basic, Premium, Business and Gold</li><li>Higher commissions when people you refer choose it: $150, $300 or $500</li><li>Bellver has said it may not be offered forever</li></ul>
   <a class="btn btn-ghost" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}Ask MTG what it includes</a>
  </div>
@@ -149,11 +150,11 @@ def prices(H='prices/'):
    <h2 class="h2">Fees, <em>in plain numbers</em></h2>
    <p class="lead" style="margin-top:16px">No hidden extras. These are the fees on Bellver's official price list.</p>
    <p class="muted">Bellver is open that these fees are higher than a typical bank card. The top-up fee is what funds the commissions and monthly rewards, which is why this card can earn for you and an ordinary one cannot.</p>
-   <div class="note g" style="margin-top:20px">{ic('shield')}<span><b>Why 4.95%?</b> Yes, 4.95% can sound high. It is what helps keep Bellver sustainable. A company has to pay for its team, offices, payment partners, security and support, and a profitable company is one that stays around for the long run. That is what you want from the company that holds your card.</span></div>
-   <div class="note g" style="margin-top:20px">{ic('info')}<span><b>Example:</b> top up $100 and $4.95 goes to the deposit fee, leaving $95.05 to spend. Pay $50 at a shop and the 1.75% transaction fee is about $0.88.</span></div>
+   <div class="note g" style="margin-top:20px">{ic('shield')}<span><b>Why 3.9%?</b> In October 2026 Bellver renegotiated with its card provider and cut the top-up fee from 4.95% to 3.9%, effective immediately. It can still sound high next to a bank card, and it is what helps keep Bellver sustainable. A company has to pay for its team, offices, payment partners, security and support, and a profitable company is one that stays around for the long run. That is what you want from the company that holds your card.</span></div>
+   <div class="note g" style="margin-top:20px">{ic('info')}<span><b>Example:</b> top up $100 and $3.90 goes to the deposit fee, leaving $96.10 to spend. Pay $50 at a shop and the 1.75% transaction fee is about $0.88.</span></div>
   </div>
   <div class="grid2 rv" style="--d:.1s;align-content:start">
-   <div class="box"><div class="ico">{ic('wallet')}</div><p class="muted small" style="margin:0">Card top-up (deposit)</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">4.95%</p></div>
+   <div class="box"><div class="ico">{ic('wallet')}</div><p class="muted small" style="margin:0">Card top-up (deposit)</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">3.9%</p><p class="muted small" style="margin:4px 0 0">Was 4.95% until October 2026</p></div>
    <div class="box"><div class="ico">{ic('card')}</div><p class="muted small" style="margin:0">Per transaction</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">1.75%</p></div>
    <div class="box"><div class="ico">{ic('coins')}</div><p class="muted small" style="margin:0">ATM withdrawal</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">2%</p></div>
    <div class="box"><div class="ico">{ic('calendar')}</div><p class="muted small" style="margin:0">Monthly or annual fee</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">None listed</p></div>
@@ -164,7 +165,7 @@ def prices(H='prices/'):
     addons = f'''<section class="sec-tight" id="add-ons"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Add-ons and <em>shipping</em></h2></div>
  <div class="grid3">
-  <div class="box rv"><div class="ico">{ic('star')}</div><h3 class="h3">Special Edition, +$390</h3><p>Bellver's privacy-first version of any level, physical or virtual. <a class="inl" href="{L('how-it-works/#special-edition', H)}">What it is</a></p></div>
+  <div class="box rv"><div class="ico">{ic('star')}</div><h3 class="h3">Special Edition, +$370</h3><p>Bellver's privacy-first version of any level, physical or virtual. Upgrading a regular card you already own costs $470. <a class="inl" href="{L('how-it-works/#special-edition', H)}">What it is</a></p></div>
   <div class="box rv" style="--d:.06s"><div class="ico">{ic('tag')}</div><h3 class="h3">Your name on the card, +$49</h3><p>Optional. Have your name printed on your card.</p></div>
   <div class="box rv" style="--d:.12s"><div class="ico">{ic('pin')}</div><h3 class="h3">Shipping, physical only</h3><p>$85 to Europe, $149 to the rest of the world. Virtual cards have no shipping fee.</p></div>
  </div>
@@ -177,6 +178,7 @@ def prices(H='prices/'):
   <ul class="checks">
    <li><b>Pay only the difference</b> between your current level and the new one. Basic to Business costs $391.</li>
    <li><b>Keep the same card.</b> An upgrade is not a new order, so there is no new shipping cost. Only your limits change.</li>
+   <li><b>Regular to Special Edition:</b> upgrading a card you already own costs $470. Choosing the Special Edition when you first buy is $370.</li>
    <li><b>Rewards are not back-dated.</b> Basic earns no monthly rewards, and what you could have earned before upgrading is not paid later.</li>
   </ul>
  </div>
@@ -203,7 +205,7 @@ def prices(H='prices/'):
     product = {"@type": "Product", "name": "Bellver Card", "brand": {"@type": "Brand", "name": "Bellver"}, "image": abs_url('images/bellver-card-black-visa.webp'),
                "description": "Crypto-funded card (Visa physical, Mastercard virtual) in four levels with daily limits from $1,000 to $250,000.", "offers": offers}
     return page(H, 'prices', 'Bellver Card Prices, Fees and Limits (2026) | MTG',
-                'Bellver Card prices: Basic $99, Premium $270, Business $490, Gold $990. Daily limits up to $250,000, fees of 4.95% top-up, 1.75% per transaction, 2% ATM, plus add-ons and upgrades.',
+                'Bellver Card prices: Basic $99, Premium $270, Business $490, Gold $990. Daily limits up to $250,000, fees of 3.9% top-up, 1.75% per transaction, 2% ATM, plus add-ons and upgrades.',
                 'images/og/og-bellver-prices.jpg', 'Bellver Card prices and limits', body, ld_extra=[product], trail=trail)
 
 
@@ -260,12 +262,12 @@ def rewards(H='rewards/'):
    <li>Direct commissions by card level</li>
    <li>The roadmap for the card</li>
   </ul>
-  <p class="fine" style="opacity:.75;font-size:.9em">Any earnings mentioned in a video are examples, not promises. Read the <a href="{L('/earnings-disclaimer.html', H)}">Earnings Disclaimer</a>.</p>
+  <p class="fine" style="opacity:.75;font-size:.9em">This presentation was recorded before Bellver's October 2026 update, so its 4.95% top-up fee, $390 Special Edition and Premium rank step are now out of date. Any earnings mentioned in a video are examples, not promises. Read the <a href="{L('/earnings-disclaimer.html', H)}">Earnings Disclaimer</a>.</p>
  </div>
 </div></section>'''
 
-    R = [('basic', 'Rank 1: Basic', '', 'Basic card', '0', ['Direct commissions: yes', 'Monthly rewards: no']),
-         ('prem', 'Rank 2: Premium, 1 Star', '★', 'Premium card or higher', '12', ['Two personal referrals, each with Premium or higher: rewards to level 10', 'Each of those two refers two cardholders: level 12 and your first star']),
+    R = [('basic', 'Rank 1: Member', '', 'Everyone starts here', '0', ['Every new participant begins as a Member', 'Direct commissions on cards your referrals order: yes', 'Next step: your first star']),
+         ('prem', 'Rank 2: 1 Star', '★', 'Premium card or higher', '12', ['You hold a Premium card yourself', 'You directly refer two new participants who each buy a Premium card', 'Reward depth shown is from the 08/2026 plan']),
          ('biz', 'Rank 3: 2 Stars', '★★', 'Business card', '15', ['Two personal referrals who each hold 1 Star', 'Rewards to level 15']),
          ('gold', 'Rank 4: 3 Stars', '★★★', 'Gold card', '18', ['Two personal referrals who each hold 2 Stars', 'Rewards to level 18']),
          ('gold', 'Rank 5: 4 Stars', '★★★★', 'Gold card', '19', ['Two personal referrals who each hold 3 Stars', 'Plus 20 personal referrals with Premium', 'Rewards to level 19']),
@@ -273,13 +275,14 @@ def rewards(H='rewards/'):
     rk = ''.join(f'''<div class="rank {c} rv" style="--d:{(i%3)*0.06:.2f}s"><div class="top"><div><h3>{t}</h3><span class="card-lv">{cl}</span></div><span class="lv">{lv}<small>LEVELS</small></span></div><div class="stars" aria-label="{s.count('★')} stars">{s or '&nbsp;'}</div><ul>{''.join(f'<li>{x}</li>' for x in li)}</ul></div>''' for i, (c, t, s, cl, lv, li) in enumerate(R))
     ranks = f'''<section class="sec-tight" id="ranks"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Ranks and <em>reward levels</em></h2><p class="lead">Your card level sets your ceiling. Your referrals' ranks unlock the levels underneath it.</p></div>
+ <div class="note g rv" style="margin-bottom:22px">{ic('info')}<span><b>New in October 2026:</b> everyone starts as a Member, and the old Premium status step is gone. Your first star now comes from your own Premium card plus two new participants you refer directly, who each buy a Premium card. Bellver has not yet republished its compensation plan, so the reward depths below come from the 08/2026 version. Check your dashboard for the current numbers.</span></div>
  <div class="ranks">{rk}</div>
 </div></section>'''
 
     rules = f'''<section class="sec" id="rules"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Staying <em>qualified</em></h2><p class="lead">The terms that decide whether you are paid each month. Read these before anything else.</p></div>
  <div class="grid2">
-  <div class="box rv"><div class="ico">{ic('calendar')}</div><h3 class="h3">Load $100 a month. It stays yours.</h3><p>To receive rewards for a month, you must load at least $100 onto your own card that month. This is <b>not a subscription fee</b>. It is your own money, loaded onto your own card, and it is yours to spend however you like. Miss it and that month's rewards are forfeited in full.</p><p class="muted small" style="margin-top:12px">The only cost is the 4.95% top-up fee. <b>Why?</b> A profitable company is one that lasts. The fee helps Bellver cover its running costs, such as its team, offices and payment partners, so the card is still here for the long term.</p></div>
+  <div class="box rv"><div class="ico">{ic('calendar')}</div><h3 class="h3">Load $100 a month. It stays yours.</h3><p>To receive rewards for a month, you must load at least $100 onto your own card that month. This is <b>not a subscription fee</b>. It is your own money, loaded onto your own card, and it is yours to spend however you like. Miss it and that month's rewards are forfeited in full.</p><p class="muted small" style="margin-top:12px">The only cost is the 3.9% top-up fee. <b>Why?</b> A profitable company is one that lasts. The fee helps Bellver cover its running costs, such as its team, offices and payment partners, so the card is still here for the long term.</p></div>
   <div class="box warn rv" style="--d:.06s"><div class="ico">{ic('alert')}</div><h3 class="h3">Three misses and the position is gone</h3><p>Miss the $100 minimum three months in a row and you permanently lose your position in the matrix. Rewards built up until then are forfeited and roll up to the next qualified position. You cannot requalify for the old position.</p></div>
   <div class="box rv"><div class="ico">{ic('coins')}</div><h3 class="h3">How and when you are paid</h3><p>Commissions and rewards are paid in USDT. Rewards settle monthly and payday is the 15th. Top-ups made in the final seven business days before settlement count toward the following month. The minimum withdrawal is $100.</p></div>
   <div class="box rv" style="--d:.06s"><div class="ico">{ic('info')}</div><h3 class="h3">The fine print</h3><p>Basic cards earn direct commissions only. Rewards are not paid back-dated after an upgrade. Bellver Markets can change the plan with one month's notice, and payments made within four weeks count as on time.</p></div>
@@ -306,7 +309,7 @@ def rewards(H='rewards/'):
    <p>The official slides show $2,457, $19,660 and $157,286 a month. Each assumes every place in the matrix is filled and every cardholder loads $300 a month.</p>
    <div class="tbl-wrap" style="margin-top:14px"><table class="tbl" style="min-width:0">
     <thead><tr><th>Levels full</th><th class="num">Cardholders needed</th><th class="num">Example a month</th></tr></thead>
-    <tbody><tr><td>12 (Premium, 1 Star)</td><td class="num">8,190</td><td class="num">$2,457</td></tr><tr><td>15 (Business, 2 Stars)</td><td class="num">65,534</td><td class="num">$19,660</td></tr><tr><td>18 (Gold, 3 Stars)</td><td class="num">524,286</td><td class="num">$157,286</td></tr></tbody>
+    <tbody><tr><td>12 (1 Star)</td><td class="num">8,190</td><td class="num">$2,457</td></tr><tr><td>15 (Business, 2 Stars)</td><td class="num">65,534</td><td class="num">$19,660</td></tr><tr><td>18 (Gold, 3 Stars)</td><td class="num">524,286</td><td class="num">$157,286</td></tr></tbody>
    </table></div>
    <p style="margin-top:14px">Bellver itself calls these examples, not a guarantee of income. Use them to understand the model, not to plan your budget.</p>
   </div>

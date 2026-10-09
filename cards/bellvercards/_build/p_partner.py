@@ -53,7 +53,7 @@ def partner(H='partner/'):
   <div style="--m1:var(--gold-1);--m2:var(--gold-2)"><span>Gold</span><b>$400</b><small>$500 Special Edition</small></div>
  </div>
  <div class="grid3" style="margin-top:22px">
-  <div class="box rv"><div class="ico">{ic('gift')}</div><h3 class="h3">Monthly rewards, on top</h3><p>With your own Premium card or higher and two personal referrals who each have Premium or higher, you qualify for monthly rewards: 0.1% of completed card top-ups in your 2x2 matrix, on every level your rank unlocks. <a class="inl" href="{L('rewards/', H)}">How the matrix works</a></p></div>
+  <div class="box rv"><div class="ico">{ic('gift')}</div><h3 class="h3">Monthly rewards, on top</h3><p>Everyone starts as a Member. Hold a Premium card or higher and directly refer two new participants who each buy Premium or higher, and you earn your first star and qualify for monthly rewards: 0.1% of completed card top-ups in your 2x2 matrix, on every level your rank unlocks. <a class="inl" href="{L('rewards/', H)}">How the matrix works</a></p></div>
   <div class="box rv" style="--d:.06s"><div class="ico">{ic('lock')}</div><h3 class="h3">The rule that decides payment</h3><p>To receive monthly rewards you load at least $100 a month onto your own card. Miss it three months in a row and you lose your matrix position for good.</p></div>
   <div class="box rv" style="--d:.12s"><div class="ico">{ic('info')}</div><h3 class="h3">Order your own card first</h3><p>You need at least a Basic card before you share your link. You get your matrix position when your own card appears. Someone you refer who buys before you still earns you the commission, but is not placed in your matrix.</p></div>
  </div>
@@ -65,7 +65,7 @@ def partner(H='partner/'):
             ('3', 'Use it for real', 'Pay for something with it and load your $100 for the month. Real use gives you something true to talk about.'),
             ('4', 'Learn the numbers', 'Watch the presentation videos and read Prices and Rewards, so you can answer plain questions without guessing.'),
             ('5', 'Pick your first two people', 'Think of two people who would value the card, then show them how it works. Do not push.'),
-            ('6', 'Help them get set up', 'Send them the tutorial videos and the free Starter Checklist, and stay close while they register and fund.'),
+            ('6', 'Help them get set up', 'Send them the tutorial videos and the free Starter Checklist, and stay close while they register and fund. If they order a physical card, remind them to give a complete address and a valid local mobile number, or it cannot be delivered.'),
             ('7', 'Check your dashboard', 'See your registrations, orders and commissions, then tell me what is working and where you got stuck.')]
     wk = ''.join(f'<div class="day rv"><b class="d"><small>DAY</small>{n}</b><div><h3>{t}</h3><p>{p}</p></div></div>' for n, t, p in days)
     week = f'''<section class="sec-tight"><div class="wrap">
@@ -101,7 +101,7 @@ def partner(H='partner/'):
 
     faq = [('Can I share it on TikTok LIVE?', 'Many people share products on TikTok LIVE, but you must follow TikTok\'s rules for your country. TikTok\'s advertising policy (updated June 2026) restricts crypto promotion in many markets and lists crypto debit cards as not allowed in some. Disclose that you earn a commission, never promise income and check the current rules before you go live.'),
            ('Do I need to talk to MTG or apply to become a partner?', 'No. Partner simply means you are an affiliate of Bellver Cards. Once you have your own card and share it with two or more people through your referral link, you are an affiliate partner. There is no application and no approval from MTG. You are welcome to message MTG with questions, but you never have to.'),
-           ('Do I need to buy a card to become a partner?', 'Yes. You need at least a Basic card before you start sharing your referral link. Bellver\'s compensation plan ranks you by the card you have personally bought, and the official steps are: request your registration link, order and load your card, then spread the word. Basic earns direct commissions only. Monthly rewards need your own card at Premium or higher plus two personal referrals who each have Premium or higher.'),
+           ('Do I need to buy a card to become a partner?', 'Yes. You need at least a Basic card before you start sharing your referral link. Bellver\'s compensation plan ranks you by the card you have personally bought, and the official steps are: request your registration link, order and load your card, then spread the word. Basic earns direct commissions only. Monthly rewards need your own card at Premium or higher plus two new personal referrals who each buy Premium or higher, which earns your first star.'),
            ('Do I have to refer anyone?', 'No. The rewards program is optional. Many people just want a crypto card with high limits.'),
            ('When are commissions paid?', 'This month\'s commissions show in your dashboard. On the 15th they move to Earnings available, and you can withdraw from $100.'),
            ('Is it guaranteed income?', 'No. Commissions depend on real people ordering real cards. Read the Earnings Disclaimer before you decide.')]

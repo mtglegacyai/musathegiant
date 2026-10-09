@@ -14,7 +14,7 @@ YT_27 = '_Ptm2Bj6gm4'
 YT_WEBINAR = 'jeB_kZinnCg'
 MP4_3MIN = 'videos/bellvercard-in-3minutes.mp4'
 MP4_DASH = 'videos/bellvercards-dashboard-walkthrough.mp4'
-UPDATED = '2026-10-08'
+UPDATED = '2026-10-09'
 # Analytics: leave None until MTG creates a free GoatCounter site, then set e.g. 'musathegiant' (the site code).
 ANALYTICS_GOATCOUNTER = None
 CHECKLIST_MSG = WA + '?text=' + 'Hi%20MTG%2C%20please%20send%20me%20the%20free%20Bellver%20Starter%20Checklist.'
@@ -245,6 +245,25 @@ def checklist_band(here, title='Not ready to order yet? <em>Take the free checkl
    <ul class="ck-pts"><li>{ic('check')}Free, no obligation</li><li>{ic('check')}Plain words, two pages</li><li>{ic('check')}Sent to you on WhatsApp</li></ul></div>
   <a class="btn btn-wa" data-track="checklist" href="{CHECKLIST_MSG}" target="_blank" rel="noopener">{ic('wa')}Get the checklist on WhatsApp</a>
  </div></div></section>'''
+
+
+def news_band(here, compact=False):
+    """Bellver's October 2026 announcement, summarised in plain words."""
+    items = [
+     ('coins', 'Top-up fee cut to 3.9%', 'Down from 4.95%, effective immediately. Bellver renegotiated the fee with its card provider. Top up $100 and $96.10 stays available.'),
+     ('star', 'Special Edition now $370', 'Choose it when you buy your card and it is $370 instead of $390. Upgrading a regular card you already have to the Special Edition costs $470.'),
+     ('users', 'Simpler ranks', 'Everyone starts as a Member. Your first star comes when you hold a Premium card and directly refer two new participants who each buy a Premium card. The old Premium status step is gone.'),
+     ('shield', 'Security: act today', 'The extra access code on My Wallet and My Cards was a temporary answer to three phishing incidents, and Bellver said it would be removed in 7 days. Bellver never emails links to its login page. Change your password and switch on two-factor login or a passkey.'),
+     ('pin', 'Physical cards: two must-haves', 'Give a complete, accurate shipping address and a valid mobile number from the country where the card will be delivered. The courier uses it, and if either is missing or wrong the card cannot be delivered.'),
+     ('rocket', 'Dashboard 2.0 is coming', 'Bellver says version 2.0 of the dashboard is in development and expected by the end of 2026.'),
+    ]
+    cards = ''.join(f'<div class="box rv" style="--d:{(i % 3) * 0.06:.2f}s"><div class="ico">{ic(k)}</div><h3 class="h3">{t}</h3><p>{d}</p></div>' for i, (k, t, d) in enumerate(items))
+    sub = '' if compact else '<p class="lead">Bellver published these changes in October 2026. This is my plain-words summary of its video and channel post, so you can see what applies to you.</p>'
+    return f'''<section class="sec-tight" id="bellver-news"><div class="wrap">
+ <div class="sec-head rv"><span class="badge green">{ic('info')}Bellver news, October 2026</span><h2 class="h2" style="margin-top:14px">What <em>just changed</em></h2>{sub}</div>
+ <div class="grid3">{cards}</div>
+ <p class="fine rv" style="margin-top:16px">Source: Bellver's official news video and channel post. The PDFs in the downloads section are version 08/2026 and were issued before these changes. Earnings are never guaranteed: read the <a class="inl" href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a>.</p>
+</div></section>'''
 
 
 def audience_band(here, chips=True, cta=True):

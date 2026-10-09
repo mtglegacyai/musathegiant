@@ -168,7 +168,7 @@ def build(here=''):
   <div class="rv">
    <span class="badge gold">{ic('star')}Optional rewards program</span>
    <h2 class="h2" style="margin-top:16px">Two referrals. <em>Paid</em> every month.</h2>
-   <p class="lead" style="margin-top:16px">Instead of paying for advertising, Bellver shares its card fees with cardholders who spread the word. Buy Premium or higher, then refer two people who also choose Premium or higher, and you qualify for monthly rewards from cardholders across your 2x2 matrix, including people placed under you by others.</p>
+   <p class="lead" style="margin-top:16px">Instead of paying for advertising, Bellver shares its card fees with cardholders who spread the word. Buy Premium or higher, then refer two new people who each buy Premium or higher, and you earn your first star. That opens monthly rewards from cardholders across your 2x2 matrix, including people placed under you by others.</p>
    <div class="comm">
     <div style="--m1:var(--basic-1);--m2:var(--basic-2)"><span>Basic</span><b>$10</b><small>per referral</small></div>
     <div style="--m1:var(--prem-1);--m2:var(--prem-2)"><span>Premium</span><b>$100</b><small>$150 Special Edition</small></div>
@@ -186,9 +186,10 @@ def build(here=''):
  <div class="wrap"><div class="panel se rv">
   <div class="art" data-tilt="img" data-max="10"><img src="{L('images/bellver-card-special-edition-700.webp', H)}" srcset="{L('images/bellver-card-special-edition-700.webp', H)} 700w, {L('images/bellver-card-special-edition.webp', H)} 1400w" sizes="(max-width:860px) 90vw, 520px" alt="Bellver Card Special Edition, black Visa Business card with red stripes" width="1400" height="831" loading="lazy"></div>
   <div>
-   <span class="badge red">Add-on to any level, +$390</span>
+   <span class="badge red">Add-on to any level, +$370</span>
    <h2 class="h2" style="margin-top:16px">The <em>Special</em> Edition</h2>
    <p class="lead" style="margin-top:14px">Bellver's option for people who put privacy and security first, available as a physical or virtual card. It also lifts the commissions your referrals earn you.</p>
+   <p class="muted">Choose it when you buy your card and it costs $370, down from $390. Already have a regular card? Upgrading it to the Special Edition costs $470.</p>
    <p class="muted">Bellver has said this option may not stay available forever. Ask me what it includes before you decide.</p>
    <div class="btn-row" style="margin-top:22px"><a class="btn btn-ghost" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}Ask MTG about it</a><a class="tlink" href="{L('how-it-works/#special-edition', H)}">Regular vs Special Edition {ic('arrow')}</a></div>
   </div>
@@ -208,10 +209,10 @@ def build(here=''):
 </section>'''
 
     faqs = [
-     ('How much does the Bellver Card cost?', f'A one-time $99 for Basic, $270 for Premium, $490 for Business or $990 for Gold. Physical cards add shipping ($85 Europe, $149 rest of world). Using the card has published fees: 4.95% when you top up, 1.75% per transaction and 2% at ATMs. The top-up fee helps keep Bellver profitable and around for the long term. <a class="inl" href="{L("prices/", H)}">Full price list</a>'),
+     ('How much does the Bellver Card cost?', f'A one-time $99 for Basic, $270 for Premium, $490 for Business or $990 for Gold. Physical cards add shipping ($85 Europe, $149 rest of world). Using the card has published fees: 3.9% when you top up (cut from 4.95% in October 2026), 1.75% per transaction and 2% at ATMs. The top-up fee helps keep Bellver profitable and around for the long term. <a class="inl" href="{L("prices/", H)}">Full price list</a>'),
      ('Do I need crypto to get one?', 'It helps, but no. Card balances run on USDT or USDC, and sending those from any wallet is the cheapest route. You can also buy crypto with a credit card inside the dashboard, and in Europe pay by bank transfer or PayPal.'),
      ('Who controls my money?', 'You do. Deposits go into your own non-custodial Fireblocks wallet protected by your private key. Bellver cannot freeze or access it. The flip side: keep your key safe, because nobody can recover it for you.'),
-     ('Do I have to refer anyone?', 'No. The rewards program is optional. Many people simply want a crypto card with high limits. If you do share it, two referrals with Premium or higher, together with your own Premium card, are enough to start earning monthly rewards.'),
+     ('Do I have to refer anyone?', 'No. The rewards program is optional. Many people simply want a crypto card with high limits. If you do share it, two new referrals who each buy Premium or higher, together with your own Premium card, earn you your first star and start your monthly rewards. Everyone begins as a Member.'),
     ]
     faq_html = ''.join(f'<details class="qa"><summary>{q}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{a}</p></div></details>' for q, a in faqs)
     faq = f'''<section class="sec" style="padding-top:0">
@@ -225,7 +226,7 @@ def build(here=''):
   <div><h2 class="h2">Want the <em>full picture?</em></h2><p class="lead" style="margin-top:12px">Wallet and security, every price and fee, the rewards rules, a step-by-step setup guide, tutorial videos and the official PDFs. All in one place.</p></div>
   <div class="btn-row"><a class="btn btn-go" href="{L('learn/', H)}">{ic('book')}Learn more</a>{dl_btn('price', H, 'Price list (PDF)')}</div>
  </div></div></section>'''
-    body = hero + videos + feats + flow + tiers + virtual + rewards + audience_band(H) + se + learn + steps + checklist_band(H) + help_band(H) + faq + final_cta(H, second=f'<a class="btn btn-ghost" href="{L("learn/", H)}">Learn more</a>')
+    body = hero + videos + feats + flow + tiers + virtual + rewards + audience_band(H) + se + news_band(H, compact=True) + learn + steps + checklist_band(H) + help_band(H) + faq + final_cta(H, second=f'<a class="btn btn-ghost" href="{L("learn/", H)}">Learn more</a>')
 
     product = {"@type": "Product", "@id": abs_url('') + "#product", "name": "Bellver Card", "description": "Crypto-funded debit card, a Visa when physical and a Mastercard when virtual, with a US dollar account, a non-custodial Fireblocks wallet and an optional rewards program.",
                "brand": {"@type": "Brand", "name": "Bellver"}, "image": [abs_url('images/bellver-card-black-visa.webp'), abs_url('images/bellver-card-special-edition.webp')],

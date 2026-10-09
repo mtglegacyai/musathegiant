@@ -96,9 +96,10 @@ def videos(H='videos/'):
  </div>
  <div class="box warn"><div class="ico">{ic('alert')}</div><h3 class="h3">A fair reading of the numbers</h3>
   <p>The video's monthly examples ($2,457, about $20,000 and $157,286) assume every matrix place is filled and every cardholder loads $300 a month. A full 12 levels is 8,190 cardholders. Treat these as illustrations, not forecasts.</p>
+  <p>This video was recorded before Bellver's October 2026 update, so its 4.95% top-up fee, $390 Special Edition and Premium rank step have since changed. <a class="inl" href="{L('learn/#bellver-news', H)}">See what changed</a>.</p>
   <p><a class="inl" href="{L('rewards/#estimate', H)}">Run your own numbers</a></p></div>
 </div>'''
-    road = [('Sep 2026', 'Testing phase from 9 September, then the official launch of version 1.0'), ('Jan 2027', 'Version 2.0 of the platform'), ('Mar 2027', 'NFC rings and other products in the shop'),
+    road = [('Sep 2026', 'Testing phase from 9 September, then the official launch of version 1.0'), ('End of 2026', 'Dashboard version 2.0, in development as announced in October 2026'), ('Jan 2027', 'Version 2.0 of the platform'), ('Mar 2027', 'NFC rings and other products in the shop'),
             ('May 2027', 'Platinum unlimited metal card with extra benefits'), ('Jun 2027', 'Bellver\'s own app'), ('Oct 2027', 'Plans for Bellver\'s own licence'), ('Dec 2027', 'Version 3.0')]
     rd = ''.join(f'<tr><td><b>{d}</b></td><td>{t}</td></tr>' for d, t in road)
     s_webinar = f'''<div class="split vsum">
@@ -109,7 +110,7 @@ def videos(H='videos/'):
   <h3>The fees, openly</h3><p>Both speakers said the card's fees are higher than a normal bank card, because the top-up is the only place commissions can be funded. If you only want a cheap card, they said, your bank's card may suit you better.</p>
   <h3>Early numbers, as reported at launch</h3><p>Over 1,000 cards sold during testing, about half Business or Gold and 40% Premium, around $210,000 in pending commissions, and the first commissions already paid on 15 September.</p>
  </div>
- <div><h3 class="h3" style="margin-bottom:12px">Announced roadmap</h3><div class="tbl-wrap"><table class="tbl" style="min-width:0"><tbody>{rd}</tbody></table></div><p class="fine">Plans as presented at launch, not promises. Dates may change.</p></div>
+ <div><h3 class="h3" style="margin-bottom:12px">Announced roadmap</h3><div class="tbl-wrap"><table class="tbl" style="min-width:0"><tbody>{rd}</tbody></table></div><p class="fine">Plans as presented at launch, plus Bellver's October 2026 update. Not promises. Dates may change.</p></div>
 </div>'''
     sums = {'overview': s_overview, 'explained': s_explained, 'webinar': s_webinar}
 
@@ -227,7 +228,7 @@ def learn(H='learn/'):
   <div><h2 class="h3" style="font-size:1.3rem">Official documents</h2><p class="muted" style="margin:4px 0 0">Version 08/2026, straight from Bellver. Save them or share them.</p></div>
   <div class="btn-row">{dl_btn('price', H, 'Price list')}{dl_btn('plan', H, 'Compensation plan')}{dl_btn('slides', H, 'Presentation')}</div>
  </div></div></section>'''
-    body = top + facts + audience_band(H) + grid + docs + help_band(H)
+    body = top + facts + news_band(H) + audience_band(H) + grid + docs + help_band(H)
     return page(H, 'learn', 'Bellver Card Guide: Everything About the Card in One Place | MTG',
                 'Your complete Bellver Card guide by MTG: how it works, prices and fees, the rewards program, a setup guide, presentation and tutorial videos, FAQ and official PDFs.',
                 'images/og/og-bellver-guide.jpg', 'Bellver Card guide by MTG', body, trail=trail)
