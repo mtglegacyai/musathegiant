@@ -7,7 +7,7 @@ from p_info import phero, T
 def partner(H='partner/'):
     trail = T(('Become a Partner', abs_url(H)))
     top = phero(H, trail, ['Share the card,', 'the honest way'],
-                'You become a Bellver affiliate partner when you use the card and share it with two or more people. There is nothing to apply for and nobody to sign up with: your referral link is your partnership. It suits TikTok LIVE hosts and other creators whose audiences already trust them.',
+                'You become a Bellver affiliate partner when you share the card through your referral link. There is nothing to apply for and nobody to sign up with: your referral link is your partnership. Bellver pays a referral commission on your personal referrals whether or not you own a card yourself. It suits TikTok LIVE hosts and other creators whose audiences already trust them.',
                 None,
                 order_btn('Order your card') +
                 f'<a class="btn btn-ghost" href="{L("rewards/", H)}">See the rewards plan</a>')
@@ -55,14 +55,14 @@ def partner(H='partner/'):
  <div class="grid3" style="margin-top:22px">
   <div class="box rv"><div class="ico">{ic('gift')}</div><h3 class="h3">Monthly rewards, on top</h3><p>Everyone starts as a Member. Hold a Premium card or higher and directly refer two new participants who each buy Premium or higher, and you earn your first star and qualify for monthly rewards: 0.1% of completed card top-ups in your 2x2 matrix, on every level your rank unlocks. <a class="inl" href="{L('rewards/', H)}">How the matrix works</a></p></div>
   <div class="box rv" style="--d:.06s"><div class="ico">{ic('lock')}</div><h3 class="h3">The rule that decides payment</h3><p>To receive monthly rewards you load at least $100 a month onto your own card. Miss it three months in a row and you lose your matrix position for good.</p></div>
-  <div class="box rv" style="--d:.12s"><div class="ico">{ic('info')}</div><h3 class="h3">Order your own card first</h3><p>You need at least a Basic card before you share your link. You get your matrix position when your own card appears. Someone you refer who buys before you still earns you the commission, but is not placed in your matrix.</p></div>
+  <div class="box rv" style="--d:.12s"><div class="ico">{ic('info')}</div><h3 class="h3">Your own card is optional</h3><p>Bellver pays a referral commission on personal referrals in all cases, whether or not you bought a Visa or Mastercard yourself. Buying a card is not a requirement. A card of your own is needed for monthly rewards, and you get your matrix position when it appears. Someone you refer who buys before you still earns you the commission, but is not placed in your matrix.</p></div>
  </div>
  <p class="fine rv" style="margin-top:16px">Results vary and are never guaranteed. Read the <a class="inl" href="{L('/earnings-disclaimer.html', H)}">Earnings Disclaimer</a> and the <a class="inl" href="{L('/risk-disclaimer.html', H)}">Risk Disclaimer</a>.</p>
 </div></section>'''
 
     days = [('1', 'Register and secure', 'Register with my link, switch on the authenticator app and write your private key on paper. <a class="inl" href="%s">Follow the setup guide</a>.' % L('get-started/', H)),
-            ('2', 'Fund and order your own card', 'Send USDT or USDC to your wallet, choose your level and order. Going virtual means you can pay the same day.'),
-            ('3', 'Use it for real', 'Pay for something with it and load your $100 for the month. Real use gives you something true to talk about.'),
+            ('2', 'Fund and order your own card (optional)', 'Not needed to earn commissions, but it lets you show real use and is needed for monthly rewards. Send USDT or USDC to your wallet, choose your level and order. Going virtual means you can pay the same day.'),
+            ('3', 'Use it for real', 'If you have a card, pay for something with it and load your $100 for the month. Real use gives you something true to talk about.'),
             ('4', 'Learn the numbers', 'Watch the presentation videos and read Prices and Rewards, so you can answer plain questions without guessing.'),
             ('5', 'Pick your first two people', 'Think of two people who would value the card, then show them how it works. Do not push.'),
             ('6', 'Help them get set up', 'Send them the tutorial videos and the free Starter Checklist, and stay close while they register and fund. If they order a physical card, remind them to give a complete address and a valid local mobile number, or it cannot be delivered.'),
@@ -77,16 +77,25 @@ def partner(H='partner/'):
  <div class="sec-head rv"><h2 class="h2">Going live on <em>TikTok</em></h2><p class="lead">Live selling works because people trust the host. Keep that trust, and keep your account safe, by following these rules.</p></div>
  <div class="dd">
   <div class="box do rv"><div class="ico">{ic('check')}</div><h3 class="h3">Do</h3><ul class="checks"><li>Say on screen and out loud that you earn a commission if people order through your link.</li><li>Use TikTok's branded content disclosure where it applies to your account and country.</li><li>Show the card working: a real payment, the app, the limits and the fees.</li><li>Pin a short note that points viewers to this guide for prices, fees and rules.</li><li>Read TikTok's current rules for your country before every campaign.</li></ul></div>
-  <div class="box dont rv" style="--d:.08s"><div class="ico">{ic('alert')}</div><h3 class="h3">Do not</h3><ul class="checks"><li>Promise or hint at income, or say "passive", "risk free" or "guaranteed".</li><li>Show your private key, your full balance or any login screen.</li><li>Ask viewers to send you money or crypto for any reason.</li><li>Lead with recruiting. Lead with the card and what it does.</li><li>Pressure anyone with countdowns, "last chance" or "limited spots".</li></ul></div>
+  <div class="box dont rv" style="--d:.08s"><div class="ico">{ic('alert')}</div><h3 class="h3">Do not</h3><ul class="checks"><li>Promise or hint at income, or say "passive", "risk free" or "guaranteed".</li><li>Show your private key, your full balance or any login screen.</li><li>Ask viewers to send you money or crypto for any reason.</li><li>Lead with recruiting. Lead with the card and what it does.</li><li>Pressure anyone with countdowns, "last chance" or "limited spots".</li><li>Run a large-scale campaign or public social media advertising without Bellver's prior approval.</li></ul></div>
  </div>
  <div class="box warn rv" style="margin-top:22px"><div class="ico">{ic('info')}</div><h3 class="h3">Check TikTok's rules for your country</h3><p>TikTok's advertising policy (updated June 2026) restricts cryptocurrency promotion in many markets, lists crypto debit cards as not allowed in some, and restricts multi-level marketing. Organic live content and paid ads follow different rules, and the rules change, so read the current policy for your country. This is general information, not legal advice.</p></div>
+</div></section>'''
+
+    brules = f'''<section class="sec-tight" id="bellver-rules"><div class="wrap">
+ <div class="sec-head rv"><h2 class="h2">Bellver's rules for <em>promoting</em> the card</h2><p class="lead">Three points from Bellver that every partner should know before sharing a single link.</p></div>
+ <div class="grid3">
+  <div class="box warn rv"><div class="ico">{ic('alert')}</div><h3 class="h3">Big campaigns need approval</h3><p>Any large-scale promotional campaign or public advertising on social media requires Bellver's prior approval. Ask first, then publish.</p></div>
+  <div class="box warn rv" style="--d:.06s"><div class="ico">{ic('lock')}</div><h3 class="h3">Be accurate, or risk suspension</h3><p>False or misleading statements, or promises of income, may result in suspension. Stick to the facts on this site and the official documents.</p></div>
+  <div class="box rv" style="--d:.12s"><div class="ico">{ic('check')}</div><h3 class="h3">Referring is always optional</h3><p>Using a card is never dependent on or tied to referring new cardholders. Customers who do not refer anyone are just as welcome, and the Reward Program is entirely voluntary.</p></div>
+ </div>
 </div></section>'''
 
     honest = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">How to share it <em>honestly</em></h2><p class="lead">Trust is what makes people order. It also keeps you on the right side of advertising rules.</p></div>
  <div class="dd">
-  <div class="box do rv"><div class="ico">{ic('check')}</div><h3 class="h3">Do</h3><ul class="checks"><li>Say plainly that you earn a commission if they order.</li><li>Show your own card and how you actually use it.</li><li>Give real numbers: prices, fees, limits and the $100 monthly rule.</li><li>Tell people to keep their private key safe, because nobody can recover it.</li><li>Point people to the official documents and this guide.</li></ul></div>
-  <div class="box dont rv" style="--d:.08s"><div class="ico">{ic('alert')}</div><h3 class="h3">Do not</h3><ul class="checks"><li>Promise income, or say "passive", "risk free" or "guaranteed".</li><li>Quote the biggest examples as if they are typical.</li><li>Pressure anyone, or tell them to buy now or miss out.</li><li>Say Bellver is a bank, or that your money is insured.</li><li>Claim a link to Bellver beyond being an independent affiliate.</li></ul></div>
+  <div class="box do rv"><div class="ico">{ic('check')}</div><h3 class="h3">Do</h3><ul class="checks"><li>Say plainly that you earn a commission if they order.</li><li>If you own the card, show it and how you actually use it.</li><li>Give real numbers: prices, fees, limits and the $100 monthly rule.</li><li>Tell people to keep their private key safe, because nobody can recover it.</li><li>Point people to the official documents and this guide.</li></ul></div>
+  <div class="box dont rv" style="--d:.08s"><div class="ico">{ic('alert')}</div><h3 class="h3">Do not</h3><ul class="checks"><li>Promise income, or say "passive", "risk free" or "guaranteed".</li><li>Quote the biggest examples as if they are typical.</li><li>Pressure anyone, or tell them to buy now or miss out.</li><li>Say Bellver is a bank, or that your money is insured.</li><li>Claim a link to Bellver beyond being an independent affiliate.</li><li>Make false or misleading statements. Bellver can suspend participants for them.</li></ul></div>
  </div>
 </div></section>'''
 
@@ -100,9 +109,10 @@ def partner(H='partner/'):
 </div></section>'''
 
     faq = [('Can I share it on TikTok LIVE?', 'Many people share products on TikTok LIVE, but you must follow TikTok\'s rules for your country. TikTok\'s advertising policy (updated June 2026) restricts crypto promotion in many markets and lists crypto debit cards as not allowed in some. Disclose that you earn a commission, never promise income and check the current rules before you go live.'),
-           ('Do I need to talk to MTG or apply to become a partner?', 'No. Partner simply means you are an affiliate of Bellver Cards. Once you have your own card and share it with two or more people through your referral link, you are an affiliate partner. There is no application and no approval from MTG. You are welcome to message MTG with questions, but you never have to.'),
-           ('Do I need to buy a card to become a partner?', 'Yes. You need at least a Basic card before you start sharing your referral link. Bellver\'s compensation plan ranks you by the card you have personally bought, and the official steps are: request your registration link, order and load your card, then spread the word. Basic earns direct commissions only. Monthly rewards need your own card at Premium or higher plus two new personal referrals who each buy Premium or higher, which earns your first star.'),
-           ('Do I have to refer anyone?', 'No. The rewards program is optional. Many people just want a crypto card with high limits.'),
+           ('Do I need to talk to MTG or apply to become a partner?', 'No. Partner simply means you are an affiliate of Bellver Cards. Once you share the card with people through your referral link, you are an affiliate partner. There is no application and no approval from MTG. You are welcome to message MTG with questions, but you never have to.'),
+           ('Do I need to buy a card to become a partner?', 'No. Bellver pays a referral commission for personal referrals in all cases, whether or not you have purchased a Visa or Mastercard yourself. Purchasing a card is not a requirement. A card of your own is needed for monthly rewards: your own Premium card or higher plus two new personal referrals who each buy Premium or higher, which earns your first star.'),
+           ('Can I run ads or a big social media campaign?', 'Only with Bellver\'s approval. Any large-scale promotional campaign or public advertising on social media requires Bellver\'s prior approval. False or misleading statements, or promises of income, may result in suspension.'),
+           ('Do I have to refer anyone?', 'No. Using a card is never dependent on or tied to referring new cardholders, and customers who do not refer anyone are just as welcome. Participation in the Reward Program is entirely voluntary.'),
            ('When are commissions paid?', 'This month\'s commissions show in your dashboard. On the 15th they move to Earnings available, and you can withdraw from $100.'),
            ('Is it guaranteed income?', 'No. Commissions depend on real people ordering real cards. Read the Earnings Disclaimer before you decide.')]
     fq = ''.join(f'<details class="qa"><summary>{q}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{a}</p></div></details>' for q, a in faq)
@@ -111,17 +121,17 @@ def partner(H='partner/'):
  <div class="faq rv">{fq}</div>
 </div></section>'''
 
-    cta = final_cta(H, 'Ready to <span class="hap">start?</span>', 'You need at least a Basic card before you share your link. Order yours first, then share it when you are ready.',
+    cta = final_cta(H, 'Ready to <span class="hap">start?</span>', 'You do not need a card of your own to earn commissions. Order one to use it and qualify for monthly rewards, or share your link when you are ready.',
                     second=f'<a class="btn btn-ghost" href="{L("rewards/", H)}">See the rewards plan</a>')
     mean = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">What "partner" <em>means</em></h2><p class="lead">No forms, no approval, no call with me.</p></div>
  <div class="grid3">
-  <div class="box rv"><div class="ico">{ic('card')}</div><h3 class="h3">1. Use the card</h3><p>Order at least a Basic card and load it.</p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('users')}</div><h3 class="h3">2. Share it</h3><p>Share your referral link with two or more people.</p></div>
+  <div class="box rv"><div class="ico">{ic('card')}</div><h3 class="h3">1. Use the card, if you want to</h3><p>Buying a card is not a requirement. Owning one lets you show real use and is needed for monthly rewards.</p></div>
+  <div class="box rv" style="--d:.06s"><div class="ico">{ic('users')}</div><h3 class="h3">2. Share it</h3><p>Share your referral link with people who would value the card.</p></div>
   <div class="box rv" style="--d:.12s"><div class="ico">{ic('check')}</div><h3 class="h3">3. You are a partner</h3><p>You are now an affiliate partner of Bellver Cards. Commissions follow the plan.</p></div>
  </div>
 </div></section>'''
-    body = top + mean + audience_band(H, chips=False, cta=False) + who + earn + week + honest + tiktok + tools + checklist_band(H) + faqs + cta
+    body = top + mean + audience_band(H, chips=False, cta=False) + who + earn + week + brules + honest + tiktok + tools + checklist_band(H) + faqs + cta
     faq_ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     return page(H, 'partner', 'Become a Bellver Card Partner: How to Share It and Earn | MTG',
                 'How to share the Bellver Card and earn commissions: made for TikTok LIVE hosts and creators with a trusting audience, the $10 to $500 direct commissions, a first-week plan, honest sharing rules and a plain explanation of what partner means.',

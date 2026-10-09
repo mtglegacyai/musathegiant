@@ -243,7 +243,7 @@ def rewards(H='rewards/'):
    <li><b>Extra people spill over.</b> Your third, fourth or tenth referral goes to the next free place in your matrix, top to bottom, left to right.</li>
    <li><b>It is not a binary plan.</b> There is no weaker leg. You earn on every level you qualify for.</li>
    <li><b>Only cardholders count.</b> Registering alone does not take a place.</li>
-   <li><b>Order your own card first.</b> You get your matrix position when your card appears. If someone you refer buys before you, you still get the commission, but they are not placed in your matrix.</li>
+   <li><b>Direct commissions do not need a card of your own.</b> Bellver pays them on personal referrals in all cases. Monthly rewards do: you get your matrix position when your card appears, and if someone you refer buys before you, they are not placed in your matrix.</li>
   </ul>
  </div>
 </div></section>'''
@@ -285,7 +285,7 @@ def rewards(H='rewards/'):
   <div class="box rv"><div class="ico">{ic('calendar')}</div><h3 class="h3">Load $100 a month. It stays yours.</h3><p>To receive rewards for a month, you must load at least $100 onto your own card that month. This is <b>not a subscription fee</b>. It is your own money, loaded onto your own card, and it is yours to spend however you like. Miss it and that month's rewards are forfeited in full.</p><p class="muted small" style="margin-top:12px">The only cost is the 3.9% top-up fee. <b>Why?</b> A profitable company is one that lasts. The fee helps Bellver cover its running costs, such as its team, offices and payment partners, so the card is still here for the long term.</p></div>
   <div class="box warn rv" style="--d:.06s"><div class="ico">{ic('alert')}</div><h3 class="h3">Three misses and the position is gone</h3><p>Miss the $100 minimum three months in a row and you permanently lose your position in the matrix. Rewards built up until then are forfeited and roll up to the next qualified position. You cannot requalify for the old position.</p></div>
   <div class="box rv"><div class="ico">{ic('coins')}</div><h3 class="h3">How and when you are paid</h3><p>Commissions and rewards are paid in USDT. Rewards settle monthly and payday is the 15th. Top-ups made in the final seven business days before settlement count toward the following month. The minimum withdrawal is $100.</p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('info')}</div><h3 class="h3">The fine print</h3><p>Basic cards earn direct commissions only. Rewards are not paid back-dated after an upgrade. Bellver Markets can change the plan with one month's notice, and payments made within four weeks count as on time.</p></div>
+  <div class="box rv" style="--d:.06s"><div class="ico">{ic('info')}</div><h3 class="h3">The fine print</h3><p>Basic cards earn direct commissions only. Rewards are not paid back-dated after an upgrade. Bellver Markets can change the plan with one month's notice, and payments made within four weeks count as on time.</p><p class="muted small" style="margin-top:12px">Participation in the Reward Program is entirely voluntary, and using a card never depends on referring anyone. Large-scale campaigns or public social media advertising need Bellver's prior approval, and false or misleading statements or income promises may result in suspension.</p></div>
  </div>
 </div></section>'''
 
