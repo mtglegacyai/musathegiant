@@ -15,12 +15,39 @@ PRES = [
 WALK = ('walk', 'Bellver dashboard walkthrough', 'Back office tour', '11:53', 'mp4', MP4_DASH, 'images/bellver-card-dashboard-walkthrough-thumbnail',
         'A guided tour of the Bellver back office: every coloured field, your wallet, deposits, withdrawals, cards and the referral area.', 'PT11M53S')
 
+# Tutorial 1: the finished registration video (MTG, 9 Oct 2026). It plays first, above the dashboard walkthrough.
+REG = ('tut-01', 'How to register your BellverCard account', 'Start here', '2:42', 'mp4', 'videos/tutorials/01-register-your-bellver-card-account.mp4',
+       'images/bellver-card-registration-tutorial-thumbnail',
+       'A click-by-click walkthrough of creating your Bellver account: the referral link, the sign-up form, the email warning, the six-digit code, the welcome notice, your dashboard and the welcome email.',
+       'PT2M42S')
+REG_DATE = '2026-10-09'
+REG_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:14', 'Use the referral link and tap Order Your Card'), ('0:24', 'Check the referral code in the address bar, then Sign Up'),
+               ('0:32', 'First name, last name and username'), ('0:42', 'The email warning: use an email never used for another card'),
+               ('0:53', 'Email, country code, mobile number, password and Referred by'), ('1:07', 'Verify your email with the six-digit code'),
+               ('1:16', 'Read the welcome notice and go to your dashboard'), ('1:30', 'Your dashboard'), ('1:33', 'The welcome email and its Open your dashboard button'),
+               ('1:56', 'Your turn, and what comes next')]
+REG_TRANSCRIPT = [
+ "Hi, my name is MTG, Your Digital Architect. Thank you for taking the time to watch this video. In the next two minutes, I'll show you exactly how to register your BellverCard account, step by step. Let's get started.",
+ "Always use the referral link of the person who shared this video with you. If that's me, start on my guide page and tap Order Your Card. It opens Bellver's official site.",
+ "Check the address bar. It ends with the referral code of the person who invited you. Mine is MTG. Then tap Sign Up.",
+ "Enter your first name, last name and a username. Your username is also your referral code, so choose one you're happy to share. My details are blurred.",
+ "Read this warning. If your email was ever used for another Visa or Mastercard account, use a different email. Your email can't be changed later, and it links to your wallet and your cards. Tap Got It.",
+ "Enter your email, choose your country code and add your mobile number. Set a strong password of at least twelve characters. Referred By shows your inviter's code. Here it's MTG, and it can't be changed. Tap Create Account.",
+ "Bellver emails you a six digit code. It expires in five minutes. Never share it. Bellver will never ask you for it. Type it in and tap Verify.",
+ "Read the notice. Large campaigns and public ads need Bellver's approval first, and income promises can get an account suspended. Using a card never depends on referring anyone. Tick the box and tap Go To My Dashboard.",
+ "You're in. This is your dashboard.",
+ "Bellver also sends you a welcome email. It says buying a card places you in the matrix. That's for members who want the two by two reward matrix. Referral commission is paid even without a card, but without one you miss card based rewards, like a share of transaction fees. Rewards depend on real card activity. Not guaranteed. Keep this email. The Open Your Dashboard button takes you straight to your login.",
+ "Well done. You just watched the full registration, step by step. Now it's your turn, and it's easier than it looks. Once you're in, share this video with your potential business partners, because we learn best by helping others. Still stuck after watching a few times? Contact me, or the business partner who shared this video with you.",
+ "Next video: how to log in, and secure your account with two-factor authentication.",
+ "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!",
+]
+
 # Tutorial placeholders. Upload an MP4 with exactly this name into cards/bellvercards/videos/tutorials/
 # and the matching tile switches from "Coming soon" to a playable video by itself.
 TUTS = [
- ('01-register-and-secure-your-account.mp4', 'Register and secure your account', 'Sign up with MTG\'s link, switch on two-factor login and save your private key.', 'login', 1),
- ('02-fund-your-wallet-and-order-your-card.mp4', 'Fund your wallet and order your card', 'Deposit USDT or USDC, choose your level and pay from your wallet.', 'card', 3),
- ('03-top-up-and-pay-with-your-phone.mp4', 'Top up and pay with your phone', 'Load your card, add it to Apple Pay or Google Pay and start paying.', 'nfc', 5),
+ ('02-log-in-and-secure-your-account.mp4', 'Log in and secure your account with 2FA', 'Log in from your welcome email, switch on 2FA (two-factor authentication) and save your private key.', 'login', 2),
+ ('03-fund-your-wallet-and-order-your-card.mp4', 'Fund your wallet and order your card', 'Deposit USDT or USDC, choose your level and pay from your wallet.', 'card', 3),
+ ('04-top-up-and-pay-with-your-phone.mp4', 'Top up and pay with your phone', 'Load your card, add it to Apple Pay or Google Pay and start paying.', 'nfc', 5),
 ]
 
 
@@ -47,13 +74,13 @@ def pplayer(v, H, eager=False, more=None):
  <span class="pbtn">{ic('play')}</span><span class="plabel">{dur}</span></div>'''
 
 
-def vld(v, page_path):
+def vld(v, page_path, date="2026-10-06", jpg=False):
     vid, title, kind, dur, typ, src, img, desc, iso = v
-    d = {"@type": "VideoObject", "name": title, "description": desc, "thumbnailUrl": (f"https://i.ytimg.com/vi/{src}/maxresdefault.jpg" if vid == "webinar" else abs_url(img + ".webp")), "inLanguage": "en", "url": abs_url(page_path) + '#' + vid}
+    d = {"@type": "VideoObject", "name": title, "description": desc, "thumbnailUrl": (f"https://i.ytimg.com/vi/{src}/maxresdefault.jpg" if vid == "webinar" else (abs_url(img + ".jpg") if jpg else abs_url(img + ".webp"))), "inLanguage": "en", "url": abs_url(page_path) + '#' + vid}
     if typ == 'yt':
         d["embedUrl"] = f"https://www.youtube.com/embed/{src}"
     else:
-        d["contentUrl"] = abs_url(src); d["uploadDate"] = "2026-10-06"
+        d["contentUrl"] = abs_url(src); d["uploadDate"] = date
     if iso:
         d["duration"] = iso
     return d
@@ -161,15 +188,28 @@ def tutorials(H='tutorials/'):
    <p><b>Referral:</b> your matrix, direct referrals, people per level, card levels and ranks in your team, including spillover.</p>
    <p><b>Settings:</b> switch on two-factor authentication. Bellver strongly recommends it.</p>
   </div></details>'''
+    moments = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in REG_MOMENTS)
+    transcript = ''.join(f'<p>{p}</p>' for p in REG_TRANSCRIPT)
+    reg_det = f'''<details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{moments}</ul></div></details>
+  <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{transcript}</div></details>'''
+    rimg = REG[6]
+    panels = f'''<article class="vpanel" id="tut-01" data-panel="tut-01" aria-labelledby="t-tut-01">
+  {pplayer(REG, H, True)}
+  <div class="vhead"><span class="badge green">{ic('star')}Start here, Tutorial 1, {REG[3]}</span><h2 id="t-tut-01">How to <em>register</em> your BellverCard account</h2><p class="muted">{REG[7]} Personal details are blurred. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-1', H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vsum-d">{reg_det}</div>
+ </article>'''
     vid, title, kind, dur, typ, src, img, desc, iso = WALK
-    panels = f'''<article class="vpanel" id="walkthrough" data-panel="walkthrough" aria-labelledby="t-walkthrough">
-  {pplayer(WALK, H, True)}
-  <div class="vhead"><span class="badge green">{ic('star')}Start here, {dur}</span><h2 id="t-walkthrough">Dashboard <em>walkthrough</em></h2><p class="muted">Watch this once after you register and you will know where everything is in your back office.</p></div>
+    panels += f'''<article class="vpanel" id="walkthrough" data-panel="walkthrough" aria-labelledby="t-walkthrough">
+  {pplayer(WALK, H)}
+  <div class="vhead"><span class="badge green">Watch after you register, {dur}</span><h2 id="t-walkthrough">Dashboard <em>walkthrough</em></h2><p class="muted">Watch this once after you register and you will know where everything is in your back office.</p></div>
   <div class="vsum-d">{walk_det}</div>
  </article>'''
-    items = f'''<button class="vitem" type="button" data-show="walkthrough" aria-controls="walkthrough" aria-current="true">
+    items = f'''<button class="vitem" type="button" data-show="tut-01" aria-controls="tut-01" aria-current="true">
+  <span class="vthumb"><img src="{L(rimg + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{REG[3]}</span></span>
+  <span class="vtx"><b>Register your account</b><small>Start here, Tutorial 1</small></span></button>
+<button class="vitem" type="button" data-show="walkthrough" aria-controls="walkthrough">
   <span class="vthumb"><img src="{L(img + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{dur}</span></span>
-  <span class="vtx"><b>{title}</b><small>Start here, back office tour</small></span></button>'''
+  <span class="vtx"><b>{title}</b><small>Back office tour</small></span></button>'''
     for i, (f, t, d, icn, step) in enumerate(TUTS):
         n = f[:2]
         panels += f'''<article class="vpanel" id="tut-{n}" data-panel="tut-{n}" aria-labelledby="t-tut-{n}">
@@ -177,11 +217,11 @@ def tutorials(H='tutorials/'):
    <div class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></div>
    <span class="pbtn">{ic('play')}</span><span class="plabel">Coming soon</span>
   </div>
-  <div class="vhead"><span class="badge green">Tutorial {i + 1} of {len(TUTS)}</span><h2 id="t-tut-{n}">{t}</h2><p class="muted">{d}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">Tutorial {i + 2}, coming soon</span><h2 id="t-tut-{n}">{t}</h2><p class="muted">{d}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></p></div>
  </article>'''
         items += f'''<button class="vitem" type="button" data-show="tut-{n}" aria-controls="tut-{n}">
   <span class="vthumb"><span class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></span><span class="vdur">Soon</span></span>
-  <span class="vtx"><b>{t}</b><small>Tutorial {i + 1}</small></span></button>'''
+  <span class="vtx"><b>{t}</b><small>Tutorial {i + 2}</small></span></button>'''
     lib = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap">
  <div class="vlib">
   <div class="vstage">{panels}</div>
@@ -191,9 +231,13 @@ def tutorials(H='tutorials/'):
  </div>
 </div></section>'''
     body = top + lib + help_band(H, 'Need a tutorial that is not here?', 'Tell me what you are stuck on and I will make a video for it, or walk you through it on WhatsApp.')
-    return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Step-by-Step How-To Guides | MTG',
-                'Step-by-step Bellver Card tutorial videos: the dashboard walkthrough, registering, securing your account, depositing USDT, ordering a virtual card, topping up and withdrawing.',
-                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[vld(WALK, H)], trail=trail)
+    reg_ld = vld(REG, H, REG_DATE, jpg=True)
+    reg_ld["transcript"] = ' '.join(REG_TRANSCRIPT)
+    reg_ld["author"] = {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"}
+    reg_ld["keywords"] = "BellverCard registration, Bellver Card sign up, how to register Bellver account, Bellver referral code, Bellver tutorial"
+    return page(H, 'tutorials', 'Bellver Card Tutorial Videos: How to Register, Dashboard Tour and More | MTG',
+                'Watch how to register your BellverCard account in under 3 minutes, click by click, then tour the dashboard. Step-by-step Bellver Card tutorials by MTG, with transcripts.',
+                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[reg_ld, vld(WALK, H)], trail=trail)
 
 
 # ------------------------------------------------------------------ OVERVIEW
@@ -204,7 +248,7 @@ MORE = {
  'rewards': 'Direct commissions, the 2x2 matrix, the six ranks and the rules for staying qualified.',
  'partner': 'Who it suits, what you earn, a first-week plan and the honest way to share the card.',
  'videos': 'The 3-minute overview, the 27-minute presentation and the launch webinar, with summaries.',
- 'tutorials': 'The dashboard walkthrough plus short how-to videos for every step.',
+ 'tutorials': 'How to register your account, step by step, plus the dashboard walkthrough and more how-to videos.',
  'faq': 'Two dozen straight answers and a plain-words glossary.',
  'docs': 'The official price list, compensation plan and presentation slides as PDFs.',
 }

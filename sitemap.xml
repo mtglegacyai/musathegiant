@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://www.musathegiant.com/</loc>
     <lastmod>2026-10-01</lastmod>
@@ -85,9 +86,18 @@
   </url>
   <url>
     <loc>https://www.musathegiant.com/cards/bellvercards/tutorials/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
+    <video:video>
+      <video:thumbnail_loc>https://www.musathegiant.com/cards/bellvercards/images/bellver-card-registration-tutorial-thumbnail.jpg</video:thumbnail_loc>
+      <video:title>How to Register Your BellverCard Account, Step by Step</video:title>
+      <video:description>A click-by-click walkthrough of creating your Bellver account by MTG: the referral link, the sign-up form, the email warning, the six-digit code, the welcome notice, your dashboard and the welcome email.</video:description>
+      <video:content_loc>https://www.musathegiant.com/cards/bellvercards/videos/tutorials/01-register-your-bellver-card-account.mp4</video:content_loc>
+      <video:duration>162</video:duration>
+      <video:publication_date>2026-10-09</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://www.musathegiant.com/cards/bellvercards/faq/</loc>
