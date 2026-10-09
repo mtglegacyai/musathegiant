@@ -98,6 +98,15 @@
       <video:publication_date>2026-10-09</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://www.musathegiant.com/cards/bellvercards/images/bellver-card-2fa-login-security-tutorial-thumbnail.jpg</video:thumbnail_loc>
+      <video:title>How to Log In and Secure Your Bellver Account with 2FA, Step by Step</video:title>
+      <video:description>A click-by-click walkthrough by MTG: logging in, finding your referral link, checking account settings and turning on 2FA (two-factor authentication) with Google Authenticator, recovery codes and a security code.</video:description>
+      <video:content_loc>https://www.musathegiant.com/cards/bellvercards/videos/tutorials/02-log-in-and-secure-your-account.mp4</video:content_loc>
+      <video:duration>183</video:duration>
+      <video:publication_date>2026-10-09</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://www.musathegiant.com/cards/bellvercards/faq/</loc>

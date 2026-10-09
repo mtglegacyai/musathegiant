@@ -42,12 +42,41 @@ REG_TRANSCRIPT = [
  "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!",
 ]
 
+# Tutorial 2: log in and secure your account with 2FA (MTG, 9 Oct 2026). Plays second, right after registration.
+SEC = ('tut-02', 'How to log in and secure your Bellver account with 2FA', 'Tutorial 2', '3:03', 'mp4', 'videos/tutorials/02-log-in-and-secure-your-account.mp4',
+       'images/bellver-card-2fa-login-security-tutorial-thumbnail',
+       'A click-by-click walkthrough of logging in, finding your referral link, checking your account settings and turning on 2FA (two-factor authentication) with Google Authenticator, recovery codes and a security code.',
+       'PT3M3S')
+SEC_DATE = '2026-10-09'
+SEC_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:17', 'Open your dashboard from the welcome email'), ('0:24', 'Log in with your username and password'),
+               ('0:30', 'Your dashboard, username and referral link'), ('0:42', 'Settings: check your email is verified and your username'),
+               ('0:49', 'Edit your profile'), ('0:57', 'Set up the authenticator app'), ('1:02', 'Scan the QR code with Google Authenticator'),
+               ('1:11', 'Enter the 6-digit code and turn on 2FA'), ('1:15', 'Save your recovery codes'), ('1:26', 'Passkeys'),
+               ('1:35', 'Set your security code'), ('1:51', 'Change your password'), ('1:54', 'Log out and test your login'),
+               ('2:01', 'Log in with your 2FA code'), ('2:08', 'Protected with two-factor authentication'), ('2:13', 'Your turn, and what comes next')]
+SEC_TRANSCRIPT = [
+ "Hi, my name is MTG, Your Digital Architect. Thank you for taking the time to watch this video. In the next few minutes, I'll show you how to log in, find your referral link, and secure your Bellver account with 2FA, two-factor authentication. Let's get started.",
+ "Open your welcome email and tap Open Your Dashboard. You can also go straight to app.bellvercards.com. Enter your username, then your password, and tap Login. Close the news window.",
+ "This is your dashboard. Your username sits at the top. Right below it is your referral link. If you plan to share BellverCard, tap the copy icon to copy it. Sharing is always optional.",
+ "Now scroll down the menu and open Settings. Check that your email shows Verified, and that your username is correct.",
+ "To update your name or mobile number, tap Edit Profile. Your email can't be changed here. Make your changes and tap Save.",
+ "Now the most important step. Under Authenticator app, tap Set Up. Open Google Authenticator on your phone and scan the QR code. If you can't scan it, type in the setup key instead. Never share this code or key with anyone. Enter the six digit code the app shows, and tap Turn On.",
+ "Save these recovery codes now. They're your only way back in if you lose your phone. Each code works once, and this is the only time they're shown. Tap Copy All, and keep them somewhere safe, offline.",
+ "A passkey lets you sign in with your fingerprint, face or device PIN. It only works on bellvercards.com, so a fake site can't trick it out of you. Next, tap Set Code Now. Your security code is six digits, and it opens My Wallet and My Cards. Keep it safe and never forget it. Enter it, tap Continue, enter it again, and tap Set Security Code.",
+ "You can also change your password here at any time.",
+ "Now let's test it. Open your profile menu and tap Log Out. Log in again with your username and password. Bellver now asks for a code. Open Google Authenticator, type the six digit code, and tap Confirm.",
+ "You're in. Your account is now protected with two-factor authentication.",
+ "Well done. You just secured your Bellver account, step by step. Now it's your turn, and it only takes a few minutes. Share this video with your potential business partners, because a safe team is a strong team. Still stuck after watching a few times? Contact me, or the business partner who shared this video with you.",
+ "Next video: how to export and back up your Web3 wallet's private key, so you always stay in control of your crypto.",
+ "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!",
+]
+
 # Tutorial placeholders. Upload an MP4 with exactly this name into cards/bellvercards/videos/tutorials/
 # and the matching tile switches from "Coming soon" to a playable video by itself.
 TUTS = [
- ('02-log-in-and-secure-your-account.mp4', 'Log in and secure your account with 2FA', 'Log in from your welcome email, switch on 2FA (two-factor authentication) and save your private key.', 'login', 2),
- ('03-fund-your-wallet-and-order-your-card.mp4', 'Fund your wallet and order your card', 'Deposit USDT or USDC, choose your level and pay from your wallet.', 'card', 3),
- ('04-top-up-and-pay-with-your-phone.mp4', 'Top up and pay with your phone', 'Load your card, add it to Apple Pay or Google Pay and start paying.', 'nfc', 5),
+ ('03-web3-wallet-and-private-key.mp4', 'Your Web3 wallet and private key', 'Open your Web3 wallet, switch networks before you fund it, and export and back up your private key.', 'key', 3),
+ ('04-fund-your-wallet-and-order-your-card.mp4', 'Fund your wallet and order your card', 'Deposit USDT or USDC, choose your level and pay from your wallet.', 'card', 4),
+ ('05-top-up-and-pay-with-your-phone.mp4', 'Top up and pay with your phone', 'Load your card, add it to Apple Pay or Google Pay and start paying.', 'nfc', 5),
 ]
 
 
@@ -193,10 +222,19 @@ def tutorials(H='tutorials/'):
     reg_det = f'''<details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{moments}</ul></div></details>
   <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{transcript}</div></details>'''
     rimg = REG[6]
+    sm = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in SEC_MOMENTS)
+    st = ''.join(f'<p>{p}</p>' for p in SEC_TRANSCRIPT)
+    sec_det = f'''<details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{sm}</ul></div></details>
+  <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{st}</div></details>'''
     panels = f'''<article class="vpanel" id="tut-01" data-panel="tut-01" aria-labelledby="t-tut-01">
   {pplayer(REG, H, True)}
   <div class="vhead"><span class="badge green">{ic('star')}Start here, Tutorial 1, {REG[3]}</span><h2 id="t-tut-01">How to <em>register</em> your BellverCard account</h2><p class="muted">{REG[7]} Personal details are blurred. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-1', H)}">Read the written steps {ic('arrow')}</a></p></div>
   <div class="vsum-d">{reg_det}</div>
+ </article>'''
+    panels += f'''<article class="vpanel" id="tut-02" data-panel="tut-02" aria-labelledby="t-tut-02">
+  {pplayer(SEC, H)}
+  <div class="vhead"><span class="badge green">Tutorial 2, {SEC[3]}</span><h2 id="t-tut-02">How to log in and <em>secure</em> your account with 2FA</h2><p class="muted">{SEC[7]} Personal details and every code are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-2', H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vsum-d">{sec_det}</div>
  </article>'''
     vid, title, kind, dur, typ, src, img, desc, iso = WALK
     panels += f'''<article class="vpanel" id="walkthrough" data-panel="walkthrough" aria-labelledby="t-walkthrough">
@@ -207,6 +245,9 @@ def tutorials(H='tutorials/'):
     items = f'''<button class="vitem" type="button" data-show="tut-01" aria-controls="tut-01" aria-current="true">
   <span class="vthumb"><img src="{L(rimg + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{REG[3]}</span></span>
   <span class="vtx"><b>Register your account</b><small>Start here, Tutorial 1</small></span></button>
+<button class="vitem" type="button" data-show="tut-02" aria-controls="tut-02">
+  <span class="vthumb"><img src="{L(SEC[6] + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{SEC[3]}</span></span>
+  <span class="vtx"><b>Log in and secure with 2FA</b><small>Tutorial 2</small></span></button>
 <button class="vitem" type="button" data-show="walkthrough" aria-controls="walkthrough">
   <span class="vthumb"><img src="{L(img + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{dur}</span></span>
   <span class="vtx"><b>{title}</b><small>Back office tour</small></span></button>'''
@@ -217,11 +258,11 @@ def tutorials(H='tutorials/'):
    <div class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></div>
    <span class="pbtn">{ic('play')}</span><span class="plabel">Coming soon</span>
   </div>
-  <div class="vhead"><span class="badge green">Tutorial {i + 2}, coming soon</span><h2 id="t-tut-{n}">{t}</h2><p class="muted">{d}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">Tutorial {i + 3}, coming soon</span><h2 id="t-tut-{n}">{t}</h2><p class="muted">{d}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></p></div>
  </article>'''
         items += f'''<button class="vitem" type="button" data-show="tut-{n}" aria-controls="tut-{n}">
   <span class="vthumb"><span class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></span><span class="vdur">Soon</span></span>
-  <span class="vtx"><b>{t}</b><small>Tutorial {i + 2}</small></span></button>'''
+  <span class="vtx"><b>{t}</b><small>Tutorial {i + 3}</small></span></button>'''
     lib = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap">
  <div class="vlib">
   <div class="vstage">{panels}</div>
@@ -235,9 +276,13 @@ def tutorials(H='tutorials/'):
     reg_ld["transcript"] = ' '.join(REG_TRANSCRIPT)
     reg_ld["author"] = {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"}
     reg_ld["keywords"] = "BellverCard registration, Bellver Card sign up, how to register Bellver account, Bellver referral code, Bellver tutorial"
-    return page(H, 'tutorials', 'Bellver Card Tutorial Videos: How to Register, Dashboard Tour and More | MTG',
-                'Watch how to register your BellverCard account in under 3 minutes, click by click, then tour the dashboard. Step-by-step Bellver Card tutorials by MTG, with transcripts.',
-                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[reg_ld, vld(WALK, H)], trail=trail)
+    sec_ld = vld(SEC, H, SEC_DATE, jpg=True)
+    sec_ld["transcript"] = ' '.join(SEC_TRANSCRIPT)
+    sec_ld["author"] = reg_ld["author"]
+    sec_ld["keywords"] = "Bellver login, BellverCard 2FA, two-factor authentication, Google Authenticator, Bellver recovery codes, Bellver security code, Bellver tutorial"
+    return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Register, Log In and Secure with 2FA | MTG',
+                'Watch how to register your BellverCard account, then log in and secure it with 2FA (two-factor authentication), click by click. Step-by-step Bellver Card tutorials by MTG, with transcripts.',
+                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[reg_ld, sec_ld, vld(WALK, H)], trail=trail)
 
 
 # ------------------------------------------------------------------ OVERVIEW
@@ -248,7 +293,7 @@ MORE = {
  'rewards': 'Direct commissions, the 2x2 matrix, the six ranks and the rules for staying qualified.',
  'partner': 'Who it suits, what you earn, a first-week plan and the honest way to share the card.',
  'videos': 'The 3-minute overview, the 27-minute presentation and the launch webinar, with summaries.',
- 'tutorials': 'How to register your account, step by step, plus the dashboard walkthrough and more how-to videos.',
+ 'tutorials': 'Register, then log in and secure your account with 2FA, step by step, plus the dashboard walkthrough.',
  'faq': 'Two dozen straight answers and a plain-words glossary.',
  'docs': 'The official price list, compensation plan and presentation slides as PDFs.',
 }

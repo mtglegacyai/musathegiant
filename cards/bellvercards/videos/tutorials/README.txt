@@ -5,6 +5,7 @@ The matching tile on /cards/bellvercards/tutorials/ switches from
 Keep each file under 100 MB (GitHub's limit).
 
 01-register-your-bellver-card-account.mp4   (live, 9 Oct 2026)
-02-log-in-and-secure-your-account.mp4
-03-fund-your-wallet-and-order-your-card.mp4
-04-top-up-and-pay-with-your-phone.mp4
+02-log-in-and-secure-your-account.mp4       (live, 9 Oct 2026)
+03-web3-wallet-and-private-key.mp4
+04-fund-your-wallet-and-order-your-card.mp4
+05-top-up-and-pay-with-your-phone.mp4
