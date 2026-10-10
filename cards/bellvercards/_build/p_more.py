@@ -18,7 +18,7 @@ def start(H='get-started/'):
      ('Share your link, if you want to', '''<p>Sharing is entirely optional, and you do not need a card of your own to earn direct commissions: Bellver pays them on personal referrals in all cases. Your personal referral link sits at the top of your dashboard. Share it with people who would value the card. You earn a direct commission for every card ordered through it.</p><p>Keep it honest: large-scale campaigns or public advertising on social media need Bellver's prior approval, and false or misleading statements or income promises can lead to suspension.</p><p>The easiest way: send them to a page like this one with the words "Take a look at the two videos, it's worth it."</p><p>Going live on TikTok? Show the card working, say that you earn a commission, and read <a class="inl" href="{L("partner/#tiktok", H)}">the rules for sharing it on TikTok</a> first.</p>'''),
      ('Get paid', '''<p>Your current month's commissions and rewards show in the green fields. On the 15th they move to <b>Earnings available</b>.</p><p>Open <span class="path">Withdraw</span>, enter the amount (minimum $100) and request it. It shows as pending, then arrives in My Wallet.</p>'''),
     ]
-    TUT = ['01', '02', '03', '04', '05', None, None]
+    TUT = ['01', '02', '04', '04', '05', None, None]
     steps = ''.join(f'<article class="gstep rv" id="step-{i+1}"><span class="gn">{i+1}</span><div><h2>{t}</h2>{b}{(f'<p class="gtut"><a class="tlink" href="{L("tutorials/#tut-" + TUT[i], H)}">{ic("play-c")}Watch the tutorial</a></p>' if TUT[i] else '')}</div></article>' for i, (t, b) in enumerate(S))
     body = top + f'''<section class="sec-tight"><div class="wrap"><div class="split guide-split">
  <div class="guide">{steps}</div>

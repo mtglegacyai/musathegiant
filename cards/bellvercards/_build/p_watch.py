@@ -71,11 +71,42 @@ SEC_TRANSCRIPT = [
  "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!",
 ]
 
+# Tutorial 3: export and back up your Web3 wallet private key (MTG, 10 Oct 2026). Plays third.
+KEY = ('tut-03', 'How to export and back up your Web3 wallet private key', 'Tutorial 3', '4:01', 'mp4', 'videos/tutorials/03-web3-wallet-and-private-key.mp4',
+       'images/bellver-card-web3-wallet-private-key-backup-tutorial-thumbnail',
+       'A click-by-click walkthrough of opening the Web3 wallet inside your Bellver dashboard, reading the wallet warning, exporting your private key safely and backing it up offline on paper.',
+       'PT4M1S')
+KEY_DATE = '2026-10-10'
+KEY_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:17', 'Log in with your username and password'), ('0:25', 'If your login details do not match'),
+               ('0:35', 'Enter your two-factor authentication code'), ('0:48', 'Open My Wallet with your security code'), ('0:57', 'The two-minute wallet video'),
+               ('1:04', 'Your wallet, with BNB Chain selected by default'), ('1:14', 'Open the wallet Settings'), ('1:17', 'Read the warning'),
+               ('1:36', 'Account and Security'), ('1:40', 'Export Private Key'), ('1:47', 'Read the agree screen'), ('2:00', 'Tick the box and tap Reveal'),
+               ('2:07', 'Highlight and copy your private key'), ('2:21', 'Back it up on paper, offline'), ('2:41', 'Tap I\'m Done'),
+               ('2:43', 'Log out to keep your account safe'), ('2:54', 'Quick recap'), ('3:07', 'Your turn, and what comes next')]
+KEY_TRANSCRIPT = [
+ "Hi, my name is MTG, Your Digital Architect. Thank you for taking the time to watch this video. In the next few minutes, I'll show you how to open your Web3 wallet inside your Bellver dashboard, and how to export and back up your private key, safely. Let's get started.",
+ "Go to app.bellvercards.com. Enter your username, then your password, and tap Login.",
+ "If you see \"These credentials do not match our records\", don't panic. Check your username and password carefully, type them again, and tap Login.",
+ "Your account is protected with two-factor authentication, so Bellver asks for a code. Open Google Authenticator, type the six digit code, and tap Confirm. Close the news window.",
+ "In the menu, tap My Wallet. Enter the six digit security code you set up in the previous video. It unlocks automatically.",
+ "This is My Wallet. There's a short two minute video here about your wallet password and private key. Watch it when you have time. Now scroll down. Here is your wallet, with BNB Chain selected by default. BNB Chain is the network we'll use to fund your wallet in the next video.",
+ "Scroll down a little, and tap Settings.",
+ "Stop, and read this warning carefully. If you lose or forget your private key or password, you lose everything. Your balance, and your position in the matrix, no matter how many team members you've already built. Bellver has no control over your wallet, and can never fix it for you. You alone are responsible.",
+ "Under General, tap Account and Security. Here you can set a wallet password. Today, we export the private key. Tap Export Private Key.",
+ "Read this screen. Your wallet is ready. Back up your key to protect your assets. This is a non-custodial wallet, so you are always in control. Keep your key private. It controls your account and your assets. Tick the box: I am responsible for safeguarding and using my wallet key information. Then tap Reveal.",
+ "This is your private key. In this video it stays hidden, and yours should too. Anyone who has this key can empty your wallet. Highlight the whole key carefully, from the very first character to the very last, and copy it.",
+ "Now back it up, offline. Write it down on paper, check every character twice, and keep it somewhere safe. Never save it in a screenshot, an email, cloud notes, or WhatsApp. And never share it with anyone. Not a friend. Not a business partner. Not even Bellver support. No one. It's called a private key for a reason. Then tap I'm Done.",
+ "Tap Dashboard to go back. When you're finished, always log out. Open your profile menu, and tap Log Out. It keeps your account safe.",
+ "Quick recap. In this video, we logged in with two-factor authentication. We opened My Wallet with the security code. We read the warning. We exported the private key, backed it up on paper, and logged out.",
+ "Well done. You now hold the key to your own wallet, and you know how to protect it. Now it's your turn, and it takes less than five minutes. Share this video with your potential business partners, because everyone deserves to keep what they build. Still stuck after watching a few times? Contact me, or the business partner who shared this video with you.",
+ "Next video: how to fund your wallet with a little BNB for network fees, add USDT for your card, and order your Bellver Card, step by step.",
+ "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!",
+]
+
 # Tutorial placeholders. Upload an MP4 with exactly this name into cards/bellvercards/videos/tutorials/
 # and the matching tile switches from "Coming soon" to a playable video by itself.
 TUTS = [
- ('03-web3-wallet-and-private-key.mp4', 'Your Web3 wallet and private key', 'Open your Web3 wallet, switch networks before you fund it, and export and back up your private key.', 'key', 3),
- ('04-fund-your-wallet-and-order-your-card.mp4', 'Fund your wallet and order your card', 'Deposit USDT or USDC, choose your level and pay from your wallet.', 'card', 4),
+ ('04-fund-your-wallet-and-order-your-card.mp4', 'Fund your wallet and order your card', 'Add a little BNB for network fees, deposit USDT for your card, then choose your level and order it.', 'card', 3),
  ('05-top-up-and-pay-with-your-phone.mp4', 'Top up and pay with your phone', 'Load your card, add it to Apple Pay or Google Pay and start paying.', 'nfc', 5),
 ]
 
@@ -226,6 +257,10 @@ def tutorials(H='tutorials/'):
     st = ''.join(f'<p>{p}</p>' for p in SEC_TRANSCRIPT)
     sec_det = f'''<details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{sm}</ul></div></details>
   <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{st}</div></details>'''
+    km = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in KEY_MOMENTS)
+    kt = ''.join(f'<p>{p}</p>' for p in KEY_TRANSCRIPT)
+    key_det = f'''<details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{km}</ul></div></details>
+  <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{kt}</div></details>'''
     panels = f'''<article class="vpanel" id="tut-01" data-panel="tut-01" aria-labelledby="t-tut-01">
   {pplayer(REG, H, True)}
   <div class="vhead"><span class="badge green">{ic('star')}Start here, Tutorial 1, {REG[3]}</span><h2 id="t-tut-01">How to <em>register</em> your BellverCard account</h2><p class="muted">{REG[7]} Personal details are blurred. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-1', H)}">Read the written steps {ic('arrow')}</a></p></div>
@@ -235,6 +270,11 @@ def tutorials(H='tutorials/'):
   {pplayer(SEC, H)}
   <div class="vhead"><span class="badge green">Tutorial 2, {SEC[3]}</span><h2 id="t-tut-02">How to log in and <em>secure</em> your account with 2FA</h2><p class="muted">{SEC[7]} Personal details and every code are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-2', H)}">Read the written steps {ic('arrow')}</a></p></div>
   <div class="vsum-d">{sec_det}</div>
+ </article>'''
+    panels += f'''<article class="vpanel" id="tut-03" data-panel="tut-03" aria-labelledby="t-tut-03">
+  {pplayer(KEY, H)}
+  <div class="vhead"><span class="badge green">Tutorial 3, {KEY[3]}</span><h2 id="t-tut-03">How to export and back up your Web3 wallet <em>private key</em></h2><p class="muted">{KEY[7]} Your private key, personal details and every code are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-2', H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vsum-d">{key_det}</div>
  </article>'''
     vid, title, kind, dur, typ, src, img, desc, iso = WALK
     panels += f'''<article class="vpanel" id="walkthrough" data-panel="walkthrough" aria-labelledby="t-walkthrough">
@@ -248,6 +288,9 @@ def tutorials(H='tutorials/'):
 <button class="vitem" type="button" data-show="tut-02" aria-controls="tut-02">
   <span class="vthumb"><img src="{L(SEC[6] + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{SEC[3]}</span></span>
   <span class="vtx"><b>Log in and secure with 2FA</b><small>Tutorial 2</small></span></button>
+<button class="vitem" type="button" data-show="tut-03" aria-controls="tut-03">
+  <span class="vthumb"><img src="{L(KEY[6] + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{KEY[3]}</span></span>
+  <span class="vtx"><b>Export and back up your private key</b><small>Tutorial 3</small></span></button>
 <button class="vitem" type="button" data-show="walkthrough" aria-controls="walkthrough">
   <span class="vthumb"><img src="{L(img + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{dur}</span></span>
   <span class="vtx"><b>{title}</b><small>Back office tour</small></span></button>'''
@@ -258,11 +301,11 @@ def tutorials(H='tutorials/'):
    <div class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></div>
    <span class="pbtn">{ic('play')}</span><span class="plabel">Coming soon</span>
   </div>
-  <div class="vhead"><span class="badge green">Tutorial {i + 3}, coming soon</span><h2 id="t-tut-{n}">{t}</h2><p class="muted">{d}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">Tutorial {i + 4}, coming soon</span><h2 id="t-tut-{n}">{t}</h2><p class="muted">{d}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></p></div>
  </article>'''
         items += f'''<button class="vitem" type="button" data-show="tut-{n}" aria-controls="tut-{n}">
   <span class="vthumb"><span class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></span><span class="vdur">Soon</span></span>
-  <span class="vtx"><b>{t}</b><small>Tutorial {i + 3}</small></span></button>'''
+  <span class="vtx"><b>{t}</b><small>Tutorial {i + 4}</small></span></button>'''
     lib = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap">
  <div class="vlib">
   <div class="vstage">{panels}</div>
@@ -280,9 +323,13 @@ def tutorials(H='tutorials/'):
     sec_ld["transcript"] = ' '.join(SEC_TRANSCRIPT)
     sec_ld["author"] = reg_ld["author"]
     sec_ld["keywords"] = "Bellver login, BellverCard 2FA, two-factor authentication, Google Authenticator, Bellver recovery codes, Bellver security code, Bellver tutorial"
-    return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Register, Log In and Secure with 2FA | MTG',
-                'Watch how to register your BellverCard account, then log in and secure it with 2FA (two-factor authentication), click by click. Step-by-step Bellver Card tutorials by MTG, with transcripts.',
-                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[reg_ld, sec_ld, vld(WALK, H)], trail=trail)
+    key_ld = vld(KEY, H, KEY_DATE, jpg=True)
+    key_ld["transcript"] = ' '.join(KEY_TRANSCRIPT)
+    key_ld["author"] = reg_ld["author"]
+    key_ld["keywords"] = "Bellver private key, export private key, back up Web3 wallet, Bellver My Wallet, non-custodial wallet, BNB Chain, Bellver tutorial"
+    return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Register, Secure with 2FA, Back Up Your Private Key | MTG',
+                'Watch how to register your BellverCard account, secure it with 2FA (two-factor authentication), and export and back up your Web3 wallet private key, click by click. Step-by-step Bellver Card tutorials by MTG, with transcripts.',
+                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[reg_ld, sec_ld, key_ld, vld(WALK, H)], trail=trail)
 
 
 # ------------------------------------------------------------------ OVERVIEW
@@ -293,7 +340,7 @@ MORE = {
  'rewards': 'Direct commissions, the 2x2 matrix, the six ranks and the rules for staying qualified.',
  'partner': 'Who it suits, what you earn, a first-week plan and the honest way to share the card.',
  'videos': 'The 3-minute overview, the 27-minute presentation and the launch webinar, with summaries.',
- 'tutorials': 'Register, then log in and secure your account with 2FA, step by step, plus the dashboard walkthrough.',
+ 'tutorials': 'Register, secure your account with 2FA and back up your private key, step by step, plus the dashboard walkthrough.',
  'faq': 'Two dozen straight answers and a plain-words glossary.',
  'docs': 'The official price list, compensation plan and presentation slides as PDFs.',
 }

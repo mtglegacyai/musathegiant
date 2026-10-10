@@ -107,6 +107,15 @@
       <video:publication_date>2026-10-09</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://www.musathegiant.com/cards/bellvercards/images/bellver-card-web3-wallet-private-key-backup-tutorial-thumbnail.jpg</video:thumbnail_loc>
+      <video:title>How to Export and Back Up Your Web3 Wallet Private Key, Step by Step</video:title>
+      <video:description>A click-by-click walkthrough by MTG: opening the Web3 wallet inside the Bellver dashboard, reading the wallet warning, exporting your private key safely and backing it up offline on paper.</video:description>
+      <video:content_loc>https://www.musathegiant.com/cards/bellvercards/videos/tutorials/03-web3-wallet-and-private-key.mp4</video:content_loc>
+      <video:duration>241</video:duration>
+      <video:publication_date>2026-10-10</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://www.musathegiant.com/cards/bellvercards/faq/</loc>
