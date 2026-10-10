@@ -116,6 +116,15 @@
       <video:publication_date>2026-10-10</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://www.musathegiant.com/cards/bellvercards/images/bellver-card-fund-wallet-bnb-usdt-order-card-tutorial-thumbnail.jpg</video:thumbnail_loc>
+      <video:title>How to Fund Your Wallet with BNB and USDT and Order Your Bellver Card, Step by Step</video:title>
+      <video:description>A click-by-click walkthrough by MTG: a little BNB for network fees, USDT for the card, the identity check, ordering a virtual Premium card and adding it to Google Pay.</video:description>
+      <video:content_loc>https://www.musathegiant.com/cards/bellvercards/videos/tutorials/04-fund-your-wallet-and-order-your-card.mp4</video:content_loc>
+      <video:duration>428</video:duration>
+      <video:publication_date>2026-10-10</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://www.musathegiant.com/cards/bellvercards/faq/</loc>

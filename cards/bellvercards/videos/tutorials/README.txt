@@ -7,5 +7,5 @@ Keep each file under 100 MB (GitHub's limit).
 01-register-your-bellver-card-account.mp4   (live, 9 Oct 2026)
 02-log-in-and-secure-your-account.mp4       (live, 9 Oct 2026)
 03-web3-wallet-and-private-key.mp4          (live, 10 Oct 2026)
-04-fund-your-wallet-and-order-your-card.mp4
+04-fund-your-wallet-and-order-your-card.mp4 (live, 10 Oct 2026)
 05-top-up-and-pay-with-your-phone.mp4
