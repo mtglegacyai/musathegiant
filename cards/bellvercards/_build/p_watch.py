@@ -2,6 +2,7 @@
 """Overview (learn/), Presentation Videos, Tutorial Videos, Documents."""
 from bv import *  # noqa
 from p_info import phero, T
+from mx_video import MXV, MXV_DATE, MXV_MOMENTS, MXV_TRANSCRIPT
 
 # (id, title, kind, duration label, type, source, thumb, description, iso duration)
 PRES = [
@@ -157,7 +158,8 @@ def vld(v, page_path, date="2026-10-06", jpg=False):
 # ------------------------------------------------------------------ PRESENTATION VIDEOS
 def videos(H='videos/'):
     trail = T(('Presentation Videos', abs_url(H)))
-    top = phero(H, trail, ['Presentation', 'videos'], 'Bellver\'s official presentations in one place. Pick a video from the list, press play, and read the short summary underneath.')
+    top = phero(H, trail, ['Presentation', 'videos'], 'Bellver\'s official presentations in one place, plus my animated 2x2 matrix explainer. Pick a video from the list, press play, and read the short summary underneath.')
+    LIST = [PRES[0], MXV] + PRES[1:]
 
     s_overview = f'''<div class="split vsum">
  <div class="prose">
@@ -207,10 +209,25 @@ def videos(H='videos/'):
  </div>
  <div><h3 class="h3" style="margin-bottom:12px">Announced roadmap</h3><div class="tbl-wrap"><table class="tbl" style="min-width:0"><tbody>{rd}</tbody></table></div><p class="fine">Plans as presented at launch, plus Bellver's October 2026 update. Not promises. Dates may change.</p></div>
 </div>'''
-    sums = {'overview': s_overview, 'explained': s_explained, 'webinar': s_webinar}
+    s_matrix = f'''<div class="split vsum">
+ <div class="prose">
+  <h3>What you will learn</h3>
+  <ul>
+   <li>Why every cardholder has two seats directly under them</li>
+   <li>How seats fill in reading order, like people getting on a bus</li>
+   <li>Spillover, shown as a champagne tower</li>
+   <li>Why every level doubles, and what 8,190 seats in 12 levels means</li>
+   <li>The 0.1% reward, explained with a neighbour and a toll gate</li>
+   <li>Why a 2x2 matrix: six honest reasons</li>
+   <li>Stars, the $100 monthly rule and payday</li>
+  </ul>
+ </div>
+ <div class="box"><div class="ico">{ic('tree')}</div><h3 class="h3">Play with it yourself</h3><p>The <a class="inl" href="{L('matrix/', H)}">2x2 Matrix Explained</a> page has the same pictures as a diagram you can click, plus a calculator, a quiz and a free PDF guide.</p><div class="btn-row" style="opacity:1;animation:none;margin-top:14px"><a class="btn btn-go btn-sm" href="{L('matrix/', H)}">Open the matrix page</a></div></div>
+</div>'''
+    sums = {'overview': s_overview, 'matrix-explained': s_matrix, 'explained': s_explained, 'webinar': s_webinar}
 
     panels = ''; items = ''
-    for i, v in enumerate(PRES):
+    for i, v in enumerate(LIST):
         vid, title, kind, dur, typ, src, img, desc, iso = v
         panels += f'''<article class="vpanel" id="{vid}" data-panel="{vid}" aria-labelledby="t-{vid}">
   {pplayer(v, H, i == 0)}
@@ -228,12 +245,12 @@ def videos(H='videos/'):
    <a class="vtut" href="{L('tutorials/', H)}">{ic('play-c')}<span><b>Looking for how-to videos?</b><small>Open the tutorial videos</small></span></a>
   </aside>
  </div>
- <p class="vnote" style="margin-top:16px">Official Bellver videos. Parts of the voice-over and graphics were created with AI.</p>
+ <p class="vnote" style="margin-top:16px">Official Bellver videos, plus MTG's own 2x2 matrix explainer (narrated with his AI voice). Parts of the voice-over and graphics in the official videos were created with AI.</p>
 </div></section>'''
     body = top + lib + help_band(H)
     return page(H, 'videos', 'Bellver Card Presentation Videos: 3 Minute, 27 Minute and Launch Webinar | MTG',
                 'Watch the official Bellver Card presentations in English: the 3-minute overview, the 27-minute presentation and the launch webinar, each with a short written summary.',
-                'images/og/og-bellver-videos.jpg', 'Bellver Card presentation videos', body, ld_extra=[vld(v, H) for v in PRES], trail=trail)
+                'images/og/og-bellver-videos.jpg', 'Bellver Card presentation videos', body, ld_extra=[vld(v, H) for v in PRES] + [vld(MXV, H, MXV_DATE, jpg=True)], trail=trail)
 
 
 # ------------------------------------------------------------------ TUTORIAL VIDEOS
@@ -290,8 +307,16 @@ def tutorials(H='tutorials/'):
  </article>'''
     panels += f'''<article class="vpanel" id="tut-04" data-panel="tut-04" aria-labelledby="t-tut-04">
   {pplayer(FUND, H)}
-  <div class="vhead"><span class="badge green">Tutorial 4, {FUND[3]}</span><h2 id="t-tut-04">How to fund your wallet and <em>order your card</em></h2><p class="muted">{FUND[7]} Wallet addresses, balances, codes and card details are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-3', H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">Tutorial 4, {FUND[3]}</span><h2 id="t-tut-04">How to fund your wallet and <em>order your card</em></h2><p class="muted">{FUND[7]} Wallet addresses, balances, codes and card details are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-3', H)}">Read the written steps {ic('arrow')}</a> &nbsp; <a class="tlink" href="{L('matrix/', H)}">How the 2x2 matrix works {ic('arrow')}</a></p></div>
   <div class="vsum-d">{fund_det}</div>
+ </article>'''
+    mm = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in MXV_MOMENTS)
+    mt = ''.join(f'<p>{p}</p>' for p in MXV_TRANSCRIPT)
+    panels += f'''<article class="vpanel" id="matrix-explained" data-panel="matrix-explained" aria-labelledby="t-matrix-explained">
+  {pplayer(MXV, H)}
+  <div class="vhead"><span class="badge green">{ic('tree')}Explainer, {MXV[3]}</span><h2 id="t-matrix-explained">The 2x2 matrix, <em>made simple</em></h2><p class="muted">{MXV[7]} Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('matrix/', H)}">Open the matrix page {ic('arrow')}</a></p></div>
+  <div class="vsum-d"><details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{mm}</ul></div></details>
+  <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{mt}</div></details></div>
  </article>'''
     vid, title, kind, dur, typ, src, img, desc, iso = WALK
     panels += f'''<article class="vpanel" id="walkthrough" data-panel="walkthrough" aria-labelledby="t-walkthrough">
@@ -311,6 +336,9 @@ def tutorials(H='tutorials/'):
 <button class="vitem" type="button" data-show="tut-04" aria-controls="tut-04">
   <span class="vthumb"><img src="{L(FUND[6] + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{FUND[3]}</span></span>
   <span class="vtx"><b>Fund your wallet and order your card</b><small>Tutorial 4</small></span></button>
+<button class="vitem" type="button" data-show="matrix-explained" aria-controls="matrix-explained">
+  <span class="vthumb"><img src="{L(MXV[6] + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{MXV[3]}</span></span>
+  <span class="vtx"><b>The 2x2 matrix, made simple</b><small>Explainer</small></span></button>
 <button class="vitem" type="button" data-show="walkthrough" aria-controls="walkthrough">
   <span class="vthumb"><img src="{L(img + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{dur}</span></span>
   <span class="vtx"><b>{title}</b><small>Back office tour</small></span></button>'''
@@ -351,9 +379,13 @@ def tutorials(H='tutorials/'):
     fund_ld["transcript"] = ' '.join(FUND_TRANSCRIPT)
     fund_ld["author"] = reg_ld["author"]
     fund_ld["keywords"] = "fund Bellver wallet, BNB network fees, USDT BEP-20, order Bellver Card, Bellver virtual card, Bellver KYC, Bellver Google Pay, Bellver tutorial"
+    mx_ld = vld(MXV, H, MXV_DATE, jpg=True)
+    mx_ld["transcript"] = ' '.join(MXV_TRANSCRIPT)
+    mx_ld["author"] = reg_ld["author"]
+    mx_ld["keywords"] = "Bellver 2x2 matrix, Bellver spillover, Bellver rewards explained, Bellver star ranks, Bellver $100 rule, Bellver explainer video"
     return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Register, Secure, Back Up Your Key, Fund and Order Your Card | MTG',
                 'Step-by-step Bellver Card tutorials by MTG: register, secure your account with 2FA, back up your Web3 wallet private key, then fund your wallet with BNB and USDT and order your card. Click by click, with transcripts.',
-                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[reg_ld, sec_ld, key_ld, fund_ld, vld(WALK, H)], trail=trail)
+                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[reg_ld, sec_ld, key_ld, fund_ld, mx_ld, vld(WALK, H)], trail=trail)
 
 
 # ------------------------------------------------------------------ OVERVIEW
@@ -362,9 +394,10 @@ MORE = {
  'how': 'Where your money sits, how it reaches the card, physical vs virtual, and who is behind Bellver.',
  'prices': 'All four levels side by side, every published fee, add-ons, shipping and upgrades.',
  'rewards': 'Direct commissions, the 2x2 matrix, the six ranks and the rules for staying qualified.',
+ 'matrix': 'The 2x2 matrix taught step by step: a diagram you can play with, a calculator, a quiz and a free PDF.',
  'partner': 'Who it suits, what you earn, a first-week plan and the honest way to share the card.',
- 'videos': 'The 3-minute overview, the 27-minute presentation and the launch webinar, with summaries.',
- 'tutorials': 'Register, secure your account, back up your private key, then fund your wallet and order your card, step by step.',
+ 'videos': 'The 3-minute overview, the 2x2 matrix explainer, the 27-minute presentation and the launch webinar, with summaries.',
+ 'tutorials': 'Register, secure your account, back up your private key, then fund your wallet and order your card, step by step. Plus the 2x2 matrix explainer.',
  'faq': 'Two dozen straight answers and a plain-words glossary.',
  'docs': 'The official price list, compensation plan and presentation slides as PDFs.',
 }
@@ -398,13 +431,14 @@ def learn(H='learn/'):
 DOCS = [
  ('price', 'images/bellver-card-price-list-preview.webp', 'Price list', 'All four levels, limits, shipping, upgrades, add-ons and transaction fees on one page.', '1 page, 2.3 MB'),
  ('plan', 'images/bellver-card-compensation-plan-preview.webp', 'Compensation plan', 'Commissions, monthly rewards, the six ranks and the qualification rules.', '1 page, 0.4 MB'),
+ ('matrix', 'images/bellver-2x2-matrix-guide-preview.webp', '2x2 matrix guide by MTG', 'The 2x2 matrix in plain words: seats, spillover, levels, the 0.1%, why a matrix, stars and the $100 rule. Not an official Bellver document.', '7 pages, 0.4 MB'),
  ('slides', 'images/bellver-card-presentation-preview.webp', 'Presentation slides', 'The official 20-slide presentation, ideal for sharing or presenting the card yourself.', '20 slides, 8.8 MB'),
 ]
 
 
 def docs(H='docs/'):
     trail = T(('Documents', abs_url(H)))
-    top = phero(H, trail, ['Official', 'documents'], 'Bellver\'s official documents, version 08/2026. Open them in your browser, save them, or share them with someone you are introducing to the card.')
+    top = phero(H, trail, ['Official', 'documents'], 'Bellver\'s official documents, version 08/2026, plus my plain-words 2x2 matrix guide. Open them in your browser, save them, or share them with someone you are introducing to the card.')
     cards = ''
     for i, (k, img, t, d, m) in enumerate(DOCS):
         href = L(DOCS_PDF[k], H)

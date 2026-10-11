@@ -175,7 +175,7 @@ def build(here=''):
     <div style="--m1:var(--biz-1);--m2:var(--biz-2)"><span>Business</span><b>$200</b><small>$300 Special Edition</small></div>
     <div style="--m1:var(--gold-1);--m2:var(--gold-2)"><span>Gold</span><b>$400</b><small>$500 Special Edition</small></div>
    </div>
-   <div class="btn-row"><a class="btn btn-ghost" href="{L('rewards/', H)}">How rewards work</a>{order_btn('Order and get your link')}</div>
+   <div class="btn-row"><a class="btn btn-ghost" href="{L('rewards/', H)}">How rewards work</a><a class="btn btn-ghost" href="{L('matrix/', H)}"><span class="play">{ic('play')}</span>The 2x2 matrix explained</a>{order_btn('Order and get your link')}</div>
    <p class="fine">To receive monthly rewards you load at least $100 a month onto your own card. That is not a subscription fee, it is your own money to spend. Basic cardholders earn direct commissions only. Earnings are not guaranteed.</p>
   </div>
   {payback_calc(H)}

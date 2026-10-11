@@ -97,6 +97,8 @@ I = {
  'pin': '<path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>',
  'swap': '<path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5"/>',
  'eye': '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
+ 'tree': '<circle cx="12" cy="5" r="2.6"/><circle cx="5.5" cy="18" r="2.6"/><circle cx="18.5" cy="18" r="2.6"/><path d="M10.7 7.3L6.8 15.6M13.3 7.3l3.9 8.3"/>',
+ 'down': '<path d="M12 4v15M6 13l6 6 6-6"/>',
  'building': '<path d="M4 21V5.5A1.5 1.5 0 0 1 5.5 4h7A1.5 1.5 0 0 1 14 5.5V21M14 10h4.5A1.5 1.5 0 0 1 20 11.5V21M3 21h18M8 8h2M8 12h2M8 16h2"/>',
 }
 
@@ -117,13 +119,14 @@ NAV = [
  ('how', 'how-it-works/', 'How It Works', 'Wallet, funding and security', 'layers', 'The card'),
  ('prices', 'prices/', 'Prices & Limits', 'Four levels, fees, add-ons', 'tag', 'The card'),
  ('rewards', 'rewards/', 'Rewards Program', 'Commissions, matrix, ranks', 'users', 'Earn'),
+ ('matrix', 'matrix/', '2x2 Matrix Explained', 'The rewards plan, made simple', 'tree', 'Earn'),
  ('partner', 'partner/', 'Become a Partner', 'Share the card, step by step', 'rocket', 'Earn'),
  ('videos', 'videos/', 'Presentation Videos', '3 min, 27 min and the full talk', 'video', 'Watch'),
  ('tutorials', 'tutorials/', 'Tutorial Videos', 'Short how-to guides', 'play-c', 'Watch'),
  ('faq', 'faq/', 'FAQ & Glossary', 'Straight answers, plain words', 'help', 'Help'),
  ('docs', 'docs/', 'Documents', 'Price list, plan, slides (PDF)', 'download', 'Help'),
 ]
-DOCS_PDF = {'price': 'docs/bellver-card-price-list.pdf', 'plan': 'docs/bellver-card-compensation-plan.pdf', 'slides': 'docs/bellver-card-presentation.pdf'}
+DOCS_PDF = {'matrix': 'docs/bellver-2x2-matrix-explained-by-mtg.pdf', 'price': 'docs/bellver-card-price-list.pdf', 'plan': 'docs/bellver-card-compensation-plan.pdf', 'slides': 'docs/bellver-card-presentation.pdf'}
 
 
 def dl_btn(kind, here, label, cls='btn btn-ghost'):
@@ -303,7 +306,7 @@ def final_cta(here, title='Let\'s make it <span class="hap">happen</span>', text
 
 def footer(here):
     cols = [
-     ('The card', [('Overview', 'learn/'), ('How It Works', 'how-it-works/'), ('Prices & Limits', 'prices/'), ('Rewards Program', 'rewards/'), ('Get Started', 'get-started/')]),
+     ('The card', [('Overview', 'learn/'), ('How It Works', 'how-it-works/'), ('Prices & Limits', 'prices/'), ('Rewards Program', 'rewards/'), ('2x2 Matrix Explained', 'matrix/'), ('Get Started', 'get-started/')]),
      ('Learn', [('Presentation Videos', 'videos/'), ('Tutorial Videos', 'tutorials/'), ('FAQ & Glossary', 'faq/'), ('Documents', 'docs/')]),
      ('MTG', [('All Crypto Cards', '/cards/'), ('About MTG', '/about.html')]),
     ]

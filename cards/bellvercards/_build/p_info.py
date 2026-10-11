@@ -187,7 +187,7 @@ def prices(H='prices/'):
   <h3 class="h3">Which level should you choose?</h3>
   <ul>
    <li><b>Basic, $99:</b> you mainly want the card and are happy with $1,000 a day.</li>
-   <li><b>Premium, $270:</b> the minimum Bellver recommends if you want monthly rewards.</li>
+   <li><b>Premium, $270:</b> the minimum Bellver recommends if you want monthly rewards. <a class="inl" href="{L('matrix/', H)}">How the 2x2 matrix works</a></li>
    <li><b>Business, $490:</b> the most popular choice. Deeper rewards, and three Business referrals cover its cost.</li>
    <li><b>Gold, $990:</b> the highest limits and the only level that can reach 18 to 20 reward levels.</li>
   </ul>
@@ -217,7 +217,7 @@ def rewards(H='rewards/'):
      <span class="pbtn">{ic('play')}</span><span class="plabel">27 min</span>
     </div>'''
     top = phero(H, trail, ['The rewards', 'program'], 'Optional, and simple at its core: recommend the card to two people. Below are the full rules, so you know how to qualify, how you are paid and how to stay qualified.', art,
-                order_btn('Order and get your link') + dl_btn('plan', H, 'Compensation plan (PDF)'))
+                order_btn('Order and get your link') + f'<a class="btn btn-ghost" href="{L("matrix/", H)}"><span class="play">{ic("play")}</span>Watch the matrix explained</a>' + dl_btn('plan', H, 'Compensation plan (PDF)'))
 
     ways = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Two ways <em>to earn</em></h2></div>
@@ -245,6 +245,7 @@ def rewards(H='rewards/'):
    <li><b>Only cardholders count.</b> Registering alone does not take a place.</li>
    <li><b>Direct commissions do not need a card of your own.</b> Bellver pays them on personal referrals in all cases. Monthly rewards do: you get your matrix position when your card appears, and if someone you refer buys before you, they are not placed in your matrix.</li>
   </ul>
+  <div class="btn-row"><a class="btn btn-go" href="{L('matrix/', H)}">{ic('tree')}Learn the matrix step by step</a></div>
  </div>
 </div></section>'''
 
