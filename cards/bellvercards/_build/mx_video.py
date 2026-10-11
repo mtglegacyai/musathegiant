@@ -2,7 +2,7 @@
 """MTG's animated 2x2 matrix explainer (11 Oct 2026): shared by the matrix, tutorials and presentation video pages."""
 # (id, title, kind, duration label, type, source, thumb, description, iso duration)
 MXV = ('matrix-explained', 'The Bellver 2x2 matrix, made simple', 'Explainer by MTG', '8:45', 'mp4', 'videos/bellver-2x2-matrix-explained.mp4',
-       'images/bellver-2x2-matrix-explainer-poster',
+       'images/bellver-2x2-matrix-explainer-thumbnail',
        'An animated explainer in MTG\'s own voice: two seats under everyone, reading-order filling, spillover, doubling levels, the 0.1% reward, why a 2x2 matrix, star ranks and the $100 monthly rule.',
        'PT8M45S')
 MXV_DATE = '2026-10-11'

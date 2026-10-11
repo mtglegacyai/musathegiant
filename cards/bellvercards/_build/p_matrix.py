@@ -94,7 +94,7 @@ def hero_svg():
 def matrix(H='matrix/'):
     trail = T(('Rewards Program', abs_url('rewards/')), ('2x2 Matrix Explained', abs_url(H)))
     art = f'''<div class="player mx-video mx-herovid" id="p-matrix-explained" role="button" tabindex="0" aria-label="Play: the Bellver 2x2 matrix explained" data-src="{L(VIDEO, H)}" data-title="The Bellver 2x2 matrix, made simple">
-  <img src="{L('images/bellver-2x2-matrix-explainer-poster-640.webp', H)}" srcset="{L('images/bellver-2x2-matrix-explainer-poster-640.webp', H)} 640w, {L('images/bellver-2x2-matrix-explainer-poster.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="The 2x2 matrix made simple: explainer video by MTG" width="1280" height="720" fetchpriority="high">
+  <img src="{L('images/bellver-2x2-matrix-explainer-thumbnail-640.webp', H)}" srcset="{L('images/bellver-2x2-matrix-explainer-thumbnail-640.webp', H)} 640w, {L('images/bellver-2x2-matrix-explainer-thumbnail.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="The 2x2 matrix made simple: explainer video by MTG" width="1280" height="720" fetchpriority="high">
   <span class="pbtn">{ic('play')}</span><span class="plabel">8:45</span>
  </div><p class="mx-vcap">{ic('play-c')}Watch it explained in under 9 minutes, in my own voice</p>'''
     top = phero(H, trail, ['The 2x2 matrix', 'made simple'],
@@ -385,7 +385,7 @@ def matrix(H='matrix/'):
                 "inLanguage": "en", "author": {"@id": SITE + "/#mtg"}, "teaches": "How the Bellver Card 2x2 matrix fills, spillover, levels, 0.1% rewards, star ranks and the $100 monthly rule",
                 "url": abs_url(H), "hasPart": {"@type": "DigitalDocument", "name": "Bellver 2x2 Matrix Explained (PDF)", "encodingFormat": "application/pdf", "url": abs_url(GUIDE_PDF)}}
     vid_ld = {"@type": "VideoObject", "name": "The Bellver 2x2 Matrix, Made Simple", "description": "An animated explainer in MTG's own voice: two seats under everyone, reading-order filling, spillover, doubling levels, the 0.1% reward, why a 2x2 matrix, star ranks and the $100 monthly rule.",
-              "thumbnailUrl": abs_url('images/bellver-2x2-matrix-explainer-poster.jpg'), "contentUrl": abs_url(VIDEO), "uploadDate": "2026-10-11", "duration": "PT8M45S", "inLanguage": "en", "author": {"@id": SITE + "/#mtg"}}
+              "thumbnailUrl": abs_url('images/bellver-2x2-matrix-explainer-thumbnail.jpg'), "contentUrl": abs_url(VIDEO), "uploadDate": "2026-10-11", "duration": "PT8M45S", "inLanguage": "en", "author": {"@id": SITE + "/#mtg"}}
     return page(H, 'matrix', 'Bellver 2x2 Matrix Explained Simply: Spillover, Levels, 0.1% Rewards | MTG',
                 'The Bellver Card 2x2 matrix in plain words: two seats under everyone, reading-order filling, spillover, doubling levels, 0.1% rewards, star ranks and the $100 rule. With a playable diagram, calculator, quiz and free PDF.',
                 'images/og/og-bellver-matrix.jpg', 'The Bellver 2x2 matrix explained simply', body, ld_extra=[faq_ld, learn_ld, vid_ld], trail=trail)
