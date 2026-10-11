@@ -124,7 +124,7 @@ onScroll();
     function enterTheater(){
       var r=p.getBoundingClientRect();
       var sp=d.createElement('div'); sp.className='pspacer'; sp.style.height=r.height+'px'; p.parentNode.insertBefore(sp,p);
-      var th=d.createElement('div'); th.className='vtheater'; th.setAttribute('role','dialog'); th.setAttribute('aria-modal','true'); th.setAttribute('aria-label',title);
+      var th=d.createElement('div'); th.className='vtheater'+(p.classList.contains('vert')?' vt-vert':''); th.setAttribute('role','dialog'); th.setAttribute('aria-modal','true'); th.setAttribute('aria-label',title);
       th.innerHTML='<div class="vback"></div><button type="button" class="vclose" aria-label="Close video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="vbox"><div class="vlid"><i class="vcam" aria-hidden="true"></i><div class="vscr"></div></div><div class="vbase" aria-hidden="true"><i></i></div></div>';
       var box=th.querySelector('.vscr'); box.insertBefore(p,box.firstChild);
       if(canFS&&!coarse){var fb=d.createElement('button');fb.type='button';fb.className='vfs';fb.setAttribute('aria-label','Full screen');fb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';fb.addEventListener('click',function(e){e.stopPropagation();th.classList.add('ufs');fsToggle(th);});th.appendChild(fb);}
@@ -136,7 +136,7 @@ onScroll();
       openTheater=closeT;
       setTimeout(function(){var c=th.querySelector('.vclose');if(c)c.focus({preventScroll:true});},60);
       /* phones: try real full screen + landscape (Android); otherwise CSS turns the video sideways */
-      if(coarse&&mqRotate.matches&&th.requestFullscreen&&screen.orientation&&screen.orientation.lock){
+      if(coarse&&mqRotate.matches&&!p.classList.contains('vert')&&th.requestFullscreen&&screen.orientation&&screen.orientation.lock){
         th.requestFullscreen({navigationUI:'hide'}).then(function(){
           T&&(T.fs=true);
           return screen.orientation.lock('landscape').then(function(){th.classList.add('locked');setTimeout(function(){if(innerWidth<innerHeight) th.classList.remove('locked');},450);});
@@ -196,6 +196,11 @@ onScroll();
         v.setAttribute('controlsList','nodownload noremoteplayback'); v.disablePictureInPicture=false;
         var poster=p.querySelector('img'); if(poster) v.poster=poster.currentSrc||poster.src;
         v.addEventListener('ended',finished);
+        if(p.classList.contains('vert')){
+          /* vertical video: stay upright in full screen too, never switch to landscape */
+          var keepUp=function(){var fe=d.fullscreenElement||d.webkitFullscreenElement;if(fe&&(fe===v||fe.contains(v))&&screen.orientation&&screen.orientation.lock){screen.orientation.lock('portrait').catch(function(){});}};
+          d.addEventListener('fullscreenchange',keepUp); d.addEventListener('webkitfullscreenchange',keepUp);
+        }
         p.insertBefore(v,pause); var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
       }
     }

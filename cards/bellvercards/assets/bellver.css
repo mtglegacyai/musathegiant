@@ -852,9 +852,9 @@ html.vt-open,html.vt-open body{overflow:hidden}
 }
 /* phone held upright: turn the laptop sideways so the video is as big as possible */
 @media (orientation:portrait) and (max-width:640px){
-  .vtheater:not(.locked) .vbox{--W:min(calc(var(--vh) - 110px - 2 * var(--oh)),calc((100vw - 28px - 2 * var(--bz) - var(--bs)) * 16 / 9 + 2 * var(--bz)))}
-  .vtheater:not(.locked) .vbox{top:calc(50% + 24px);width:var(--W);transform:translate(-50%,-50%) rotate(90deg) scale(.9)}
-  .vtheater.on:not(.locked) .vbox{transform:translate(-50%,-50%) rotate(90deg) scale(1)}
+  .vtheater:not(.locked):not(.vt-vert) .vbox{--W:min(calc(var(--vh) - 110px - 2 * var(--oh)),calc((100vw - 28px - 2 * var(--bz) - var(--bs)) * 16 / 9 + 2 * var(--bz)))}
+  .vtheater:not(.locked):not(.vt-vert) .vbox{top:calc(50% + 24px);width:var(--W);transform:translate(-50%,-50%) rotate(90deg) scale(.9)}
+  .vtheater.on:not(.locked):not(.vt-vert) .vbox{transform:translate(-50%,-50%) rotate(90deg) scale(1)}
 }
 /* short landscape phones: less chrome so the video keeps its height */
 @media (max-height:480px){
@@ -1390,3 +1390,13 @@ table.tbl.mx-tbl{min-width:0}
 .btn-tour .play svg{width:10px;height:10px}
 .tour-tip{font-size:.8rem;line-height:1.35;color:var(--soft)}
 .tour-tip b{color:#fcbe25;font-weight:800}
+
+/* vertical (9:16) videos: the phone frame is part of the video, so no laptop around it */
+.player.vert{aspect-ratio:9/16}
+.player.vert video{object-fit:contain;background:#05120c}
+.vt-vert{--top:76px;--bot:20px}
+.vt-vert .vbox{--W:min(calc(100vw - 28px),calc((var(--vh) - var(--top) - var(--bot)) * 9 / 16))}
+.vt-vert .vlid{padding:0;border:0;border-radius:22px;background:none;box-shadow:0 30px 90px rgba(0,0,0,.7),0 0 90px rgba(52,204,136,.18)}
+.vt-vert .vscr{border-radius:22px}
+.vt-vert .vcam,.vt-vert .vbase{display:none}
+.vtheater.vt-vert.ufs:fullscreen .vbox{--W:min(100vw,calc(100dvh * 9 / 16))}
