@@ -1381,3 +1381,12 @@ table.tbl.mx-tbl{min-width:0}
 }
 @media (prefers-reduced-motion:reduce){.mx-tree .seat.spill circle,.mx-tree .drop{animation:none}.mx-rung .db i{transform:none;transition:none}}
 @media (max-width:860px){.phero-grid:has(.mx-herovid) .phero-art{order:-1}}
+
+/* ---- hero: "How to browse this guide" tour button (replaces the old kicker pill) ---- */
+.tour{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-bottom:18px}
+.btn-tour{--c1:#fff0b8;--c2:#fcbe25;min-height:38px;padding:0 14px 0 12px;font-size:.78rem;box-shadow:inset 0 0 0 1px rgba(252,190,37,.6)}
+.btn-tour:hover{box-shadow:inset 0 0 0 1.5px #fcbe25,0 12px 28px rgba(0,0,0,.35)}
+.btn-tour .play{width:24px;height:24px;margin-left:-4px}
+.btn-tour .play svg{width:10px;height:10px}
+.tour-tip{font-size:.8rem;line-height:1.35;color:var(--soft)}
+.tour-tip b{color:#fcbe25;font-weight:800}

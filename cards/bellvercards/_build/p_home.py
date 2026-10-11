@@ -55,7 +55,11 @@ def build(here=''):
  <div class="wrap">
   <div class="hero-grid">
    <div>
-    <span class="kicker"><i>{ic('check')}</i>Physical Visa or instant virtual Mastercard</span>
+    <div class="tour">
+     <a class="btn btn-ghost btn-sm btn-tour" href="#tour" data-play="#vtour" title="New here? Watch this 6-minute tour first. It shows you how to browse this guide." aria-describedby="tour-tip"><span class="play">{ic('play')}</span>How to browse this guide</a>
+     <span class="tour-tip" id="tour-tip"><b>New here?</b> Watch this 6-min tour first.</span>
+     <div hidden><div class="player" id="vtour" role="button" tabindex="-1" aria-label="Play: how to browse my Bellver Card guide" data-src="{L('videos/bellver-guide-how-to-browse.mp4', H)}" data-title="How to browse my Bellver Card guide"><img src="{L('images/bellver-guide-how-to-browse-poster.webp', H)}" alt="" width="1280" height="720" loading="lazy"></div></div>
+    </div>
     <h1 class="display"><span class="ln"><span style="--l:0">The card<span class="tri" aria-hidden="true"></span></span></span><span class="ln"><span style="--l:1">that can <span class="pay">pay</span></span></span><span class="ln"><span style="--l:2">your bills</span></span></h1>
     <p class="lead">Fund it with crypto. Spend in any currency, anywhere in the world. And when the people you recommend load their cards, you earn a share every month.</p>
     <div class="btn-row">
