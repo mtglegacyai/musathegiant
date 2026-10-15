@@ -3,6 +3,7 @@
 from bv import *  # noqa
 from p_info import phero, T
 from mx_video import MXV, MXV_DATE, MXV_MOMENTS, MXV_TRANSCRIPT
+from dash_video import DASH, DASH_DATE, DASH_MOMENTS, DASH_TRANSCRIPT
 
 # (id, title, kind, duration label, type, source, thumb, description, iso duration)
 PRES = [
@@ -13,8 +14,6 @@ PRES = [
  ('webinar', 'Bellver Card launch webinar', 'Launch webinar', 'Full talk', 'yt', YT_WEBINAR, 'images/bellver-card-launch-webinar-thumbnail',
   'The English launch webinar with the founder and the head of operations in Singapore: the story, the partners, early numbers and the roadmap.', None),
 ]
-WALK = ('walk', 'Bellver dashboard walkthrough', 'Back office tour', '11:53', 'mp4', MP4_DASH, 'images/bellver-card-dashboard-walkthrough-thumbnail',
-        'A guided tour of the Bellver back office: every coloured field, your wallet, deposits, withdrawals, cards and the referral area.', 'PT11M53S')
 
 # Tutorial 1: the finished registration video (MTG, 9 Oct 2026). It plays first, above the dashboard walkthrough.
 REG = ('tut-01', 'How to register your BellverCard account', 'Start here', '2:42', 'mp4', 'videos/tutorials/01-register-your-bellver-card-account.mp4',
@@ -116,7 +115,7 @@ FUND_TRANSCRIPT = ["Hi, my name is MTG, Your Digital Architect. Thank you for ta
 # Tutorial placeholders. Upload an MP4 with exactly this name into cards/bellvercards/videos/tutorials/
 # and the matching tile switches from "Coming soon" to a playable video by itself.
 TUTS = [
- ('05-top-up-and-pay-with-your-phone.mp4', 'Top up and pay with your phone', 'Load your card, add it to Apple Pay or Google Pay and start paying.', 'nfc', 5),
+ ('06-top-up-and-pay-with-your-phone.mp4', 'Top up and pay with your phone', 'Load your card, add it to Apple Pay or Google Pay and start paying.', 'nfc', 5),
 ]
 
 
@@ -310,6 +309,15 @@ def tutorials(H='tutorials/'):
   <div class="vhead"><span class="badge green">Tutorial 4, {FUND[3]}</span><h2 id="t-tut-04">How to fund your wallet and <em>order your card</em></h2><p class="muted">{FUND[7]} Wallet addresses, balances, codes and card details are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-3', H)}">Read the written steps {ic('arrow')}</a> &nbsp; <a class="tlink" href="{L('matrix/', H)}">How the 2x2 matrix works {ic('arrow')}</a></p></div>
   <div class="vsum-d">{fund_det}</div>
  </article>'''
+    dm = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in DASH_MOMENTS)
+    dt = ''.join(f'<p>{p}</p>' for p in DASH_TRANSCRIPT)
+    panels += f'''<article class="vpanel" id="walkthrough" data-panel="walkthrough" aria-labelledby="t-walkthrough">
+  {pplayer(DASH, H)}
+  <div class="vhead"><span class="badge green">Tutorial 5, {DASH[3]}</span><h2 id="t-walkthrough">Your Bellver dashboard, <em>fully explained</em></h2><p class="muted">{DASH[7]} Personal details are blurred. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('matrix/#step7', H)}">The $100 rule explained {ic('arrow')}</a></p></div>
+  <div class="vsum-d"><details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{dm}</ul></div></details>
+  {walk_det}
+  <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{dt}</div></details></div>
+ </article>'''
     mm = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in MXV_MOMENTS)
     mt = ''.join(f'<p>{p}</p>' for p in MXV_TRANSCRIPT)
     panels += f'''<article class="vpanel" id="matrix-explained" data-panel="matrix-explained" aria-labelledby="t-matrix-explained">
@@ -317,12 +325,6 @@ def tutorials(H='tutorials/'):
   <div class="vhead"><span class="badge green">{ic('tree')}Explainer, {MXV[3]}</span><h2 id="t-matrix-explained">The 2x2 matrix, <em>made simple</em></h2><p class="muted">{MXV[7]} Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('matrix/', H)}">Open the matrix page {ic('arrow')}</a></p></div>
   <div class="vsum-d"><details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{mm}</ul></div></details>
   <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{mt}</div></details></div>
- </article>'''
-    vid, title, kind, dur, typ, src, img, desc, iso = WALK
-    panels += f'''<article class="vpanel" id="walkthrough" data-panel="walkthrough" aria-labelledby="t-walkthrough">
-  {pplayer(WALK, H)}
-  <div class="vhead"><span class="badge green">Watch after you register, {dur}</span><h2 id="t-walkthrough">Dashboard <em>walkthrough</em></h2><p class="muted">Watch this once after you register and you will know where everything is in your back office.</p></div>
-  <div class="vsum-d">{walk_det}</div>
  </article>'''
     items = f'''<button class="vitem" type="button" data-show="tut-01" aria-controls="tut-01" aria-current="true">
   <span class="vthumb"><img src="{L(rimg + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{REG[3]}</span></span>
@@ -336,12 +338,12 @@ def tutorials(H='tutorials/'):
 <button class="vitem" type="button" data-show="tut-04" aria-controls="tut-04">
   <span class="vthumb"><img src="{L(FUND[6] + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{FUND[3]}</span></span>
   <span class="vtx"><b>Fund your wallet and order your card</b><small>Tutorial 4</small></span></button>
+<button class="vitem" type="button" data-show="walkthrough" aria-controls="walkthrough">
+  <span class="vthumb"><img src="{L(DASH[6] + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{DASH[3]}</span></span>
+  <span class="vtx"><b>Your dashboard, fully explained</b><small>Tutorial 5</small></span></button>
 <button class="vitem" type="button" data-show="matrix-explained" aria-controls="matrix-explained">
   <span class="vthumb"><img src="{L(MXV[6] + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{MXV[3]}</span></span>
-  <span class="vtx"><b>The 2x2 matrix, made simple</b><small>Explainer</small></span></button>
-<button class="vitem" type="button" data-show="walkthrough" aria-controls="walkthrough">
-  <span class="vthumb"><img src="{L(img + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{dur}</span></span>
-  <span class="vtx"><b>{title}</b><small>Back office tour</small></span></button>'''
+  <span class="vtx"><b>The 2x2 matrix, made simple</b><small>Explainer</small></span></button>'''
     for i, (f, t, d, icn, step) in enumerate(TUTS):
         n = f[:2]
         panels += f'''<article class="vpanel" id="tut-{n}" data-panel="tut-{n}" aria-labelledby="t-tut-{n}">
@@ -349,11 +351,11 @@ def tutorials(H='tutorials/'):
    <div class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></div>
    <span class="pbtn">{ic('play')}</span><span class="plabel">Coming soon</span>
   </div>
-  <div class="vhead"><span class="badge green">Tutorial {i + 5}, coming soon</span><h2 id="t-tut-{n}">{t}</h2><p class="muted">{d}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">Tutorial {i + 6}, coming soon</span><h2 id="t-tut-{n}">{t}</h2><p class="muted">{d}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></p></div>
  </article>'''
         items += f'''<button class="vitem" type="button" data-show="tut-{n}" aria-controls="tut-{n}">
   <span class="vthumb"><span class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></span><span class="vdur">Soon</span></span>
-  <span class="vtx"><b>{t}</b><small>Tutorial {i + 5}</small></span></button>'''
+  <span class="vtx"><b>{t}</b><small>Tutorial {i + 6}</small></span></button>'''
     lib = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap">
  <div class="vlib">
   <div class="vstage">{panels}</div>
@@ -379,13 +381,17 @@ def tutorials(H='tutorials/'):
     fund_ld["transcript"] = ' '.join(FUND_TRANSCRIPT)
     fund_ld["author"] = reg_ld["author"]
     fund_ld["keywords"] = "fund Bellver wallet, BNB network fees, USDT BEP-20, order Bellver Card, Bellver virtual card, Bellver KYC, Bellver Google Pay, Bellver tutorial"
+    dash_ld = vld(DASH, H, DASH_DATE, jpg=True)
+    dash_ld["transcript"] = ' '.join(DASH_TRANSCRIPT)
+    dash_ld["author"] = reg_ld["author"]
+    dash_ld["keywords"] = "Bellver dashboard walkthrough, Bellver back office, Bellver $100 monthly spend target, Bellver withdraw, Bellver statement, Bellver referral, Bellver tutorial"
     mx_ld = vld(MXV, H, MXV_DATE, jpg=True)
     mx_ld["transcript"] = ' '.join(MXV_TRANSCRIPT)
     mx_ld["author"] = reg_ld["author"]
     mx_ld["keywords"] = "Bellver 2x2 matrix, Bellver spillover, Bellver rewards explained, Bellver star ranks, Bellver $100 rule, Bellver explainer video"
-    return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Register, Secure, Back Up Your Key, Fund and Order Your Card | MTG',
-                'Step-by-step Bellver Card tutorials by MTG: register, secure your account with 2FA, back up your Web3 wallet private key, then fund your wallet with BNB and USDT and order your card. Click by click, with transcripts.',
-                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[reg_ld, sec_ld, key_ld, fund_ld, mx_ld, vld(WALK, H)], trail=trail)
+    return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Register, Secure, Fund, Order and Your Dashboard Explained | MTG',
+                'Step-by-step Bellver Card tutorials by MTG: register, secure your account with 2FA, back up your Web3 wallet private key, fund your wallet and order your card, then a full tour of your dashboard. Click by click, with transcripts.',
+                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[reg_ld, sec_ld, key_ld, fund_ld, dash_ld, mx_ld], trail=trail)
 
 
 # ------------------------------------------------------------------ OVERVIEW
