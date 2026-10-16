@@ -106,6 +106,7 @@ I = {
  'eye': '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
  'tree': '<circle cx="12" cy="5" r="2.6"/><circle cx="5.5" cy="18" r="2.6"/><circle cx="18.5" cy="18" r="2.6"/><path d="M10.7 7.3L6.8 15.6M13.3 7.3l3.9 8.3"/>',
  'down': '<path d="M12 4v15M6 13l6 6 6-6"/>',
+ 'calc': '<rect x="5" y="3" width="14" height="18" rx="2.5"/><rect x="8" y="6" width="8" height="4" rx="1"/><path d="M8.5 13.5h.01M12 13.5h.01M15.5 13.5h.01M8.5 17h.01M12 17h.01M15.5 17h.01"/>',
  'building': '<path d="M4 21V5.5A1.5 1.5 0 0 1 5.5 4h7A1.5 1.5 0 0 1 14 5.5V21M14 10h4.5A1.5 1.5 0 0 1 20 11.5V21M3 21h18M8 8h2M8 12h2M8 16h2"/>',
 }
 
@@ -128,6 +129,8 @@ NAV = [
  ('rewards', 'rewards/', 'Rewards Program', 'Commissions, matrix, ranks', 'users', 'Earn'),
  ('matrix', 'matrix/', '2x2 Matrix Explained', 'The rewards plan, made simple', 'tree', 'Earn'),
  ('partner', 'partner/', 'Become a Partner', 'Share the card, step by step', 'rocket', 'Earn'),
+ ('rcalc', 'rewards-calculator/', 'Rewards Calculator', 'Your 0.1% in your own numbers', 'calc', 'Tools'),
+ ('pcalc', 'payback-calculator/', 'Payback Calculator', 'Can referrals cover your card?', 'coins', 'Tools'),
  ('videos', 'videos/', 'Presentation Videos', '3 min, 27 min and the full talk', 'video', 'Watch'),
  ('tutorials', 'tutorials/', 'Tutorial Videos', 'Short how-to guides', 'play-c', 'Watch'),
  ('faq', 'faq/', 'FAQ & Glossary', 'Straight answers, plain words', 'help', 'Help'),
@@ -237,7 +240,7 @@ def shell(here, key, body, dash):
 {sidebar(here, key)}
 <div class="dmain">
 {topbar(here, key)}
-<main id="main" data-open="2">
+<main id="main" data-open="{9 if key in ('rcalc', 'pcalc') else 2}">
 {body}
 {pager(here, key)}
 </main>
@@ -326,6 +329,7 @@ def footer(here):
         return team_footer(here)
     cols = [
      ('The card', [('Overview', 'learn/'), ('How It Works', 'how-it-works/'), ('Prices & Limits', 'prices/'), ('Rewards Program', 'rewards/'), ('2x2 Matrix Explained', 'matrix/'), ('Get Started', 'get-started/')]),
+     ('Tools', [('Rewards Calculator', 'rewards-calculator/'), ('Payback Calculator', 'payback-calculator/')]),
      ('Learn', [('Presentation Videos', 'videos/'), ('Tutorial Videos', 'tutorials/'), ('FAQ & Glossary', 'faq/'), ('Documents', 'docs/')]),
      ('MTG', [('All Crypto Cards', '/cards/'), ('About MTG', '/about.html')]),
     ]

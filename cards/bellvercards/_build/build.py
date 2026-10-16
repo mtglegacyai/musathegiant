@@ -17,10 +17,10 @@ elif len(sys.argv) > 2 and sys.argv[1] == '--member':
     MEMBER = team.member(sys.argv[2])
     team_shell.configure(MEMBER)
     OUT = os.path.join(ROOT, bv.BASE.strip('/'))
-import p_home, p_info, p_more, p_watch, p_partner, p_matrix
+import p_home, p_info, p_more, p_watch, p_partner, p_matrix, p_tools
 
 PAGES = [('', p_home.build), ('learn/', p_watch.learn), ('get-started/', p_more.start), ('how-it-works/', p_info.how),
-         ('prices/', p_info.prices), ('rewards/', p_info.rewards), ('matrix/', p_matrix.matrix), ('partner/', p_partner.partner), ('videos/', p_watch.videos), ('tutorials/', p_watch.tutorials),
+         ('prices/', p_info.prices), ('rewards/', p_info.rewards), ('matrix/', p_matrix.matrix), ('partner/', p_partner.partner), ('rewards-calculator/', p_tools.rewards_page), ('payback-calculator/', p_tools.payback_page), ('videos/', p_watch.videos), ('tutorials/', p_watch.tutorials),
          ('faq/', p_more.faq), ('docs/', p_watch.docs)]
 
 # old addresses that now live elsewhere: small redirect pages so shared links keep working

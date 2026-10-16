@@ -9,13 +9,14 @@
 
   /* header, progress, back to top, mobile CTA */
   var hdr=$('.hdr'), bar=$('.progress'), top=$('.totop'), mcta=$('.mobile-cta'), heroEnd=$('[data-hero-end]');
-  var ticking=false;
+  var ticking=false, lastSY=window.scrollY, mctaHide=false; /* phone order bar: hides while reading down, returns when scrolling up */
   function onScroll(){
     var y=window.scrollY, h=root.scrollHeight-window.innerHeight, p=h>0?Math.min(1,y/h):0;
     if(hdr) hdr.classList.toggle('scrolled',y>12);
     if(bar) bar.style.setProperty('--p',p.toFixed(4));
     if(top){top.classList.toggle('on',y>700);top.style.setProperty('--p',p.toFixed(4));}
-    if(mcta){var past=heroEnd?heroEnd.getBoundingClientRect().top<0:y>500;var nearEnd=h-y<260;mcta.classList.toggle('on',past&&!nearEnd&&!menuOpen);}
+    if(mcta){var past=heroEnd?heroEnd.getBoundingClientRect().top<0:y>500;var nearEnd=h-y<260;var down=y>lastSY+4, up=y<lastSY-4;if(down)mctaHide=true;else if(up)mctaHide=false;mcta.classList.toggle('on',past&&!nearEnd&&!menuOpen&&!mctaHide);}
+    lastSY=y;
     ticking=false;
   }
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
@@ -247,43 +248,85 @@ onScroll();
   }
   $$('[data-play]').forEach(function(a){a.addEventListener('click',function(e){var t=$(a.getAttribute('data-play'));if(!t)return;e.preventDefault();t.click();});});
 
-  /* card-pays-for-itself calculator */
-  var calc=$('[data-calc="payback"]');
-  if(calc){
-    var PRICE={basic:99,premium:270,business:490,gold:990}, COM={basic:10,premium:100,business:200,gold:400}, COMSE={basic:10,premium:150,business:300,gold:500};
-    var mine=$('[name=mine]',calc), theirs=$('[name=theirs]',calc), se=$('[name=se]',calc), out=$('output',calc), n=2;
+  /* =====================================================================
+     CALCULATORS (shared tools). Maths:
+       rewards a month = cardholders x average top-up x 0.1%
+       seats in paid levels = 2^(levels+1) - 2
+       payback: referrals x one-time commission vs your card price
+     ===================================================================== */
+  var reduceM=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(n){return Math.round(n).toLocaleString('en-US');}
+  function usd(n){return (n>0&&n<100&&Math.abs(n-Math.round(n))>0.004)?'$'+n.toFixed(2):'$'+fmt(n);}
+  function roll(el,to,f){ /* numbers count to their new value */
+    if(!el) return; var txt=f(to); var from=el._v; el._v=to;
+    if(reduceM||from===undefined||from===to||!isFinite(from)){el.textContent=txt;return;}
+    var t0=performance.now(), dur=420; cancelAnimationFrame(el._r);
+    (function step(t){var k=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-k,3); el.textContent=f(from+(to-from)*e); if(k<1) el._r=requestAnimationFrame(step); else el.textContent=txt;})(t0);
+  }
+  function wireSpin(tool,onChange){ /* number box + keys + slider + quick picks, kept in sync */
+    $$('.tfield',tool).forEach(function(f){
+      var inp=$('input[type=number]',f); if(!inp) return;
+      var sl=$('input[type=range]',f), chips=$$('.tchips button',f);
+      function clamp(v){var mn=+inp.min, mx=+inp.max; v=Math.round(+v||0); return Math.max(mn,Math.min(mx,v));}
+      function paint(){var v=clamp(inp.value);
+        if(sl){sl.value=Math.min(v,+sl.max); sl.style.setProperty('--k',((Math.min(v,+sl.max)-sl.min)/(sl.max-sl.min)*100)+'%');}
+        chips.forEach(function(c){c.classList.toggle('on',+c.getAttribute('data-set')===v);});}
+      inp._paint=paint;
+      function set(v){inp.value=clamp(v); paint(); onChange();}
+      $$('.tkey',f).forEach(function(k){
+        var hold=null;
+        function bump(){var st=+inp.step||1, cur=clamp(inp.value), d=+k.getAttribute('data-d'); var big=cur>=1000&&st===1?Math.pow(10,Math.floor(Math.log10(cur))-1):st; set(cur+d*big);}
+        k.addEventListener('click',bump);
+        k.addEventListener('pointerdown',function(){hold=setTimeout(function rep(){bump();hold=setTimeout(rep,70);},450);});
+        ['pointerup','pointerleave','pointercancel'].forEach(function(ev){k.addEventListener(ev,function(){clearTimeout(hold);});});
+      });
+      if(sl) sl.addEventListener('input',function(){inp.value=sl.value; paint(); onChange();});
+      chips.forEach(function(c){c.addEventListener('click',function(){set(c.getAttribute('data-set'));});});
+      inp.addEventListener('input',function(){paint(); onChange();});
+      inp.addEventListener('change',function(){inp.value=clamp(inp.value); paint(); onChange();});
+      paint();
+    });
+  }
+  /* rewards tool */
+  $$('.tool[data-calc="rewards"]').forEach(function(T){
+    var lv=$('[name=lv]',T), n=$('[name=n]',T), a=$('[name=a]',T), o=function(k){return $('[data-o="'+k+'"]',T);};
     function upd(){
-      var price=PRICE[mine.value], per=(se.checked?COMSE:COM)[theirs.value], earned=per*n, left=price-earned;
-      $('[data-o=earned]',calc).textContent=money(earned);
-      $('[data-o=price]',calc).textContent=money(price);
-      var lb=$('[data-o=left]',calc), box=lb.parentNode;
-      if(left<=0){lb.textContent=left===0?'Covered':'+'+money(-left);box.className='ok';box.querySelector('span').textContent=left===0?'Your card is':'Covered, plus';}
-      else {lb.textContent=money(left);box.className='warn';box.querySelector('span').textContent='Still to cover';}
-      $('.meter i',calc).style.width=Math.min(100,earned/price*100)+'%';
-      out.textContent=n;
-      var need=Math.ceil(price/per), hint=$('[data-o=hint]',calc);
-      if(hint) hint.textContent=need<=n?'Your card is fully covered by these referrals.':'You need '+need+' referrals at this level to cover your card.';
+      var L=+lv.value, max=Math.pow(2,L+1)-2;
+      n.max=max; var nv=Math.max(0,Math.min(max,Math.round(+n.value||0))); if(+n.value>max){n.value=max; n._paint&&n._paint();}
+      var av=Math.max(0,Math.round(+a.value||0)), vol=nv*av, rew=vol*0.001, pct=max?nv/max*100:0;
+      roll(o('vol'),vol,function(x){return '$'+fmt(x);}); roll(o('rew'),rew,usd); roll(o('yr'),rew*12,usd);
+      o('pct').textContent=(pct>0&&pct<0.01?'under 0.01':(pct<1?pct.toFixed(2):pct.toFixed(1)))+'%'; o('bar').style.width=Math.max(pct,nv?1:0)+'%';
+      o('how').textContent=fmt(nv)+' cardholders × $'+fmt(av)+' = $'+fmt(vol)+' loaded. 0.1% of that = '+usd(rew)+' a month.';
+      $$('.tex',T).forEach(function(b){var l=+b.getAttribute('data-ex');b.classList.toggle('on',l===L&&nv===Math.pow(2,l+1)-2&&av===300);});
     }
-    $$('[data-step]',calc).forEach(function(b){b.addEventListener('click',function(){n=Math.max(0,Math.min(50,n+parseInt(b.getAttribute('data-step'),10)));upd();});});
-    [mine,theirs,se].forEach(function(el){el.addEventListener('change',upd);});
+    wireSpin(T,upd); lv.addEventListener('change',upd);
+    $$('.tex',T).forEach(function(b){b.addEventListener('click',function(){var l=+b.getAttribute('data-ex'); lv.value=l; n.max=Math.pow(2,l+1)-2; n.value=n.max; a.value=300; n._paint(); a._paint(); upd();});});
+    var def=(T.getAttribute('data-def')||'12,1000,300').split(',');
+    $('[data-reset]',T).addEventListener('click',function(){lv.value=def[0]; n.max=Math.pow(2,+def[0]+1)-2; n.value=def[1]; a.value=def[2]; n._paint(); a._paint(); upd();});
     upd();
-  }
-
-  /* monthly rewards estimator */
-  var est=$('[data-calc="rewards"]');
-  if(est){
-    var people=$('[name=people]',est), avg=$('[name=avg]',est), pv=$('[data-o=pv]',est), av=$('[data-o=av]',est);
-    function upd2(){
-      var p=parseInt(people.value,10), a=parseInt(avg.value,10), vol=p*a, r=vol*0.001;
-      pv.textContent=p.toLocaleString('en-US'); av.textContent=money(a);
-      $('[data-o=vol]',est).textContent=money(vol);
-      $('[data-o=rew]',est).textContent=money(r);
-      $('[data-o=year]',est).textContent=money(r*12);
-      [people,avg].forEach(function(s){var k=(s.value-s.min)/(s.max-s.min)*100;s.style.setProperty('--k',k+'%');});
+  });
+  /* payback tool */
+  $$('.tool[data-calc="payback"]').forEach(function(T){
+    var PRICE={basic:99,premium:270,business:490,gold:990}, COM={basic:10,premium:100,business:200,gold:400}, COMSE={basic:10,premium:150,business:300,gold:500};
+    var mine=$('[name=mine]',T), theirs=$('[name=theirs]',T), se=$('[name=se]',T), n=$('[name=n]',T), o=function(k){return $('[data-o="'+k+'"]',T);};
+    function upd(){
+      var k=Math.max(0,Math.min(50,Math.round(+n.value||0))), price=PRICE[mine.value], per=(se.checked?COMSE:COM)[theirs.value], earned=per*k, left=price-earned;
+      roll(o('earned'),earned,function(x){return '$'+fmt(x);}); roll(o('price'),price,function(x){return '$'+fmt(x);});
+      var box=o('leftbox');
+      if(left<=0){o('leftlab').textContent=left===0?'Your card is':'Covered, plus'; box.classList.add('ok'); box.classList.remove('warn');
+        if(left===0){o('left').textContent='Covered'; o('left')._v=undefined;} else roll(o('left'),-left,function(x){return '$'+fmt(x);});}
+      else {o('leftlab').textContent='Still to cover'; box.classList.add('warn'); box.classList.remove('ok'); roll(o('left'),left,function(x){return '$'+fmt(x);});}
+      var pct=Math.min(100,earned/price*100); o('bar').style.width=pct+'%'; o('pct').textContent=Math.round(pct)+'%';
+      var need=Math.ceil(price/per);
+      o('how').textContent=k+' × $'+per+' = $'+fmt(earned)+' earned. '+(left<=0?('$'+fmt(earned)+' minus your $'+price+' card = '+(left===0?'exactly covered.':'$'+fmt(-left)+' to spare.')):('$'+price+' card minus $'+fmt(earned)+' = $'+fmt(left)+' still to cover. You need '+need+' referral'+(need===1?'':'s')+' at this level.'));
     }
-    [people,avg].forEach(function(s){s.addEventListener('input',upd2);});
-    upd2();
-  }
+    wireSpin(T,upd); [mine,theirs,se].forEach(function(el){el.addEventListener('change',upd);});
+    var def=(T.getAttribute('data-def')||'business,business,3,0').split(',');
+    $('[data-reset]',T).addEventListener('click',function(){mine.value=def[0]; theirs.value=def[1]; n.value=def[2]; se.checked=def[3]==='1'; n._paint(); upd();});
+    upd();
+  });
+  /* tables that turn into cards on phones */
+  $$('.tbl-stack').forEach(function(t){var hs=$$('thead th',t).map(function(h){return h.textContent;});$$('tbody tr',t).forEach(function(r){$$('td',r).forEach(function(td,i){if(hs[i]) td.setAttribute('data-label',hs[i]);});});});
 
   /* =====================================================================
      PROGRESSIVE PAGES: a page opens short (top sections plus a peek of the
@@ -306,7 +349,7 @@ onScroll();
       chapters.forEach(function(c,i){c.els.forEach(function(el){if(i>0||el!==c.els[0]) el.setAttribute('hidden','until-found');});});
       chapters[0].els[0].classList.add('chap-peek');
       bar=d.createElement('div'); bar.className='upnext';
-      bar.innerHTML='<button type="button" class="un-go" aria-label="Open the next section" title="Open this section"><span class="un-ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.5"/><circle class="fg" cx="18" cy="18" r="15.5"/></svg><i></i></span><span class="un-tx"><small></small><b></b></span><span class="un-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button><button type="button" class="un-all">Show All</button>';
+      bar.innerHTML='<button type="button" class="un-go" aria-label="Open the next section" title="Open this section"><span class="un-ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.5"/><circle class="fg" cx="18" cy="18" r="15.5"/></svg><i></i></span><span class="un-tx"><small></small><b></b><span class="un-dots" aria-hidden="true"></span></span><span class="un-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button><button type="button" class="un-all"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7l8 5 8-5M4 12l8 5 8-5"/></svg>Open all sections</button>';
       placeBar();
       $('.un-go',bar).addEventListener('click',function(){revealNext(true);});
       $('.un-all',bar).addEventListener('click',function(){revealUpTo(chapters.length-1,true);});
@@ -322,6 +365,8 @@ onScroll();
       anchorEl.parentNode.insertBefore(bar,anchorEl.nextSibling);
       $('small',bar).textContent='Tap to open, '+(done+1)+' of '+chapters.length;
       $('b',bar).textContent=c.title;
+      var dots='';for(var q=0;q<chapters.length;q++){dots+='<i class="'+(q<done?'on':(q===done?'cur':''))+'"></i>';}
+      $('.un-dots',bar).innerHTML=dots;
       bar.style.setProperty('--p',(done/chapters.length).toFixed(3));
       bar.classList.remove('un-pop'); void bar.offsetWidth; bar.classList.add('un-pop');
       updateNav();
@@ -383,7 +428,8 @@ onScroll();
         var cur=null;
         var sio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){cur=e.target.id;mark();}});},{rootMargin:'-35% 0px -60% 0px'});
         titled.forEach(function(s){sio.observe(s);});
-        function mark(){items.forEach(function(a){var on=a.getAttribute('href')==='#'+cur;a.classList.toggle('on',on);if(on&&tg)$('b',tg).textContent=a.textContent;});}
+        function mark(){items.forEach(function(a){var on=a.getAttribute('href')==='#'+cur;a.classList.toggle('on',on);if(on&&tg)$('b',tg).textContent=a.textContent;
+          if(on){var L=a.parentNode;if(L&&L.scrollWidth>L.clientWidth+4){var x=a.offsetLeft-L.clientWidth/2+a.offsetWidth/2;L.scrollTo({left:Math.max(0,x),behavior:reduce?'auto':'smooth'});}}});}
       }
       if(tg) $('b',tg).textContent='Jump to a section';
       updateNav();
@@ -449,6 +495,49 @@ onScroll();
   (function(){var bar=$('[data-who-filter]'),tb=$('[data-who-table]');if(!bar||!tb)return;var rows=[].slice.call(tb.querySelectorAll('tbody tr')),cnt=$('[data-who-count]');
     function apply(f){var n=0;rows.forEach(function(r){var show=f==='all'||(f==='bl'?r.getAttribute('data-bl')==='1':r.getAttribute('data-cat')===f);r.hidden=!show;if(show)n++;});if(cnt)cnt.textContent=f==='all'?'':'Showing '+n+' of '+rows.length+' groups.';}
     bar.addEventListener('click',function(e){var b=e.target.closest('button[data-f]');if(!b)return;[].forEach.call(bar.querySelectorAll('button'),function(x){x.classList.toggle('on',x===b);});apply(b.getAttribute('data-f'));try{(window.dataLayer=window.dataLayer||[]).push({event:'who_filter',label:b.textContent});}catch(_){}});
+  })();
+
+  /* =====================================================================
+     FAQ: smooth open and close, a shareable link for every answer,
+     opening the answer a link points to, and a live search.
+     ===================================================================== */
+  (function(){
+    var qs=$$('details.qa'); if(!qs.length) return;
+    qs.forEach(function(det){
+      var sum=$('summary',det), ans=$('.ans',det); if(!sum||!ans) return;
+      sum.addEventListener('click',function(e){
+        if(reduce) return; e.preventDefault();
+        if(det._anim) return;
+        if(!det.open){det.open=true; var h=ans.scrollHeight; ans.style.overflow='hidden'; ans.style.height='0px'; ans.style.opacity='0';
+          requestAnimationFrame(function(){ans.style.transition='height .38s cubic-bezier(.2,.7,.2,1),opacity .3s'; ans.style.height=h+'px'; ans.style.opacity='1';});
+          det._anim=setTimeout(function(){ans.style.cssText='';det._anim=null;},400);}
+        else {ans.style.overflow='hidden'; ans.style.height=ans.scrollHeight+'px';
+          requestAnimationFrame(function(){ans.style.transition='height .3s cubic-bezier(.2,.7,.2,1),opacity .25s'; ans.style.height='0px'; ans.style.opacity='0';});
+          det._anim=setTimeout(function(){det.open=false;ans.style.cssText='';det._anim=null;},310);}
+      });
+      if(det.id&&det.closest('.faq')){
+        var b=d.createElement('button'); b.type='button'; b.className='qa-link';
+        b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg><span>Copy link to this answer</span>';
+        b.addEventListener('click',function(){var u=location.href.split('#')[0]+'#'+det.id, sp=$('span',b);
+          var ok=function(){sp.textContent='Link copied. Paste it in WhatsApp';b.classList.add('done');setTimeout(function(){sp.textContent='Copy link to this answer';b.classList.remove('done');},2400);};
+          if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(ok,function(){prompt('Copy this link:',u);});} else prompt('Copy this link:',u);});
+        ans.appendChild(b);
+      }
+    });
+    function openFromHash(){var h=decodeURIComponent((location.hash||'').slice(1)); if(!h) return; var t=d.getElementById(h); if(t&&t.matches('details.qa')){t.open=true;setTimeout(function(){t.classList.add('qa-hl');setTimeout(function(){t.classList.remove('qa-hl');},1800);},350);}}
+    openFromHash(); window.addEventListener('hashchange',openFromHash);
+    var box=$('[data-faqsearch]'); if(!box) return;
+    var inp=$('input',box), cnt=$('[data-faqcount]',box), none=$('[data-faqnone]',box);
+    var secs=$$('section').filter(function(s){return $('details.qa',s)&&s.closest('#main');});
+    inp.addEventListener('input',function(){
+      var q=inp.value.trim().toLowerCase();
+      if(q.length>=2){var all=$('.upnext .un-all'); if(all) all.click();}
+      var n=0;
+      qs.forEach(function(det){if(!det.closest('.faq')) return; var hit=q.length<2||det.textContent.toLowerCase().indexOf(q)>=0; det.hidden=!hit; if(hit&&q.length>=2) n++;});
+      secs.forEach(function(s){var any=$$('details.qa',s).some(function(x){return !x.hidden;}); var tgt=s.contains(box)?$('.faq-cols',s):s; if(tgt) tgt.classList.toggle('faq-empty',!any);});
+      cnt.textContent=q.length<2?'':(n===1?'1 answer found':n+' answers found');
+      none.hidden=!(q.length>=2&&n===0);
+    });
   })();
 
   onScroll();

@@ -401,6 +401,8 @@ MORE = {
  'prices': 'All four levels side by side, every published fee, add-ons, shipping and upgrades.',
  'rewards': 'Direct commissions, the 2x2 matrix, the six ranks and the rules for staying qualified.',
  'matrix': 'The 2x2 matrix taught step by step: a diagram you can play with, a calculator, a quiz and a free PDF.',
+ 'rcalc': 'Pick your rank, cardholders and their average top-up, and see the 0.1% monthly reward worked out.',
+ 'pcalc': 'Pick your card and your referrals\' card, and see when the one-time commissions cover it.',
  'partner': 'Who it suits, what you earn, a first-week plan and the honest way to share the card.',
  'videos': 'The 3-minute overview, the 2x2 matrix explainer, the 27-minute presentation and the launch webinar, with summaries.',
  'tutorials': 'Register, secure your account, back up your private key, then fund your wallet and order your card, step by step. Plus the 2x2 matrix explainer.',

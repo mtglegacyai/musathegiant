@@ -28,25 +28,8 @@ def tiers_html(here, compact=True):
 
 
 def payback_calc(here):
-    opts = ''.join(f'<option value="{v}"{" selected" if v==sel else ""}>{n} (${p})</option>' for v, n, p, sel in [('basic','Basic',99,'business'),('premium','Premium',270,'business'),('business','Business',490,'business'),('gold','Gold',990,'business')])
-    opts2 = ''.join(f'<option value="{v}"{" selected" if v=="business" else ""}>{n} (${c} each)</option>' for v, n, c in [('basic','Basic',10),('premium','Premium',100),('business','Business',200),('gold','Gold',400)])
-    return f'''<div class="panel calc rv" data-calc="payback">
-  <h3 class="h3">Can your card pay for itself?</h3>
-  <p class="muted small">Pick your card, then count the people who order through your link.</p>
-  <div class="fields">
-   <div class="field"><label for="pc-mine">Your card</label><select id="pc-mine" name="mine">{opts}</select></div>
-   <div class="field"><label for="pc-theirs">Their card</label><select id="pc-theirs" name="theirs">{opts2}</select></div>
-   <div class="field"><label id="pc-n">People you refer</label><div class="stepper" role="group" aria-labelledby="pc-n"><button type="button" data-step="-1" aria-label="One fewer">−</button><output aria-live="polite">2</output><button type="button" data-step="1" aria-label="One more">+</button></div></div>
-   <div class="field" style="align-self:end"><label class="toggle"><input type="checkbox" name="se"><span class="sw" aria-hidden="true"></span>They add the Special Edition</label></div>
-  </div>
-  <div class="result">
-   <div><span>Commissions earned</span><b data-o="earned">$400</b></div>
-   <div><span>Your card costs</span><b data-o="price">$490</b></div>
-   <div class="warn"><span>Still to cover</span><b data-o="left">$90</b></div>
-  </div>
-  <div class="meter" aria-hidden="true"><i></i></div>
-  <p class="fine"><span data-o="hint"></span> One-time direct commissions from Bellver's compensation plan (version 08/2026). Monthly rewards come on top once you qualify. Shipping for a physical card is extra.</p>
- </div>'''
+    from p_tools import payback_tool
+    return payback_tool(here)
 
 
 def build(here=''):

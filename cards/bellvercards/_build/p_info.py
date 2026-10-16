@@ -2,6 +2,7 @@
 """How it works, Prices, Rewards."""
 from bv import *  # noqa
 from p_home import tiers_html, payback_calc
+from p_tools import rewards_tool
 
 
 def phero(H, trail, lines, lead, art=None, btns=None):
@@ -291,24 +292,14 @@ def rewards(H='rewards/'):
 </div></section>'''
 
     est = f'''<section class="sec-tight" id="estimate"><div class="wrap">
- <div class="sec-head rv"><h2 class="h2">Do the math <em>honestly</em></h2><p class="lead">Rewards are 0.1% of what cardholders in your qualified levels load each month. So 1,000 cardholders topping up $300 each pays you $300 a month. Try your own numbers.</p></div>
+ <div class="sec-head rv"><h2 class="h2">Do the math <em>honestly</em></h2><p class="lead">Rewards are 0.1% of what cardholders in your paid levels load each month. So 1,000 cardholders topping up $300 each pays you $300 a month. Try your own numbers.</p></div>
  <div class="split">
-  <div class="panel calc rv" data-calc="rewards">
-   <h3 class="h3">Monthly rewards estimate</h3>
-   <div class="field" style="margin-top:18px"><label for="re-p">Cardholders in your qualified levels: <b data-o="pv">1,000</b></label><input class="range" id="re-p" type="range" name="people" min="0" max="20000" step="50" value="1000"></div>
-   <div class="field" style="margin-top:16px"><label for="re-a">Average top-up per cardholder per month: <b data-o="av">$300</b></label><input class="range" id="re-a" type="range" name="avg" min="100" max="1000" step="50" value="300"></div>
-   <div class="result">
-    <div><span>Monthly top-ups</span><b data-o="vol">$300,000</b></div>
-    <div class="ok"><span>Your rewards a month</span><b data-o="rew">$300</b></div>
-    <div><span>Over a year</span><b data-o="year">$3,600</b></div>
-   </div>
-   <p class="fine">Illustration only, before the $100 monthly minimum on your own card. Real results depend on how many cardholders are actually placed in your levels and how much they load. Nothing is guaranteed.</p>
-  </div>
+  {rewards_tool(H)}
   <div class="box warn rv" style="--d:.08s">
    <div class="ico">{ic('alert')}</div>
    <h3 class="h3">What Bellver's big examples assume</h3>
    <p>The official slides show $2,457, $19,660 and $157,286 a month. Each assumes every place in the matrix is filled and every cardholder loads $300 a month.</p>
-   <div class="tbl-wrap" style="margin-top:14px"><table class="tbl" style="min-width:0">
+   <div class="tbl-wrap" style="margin-top:14px"><table class="tbl tbl-stack" style="min-width:0">
     <thead><tr><th>Levels full</th><th class="num">Cardholders needed</th><th class="num">Example a month</th></tr></thead>
     <tbody><tr><td>12 (1 Star)</td><td class="num">8,190</td><td class="num">$2,457</td></tr><tr><td>15 (Business, 2 Stars)</td><td class="num">65,534</td><td class="num">$19,660</td></tr><tr><td>18 (Gold, 3 Stars)</td><td class="num">524,286</td><td class="num">$157,286</td></tr></tbody>
    </table></div>

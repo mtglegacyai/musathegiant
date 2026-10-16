@@ -5,6 +5,7 @@ the official videos and the October 2026 Bellver news update."""
 import json
 from bv import *  # noqa
 from p_info import phero, T
+from p_tools import rewards_tool
 
 GUIDE_PDF = 'docs/bellver-2x2-matrix-explained-by-mtg.pdf'
 VIDEO = 'videos/bellver-2x2-matrix-explained.mp4'
@@ -226,20 +227,7 @@ def matrix(H='matrix/'):
     chips = ''.join(f'<button type="button" data-n="{n}">{n:,}</button>' for n in [14, 100, 500, 1000, 8190])
     calc = f'''<section class="sec-tight" id="calculator" data-title="Calculator"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Try your <em>own numbers</em></h2><p class="lead">Move the numbers and watch the 0.1% at work. This is a learning tool, not a promise.</p></div>
- <div class="panel calc mx-calc rv" data-calc="matrix">
-  <div class="calc-grid">
-   <div class="field"><label for="mx-lv">Your rank (how deep you are paid)</label><select id="mx-lv" name="lv">{opts}</select></div>
-   <div class="field"><label for="mx-n">Cardholders sitting in those levels</label><input id="mx-n" name="n" type="number" min="0" step="1" value="1000" inputmode="numeric"><div class="mx-chips" aria-label="Quick picks">{chips}</div></div>
-   <div class="field mx-span"><label for="mx-a">Average loaded per cardholder each month: <b data-o="avg">$300</b></label><input class="range" id="mx-a" name="avg" type="range" min="50" max="1000" step="10" value="300"></div>
-  </div>
-  <div class="mx-fill"><span>Seats filled in your paid levels</span><div class="meter"><i data-o="bar"></i></div><b data-o="pct">12.2%</b></div>
-  <div class="result">
-   <div><span>Loaded a month</span><b data-o="vol">$300,000</b></div>
-   <div class="ok"><span>Your reward a month</span><b data-o="rew">$300</b></div>
-   <div><span>Over a year</span><b data-o="yr">$3,600</b></div>
-  </div>
-  <p class="fine" data-o="note">Illustration only. Real results depend on how many cardholders are actually placed in your levels and how much they load. You must also load $100 a month onto your own card. Nothing is guaranteed.</p>
- </div>
+ {rewards_tool(H)}
 </div></section>'''
 
     # why a 2x2 matrix

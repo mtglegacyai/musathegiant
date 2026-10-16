@@ -107,10 +107,12 @@ def faq(H='faq/'):
         items = ''
         for q, a in qs:
             a2 = a.replace('{GS}', L('get-started/', H)).replace('{PL}', L(DOCS_PDF['price'], H)).replace('{CP}', L(DOCS_PDF['plan'], H)).replace('{MX}', L('matrix/', H)).replace('{PTT}', L('partner/#tiktok', H)).replace('{PT}', L('partner/', H)).replace('{WHY}', L('', H) + '#why')
-            items += f'<details class="qa"><summary>{q}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{a2}</p></div></details>'
+            qid = 'q-' + __import__('re').sub(r'[^a-z0-9]+', '-', q.lower()).strip('-')[:60]
+            items += f'<details class="qa" id="{qid}"><summary>{q}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{a2}</p></div></details>'
             ld_q.append({"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": __import__('re').sub('<[^>]+>', '', a2)}})
         slug = g.lower().replace(' ', '-')
-        blocks += f'<section class="sec-tight" id="faq-{slug}"><div class="wrap"><div class="faq-cols"><div class="sticky rv"><h2 class="h2" style="font-size:clamp(1.8rem,3.4vw,2.6rem)">{g}</h2></div><div class="faq rv">{items}</div></div></div></section>'
+        search = '' if gi else f'''<div class="faq-search rv" data-faqsearch><label for="faq-q">{ic('help')}<span>Search the answers</span></label><input id="faq-q" type="search" placeholder="Try: fee, limit, private key, $100" autocomplete="off"><span class="faq-count" data-faqcount aria-live="polite"></span><p class="faq-none" data-faqnone hidden>No answer matches that yet. <a class="inl" href="{PARTNER_MSG}" target="_blank" rel="noopener">Ask me on WhatsApp</a> and I'll add it.</p></div>'''
+        blocks += f'<section class="sec-tight" id="faq-{slug}"><div class="wrap">{search}<div class="faq-cols"><div class="sticky rv"><h2 class="h2" style="font-size:clamp(1.8rem,3.4vw,2.6rem)">{g}</h2></div><div class="faq rv">{items}</div></div></div></section>'
     gl = ''.join(f'<div class="lg rv"><i style="background:linear-gradient(135deg,var(--green),#0d4f2f)"></i><div><b>{t}</b><span>{d.replace("{MX}", L("matrix/", H))}</span></div></div>' for t, d in GLOSSARY)
     body = top + f'''{blocks}
 <section class="sec-tight" id="glossary"><div class="wrap"><div class="sec-head rv"><h2 class="h2">Glossary</h2><p class="lead">The words you will meet in the dashboard and the videos.</p></div><div class="legend">{gl}</div></div></section>''' + help_band(H, 'Question not here?', 'Ask me on WhatsApp. I read every message and I will answer you personally.')

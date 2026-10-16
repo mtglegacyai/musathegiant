@@ -1426,3 +1426,135 @@ table.tbl.mx-tbl{min-width:0}
 .why-t small{color:var(--muted);font-size:.9rem;line-height:1.5}
 @media (max-width:760px){.why-grid,.why-list{grid-template-columns:minmax(0,1fr)}.why-cta{flex-direction:column;align-items:flex-start}}
 @media (prefers-reduced-motion:reduce){.why-card,.why-card:hover{transition:none;transform:none}}
+
+/* =====================================================================
+   CALCULATOR TOOLS: a premium device (glass and brushed panel, tactile keys,
+   a dark display screen). Shared by the tool pages and the embedded copies.
+   ===================================================================== */
+.tool{position:relative;padding:clamp(18px,3vw,28px);border-radius:26px;border:1px solid rgba(150,255,200,.14);
+  background:linear-gradient(165deg,#12251a 0%,#0a1710 46%,#07120c 100%);
+  box-shadow:inset 0 1px 0 rgba(220,255,236,.12),inset 0 -1px 0 rgba(0,0,0,.6),0 30px 70px -40px rgba(0,0,0,.95),0 0 0 1px rgba(0,0,0,.35)}
+.tool:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 60% at 20% 0%,rgba(52,204,136,.10),transparent 60%)}
+.tool-top{position:relative;display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.tool-top h3{margin:0;font-size:clamp(1.05rem,1.8vw,1.2rem);font-weight:800;color:#fff;flex:1}
+.tool-led{width:10px;height:10px;border-radius:50%;background:var(--green-hi);box-shadow:0 0 0 3px rgba(52,204,136,.18),0 0 12px rgba(52,204,136,.8)}
+.tool-reset{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line-2);background:linear-gradient(180deg,#14281c,#0b1811);color:var(--soft);font:800 .8rem var(--body);cursor:pointer;box-shadow:inset 0 1px 0 rgba(220,255,236,.08),0 3px 0 #040b07;transition:transform .12s,box-shadow .12s,color .2s}
+.tool-reset svg{width:14px;height:14px}
+.tool-reset:hover{color:#fff}
+.tool-reset:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(220,255,236,.05),0 1px 0 #040b07}
+.tool-in{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px 18px}
+.tfield{display:grid;gap:8px;align-content:start}
+.tfield.tspan{grid-column:1/-1}
+.tfield>label{color:var(--soft);font-size:.82rem;font-weight:800;letter-spacing:.01em}
+.tfield select{width:100%;min-height:52px;padding:0 40px 0 14px;border-radius:14px;border:1px solid rgba(150,255,200,.16);color:#fff;font:700 1rem var(--body);appearance:none;-webkit-appearance:none;cursor:pointer;
+  background:#050f09 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2334cc88' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 14px center/16px no-repeat;
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.55),inset 0 -1px 0 rgba(220,255,236,.05);text-overflow:ellipsis}
+.tfield select:focus-visible,.tspin input:focus-visible{outline:none;border-color:var(--green-hi);box-shadow:inset 0 2px 6px rgba(0,0,0,.55),0 0 0 3px rgba(52,204,136,.22)}
+.tspin{display:flex;align-items:stretch;gap:8px}
+.tspin input{flex:1;min-width:0;min-height:52px;padding:0 10px;border-radius:14px;border:1px solid rgba(150,255,200,.16);background:#050f09;color:#fff;text-align:center;font:400 1.55rem/1 var(--display);letter-spacing:.02em;box-shadow:inset 0 2px 6px rgba(0,0,0,.55),inset 0 -1px 0 rgba(220,255,236,.05);-moz-appearance:textfield}
+.tspin input::-webkit-outer-spin-button,.tspin input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.tunit{display:grid;place-items:center;padding:0 2px;color:var(--green-hi);font:400 1.4rem var(--display)}
+.tspin:has(.tunit) input{text-align:left}
+.tkey{flex:none;width:52px;min-height:52px;border-radius:14px;border:1px solid rgba(150,255,200,.16);cursor:pointer;color:var(--green-hi);font:800 1.4rem/1 var(--body);
+  background:linear-gradient(180deg,#183324,#0d1d14);box-shadow:inset 0 1px 0 rgba(220,255,236,.14),0 4px 0 #030a06,0 8px 16px -8px rgba(0,0,0,.8);transition:transform .1s,box-shadow .1s,background .2s;touch-action:manipulation;user-select:none}
+.tkey:hover{background:linear-gradient(180deg,#1c3b2a,#102419)}
+.tkey:active{transform:translateY(3px);box-shadow:inset 0 2px 4px rgba(0,0,0,.5),0 1px 0 #030a06}
+.tkey:focus-visible{outline:2px solid var(--green-hi);outline-offset:2px}
+.tfield .range{margin:4px 0 0}
+.tchips{display:flex;flex-wrap:wrap;gap:6px}
+.tchips button,.tex{min-height:34px;padding:0 12px;border-radius:10px;border:1px solid var(--line-2);background:linear-gradient(180deg,#0f1f16,#08130d);color:var(--soft);font:800 .8rem var(--body);cursor:pointer;box-shadow:0 2px 0 #030a06;transition:transform .1s,box-shadow .1s,border-color .2s,color .2s}
+.tchips button:hover,.tex:hover{color:#fff;border-color:rgba(52,204,136,.45)}
+.tchips button:active,.tex:active{transform:translateY(2px);box-shadow:0 0 0 #030a06}
+.tchips button.on,.tex.on{color:#04180e;background:linear-gradient(180deg,#5fe0a6,var(--green-hi));border-color:transparent}
+.tse{align-self:end;min-height:52px;align-content:center}
+.tool-screen{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:22px;border-radius:18px;overflow:hidden;border:1px solid rgba(0,0,0,.6);
+  background:rgba(150,255,200,.08);box-shadow:inset 0 3px 14px rgba(0,0,0,.7),0 1px 0 rgba(220,255,236,.06)}
+.ts-row{padding:16px 18px;background:radial-gradient(140% 120% at 50% 0%,#071a10,#030b06)}
+.ts-row span{display:block;color:var(--muted);font-size:.74rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.ts-row b{display:block;margin-top:6px;font:400 clamp(1.6rem,3vw,2.1rem)/1 var(--display);color:#eafff3;letter-spacing:.02em;font-variant-numeric:tabular-nums;text-shadow:0 0 18px rgba(52,204,136,.18)}
+.ts-main b,.ts-row.ok b{color:var(--green-hi);text-shadow:0 0 22px rgba(52,204,136,.45)}
+.ts-row.warn b{color:var(--yellow);text-shadow:0 0 20px rgba(252,190,37,.35)}
+.ts-fill{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:12px 18px;background:#030b06;color:var(--soft);font-size:.8rem;font-weight:700}
+.ts-fill .meter{margin:0}
+.ts-fill b{color:#fff;font-variant-numeric:tabular-nums}
+.tool-how{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:16px 0 0;color:var(--soft);font-size:.95rem;line-height:1.5}
+.badge-ill{display:inline-flex;align-items:center;min-height:26px;padding:0 10px;border-radius:999px;border:1px solid rgba(252,190,37,.35);background:rgba(252,190,37,.08);color:var(--yellow);font-size:.72rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap}
+.tool-ex{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line-2)}
+.tool-ex p{margin:0 0 8px;color:var(--muted);font-size:.84rem;font-weight:700}
+.tool-ex>div{display:flex;flex-wrap:wrap;gap:8px}
+.tex{display:grid;gap:1px;min-height:46px;padding:6px 14px;text-align:left}
+.tex b{font:400 1.1rem/1 var(--display);letter-spacing:.02em}
+.tex small{font-size:.7rem;opacity:.85}
+.tool .fine{margin-top:14px}
+.tool-open{margin-top:6px}
+.tool-wrap{max-width:900px}
+@media (max-width:640px){
+  .tool-screen{grid-template-columns:minmax(0,1fr)}
+  .ts-main{order:-1}
+  .ts-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:13px 16px}
+  .ts-row b{margin:0}
+  .ts-fill{grid-template-columns:1fr auto}
+  .ts-fill .meter{grid-column:1/-1;grid-row:2}
+  .tkey{width:56px;min-height:56px}
+  .tspin input{min-height:56px}
+}
+/* tables that become cards on phones */
+@media (max-width:640px){
+  .tbl-stack thead{display:none}
+  .tbl-stack,.tbl-stack tbody,.tbl-stack tr,.tbl-stack td{display:block;width:100%}
+  .tbl-stack tr{padding:12px 14px;border-bottom:1px solid var(--line)}
+  .tbl-stack td{display:flex;justify-content:space-between;gap:12px;padding:4px 0;border:0;text-align:right}
+  .tbl-stack td:before{content:attr(data-label);color:var(--muted);font-size:.78rem;font-weight:800;text-align:left}
+  .tbl-stack td:first-child{font-weight:800;color:#fff}
+}
+@media (prefers-reduced-motion:reduce){.tkey,.tool-reset,.tchips button,.tex{transition:none}}
+
+/* ---- Tap to open bar: full title, progress dots, clear "Open all sections" pill ---- */
+.chap-peek h2{display:none}
+.un-tx b{white-space:normal;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.3}
+.un-dots{display:flex;gap:5px;margin-top:6px}
+.un-dots i{width:7px;height:7px;border-radius:50%;background:rgba(150,255,200,.18);transition:background .3s,transform .3s}
+.un-dots i.on{background:var(--green-hi)}
+.un-dots i.cur{background:var(--yellow);transform:scale(1.25);box-shadow:0 0 8px rgba(252,190,37,.6)}
+.un-go:active .un-chev{transform:scale(.9)}
+.un-chev{transition:transform .15s}
+.un-all{display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:0 14px;border:1px solid var(--line-2);border-radius:999px;background:rgba(6,17,11,.85);color:var(--soft);font:800 .78rem var(--body);text-decoration:none;box-shadow:0 2px 0 #030a06;transition:color .2s,border-color .2s,transform .1s,box-shadow .1s}
+.un-all svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.un-all:hover{color:#fff;border-color:rgba(52,204,136,.45)}
+.un-all:active{transform:translateY(2px);box-shadow:none}
+/* chapter menu on laptops: one row that scrolls sideways */
+@media (min-width:1061px){
+  .secnav .sn-list{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:2px 24px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent);scroll-snap-type:x proximity}
+  .secnav .sn-list::-webkit-scrollbar{display:none}
+  .secnav .sn-i{flex:none;scroll-snap-align:center}
+}
+/* ---- FAQ: share an answer, highlight a linked answer, search ---- */
+.qa-link{display:inline-flex;align-items:center;gap:7px;margin-top:12px;min-height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--muted);font:700 .78rem var(--body);cursor:pointer;transition:color .2s,border-color .2s}
+.qa-link svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.qa-link:hover{color:#fff;border-color:rgba(52,204,136,.45)}
+.qa-link.done{color:var(--green-hi);border-color:rgba(52,204,136,.6)}
+.qa.qa-hl{border-color:var(--yellow);box-shadow:0 0 0 4px rgba(252,190,37,.15);transition:box-shadow .4s,border-color .4s}
+.faq-search{display:grid;gap:8px;margin-bottom:26px;padding:16px;border:1px solid var(--line-2);border-radius:18px;background:linear-gradient(165deg,#10221a,#07120c);box-shadow:inset 0 1px 0 rgba(220,255,236,.08)}
+.faq-search label{display:flex;align-items:center;gap:8px;color:var(--soft);font-size:.85rem;font-weight:800}
+.faq-search label svg{width:18px;height:18px;color:var(--green-hi)}
+.faq-search input{width:100%;min-height:52px;padding:0 16px;border-radius:14px;border:1px solid rgba(150,255,200,.16);background:#050f09;color:#fff;font:700 1rem var(--body);box-shadow:inset 0 2px 6px rgba(0,0,0,.55)}
+.faq-search input:focus-visible{outline:none;border-color:var(--green-hi);box-shadow:inset 0 2px 6px rgba(0,0,0,.55),0 0 0 3px rgba(52,204,136,.22)}
+.faq-count{color:var(--green-hi);font-size:.8rem;font-weight:800;min-height:1em}
+.faq-none{margin:0;color:var(--soft)}
+section.faq-empty,.faq-cols.faq-empty{display:none}
+details.qa[hidden]{display:none}
+/* ---- one tactile feel for every button and chip ---- */
+.btn:active{transform:translateY(2px)}
+.btn:focus-visible,.tchips button:focus-visible,.tex:focus-visible,.tool-reset:focus-visible,.un-go:focus-visible,.un-all:focus-visible,.qa summary:focus-visible,.qa-link:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+.mx-chips button:active,.secnav .sn-i:active{transform:translateY(1px)}
+@media (prefers-reduced-motion:reduce){.btn:active,.un-dots i{transform:none;transition:none}}
+/* the tool adapts to its own width (narrow columns on laptops behave like a phone) */
+.tool{container-type:inline-size}
+@container (max-width:620px){
+  .tool-screen{grid-template-columns:minmax(0,1fr)}
+  .ts-main{order:-1}
+  .ts-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:13px 16px}
+  .ts-row b{margin:0}
+  .ts-fill{grid-template-columns:1fr auto}
+  .ts-fill .meter{grid-column:1/-1;grid-row:2}
+}
