@@ -384,7 +384,7 @@ def tutorials(H='tutorials/'):
     dash_ld = vld(DASH, H, DASH_DATE, jpg=True)
     dash_ld["transcript"] = ' '.join(DASH_TRANSCRIPT)
     dash_ld["author"] = reg_ld["author"]
-    dash_ld["keywords"] = "Bellver dashboard walkthrough, Bellver back office, Bellver $100 monthly spend target, Bellver withdraw, Bellver statement, Bellver referral, Bellver tutorial"
+    dash_ld["keywords"] = "Bellver dashboard walkthrough, Bellver back office, Bellver $100 a month not a subscription, Bellver withdraw, Bellver statement, Bellver referral, Bellver tutorial"
     mx_ld = vld(MXV, H, MXV_DATE, jpg=True)
     mx_ld["transcript"] = ' '.join(MXV_TRANSCRIPT)
     mx_ld["author"] = reg_ld["author"]
