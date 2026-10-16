@@ -1,5 +1,5 @@
 {
- "_about": "MTG's team pages. One entry per business partner. Leave a link empty (\"\") if they did not give it: its icon and button are then left out. Run build.py to rebuild MTG's guide and every team page.",
+ "_about": "MTG's team pages. One entry per business partner. Leave a link empty (\"\") if they did not give it: its icon and button are then left out. Run build.py to rebuild MTG's guide and every team page. Every section on a team page opens straight away; add \"open_all_sections\": false to a member to use the tap-to-open sections instead.",
  "members": [
   {
    "slug": "william",

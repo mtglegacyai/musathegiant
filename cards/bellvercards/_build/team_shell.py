@@ -9,6 +9,7 @@ Rules (MTG, Oct 2026):
  - videos and PDFs are shared exactly as they are
 """
 import json, urllib.parse
+import re
 import bv
 
 __all__ = ['configure', 'team_header', 'team_sidebar', 'team_footer', 'team_dash_footer', 'team_help_band', 'team_page',
@@ -31,9 +32,21 @@ SOCIAL_ICONS = {
 SOCIAL_LABELS = {'telegram': 'Telegram', 'tiktok': 'TikTok', 'facebook': 'Facebook', 'instagram': 'Instagram', 'youtube': 'YouTube', 'x': 'X'}
 
 
+def _open_all(html):
+    """Team pages open every section straight away (William's request, 16 Oct 2026; default for all team pages).
+    A member can keep MTG's tap-to-open sections with "open_all_sections": false in team.json."""
+    if MEMBER_OPTS.get('open_all_sections', True):
+        html = re.sub(r'<main id="main" data-open="\d+">', '<main id="main" data-open="99">', html, count=1)
+    return html
+
+
+MEMBER_OPTS = {}
+
+
 def configure(p):
     """Point every shared link at this partner. Call before the page modules are imported."""
     bv.PARTNER = p
+    MEMBER_OPTS.clear(); MEMBER_OPTS.update(p)
     bv.BASE = TEAM_DIR + p['slug'] + '/'
     bv.ASSET_BASE = MTG_ASSETS
     bv.REF = p['ref']
@@ -268,7 +281,7 @@ def team_page(here, key, title, desc, og_img, og_alt, body, ld_extra, trail, pre
 {TEAM_CSS}
 </head>
 <body{' class="is-dash"' if dash else ''}>
-{bv.shell(here, key, body, dash)}
+{_open_all(bv.shell(here, key, body, dash))}
 </body>
 </html>
 '''
