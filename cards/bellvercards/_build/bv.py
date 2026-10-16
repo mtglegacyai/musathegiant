@@ -410,3 +410,67 @@ def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None
 </body>
 </html>
 '''
+
+
+# ------------------------------------------------------------------ 10 REASONS (from MTG's "10 Reasons Why I Joined BellverCard", facts checked against the site)
+REASONS = [
+ ('wallet', 'Your keys', 'Self-custodial crypto spending',
+  'Spend your crypto without handing it to anyone. Your USDT and USDC stay in your own Fireblocks wallet, protected by your private key. You move only what you need onto the card, when you need it.', 'how-it-works/', 'How your wallet works'),
+ ('card', 'Today', 'Instant virtual or mailed physical card',
+  'Choose a virtual Mastercard and start paying online and with your phone the same day, or a physical Visa delivered to your door ($85 shipping in Europe, $149 to the rest of the world).', 'prices/#levels', 'Virtual or physical'),
+ ('tag', '$99', 'Pay once: $99 to $990',
+  'A one-time card price, not a monthly subscription: Basic $99, Premium $270, Business $490 and the top Gold card at $990. Pick the limits you need.', 'prices/', 'Compare the four levels'),
+ ('shield', '2 ways', 'With or without an identity check',
+  'Complete a quick identity check (KYC) for the regular card, or order a card without the check for a surcharge. Once you are verified, you skip that surcharge.', 'get-started/#step-3', 'How ordering works'),
+ ('bolt', '$250K', '$20,000 per payment, $250,000 a day',
+  'Gold cards spend up to $20,000 per transaction and $250,000 a day, in any local currency. Even Basic gives you $1,000 a day.', 'prices/', 'See every limit'),
+ ('nfc', 'Tap', 'Apple Pay, Google Pay and ATM cash',
+  'Add the card to Apple Pay or Google Pay and pay with a tap, shop online, or withdraw cash at an ATM when you need it (2% ATM fee).', 'how-it-works/', 'How paying works'),
+ ('users', 'Up to $500', '$10 to $500 per direct referral',
+  'Earn a one-time commission each time someone orders through your link: $10 Basic, $100 Premium, $200 Business, $400 Gold, and up to $500 with the Special Edition. You do not even need your own card for this.', 'rewards/', 'The commission table'),
+ ('coins', '0.1%', 'A share of the fees your network pays',
+  'Every time a cardholder in your paid levels tops up their card, you earn 0.1% per level, paid from Bellver\'s top-up fee. That is $1 for every $1,000 loaded, month after month.', 'rewards/', 'How rewards are paid'),
+ ('tree', '2x2', 'Spillover in the 2x2 matrix',
+  'Only two seats sit under you. When the people above you refer more than two, the extras flow down into the next free seats, and some land under you. Nobody builds alone.', 'matrix/', 'See spillover in action'),
+ ('star', 'Monthly', 'Monthly rewards that grow with your team',
+  'As your matrix fills, your monthly rewards grow. Bellver\'s own full-matrix examples run from about $2,457 a month on 12 levels to $157,286 on 18 levels, with everyone loading $300. These are examples, not promises: early on, direct commissions are the bigger money.', 'rewards/#estimate', 'Run your own numbers'),
+]
+REASONS_SHORT = ['Your crypto stays in your own wallet, protected by your private key.',
+ 'Pay with a virtual card today, or get a physical Visa posted to you.',
+ 'A one-time card price, never a monthly subscription.',
+ 'Order with an identity check (KYC), or without one for a surcharge.',
+ 'Gold limits for big payments, and $1,000 a day even on Basic.',
+ 'Tap to pay with your phone, shop online, or draw cash at an ATM.',
+ 'A one-time commission each time someone orders through your link.',
+ 'Earn 0.1% per level when cardholders in your paid levels top up.',
+ 'Extra referrals from above flow down into free seats under you.',
+ 'Rewards grow as your matrix fills. Examples, never promises.']
+REASONS_LEAD = ('More than 1,000 cards were sold in the testing phase alone, about half of them Business or Gold (as reported at launch). '
+                'Here are the 10 reasons people keep choosing Bellver Card.')
+
+
+def reasons_band(here, variant='full', title=None, lead=None, sid='why'):
+    """MTG's 10 reasons, explained. 'full': numbered cards with a short explanation each. 'compact': numbered list linking to the full version on the home page."""
+    title = title or 'Bellver Card in numbers: <em>10 reasons</em> people are joining'
+    lead = lead or REASONS_LEAD
+    home_why = (L('', here) + '#why') if variant != 'full' else '#why'
+    if variant == 'full':
+        items = ''.join(f'''<article class="why-card rv" style="--d:{(i % 2) * .06:.2f}s"><span class="why-n">{i + 1:02d}</span><span class="why-ic">{ic(icn)}</span>
+   <span class="why-big">{big}</span><h3 class="h3">{t}</h3><p>{d}</p><a class="tlink" href="{L(href, here)}">{lab} {ic('arrow')}</a></article>''' for i, (icn, big, t, d, href, lab) in enumerate(REASONS))
+        return f'''<section class="sec" id="{sid}" style="padding-top:0"><div class="wrap">
+ <div class="sec-head rv"><span class="kicker"><i>{ic('users')}</i>Why people are joining</span><h2 class="h2">{title}</h2><p class="lead">{lead}</p></div>
+ <div class="why-grid">{items}</div>
+ <div class="why-cta rv"><div><b>Ready to see it for yourself?</b><span>Start with a virtual card from $99 and pay today, or watch the 3-minute video first.</span></div><div class="btn-row">{order_btn('Order your card')}<a class="btn btn-ghost" href="{L('videos/#overview', here)}">{ic('play')}Watch the 3-minute video</a></div></div>
+ <p class="fine rv" style="margin-top:16px">Prices, limits and commissions from Bellver's official price list and compensation plan. Rewards depend on real card activity and are never guaranteed.</p>
+</div></section>'''
+    items = ''.join(f'<li><span class="why-n">{i + 1:02d}</span><span class="why-ic">{ic(icn)}</span><span class="why-t"><b>{t}</b><small>{REASONS_SHORT[i]}</small></span></li>' for i, (icn, big, t, d, href, lab) in enumerate(REASONS))
+    return f'''<section class="sec-tight" id="{sid}"><div class="wrap">
+ <div class="sec-head rv"><h2 class="h2">{title}</h2><p class="lead">{lead}</p></div>
+ <ol class="why-list rv">{items}</ol>
+ <p class="rv" style="margin-top:22px"><a class="tlink" href="{home_why}">Read all 10 reasons, explained {ic('arrow')}</a></p>
+</div></section>'''
+
+
+def reasons_ld(page_url):
+    return {"@type": "ItemList", "name": "10 reasons people are joining Bellver Card", "url": page_url + "#why", "numberOfItems": len(REASONS),
+            "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": t, "description": d} for i, (icn, big, t, d, href, lab) in enumerate(REASONS)]}

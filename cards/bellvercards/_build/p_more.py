@@ -38,6 +38,7 @@ def start(H='get-started/'):
 # ------------------------------------------------------------------ FAQ
 FAQ = [
  ('The card', [
+  ('Why are so many people joining Bellver Card?', 'More than 1,000 cards were sold in the testing phase alone (as reported at launch). The reasons people give: crypto spending from a wallet only they control, an instant virtual or a mailed physical card, a one-time price from $99 to $990, an option with or without an identity check, limits up to $20,000 per payment and $250,000 a day, Apple Pay, Google Pay and ATM cash, $10 to $500 per direct referral, a share of the top-up fees in their network, spillover in the 2x2 matrix and monthly rewards that grow with their team. <a class="inl" href="{WHY}">Read all 10 reasons, explained</a>'),
   ('What is the Bellver Card?', 'A crypto-funded payment card with a US dollar account. The physical card is a Visa and the virtual card is a Mastercard. Bellver calls it the world\'s first network card because it also has an optional rewards program. It is a product of Bellver Markets Ltd.'),
   ('How much does it cost?', 'A one-time $99 (Basic), $270 (Premium), $490 (Business) or $990 (Gold). Add-ons: Special Edition +$370 (or $470 to upgrade a regular card you already own), printed name +$49. Physical cards add shipping: $85 Europe, $149 rest of world. <a class="inl" href="{PL}" download>Download the price list</a>'),
   ('Is there a monthly or annual fee?', 'The official price list shows no monthly or annual card fee. You pay usage fees: 3.9% when you top up the card (cut from 4.95% in October 2026), 1.75% per transaction and 2% for ATM withdrawals. The top-up fee helps Bellver cover its running costs, so the company stays profitable and around for the long term.'),
@@ -105,7 +106,7 @@ def faq(H='faq/'):
     for gi, (g, qs) in enumerate(FAQ):
         items = ''
         for q, a in qs:
-            a2 = a.replace('{GS}', L('get-started/', H)).replace('{PL}', L(DOCS_PDF['price'], H)).replace('{CP}', L(DOCS_PDF['plan'], H)).replace('{MX}', L('matrix/', H)).replace('{PTT}', L('partner/#tiktok', H)).replace('{PT}', L('partner/', H))
+            a2 = a.replace('{GS}', L('get-started/', H)).replace('{PL}', L(DOCS_PDF['price'], H)).replace('{CP}', L(DOCS_PDF['plan'], H)).replace('{MX}', L('matrix/', H)).replace('{PTT}', L('partner/#tiktok', H)).replace('{PT}', L('partner/', H)).replace('{WHY}', L('', H) + '#why')
             items += f'<details class="qa"><summary>{q}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{a2}</p></div></details>'
             ld_q.append({"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": __import__('re').sub('<[^>]+>', '', a2)}})
         slug = g.lower().replace(' ', '-')
