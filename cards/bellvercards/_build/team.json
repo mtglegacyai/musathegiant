@@ -1,0 +1,20 @@
+{
+ "_about": "MTG's team pages. One entry per business partner. Leave a link empty (\"\") if they did not give it: its icon and button are then left out. Run build.py to rebuild MTG's guide and every team page.",
+ "members": [
+  {
+   "slug": "william",
+   "name": "William Boles",
+   "short": "William",
+   "ref": "https://app.bellvercards.com?ref=sdgwealth",
+   "photo": "photo",
+   "whatsapp": "+593999863936",
+   "whatsapp_group": "https://chat.whatsapp.com/Gx4dhY6dIgqGRyrDG5dSSh",
+   "telegram": "",
+   "tiktok": "",
+   "facebook": "",
+   "instagram": "",
+   "youtube": "",
+   "x": ""
+  }
+ ]
+}

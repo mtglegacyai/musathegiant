@@ -17,10 +17,10 @@ def shadowed(im,blur=26,off=(0,24),alpha=170):
     pad=80; sh=Image.new('RGBA',(im.width+pad*2,im.height+pad*2),(0,0,0,0))
     a=im.split()[3].point(lambda v:v*alpha//255); blk=Image.new('RGBA',im.size,(0,0,0,255)); blk.putalpha(a)
     sh.alpha_composite(blk,(pad+off[0],pad+off[1])); sh=sh.filter(ImageFilter.GaussianBlur(blur)); sh.alpha_composite(im,(pad,pad)); return sh
-def make(name,l1,l2,sub,art='card',green=2):
+def make(name,l1,l2,sub,art='card',green=2,by='by Affiliate MTG',url='musathegiant.com/cards/bellvercards',out=None):
     im=base().convert('RGBA'); d=ImageDraw.Draw(im)
     lg=logo.resize((250,round(250*logo.height/logo.width)),Image.LANCZOS); im.alpha_composite(lg,(64,54))
-    fm=ImageFont.truetype(FM.format(700),24); d.text((64+262,82),'by Affiliate MTG',font=fm,fill=(195,210,202))
+    fm=ImageFont.truetype(FM.format(700),24); d.text((64+262,82),by,font=fm,fill=(195,210,202))
     if art=='both':
         s=se.resize((470,round(470*se.height/se.width)),Image.LANCZOS).rotate(9,expand=True,resample=Image.BICUBIC); im.alpha_composite(shadowed(s),(640,10))
     c=card.resize((560,round(560*card.height/card.width)),Image.LANCZOS)
@@ -39,15 +39,20 @@ def make(name,l1,l2,sub,art='card',green=2):
         else: line=(line+' '+w).strip()
     d.text((64,ys),line,font=fs,fill=(195,210,202))
     d.rounded_rectangle((64,H-74,64+12,H-62),3,fill=(252,190,37))
-    d.text((86,H-82),'musathegiant.com/cards/bellvercards',font=ImageFont.truetype(FM.format(700),22),fill=(142,163,154))
-    im.convert('RGB').save(os.path.join(IMG,'og',name),'JPEG',quality=86,optimize=True,progressive=True); print(name)
-make('og-bellver-cards.jpg','THE CARD THAT','CAN PAY YOUR BILLS','Crypto-funded card, physical Visa or virtual Mastercard. Limits up to $250,000 a day. From $99.','both')
-make('og-bellver-how-it-works.jpg','HOW THE','CARD WORKS','Your own Fireblocks wallet, funding with USDT or USDC, physical or virtual.')
-make('og-bellver-prices.jpg','PRICES, FEES','AND LIMITS','Basic $99, Premium $270, Business $490, Gold $990. Every fee in plain numbers.')
-make('og-bellver-rewards.jpg','THE REWARDS','PROGRAM','Commissions, the 2x2 matrix, star ranks and the rules to stay qualified.','both')
-make('og-bellver-get-started.jpg','ORDER YOUR CARD','STEP BY STEP','Register, secure, fund, order, pay. Seven short steps.')
-make('og-bellver-videos.jpg','PRESENTATION','VIDEOS','The 3-minute overview, the 27-minute presentation and the launch webinar.')
-make('og-bellver-tutorials.jpg','TUTORIAL','VIDEOS','Short step-by-step videos: register, fund, order, pay and withdraw.')
-make('og-bellver-guide.jpg','YOUR BELLVER','CARD GUIDE','Everything about the card in one place: prices, wallet, rewards, videos.','both')
-make('og-bellver-faq.jpg','QUESTIONS,','ANSWERED','Fees, limits, wallet security, rewards and payouts, in plain words.')
-make('og-bellver-downloads.jpg','OFFICIAL','DOCUMENTS','Price list, compensation plan and presentation slides as PDFs.','both')
+    d.text((86,H-82),url,font=ImageFont.truetype(FM.format(700),22),fill=(142,163,154))
+    im.convert('RGB').save(os.path.join(out or os.path.join(IMG,'og'),name),'JPEG',quality=86,optimize=True,progressive=True); print(name)
+# MTG's own images, with the title lines for every page (team_assets.py reuses this list for team pages)
+PAGES=[
+('og-bellver-cards.jpg','THE CARD THAT','CAN PAY YOUR BILLS','Crypto-funded card, physical Visa or virtual Mastercard. Limits up to $250,000 a day. From $99.','both'),
+('og-bellver-how-it-works.jpg','HOW THE','CARD WORKS','Your own Fireblocks wallet, funding with USDT or USDC, physical or virtual.'),
+('og-bellver-prices.jpg','PRICES, FEES','AND LIMITS','Basic $99, Premium $270, Business $490, Gold $990. Every fee in plain numbers.'),
+('og-bellver-rewards.jpg','THE REWARDS','PROGRAM','Commissions, the 2x2 matrix, star ranks and the rules to stay qualified.','both'),
+('og-bellver-get-started.jpg','ORDER YOUR CARD','STEP BY STEP','Register, secure, fund, order, pay. Seven short steps.'),
+('og-bellver-videos.jpg','PRESENTATION','VIDEOS','The 3-minute overview, the 27-minute presentation and the launch webinar.'),
+('og-bellver-tutorials.jpg','TUTORIAL','VIDEOS','Short step-by-step videos: register, fund, order, pay and withdraw.'),
+('og-bellver-guide.jpg','YOUR BELLVER','CARD GUIDE','Everything about the card in one place: prices, wallet, rewards, videos.','both'),
+('og-bellver-faq.jpg','QUESTIONS,','ANSWERED','Fees, limits, wallet security, rewards and payouts, in plain words.'),
+('og-bellver-downloads.jpg','OFFICIAL','DOCUMENTS','Price list, compensation plan and presentation slides as PDFs.','both'),
+]
+if __name__=='__main__':
+    for args in PAGES: make(*args)

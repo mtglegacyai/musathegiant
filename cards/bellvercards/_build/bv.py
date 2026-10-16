@@ -15,6 +15,8 @@ YT_WEBINAR = 'jeB_kZinnCg'
 MP4_3MIN = 'videos/bellvercard-in-3minutes.mp4'
 MP4_DASH = 'videos/bellvercards-dashboard-walkthrough.mp4'
 UPDATED = '2026-10-09'
+ASSET_BASE = BASE       # where images, styles, scripts, videos and PDFs live (team pages share MTG's files)
+PARTNER = None          # set by configure() when building a team member's page (see team.json)
 # Analytics: leave None until MTG creates a free GoatCounter site, then set e.g. 'musathegiant' (the site code).
 ANALYTICS_GOATCOUNTER = None
 CHECKLIST_MSG = WA + '?text=' + 'Hi%20MTG%2C%20please%20send%20me%20the%20free%20Bellver%20Starter%20Checklist.'
@@ -40,7 +42,7 @@ def L(target, here=''):
     if target.startswith('/'):
         return target if MODE == 'prod' else SITE + target
     if MODE == 'prod':
-        return BASE + target
+        return (BASE if _is_page(target) else ASSET_BASE) + target
     if target.startswith('videos/') and target.endswith('.mp4'):
         return SITE + BASE + target
     frag = ''
@@ -53,8 +55,13 @@ def L(target, here=''):
     return rel + frag
 
 
+def _is_page(target):
+    p = target.split('#', 1)[0]
+    return p == '' or p.endswith('/')
+
+
 def abs_url(target):
-    return SITE + BASE + target
+    return SITE + (BASE if _is_page(target) else ASSET_BASE) + target
 
 
 I = {
@@ -135,6 +142,8 @@ def dl_btn(kind, here, label, cls='btn btn-ghost'):
 
 def header(here, key):
     """Landing page header: logo, Learn more, Order."""
+    if PARTNER:
+        return team_header(here, key)
     return f'''<a class="skip" href="#main">Skip to content</a>
 <div class="progress" aria-hidden="true"></div>
 <header class="hdr">
@@ -152,6 +161,8 @@ def header(here, key):
 
 
 def sidebar(here, key):
+    if PARTNER:
+        return team_sidebar(here, key)
     groups = []; cur_g = None; items = ''
     for k, path, label, sub, icn, g in NAV:
         if g != cur_g:
@@ -207,6 +218,8 @@ def pager(here, key):
 
 
 def dash_footer(here):
+    if PARTNER:
+        return team_dash_footer(here)
     return f'''<footer class="dfoot"><div class="wrap">
   <div class="disc">Bellver Card is a product of Bellver Markets Ltd. This guide is run independently by MTG and is not the official Bellver website or back office. Order buttons link to app.bellvercards.com with MTG's referral code, so MTG may earn a commission if you order, at no extra cost to you. Prices, fees and the compensation plan come from Bellver's official documents (version 08/2026) and can change. Rewards depend on real card activity and are never guaranteed. Nothing here is financial, tax or legal advice. Read the <a href="{L('/affiliate-disclosure.html', here)}">Affiliate Disclosure</a>, <a href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a> and <a href="{L('/risk-disclaimer.html', here)}">Risk Disclaimer</a>.</div>
   <div class="ftr-bot"><span>© <span data-year>2026</span> MTG | Musa The Giant. <a href="{L('/privacy-policy.html', here)}">Privacy</a> &nbsp; <a href="{L('/terms-of-use.html', here)}">Terms</a></span><span class="sig">Let's Get This Crypto! 💰 Crypto-Regards, MTG 👑</span></div>
@@ -234,6 +247,8 @@ def shell(here, key, body, dash):
 
 
 def help_band(here, title="Stuck? I'll walk you through it.", text="I'm MTG. Message me on WhatsApp and I'll help you register, fund your wallet and choose the right card for you."):
+    if PARTNER:
+        return team_help_band(here, title)
     return f'''<section class="sec-tight"><div class="wrap"><div class="panel help rv">
   <div class="face"><img src="{L('/images/mtg-profile.jpg', here)}" alt="MTG, Musa The Giant" width="88" height="88" loading="lazy"></div>
   <div><h2>{title}</h2><p>{text}</p></div>
@@ -242,6 +257,8 @@ def help_band(here, title="Stuck? I'll walk you through it.", text="I'm MTG. Mes
 
 
 def checklist_band(here, title='Not ready to order yet? <em>Take the free checklist.</em>', text='A two-page Bellver Starter Checklist: what to prepare, how to secure your wallet, how to fund it, which level to pick and the rules that decide whether you get paid. Message me on WhatsApp and I will send it to you personally.'):
+    if PARTNER:
+        return ''   # MTG's personal checklist offer: not part of team pages
     return f'''<section class="sec-tight" id="checklist"><div class="wrap"><div class="panel checklist rv">
   <div class="ck-ico">{ic('book')}</div>
   <div class="ck-tx"><h2 class="h2">{title}</h2><p>{text}</p>
@@ -305,6 +322,8 @@ def final_cta(here, title='Let\'s make it <span class="hap">happen</span>', text
 
 
 def footer(here):
+    if PARTNER:
+        return team_footer(here)
     cols = [
      ('The card', [('Overview', 'learn/'), ('How It Works', 'how-it-works/'), ('Prices & Limits', 'prices/'), ('Rewards Program', 'rewards/'), ('2x2 Matrix Explained', 'matrix/'), ('Get Started', 'get-started/')]),
      ('Learn', [('Presentation Videos', 'videos/'), ('Tutorial Videos', 'tutorials/'), ('FAQ & Glossary', 'faq/'), ('Documents', 'docs/')]),
@@ -336,12 +355,22 @@ PERSON = {"@type": "Person", "@id": SITE + "/#mtg", "name": "Musa The Giant", "a
           "sameAs": ["https://www.facebook.com/Musa.TheMTG", "https://www.tiktok.com/@musathegiant", "https://www.youtube.com/@MusaTheGiant"]}
 
 
+def team_trail(trail):
+    """Team pages: keep only the crumbs inside the member's own guide, so nothing leads to MTG's site."""
+    if not PARTNER:
+        return trail
+    out = [(n, u) for n, u in trail if u.startswith(SITE + BASE)]
+    return out or [('Home', SITE + BASE)]
+
+
 def crumbs_ld(trail):
+    trail = team_trail(trail)
     items = [{"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(trail)]
     return {"@type": "BreadcrumbList", "itemListElement": items}
 
 
 def crumbs_html(trail, here):
+    trail = team_trail(trail)
     out = []
     for i, (n, u) in enumerate(trail):
         if i == len(trail) - 1:
@@ -361,6 +390,8 @@ def gc_snippet():
 def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None, preload=None, robots='index,follow,max-image-preview:large,max-video-preview:-1', dash=True):
     url = abs_url(here)
     trail = trail or [('Home', SITE + '/'), ('Cards', SITE + '/cards/'), ('Bellver Cards', SITE + BASE)]
+    if PARTNER:
+        return team_page(here, key, title, desc, og_img, og_alt, body, ld_extra, trail, preload, dash)
     graph = [{"@type": "WebPage", "@id": url + "#page", "url": url, "name": title, "description": desc, "inLanguage": "en",
               "isPartOf": {"@id": SITE + "/#website"}, "author": {"@id": SITE + "/#mtg"}, "dateModified": UPDATED,
               "primaryImageOfPage": {"@type": "ImageObject", "url": abs_url(og_img)}, "breadcrumb": crumbs_ld(trail)},
@@ -474,3 +505,6 @@ def reasons_band(here, variant='full', title=None, lead=None, sid='why'):
 def reasons_ld(page_url):
     return {"@type": "ItemList", "name": "10 reasons people are joining Bellver Card", "url": page_url + "#why", "numberOfItems": len(REASONS),
             "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": t, "description": d} for i, (icn, big, t, d, href, lab) in enumerate(REASONS)]}
+
+
+from team_shell import *  # noqa  (team member versions of the shell: only used when PARTNER is set)

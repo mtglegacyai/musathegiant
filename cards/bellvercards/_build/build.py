@@ -1,13 +1,22 @@
 # -*- coding: utf-8 -*-
 """Build every Bellver Cards page.
-   python3 build.py             -> writes the live pages into cards/bellvercards/
-   python3 build.py preview DIR -> writes a preview copy with relative links into DIR"""
-import os, sys
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+   python3 build.py               -> writes MTG's live pages into cards/bellvercards/, then every team page (team.json) into bellvercards/<slug>/
+   python3 build.py preview DIR   -> writes a preview copy of MTG's pages with relative links into DIR
+   python3 build.py --member SLUG -> builds one team member's pages only"""
+import os, sys, json, subprocess
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
 import bv
-OUT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+OUT = os.path.abspath(os.path.join(HERE, '..'))
+ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
+MEMBER = None
 if len(sys.argv) > 2 and sys.argv[1] == 'preview':
     bv.MODE = 'preview'; OUT = os.path.abspath(sys.argv[2])
+elif len(sys.argv) > 2 and sys.argv[1] == '--member':
+    import team, team_shell
+    MEMBER = team.member(sys.argv[2])
+    team_shell.configure(MEMBER)
+    OUT = os.path.join(ROOT, bv.BASE.strip('/'))
 import p_home, p_info, p_more, p_watch, p_partner, p_matrix
 
 PAGES = [('', p_home.build), ('learn/', p_watch.learn), ('get-started/', p_more.start), ('how-it-works/', p_info.how),
@@ -20,6 +29,8 @@ MOVED = {'downloads/': 'docs/', 'videos/bellver-card-explained/': 'videos/#expla
 
 
 def write(path, html):
+    if MEMBER:
+        html = team.finalize(html, MEMBER, path)
     if '—' in html or '–' in html:
         raise SystemExit(f'Dash found in {path or "home"}: MTG rule is no em or en dashes')
     d = os.path.join(OUT, path); os.makedirs(d, exist_ok=True)
@@ -30,7 +41,11 @@ def write(path, html):
 for path, fn in PAGES:
     html = fn(path) if path else fn('')
     write(path, html)
-    print('built', '/cards/bellvercards/' + path, len(html) // 1024, 'KB')
+    print('built', bv.BASE + path, len(html) // 1024, 'KB')
+
+if MEMBER:
+    team.check_all_used()
+    sys.exit(0)
 
 if bv.MODE == 'prod':
     for old, new in MOVED.items():
@@ -41,3 +56,10 @@ if bv.MODE == 'prod':
 <body style="background:#020c06;color:#eef5f1;font-family:system-ui,sans-serif;padding:40px">This page has moved. <a style="color:#34cc88" href="{to}">Continue to the new page</a>.</body></html>
 ''')
         print('redirect', old, '->', new)
+
+# ---- team pages: one copy of the guide per business partner (team.json), rebuilt every time MTG's pages are
+if bv.MODE == 'prod':
+    import team
+    for m in team.members():
+        subprocess.run([sys.executable, os.path.abspath(__file__), '--member', m['slug']], check=True)
+    team.write_index(ROOT)
