@@ -1558,3 +1558,6 @@ details.qa[hidden]{display:none}
   .ts-fill{grid-template-columns:1fr auto}
   .ts-fill .meter{grid-column:1/-1;grid-row:2}
 }
+
+/* section buttons: capitalize each word (MTG, 16 Oct 2026) */
+.un-tx b,.un-all{text-transform:capitalize}
