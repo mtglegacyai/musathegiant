@@ -40,6 +40,20 @@ def _open_all(html):
     return html
 
 
+
+def team_clean_url():
+    """Keep the address bar clean on team pages (William's request, 16 Oct 2026): no #section, ?tracking
+    or #:~:text= after the page has opened, and the home page shows exactly .../bellvercards/<name>.
+    Links that point at a section or video still work; only the address bar is tidied afterwards."""
+    home = bv.BASE  # e.g. /bellvercards/william/
+    return ('''<script>(function(){try{var H=history,rs=H.replaceState.bind(H),ps=H.pushState.bind(H),HOME="%s";
+function clean(){var p=location.pathname;if(p===HOME||p===HOME+"index.html")p=HOME.slice(0,-1);return p;}
+H.replaceState=function(s,t){return rs(s,t,clean());};H.pushState=function(s,t){return ps(s,t,clean());};
+function tidy(){if(location.pathname+location.search+location.hash!==clean()||location.href.indexOf("#")>=0)rs(H.state,"",clean());}
+if(!location.hash)tidy();addEventListener("DOMContentLoaded",function(){setTimeout(tidy,300);});addEventListener("load",function(){setTimeout(tidy,300);});addEventListener("pageshow",function(e){if(e.persisted)tidy();});
+addEventListener("hashchange",function(){setTimeout(tidy,60);});}catch(e){}})();</script>''' % home)
+
+
 MEMBER_OPTS = {}
 
 
@@ -279,6 +293,7 @@ def team_page(here, key, title, desc, og_img, og_alt, body, ld_extra, trail, pre
 {pre}
 <link rel="stylesheet" href="{bv.asset('assets/bellver.css', here)}">
 {TEAM_CSS}
+{team_clean_url()}
 </head>
 <body{' class="is-dash"' if dash else ''}>
 {_open_all(bv.shell(here, key, body, dash))}

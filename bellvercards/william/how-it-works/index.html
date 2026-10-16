@@ -103,7 +103,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="/cards/bellvercards/assets/bellver.css?v=182c9a0c">
+<link rel="stylesheet" href="/cards/bellvercards/assets/bellver.css?v=8bc675d1">
 <style>
 .side .srow{grid-template-columns:repeat(2,minmax(0,1fr))}
 .team-btns{display:flex;flex-direction:column;gap:12px;align-items:stretch}
@@ -111,6 +111,12 @@
 .team-initials{display:grid;place-items:center;border-radius:50%;background:rgba(52,176,112,.16);border:2px solid rgba(252,190,37,.6);color:#fff;font:400 1.9rem/1 var(--display)}
 @media (max-width:760px){.help .team-btns{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
 </style>
+<script>(function(){try{var H=history,rs=H.replaceState.bind(H),ps=H.pushState.bind(H),HOME="/bellvercards/william/";
+function clean(){var p=location.pathname;if(p===HOME||p===HOME+"index.html")p=HOME.slice(0,-1);return p;}
+H.replaceState=function(s,t){return rs(s,t,clean());};H.pushState=function(s,t){return ps(s,t,clean());};
+function tidy(){if(location.pathname+location.search+location.hash!==clean()||location.href.indexOf("#")>=0)rs(H.state,"",clean());}
+if(!location.hash)tidy();addEventListener("DOMContentLoaded",function(){setTimeout(tidy,300);});addEventListener("load",function(){setTimeout(tidy,300);});addEventListener("pageshow",function(e){if(e.persisted)tidy();});
+addEventListener("hashchange",function(){setTimeout(tidy,60);});}catch(e){}})();</script>
 </head>
 <body class="is-dash">
 <a class="skip" href="#main">Skip to content</a>
