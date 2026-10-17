@@ -82,7 +82,7 @@ def how(H='how-it-works/'):
  <div class="art" data-tilt="img" data-max="10"><img src="{L('images/bellver-card-special-edition-700.webp', H)}" srcset="{L('images/bellver-card-special-edition-700.webp', H)} 700w, {L('images/bellver-card-special-edition.webp', H)} 1400w" sizes="(max-width:860px) 90vw, 520px" alt="Bellver Card Special Edition" width="1400" height="831" loading="lazy"></div>
  <div>
   <h2 class="h2">Regular or <em>Special</em> Edition</h2>
-  <p class="lead" style="margin-top:14px">Every level comes as a Regular card. Choose the Special Edition when you buy and it is $370 on top, down from $390. In Bellver's words, you get even more security and privacy, as a physical or virtual card. Already own a regular card? Upgrading it to the Special Edition costs $470.</p>
+  <p class="lead" style="margin-top:14px">Every level comes as a Regular card. Choose the Special Edition when you buy and it is $370 on top. In Bellver's words, you get even more security and privacy, as a physical or virtual card. Already own a regular card? Upgrading it to the Special Edition costs $470.</p>
   <ul class="checks"><li>Available on Basic, Premium, Business and Gold</li><li>Higher commissions when people you refer choose it: $150, $300 or $500</li><li>Bellver has said it may not be offered forever</li></ul>
   <a class="btn btn-ghost" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}Ask MTG what it includes</a>
  </div>
@@ -152,11 +152,11 @@ def prices(H='prices/'):
    <h2 class="h2">Fees, <em>in plain numbers</em></h2>
    <p class="lead" style="margin-top:16px">No hidden extras. These are the fees on Bellver's official price list.</p>
    <p class="muted">Bellver is open that these fees are higher than a typical bank card. The top-up fee is what funds the commissions and monthly rewards, which is why this card can earn for you and an ordinary one cannot.</p>
-   <div class="note g" style="margin-top:20px">{ic('shield')}<span><b>Why 3.9%?</b> In October 2026 Bellver renegotiated with its card provider and cut the top-up fee from 4.95% to 3.9%, effective immediately. It can still sound high next to a bank card, and it is what helps keep Bellver sustainable. A company has to pay for its team, offices, payment partners, security and support, and a profitable company is one that stays around for the long run. That is what you want from the company that holds your card.</span></div>
+   <div class="note g" style="margin-top:20px">{ic('shield')}<span><b>Why 3.9%?</b> The top-up fee can sound high next to a bank card, and it is what helps keep Bellver sustainable. A company has to pay for its team, offices, payment partners, security and support, and a profitable company is one that stays around for the long run. That is what you want from the company that holds your card.</span></div>
    <div class="note g" style="margin-top:20px">{ic('info')}<span><b>Example:</b> load $100 onto your card and $103.90 leaves your wallet, because the 3.9% fee is added on top. Pay $50 at a shop and the 1.75% transaction fee is about $0.88.</span></div>
   </div>
   <div class="grid2 rv" style="--d:.1s;align-content:start">
-   <div class="box"><div class="ico">{ic('wallet')}</div><p class="muted small" style="margin:0">Card top-up (deposit)</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">3.9%</p><p class="muted small" style="margin:4px 0 0">Was 4.95% until October 2026</p></div>
+   <div class="box"><div class="ico">{ic('wallet')}</div><p class="muted small" style="margin:0">Card top-up (deposit)</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">3.9%</p><p class="muted small" style="margin:4px 0 0">Added on top of the amount you load</p></div>
    <div class="box"><div class="ico">{ic('card')}</div><p class="muted small" style="margin:0">Per transaction</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">1.75%</p></div>
    <div class="box"><div class="ico">{ic('coins')}</div><p class="muted small" style="margin:0">ATM withdrawal</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">2%</p></div>
    <div class="box"><div class="ico">{ic('calendar')}</div><p class="muted small" style="margin:0">Monthly or annual fee</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">None listed</p></div>
@@ -265,7 +265,7 @@ def rewards(H='rewards/'):
    <li>Direct commissions by card level</li>
    <li>The roadmap for the card</li>
   </ul>
-  <p class="fine" style="opacity:.75;font-size:.9em">This presentation was recorded before Bellver's October 2026 update, so its 4.95% top-up fee, $390 Special Edition and Premium rank step are now out of date. Any earnings mentioned in a video are examples, not promises. Read the <a href="{L('/earnings-disclaimer.html', H)}">Earnings Disclaimer</a>.</p>
+  <p class="fine" style="opacity:.75;font-size:.9em">This presentation was recorded before Bellver's October 2026 update, so some of its figures (the 4.95% top-up fee, the $390 Special Edition and a Premium rank step) are out of date. <a class="inl" href="{L('learn/#good-to-know', H)}">See the current figures</a>. Any earnings mentioned in a video are examples, not promises. Read the <a href="{L('/earnings-disclaimer.html', H)}">Earnings Disclaimer</a>.</p>
  </div>
 </div></section>'''
 
@@ -278,7 +278,7 @@ def rewards(H='rewards/'):
     rk = ''.join(f'''<div class="rank {c} rv" style="--d:{(i%3)*0.06:.2f}s"><div class="top"><div><h3>{t}</h3><span class="card-lv">{cl}</span></div><span class="lv">{lv}<small>LEVELS</small></span></div><div class="stars" aria-label="{s.count('★')} stars">{s or '&nbsp;'}</div><ul>{''.join(f'<li>{x}</li>' for x in li)}</ul></div>''' for i, (c, t, s, cl, lv, li) in enumerate(R))
     ranks = f'''<section class="sec-tight" id="ranks"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Ranks and <em>reward levels</em></h2><p class="lead">Your card level sets your ceiling. Your referrals' ranks unlock the levels underneath it.</p></div>
- <div class="note g rv" style="margin-bottom:22px">{ic('info')}<span><b>New in October 2026:</b> everyone starts as a Member, and the old Premium status step is gone. Your first star now comes from your own Premium card plus two new participants you refer directly, who each buy a Premium card. Bellver has not yet republished its compensation plan, so the reward depths below come from the 08/2026 version. Check your dashboard for the current numbers.</span></div>
+ <div class="note g rv" style="margin-bottom:22px">{ic('info')}<span><b>Your first star:</b> everyone starts as a Member. Your first star comes from your own Premium card plus two new participants you refer directly, who each buy a Premium card. Bellver has not yet republished its compensation plan, so the reward depths below come from the 08/2026 version. Check your dashboard for the current numbers.</span></div>
  <div class="ranks">{rk}</div>
 </div></section>'''
 

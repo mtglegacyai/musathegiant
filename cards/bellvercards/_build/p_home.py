@@ -171,7 +171,7 @@ def build(here=''):
    <span class="badge red">Add-on to any level, +$370</span>
    <h2 class="h2" style="margin-top:16px">The <em>Special</em> Edition</h2>
    <p class="lead" style="margin-top:14px">Bellver's option for people who put privacy and security first, available as a physical or virtual card. It also lifts the commissions your referrals earn you.</p>
-   <p class="muted">Choose it when you buy your card and it costs $370, down from $390. Already have a regular card? Upgrading it to the Special Edition costs $470.</p>
+   <p class="muted">Choose it when you buy your card and it costs $370. Already have a regular card? Upgrading it to the Special Edition costs $470.</p>
    <p class="muted">Bellver has said this option may not stay available forever. Ask me what it includes before you decide.</p>
    <div class="btn-row" style="margin-top:22px"><a class="btn btn-ghost" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}Ask MTG about it</a><a class="tlink" href="{L('how-it-works/#special-edition', H)}">Regular vs Special Edition {ic('arrow')}</a></div>
   </div>
@@ -191,7 +191,7 @@ def build(here=''):
 </section>'''
 
     faqs = [
-     ('How much does the Bellver Card cost?', f'A one-time $99 for Basic, $270 for Premium, $490 for Business or $990 for Gold. Physical cards add shipping ($85 Europe, $149 rest of world). Using the card has published fees: 3.9% when you top up (cut from 4.95% in October 2026), 1.75% per transaction and 2% at ATMs. The top-up fee helps keep Bellver profitable and around for the long term. <a class="inl" href="{L("prices/", H)}">Full price list</a>'),
+     ('How much does the Bellver Card cost?', f'A one-time $99 for Basic, $270 for Premium, $490 for Business or $990 for Gold. Physical cards add shipping ($85 Europe, $149 rest of world). Using the card has published fees: 3.9% when you top up (added on top of the amount you load), 1.75% per transaction and 2% at ATMs. The top-up fee helps keep Bellver profitable and around for the long term. <a class="inl" href="{L("prices/", H)}">Full price list</a>'),
      ('Do I need crypto to get one?', 'It helps, but no. Card balances run on USDT or USDC, and sending those from any wallet is the cheapest route. You can also buy crypto with a credit card inside the dashboard, and in Europe pay by bank transfer or PayPal. ' + exch_inline()),
      ('Who controls my money?', 'You do. Deposits go into your own non-custodial Fireblocks wallet protected by your private key. Bellver cannot freeze or access it. The flip side: keep your key safe, because nobody can recover it for you.'),
      ('Do I have to refer anyone?', 'No. Using a card is never tied to referring anyone, and customers who do not refer are just as welcome. The rewards program is entirely voluntary. Many people simply want a crypto card with high limits. If you do share it, two new referrals who each buy Premium or higher, together with your own Premium card, earn you your first star and start your monthly rewards. Everyone begins as a Member.'),

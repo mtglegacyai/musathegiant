@@ -256,7 +256,7 @@ def matrix(H='matrix/'):
  <div class="mx-ladder">{lad}</div>
  <div class="grid2" style="margin-top:18px">
   <div class="note g rv">{ic('star')}<span><b>The easy rule:</b> the first star needs your own Premium card plus two people you refer directly who each buy Premium or higher. After that, every new star needs <b>two direct referrals who reached the star below</b>.</span></div>
-  <div class="note rv" style="--d:.06s">{ic('info')}<span><b>October 2026 update:</b> everyone now starts as a Member and the old "Premium" step is gone. Bellver has not republished its plan yet, so the level depths shown come from version 08/2026. Check your dashboard for the current numbers.</span></div>
+  <div class="note rv" style="--d:.06s">{ic('info')}<span><b>Good to know:</b> everyone starts as a Member. Bellver has not republished its plan yet, so the level depths shown come from version 08/2026. Check your dashboard for the current numbers.</span></div>
  </div>
  <p class="fine rv">A Basic card earns direct commissions only, never monthly rewards. Upgrading later does not pay back rewards you missed before the upgrade.</p>
 </div></section>'''

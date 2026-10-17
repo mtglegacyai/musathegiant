@@ -192,7 +192,7 @@ def videos(H='videos/'):
  </div>
  <div class="box warn"><div class="ico">{ic('alert')}</div><h3 class="h3">A fair reading of the numbers</h3>
   <p>The video's monthly examples ($2,457, about $20,000 and $157,286) assume every matrix place is filled and every cardholder loads $300 a month. A full 12 levels is 8,190 cardholders. Treat these as illustrations, not forecasts.</p>
-  <p>This video was recorded before Bellver's October 2026 update, so its 4.95% top-up fee, $390 Special Edition and Premium rank step have since changed. <a class="inl" href="{L('learn/#bellver-news', H)}">See what changed</a>.</p>
+  <p>This video was recorded before Bellver's October 2026 update, so some of its figures (the 4.95% top-up fee, the $390 Special Edition and a Premium rank step) are out of date. <a class="inl" href="{L('learn/#good-to-know', H)}">See the current figures</a>.</p>
   <p><a class="inl" href="{L('rewards/#estimate', H)}">Run your own numbers</a></p></div>
 </div>'''
     road = [('Sep 2026', 'Testing phase from 9 September, then the official launch of version 1.0'), ('End of 2026', 'Dashboard version 2.0, in development as announced in October 2026'), ('Jan 2027', 'Version 2.0 of the platform'), ('Mar 2027', 'NFC rings and other products in the shop'),
