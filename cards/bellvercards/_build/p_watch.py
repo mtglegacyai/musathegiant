@@ -135,6 +135,7 @@ def live_thumb(v, H, local_suffix, w, h, load, alt):
 def pplayer(v, H, eager=False, more=None):
     vid, title, kind, dur, typ, src, img, desc, iso = v
     data = f'data-yt="{src}"' if typ == 'yt' else f'data-src="{L(src, H)}"'
+    if vid == 'which-card-explained': data = data[:-1] + '?v=2"'  # new copy of the video, skip old browser caches
     m = f' data-more="{more}"' if more else ''
     load = '' if eager else ' loading="lazy"'
     pimg = live_thumb(v, H, '.webp', 1280, 720, load, title + ', video thumbnail') or (
