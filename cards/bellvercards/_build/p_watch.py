@@ -475,7 +475,7 @@ def explainers(H='explainers/'):
     body = top + lib + help_band(H, 'Want a topic explained?', 'Tell me which part of the guide is hard to follow, and I will turn it into an explainer, or walk you through it on WhatsApp.')
     return page(H, 'explainers', 'Bellver Card Explainer Videos: Where Your Money Sits, Which Card to Choose and the 2x2 Matrix | MTG',
                 'Short explainer videos by MTG: where your Bellver money really sits, which Bellver card is right for you, and the 2x2 matrix rewards plan, with key moments and full transcripts.',
-                'images/og/og-bellver-videos.jpg', 'Bellver Card explainer videos', body, ld_extra=lds, trail=trail)
+                'images/og/og-bellver-explainers.jpg', 'Bellver Card explainer videos', body, ld_extra=lds, trail=trail)
 
 
 # ------------------------------------------------------------------ OVERVIEW

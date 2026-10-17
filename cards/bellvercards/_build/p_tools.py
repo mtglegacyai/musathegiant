@@ -95,7 +95,7 @@ def rewards_page(H='rewards-calculator/'):
            "description": "Estimate Bellver Card monthly matrix rewards: 0.1% of the top-ups made by cardholders in your paid levels. Illustration only."}
     return page(H, 'rcalc', 'Bellver Card Rewards Calculator: Estimate Your 0.1% Monthly Rewards | MTG',
                 'Free Bellver Card rewards calculator: choose your rank, cardholders in your paid levels and their average top-up to see how the 0.1% monthly reward works. Illustration only, not a promise.',
-                'images/og/og-bellver-rewards.jpg', 'Bellver Card rewards calculator', body, ld_extra=[app], trail=trail)
+                'images/og/og-bellver-rewards-calculator.jpg', 'Bellver Card rewards calculator', body, ld_extra=[app], trail=trail)
 
 
 def payback_page(H='payback-calculator/'):
@@ -113,4 +113,4 @@ def payback_page(H='payback-calculator/'):
            "description": "Check how many referrals cover the price of your Bellver Card using the one-time direct commissions."}
     return page(H, 'pcalc', 'Bellver Card Payback Calculator: Can Referrals Cover Your Card? | MTG',
                 'Free Bellver Card payback calculator: pick your card, your referrals\' card and how many people order through your link to see when your card pays for itself.',
-                'images/og/og-bellver-prices.jpg', 'Bellver Card payback calculator', body, ld_extra=[app], trail=trail)
+                'images/og/og-bellver-payback.jpg', 'Bellver Card payback calculator', body, ld_extra=[app], trail=trail)

@@ -402,6 +402,9 @@ def gc_snippet():
     return f'<script data-goatcounter="https://{ANALYTICS_GOATCOUNTER}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
 
 
+OG_V = '20261017'  # bump when the social preview images change, so WhatsApp and others fetch the new ones
+
+
 def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None, preload=None, robots='index,follow,max-image-preview:large,max-video-preview:-1', dash=True):
     url = abs_url(here)
     trail = trail or [('Home', SITE + '/'), ('Cards', SITE + '/cards/'), ('Bellver Cards', SITE + BASE)]
@@ -434,14 +437,16 @@ def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="{abs_url(og_img)}">
+<meta property="og:image" content="{abs_url(og_img)}?v={OG_V}">
+<meta property="og:image:secure_url" content="{abs_url(og_img)}?v={OG_V}">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{og_alt}">
 <meta property="og:locale" content="en_ZA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
-<meta name="twitter:image" content="{abs_url(og_img)}">
+<meta name="twitter:image" content="{abs_url(og_img)}?v={OG_V}">
 <script type="application/ld+json">
 {ld}
 </script>

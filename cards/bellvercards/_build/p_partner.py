@@ -135,4 +135,4 @@ def partner(H='partner/'):
     faq_ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     return page(H, 'partner', 'Become a Bellver Card Partner: How to Share It and Earn | MTG',
                 'How to share the Bellver Card and earn commissions: made for TikTok LIVE hosts and creators with a trusting audience, the $10 to $500 direct commissions, a first-week plan, honest sharing rules and a plain explanation of what partner means.',
-                'images/og/og-bellver-guide.jpg', 'Become a Bellver Card partner', body, ld_extra=[faq_ld], trail=trail)
+                'images/og/og-bellver-partner.jpg', 'Become a Bellver Card partner', body, ld_extra=[faq_ld], trail=trail)

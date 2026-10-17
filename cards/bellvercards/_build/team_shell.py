@@ -250,7 +250,7 @@ def team_page(here, key, title, desc, og_img, og_alt, body, ld_extra, trail, pre
     p = bv.PARTNER; SITE = bv.SITE
     url = bv.abs_url(here)
     title = title.replace(' | MTG', ' | ' + p['name'])
-    og = SITE + bv.BASE + 'og/' + og_img.rsplit('/', 1)[-1]
+    og = SITE + bv.BASE + 'og/' + og_img.rsplit('/', 1)[-1] + '?v=' + bv.OG_V
     trail = trail or [('Bellver Cards', SITE + bv.BASE)]
     graph = [{"@type": "WebPage", "@id": url + "#page", "url": url, "name": title, "description": desc, "inLanguage": "en",
               "author": {"@id": SITE + bv.BASE + "#partner"}, "dateModified": bv.UPDATED,
@@ -279,6 +279,8 @@ def team_page(here, key, title, desc, og_img, og_alt, body, ld_extra, trail, pre
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{og}">
+<meta property="og:image:secure_url" content="{og}">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{og_alt}">
 <meta name="twitter:card" content="summary_large_image">
