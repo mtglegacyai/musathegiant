@@ -6,6 +6,7 @@ from mx_video import MXV, MXV_DATE, MXV_MOMENTS, MXV_TRANSCRIPT
 from dash_video import DASH, DASH_DATE, DASH_MOMENTS, DASH_TRANSCRIPT
 from topup_video import TOPUP, TOPUP_DATE, TOPUP_MOMENTS, TOPUP_TRANSCRIPT
 from ex1_video import EX1, EX1_DATE, EX1_MOMENTS, EX1_TRANSCRIPT
+from ex2_video import EX2, EX2_DATE, EX2_MOMENTS, EX2_TRANSCRIPT
 
 # (id, title, kind, duration label, type, source, thumb, description, iso duration)
 PRES = [
@@ -138,7 +139,8 @@ def pplayer(v, H, eager=False, more=None):
     load = '' if eager else ' loading="lazy"'
     pimg = live_thumb(v, H, '.webp', 1280, 720, load, title + ', video thumbnail') or (
         f'<img src="{L(img + "-640.webp", H)}" srcset="{L(img + "-640.webp", H)} 640w, {L(img + ".webp", H)} 1280w" sizes="(max-width:860px) 100vw, 820px" alt="{title}, video thumbnail" width="1280" height="720"{load}>')
-    return f'''<div class="player" id="p-{vid}" role="button" tabindex="0" aria-label="Play: {title}" {data} data-title="{title}"{m}>
+    pb = ' pb-low' if vid == 'which-card-explained' else ''
+    return f'''<div class="player{pb}" id="p-{vid}" role="button" tabindex="0" aria-label="Play: {title}" {data} data-title="{title}"{m}>
 {pimg}
  <span class="pbtn">{ic('play')}</span><span class="plabel">{dur}</span></div>'''
 
@@ -425,6 +427,11 @@ EXPL = [
    'The top-up and the 3.9% fee, added on top', 'Who is behind the card: Malta, Singapore and Fireblocks'],
   ('how-it-works/', 'Open How It Works'),
   "Bellver wallet, Bellver Dynamic Wallet, non-custodial wallet, private key, Fireblocks, USDT, USDC, BNB Smart Chain, Bellver top-up fee, is Bellver safe"),
+ (EX2, EX2_DATE, EX2_MOMENTS, EX2_TRANSCRIPT, 'card', 'Which card is <em>right for you?</em>', 'Which card should I choose?',
+  ['Same card, four sizes: what changes between the levels', 'Spending limits, shown as shopping trolleys', 'Rewards depth, shown as a lift, and the $100 a month rule',
+   'Physical or virtual: Visa or Mastercard, ATMs, shipping and delivery', 'Upgrades, the Special Edition and the fees'],
+  ('prices/', 'Open Prices & Limits'),
+  "which Bellver card, Bellver Basic Premium Business Gold, Bellver card limits, Bellver physical or virtual card, Bellver Special Edition, Bellver upgrade"),
  (MXV, MXV_DATE, MXV_MOMENTS, MXV_TRANSCRIPT, 'tree', 'The 2x2 matrix, <em>made simple</em>', 'How do the monthly rewards work?',
   ['Why every cardholder has two seats directly under them', 'How seats fill in reading order, like people getting on a bus', 'Spillover, shown as a champagne tower',
    'The 0.1% reward, explained with a neighbour and a toll gate', 'Stars, the $100 a month rule and payday'],
@@ -465,8 +472,8 @@ def explainers(H='explainers/'):
  <p class="vnote" style="margin-top:16px">Explainers by MTG, narrated with his AI voice. More are on the way.</p>
 </div></section>'''
     body = top + lib + help_band(H, 'Want a topic explained?', 'Tell me which part of the guide is hard to follow, and I will turn it into an explainer, or walk you through it on WhatsApp.')
-    return page(H, 'explainers', 'Bellver Card Explainer Videos: Where Your Money Sits and the 2x2 Matrix, Made Simple | MTG',
-                'Short explainer videos by MTG: where your Bellver money really sits (wallet, private key, card, fees) and the 2x2 matrix rewards plan, with key moments and full transcripts.',
+    return page(H, 'explainers', 'Bellver Card Explainer Videos: Where Your Money Sits, Which Card to Choose and the 2x2 Matrix | MTG',
+                'Short explainer videos by MTG: where your Bellver money really sits, which Bellver card is right for you, and the 2x2 matrix rewards plan, with key moments and full transcripts.',
                 'images/og/og-bellver-videos.jpg', 'Bellver Card explainer videos', body, ld_extra=lds, trail=trail)
 
 
@@ -481,7 +488,7 @@ MORE = {
  'pcalc': 'Pick your card and your referrals\' card, and see when the one-time commissions cover it.',
  'partner': 'Who it suits, what you earn, a first-week plan and the honest way to share the card.',
  'videos': 'Bellver\'s official videos: the 3-minute overview, the 27-minute presentation and the launch webinar, with summaries.',
- 'explainers': 'Where your money sits and the 2x2 matrix, each explained simply in a few minutes, with pictures, key moments and transcripts.',
+ 'explainers': 'Where your money sits, which card to choose and the 2x2 matrix, each explained simply in a few minutes, with key moments and transcripts.',
  'tutorials': 'Register, secure your account, back up your private key, fund your wallet, order your card and top it up, step by step.',
  'faq': 'Two dozen straight answers and a plain-words glossary.',
  'docs': 'The official price list, compensation plan and presentation slides as PDFs.',

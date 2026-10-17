@@ -5,6 +5,7 @@ from p_home import tiers_html, payback_calc
 from p_tools import rewards_tool
 from ex1_video import EX1, EX1_DATE, EX1_MOMENTS, EX1_TRANSCRIPT
 from mx_video import MXV
+from ex2_video import EX2, EX2_DATE, EX2_MOMENTS, EX2_TRANSCRIPT
 
 
 def phero(H, trail, lines, lead, art=None, btns=None):
@@ -74,7 +75,7 @@ def how(H='how-it-works/'):
 </div></section>'''
 
     pv = f'''<section class="sec" id="physical-or-virtual"><div class="wrap">
- <div class="sec-head rv"><h2 class="h2">Physical <em>or</em> virtual?</h2><p class="lead">Both carry the same limits and the same rewards. The difference is how fast you get it and where you can use it.</p></div>
+ <div class="sec-head rv"><h2 class="h2">Physical <em>or</em> virtual?</h2><p class="lead">Both carry the same limits and the same rewards. The difference is how fast you get it and where you can use it. <a class="inl" href="{L('explainers/#which-card-explained', H)}">Watch it explained</a></p></div>
  <div class="tbl-wrap rv"><table class="tbl">
   <thead><tr><th scope="col"></th><th scope="col">Virtual card</th><th scope="col">Physical card</th></tr></thead>
   <tbody>
@@ -141,10 +142,10 @@ def how(H='how-it-works/'):
 
 # ------------------------------------------------------------------ PRICES
 def prices(H='prices/'):
-    art3 = f'''<div class="player" role="button" tabindex="0" aria-label="Play the 3-minute Bellver Card video" data-src="{L(MP4_3MIN, H)}" data-title="Bellver Card in 3 minutes">
-     <img src="{L('images/bellver-card-3-minute-video-thumbnail-640.webp', H)}" srcset="{L('images/bellver-card-3-minute-video-thumbnail-640.webp', H)} 640w, {L('images/bellver-card-3-minute-video-thumbnail.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 520px" alt="Man holding a black Bellver Card under the headline The card that can pay your bills" width="1280" height="720" fetchpriority="high">
-     <span class="pbtn">{ic('play')}</span><span class="plabel">3 min</span>
-    </div>'''
+    art3 = f'''<div class="player mx-video mx-herovid pb-low" id="p-which-card" role="button" tabindex="0" aria-label="Play: {EX2[1]}" data-src="{L(EX2[5], H)}" data-title="{EX2[1]}" data-more="{L('explainers/#which-card-explained', H)}">
+  <img src="{L(EX2[6] + '-640.webp', H)}" srcset="{L(EX2[6] + '-640.webp', H)} 640w, {L(EX2[6] + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="Which card is right for you: explainer video thumbnail" width="1280" height="720" fetchpriority="high">
+  <span class="pbtn">{ic('play')}</span><span class="plabel">{EX2[3]}</span>
+ </div><p class="mx-vcap">{ic('play-c')}Not sure which level? Watch it explained in under 5 minutes</p>'''
     trail = T(('Prices & Limits', abs_url(H)))
     top = phero(H, trail, ['Prices,', 'fees & limits'], 'One-time card price, clear limits, published fees. Everything below comes from Bellver\'s official price list and compensation plan, version 08/2026.', art3,
                 order_btn('Order your card') + dl_btn('price', H, 'Price list (PDF)'))
@@ -194,23 +195,23 @@ def prices(H='prices/'):
     upgrade = f'''<section class="sec" id="upgrades"><div class="wrap split">
  <div class="rv">
   <h2 class="h2">Upgrade, <em>pay the difference</em></h2>
-  <p class="lead" style="margin-top:16px">Start where you are comfortable and move up whenever you like.</p>
-  <ul class="checks">
-   <li><b>Pay only the difference</b> between your current level and the new one. Basic to Business costs $391.</li>
-   <li><b>Keep the same card.</b> An upgrade is not a new order, so there is no new shipping cost. Only your limits change.</li>
-   <li><b>Regular to Special Edition:</b> upgrading a card you already own costs $470. Choosing the Special Edition when you first buy is $370.</li>
-   <li><b>Rewards are not back-dated.</b> Basic earns no monthly rewards, and what you could have earned before upgrading is not paid later.</li>
+  <ul class="checks" style="margin-top:16px">
+   <li><b>Pay only the difference.</b> Basic to Business costs $391.</li>
+   <li><b>Same card,</b> no new order and no new shipping.</li>
+   <li><b>Special Edition later costs $470</b> ($370 if chosen when you buy).</li>
+   <li><b>Rewards are not back-dated.</b></li>
   </ul>
  </div>
  <div class="box warn rv" style="--d:.1s">
   <div class="ico">{ic('help')}</div>
   <h3 class="h3">Which level should you choose?</h3>
   <ul>
-   <li><b>Basic, $99:</b> you mainly want the card and are happy with $1,000 a day.</li>
-   <li><b>Premium, $270:</b> the minimum Bellver recommends if you want monthly rewards. <a class="inl" href="{L('matrix/', H)}">How the 2x2 matrix works</a></li>
-   <li><b>Business, $490:</b> the most popular choice. Deeper rewards, and three Business referrals cover its cost.</li>
-   <li><b>Gold, $990:</b> the highest limits and the only level that can reach 18 to 20 reward levels.</li>
+   <li><b>Basic, $99:</b> just the card.</li>
+   <li><b>Premium, $270:</b> the minimum for monthly rewards.</li>
+   <li><b>Business, $490:</b> the most popular choice.</li>
+   <li><b>Gold, $990:</b> the highest limits and deepest rewards.</li>
   </ul>
+  <p style="margin:12px 0 0"><a class="tlink" href="{L('explainers/#which-card-explained', H)}">{ic('play-c')}Watch it explained {ic('arrow')}</a></p>
  </div>
 </div></section>'''
 
@@ -224,9 +225,13 @@ def prices(H='prices/'):
               for n, p in [('Basic', 99), ('Premium', 270), ('Business', 490), ('Gold', 990)]]
     product = {"@type": "Product", "name": "Bellver Card", "brand": {"@type": "Brand", "name": "Bellver"}, "image": abs_url('images/bellver-card-black-visa.webp'),
                "description": "Crypto-funded card (Visa physical, Mastercard virtual) in four levels with daily limits from $1,000 to $250,000.", "offers": offers}
+    vld_ex2 = {"@type": "VideoObject", "name": EX2[1], "description": EX2[7], "thumbnailUrl": abs_url(EX2[6] + ".jpg"), "inLanguage": "en", "url": abs_url(H),
+               "contentUrl": abs_url(EX2[5]), "uploadDate": EX2_DATE, "duration": EX2[8], "transcript": ' '.join(EX2_TRANSCRIPT),
+               "author": {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"},
+               "keywords": "which Bellver card, Bellver Basic Premium Business Gold, Bellver card limits, Bellver physical or virtual card, Bellver Special Edition, Bellver upgrade"}
     return page(H, 'prices', 'Bellver Card Prices, Fees and Limits (2026) | MTG',
                 'Bellver Card prices: Basic $99, Premium $270, Business $490, Gold $990. Daily limits up to $250,000, fees of 3.9% top-up, 1.75% per transaction, 2% ATM, plus add-ons and upgrades.',
-                'images/og/og-bellver-prices.jpg', 'Bellver Card prices and limits', body, ld_extra=[product], trail=trail)
+                'images/og/og-bellver-prices.jpg', 'Bellver Card prices and limits', body, ld_extra=[product, vld_ex2], trail=trail)
 
 
 # ------------------------------------------------------------------ REWARDS

@@ -1580,3 +1580,5 @@ details.qa[hidden]{display:none}
 .note.warn{border-color:rgba(252,190,37,.35);background:rgba(252,190,37,.07)}
 .note.warn b{color:var(--yellow)}
 @media (max-width:860px){.panel.cbp{grid-template-columns:1fr;gap:20px}}
+/* Play button sits in the empty space under the cards so the thumbnail headline stays readable */
+.player.pb-low .pbtn{left:60%;top:80%}
