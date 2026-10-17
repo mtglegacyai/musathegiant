@@ -1066,12 +1066,60 @@ img{max-width:100%;height:auto}
   background:rgba(199,162,75,.07);color:#F0E4C8;font-size:13.8px;line-height:1.55;white-space:pre-line}
 .grp-note{font-size:12.6px;color:var(--gold-lt);margin:8px 0 0;min-height:1em}
 @media(min-width:560px){ .grp-btns{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))} }
+/* MTG 👑 Dashboard Standard: orbiting light ring for DASHBOARD and 🏡 GO HOME buttons (same motion as every CTA) */
+@property --md-ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+.mtg-ring{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:7px}
+.mtg-ring .emo{font-size:1rem;line-height:1;display:inline-block;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.mtg-ring:hover .emo{transform:translateY(-2px) rotate(-8deg) scale(1.12)}
+.mtg-ring:before,.mtg-ring:after{content:"";position:absolute;pointer-events:none;background:conic-gradient(from var(--md-ang),transparent 0 58%,var(--md-r1,#ffe3a3) 74%,var(--md-r2,#f2ad3c) 82%,transparent 94%);-webkit-mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);-webkit-mask-composite:xor;animation:mdSpin 6s linear infinite}
+.mtg-ring:before{inset:-3px;padding:2px;border-radius:var(--ring-r,13px);z-index:2;filter:drop-shadow(0 0 5px var(--md-r2,#f2ad3c))}
+.mtg-ring:after{inset:-11px;padding:9px;border-radius:calc(var(--ring-r,13px) + 8px);z-index:-1;filter:blur(9px);opacity:.28;animation:mdSpin 6s linear infinite,mdBreathe 4s ease-in-out infinite}
+.mtg-ring:hover:before{filter:drop-shadow(0 0 9px var(--md-r2,#f2ad3c)) brightness(1.2)}
+@keyframes mdSpin{to{--md-ang:360deg}}
+@keyframes mdBreathe{0%,100%{opacity:.2}50%{opacity:.45}}
+@media (prefers-reduced-motion:reduce){.mtg-ring:before,.mtg-ring:after{animation:none!important}.mtg-ring:before{--md-ang:200deg}.mtg-ring:hover .emo{transform:none}}
+
+/* ===== MTG 👑 Dashboard Standard: collapse / expand pill and 🏡 GO HOME =====
+   Same edge pill as every MTG dashboard. Desktop: tuck the course menu away and the
+   lessons widen (remembered between visits). Tablet and phone: the pill opens the drawer. */
+:root{--md-r1:#E4C97A;--md-r2:#C7A24B}
+#navpill{display:none;place-items:center;position:fixed;z-index:65;top:50%;margin-top:-34px;left:0;width:15px;height:68px;padding:0;
+  border-radius:0 12px 12px 0;border:1px solid rgba(199,162,75,.55);border-left-color:transparent;background:#0b1224;color:var(--gold-lt);cursor:pointer;
+  -webkit-tap-highlight-color:transparent;box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 0 4px rgba(199,162,75,.08);
+  transition:left .38s cubic-bezier(.2,.7,.2,1),width .38s cubic-bezier(.2,.7,.2,1),border-radius .38s cubic-bezier(.2,.7,.2,1),background .2s,color .2s,box-shadow .2s}
+#navpill svg{width:14px;height:14px;margin-left:-2px;transform:rotate(180deg);transition:transform .38s cubic-bezier(.2,.7,.2,1)}
+#navpill:hover{background:var(--gold);color:#231A05;box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 0 4px rgba(199,162,75,.22),0 0 22px rgba(199,162,75,.45)}
+#navpill:focus-visible{outline:2px solid var(--gold-lt);outline-offset:3px}
+body.hasnav #navpill{display:grid}
+body.navopen #navpill{left:calc(min(84vw,300px) - 16px);width:32px;border-radius:18px;border-left-color:rgba(199,162,75,.55)}
+body.navopen #navpill svg{transform:none;width:20px;height:20px;margin:0}
+@media(min-width:1024px){
+  #navpill{left:238px;width:36px;border-radius:18px;border-left-color:rgba(199,162,75,.55)}
+  #navpill svg{transform:none;width:20px;height:20px;margin:0}
+  body.hasnav.navoff #navpill{left:0;width:30px;border-radius:0 18px 18px 0;border-left-color:transparent}
+  body.hasnav.navoff #navpill svg{transform:rotate(180deg)}
+  body.hasnav #app{transition:padding-left .38s cubic-bezier(.2,.7,.2,1)}
+  body.hasnav.navoff #app{padding-left:0}
+  body.hasnav.navoff #sidenav{transform:translateX(-100%);visibility:hidden;transition:transform .38s cubic-bezier(.2,.7,.2,1),visibility 0s .38s}
+}
+html:not(.md-ready) #navpill,html:not(.md-ready) #sidenav,html:not(.md-ready) body.hasnav #app{transition:none!important}
+.tb-home{--ring-r:12px;min-height:38px;padding:0 13px;border-radius:10px;border:0;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(199,162,75,.45);
+  color:var(--gold-lt);font-family:Sora;font-weight:800;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;flex:0 0 auto;transition:transform .2s,background .2s,color .2s}
+.tb-home:hover{transform:translateY(-2px);background:rgba(199,162,75,.12);color:#fff}
+.tb-home:active{transform:translateY(1px) scale(.985)}
+.nv-home{width:100%;justify-content:center;margin-top:10px}
+@media(max-width:480px){.tb .tb-home{padding:0;width:38px;justify-content:center}.tb .tb-home .tx{display:none}}
+@media(prefers-reduced-motion:reduce){#navpill,#navpill svg,#sidenav,body.hasnav #app{transition:none!important}.tb-home:hover,.tb-home:active{transform:none}}
+@media(min-width:1024px){.nv-close{display:none}}
+@media print{#navpill{display:none!important}}
 </style>
 </head>
 <body>
 <div class="bg" aria-hidden="true"></div>
 <aside id="sidenav" aria-label="Course navigation" hidden></aside>
 <div id="navscrim" hidden></div>
+<button id="navpill" type="button" aria-controls="sidenav" aria-expanded="false" aria-label="Expand menu" title="Expand menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+<script>try{if(localStorage.getItem("mtg-side")==="off")document.body.classList.add("navoff")}catch(e){}</script>
 <div id="app"><main class="seo-static" style="max-width:760px;margin:0 auto;padding:32px 18px;position:relative;z-index:1">
 <h1>Free Crypto 101 Crash Course by MTG</h1>
 <p>A free, beginner-friendly crypto course in plain English by Musa The Giant (MTG 👑), crypto educator in Durban, South Africa. 21 short lessons, 63 quiz questions, a 222-term crypto glossary, 5 step-by-step setup guides and a certificate of completion when you finish. Total reading time is about 2 hours. No jargon, no hype.</p>
@@ -1379,6 +1427,7 @@ function bar(){
       <span class="cap">🎓</span><span>CRYPTO <span style="color:var(--gold)">101</span></span>
     </button>
     <div class="tb-right">
+      <a class="tb-home mtg-ring" href="/" aria-label="Go Home: back to the MusaTheGiant.com home page"><span class="emo" aria-hidden="true">🏡</span><span class="tx">Go Home</span></a>
       <div class="pbar tb-pbar"><div class="pfill" style="width:${pct()}%"></div></div>
       <span class="xs mono tb-pct">${pct()}%</span>
       <button class="tb-out" data-act="askout" type="button" title="Log out" aria-label="Log out"><span class="tb-out-ic">⇥</span><span class="tb-out-tx">Log out</span></button>
@@ -1977,8 +2026,20 @@ function renderGloss(){
 
 /* =================== COURSE NAVIGATION ===================
    Rendered outside #app and refreshed after every screen change. */
-function navOpen(){ document.body.classList.add("navopen"); }
-function navClose(){ document.body.classList.remove("navopen"); }
+const navWide=()=>window.innerWidth>=1024;
+function navSync(){ const p=document.getElementById("navpill"); if(!p) return;
+  const open=navWide()?!document.body.classList.contains("navoff"):document.body.classList.contains("navopen");
+  p.setAttribute("aria-expanded",open?"true":"false"); const t=open?"Collapse menu":"Expand menu"; p.setAttribute("aria-label",t); p.title=t;
+  const el=document.getElementById("sidenav"); if(el) el.toggleAttribute("inert",!open); }
+function navOpen(){ document.body.classList.add("navopen"); navSync(); }
+function navClose(){ document.body.classList.remove("navopen"); navSync(); }
+/* edge pill: desktop collapses or expands the course menu (remembered), tablet and phone open the drawer */
+function navPill(){
+  if(navWide()){ const off=document.body.classList.toggle("navoff"); try{localStorage.setItem("mtg-side",off?"off":"on")}catch(e){} navSync(); }
+  else if(document.body.classList.contains("navopen")) navClose(); else navOpen();
+}
+document.addEventListener("click", e=>{ if(e.target && e.target.closest && e.target.closest("#navpill")) navPill(); });
+requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.add("md-ready")));
 function navGo(fn){ navClose(); fn(); }
 
 function renderNav(){
@@ -1994,6 +2055,7 @@ function renderNav(){
   }
   el.hidden=false; sc.hidden=false;
   document.body.classList.add("hasnav");
+  setTimeout(navSync,0);
 
   const done=u.done.length, all=done===N, nx=resumeIndex();
   const on = k => S.screen===k ? " on" : "";
@@ -2040,13 +2102,14 @@ function renderNav(){
         <span class="nv-nm">${esc(u.name)}</span>
       </div>
       <button class="btn btn-ghost btn-sm" style="width:100%" data-act="askout" type="button">⇥ Log out</button>
+      <a class="tb-home nv-home mtg-ring" href="/" aria-label="Go Home: back to the MusaTheGiant.com home page"><span class="emo" aria-hidden="true">🏡</span><span class="tx">Go Home</span></a>
     </div>`;
 }
 
 /* close the drawer on scrim tap, Escape, or a resize up to desktop */
 document.addEventListener("click", e=>{ if(e.target && e.target.id==="navscrim") navClose(); });
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") navClose(); });
-window.addEventListener("resize", ()=>{ if(window.innerWidth>=1024) navClose(); });
+window.addEventListener("resize", ()=>{ if(window.innerWidth>=1024) navClose(); else navSync(); });
 
 /* =================== CERTIFICATE =================== */
 function vCert(){

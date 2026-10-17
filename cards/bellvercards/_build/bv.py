@@ -208,7 +208,7 @@ def topbar(here, key):
     return f'''<header class="dtop">
  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="bv-menu"><span class="bars" aria-hidden="true"></span><span class="lbl">Menu</span></button>
  <nav class="dcrumb" aria-label="You are here"><a href="{L('learn/', here)}">Card guide</a>{ic('chev-r')}<span aria-current="page">{label}</span></nav>
- <div class="dtop-act"><a class="btn btn-ghost btn-sm gohome" href="{L('', here)}" aria-label="Go to the Bellver Cards home page">{ic('home')}Go Home</a>{order_btn('Order your card', 'btn btn-go btn-sm orderbtn')}</div>
+ <div class="dtop-act"><a class="btn btn-ghost btn-sm gohome" href="{L('', here)}" aria-label="Go Home: back to the Bellver Cards home page"><span class="emo" aria-hidden="true">🏡</span>Go Home</a>{order_btn('Order your card', 'btn btn-go btn-sm orderbtn')}</div>
 </header>'''
 
 

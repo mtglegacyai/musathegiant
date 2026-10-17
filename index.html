@@ -278,11 +278,24 @@ h1.typing.busy .caret{animation:none}
   *,*:before,*:after{animation:none!important;transition:none!important}
   .cta:hover,.cta:active{transform:none}
 }
+/* MTG 👑 Dashboard Standard: orbiting light ring for DASHBOARD and 🏡 GO HOME buttons (same motion as every CTA) */
+@property --md-ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+.mtg-ring{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:7px}
+.mtg-ring .emo{font-size:1rem;line-height:1;display:inline-block;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.mtg-ring:hover .emo{transform:translateY(-2px) rotate(-8deg) scale(1.12)}
+.mtg-ring:before,.mtg-ring:after{content:"";position:absolute;pointer-events:none;background:conic-gradient(from var(--md-ang),transparent 0 58%,var(--md-r1,#ffe3a3) 74%,var(--md-r2,#f2ad3c) 82%,transparent 94%);-webkit-mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);-webkit-mask-composite:xor;animation:mdSpin 6s linear infinite}
+.mtg-ring:before{inset:-3px;padding:2px;border-radius:var(--ring-r,13px);z-index:2;filter:drop-shadow(0 0 5px var(--md-r2,#f2ad3c))}
+.mtg-ring:after{inset:-11px;padding:9px;border-radius:calc(var(--ring-r,13px) + 8px);z-index:-1;filter:blur(9px);opacity:.28;animation:mdSpin 6s linear infinite,mdBreathe 4s ease-in-out infinite}
+.mtg-ring:hover:before{filter:drop-shadow(0 0 9px var(--md-r2,#f2ad3c)) brightness(1.2)}
+@keyframes mdSpin{to{--md-ang:360deg}}
+@keyframes mdBreathe{0%,100%{opacity:.2}50%{opacity:.45}}
+@media (prefers-reduced-motion:reduce){.mtg-ring:before,.mtg-ring:after{animation:none!important}.mtg-ring:before{--md-ang:200deg}.mtg-ring:hover .emo{transform:none}}
+.dashboard-link.mtg-ring{--ring-r:12px;overflow:visible}
 </style>
 </head>
 <body>
 
-<header><nav class="wrap"><a class="brand" href="./"><img src="images/mtg-profile.jpg" alt="Musa The Giant" width="36" height="36">MTG <b>👑</b></a><div class="nav-actions"><a class="halving-link" href="tools/">Tools</a><a class="halving-link" href="cards/">Cards</a><a class="dashboard-link" href="dashboard.html">Dashboard →</a></div></nav></header>
+<header><nav class="wrap"><a class="brand" href="./"><img src="images/mtg-profile.jpg" alt="Musa The Giant" width="36" height="36">MTG <b>👑</b></a><div class="nav-actions"><a class="halving-link" href="tools/">Tools</a><a class="halving-link" href="cards/">Cards</a><a class="dashboard-link mtg-ring" href="dashboard.html"><span class="emo" aria-hidden="true">📊</span>Dashboard →</a></div></nav></header>
 
 <main class="hero" id="hero">
   <div class="layer beam" aria-hidden="true"></div>
