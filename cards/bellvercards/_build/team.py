@@ -60,7 +60,7 @@ TEXT = [
 # MTG's own creations stay credited to him where the work is his (his videos and his PDF guide are shared exactly as they are).
 # These are the only places his name may appear on a team page.
 CREDITS = [
- 'Explainer by MTG', '"name": "MTG"', 'Narrated by MTG with his AI voice', "MTG's own 2x2 matrix explainer", "in MTG's own voice", 'explainer video by MTG',
+ 'Explainer by MTG', '"name": "MTG"', 'Narrated by MTG with his AI voice', "MTG's own 2x2 matrix explainer", "MTG's own explainers", "in MTG's own voice", 'explainer video by MTG',
  '2x2 matrix guide by MTG', 'Made by MTG from Bellver', 'by-mtg.pdf',
 ]
 

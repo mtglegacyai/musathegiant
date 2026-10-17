@@ -3,6 +3,7 @@
 from bv import *  # noqa
 from p_home import tiers_html, payback_calc
 from p_tools import rewards_tool
+from ex1_video import EX1, EX1_DATE, EX1_MOMENTS, EX1_TRANSCRIPT
 
 
 def phero(H, trail, lines, lead, art=None, btns=None):
@@ -21,9 +22,20 @@ def T(*extra):
 # ------------------------------------------------------------------ HOW IT WORKS
 def how(H='how-it-works/'):
     trail = T(('How It Works', abs_url(H)))
-    art = f'<div data-tilt="img" data-max="12" style="perspective:1000px"><img src="{L("images/bellver-card-black-visa.webp", H)}" alt="Black Bellver Visa Business card" width="1087" height="654" fetchpriority="high"></div>'
-    top = phero(H, trail, ['How the', 'card works'], 'One card with your own wallet behind it. Here is where your money sits, how it reaches the card, and what keeps it yours.', art,
+    vimg = EX1[6]
+    art = f'''<div class="player mx-video mx-herovid" id="p-money-explained" role="button" tabindex="0" aria-label="Play: {EX1[1]}" data-src="{L(EX1[5], H)}" data-title="{EX1[1]}">
+  <img src="{L(vimg + '-640.webp', H)}" srcset="{L(vimg + '-640.webp', H)} 640w, {L(vimg + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="Where your money really sits: explainer video thumbnail" width="1280" height="720" fetchpriority="high">
+  <span class="pbtn">{ic('play')}</span><span class="plabel">{EX1[3]}</span>
+ </div><p class="mx-vcap">{ic('play-c')}Watch it explained in under 5 minutes</p>'''
+    top = phero(H, trail, ['How the', 'card works'], 'One card with your own wallet behind it. Press play to see where your money sits, who holds the key and how it reaches your card. The short version is below.', art,
                 order_btn('Order your card') + dl_btn('slides', H, 'Presentation (PDF)'))
+
+    em = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in EX1_MOMENTS)
+    et = ''.join(f'<p>{p}</p>' for p in EX1_TRANSCRIPT)
+    vdet = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap"><div class="vsum-d">
+ <details class="qa more"><summary>Key moments in the video<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{em}</ul></div></details>
+ <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{et}</div></details>
+</div></div></section>'''
 
     card = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">The <em>card</em></h2><p class="lead">A US dollar card account you fund with crypto and spend like any other card.</p></div>
@@ -38,14 +50,13 @@ def how(H='how-it-works/'):
  <div class="rv">
   <span class="badge green">{ic('lock')}Non-custodial wallet</span>
   <h2 class="h2" style="margin-top:16px">Your wallet. <em>Your key.</em></h2>
-  <p class="lead" style="margin-top:16px">Your money does not sit on the card. It sits in a Fireblocks dynamic wallet that belongs to you, set up automatically when you register.</p>
-  <ul class="checks">
-   <li><b>Only you hold the private key.</b> Bellver cannot freeze or access your funds.</li>
-   <li><b>Move only what you need.</b> Top up the card from your wallet in one click, whenever you want to spend.</li>
-   <li><b>Export your key any time</b> and take your funds to another wallet.</li>
-   <li><b>Add a transaction password</b> and two-factor authentication or a passkey for extra protection.</li>
+  <ul class="checks" style="margin-top:16px">
+   <li><b>Your Dynamic Wallet is yours.</b> Created when you register, on Fireblocks. Bellver says it cannot freeze or access your funds.</li>
+   <li><b>Only you hold the private key.</b> Export it any time.</li>
+   <li><b>Move to the card only what you plan to spend.</b> The rest stays under your key.</li>
+   <li><b>Lock it twice:</b> a transaction password, plus two-factor login or a passkey.</li>
   </ul>
-  <div class="note">{ic('alert')}<span><b>Freedom comes with responsibility.</b> There is no bank to call if you lose your private key. Write it down, store it offline and never share it.</span></div>
+  <div class="note">{ic('alert')}<span><b>No bank to call</b> if you lose your private key. Write it down, keep it offline, never share it.</span></div>
  </div>
  <figure class="media rv" style="--d:.1s;margin:0;background:#fff"><img src="{L('images/bellver-fireblocks-wallet-funding-flow.webp', H)}" alt="Four-step funding flow: send USDT or USDC from any wallet, via BNB chain, into your personal Fireblocks wallet, then transfer to your Bellver Visa card" width="1600" height="724" loading="lazy"></figure>
 </div></section>'''
@@ -92,9 +103,11 @@ def how(H='how-it-works/'):
  <div class="split">
   <div class="rv">
    <h2 class="h2">Who is <em>behind</em> it</h2>
-   <p class="lead" style="margin-top:16px">Bellver Markets Ltd, based in St Julian's, Malta, runs the program and the rewards. The card itself is registered in Singapore, one of Asia's leading financial centres.</p>
-   <p class="muted">At the launch webinar, Bellver's head of operations in Singapore said the card provider is licensed by the Monetary Authority of Singapore and works with major banks, and that the wallets run on Fireblocks technology. Bellver itself describes its role as the marketing company: it does not hold your money.</p>
-   <p class="muted">The founder was open that the platform launched as version 1.0 in September 2026 and that improvements are still being rolled out. <a class="inl" href="{L('videos/#webinar', H)}">Watch the launch webinar</a></p>
+   <ul class="checks" style="margin-top:16px">
+    <li><b>Bellver Markets Ltd, St Julian's, Malta:</b> runs the program and the rewards. It describes itself as the marketing company and does not hold your money.</li>
+    <li><b>The card is registered in Singapore.</b> At the launch webinar Bellver said the card provider is licensed by the Monetary Authority of Singapore and the wallets run on Fireblocks.</li>
+    <li><b>Version 1.0 launched in September 2026,</b> with improvements still rolling out. <a class="inl" href="{L('videos/#webinar', H)}">Watch the launch webinar</a></li>
+   </ul>
   </div>
   <div class="box rv" style="--d:.1s">
    <div class="ico">{ic('users')}</div>
@@ -110,7 +123,11 @@ def how(H='how-it-works/'):
  </div>
 </div></section>'''
 
-    body = top + card + wallet + fund + pv + se + who + checklist_band(H) + help_band(H)
+    body = top + vdet + card + wallet + fund + pv + se + who + checklist_band(H) + help_band(H)
+    vld_ex1 = {"@type": "VideoObject", "name": EX1[1], "description": EX1[7], "thumbnailUrl": abs_url(EX1[6] + ".jpg"), "inLanguage": "en", "url": abs_url(H),
+               "contentUrl": abs_url(EX1[5]), "uploadDate": EX1_DATE, "duration": EX1[8], "transcript": ' '.join(EX1_TRANSCRIPT),
+               "author": {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"},
+               "keywords": "Bellver wallet, Bellver Dynamic Wallet, non-custodial wallet, private key, Fireblocks, USDT, USDC, BNB Smart Chain, Bellver top-up fee, is Bellver safe, who is behind Bellver"}
     howto = {"@type": "HowTo", "name": "How to fund and use the Bellver Card", "step": [
         {"@type": "HowToStep", "position": 1, "name": "Send USDT or USDC", "text": "Send USDT or USDC from any external wallet or exchange, ideally on BNB Smart Chain, plus a little BNB or TRX for gas."},
         {"@type": "HowToStep", "position": 2, "name": "Receive it in your Fireblocks wallet", "text": "Funds arrive in your own non-custodial Fireblocks dynamic wallet, protected by your private key."},
@@ -118,7 +135,7 @@ def how(H='how-it-works/'):
         {"@type": "HowToStep", "position": 4, "name": "Pay worldwide", "text": "Pay in shops, online, with Apple Pay or Google Pay, or withdraw cash at ATMs with the physical card."}]}
     return page(H, 'how', 'How the Bellver Card Works: Wallet, Funding and Security | MTG',
                 'How the Bellver Card works: your own Fireblocks non-custodial wallet, funding with USDT or USDC, physical vs virtual cards, the Special Edition and who is behind it.',
-                'images/og/og-bellver-how-it-works.jpg', 'How the Bellver Card works', body, ld_extra=[howto], trail=trail)
+                'images/og/og-bellver-how-it-works.jpg', 'How the Bellver Card works', body, ld_extra=[howto, vld_ex1], trail=trail)
 
 
 # ------------------------------------------------------------------ PRICES
