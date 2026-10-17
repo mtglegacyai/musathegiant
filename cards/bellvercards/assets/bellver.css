@@ -1561,3 +1561,22 @@ details.qa[hidden]{display:none}
 
 /* section buttons: capitalize each word (MTG, 16 Oct 2026) */
 .un-tx b,.un-all{text-transform:capitalize}
+
+/* ---- referral helpers: exchange note and builder traffic (Oct 2026) ---- */
+.note.exch{border-color:rgba(52,176,112,.3);background:rgba(52,176,112,.06);color:var(--soft)}
+.note.exch>svg{color:var(--green-hi)}
+.note.exch b{color:var(--text,#eef5f1)}
+.note.exch .btn-row,.note.cbp-band .btn-row{flex-wrap:wrap;gap:10px}
+.note.exch .btn svg,.note.cbp-band .btn svg{width:16px;height:16px;margin-right:6px;color:currentColor}
+.note.cbp-band{border-color:rgba(252,190,37,.3)}
+.note.cbp-band b{color:var(--text,#eef5f1)}
+.panel.cbp{display:grid;grid-template-columns:1.35fr 1fr;gap:34px;padding:clamp(24px,4vw,44px);align-items:start}
+.panel.cbp .kick{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(252,190,37,.12);color:var(--yellow);font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.panel.cbp .kick svg{width:15px;height:15px}
+.panel.cbp .lead{margin-top:12px}
+.panel.cbp .checks{margin-top:16px}
+.panel.cbp .btn-go svg{width:18px;height:18px;margin-left:8px}
+.cbp-rule{display:flex;flex-direction:column;gap:14px}
+.note.warn{border-color:rgba(252,190,37,.35);background:rgba(252,190,37,.07)}
+.note.warn b{color:var(--yellow)}
+@media (max-width:860px){.panel.cbp{grid-template-columns:1fr;gap:20px}}

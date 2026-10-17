@@ -57,7 +57,8 @@ def how(H='how-it-works/'):
   <div class="box rv" style="--d:.06s"><div class="ico">{ic('swap')}</div><h3 class="h3">Other crypto</h3><p>Bitcoin, Ethereum, BNB, Solana and other major coins can be deposited, then swapped to USDT or USDC in your wallet before you top up.</p><div class="chips"><span class="chip">BTC</span><span class="chip">ETH</span><span class="chip">BNB</span><span class="chip">SOL</span></div></div>
   <div class="box rv" style="--d:.12s"><div class="ico">{ic('card')}</div><h3 class="h3">No crypto yet?</h3><p>Use Buy crypto in the dashboard to pay by credit card. In Europe you can also pay by SEPA bank transfer or PayPal.</p><div class="chips"><span class="chip">Credit card</span><span class="chip">SEPA</span><span class="chip">PayPal</span></div></div>
  </div>
- <div class="note g rv" style="margin-top:18px">{ic('info')}<span><b>Keep a little for network fees.</b> Sending tokens needs a small gas fee in the network's own coin: BNB on BNB Smart Chain, TRX on Tron. About $10 to $20 worth is plenty to start.</span></div>
+ {exch_note('margin-top:18px')}
+ <div class="note g rv" style="margin-top:14px">{ic('info')}<span><b>Keep a little for network fees.</b> Sending tokens needs a small gas fee in the network's own coin: BNB on BNB Smart Chain, TRX on Tron. About $10 to $20 worth is plenty to start.</span></div>
 </div></section>'''
 
     pv = f'''<section class="sec" id="physical-or-virtual"><div class="wrap">

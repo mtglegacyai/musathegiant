@@ -362,7 +362,7 @@ def matrix(H='matrix/'):
  </div>
 </div></section>'''
 
-    body = (top + s_quick + s1 + s2 + s3 + s4 + s5 + calc + s_why + s6 + s7 + s_pay + s_myth + s_big + s_quiz + s_gl + s_dl
+    body = (top + s_quick + s1 + s2 + s3 + s4 + s5 + calc + s_why + s6 + s7 + s_pay + s_myth + s_big + cbp_band(H) + s_quiz + s_gl + s_dl
             + final_cta(H, 'Ready to take <span class="hap">your seat</span>?', 'Your seat starts when your card is bought. Premium or higher puts you in line for monthly rewards.',
                         f'<a class="btn btn-ghost" href="{L("rewards/", H)}">See the full rewards rules</a>')
             + help_band(H, 'Still unsure? Ask me.', "I'm MTG. Send me a WhatsApp and I'll draw your matrix with you, seat by seat, until it clicks.")

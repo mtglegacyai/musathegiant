@@ -126,7 +126,8 @@ def finalize(html, m, path):
 
 
 MTG_MARKERS = ['ref=mtg', '27721714626', 'Musa.TheMTG', 'tiktok.com/@musathegiant', 'youtube.com/@MusaTheGiant', 'mtg-profile', 'Musa The Giant',
-               'Musa the Giant', 'Crypto-Regards', "Let's Get This Crypto", 'Your Digital Architect', '#mtg"']
+               'Musa the Giant', 'Crypto-Regards', "Let's Get This Crypto", 'Your Digital Architect', '#mtg"',
+               'VAKM6VZY', 'ref=11139868', 'clickbaitpaysus.com']
 
 
 def scan(html, m):

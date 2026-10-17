@@ -364,7 +364,8 @@ def tutorials(H='tutorials/'):
   </aside>
  </div>
 </div></section>'''
-    body = top + lib + help_band(H, 'Need a tutorial that is not here?', 'Tell me what you are stuck on and I will make a video for it, or walk you through it on WhatsApp.')
+    exch = f'<section class="sec-tight" style="padding-top:0"><div class="wrap">{exch_note()}</div></section>'
+    body = top + lib + exch + help_band(H, 'Need a tutorial that is not here?', 'Tell me what you are stuck on and I will make a video for it, or walk you through it on WhatsApp.')
     reg_ld = vld(REG, H, REG_DATE, jpg=True)
     reg_ld["transcript"] = ' '.join(REG_TRANSCRIPT)
     reg_ld["author"] = {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"}

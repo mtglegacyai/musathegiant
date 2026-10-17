@@ -21,6 +21,10 @@ PARTNER = None          # set by configure() when building a team member's page 
 ANALYTICS_GOATCOUNTER = None
 CHECKLIST_MSG = WA + '?text=' + 'Hi%20MTG%2C%20please%20send%20me%20the%20free%20Bellver%20Starter%20Checklist.'
 PARTNER_MSG = WA + '?text=' + 'Hi%20MTG%2C%20I%20have%20a%20question%20about%20the%20Bellver%20Card.'
+# ---- MTG's other referral links (exchanges for onboarding, traffic for builders). Team pages only show a member's own links.
+VALR = 'https://www.valr.com/invite/VAKM6VZY'
+BINANCE = 'https://account.binance.com/register?ref=11139868&?registerChannel=user_center'
+CBP = 'https://clickbaitpaysus.com'
 
 import hashlib, os
 
@@ -224,7 +228,7 @@ def dash_footer(here):
     if PARTNER:
         return team_dash_footer(here)
     return f'''<footer class="dfoot"><div class="wrap">
-  <div class="disc">Bellver Card is a product of Bellver Markets Ltd. This guide is run independently by MTG and is not the official Bellver website or back office. Order buttons link to app.bellvercards.com with MTG's referral code, so MTG may earn a commission if you order, at no extra cost to you. Prices, fees and the compensation plan come from Bellver's official documents (version 08/2026) and can change. Rewards depend on real card activity and are never guaranteed. Nothing here is financial, tax or legal advice. Read the <a href="{L('/affiliate-disclosure.html', here)}">Affiliate Disclosure</a>, <a href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a> and <a href="{L('/risk-disclaimer.html', here)}">Risk Disclaimer</a>.</div>
+  <div class="disc">Bellver Card is a product of Bellver Markets Ltd. This guide is run independently by MTG and is not the official Bellver website or back office. Order buttons link to app.bellvercards.com with MTG's referral code, and the VALR, Binance and ClickBaitPays buttons are MTG's referral links too, so MTG may earn a commission at no extra cost to you. Prices, fees and the compensation plan come from Bellver's official documents (version 08/2026) and can change. Rewards depend on real card activity and are never guaranteed. Nothing here is financial, tax or legal advice. Read the <a href="{L('/affiliate-disclosure.html', here)}">Affiliate Disclosure</a>, <a href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a> and <a href="{L('/risk-disclaimer.html', here)}">Risk Disclaimer</a>.</div>
   <div class="ftr-bot"><span>© <span data-year>2026</span> MTG | Musa The Giant. <a href="{L('/privacy-policy.html', here)}">Privacy</a> &nbsp; <a href="{L('/terms-of-use.html', here)}">Terms</a></span><span class="sig">Let's Get This Crypto! 💰 Crypto-Regards, MTG 👑</span></div>
  </div></footer>'''
 
@@ -351,7 +355,7 @@ def footer(here):
    </div>
    {html}
   </div>
-  <div class="disc">Bellver Card is a product of Bellver Markets Ltd. This site is run independently by MTG and is not the official Bellver website. Order buttons link to app.bellvercards.com with MTG's referral code, so MTG may earn a commission if you order, at no extra cost to you. Prices, fees and the compensation plan come from Bellver's official documents (version 08/2026) and can change. Rewards depend on real card activity and are never guaranteed. Nothing here is financial, tax or legal advice. Read the <a href="{L('/affiliate-disclosure.html', here)}">Affiliate Disclosure</a>, <a href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a> and <a href="{L('/risk-disclaimer.html', here)}">Risk Disclaimer</a>.</div>
+  <div class="disc">Bellver Card is a product of Bellver Markets Ltd. This site is run independently by MTG and is not the official Bellver website. Order buttons link to app.bellvercards.com with MTG's referral code, and the VALR, Binance and ClickBaitPays buttons are MTG's referral links too, so MTG may earn a commission at no extra cost to you. Prices, fees and the compensation plan come from Bellver's official documents (version 08/2026) and can change. Rewards depend on real card activity and are never guaranteed. Nothing here is financial, tax or legal advice. Read the <a href="{L('/affiliate-disclosure.html', here)}">Affiliate Disclosure</a>, <a href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a> and <a href="{L('/risk-disclaimer.html', here)}">Risk Disclaimer</a>.</div>
   <div class="ftr-bot"><span>© <span data-year>2026</span> MTG | Musa The Giant. <a href="{L('/privacy-policy.html', here)}">Privacy</a> &nbsp; <a href="{L('/terms-of-use.html', here)}">Terms</a></span><span class="sig">Let's Get This Crypto! 💰 Crypto-Regards, MTG 👑</span></div>
  </div>
 </footer>
@@ -517,3 +521,77 @@ def reasons_ld(page_url):
 
 
 from team_shell import *  # noqa  (team member versions of the shell: only used when PARTNER is set)
+
+
+# ---------------------------------------------------------------- referral helpers (exchanges and traffic)
+def aff(key):
+    """MTG's referral links. MTG's rule (17 Oct 2026): these links appear ONLY on MTG's own pages, never on team or client pages."""
+    if PARTNER is not None:
+        return ''
+    return {'valr': VALR, 'binance': BINANCE, 'clickbaitpays': CBP}[key]
+
+
+def _href(u):
+    return u.replace('&', '&amp;')
+
+
+def exch_btns(cls='btn btn-ghost btn-sm'):
+    out = ''
+    if aff('valr'):
+        out += f'<a class="{cls}" data-track="valr" href="{_href(aff("valr"))}" target="_blank" rel="sponsored noopener">{ic("swap")}Open a VALR account</a>'
+    if aff('binance'):
+        out += f'<a class="{cls}" data-track="binance" href="{_href(aff("binance"))}" target="_blank" rel="sponsored noopener">{ic("swap")}Open a Binance account</a>'
+    return out
+
+
+def exch_note(style=''):
+    """'No exchange yet?' box with the two exchange buttons (generic advice only, if there are no links)."""
+    b = exch_btns()
+    tail = ('<div class="btn-row" style="margin-top:12px">' + b + '</div><p class="fine" style="margin-top:8px">Referral links: I may earn a small reward if you sign up, at no extra cost to you.</p>') if b else ''
+    return (f'<div class="note exch rv"{(" style=" + chr(34) + style + chr(34)) if style else ""}>{ic("wallet")}<div><b>No exchange account yet?</b> Open one, buy USDT there, then send it to your Bellver wallet on BNB Smart Chain (BEP20). '
+            f'VALR is the easy choice in South Africa, because you can deposit rand by EFT. Binance works in most other countries.{tail}</div></div>')
+
+
+def exch_inline():
+    """One sentence with inline links, for FAQ answers."""
+    v, b = aff('valr'), aff('binance')
+    if v and b:
+        return (f'No exchange account yet? Open one with <a class="inl" href="{_href(v)}" target="_blank" rel="sponsored noopener">VALR</a> (easy in South Africa, deposit rand by EFT) '
+                f'or <a class="inl" href="{_href(b)}" target="_blank" rel="sponsored noopener">Binance</a> (most other countries), buy USDT and send it on BNB Smart Chain.')
+    return 'No exchange account yet? Open one on a trusted exchange in your country, buy USDT and send it on BNB Smart Chain.'
+
+
+def cbp_section(here):
+    """Partner page: gentle recommendation of ClickBaitPays as a traffic source for builders. Left out when there is no link."""
+    u = aff('clickbaitpays')
+    if not u:
+        return ''
+    return f'''<section class="sec-tight" id="traffic" data-title="More eyes on your link"><div class="wrap">
+ <div class="panel cbp rv">
+  <div class="cbp-tx">
+   <span class="kick">{ic('rocket')}For builders</span>
+   <h2 class="h2">Want more eyes on <em>your link?</em></h2>
+   <p class="lead">A good link still needs people to see it. If you want to build your team a little faster, ClickBaitPays is the traffic source I recommend to builders.</p>
+   <ul class="checks">
+    <li>Put your page in front of active viewers with an Ad Campaign, or a $20 login ad that runs for 30 days.</li>
+    <li>Send them to an honest page like this guide, so they can learn before they decide.</li>
+    <li>Traffic creates opportunity, not certainty. Test your message and keep what works.</li>
+   </ul>
+   <div class="btn-row" style="margin-top:20px"><a class="btn btn-go" data-track="clickbaitpays" href="{_href(u)}" target="_blank" rel="sponsored noopener">See how ClickBaitPays traffic works{ic('arrow')}</a></div>
+  </div>
+  <div class="cbp-rule">
+   <div class="note warn">{ic('alert')}<span><b>Bellver's rule first.</b> Public advertising and large campaigns need Bellver's prior approval. Ask Bellver support before you advertise your referral link, and never promise income.</span></div>
+   <p class="fine">ClickBaitPays is a separate platform with its own rules, fees and risks. Nothing is guaranteed: learn how it works first. I may earn a referral reward if you join.</p>
+  </div>
+ </div>
+</div></section>'''
+
+
+def cbp_band(here, title='Building your matrix faster?'):
+    """Compact reminder for builder pages (matrix, payback). Left out when there is no link."""
+    u = aff('clickbaitpays')
+    if not u:
+        return ''
+    return f'''<section class="sec-tight" data-title="More eyes on your link"><div class="wrap"><div class="note cbp-band rv">{ic('rocket')}<div><b>{title}</b> More people seeing your link means more chances to fill your seats. ClickBaitPays is the traffic source I recommend to builders, with $20 login ads and Ad Campaigns. Check <a class="inl" href="{L('partner/#traffic', here)}">Bellver's advertising rule</a> first.
+<div class="btn-row" style="margin-top:12px"><a class="btn btn-ghost btn-sm" data-track="clickbaitpays" href="{_href(u)}" target="_blank" rel="sponsored noopener">Get more eyes on your link{ic('arrow')}</a></div></div></div></div></section>'''
+

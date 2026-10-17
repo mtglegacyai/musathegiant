@@ -131,7 +131,7 @@ def partner(H='partner/'):
   <div class="box rv" style="--d:.12s"><div class="ico">{ic('check')}</div><h3 class="h3">3. You are a partner</h3><p>You are now an affiliate partner of Bellver Cards. Commissions follow the plan.</p></div>
  </div>
 </div></section>'''
-    body = top + mean + reasons_band(H, 'compact', title='What people <em>say yes</em> to: 10 reasons', lead='When you share Bellver Card, these are the reasons people give for joining. More than 1,000 cards were sold in the testing phase alone (as reported at launch). Explain each reason honestly, and let people decide for themselves.') + audience_band(H, chips=False, cta=False) + who + earn + week + brules + honest + tiktok + tools + checklist_band(H) + faqs + cta
+    body = top + mean + reasons_band(H, 'compact', title='What people <em>say yes</em> to: 10 reasons', lead='When you share Bellver Card, these are the reasons people give for joining. More than 1,000 cards were sold in the testing phase alone (as reported at launch). Explain each reason honestly, and let people decide for themselves.') + audience_band(H, chips=False, cta=False) + who + earn + week + brules + honest + cbp_section(H) + tiktok + tools + checklist_band(H) + faqs + cta
     faq_ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     return page(H, 'partner', 'Become a Bellver Card Partner: How to Share It and Earn | MTG',
                 'How to share the Bellver Card and earn commissions: made for TikTok LIVE hosts and creators with a trusting audience, the $10 to $500 direct commissions, a first-week plan, honest sharing rules and a plain explanation of what partner means.',

@@ -108,7 +108,7 @@ def payback_page(H='payback-calculator/'):
  <div class="rv"><h2 class="h2">The commission <em>table</em></h2><p class="lead" style="margin-top:14px">A one-time commission for every card ordered through your link. Bellver's own example: buy Business for $490, refer three people who also choose Business and your card has paid for itself with $110 to spare.</p><p style="margin-top:16px"><a class="tlink" href="{L('rewards-calculator/', H)}">Then try the Rewards Calculator {ic('arrow')}</a></p></div>
  <div class="tbl-wrap rv"><table class="tbl tbl-stack" style="min-width:0"><thead><tr><th>Level</th><th class="num">Card price</th><th class="num">You earn</th><th class="num">With Special Edition</th></tr></thead><tbody>{rows}</tbody></table></div>
 </div></section>'''
-    body = top + tool + info + help_band(H, 'Not sure which card to choose?', "I'm MTG. Message me on WhatsApp and I'll help you pick the level that fits you.")
+    body = top + tool + info + cbp_band(H, 'Want your referrals to come faster?') + help_band(H, 'Not sure which card to choose?', "I'm MTG. Message me on WhatsApp and I'll help you pick the level that fits you.")
     app = {"@type": "WebApplication", "name": "Bellver Card payback calculator", "url": abs_url(H), "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "isAccessibleForFree": True,
            "description": "Check how many referrals cover the price of your Bellver Card using the one-time direct commissions."}
     return page(H, 'pcalc', 'Bellver Card Payback Calculator: Can Referrals Cover Your Card? | MTG',
