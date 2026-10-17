@@ -4,6 +4,7 @@ from bv import *  # noqa
 from p_info import phero, T
 from mx_video import MXV, MXV_DATE, MXV_MOMENTS, MXV_TRANSCRIPT
 from dash_video import DASH, DASH_DATE, DASH_MOMENTS, DASH_TRANSCRIPT
+from topup_video import TOPUP, TOPUP_DATE, TOPUP_MOMENTS, TOPUP_TRANSCRIPT
 
 # (id, title, kind, duration label, type, source, thumb, description, iso duration)
 PRES = [
@@ -16,16 +17,16 @@ PRES = [
 ]
 
 # Tutorial 1: the finished registration video (MTG, 9 Oct 2026). It plays first, above the dashboard walkthrough.
-REG = ('tut-01', 'How to register your BellverCard account', 'Start here', '2:42', 'mp4', 'videos/tutorials/01-register-your-bellver-card-account.mp4',
+REG = ('tut-01', 'How to register your BellverCard account', 'Start here', '2:43', 'mp4', 'videos/tutorials/01-register-your-bellver-card-account.mp4',
        'images/bellver-card-registration-tutorial-thumbnail',
        'A click-by-click walkthrough of creating your Bellver account: the referral link, the sign-up form, the email warning, the six-digit code, the welcome notice, your dashboard and the welcome email.',
-       'PT2M42S')
+       'PT2M43S')
 REG_DATE = '2026-10-09'
-REG_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:14', 'Use the referral link and tap Order Your Card'), ('0:24', 'Check the referral code in the address bar, then Sign Up'),
-               ('0:32', 'First name, last name and username'), ('0:42', 'The email warning: use an email never used for another card'),
-               ('0:53', 'Email, country code, mobile number, password and Referred by'), ('1:07', 'Verify your email with the six-digit code'),
-               ('1:16', 'Read the welcome notice and go to your dashboard'), ('1:30', 'Your dashboard'), ('1:33', 'The welcome email and its Open your dashboard button'),
-               ('1:56', 'Your turn, and what comes next')]
+REG_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:15', 'Use the referral link and tap Order Your Card'), ('0:25', 'Check the referral code in the address bar, then Sign Up'),
+               ('0:33', 'First name, last name and username'), ('0:43', 'The email warning: use an email never used for another card'),
+               ('0:54', 'Email, country code, mobile number, password and Referred by'), ('1:08', 'Verify your email with the six-digit code'),
+               ('1:17', 'Read the welcome notice and go to your dashboard'), ('1:31', 'Your dashboard'), ('1:34', 'The welcome email and its Open your dashboard button'),
+               ('1:57', 'Your turn, and what comes next')]
 REG_TRANSCRIPT = [
  "Hi, my name is MTG, Your Digital Architect. Thank you for taking the time to watch this video. In the next two minutes, I'll show you exactly how to register your BellverCard account, step by step. Let's get started.",
  "Always use the referral link of the person who shared this video with you. If that's me, start on my guide page and tap Order Your Card. It opens Bellver's official site.",
@@ -43,17 +44,17 @@ REG_TRANSCRIPT = [
 ]
 
 # Tutorial 2: log in and secure your account with 2FA (MTG, 9 Oct 2026). Plays second, right after registration.
-SEC = ('tut-02', 'How to log in and secure your Bellver account with 2FA', 'Tutorial 2', '3:03', 'mp4', 'videos/tutorials/02-log-in-and-secure-your-account.mp4',
+SEC = ('tut-02', 'How to log in and secure your Bellver account with 2FA', 'Tutorial 2', '3:04', 'mp4', 'videos/tutorials/02-log-in-and-secure-your-account.mp4',
        'images/bellver-card-2fa-login-security-tutorial-thumbnail',
        'A click-by-click walkthrough of logging in, finding your referral link, checking your account settings and turning on 2FA (two-factor authentication) with Google Authenticator, recovery codes and a security code.',
-       'PT3M3S')
+       'PT3M4S')
 SEC_DATE = '2026-10-09'
-SEC_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:17', 'Open your dashboard from the welcome email'), ('0:24', 'Log in with your username and password'),
-               ('0:30', 'Your dashboard, username and referral link'), ('0:42', 'Settings: check your email is verified and your username'),
-               ('0:49', 'Edit your profile'), ('0:57', 'Set up the authenticator app'), ('1:02', 'Scan the QR code with Google Authenticator'),
-               ('1:11', 'Enter the 6-digit code and turn on 2FA'), ('1:15', 'Save your recovery codes'), ('1:26', 'Passkeys'),
-               ('1:35', 'Set your security code'), ('1:51', 'Change your password'), ('1:54', 'Log out and test your login'),
-               ('2:01', 'Log in with your 2FA code'), ('2:08', 'Protected with two-factor authentication'), ('2:13', 'Your turn, and what comes next')]
+SEC_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:18', 'Open your dashboard from the welcome email'), ('0:25', 'Log in with your username and password'),
+               ('0:31', 'Your dashboard, username and referral link'), ('0:43', 'Settings: check your email is verified and your username'),
+               ('0:50', 'Edit your profile'), ('0:58', 'Set up the authenticator app'), ('1:03', 'Scan the QR code with Google Authenticator'),
+               ('1:12', 'Enter the 6-digit code and turn on 2FA'), ('1:16', 'Save your recovery codes'), ('1:27', 'Passkeys'),
+               ('1:36', 'Set your security code'), ('1:52', 'Change your password'), ('1:55', 'Log out and test your login'),
+               ('2:02', 'Log in with your 2FA code'), ('2:09', 'Protected with two-factor authentication'), ('2:14', 'Your turn, and what comes next')]
 SEC_TRANSCRIPT = [
  "Hi, my name is MTG, Your Digital Architect. Thank you for taking the time to watch this video. In the next few minutes, I'll show you how to log in, find your referral link, and secure your Bellver account with 2FA, two-factor authentication. Let's get started.",
  "Open your welcome email and tap Open Your Dashboard. You can also go straight to app.bellvercards.com. Enter your username, then your password, and tap Login. Close the news window.",
@@ -72,17 +73,17 @@ SEC_TRANSCRIPT = [
 ]
 
 # Tutorial 3: export and back up your Web3 wallet private key (MTG, 10 Oct 2026). Plays third.
-KEY = ('tut-03', 'How to export and back up your Web3 wallet private key', 'Tutorial 3', '4:01', 'mp4', 'videos/tutorials/03-web3-wallet-and-private-key.mp4',
+KEY = ('tut-03', 'How to export and back up your Web3 wallet private key', 'Tutorial 3', '4:02', 'mp4', 'videos/tutorials/03-web3-wallet-and-private-key.mp4',
        'images/bellver-card-web3-wallet-private-key-backup-tutorial-thumbnail',
        'A click-by-click walkthrough of opening the Web3 wallet inside your Bellver dashboard, reading the wallet warning, exporting your private key safely and backing it up offline on paper.',
-       'PT4M1S')
+       'PT4M2S')
 KEY_DATE = '2026-10-10'
-KEY_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:17', 'Log in with your username and password'), ('0:25', 'If your login details do not match'),
-               ('0:35', 'Enter your two-factor authentication code'), ('0:48', 'Open My Wallet with your security code'), ('0:57', 'The two-minute wallet video'),
-               ('1:04', 'Your wallet, with BNB Chain selected by default'), ('1:14', 'Open the wallet Settings'), ('1:17', 'Read the warning'),
-               ('1:36', 'Account and Security'), ('1:40', 'Export Private Key'), ('1:47', 'Read the agree screen'), ('2:00', 'Tick the box and tap Reveal'),
-               ('2:07', 'Highlight and copy your private key'), ('2:21', 'Back it up on paper, offline'), ('2:41', 'Tap I\'m Done'),
-               ('2:43', 'Log out to keep your account safe'), ('2:54', 'Quick recap'), ('3:07', 'Your turn, and what comes next')]
+KEY_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:18', 'Log in with your username and password'), ('0:26', 'If your login details do not match'),
+               ('0:36', 'Enter your two-factor authentication code'), ('0:49', 'Open My Wallet with your security code'), ('0:58', 'The two-minute wallet video'),
+               ('1:05', 'Your wallet, with BNB Chain selected by default'), ('1:15', 'Open the wallet Settings'), ('1:18', 'Read the warning'),
+               ('1:37', 'Account and Security'), ('1:41', 'Export Private Key'), ('1:48', 'Read the agree screen'), ('2:01', 'Tick the box and tap Reveal'),
+               ('2:08', 'Highlight and copy your private key'), ('2:22', 'Back it up on paper, offline'), ('2:42', 'Tap I\'m Done'),
+               ('2:44', 'Log out to keep your account safe'), ('2:55', 'Quick recap'), ('3:08', 'Your turn, and what comes next')]
 KEY_TRANSCRIPT = [
  "Hi, my name is MTG, Your Digital Architect. Thank you for taking the time to watch this video. In the next few minutes, I'll show you how to open your Web3 wallet inside your Bellver dashboard, and how to export and back up your private key, safely. Let's get started.",
  "Go to app.bellvercards.com. Enter your username, then your password, and tap Login.",
@@ -104,18 +105,18 @@ KEY_TRANSCRIPT = [
 ]
 
 # Tutorial 4: fund your wallet with BNB and USDT, and order your card (MTG, 10 Oct 2026). Plays fourth.
-FUND = ('tut-04', 'How to fund your wallet with BNB and USDT and order your Bellver Card', 'Tutorial 4', '7:08', 'mp4', 'videos/tutorials/04-fund-your-wallet-and-order-your-card.mp4',
+FUND = ('tut-04', 'How to fund your wallet with BNB and USDT and order your Bellver Card', 'Tutorial 4', '7:09', 'mp4', 'videos/tutorials/04-fund-your-wallet-and-order-your-card.mp4',
        'images/bellver-card-fund-wallet-bnb-usdt-order-card-tutorial-thumbnail',
        'A click-by-click walkthrough of funding your Bellver wallet with a little BNB for network fees and USDT for your card, completing the identity check, ordering a virtual Premium card and adding it to Google Pay.',
-       'PT7M8S')
+       'PT7M9S')
 FUND_DATE = '2026-10-10'
-FUND_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:16', 'Before you start: what to have ready'), ('0:36', 'Why BNB first'), ('0:49', 'The deposit page and its warnings'), ('1:15', 'Copy your wallet address'), ('1:26', 'Send BNB from your exchange on BNB Smart Chain'), ('1:49', 'Your amount and a small test first'), ('1:57', 'Confirm the network and submit'), ('2:15', 'Security checks'), ('2:24', 'Gas received'), ('2:36', 'Part two: USDT for your card'), ('2:44', 'Choose your card level'), ('3:00', 'Send the card price plus $10 in USDT'), ('3:20', 'My Cards and the 2x2 matrix'), ('3:31', 'Choose your package'), ('3:42', 'Virtual or physical card'), ('3:57', 'The identity check (KYC)'), ('4:26', 'Personalize your card'), ('4:31', 'Features and fees'), ('4:45', 'Pay: the $10 opening balance'), ('5:02', 'Unlock your wallet and pay'), ('5:11', 'Your card is ready'), ('5:23', 'Add it to Google Pay'), ('5:59', 'Quick recap'), ('6:15', 'Your turn, and what comes next')]
+FUND_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:17', 'Before you start: what to have ready'), ('0:37', 'Why BNB first'), ('0:50', 'The deposit page and its warnings'), ('1:16', 'Copy your wallet address'), ('1:27', 'Send BNB from your exchange on BNB Smart Chain'), ('1:50', 'Your amount and a small test first'), ('1:58', 'Confirm the network and submit'), ('2:16', 'Security checks'), ('2:25', 'Gas received'), ('2:37', 'Part two: USDT for your card'), ('2:45', 'Choose your card level'), ('3:01', 'Send the card price plus $10 in USDT'), ('3:21', 'My Cards and the 2x2 matrix'), ('3:32', 'Choose your package'), ('3:43', 'Virtual or physical card'), ('3:58', 'The identity check (KYC)'), ('4:27', 'Personalize your card'), ('4:32', 'Features and fees'), ('4:46', 'Pay: the $10 opening balance'), ('5:03', 'Unlock your wallet and pay'), ('5:12', 'Your card is ready'), ('5:24', 'Add it to Google Pay'), ('6:00', 'Quick recap'), ('6:16', 'Your turn, and what comes next')]
 FUND_TRANSCRIPT = ["Hi, my name is MTG, Your Digital Architect. Thank you for taking the time to watch this training. In the next few minutes, I'll show you how to fund your Bellver wallet with BNB and USDT, and how to order your first card, step by step. Let's get started.", "Before you start, have four things ready. One: a little BNB, about $10 worth, for network fees. Two: USDT for your card, plus $10 extra. For Premium, that's $280. Three: your ID, for the identity check. Four: your security code and wallet password.", "Why BNB first? Every transfer on BNB Chain pays a small network fee, and that fee is paid in BNB. Without a little BNB in your wallet, your USDT can't move, and your card payment can't go through.", 'On your dashboard, tap Deposit. This is your embedded wallet. Stay on Receive. Read the red message: only send USDT or USDC, on BNB Chain or Tron. BNB Chain is already selected. Read this warning too: only send USDT or USDC, BEP-20, on BNB Chain, plus a little BNB for network fees. Anything else, or the wrong network, means permanent loss.', 'Network fee covered means the BNB in this wallet pays your network fees. Scroll down to your wallet address. Scan the QR code with your phone, or tap Copy Wallet Address.', "Now open the wallet or exchange you send from. I'm using Binance, but any wallet you know well works. Tap Withdraw, and choose BNB. Paste your Bellver address. Now the most important part: the network. Choose BSC, BNB Smart Chain, BEP-20. Read this: make sure the address supports BNB Smart Chain, or your assets could be lost.", 'Enter your amount. I tap Max. Sending to a new address for the first time? Send a small test amount first. Tap Withdraw.', "Confirm the network. Who are you sending to? Yourself. Tap Next. It's a self-hosted wallet, your own Web3 wallet. Tick the declaration, and tap Submit.", "Check the address and the network one last time. Crypto transactions can't be cancelled. Tap Continue.", "Complete Binance's security checks. No passkey? Choose another method, then enter your authenticator code and your email code.", 'Sent. Back in Bellver, if you were logged out while you were away, just log in again. And there it is: gas received. This BNB pays your network fees on BNB Chain. Tap Awesome.', 'Part two: USDT, to pay for your card. Tap Deposit again, check BNB Chain, and copy your address.', "First, decide which card you want. Premium is $270, with $10,000 a day. If you can, look at Business, Bellver's most popular card, or Gold, for higher limits. I'm using Premium here because this is a training account.", 'In Binance, withdraw USDT to the same address, on BSC again. Send your card price plus $10. I typed 271 here. Learn from me: for Premium, send $280. Confirm, submit, and verify, just like before.', 'Deposit received. Tap Awesome.', "Now open My Cards, and enter your security code. No cards yet. Want to take part in the 2x2 matrix? You'll need at least Premium. The matrix is optional.", 'Tap Order a Card. Choose your package. Prices differ because of the daily, monthly and per transaction limits, and matrix access. Choose Premium.', 'A virtual card is a Mastercard, issued instantly, for online payments, Apple Pay and Google Pay. A physical card is a Visa, with an $85 postage fee, and it can take up to four weeks. In this training, we order the virtual card.', "The regular card needs a completed identity check. Tap Start Your Check, fill in your details, and upload your ID. I won't show mine. Then wait until your identity is verified. If your ID has no expiry date, ask Bellver support before you submit. Bellver emails you once you're verified, and verified members skip the surcharge on cards ordered without a check.", "Back to Premium, Virtual, Regular. You're verified. Nothing to add. Tap Continue.", 'Give your card a nickname, pick a colour, and tap Save and Continue.', 'Features and fees. Issuance: $270. Minimum fund: $10. $10,000 a day, $5,000 per transaction, and $20,000 a month. Tap Accept and Continue to Payment.', "Here's the surprise I didn't see coming. Your card starts with an opening balance of at least $10. $10 plus $270: the total is $280. I had to add $10 more. Add it from the start, and you won't get stuck here. Tick both boxes, and tap Pay.", 'Enter your wallet password, and tap Unlock and Pay. Wait for the network to confirm. Your card is issued! Tap View My Cards.', "Top up received: that's your $10, now on your card. Tap Awesome. From here you can top up, freeze your card if anything feels wrong, and add it to a digital wallet.", "I'm on Android, so I choose Google Pay. Follow the six steps. Open Google Wallet, tap Add to Wallet, and choose New Credit or Debit Card. There's nothing to scan, so enter your details manually. Tap Reveal Card Number, and type the number, the expiry month and year, and the CVV. Never share these. Accept the terms, and enter the verification code. Mine came by email. Ready to pay contactless!", 'Back on the dashboard, my wallet is almost empty. Everything went to my card. And this Premium account now qualifies for 10 levels.', 'Quick recap. In this video, we prepared what you need. We funded the wallet with BNB for network fees. We added USDT for the card. We completed the identity check. We ordered a virtual Premium card, and added it to Google Pay.', "Well done. You just ordered your Bellver Card, step by step. Now it's your turn. Get your BNB, your USDT plus $10, and your ID ready, and it goes smoothly. Share this video with your potential business partners, because every new cardholder deserves an easy start. Still stuck after watching a few times? Contact me, or the business partner who shared this video with you.", 'Next video: a full walkthrough of your Bellver dashboard, so you always know where everything is.', "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!"]
 
 # Tutorial placeholders. Upload an MP4 with exactly this name into cards/bellvercards/videos/tutorials/
 # and the matching tile switches from "Coming soon" to a playable video by itself.
 TUTS = [
- ('06-top-up-and-pay-with-your-phone.mp4', 'Top up and pay with your phone', 'Load your card, add it to Apple Pay or Google Pay and start paying.', 'nfc', 5),
+ ('07-pay-with-your-phone.mp4', 'Add your card to your phone and pay', 'Add your card to Apple Pay or Google Pay and start paying in shops and online.', 'nfc', 5),
 ]
 
 
@@ -318,6 +319,21 @@ def tutorials(H='tutorials/'):
   {walk_det}
   <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{dt}</div></details></div>
  </article>'''
+    um = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in TOPUP_MOMENTS)
+    ut = ''.join(f'<p>{p}</p>' for p in TOPUP_TRANSCRIPT)
+    panels += f'''<article class="vpanel" id="tut-06" data-panel="tut-06" aria-labelledby="t-tut-06">
+  {pplayer(TOPUP, H)}
+  <div class="vhead"><span class="badge green">Tutorial 6, {TOPUP[3]}</span><h2 id="t-tut-06">How to <em>top up</em> your Bellver Card</h2><p class="muted">{TOPUP[7]} Wallet addresses, balances, codes and card details are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-5', H)}">Read the written steps {ic('arrow')}</a> &nbsp; <a class="tlink" href="{L('prices/', H)}">All fees and limits {ic('arrow')}</a></p></div>
+  <div class="vsum-d"><details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{um}</ul></div></details>
+  <details class="qa more"><summary>The top-up maths<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">
+   <p>The 3.9% top-up fee is <b>added on top</b> of the amount you load, so the wallet must hold the amount plus the fee. That is why Max fails.</p>
+   <ul><li><b>Max:</b> $15.60 + $0.61 fee = $16.21, more than the $15.60 in the wallet.</li>
+   <li><b>The fix:</b> take the fee off first. $15.60 minus $0.61 = $14.99.</li>
+   <li><b>Load $14.99:</b> fee $0.59 (Bellver rounds it up), total $15.58. It fits.</li></ul>
+   <p>Quick rule: the most you can load is roughly your wallet balance divided by 1.039. Figures from the recording on 17 October 2026; fees can change, so always read the breakdown before you tap Top up.</p>
+  </div></details>
+  <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{ut}</div></details></div>
+ </article>'''
     mm = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in MXV_MOMENTS)
     mt = ''.join(f'<p>{p}</p>' for p in MXV_TRANSCRIPT)
     panels += f'''<article class="vpanel" id="matrix-explained" data-panel="matrix-explained" aria-labelledby="t-matrix-explained">
@@ -341,6 +357,9 @@ def tutorials(H='tutorials/'):
 <button class="vitem" type="button" data-show="walkthrough" aria-controls="walkthrough">
   <span class="vthumb"><img src="{L(DASH[6] + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{DASH[3]}</span></span>
   <span class="vtx"><b>Your dashboard, fully explained</b><small>Tutorial 5</small></span></button>
+<button class="vitem" type="button" data-show="tut-06" aria-controls="tut-06">
+  <span class="vthumb"><img src="{L(TOPUP[6] + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{TOPUP[3]}</span></span>
+  <span class="vtx"><b>Top up your card</b><small>Tutorial 6</small></span></button>
 <button class="vitem" type="button" data-show="matrix-explained" aria-controls="matrix-explained">
   <span class="vthumb"><img src="{L(MXV[6] + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{MXV[3]}</span></span>
   <span class="vtx"><b>The 2x2 matrix, made simple</b><small>Explainer</small></span></button>'''
@@ -351,11 +370,11 @@ def tutorials(H='tutorials/'):
    <div class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></div>
    <span class="pbtn">{ic('play')}</span><span class="plabel">Coming soon</span>
   </div>
-  <div class="vhead"><span class="badge green">Tutorial {i + 6}, coming soon</span><h2 id="t-tut-{n}">{t}</h2><p class="muted">{d}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">Tutorial {i + 7}, coming soon</span><h2 id="t-tut-{n}">{t}</h2><p class="muted">{d}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-' + str(step), H)}">Read the written steps {ic('arrow')}</a></p></div>
  </article>'''
         items += f'''<button class="vitem" type="button" data-show="tut-{n}" aria-controls="tut-{n}">
   <span class="vthumb"><span class="tposter"><span class="tnum">{n}</span><span class="tic">{ic(icn)}</span></span><span class="vdur">Soon</span></span>
-  <span class="vtx"><b>{t}</b><small>Tutorial {i + 6}</small></span></button>'''
+  <span class="vtx"><b>{t}</b><small>Tutorial {i + 7}</small></span></button>'''
     lib = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap">
  <div class="vlib">
   <div class="vstage">{panels}</div>
@@ -386,13 +405,17 @@ def tutorials(H='tutorials/'):
     dash_ld["transcript"] = ' '.join(DASH_TRANSCRIPT)
     dash_ld["author"] = reg_ld["author"]
     dash_ld["keywords"] = "Bellver dashboard walkthrough, Bellver back office, Bellver $100 a month not a subscription, Bellver withdraw, Bellver statement, Bellver referral, Bellver tutorial"
+    up_ld = vld(TOPUP, H, TOPUP_DATE, jpg=True)
+    up_ld["transcript"] = ' '.join(TOPUP_TRANSCRIPT)
+    up_ld["author"] = reg_ld["author"]
+    up_ld["keywords"] = "top up Bellver Card, Bellver Dynamic Wallet deposit, USDT BEP20 BNB Chain, Bellver 3.9% top-up fee, Not enough USDT, Bellver tutorial"
     mx_ld = vld(MXV, H, MXV_DATE, jpg=True)
     mx_ld["transcript"] = ' '.join(MXV_TRANSCRIPT)
     mx_ld["author"] = reg_ld["author"]
     mx_ld["keywords"] = "Bellver 2x2 matrix, Bellver spillover, Bellver rewards explained, Bellver star ranks, Bellver $100 rule, Bellver explainer video"
-    return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Register, Secure, Fund, Order and Your Dashboard Explained | MTG',
-                'Step-by-step Bellver Card tutorials by MTG: register, secure your account with 2FA, back up your Web3 wallet private key, fund your wallet and order your card, then a full tour of your dashboard. Click by click, with transcripts.',
-                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[reg_ld, sec_ld, key_ld, fund_ld, dash_ld, mx_ld], trail=trail)
+    return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Register, Secure, Fund, Order, Your Dashboard and Top Up | MTG',
+                'Step-by-step Bellver Card tutorials by MTG: register, secure your account with 2FA, back up your Web3 wallet private key, fund your wallet and order your card, a full tour of your dashboard, then top up your card with the 3.9% fee explained. Click by click, with transcripts.',
+                'images/og/og-bellver-tutorials.jpg', 'Bellver Card tutorial videos', body, ld_extra=[reg_ld, sec_ld, key_ld, fund_ld, dash_ld, up_ld, mx_ld], trail=trail)
 
 
 # ------------------------------------------------------------------ OVERVIEW
@@ -406,7 +429,7 @@ MORE = {
  'pcalc': 'Pick your card and your referrals\' card, and see when the one-time commissions cover it.',
  'partner': 'Who it suits, what you earn, a first-week plan and the honest way to share the card.',
  'videos': 'The 3-minute overview, the 2x2 matrix explainer, the 27-minute presentation and the launch webinar, with summaries.',
- 'tutorials': 'Register, secure your account, back up your private key, then fund your wallet and order your card, step by step. Plus the 2x2 matrix explainer.',
+ 'tutorials': 'Register, secure your account, back up your private key, fund your wallet, order your card and top it up, step by step. Plus the 2x2 matrix explainer.',
  'faq': 'Two dozen straight answers and a plain-words glossary.',
  'docs': 'The official price list, compensation plan and presentation slides as PDFs.',
 }

@@ -96,7 +96,7 @@ def matrix(H='matrix/'):
     trail = T(('Rewards Program', abs_url('rewards/')), ('2x2 Matrix Explained', abs_url(H)))
     art = f'''<div class="player mx-video mx-herovid" id="p-matrix-explained" role="button" tabindex="0" aria-label="Play: the Bellver 2x2 matrix explained" data-src="{L(VIDEO, H)}" data-title="The Bellver 2x2 matrix, made simple">
   <img src="{L('images/bellver-2x2-matrix-explainer-thumbnail-640.webp', H)}" srcset="{L('images/bellver-2x2-matrix-explainer-thumbnail-640.webp', H)} 640w, {L('images/bellver-2x2-matrix-explainer-thumbnail.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="The 2x2 matrix made simple: explainer video by MTG" width="1280" height="720" fetchpriority="high">
-  <span class="pbtn">{ic('play')}</span><span class="plabel">8:45</span>
+  <span class="pbtn">{ic('play')}</span><span class="plabel">8:46</span>
  </div><p class="mx-vcap">{ic('play-c')}Watch it explained in under 9 minutes, in my own voice</p>'''
     top = phero(H, trail, ['The 2x2 matrix', 'made simple'],
                 'Press play and watch it explained in under nine minutes. Prefer to read? Seven short steps below, pictures you can play with and honest numbers. No jargon, no hype.', art,
