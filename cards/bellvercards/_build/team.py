@@ -46,7 +46,6 @@ TEXT = [
  ('Bellver Card guide by MTG', 'Bellver Card guide by {n}'),
  # MTG's own work, described in his voice: say it neutrally so it is not claimed as the member's
  ('Watch it explained in under 9 minutes, in my own voice', 'Watch it explained in under 9 minutes'),
- ('plus my animated 2x2 matrix explainer', 'plus an animated 2x2 matrix explainer'),
  ('plus my plain-words 2x2 matrix guide', 'plus a plain-words 2x2 matrix guide'),
  # links to MTG's own legal pages: the member's footer carries the disclaimer instead
  ('Earnings are never guaranteed: read the <a class="inl" href="/earnings-disclaimer.html">Earnings Disclaimer</a>.', 'Earnings are never guaranteed.'),
@@ -60,7 +59,7 @@ TEXT = [
 # MTG's own creations stay credited to him where the work is his (his videos and his PDF guide are shared exactly as they are).
 # These are the only places his name may appear on a team page.
 CREDITS = [
- 'Explainer by MTG', '"name": "MTG"', 'Narrated by MTG with his AI voice', "MTG's own 2x2 matrix explainer", "MTG's own explainers", "in MTG's own voice", 'explainer video by MTG',
+ 'Explainer by MTG', '"name": "MTG"', 'Narrated by MTG with his AI voice', "MTG's own 2x2 matrix explainer", "MTG's own explainers", 'Short explainer videos by MTG', 'Explainers by MTG, narrated with his AI voice', "in MTG's own voice", 'explainer video by MTG',
  '2x2 matrix guide by MTG', 'Made by MTG from Bellver', 'by-mtg.pdf',
 ]
 

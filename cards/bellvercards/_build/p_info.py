@@ -4,6 +4,7 @@ from bv import *  # noqa
 from p_home import tiers_html, payback_calc
 from p_tools import rewards_tool
 from ex1_video import EX1, EX1_DATE, EX1_MOMENTS, EX1_TRANSCRIPT
+from mx_video import MXV
 
 
 def phero(H, trail, lines, lead, art=None, btns=None):
@@ -254,15 +255,16 @@ def rewards(H='rewards/'):
 </div></section>'''
 
     matrix = f'''<section class="sec"><div class="wrap split">
- <figure class="media rv" style="margin:0;background:#fff"><img src="{L('images/bellver-card-2x2-matrix-rewards.webp', H)}" alt="Diagram of the Bellver 2x2 matrix with spillover placements" width="1200" height="927" loading="lazy"></figure>
+ <div class="rv"><div class="player mx-video mx-herovid" id="p-rewards-matrix" role="button" tabindex="0" aria-label="Play: {MXV[1]}" data-src="{L(MXV[5], H)}" data-title="{MXV[1]}" data-more="{L('explainers/#matrix-explained', H)}">
+  <img src="{L(MXV[6] + '-640.webp', H)}" srcset="{L(MXV[6] + '-640.webp', H)} 640w, {L(MXV[6] + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="The 2x2 matrix made simple: explainer video thumbnail" width="1280" height="720" loading="lazy">
+  <span class="pbtn">{ic('play')}</span><span class="plabel">{MXV[3]}</span>
+ </div><p class="mx-vcap">{ic('play-c')}Watch it explained in under 9 minutes</p></div>
  <div class="rv" style="--d:.1s">
   <h2 class="h2">How the <em>2x2 matrix</em> fills</h2>
   <ul class="checks">
-   <li><b>Two places under everyone.</b> Your first two cardholders sit directly under you.</li>
-   <li><b>Extra people spill over.</b> Your third, fourth or tenth referral goes to the next free place in your matrix, top to bottom, left to right.</li>
-   <li><b>It is not a binary plan.</b> There is no weaker leg. You earn on every level you qualify for.</li>
-   <li><b>Only cardholders count.</b> Registering alone does not take a place.</li>
-   <li><b>Direct commissions do not need a card of your own.</b> Bellver pays them on personal referrals in all cases. Monthly rewards do: you get your matrix position when your card appears, and if someone you refer buys before you, they are not placed in your matrix.</li>
+   <li><b>Two places under everyone,</b> filled top to bottom, left to right. Extra referrals spill over.</li>
+   <li><b>Only cardholders take a place.</b> Registering alone does not.</li>
+   <li><b>Get your own card first.</b> Direct commissions never need one, but monthly rewards do: your place starts when your card appears.</li>
   </ul>
   <div class="btn-row"><a class="btn btn-go" href="{L('matrix/', H)}">{ic('tree')}Learn the matrix step by step</a></div>
  </div>
