@@ -153,7 +153,7 @@ def prices(H='prices/'):
    <p class="lead" style="margin-top:16px">No hidden extras. These are the fees on Bellver's official price list.</p>
    <p class="muted">Bellver is open that these fees are higher than a typical bank card. The top-up fee is what funds the commissions and monthly rewards, which is why this card can earn for you and an ordinary one cannot.</p>
    <div class="note g" style="margin-top:20px">{ic('shield')}<span><b>Why 3.9%?</b> In October 2026 Bellver renegotiated with its card provider and cut the top-up fee from 4.95% to 3.9%, effective immediately. It can still sound high next to a bank card, and it is what helps keep Bellver sustainable. A company has to pay for its team, offices, payment partners, security and support, and a profitable company is one that stays around for the long run. That is what you want from the company that holds your card.</span></div>
-   <div class="note g" style="margin-top:20px">{ic('info')}<span><b>Example:</b> top up $100 and $3.90 goes to the deposit fee, leaving $96.10 to spend. Pay $50 at a shop and the 1.75% transaction fee is about $0.88.</span></div>
+   <div class="note g" style="margin-top:20px">{ic('info')}<span><b>Example:</b> load $100 onto your card and $103.90 leaves your wallet, because the 3.9% fee is added on top. Pay $50 at a shop and the 1.75% transaction fee is about $0.88.</span></div>
   </div>
   <div class="grid2 rv" style="--d:.1s;align-content:start">
    <div class="box"><div class="ico">{ic('wallet')}</div><p class="muted small" style="margin:0">Card top-up (deposit)</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">3.9%</p><p class="muted small" style="margin:4px 0 0">Was 4.95% until October 2026</p></div>

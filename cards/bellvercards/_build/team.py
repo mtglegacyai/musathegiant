@@ -45,7 +45,6 @@ TEXT = [
  ('Your complete Bellver Card guide by MTG:', 'Your complete Bellver Card guide, shared by {n}:'),
  ('Bellver Card guide by MTG', 'Bellver Card guide by {n}'),
  # MTG's own work, described in his voice: say it neutrally so it is not claimed as the member's
- ('This is my plain-words summary of its video and channel post', 'This is a plain-words summary of its video and channel post'),
  ('Watch it explained in under 9 minutes, in my own voice', 'Watch it explained in under 9 minutes'),
  ('plus my animated 2x2 matrix explainer', 'plus an animated 2x2 matrix explainer'),
  ('plus my plain-words 2x2 matrix guide', 'plus a plain-words 2x2 matrix guide'),

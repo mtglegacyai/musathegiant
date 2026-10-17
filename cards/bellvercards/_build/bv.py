@@ -280,21 +280,22 @@ def checklist_band(here, title='Not ready to order yet? <em>Take the free checkl
 
 
 def news_band(here, compact=False):
-    """Bellver's October 2026 announcement, summarised in plain words."""
+    """Good to know before you start: the current fees and rules a newcomer needs (from Bellver's October 2026 update, stated as they apply today)."""
     items = [
-     ('coins', 'Top-up fee cut to 3.9%', 'Down from 4.95%, effective immediately. Bellver renegotiated the fee with its card provider. Top up $100 and $96.10 stays available.'),
-     ('star', 'Special Edition now $370', 'Choose it when you buy your card and it is $370 instead of $390. Upgrading a regular card you already have to the Special Edition costs $470.'),
-     ('users', 'Simpler ranks', 'Everyone starts as a Member. Your first star comes when you hold a Premium card and directly refer two new participants who each buy a Premium card. The old Premium status step is gone.'),
-     ('shield', 'Security: act today', 'The extra access code on My Wallet and My Cards was a temporary answer to three phishing incidents, and Bellver said it would be removed in 7 days. Bellver never emails links to its login page. Change your password and switch on two-factor login or a passkey.'),
-     ('pin', 'Physical cards: two must-haves', 'Give a complete, accurate shipping address and a valid mobile number from the country where the card will be delivered. The courier uses it, and if either is missing or wrong the card cannot be delivered.'),
-     ('rocket', 'Dashboard 2.0 is coming', 'Bellver says version 2.0 of the dashboard is in development and expected by the end of 2026.'),
+     ('coins', 'Top-up fee: 3.9%, added on top', 'The fee is added to the amount you load, so load $100 and $103.90 leaves your wallet. The minimum top-up is $10, so always keep a little extra in your wallet.'),
+     ('star', 'Special Edition: $370', 'Choose it when you buy your card and it costs $370. Upgrading a regular card to the Special Edition later costs $470, so decide at the start.'),
+     ('users', 'Your first star', 'Everyone starts as a Member. Your first star comes when you hold a Premium card and directly refer two new participants who each buy a Premium card.'),
+     ('shield', 'Keep your account safe', 'Bellver never emails links to its login page. Use a strong password and switch on two-factor login or a passkey from day one.'),
+     ('pin', 'Physical cards: two must-haves', 'Give a complete, accurate shipping address and a valid mobile number from the country where the card will be delivered. The courier uses both, and without them the card cannot be delivered.'),
+     ('wallet', 'Keep a little BNB for fees', 'Network fees on BNB Chain are paid in BNB. Keep about $10 worth in your wallet so every step goes through.'),
     ]
     cards = ''.join(f'<div class="box rv" style="--d:{(i % 3) * 0.06:.2f}s"><div class="ico">{ic(k)}</div><h3 class="h3">{t}</h3><p>{d}</p></div>' for i, (k, t, d) in enumerate(items))
-    sub = '' if compact else '<p class="lead">Bellver published these changes in October 2026. This is my plain-words summary of its video and channel post, so you can see what applies to you.</p>'
-    return f'''<section class="sec-tight" id="bellver-news"><div class="wrap">
- <div class="sec-head rv"><span class="badge green">{ic('info')}Bellver news, October 2026</span><h2 class="h2" style="margin-top:14px">What <em>just changed</em></h2>{sub}</div>
+    sub = '' if compact else '<p class="lead">The fees and rules that matter most when you start, in plain words.</p>'
+    return f'''<section class="sec-tight" id="good-to-know"><div class="wrap">
+ <span id="bellver-news" aria-hidden="true"></span>
+ <div class="sec-head rv"><span class="badge green">{ic('info')}Current fees and rules</span><h2 class="h2" style="margin-top:14px">Good to know <em>before you start</em></h2>{sub}</div>
  <div class="grid3">{cards}</div>
- <p class="fine rv" style="margin-top:16px">Source: Bellver's official news video and channel post. The PDFs in the downloads section are version 08/2026 and were issued before these changes. Earnings are never guaranteed: read the <a class="inl" href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a>.</p>
+ <p class="fine rv" style="margin-top:16px">Bellver's PDFs in the documents section (version 08/2026) still show some older figures. The numbers above are the current ones. Earnings are never guaranteed: read the <a class="inl" href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a>.</p>
 </div></section>'''
 
 
