@@ -116,7 +116,6 @@ FUND_TRANSCRIPT = ["Hi, my name is MTG, Your Digital Architect. Thank you for ta
 # Tutorial placeholders. Upload an MP4 with exactly this name into cards/bellvercards/videos/tutorials/
 # and the matching tile switches from "Coming soon" to a playable video by itself.
 TUTS = [
- ('07-pay-with-your-phone.mp4', 'Add your card to your phone and pay', 'Add your card to Apple Pay or Google Pay and start paying in shops and online.', 'nfc', 5),
 ]
 
 
