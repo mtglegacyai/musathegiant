@@ -35,8 +35,8 @@ SOCIAL_LABELS = {'telegram': 'Telegram', 'tiktok': 'TikTok', 'facebook': 'Facebo
 def _open_all(html):
     """Team pages open every section straight away (William's request, 16 Oct 2026; default for all team pages).
     A member can keep MTG's tap-to-open sections with "open_all_sections": false in team.json."""
-    if MEMBER_OPTS.get('open_all_sections', True):
-        html = re.sub(r'<main id="main" data-open="\d+">', '<main id="main" data-open="99">', html, count=1)
+    want = '99' if MEMBER_OPTS.get('open_all_sections', True) else '2'
+    html = re.sub(r'<main id="main" data-open="\d+">', f'<main id="main" data-open="{want}">', html, count=1)
     return html
 
 

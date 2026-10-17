@@ -229,9 +229,14 @@ def dash_footer(here):
  </div></footer>'''
 
 
+# Every section is open when a page loads (MTG, 17 Oct 2026: no tap-to-open section buttons).
+# Set to 2 to bring back the tap-to-open sections (first 2 sections shown, the rest behind buttons).
+OPEN_SECTIONS = 99
+
+
 def shell(here, key, body, dash):
     if not dash:
-        return f'{header(here, key)}\n<main id="main" data-open="2">\n{body}\n</main>\n{footer(here)}'
+        return f'{header(here, key)}\n<main id="main" data-open="{OPEN_SECTIONS}">\n{body}\n</main>\n{footer(here)}'
     tail = footer(here).split('</footer>', 1)[1]
     return f'''<a class="skip" href="#main">Skip to content</a>
 <div class="progress" aria-hidden="true"></div>
@@ -240,7 +245,7 @@ def shell(here, key, body, dash):
 {sidebar(here, key)}
 <div class="dmain">
 {topbar(here, key)}
-<main id="main" data-open="{9 if key in ('rcalc', 'pcalc') else 2}">
+<main id="main" data-open="{OPEN_SECTIONS}">
 {body}
 {pager(here, key)}
 </main>
