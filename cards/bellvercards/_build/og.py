@@ -50,7 +50,7 @@ PAGES=[
 ('og-bellver-get-started.jpg','ORDER YOUR CARD','STEP BY STEP','Register, secure, fund, order, pay. Seven short steps.'),
 ('og-bellver-videos.jpg','PRESENTATION','VIDEOS','The 3-minute overview, the 27-minute presentation and the launch webinar.'),
 ('og-bellver-tutorials.jpg','TUTORIAL','VIDEOS','Short step-by-step videos: register, secure, fund, order, tour your dashboard and top up.'),
-('og-bellver-explainers.jpg','EXPLAINER','VIDEOS','Where your money sits, which card to choose and the 2x2 matrix, each explained in minutes.','both'),
+('og-bellver-explainers.jpg','EXPLAINER','VIDEOS','Your money, which card, the 2x2 matrix and your first week as a partner, each explained in minutes.','both'),
 ('og-bellver-partner.jpg','BECOME A','PARTNER','Share the card and earn $10 to $500 direct commissions, with a first-week plan and honest rules.','both'),
 ('og-bellver-payback.jpg','PAYBACK','CALCULATOR','Pick your card and your referrals\' cards to see when your card pays for itself.'),
 ('og-bellver-rewards-calculator.jpg','REWARDS','CALCULATOR','See how the 0.1% monthly reward works in your own numbers. An illustration, not a promise.'),

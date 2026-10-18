@@ -2,13 +2,18 @@
 """Become a partner: the page for people who want to share the card and earn commissions."""
 from bv import *  # noqa
 from p_info import phero, T
+from ex3_video import EX3, EX3_DATE, EX3_TRANSCRIPT
 
 
 def partner(H='partner/'):
     trail = T(('Become a Partner', abs_url(H)))
+    art = f'''<div class="player mx-video mx-herovid mfit pb-mid" id="p-first-week" role="button" tabindex="0" aria-label="Play: {EX3[1]}" data-src="{L(EX3[5], H)}" data-title="{EX3[1]}" data-more="{L('explainers/#first-week-explained', H)}">
+  <img src="{L(EX3[6] + '-640.webp', H)}" srcset="{L(EX3[6] + '-640.webp', H)} 640w, {L(EX3[6] + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="Your first week as a partner: explainer video thumbnail" width="1280" height="720" fetchpriority="high">
+  <span class="pbtn">{ic('play')}</span><span class="plabel">{EX3[3]}</span>
+ </div><p class="mx-vcap">{ic('play-c')}New partner? Watch your first week explained in under 5 minutes</p>'''
     top = phero(H, trail, ['Share the card,', 'the honest way'],
                 'You become a Bellver affiliate partner when you share the card through your referral link. There is nothing to apply for and nobody to sign up with: your referral link is your partnership. Bellver pays a referral commission on your personal referrals whether or not you own a card yourself. It suits TikTok LIVE hosts and other creators whose audiences already trust them.',
-                None,
+                art,
                 order_btn('Order your card') +
                 f'<a class="btn btn-ghost" href="{L("rewards/", H)}">See the rewards plan</a>')
 
@@ -60,16 +65,16 @@ def partner(H='partner/'):
  <p class="fine rv" style="margin-top:16px">Results vary and are never guaranteed. Read the <a class="inl" href="{L('/earnings-disclaimer.html', H)}">Earnings Disclaimer</a> and the <a class="inl" href="{L('/risk-disclaimer.html', H)}">Risk Disclaimer</a>.</p>
 </div></section>'''
 
-    days = [('1', 'Register and secure', 'Register with my link, switch on the authenticator app and write your private key on paper. <a class="inl" href="%s">Follow the setup guide</a>.' % L('get-started/', H)),
-            ('2', 'Fund and order your own card (optional)', 'Not needed to earn commissions, but it lets you show real use and is needed for monthly rewards. Send USDT or USDC to your wallet, choose your level and order. Going virtual means you can pay the same day.'),
-            ('3', 'Use it for real', 'If you have a card, pay for something with it and load your $100 for the month. Real use gives you something true to talk about.'),
-            ('4', 'Learn the numbers', 'Watch the presentation videos and read Prices and Rewards, so you can answer plain questions without guessing.'),
-            ('5', 'Pick your first two people', 'Think of two people who would value the card, then show them how it works. Do not push.'),
-            ('6', 'Help them get set up', 'Send them the tutorial videos and the free Starter Checklist, and stay close while they register and fund. If they order a physical card, remind them to give a complete address and a valid local mobile number, or it cannot be delivered.'),
-            ('7', 'Check your dashboard', 'See your registrations, orders and commissions, then tell me what is working and where you got stuck.')]
+    days = [('1', 'Register and secure', 'Authenticator app on, private key written on paper. <a class="inl" href="%s">Setup guide</a>' % L('get-started/', H)),
+            ('2', 'Fund and order your card (optional)', 'Not needed for commissions. Go virtual to pay the same day.'),
+            ('3', 'Use it for real', 'Pay for something and load your $100 for the month.'),
+            ('4', 'Learn the numbers', 'Watch the explainer videos, read Prices and Rewards.'),
+            ('5', 'Pick your first two people', 'Two people who would value the card. Show them, do not push.'),
+            ('6', 'Help them get set up', 'Tutorial videos and the Starter Checklist. Physical card: full address and a local mobile number.'),
+            ('7', 'Check your dashboard', 'Registrations, orders and commissions. Learn from what worked.')]
     wk = ''.join(f'<div class="day rv"><b class="d"><small>DAY</small>{n}</b><div><h3>{t}</h3><p>{p}</p></div></div>' for n, t, p in days)
     week = f'''<section class="sec-tight"><div class="wrap">
- <div class="sec-head rv"><h2 class="h2">Your <em>first week</em></h2><p class="lead">A simple plan. Move at your own speed, and skip nothing that protects your money.</p></div>
+ <div class="sec-head rv"><h2 class="h2">Your <em>first week</em></h2><p class="lead">One small step a day, at your own speed. <a class="inl" href="{L('explainers/#first-week-explained', H)}">Watch it explained</a></p></div>
  <div class="wk">{wk}</div>
 </div></section>'''
 
@@ -92,10 +97,10 @@ def partner(H='partner/'):
 </div></section>'''
 
     honest = f'''<section class="sec-tight"><div class="wrap">
- <div class="sec-head rv"><h2 class="h2">How to share it <em>honestly</em></h2><p class="lead">Trust is what makes people order. It also keeps you on the right side of advertising rules.</p></div>
+ <div class="sec-head rv"><h2 class="h2">How to share it <em>honestly</em></h2><p class="lead">Trust is what makes people order. <a class="inl" href="{L('explainers/#first-week-explained', H)}">Watch it explained</a></p></div>
  <div class="dd">
-  <div class="box do rv"><div class="ico">{ic('check')}</div><h3 class="h3">Do</h3><ul class="checks"><li>Say plainly that you earn a commission if they order.</li><li>If you own the card, show it and how you actually use it.</li><li>Give real numbers: prices, fees, limits and the $100 monthly rule.</li><li>Tell people to keep their private key safe, because nobody can recover it.</li><li>Point people to the official documents and this guide.</li></ul></div>
-  <div class="box dont rv" style="--d:.08s"><div class="ico">{ic('alert')}</div><h3 class="h3">Do not</h3><ul class="checks"><li>Promise income, or say "passive", "risk free" or "guaranteed".</li><li>Quote the biggest examples as if they are typical.</li><li>Pressure anyone, or tell them to buy now or miss out.</li><li>Say Bellver is a bank, or that your money is insured.</li><li>Claim a link to Bellver beyond being an independent affiliate.</li><li>Make false or misleading statements. Bellver can suspend participants for them.</li></ul></div>
+  <div class="box do rv"><div class="ico">{ic('check')}</div><h3 class="h3">Do</h3><ul class="checks"><li>Say plainly that you earn a commission.</li><li>Show the card working, how you really use it.</li><li>Give real numbers: prices, fees, limits, the $100 rule.</li><li>Remind people that nobody can recover a lost private key.</li></ul></div>
+  <div class="box dont rv" style="--d:.08s"><div class="ico">{ic('alert')}</div><h3 class="h3">Do not</h3><ul class="checks"><li>Promise income, or say "passive", "risk free" or "guaranteed".</li><li>Quote the biggest examples as if they are typical.</li><li>Pressure anyone to buy now or miss out.</li><li>Say Bellver is a bank, that money is insured, or that you work for Bellver.</li></ul></div>
  </div>
 </div></section>'''
 
@@ -132,7 +137,11 @@ def partner(H='partner/'):
  </div>
 </div></section>'''
     body = top + mean + reasons_band(H, 'compact', title='What people <em>say yes</em> to: 10 reasons', lead='When you share Bellver Card, these are the reasons people give for joining. More than 1,000 cards were sold in the testing phase alone (as reported at launch). Explain each reason honestly, and let people decide for themselves.') + audience_band(H, chips=False, cta=False) + who + earn + week + brules + honest + cbp_section(H) + tiktok + tools + checklist_band(H) + faqs + cta
+    vld_ex3 = {"@type": "VideoObject", "name": EX3[1], "description": EX3[7], "thumbnailUrl": abs_url(EX3[6] + ".jpg"), "inLanguage": "en", "url": abs_url(H),
+               "contentUrl": abs_url(EX3[5]), "uploadDate": EX3_DATE, "duration": EX3[8], "transcript": ' '.join(EX3_TRANSCRIPT),
+               "author": {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"},
+               "keywords": "Bellver partner, Bellver affiliate, Bellver referral link, Bellver commission, Bellver first week plan, how to share Bellver Card"}
     faq_ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     return page(H, 'partner', 'Become a Bellver Card Partner: How to Share It and Earn | MTG',
                 'How to share the Bellver Card and earn commissions: made for TikTok LIVE hosts and creators with a trusting audience, the $10 to $500 direct commissions, a first-week plan, honest sharing rules and a plain explanation of what partner means.',
-                'images/og/og-bellver-partner.jpg', 'Become a Bellver Card partner', body, ld_extra=[faq_ld], trail=trail)
+                'images/og/og-bellver-partner.jpg', 'Become a Bellver Card partner', body, ld_extra=[faq_ld, vld_ex3], trail=trail)

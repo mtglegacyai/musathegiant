@@ -402,7 +402,7 @@ def gc_snippet():
     return f'<script data-goatcounter="https://{ANALYTICS_GOATCOUNTER}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
 
 
-OG_V = '20261017'  # bump when the social preview images change, so WhatsApp and others fetch the new ones
+OG_V = '20261018'  # bump when the social preview images change, so WhatsApp and others fetch the new ones
 
 
 def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None, preload=None, robots='index,follow,max-image-preview:large,max-video-preview:-1', dash=True):
