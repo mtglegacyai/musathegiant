@@ -140,7 +140,7 @@ def pplayer(v, H, eager=False, more=None):
     load = '' if eager else ' loading="lazy"'
     pimg = live_thumb(v, H, '.webp', 1280, 720, load, title + ', video thumbnail') or (
         f'<img src="{L(img + "-640.webp", H)}" srcset="{L(img + "-640.webp", H)} 640w, {L(img + ".webp", H)} 1280w" sizes="(max-width:860px) 100vw, 820px" alt="{title}, video thumbnail" width="1280" height="720"{load}>')
-    pb = ' pb-low mfit' if vid == 'which-card-explained' else ''
+    pb = ' pb-low mfit' if vid == 'which-card-explained' else (' mfit' if vid in ('money-explained', 'matrix-explained') else '')
     return f'''<div class="player{pb}" id="p-{vid}" role="button" tabindex="0" aria-label="Play: {title}" {data} data-title="{title}"{m}>
 {pimg}
  <span class="pbtn">{ic('play')}</span><span class="plabel">{dur}</span></div>'''

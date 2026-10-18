@@ -25,7 +25,7 @@ def T(*extra):
 def how(H='how-it-works/'):
     trail = T(('How It Works', abs_url(H)))
     vimg = EX1[6]
-    art = f'''<div class="player mx-video mx-herovid" id="p-money-explained" role="button" tabindex="0" aria-label="Play: {EX1[1]}" data-src="{L(EX1[5], H)}" data-title="{EX1[1]}">
+    art = f'''<div class="player mx-video mx-herovid mfit" id="p-money-explained" role="button" tabindex="0" aria-label="Play: {EX1[1]}" data-src="{L(EX1[5], H)}" data-title="{EX1[1]}">
   <img src="{L(vimg + '-640.webp', H)}" srcset="{L(vimg + '-640.webp', H)} 640w, {L(vimg + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="Where your money really sits: explainer video thumbnail" width="1280" height="720" fetchpriority="high">
   <span class="pbtn">{ic('play')}</span><span class="plabel">{EX1[3]}</span>
  </div><p class="mx-vcap">{ic('play-c')}Watch it explained in under 5 minutes</p>'''
@@ -260,7 +260,7 @@ def rewards(H='rewards/'):
 </div></section>'''
 
     matrix = f'''<section class="sec"><div class="wrap split">
- <div class="rv"><div class="player mx-video mx-herovid" id="p-rewards-matrix" role="button" tabindex="0" aria-label="Play: {MXV[1]}" data-src="{L(MXV[5], H)}" data-title="{MXV[1]}" data-more="{L('explainers/#matrix-explained', H)}">
+ <div class="rv"><div class="player mx-video mx-herovid mfit" id="p-rewards-matrix" role="button" tabindex="0" aria-label="Play: {MXV[1]}" data-src="{L(MXV[5], H)}" data-title="{MXV[1]}" data-more="{L('explainers/#matrix-explained', H)}">
   <img src="{L(MXV[6] + '-640.webp', H)}" srcset="{L(MXV[6] + '-640.webp', H)} 640w, {L(MXV[6] + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="The 2x2 matrix made simple: explainer video thumbnail" width="1280" height="720" loading="lazy">
   <span class="pbtn">{ic('play')}</span><span class="plabel">{MXV[3]}</span>
  </div><p class="mx-vcap">{ic('play-c')}Watch it explained in under 9 minutes</p></div>
