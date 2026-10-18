@@ -120,6 +120,7 @@ onScroll();
   d.addEventListener('keydown',function(e){if(e.key==='Escape'&&openTheater) openTheater(true);});
   function bindPlayer(p){
     if(p.bvBound) return; p.bvBound=true;
+    if(!p.classList.contains('vert')) p.classList.add('mfit'); /* phone fit for every 16:9 video */
     var yt=p.getAttribute('data-yt'), title=p.getAttribute('data-title')||'Video', more=p.getAttribute('data-more'), player=null, media=null, T=null, endL=null;
     function layer(cls,html){var l=d.createElement('div');l.className='vlayer '+cls;l.innerHTML=html;l.hidden=true;p.appendChild(l);return l;}
     function enterTheater(){

@@ -1589,28 +1589,28 @@ details.qa[hidden]{display:none}
 .gohome:hover .emo{transform:translateY(-2px) rotate(-8deg) scale(1.12)}
 .btn.gohome:after{animation-delay:-3s}
 @media (prefers-reduced-motion:reduce){.gohome:hover .emo{transform:none}}
-/* Phone fit (being tested on Explainer 2 first, class mfit): the whole 16:9 frame always shows.
+/* Phone fit for every 16:9 video (class mfit, added by bellver.js): the whole 16:9 frame always shows.
    Full screen keeps the full picture (no cropping of the captions at the bottom), and on phones the
    laptop frame gets slimmer, the top gap shrinks and the close button gets smaller, so the video is as big as the screen allows. */
 .player.mfit video{object-fit:contain;background:#000}
 .player.mfit video:fullscreen,.player.mfit video:-webkit-full-screen{object-fit:contain!important}
 /* phones: a slim laptop frame (thin bezel and base) so the video stays big and the laptop look stays */
 @media (orientation:landscape) and (max-height:500px),(orientation:portrait) and (max-width:640px){
-  .vtheater.mfit{--bz:6px;--bs:10px;--oh:10px}
-  .vtheater.mfit .vlid{border-radius:10px 10px 3px 3px}
-  .vtheater.mfit .vscr{border-radius:3px}
-  .vtheater.mfit .vcam{width:3px;height:3px;margin-left:-1.5px;top:1.5px}
-  .vtheater.mfit .vbase{border-radius:0 0 12px 12px / 0 0 8px 8px}
-  .vtheater.mfit .vbase i{height:4px}
+  .vtheater.mfit:not(.vt-vert){--bz:6px;--bs:10px;--oh:10px}
+  .vtheater.mfit:not(.vt-vert) .vlid{border-radius:10px 10px 3px 3px}
+  .vtheater.mfit:not(.vt-vert) .vscr{border-radius:3px}
+  .vtheater.mfit:not(.vt-vert) .vcam{width:3px;height:3px;margin-left:-1.5px;top:1.5px}
+  .vtheater.mfit:not(.vt-vert) .vbase{border-radius:0 0 12px 12px / 0 0 8px 8px}
+  .vtheater.mfit:not(.vt-vert) .vbase i{height:4px}
 }
 @media (orientation:landscape) and (max-height:500px){
-  .vtheater.mfit{--top:6px;--bot:6px}
-  .vtheater.mfit .vbox{top:50%;--W:min(calc(100vw - 2 * max(56px,env(safe-area-inset-left),env(safe-area-inset-right))),calc((var(--vh) - 12px - 2 * var(--bz) - var(--bs)) * 16 / 9 + 2 * var(--bz)))}
-  .vtheater.mfit .vclose{width:36px;height:36px;top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right))}
-  .vtheater.mfit .vclose svg{width:17px;height:17px}
+  .vtheater.mfit:not(.vt-vert){--top:6px;--bot:6px}
+  .vtheater.mfit:not(.vt-vert) .vbox{top:50%;--W:min(calc(100vw - 2 * max(56px,env(safe-area-inset-left),env(safe-area-inset-right))),calc((var(--vh) - 12px - 2 * var(--bz) - var(--bs)) * 16 / 9 + 2 * var(--bz)))}
+  .vtheater.mfit:not(.vt-vert) .vclose{width:36px;height:36px;top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right))}
+  .vtheater.mfit:not(.vt-vert) .vclose svg{width:17px;height:17px}
 }
 @media (orientation:portrait) and (max-width:640px){
   .vtheater.mfit:not(.locked):not(.vt-vert) .vbox{--W:min(calc(var(--vh) - 70px - 2 * var(--oh)),calc((100vw - 16px - 2 * var(--bz) - var(--bs)) * 16 / 9 + 2 * var(--bz)));top:calc(50% + 27px)}
-  .vtheater.mfit .vclose{width:38px;height:38px;top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right))}
-  .vtheater.mfit .vclose svg{width:18px;height:18px}
+  .vtheater.mfit:not(.vt-vert) .vclose{width:38px;height:38px;top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right))}
+  .vtheater.mfit:not(.vt-vert) .vclose svg{width:18px;height:18px}
 }
