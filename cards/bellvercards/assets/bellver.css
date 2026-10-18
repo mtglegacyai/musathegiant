@@ -1589,3 +1589,24 @@ details.qa[hidden]{display:none}
 .gohome:hover .emo{transform:translateY(-2px) rotate(-8deg) scale(1.12)}
 .btn.gohome:after{animation-delay:-3s}
 @media (prefers-reduced-motion:reduce){.gohome:hover .emo{transform:none}}
+/* Phone fit (being tested on Explainer 2 first, class mfit): the whole 16:9 frame always shows.
+   Full screen keeps the full picture (no cropping of the captions at the bottom), and on phones the
+   laptop frame is dropped, the top gap shrinks and the close button gets smaller, so the video is as big as the screen allows. */
+.player.mfit video{object-fit:contain;background:#000}
+.player.mfit video:fullscreen,.player.mfit video:-webkit-full-screen{object-fit:contain!important}
+@media (orientation:landscape) and (max-height:500px){
+  .vtheater.mfit{--bz:0px;--bs:0px;--oh:0px;--top:0px;--bot:0px}
+  .vtheater.mfit .vbox{top:50%;--W:min(calc(100vw - 2 * max(52px,env(safe-area-inset-left),env(safe-area-inset-right))),calc((var(--vh) - 12px) * 16 / 9))}
+  .vtheater.mfit .vlid{padding:0;border:0;border-radius:6px;background:none;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+  .vtheater.mfit .vcam,.vtheater.mfit .vbase{display:none}
+  .vtheater.mfit .vclose{width:36px;height:36px;top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right))}
+  .vtheater.mfit .vclose svg{width:17px;height:17px}
+}
+@media (orientation:portrait) and (max-width:640px){
+  .vtheater.mfit{--bz:0px;--bs:0px;--oh:0px}
+  .vtheater.mfit:not(.locked):not(.vt-vert) .vbox{--W:min(calc(var(--vh) - 70px),calc((100vw - 16px) * 16 / 9));top:calc(50% + 27px)}
+  .vtheater.mfit:not(.vt-vert) .vlid{padding:0;border:0;border-radius:6px;background:none;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+  .vtheater.mfit:not(.vt-vert) .vcam,.vtheater.mfit:not(.vt-vert) .vbase{display:none}
+  .vtheater.mfit .vclose{width:38px;height:38px;top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right))}
+  .vtheater.mfit .vclose svg{width:18px;height:18px}
+}

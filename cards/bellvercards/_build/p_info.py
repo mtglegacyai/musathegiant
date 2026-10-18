@@ -142,7 +142,7 @@ def how(H='how-it-works/'):
 
 # ------------------------------------------------------------------ PRICES
 def prices(H='prices/'):
-    art3 = f'''<div class="player mx-video mx-herovid pb-low" id="p-which-card" role="button" tabindex="0" aria-label="Play: {EX2[1]}" data-src="{L(EX2[5], H)}?v=2" data-title="{EX2[1]}" data-more="{L('explainers/#which-card-explained', H)}">
+    art3 = f'''<div class="player mx-video mx-herovid pb-low mfit" id="p-which-card" role="button" tabindex="0" aria-label="Play: {EX2[1]}" data-src="{L(EX2[5], H)}?v=2" data-title="{EX2[1]}" data-more="{L('explainers/#which-card-explained', H)}">
   <img src="{L(EX2[6] + '-640.webp', H)}" srcset="{L(EX2[6] + '-640.webp', H)} 640w, {L(EX2[6] + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="Which card is right for you: explainer video thumbnail" width="1280" height="720" fetchpriority="high">
   <span class="pbtn">{ic('play')}</span><span class="plabel">{EX2[3]}</span>
  </div><p class="mx-vcap">{ic('play-c')}Not sure which level? Watch it explained in under 5 minutes</p>'''
