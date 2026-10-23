@@ -54,10 +54,10 @@ def build(here=''):
    </div>
   </div>
   <div class="facts rv" data-hero-end>
-   <div class="fact"><span class="ic">{ic('bolt')}</span><div><b>Up to $20,000</b><span>per payment, worldwide</span></div></div>
-   <div class="fact"><span class="ic">{ic('key')}</span><div><b>Your own key</b><span>Fireblocks wallet only you control</span></div></div>
-   <div class="fact"><span class="ic">{ic('phone')}</span><div><b>Apple Pay & Google Pay</b><span>or tap with an NFC ring</span></div></div>
-   <div class="fact"><span class="ic">{ic('gift')}</span><div><b>Two referrals</b><span>Premium or higher, for rewards</span></div></div>
+   <div class="fact">{ped(ic('bolt'), cls='ped-xs')}<div><b>Up to $20,000</b><span>per payment, worldwide</span></div></div>
+   <div class="fact">{ped(ic('key'), cls='ped-xs')}<div><b>Your own key</b><span>Fireblocks wallet only you control</span></div></div>
+   <div class="fact">{ped(ic('phone'), cls='ped-xs')}<div><b>Apple Pay & Google Pay</b><span>or tap with an NFC ring</span></div></div>
+   <div class="fact">{ped(ic('gift'), cls='ped-xs')}<div><b>Two referrals</b><span>Premium or higher, for rewards</span></div></div>
   </div>
  </div>
 </section>'''
@@ -89,10 +89,10 @@ def build(here=''):
  <div class="wrap">
   <div class="sec-head rv"><h2 class="h2">Not the card <em>already</em> in your wallet</h2><p class="lead">Most cards give you a little cashback or points. This one is built around four things you rarely find together.</p></div>
   <div class="feat-grid">
-   <div class="feat rv">{ic('bolt','ico')}<span class="big" data-count="250000" data-pre="$">$250,000</span><h3 class="h3">Limits that keep up with you</h3><p>Spend up to $250,000 a day and $20,000 per payment on Gold. Even Basic gives you $1,000 a day, in any local currency.</p></div>
-   <div class="feat rv" style="--d:.08s">{ic('key','ico')}<span class="big">Your keys</span><h3 class="h3">Your money stays in your wallet</h3><p>Funds sit in your own Fireblocks non-custodial wallet, protected by your private key. You move only what you need onto the card, in one click.</p></div>
-   <div class="feat rv">{ic('phone','ico')}<span class="big y">Today</span><h3 class="h3">A virtual card you can use now</h3><p>No shipping and no waiting. Add it to Apple Pay or Google Pay, or link an NFC ring and pay with a tap of your finger.</p></div>
-   <div class="feat rv" style="--d:.08s">{ic('users','ico')}<span class="big" data-count="2" data-suf=" referrals">2 referrals</span><h3 class="h3">A card that can earn</h3><p>Buy Premium or higher and recommend it to two people who also choose Premium or higher, and you qualify for monthly rewards: a share of what cardholders in your team load onto their cards.</p></div>
+   <div class="feat rv">{ped(ic('bolt'), cls='ped-feat')}<span class="big" data-count="250000" data-pre="$">$250,000</span><h3 class="h3">Limits that keep up with you</h3><p>Spend up to $250,000 a day and $20,000 per payment on Gold. Even Basic gives you $1,000 a day, in any local currency.</p></div>
+   <div class="feat rv" style="--d:.08s">{ped(ic('key'), cls='ped-feat')}<span class="big">Your keys</span><h3 class="h3">Your money stays in your wallet</h3><p>Funds sit in your own Fireblocks non-custodial wallet, protected by your private key. You move only what you need onto the card, in one click.</p></div>
+   <div class="feat rv">{ped(ic('phone'), cls='ped-feat')}<span class="big y">Today</span><h3 class="h3">A virtual card you can use now</h3><p>No shipping and no waiting. Add it to Apple Pay or Google Pay, or link an NFC ring and pay with a tap of your finger.</p></div>
+   <div class="feat rv" style="--d:.08s">{ped(ic('users'), cls='ped-feat')}<span class="big" data-count="2" data-suf=" referrals">2 referrals</span><h3 class="h3">A card that can earn</h3><p>Buy Premium or higher and recommend it to two people who also choose Premium or higher, and you qualify for monthly rewards: a share of what cardholders in your team load onto their cards.</p></div>
   </div>
  </div>
 </section>'''
@@ -101,10 +101,10 @@ def build(here=''):
  <div class="wrap">
   <div class="sec-head center rv"><h2 class="h2">From crypto to checkout in <em>four</em> steps</h2><p class="lead">Your money never sits on the card waiting. It stays in your wallet until the moment you need it.</p></div>
   <div class="flow rv"><span class="track" aria-hidden="true"></span>
-   <div class="step"><div class="n">{ic('coins')}</div><h3>Send USDT or USDC</h3><p>From any wallet or exchange. BNB Smart Chain is fast and low-cost.</p></div>
-   <div class="step"><div class="n">{ic('wallet')}</div><h3>It lands in your wallet</h3><p>Your own Fireblocks wallet. Only you hold the private key.</p></div>
-   <div class="step"><div class="n">{ic('swap')}</div><h3>Top up your card</h3><p>Move the exact amount you need. It arrives in seconds.</p></div>
-   <div class="step"><div class="n">{ic('globe')}</div><h3>Pay anywhere</h3><p>In shops, online and at ATMs, in any local currency.</p></div>
+   <div class="step">{ped(ic('coins'), cls='ped-step')}<h3>Send USDT or USDC</h3><p>From any wallet or exchange. BNB Smart Chain is fast and low-cost.</p></div>
+   <div class="step">{ped(ic('wallet'), cls='ped-step')}<h3>It lands in your wallet</h3><p>Your own Fireblocks wallet. Only you hold the private key.</p></div>
+   <div class="step">{ped(ic('swap'), cls='ped-step')}<h3>Top up your card</h3><p>Move the exact amount you need. It arrives in seconds.</p></div>
+   <div class="step">{ped(ic('globe'), cls='ped-step')}<h3>Pay anywhere</h3><p>In shops, online and at ATMs, in any local currency.</p></div>
   </div>
   <p class="rv" style="text-align:center;margin-top:34px"><a class="tlink" href="{L('how-it-works/', H)}">How funding and security work {ic('arrow')}</a></p>
  </div>

@@ -85,9 +85,9 @@ def rewards_page(H='rewards-calculator/'):
     tool = f'<section class="sec-tight tool-sec" style="padding-top:0"><div class="wrap tool-wrap">{rewards_tool(H, True)}</div></section>'
     info = f'''<section class="sec-tight" id="how-it-works"><div class="wrap">
  <div class="grid3">
-  <div class="box rv"><div class="ico">{ic('coins')}</div><h3 class="h3">How it is worked out</h3><p>Every time a cardholder in your paid levels tops up their card, you receive 0.1% of that top-up. So $1,000 loaded pays you $1. The calculator multiplies cardholders by their average top-up, then takes 0.1%.</p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('tree')}</div><h3 class="h3">Where the cardholders come from</h3><p>Your rank decides how many levels you are paid on. Seats fill top to bottom, left to right, and spillover from above can land under you. <a class="inl" href="{L('matrix/', H)}">See the 2x2 matrix</a></p></div>
-  <div class="box warn rv" style="--d:.12s"><div class="ico">{ic('alert')}</div><h3 class="h3">To be paid each month</h3><p>Hold a Premium card or higher, reach your rank, and load at least $100 onto your own card that month. Early on, direct commissions are usually the bigger money. <a class="inl" href="{L('payback-calculator/', H)}">Try the Payback Calculator</a></p></div>
+  <div class="box rv">{ped(ic('coins'), '')}<h3 class="h3">How it is worked out</h3><p>Every time a cardholder in your paid levels tops up their card, you receive 0.1% of that top-up. So $1,000 loaded pays you $1. The calculator multiplies cardholders by their average top-up, then takes 0.1%.</p></div>
+  <div class="box rv" style="--d:.06s">{ped(ic('tree'), '')}<h3 class="h3">Where the cardholders come from</h3><p>Your rank decides how many levels you are paid on. Seats fill top to bottom, left to right, and spillover from above can land under you. <a class="inl" href="{L('matrix/', H)}">See the 2x2 matrix</a></p></div>
+  <div class="box warn rv" style="--d:.12s">{ped(ic('alert'), 'warn')}<h3 class="h3">To be paid each month</h3><p>Hold a Premium card or higher, reach your rank, and load at least $100 onto your own card that month. Early on, direct commissions are usually the bigger money. <a class="inl" href="{L('payback-calculator/', H)}">Try the Payback Calculator</a></p></div>
  </div>
 </div></section>'''
     body = top + tool + info + help_band(H, 'Want help with your numbers?', "I'm MTG. Message me on WhatsApp and I'll walk you through how the rewards work, without the hype.")

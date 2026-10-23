@@ -100,7 +100,7 @@ def _swap_checklist(html):
     if k not in html:
         return html
     i = html.rfind('<div class="box rv"', 0, html.index(k)); j = html.index('</a></div></div>', i) + len('</a></div></div>')
-    box = (f'<div class="box rv" style="--d:.06s"><div class="ico">{bv.ic("play-c")}</div><h3 class="h3">Tutorial videos</h3>'
+    box = (f'<div class="box rv" style="--d:.06s">{bv.ped(bv.ic("play-c"), '')}<h3 class="h3">Tutorial videos</h3>'
            '<p>Short step-by-step videos: register, secure your account, back up your key, fund your wallet and order your card.</p>'
            f'<div class="btn-row" style="margin-top:12px"><a class="btn btn-ghost btn-sm" href="{bv.BASE}tutorials/">Watch the tutorials</a></div></div>')
     return html[:i] + box + html[j:]

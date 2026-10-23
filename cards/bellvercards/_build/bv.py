@@ -273,7 +273,7 @@ def checklist_band(here, title='Not ready to order yet? <em>Take the free checkl
     if PARTNER:
         return ''   # MTG's personal checklist offer: not part of team pages
     return f'''<section class="sec-tight" id="checklist"><div class="wrap"><div class="panel checklist rv">
-  <div class="ck-ico">{ic('book')}</div>
+  {ped(ic('book'), cls='ck-ped')}
   <div class="ck-tx"><h2 class="h2">{title}</h2><p>{text}</p>
    <ul class="ck-pts"><li>{ic('check')}Free, no obligation</li><li>{ic('check')}Plain words, two pages</li><li>{ic('check')}Sent to you on WhatsApp</li></ul></div>
   <a class="btn btn-wa" data-track="checklist" href="{CHECKLIST_MSG}" target="_blank" rel="noopener">{ic('wa')}Get the checklist on WhatsApp</a>
@@ -290,7 +290,7 @@ def news_band(here, compact=False):
      ('pin', 'Physical cards: two must-haves', 'Give a complete, accurate shipping address and a valid mobile number from the country where the card will be delivered. The courier uses both, and without them the card cannot be delivered.'),
      ('wallet', 'Keep a little BNB for fees', 'Network fees on BNB Chain are paid in BNB. Keep about $10 worth in your wallet so every step goes through.'),
     ]
-    cards = ''.join(f'<div class="box rv" style="--d:{(i % 3) * 0.06:.2f}s"><div class="ico">{ic(k)}</div><h3 class="h3">{t}</h3><p>{d}</p></div>' for i, (k, t, d) in enumerate(items))
+    cards = ''.join(f'<div class="box rv" style="--d:{(i % 3) * 0.06:.2f}s">{ped(ic(k), '')}<h3 class="h3">{t}</h3><p>{d}</p></div>' for i, (k, t, d) in enumerate(items))
     sub = '' if compact else '<p class="lead">The fees and rules that matter most when you start, in plain words.</p>'
     return f'''<section class="sec-tight" id="good-to-know"><div class="wrap">
  <span id="bellver-news" aria-hidden="true"></span>
@@ -520,7 +520,7 @@ def reasons_band(here, variant='full', title=None, lead=None, sid='why'):
  <div class="why-cta rv"><div><b>Ready to see it for yourself?</b><span>Start with a virtual card from $99 and pay today, or watch the 3-minute video first.</span></div><div class="btn-row">{order_btn('Order your card')}<a class="btn btn-ghost" href="{L('videos/#overview', here)}">{ic('play')}Watch the 3-minute video</a></div></div>
  <p class="fine rv" style="margin-top:16px">Prices, limits and commissions from Bellver's official price list and compensation plan. Rewards depend on real card activity and are never guaranteed.</p>
 </div></section>'''
-    items = ''.join(f'<li><span class="why-n">{i + 1:02d}</span><span class="why-ic">{ic(icn)}</span><span class="why-t"><b>{t}</b><small>{REASONS_SHORT[i]}</small></span></li>' for i, (icn, big, t, d, href, lab) in enumerate(REASONS))
+    items = ''.join(f'<li><span class="why-n">{i + 1:02d}</span>{ped(ic(icn), 'gold' if i >= 6 else '', 'ped-xs')}<span class="why-t"><b>{t}</b><small>{REASONS_SHORT[i]}</small></span></li>' for i, (icn, big, t, d, href, lab) in enumerate(REASONS))
     return f'''<section class="sec-tight" id="{sid}"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">{title}</h2><p class="lead">{lead}</p></div>
  <ol class="why-list rv">{items}</ol>

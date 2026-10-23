@@ -1635,12 +1635,12 @@ details.qa[hidden]{display:none}
 :is(.why-card,.gtile,.box):nth-child(2n) .ped-obj{animation-delay:-2.7s}
 :is(.why-card,.gtile,.box):nth-child(3n) .ped-obj{animation-delay:-1.4s}
 .gstep:nth-of-type(2n) .ped-obj{animation-delay:-2.7s}
-:is(.why-card,.gtile,.gstep,.box):hover .ped-obj{transform:translateY(-5px) scale(1.04)}
-:is(.why-card,.gtile,.gstep,.box):hover .ped:before{border-color:#9ff5c8;box-shadow:0 6px 0 -1px #0a1d14,0 6px 0 0 rgba(123,224,168,.38),0 0 20px rgba(123,224,168,.6),0 0 48px rgba(52,176,112,.42),inset 0 0 12px rgba(123,224,168,.4)}
-:is(.why-card,.gtile,.gstep,.box):hover .ped:after{opacity:1}
+:is(.why-card,.gtile,.gstep,.box,.feat,.step,.fact,.checklist,.why-list li,.mx-quick li,.mx-pay li):hover .ped-obj{transform:translateY(-5px) scale(1.04)}
+:is(.why-card,.gtile,.gstep,.box,.feat,.step,.fact,.checklist,.why-list li,.mx-quick li,.mx-pay li):hover .ped:before{border-color:#9ff5c8;box-shadow:0 6px 0 -1px #0a1d14,0 6px 0 0 rgba(123,224,168,.38),0 0 20px rgba(123,224,168,.6),0 0 48px rgba(52,176,112,.42),inset 0 0 12px rgba(123,224,168,.4)}
+:is(.why-card,.gtile,.gstep,.box,.feat,.step,.fact,.checklist,.why-list li,.mx-quick li,.mx-pay li):hover .ped:after{opacity:1}
 @keyframes pedFloat{0%,100%{translate:0 0}50%{translate:0 -4px}}
 @media (max-width:760px){.ped{width:92px;height:82px}.ped-obj{width:50px;height:50px;margin-left:-25px;border-radius:15px}.ped-obj svg{width:27px;height:27px}}
-@media (prefers-reduced-motion:reduce){.ped-obj{animation:none}:is(.why-card,.gtile,.gstep,.box):hover .ped-obj{transform:none}}
+@media (prefers-reduced-motion:reduce){.ped-obj{animation:none}:is(.why-card,.gtile,.gstep,.box,.feat,.step,.fact,.checklist,.why-list li,.mx-quick li,.mx-pay li):hover .ped-obj{transform:none}}
 
 /* pedestal variants and placements */
 .ped-red .ped-obj{border-color:rgba(255,122,102,.55);background:linear-gradient(155deg,#4a2a22,#2a1712 45%,#160d0a 100%);box-shadow:inset 0 1px 0 rgba(255,200,190,.3),inset 0 -5px 10px rgba(0,0,0,.45),0 12px 16px -8px rgba(0,0,0,.9),0 0 22px rgba(255,110,90,.16)}
@@ -1655,3 +1655,19 @@ details.qa[hidden]{display:none}
 @media (min-width:641px){.gstep{grid-template-columns:104px minmax(0,1fr)}}
 .gstep .ped{margin:-8px 0 0 -8px}
 @media (max-width:760px){.gstep .ped{margin:-6px 0 -4px -6px}.ped-sm{width:84px;height:74px}}
+
+/* pedestal sizes and placements, sitewide */
+.ped-xs{width:70px;height:62px;margin:-4px -2px -4px -6px}
+.ped-xs:before{left:6px;right:6px;bottom:6px;height:16px;box-shadow:0 4px 0 -1px #0a1d14,0 4px 0 0 rgba(123,224,168,.28),0 0 10px rgba(123,224,168,.4),0 0 24px rgba(52,176,112,.28),inset 0 0 8px rgba(123,224,168,.28)}
+.ped-xs:after{left:14px;right:14px;bottom:12px;height:38px}
+.ped-xs .ped-obj{width:40px;height:40px;margin-left:-20px;border-radius:12px;top:1px}
+.ped-xs .ped-obj:before{border-radius:9px 9px 40% 40%}
+.ped-xs .ped-obj svg{width:20px;height:20px}
+.fact .ped-xs{flex:none}
+.why-list .ped-xs{margin-top:-6px}
+.ped-step{margin:0 auto 8px;position:relative;z-index:1}
+.step .ped-step .ped-obj:after{counter-increment:st;content:counter(st);position:absolute;top:-7px;right:-7px;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--yellow);color:#1d1300;font:800 .72rem var(--body);box-shadow:0 2px 6px rgba(0,0,0,.5)}
+.ped-feat{position:absolute;right:clamp(14px,2.4vw,26px);top:clamp(12px,2vw,22px)}
+.ck-ped{margin:-8px 0 -6px -6px}
+.mx-quick .ped-sm,.mx-pay .ped-sm{margin:-8px 0 6px -8px}
+@media (max-width:760px){.ped-feat{transform:scale(.85);transform-origin:top right}}

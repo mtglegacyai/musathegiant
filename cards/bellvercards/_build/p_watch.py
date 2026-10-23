@@ -177,7 +177,7 @@ def videos(H='videos/'):
    <li>Own Premium or higher and recommend it to two people who also choose Premium or higher to qualify for monthly rewards</li>
   </ul>
  </div>
- <div class="box"><div class="ico">{ic('info')}</div><h3 class="h3">Next step</h3><p>Liked what you saw? The 27-minute presentation covers every detail, or jump straight to <a class="inl" href="{L('prices/', H)}">prices and limits</a>.</p></div>
+ <div class="box">{ped(ic('info'), '')}<h3 class="h3">Next step</h3><p>Liked what you saw? The 27-minute presentation covers every detail, or jump straight to <a class="inl" href="{L('prices/', H)}">prices and limits</a>.</p></div>
 </div>'''
     s_explained = f'''<div class="split vsum">
  <div class="prose">
@@ -196,7 +196,7 @@ def videos(H='videos/'):
   <p><b>Premium is where rewards start.</b> Basic only earns direct commissions. Bellver recommends Premium at minimum, and says most people pick Business.</p>
   <p><b>Your card can cost nothing.</b> Buy Business, refer three Business cardholders and the commissions cover your card.</p>
  </div>
- <div class="box warn"><div class="ico">{ic('alert')}</div><h3 class="h3">A fair reading of the numbers</h3>
+ <div class="box warn">{ped(ic('alert'), 'warn')}<h3 class="h3">A fair reading of the numbers</h3>
   <p>The video's monthly examples ($2,457, about $20,000 and $157,286) assume every matrix place is filled and every cardholder loads $300 a month. A full 12 levels is 8,190 cardholders. Treat these as illustrations, not forecasts.</p>
   <p>This video was recorded before Bellver's October 2026 update, so some of its figures (the 4.95% top-up fee, the $390 Special Edition and a Premium rank step) are out of date. <a class="inl" href="{L('learn/#good-to-know', H)}">See the current figures</a>.</p>
   <p><a class="inl" href="{L('rewards/#estimate', H)}">Run your own numbers</a></p></div>
@@ -227,7 +227,7 @@ def videos(H='videos/'):
    <li>Stars, the $100 monthly rule and payday</li>
   </ul>
  </div>
- <div class="box"><div class="ico">{ic('tree')}</div><h3 class="h3">Play with it yourself</h3><p>The <a class="inl" href="{L('matrix/', H)}">2x2 Matrix Explained</a> page has the same pictures as a diagram you can click, plus a calculator, a quiz and a free PDF guide.</p><div class="btn-row" style="opacity:1;animation:none;margin-top:14px"><a class="btn btn-go btn-sm" href="{L('matrix/', H)}">Open the matrix page</a></div></div>
+ <div class="box">{ped(ic('tree'), '')}<h3 class="h3">Play with it yourself</h3><p>The <a class="inl" href="{L('matrix/', H)}">2x2 Matrix Explained</a> page has the same pictures as a diagram you can click, plus a calculator, a quiz and a free PDF guide.</p><div class="btn-row" style="opacity:1;animation:none;margin-top:14px"><a class="btn btn-go btn-sm" href="{L('matrix/', H)}">Open the matrix page</a></div></div>
 </div>'''
     s_money = f'''<div class="split vsum">
  <div class="prose">
@@ -240,7 +240,7 @@ def videos(H='videos/'):
    <li>Who is behind the card: Malta, Singapore and Fireblocks</li>
   </ul>
  </div>
- <div class="box"><div class="ico">{ic('lock')}</div><h3 class="h3">Read the short version</h3><p>The <a class="inl" href="{L('how-it-works/', H)}">How It Works</a> page has the key points, the transcript, and the funding options with exchange links.</p></div>
+ <div class="box">{ped(ic('lock'), '')}<h3 class="h3">Read the short version</h3><p>The <a class="inl" href="{L('how-it-works/', H)}">How It Works</a> page has the key points, the transcript, and the funding options with exchange links.</p></div>
 </div>'''
     sums = {'overview': s_overview, 'matrix-explained': s_matrix, 'money-explained': s_money, 'explained': s_explained, 'webinar': s_webinar}
 
@@ -513,10 +513,10 @@ def learn(H='learn/'):
     top = phero(H, trail, ['Your Bellver', 'card guide'], 'Everything you need before and after you order, in one place. New here? Start with How It Works. Ready to go? Follow Get Started.', None,
                 f'<a class="btn btn-go" href="{L("how-it-works/", H)}">{ic("layers")}Start with How It Works</a><a class="btn btn-ghost" href="{L("get-started/", H)}">{ic("rocket")}I am ready to order</a>')
     facts = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap"><div class="facts rv" style="margin-top:0">
-  <div class="fact"><span class="ic">{ic('tag')}</span><div><b>From $99</b><span>one-time, four levels</span></div></div>
-  <div class="fact"><span class="ic">{ic('bolt')}</span><div><b>Up to $250,000</b><span>daily limit on Gold</span></div></div>
-  <div class="fact"><span class="ic">{ic('key')}</span><div><b>Your own key</b><span>non-custodial wallet</span></div></div>
-  <div class="fact"><span class="ic">{ic('gift')}</span><div><b>Two referrals</b><span>Premium or higher, for rewards</span></div></div>
+  <div class="fact">{ped(ic('tag'), cls='ped-xs')}<div><b>From $99</b><span>one-time, four levels</span></div></div>
+  <div class="fact">{ped(ic('bolt'), cls='ped-xs')}<div><b>Up to $250,000</b><span>daily limit on Gold</span></div></div>
+  <div class="fact">{ped(ic('key'), cls='ped-xs')}<div><b>Your own key</b><span>non-custodial wallet</span></div></div>
+  <div class="fact">{ped(ic('gift'), cls='ped-xs')}<div><b>Two referrals</b><span>Premium or higher, for rewards</span></div></div>
  </div></div></section>'''
     tiles = ''
     for i, (k, path, label, sub, icn, g) in enumerate([n for n in NAV if n[0] != 'learn']):

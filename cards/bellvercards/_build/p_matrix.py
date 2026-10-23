@@ -108,7 +108,7 @@ def matrix(H='matrix/'):
              ('tree', 'Every row doubles', '2, then 4, then 8, then 16. Twelve rows hold 8,190 people.'),
              ('coins', 'You earn 0.1% per level', 'On every top-up made by cardholders in the rows you qualify for.'),
              ('calendar', 'Load $100 a month', 'Onto your own card. It stays your money. That keeps you paid.')]
-    qc = ''.join(f'<li class="rv" style="--d:{i * .06:.2f}s"><span class="n">{i + 1}</span><span class="qi">{ic(k)}</span><b>{t}</b><p>{d}</p></li>' for i, (k, t, d) in enumerate(quick))
+    qc = ''.join(f'<li class="rv" style="--d:{i * .06:.2f}s"><span class="n">{i + 1}</span>{ped(ic(k), cls="ped-sm")}<b>{t}</b><p>{d}</p></li>' for i, (k, t, d) in enumerate(quick))
     s_quick = f'''<section class="sec-tight" id="quick" data-title="In 30 seconds"><div class="wrap">
  <div class="sec-head rv"><span class="badge green">{ic('bolt')}The 30-second version</span><h2 class="h2">Five things. <em>That's the whole plan.</em></h2></div>
  <ol class="mx-quick">{qc}</ol>
@@ -149,9 +149,9 @@ def matrix(H='matrix/'):
   <div class="mx-msg" data-msg aria-live="polite">Press <b>You refer someone</b> to start.</div>
  </div>
  <div class="grid3 mx-after">
-  <div class="box rv"><div class="ico">{ic('layers')}</div><h3 class="h3">No gaps, ever</h3><p>The system always uses the next free seat. You cannot pick a seat, and nobody can skip the line.</p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('users')}</div><h3 class="h3">Your 3rd, 4th, 10th referral</h3><p>Once your two seats are full, extra people you refer go to the next free seat further down. Nobody you bring is wasted.</p></div>
-  <div class="box rv" style="--d:.12s"><div class="ico">{ic('gift')}</div><h3 class="h3">You still get your commission</h3><p>You always earn the direct commission for people you refer, wherever the system places them.</p></div>
+  <div class="box rv">{ped(ic('layers'), '')}<h3 class="h3">No gaps, ever</h3><p>The system always uses the next free seat. You cannot pick a seat, and nobody can skip the line.</p></div>
+  <div class="box rv" style="--d:.06s">{ped(ic('users'), '')}<h3 class="h3">Your 3rd, 4th, 10th referral</h3><p>Once your two seats are full, extra people you refer go to the next free seat further down. Nobody you bring is wasted.</p></div>
+  <div class="box rv" style="--d:.12s">{ped(ic('gift'), '')}<h3 class="h3">You still get your commission</h3><p>You always earn the direct commission for people you refer, wherever the system places them.</p></div>
  </div>
 </div></section>'''
 
@@ -237,7 +237,7 @@ def matrix(H='matrix/'):
            ('building', 'Built to last', 'A company that earns from everyday card use can pay its staff, its partners and its rewards, month after month. That is sustainability.'),
            ('users', 'Teamwork', 'Thanks to spillover, the people above you help fill your matrix, and you help the people below you. Nobody builds alone.'),
            ('tree', 'Simple to share', 'You only need two. Two is easy to explain, easy to copy and easy to teach.')]
-    wc = ''.join(f'<div class="box rv mx-why" style="--d:{(i % 3) * .06:.2f}s"><span class="mx-wn">{i + 1}</span><div class="ico">{ic(k)}</div><h3 class="h3">{t}</h3><p>{d}</p></div>' for i, (k, t, d) in enumerate(WHY))
+    wc = ''.join(f'<div class="box rv mx-why" style="--d:{(i % 3) * .06:.2f}s"><span class="mx-wn">{i + 1}</span>{ped(ic(k), '')}<h3 class="h3">{t}</h3><p>{d}</p></div>' for i, (k, t, d) in enumerate(WHY))
     s_why = f'''<section class="sec" id="why" data-title="Why a 2x2 matrix?"><div class="wrap">
  <div class="sec-head rv"><span class="badge gold">{ic('help')}The big question</span><h2 class="h2">Why a <em>2x2 matrix?</em></h2><p class="lead">Why would Bellver pay people like you and me? Six honest reasons.</p></div>
  <div class="grid3">{wc}</div>
@@ -269,9 +269,9 @@ def matrix(H='matrix/'):
  {step_head(7, 'Stay paid: <em>the $100 rule</em>', 'One condition, every month: load at least $100 onto your own card.')}
  <ol class="mx-months">{tl}</ol>
  <div class="grid3" style="margin-top:22px">
-  <div class="box rv"><div class="ico">{ic('wallet')}</div><h3 class="h3">It is not a fee</h3><p>The $100 is your own money on your own card, to spend however you like. A week of groceries covers it.</p><p class="muted small">The only cost is the 3.9% top-up fee. It keeps Bellver running long term: team, offices and payment partners.</p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('alert')}</div><h3 class="h3">Miss one month</h3><p>You lose that month's rewards in full. Next month, load $100 and you are paid again.</p></div>
-  <div class="box warn rv" style="--d:.12s"><div class="ico">{ic('lock')}</div><h3 class="h3">Miss three in a row</h3><p>Your seat in the matrix is gone for good. Rewards built up until then move up to the next qualified person. You cannot get the old seat back.</p></div>
+  <div class="box rv">{ped(ic('wallet'), '')}<h3 class="h3">It is not a fee</h3><p>The $100 is your own money on your own card, to spend however you like. A week of groceries covers it.</p><p class="muted small">The only cost is the 3.9% top-up fee. It keeps Bellver running long term: team, offices and payment partners.</p></div>
+  <div class="box rv" style="--d:.06s">{ped(ic('alert'), '')}<h3 class="h3">Miss one month</h3><p>You lose that month's rewards in full. Next month, load $100 and you are paid again.</p></div>
+  <div class="box warn rv" style="--d:.12s">{ped(ic('lock'), 'warn')}<h3 class="h3">Miss three in a row</h3><p>Your seat in the matrix is gone for good. Rewards built up until then move up to the next qualified person. You cannot get the old seat back.</p></div>
  </div>
  <div class="note g rv" style="margin-top:16px">{ic('star')}<span><b>Get your own card first.</b> Your matrix seat starts when your card is bought. If someone you refer buys before you do, they are not placed in your matrix. You still earn their direct commission.</span></div>
 </div></section>'''
@@ -279,7 +279,7 @@ def matrix(H='matrix/'):
     # payday
     pay = [('calendar', 'During the month', 'Cardholders in your levels load their cards.'), ('layers', 'Month end', 'Bellver adds it all up. Top-ups in the last 7 business days roll into next month.'),
            ('coins', 'The 15th', 'Payday. Rewards arrive in USDT.'), ('card', 'Your choice', 'Use it to fund your card, or withdraw once you have $100 or more.')]
-    pt = ''.join(f'<li class="rv" style="--d:{i * .06:.2f}s"><span class="ic">{ic(k)}</span><b>{t}</b><p>{d}</p></li>' for i, (k, t, d) in enumerate(pay))
+    pt = ''.join(f'<li class="rv" style="--d:{i * .06:.2f}s">{ped(ic(k), cls="ped-sm")}<b>{t}</b><p>{d}</p></li>' for i, (k, t, d) in enumerate(pay))
     s_pay = f'''<section class="sec-tight" id="payday" data-title="Payday"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">When the <em>money arrives</em></h2></div>
  <ol class="mx-pay">{pt}</ol>
