@@ -23,7 +23,8 @@ def _sync(a, b):
 def copy(out):
     for folder in ('assets', 'images', 'videos', 'docs'):
         _sync(os.path.join(SRC, folder), os.path.join(out, folder))
-    shutil.copy2(os.path.join(SITE_ROOT, 'favicon.svg'), os.path.join(out, 'favicon.svg'))
+    import team                       # tab icon: the same green card as the team clones (MTG, 23 Oct 2026); the crown stays on musathegiant.com
+    team._team_favicon(os.path.join(out, 'favicon.svg'))
     shutil.copy2(os.path.join(SITE_ROOT, 'images', 'mtg-profile.jpg'), os.path.join(out, 'images', 'mtg-profile.jpg'))
     open(os.path.join(out, '.nojekyll'), 'w').close()
     # social preview images that show bellveraffiliates.com instead of musathegiant.com
