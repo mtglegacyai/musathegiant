@@ -2,7 +2,9 @@
 """Build every Bellver Cards page.
    python3 build.py               -> writes MTG's live pages into cards/bellvercards/, then every team page (team.json) into bellvercards/<slug>/
    python3 build.py preview DIR   -> writes a preview copy of MTG's pages with relative links into DIR
-   python3 build.py --member SLUG -> builds one team member's pages only"""
+   python3 build.py --member SLUG -> builds one team member's pages only
+   BV_TARGET=bva python3 build.py -> the same for bellveraffiliates.com (MTG at the root, clones at /<slug>/)
+   To publish, use publish.py: it builds BOTH sites and pushes both repositories in one go."""
 import os, sys, json, subprocess
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
