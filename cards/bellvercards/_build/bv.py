@@ -506,7 +506,7 @@ def reasons_band(here, variant='full', title=None, lead=None, sid='why'):
     lead = lead or REASONS_LEAD
     home_why = (L('', here) + '#why') if variant != 'full' else '#why'
     if variant == 'full':
-        items = ''.join(f'''<article class="why-card rv" style="--d:{(i % 2) * .06:.2f}s"><span class="why-n">{i + 1:02d}</span><span class="why-ic">{ic(icn)}</span>
+        items = ''.join(f'''<article class="why-card rv" style="--d:{(i % 2) * .06:.2f}s"><span class="why-n">{i + 1:02d}</span><span class="ped{' ped-gold' if i >= 6 else ''}" aria-hidden="true"><span class="ped-obj">{ic(icn)}</span></span>
    <span class="why-big">{big}</span><h3 class="h3">{t}</h3><p>{d}</p><a class="tlink" href="{L(href, here)}">{lab} {ic('arrow')}</a></article>''' for i, (icn, big, t, d, href, lab) in enumerate(REASONS))
         return f'''<section class="sec" id="{sid}" style="padding-top:0"><div class="wrap">
  <div class="sec-head rv"><span class="kicker"><i>{ic('users')}</i>Why people are joining</span><h2 class="h2">{title}</h2><p class="lead">{lead}</p></div>
