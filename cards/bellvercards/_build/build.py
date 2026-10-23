@@ -10,6 +10,8 @@ import bv
 OUT = os.path.abspath(os.path.join(HERE, '..'))
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
 MEMBER = None
+if bv.TARGET == 'bva':     # bellveraffiliates.com: its own repository (BV_OUT), MTG's guide at the root, team pages at /<slug>/
+    OUT = ROOT = os.path.abspath(os.environ.get('BV_OUT', '/home/claude/bellveraffiliates'))
 if len(sys.argv) > 2 and sys.argv[1] == 'preview':
     bv.MODE = 'preview'; OUT = os.path.abspath(sys.argv[2])
 elif len(sys.argv) > 2 and sys.argv[1] == '--member':
@@ -45,9 +47,16 @@ for path, fn in PAGES:
 
 if MEMBER:
     team.check_all_used()
+    if bv.TARGET == 'bva':
+        import bva_static
+        bva_static.team_files(ROOT, MEMBER['slug'])
     sys.exit(0)
 
-if bv.MODE == 'prod':
+if bv.MODE == 'prod' and bv.TARGET == 'bva':
+    import bva_static
+    bva_static.copy(OUT)
+
+if bv.MODE == 'prod' and bv.TARGET != 'bva':
     for old, new in MOVED.items():
         to = bv.BASE + new; canon = bv.SITE + bv.BASE + new.split('#')[0]
         write(old, f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved | Bellver Cards by MTG</title>

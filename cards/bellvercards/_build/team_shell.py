@@ -13,12 +13,17 @@ import re
 import bv
 
 __all__ = ['configure', 'team_header', 'team_sidebar', 'team_footer', 'team_dash_footer', 'team_help_band', 'team_page',
-           'SLOGAN', 'NOWA', 'socials', 'TEAM_DIR', 'MTG_ASSETS']
+           'SLOGAN', 'NOWA', 'socials', 'TEAM_DIR', 'MTG_ASSETS', 'TEAM_FAV']
 
 SLOGAN = 'The Card That Can Pay Your Bills'
 NOWA = 'https://no-whatsapp.invalid/'      # placeholder for "partner gave no WhatsApp": every link to it is removed after the build
-TEAM_DIR = '/bellvercards/'                # team pages live at /bellvercards/<slug>/ (later: their own domain)
+TEAM_DIR = '/bellvercards/'                # team pages live at /bellvercards/<slug>/ on musathegiant.com
 MTG_ASSETS = '/cards/bellvercards/'        # shared images, styles, scripts, videos and PDFs
+TEAM_FAV = TEAM_DIR + 'favicon.svg'
+if bv.TARGET == 'bva':                     # bellveraffiliates.com: MTG's guide at the root, team pages at /<slug>/
+    TEAM_DIR = '/'
+    MTG_ASSETS = '/'
+    TEAM_FAV = '/team-favicon.svg'
 
 # small brand icons for the socials a partner may give (24x24, filled)
 SOCIAL_ICONS = {
@@ -272,7 +277,7 @@ def team_page(here, key, title, desc, og_img, og_alt, body, ld_extra, trail, pre
 <link rel="canonical" href="{url}">
 <meta name="author" content="{p['name']}">
 <meta name="theme-color" content="#020c06">
-<link rel="icon" type="image/svg+xml" href="{TEAM_DIR}favicon.svg">
+<link rel="icon" type="image/svg+xml" href="{TEAM_FAV}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{site_name}">
 <meta property="og:title" content="{title}">

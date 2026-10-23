@@ -15,6 +15,13 @@ YT_WEBINAR = 'jeB_kZinnCg'
 MP4_3MIN = 'videos/bellvercard-in-3minutes.mp4'
 MP4_DASH = 'videos/bellvercards-dashboard-walkthrough.mp4'
 UPDATED = '2026-10-09'
+# ---- where the guide is built for: 'mtg' = musathegiant.com/cards/bellvercards (default), 'bva' = bellveraffiliates.com (BV_TARGET=bva)
+TARGET = os.environ.get('BV_TARGET', 'mtg')
+MTG_SITE = 'https://www.musathegiant.com'
+BVA_LOCAL = ('/favicon.svg', '/images/')   # site files that exist on bellveraffiliates.com too; every other site path goes to musathegiant.com
+if TARGET == 'bva':
+    SITE = 'https://bellveraffiliates.com'
+    BASE = '/'
 ASSET_BASE = BASE       # where images, styles, scripts, videos and PDFs live (team pages share MTG's files)
 PARTNER = None          # set by configure() when building a team member's page (see team.json)
 # Analytics: leave None until MTG creates a free GoatCounter site, then set e.g. 'musathegiant' (the site code).
@@ -44,6 +51,8 @@ def L(target, here=''):
     if target.startswith(('http://', 'https://', 'mailto:', '#')):
         return target
     if target.startswith('/'):
+        if TARGET == 'bva' and not target.startswith(BVA_LOCAL):
+            return MTG_SITE + target      # MTG's legal pages and dashboard stay on musathegiant.com
         return target if MODE == 'prod' else SITE + target
     if MODE == 'prod':
         return (BASE if _is_page(target) else ASSET_BASE) + target
@@ -366,7 +375,7 @@ def footer(here):
 <script src="{asset('assets/bellver.js', here)}" defer></script>'''
 
 
-PERSON = {"@type": "Person", "@id": SITE + "/#mtg", "name": "Musa The Giant", "alternateName": ["MTG", "Musa the Giant"], "url": SITE + "/", "image": SITE + "/images/mtg-profile.jpg",
+PERSON = {"@type": "Person", "@id": MTG_SITE + "/#mtg", "name": "Musa The Giant", "alternateName": ["MTG", "Musa the Giant"], "url": MTG_SITE + "/", "image": MTG_SITE + "/images/mtg-profile.jpg",
           "sameAs": ["https://www.facebook.com/Musa.TheMTG", "https://www.tiktok.com/@musathegiant", "https://www.youtube.com/@MusaTheGiant"]}
 
 
@@ -376,6 +385,13 @@ def team_trail(trail):
         return trail
     out = [(n, u) for n, u in trail if u.startswith(SITE + BASE)]
     return out or [('Home', SITE + BASE)]
+
+
+def root_trail():
+    """Breadcrumb start: musathegiant.com Home > Cards > Bellver Cards, or just Bellver Cards on bellveraffiliates.com."""
+    if TARGET == 'bva':
+        return [('Bellver Cards', SITE + BASE)]
+    return [('Home', SITE + '/'), ('Cards', SITE + '/cards/'), ('Bellver Cards', SITE + BASE)]
 
 
 def crumbs_ld(trail):
@@ -407,13 +423,13 @@ OG_V = '20261023'  # bump when the social preview images change, so WhatsApp and
 
 def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None, preload=None, robots='index,follow,max-image-preview:large,max-video-preview:-1', dash=True):
     url = abs_url(here)
-    trail = trail or [('Home', SITE + '/'), ('Cards', SITE + '/cards/'), ('Bellver Cards', SITE + BASE)]
+    trail = trail or root_trail()
     if PARTNER:
         return team_page(here, key, title, desc, og_img, og_alt, body, ld_extra, trail, preload, dash)
     graph = [{"@type": "WebPage", "@id": url + "#page", "url": url, "name": title, "description": desc, "inLanguage": "en",
-              "isPartOf": {"@id": SITE + "/#website"}, "author": {"@id": SITE + "/#mtg"}, "dateModified": UPDATED,
+              "isPartOf": {"@id": SITE + "/#website"}, "author": {"@id": MTG_SITE + "/#mtg"}, "dateModified": UPDATED,
               "primaryImageOfPage": {"@type": "ImageObject", "url": abs_url(og_img)}, "breadcrumb": crumbs_ld(trail)},
-             {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "MTG | Musa The Giant", "publisher": {"@id": SITE + "/#mtg"}},
+             {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": ("Bellver Affiliates by MTG" if TARGET == "bva" else "MTG | Musa The Giant"), "publisher": {"@id": MTG_SITE + "/#mtg"}},
              PERSON]
     graph += (ld_extra or [])
     ld = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=1)

@@ -18,7 +18,7 @@ def phero(H, trail, lines, lead, art=None, btns=None):
 
 
 def T(*extra):
-    return [('Home', SITE + '/'), ('Cards', SITE + '/cards/'), ('Bellver Cards', SITE + BASE)] + list(extra)
+    return root_trail() + list(extra)
 
 
 # ------------------------------------------------------------------ HOW IT WORKS

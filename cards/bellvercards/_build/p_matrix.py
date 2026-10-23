@@ -370,10 +370,10 @@ def matrix(H='matrix/'):
 
     faq_ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": m.strip('"'), "acceptedAnswer": {"@type": "Answer", "text": f}} for m, f in myths]}
     learn_ld = {"@type": "LearningResource", "name": "The Bellver Card 2x2 Matrix Explained", "learningResourceType": "Guide", "educationalLevel": "Beginner",
-                "inLanguage": "en", "author": {"@id": SITE + "/#mtg"}, "teaches": "How the Bellver Card 2x2 matrix fills, spillover, levels, 0.1% rewards, star ranks and the $100 monthly rule",
+                "inLanguage": "en", "author": {"@id": MTG_SITE + "/#mtg"}, "teaches": "How the Bellver Card 2x2 matrix fills, spillover, levels, 0.1% rewards, star ranks and the $100 monthly rule",
                 "url": abs_url(H), "hasPart": {"@type": "DigitalDocument", "name": "Bellver 2x2 Matrix Explained (PDF)", "encodingFormat": "application/pdf", "url": abs_url(GUIDE_PDF)}}
     vid_ld = {"@type": "VideoObject", "name": "The Bellver 2x2 Matrix, Made Simple", "description": "An animated explainer in MTG's own voice: two seats under everyone, reading-order filling, spillover, doubling levels, the 0.1% reward, why a 2x2 matrix, star ranks and the $100 monthly rule.",
-              "thumbnailUrl": abs_url('images/bellver-2x2-matrix-explainer-thumbnail.jpg'), "contentUrl": abs_url(VIDEO), "uploadDate": "2026-10-11", "duration": "PT8M45S", "inLanguage": "en", "author": {"@id": SITE + "/#mtg"}}
+              "thumbnailUrl": abs_url('images/bellver-2x2-matrix-explainer-thumbnail.jpg'), "contentUrl": abs_url(VIDEO), "uploadDate": "2026-10-11", "duration": "PT8M45S", "inLanguage": "en", "author": {"@id": MTG_SITE + "/#mtg"}}
     return page(H, 'matrix', 'Bellver 2x2 Matrix Explained Simply: Spillover, Levels, 0.1% Rewards | MTG',
                 'The Bellver Card 2x2 matrix in plain words: two seats under everyone, reading-order filling, spillover, doubling levels, 0.1% rewards, star ranks and the $100 rule. With a playable diagram, calculator, quiz and free PDF.',
                 'images/og/og-bellver-matrix.jpg', 'The Bellver 2x2 matrix explained simply', body, ld_extra=[faq_ld, learn_ld, vid_ld], trail=trail)

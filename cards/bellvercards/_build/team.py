@@ -4,7 +4,7 @@ Every team page goes through finalize(): if anything still points at MTG's refer
 socials or website, the build stops and names the problem, so nothing leaks onto a live page."""
 import json, os, re
 import bv
-from team_shell import NOWA, TEAM_DIR, MTG_ASSETS, socials
+from team_shell import NOWA, TEAM_DIR, MTG_ASSETS, TEAM_FAV, socials
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -14,7 +14,14 @@ def members():
         return json.load(f)['members']
 
 
+# folder names MTG's own guide uses at the root of bellveraffiliates.com: a team member can never take one of these
+RESERVED = {'learn', 'get-started', 'how-it-works', 'prices', 'rewards', 'matrix', 'partner', 'rewards-calculator', 'payback-calculator',
+            'videos', 'explainers', 'tutorials', 'faq', 'docs', 'downloads', 'assets', 'images', 'og', 'cards', 'bellvercards', 'index.html'}
+
+
 def member(slug):
+    if slug in RESERVED:
+        raise SystemExit(f'"{slug}" is a page name on MTG\'s guide: choose another address for this team member')
     for m in members():
         if m['slug'] == slug:
             return m
@@ -108,6 +115,8 @@ def _swap_checklist(html):
 
 def finalize(html, m, path):
     n, f = m['name'], (m.get('short') or m['name'].split()[0])
+    if bv.TARGET == 'bva':   # on bellveraffiliates.com MTG's legal links are absolute: match them like the site paths TEXT expects
+        html = html.replace('href="' + bv.MTG_SITE + '/', 'href="/')
     for old, new in TEXT:
         if old in html:
             USED.add(old)
@@ -140,7 +149,7 @@ def scan(html, m):
     for href in re.findall(r'href="([^"]+)"', html):
         h = href.replace(bv.SITE, '')
         if h.startswith('/') and not (h.startswith(base) or h.startswith(MTG_ASSETS + 'assets/') or h.startswith(MTG_ASSETS + 'docs/')
-                                       or h.startswith(MTG_ASSETS + 'images/') or h.startswith(MTG_ASSETS + 'videos/') or h == TEAM_DIR + 'favicon.svg'):
+                                       or h.startswith(MTG_ASSETS + 'images/') or h.startswith(MTG_ASSETS + 'videos/') or h == TEAM_FAV):
             out.append(f'link to MTG\'s site: {href}')
         if 'musathegiant' in h:
             out.append(f'link to MTG\'s site: {href}')
@@ -161,9 +170,12 @@ def strip_transcripts(html):
 
 
 def write_index(root):
-    """/bellvercards/ itself: forwards to MTG's guide, so nobody lands on an empty folder."""
+    """/bellvercards/ itself: forwards to MTG's guide, so nobody lands on an empty folder.
+    On bellveraffiliates.com MTG's guide is the root itself, so only the team tab icon is written."""
     to = MTG_ASSETS
     d = os.path.join(root, TEAM_DIR.strip('/')); os.makedirs(d, exist_ok=True)
+    if bv.TARGET == 'bva':
+        _team_favicon(os.path.join(root, TEAM_FAV.strip('/'))); return
     with open(os.path.join(d, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Bellver Card guide</title>
 <meta name="robots" content="noindex,follow"><link rel="canonical" href="{bv.SITE}{to}">
@@ -172,7 +184,11 @@ def write_index(root):
 ''')
     print('redirect', TEAM_DIR, '->', to)
     # a neutral tab icon for team pages (MTG's crown stays on his own site): a green card on Bellver's dark green
-    with open(os.path.join(d, 'favicon.svg'), 'w', encoding='utf-8') as f:
+    _team_favicon(os.path.join(d, 'favicon.svg'))
+
+
+def _team_favicon(path):
+    with open(path, 'w', encoding='utf-8') as f:
         f.write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="#020c06"/>'
                 '<rect x="16" y="28" width="68" height="46" rx="8" fill="#34b070"/><rect x="16" y="39" width="68" height="8" fill="#020c06"/>'
                 '<rect x="24" y="58" width="16" height="6" rx="2" fill="#020c06"/></svg>\n')
