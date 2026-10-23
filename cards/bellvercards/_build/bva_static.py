@@ -181,8 +181,9 @@ def team_files(out, slug):
     if not os.path.isdir(src):
         src = os.path.join(TEAM_SRC, slug)                         # older members: their files on musathegiant.com
     dst = os.path.join(out, slug); os.makedirs(dst, exist_ok=True)
-    for f in ('photo.webp', 'photo.jpg'):
-        if os.path.exists(os.path.join(src, f)):
-            shutil.copy2(os.path.join(src, f), os.path.join(dst, f))
+    for f in sorted(os.listdir(src)):
+        s = os.path.join(src, f)
+        if os.path.isfile(s) and (not os.path.exists(os.path.join(dst, f)) or os.path.getsize(os.path.join(dst, f)) != os.path.getsize(s)):
+            shutil.copy2(s, os.path.join(dst, f))
     if os.path.isdir(os.path.join(src, 'og')):
         _sync(os.path.join(src, 'og'), os.path.join(dst, 'og'))

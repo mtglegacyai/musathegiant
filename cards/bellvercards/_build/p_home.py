@@ -32,8 +32,24 @@ def payback_calc(here):
     return payback_tool(here)
 
 
+def hero_video(hv, H):
+    """A team member's own hero video (team.json "hero_video"), shown in place of the card art on their home page only."""
+    import bv as _bv
+    base = _bv.BASE; name = _bv.PARTNER['short'] if _bv.PARTNER.get('short') else _bv.PARTNER['name']
+    t = hv.get('title') or f'A Bellver Card video by {name}'
+    return f'''<div class="hero-vid rv">
+    <div class="player mx-video mx-herovid mfit" id="p-hero-video" role="button" tabindex="0" aria-label="Play: {t}" data-src="{base}{hv['file']}" data-title="{t}">
+     <img src="{base}{hv['poster']}.webp" alt="{t}, video thumbnail" width="{hv.get('w', 720)}" height="{hv.get('h', 404)}" fetchpriority="high">
+     <span class="pbtn">{ic('play')}</span><span class="plabel">{hv.get('duration', '')}</span>
+    </div>
+    <p class="mx-vcap">{ic('play-c')}{hv.get('caption') or 'Watch my Bellver Card video'}</p>
+   </div>'''
+
+
 def build(here=''):
     H = here
+    import bv as _bv
+    hv = (_bv.PARTNER or {}).get('hero_video')
     hero = f'''<section class="hero">
  <div class="wrap">
   <div class="hero-grid">
@@ -45,7 +61,7 @@ def build(here=''):
      <a class="btn btn-ghost" href="#watch" data-play="#v3"><span class="play">{ic('play')}</span>Watch the 3-minute video</a>
     </div>
    </div>
-   <div class="stage" data-tilt=".c-main" data-max="16" aria-hidden="true">
+   {hero_video(hv, H) if hv else ''}<div class="stage" data-tilt=".c-main" data-max="16" aria-hidden="true"{' hidden' if hv else ''}>
     <div class="glow"></div><div class="ring"></div><div class="ring"></div>
     <div class="card3d c-back"><img src="{L('images/bellver-card-special-edition-700.webp', H)}" alt="" width="700" height="416"></div>
     <div class="card3d c-main"><div class="float"><img src="{L('images/bellver-card-black-visa.webp', H)}" alt="" width="1087" height="654" fetchpriority="high"><span class="sweep"></span><span class="glare"></span></div></div>
