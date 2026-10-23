@@ -102,7 +102,7 @@ def _seo(out):
     MTG's pages are the only ones offered to search engines and AI tools. Team clones are noindex for search engines,
     and AI crawlers are asked to skip them, so a clone never competes with MTG's own pages (MTG, 23 Oct 2026)."""
     import datetime, re, team, bv
-    slugs = sorted(m['slug'] for m in team.members())
+    slugs = sorted(m['slug'] for m in team.members('bva'))
     today = datetime.date.today().isoformat()
     pages = _pages(out, set(slugs))
     # ---- sitemap with video entries
@@ -177,7 +177,10 @@ def _seo(out):
 
 def team_files(out, slug):
     """A team member's photo (made once by team_assets.py on musathegiant.com) and their social images."""
-    src = os.path.join(TEAM_SRC, slug); dst = os.path.join(out, slug); os.makedirs(dst, exist_ok=True)
+    src = os.path.join(HERE, 'team_media', slug)                 # made by team_assets.py
+    if not os.path.isdir(src):
+        src = os.path.join(TEAM_SRC, slug)                         # older members: their files on musathegiant.com
+    dst = os.path.join(out, slug); os.makedirs(dst, exist_ok=True)
     for f in ('photo.webp', 'photo.jpg'):
         if os.path.exists(os.path.join(src, f)):
             shutil.copy2(os.path.join(src, f), os.path.join(dst, f))

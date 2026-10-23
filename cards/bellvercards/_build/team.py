@@ -9,9 +9,16 @@ from team_shell import NOWA, TEAM_DIR, MTG_ASSETS, TEAM_FAV, socials
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
-def members():
+def _all():
     with open(os.path.join(HERE, 'team.json'), encoding='utf-8') as f:
         return json.load(f)['members']
+
+
+def members(target=None):
+    """Team members built for a site: 'bva' = bellveraffiliates.com/<slug>, 'mtg' = musathegiant.com/bellvercards/<slug>.
+    A member's "sites" in team.json lists where they live (new members: bellveraffiliates.com only)."""
+    target = target or bv.TARGET
+    return [m for m in _all() if target in m.get('sites', ['bva'])]
 
 
 # folder names MTG's own guide uses at the root of bellveraffiliates.com: a team member can never take one of these
@@ -22,7 +29,7 @@ RESERVED = {'learn', 'get-started', 'how-it-works', 'prices', 'rewards', 'matrix
 def member(slug):
     if slug in RESERVED:
         raise SystemExit(f'"{slug}" is a page name on MTG\'s guide: choose another address for this team member')
-    for m in members():
+    for m in _all():
         if m['slug'] == slug:
             return m
     raise SystemExit(f'No team member called {slug} in team.json')

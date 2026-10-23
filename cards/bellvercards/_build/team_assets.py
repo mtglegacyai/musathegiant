@@ -11,7 +11,8 @@ from team_shell import SLOGAN, TEAM_DIR
 
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
 m = team.member(sys.argv[1])
-out = os.path.join(ROOT, TEAM_DIR.strip('/'), m['slug']); os.makedirs(os.path.join(out, 'og'), exist_ok=True)
+# source of truth: _build/team_media/<slug>/ (not published on musathegiant.com); copied to each site the member lives on
+out = os.path.join(HERE, 'team_media', m['slug']); os.makedirs(os.path.join(out, 'og'), exist_ok=True)
 
 if len(sys.argv) > 2:
     src = Image.open(sys.argv[2]); src = ImageOps.exif_transpose(src).convert('RGB')
@@ -24,3 +25,9 @@ pages = list(og.PAGES) + [('og-bellver-matrix.jpg', 'THE 2X2 MATRIX', 'MADE SIMP
 for args in pages:
     foot = 'Your Bellver Card guide' if args[0] == 'og-bellver-cards.jpg' else SLOGAN
     og.make(*args[:4], *(args[4:] or ['card']), by='by Affiliate ' + m['name'], url=foot, out=os.path.join(out, 'og'))
+
+if 'mtg' in m.get('sites', ['bva']):      # this member also has pages on musathegiant.com/bellvercards/<slug>/
+    import shutil
+    dst = os.path.join(ROOT, 'bellvercards', m['slug'])
+    shutil.copytree(out, dst, dirs_exist_ok=True)
+print('team files in', out)

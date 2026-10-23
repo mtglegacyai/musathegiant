@@ -1,5 +1,5 @@
 {
- "_about": "MTG's team pages. One entry per business partner. Leave a link empty (\"\") if they did not give it: its icon and button are then left out. Run build.py to rebuild MTG's guide and every team page. Every section on a team page opens straight away; add \"open_all_sections\": false to a member to use the tap-to-open sections instead.",
+ "_about": "MTG's team pages. One entry per business partner. Leave a link empty (\"\") if they did not give it: its icon and button are then left out. Run build.py to rebuild MTG's guide and every team page. Every section on a team page opens straight away; add \"open_all_sections\": false to a member to use the tap-to-open sections instead. \"sites\" lists where a member lives: \"bva\" = bellveraffiliates.com/<slug>, \"mtg\" = musathegiant.com/bellvercards/<slug> (default: bellveraffiliates.com only).",
  "members": [
   {
    "slug": "william",
@@ -14,7 +14,29 @@
    "facebook": "",
    "instagram": "",
    "youtube": "",
-   "x": ""
+   "x": "",
+   "sites": [
+    "mtg",
+    "bva"
+   ]
+  },
+  {
+   "slug": "mercedes",
+   "name": "Mercedes",
+   "short": "Mercedes",
+   "ref": "https://app.bellvercards.com?ref=mbenz",
+   "photo": "photo",
+   "whatsapp": "+16037310652",
+   "whatsapp_group": "https://chat.whatsapp.com/CQCL2Fnh9PqK1BKwuojSRy",
+   "telegram": "",
+   "tiktok": "",
+   "facebook": "",
+   "instagram": "",
+   "youtube": "",
+   "x": "",
+   "sites": [
+    "bva"
+   ]
   }
  ]
 }

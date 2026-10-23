@@ -62,7 +62,7 @@ def build():
     env = dict(os.environ, BV_TARGET='bva', BV_OUT=BVA_REPO)
     sh([sys.executable, 'build.py'], HERE, env=env)
     sys.path.insert(0, HERE); import team
-    clones = [m['slug'] for m in team.members() if os.path.isfile(os.path.join(BVA_REPO, m['slug'], 'index.html'))]
+    clones = [m['slug'] for m in team.members('bva') if os.path.isfile(os.path.join(BVA_REPO, m['slug'], 'index.html'))]
     print(f'  done: {len(clones)} clone(s): ' + ', '.join(sorted(clones)))
 
 
