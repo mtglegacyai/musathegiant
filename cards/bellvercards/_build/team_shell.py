@@ -126,7 +126,7 @@ def team_header(here, key):
  <div class="wrap hdr-in">
   <a class="brand" href="{L('', here)}" aria-label="Bellver Cards by {bv.PARTNER['name']}, home">
    <img src="{L('images/bellver-cards-logo-white-360.webp', here)}" alt="Bellver Card logo" width="360" height="106">
-   <span class="by">Bellver Cards<b>by <span class="aff-l">Affiliate</span><abbr class="aff-s" title="Affiliate">AFF</abbr> {first()}</b></span>
+   <span class="by">Bellver Cards<b>by <span class="aff-l">Affiliate</span><abbr class="aff-s" title="Affiliate">AFF</abbr> {bv.PARTNER.get('header_name') or first()}</b></span>
   </a>
   <div class="hdr-act">
    <a class="btn btn-ghost btn-sm learn-btn" href="{L('learn/', here)}">{ic('book')}Learn more</a>
