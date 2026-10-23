@@ -46,7 +46,7 @@ def partner(H='partner/'):
  </table></div>
  <p class="fine who-count" data-who-count aria-live="polite"></p>
  <div class="btn-row" style="margin-top:18px">'''+order_btn('Order your card')+f'''<a class="btn btn-ghost" href="{L("rewards/", H)}">See the rewards plan</a></div>
- <div class="box warn rv" style="margin-top:22px"><div class="ico">{ic('alert')}</div><h3 class="h3">Who it is not for</h3><p>Anyone looking for guaranteed or effortless income. Commissions depend on real people ordering real cards, and nothing is promised. If that is what you want to hear, this is not the right fit.</p></div>
+ <div class="box warn rv" style="margin-top:22px">{ped(ic('alert'), 'warn')}<h3 class="h3">Who it is not for</h3><p>Anyone looking for guaranteed or effortless income. Commissions depend on real people ordering real cards, and nothing is promised. If that is what you want to hear, this is not the right fit.</p></div>
 </div></section>'''
 
     earn = f'''<section class="sec-tight"><div class="wrap">
@@ -58,9 +58,9 @@ def partner(H='partner/'):
   <div style="--m1:var(--gold-1);--m2:var(--gold-2)"><span>Gold</span><b>$400</b><small>$500 Special Edition</small></div>
  </div>
  <div class="grid3" style="margin-top:22px">
-  <div class="box rv"><div class="ico">{ic('gift')}</div><h3 class="h3">Monthly rewards, on top</h3><p>Everyone starts as a Member. Hold a Premium card or higher and directly refer two new participants who each buy Premium or higher, and you earn your first star and qualify for monthly rewards: 0.1% of completed card top-ups in your 2x2 matrix, on every level your rank unlocks. <a class="inl" href="{L('matrix/', H)}">How the 2x2 matrix works, with a video</a></p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('lock')}</div><h3 class="h3">The rule that decides payment</h3><p>To receive monthly rewards you load at least $100 a month onto your own card. Miss it three months in a row and you lose your matrix position for good. <a class="inl" href="{L('matrix/#step7', H)}">See the $100 rule</a></p></div>
-  <div class="box rv" style="--d:.12s"><div class="ico">{ic('info')}</div><h3 class="h3">Your own card is optional</h3><p>Bellver pays a referral commission on personal referrals in all cases, whether or not you bought a Visa or Mastercard yourself. Buying a card is not a requirement. A card of your own is needed for monthly rewards, and you get your matrix position when it appears. Someone you refer who buys before you still earns you the commission, but is not placed in your matrix.</p></div>
+  <div class="box rv">{ped(ic('gift'), '')}<h3 class="h3">Monthly rewards, on top</h3><p>Everyone starts as a Member. Hold a Premium card or higher and directly refer two new participants who each buy Premium or higher, and you earn your first star and qualify for monthly rewards: 0.1% of completed card top-ups in your 2x2 matrix, on every level your rank unlocks. <a class="inl" href="{L('matrix/', H)}">How the 2x2 matrix works, with a video</a></p></div>
+  <div class="box rv" style="--d:.06s">{ped(ic('lock'), '')}<h3 class="h3">The rule that decides payment</h3><p>To receive monthly rewards you load at least $100 a month onto your own card. Miss it three months in a row and you lose your matrix position for good. <a class="inl" href="{L('matrix/#step7', H)}">See the $100 rule</a></p></div>
+  <div class="box rv" style="--d:.12s">{ped(ic('info'), '')}<h3 class="h3">Your own card is optional</h3><p>Bellver pays a referral commission on personal referrals in all cases, whether or not you bought a Visa or Mastercard yourself. Buying a card is not a requirement. A card of your own is needed for monthly rewards, and you get your matrix position when it appears. Someone you refer who buys before you still earns you the commission, but is not placed in your matrix.</p></div>
  </div>
  <p class="fine rv" style="margin-top:16px">Results vary and are never guaranteed. Read the <a class="inl" href="{L('/earnings-disclaimer.html', H)}">Earnings Disclaimer</a> and the <a class="inl" href="{L('/risk-disclaimer.html', H)}">Risk Disclaimer</a>.</p>
 </div></section>'''
@@ -81,35 +81,35 @@ def partner(H='partner/'):
     tiktok = f'''<section class="sec-tight" id="tiktok"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Going live on <em>TikTok</em></h2><p class="lead">Live selling works because people trust the host. Keep that trust, and keep your account safe, by following these rules.</p></div>
  <div class="dd">
-  <div class="box do rv"><div class="ico">{ic('check')}</div><h3 class="h3">Do</h3><ul class="checks"><li>Say on screen and out loud that you earn a commission if people order through your link.</li><li>Use TikTok's branded content disclosure where it applies to your account and country.</li><li>Show the card working: a real payment, the app, the limits and the fees.</li><li>Pin a short note that points viewers to this guide for prices, fees and rules.</li><li>Read TikTok's current rules for your country before every campaign.</li></ul></div>
-  <div class="box dont rv" style="--d:.08s"><div class="ico">{ic('alert')}</div><h3 class="h3">Do not</h3><ul class="checks"><li>Promise or hint at income, or say "passive", "risk free" or "guaranteed".</li><li>Show your private key, your full balance or any login screen.</li><li>Ask viewers to send you money or crypto for any reason.</li><li>Lead with recruiting. Lead with the card and what it does.</li><li>Pressure anyone with countdowns, "last chance" or "limited spots".</li><li>Run a large-scale campaign or public social media advertising without Bellver's prior approval.</li></ul></div>
+  <div class="box do rv">{ped(ic('check'), 'do')}<h3 class="h3">Do</h3><ul class="checks"><li>Say on screen and out loud that you earn a commission if people order through your link.</li><li>Use TikTok's branded content disclosure where it applies to your account and country.</li><li>Show the card working: a real payment, the app, the limits and the fees.</li><li>Pin a short note that points viewers to this guide for prices, fees and rules.</li><li>Read TikTok's current rules for your country before every campaign.</li></ul></div>
+  <div class="box dont rv" style="--d:.08s">{ped(ic('alert'), 'dont')}<h3 class="h3">Do not</h3><ul class="checks"><li>Promise or hint at income, or say "passive", "risk free" or "guaranteed".</li><li>Show your private key, your full balance or any login screen.</li><li>Ask viewers to send you money or crypto for any reason.</li><li>Lead with recruiting. Lead with the card and what it does.</li><li>Pressure anyone with countdowns, "last chance" or "limited spots".</li><li>Run a large-scale campaign or public social media advertising without Bellver's prior approval.</li></ul></div>
  </div>
- <div class="box warn rv" style="margin-top:22px"><div class="ico">{ic('info')}</div><h3 class="h3">Check TikTok's rules for your country</h3><p>TikTok's advertising policy (updated June 2026) restricts cryptocurrency promotion in many markets, lists crypto debit cards as not allowed in some, and restricts multi-level marketing. Organic live content and paid ads follow different rules, and the rules change, so read the current policy for your country. This is general information, not legal advice.</p></div>
+ <div class="box warn rv" style="margin-top:22px">{ped(ic('info'), 'warn')}<h3 class="h3">Check TikTok's rules for your country</h3><p>TikTok's advertising policy (updated June 2026) restricts cryptocurrency promotion in many markets, lists crypto debit cards as not allowed in some, and restricts multi-level marketing. Organic live content and paid ads follow different rules, and the rules change, so read the current policy for your country. This is general information, not legal advice.</p></div>
 </div></section>'''
 
     brules = f'''<section class="sec-tight" id="bellver-rules"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Bellver's rules for <em>promoting</em> the card</h2><p class="lead">Three points from Bellver that every partner should know before sharing a single link.</p></div>
  <div class="grid3">
-  <div class="box warn rv"><div class="ico">{ic('alert')}</div><h3 class="h3">Big campaigns need approval</h3><p>Any large-scale promotional campaign or public advertising on social media requires Bellver's prior approval. Ask first, then publish.</p></div>
-  <div class="box warn rv" style="--d:.06s"><div class="ico">{ic('lock')}</div><h3 class="h3">Be accurate, or risk suspension</h3><p>False or misleading statements, or promises of income, may result in suspension. Stick to the facts on this site and the official documents.</p></div>
-  <div class="box rv" style="--d:.12s"><div class="ico">{ic('check')}</div><h3 class="h3">Referring is always optional</h3><p>Using a card is never dependent on or tied to referring new cardholders. Customers who do not refer anyone are just as welcome, and the Reward Program is entirely voluntary.</p></div>
+  <div class="box warn rv">{ped(ic('alert'), 'warn')}<h3 class="h3">Big campaigns need approval</h3><p>Any large-scale promotional campaign or public advertising on social media requires Bellver's prior approval. Ask first, then publish.</p></div>
+  <div class="box warn rv" style="--d:.06s">{ped(ic('lock'), 'warn')}<h3 class="h3">Be accurate, or risk suspension</h3><p>False or misleading statements, or promises of income, may result in suspension. Stick to the facts on this site and the official documents.</p></div>
+  <div class="box rv" style="--d:.12s">{ped(ic('check'), '')}<h3 class="h3">Referring is always optional</h3><p>Using a card is never dependent on or tied to referring new cardholders. Customers who do not refer anyone are just as welcome, and the Reward Program is entirely voluntary.</p></div>
  </div>
 </div></section>'''
 
     honest = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">How to share it <em>honestly</em></h2><p class="lead">Trust is what makes people order. <a class="inl" href="{L('explainers/#first-week-explained', H)}">Watch it explained</a></p></div>
  <div class="dd">
-  <div class="box do rv"><div class="ico">{ic('check')}</div><h3 class="h3">Do</h3><ul class="checks"><li>Say plainly that you earn a commission.</li><li>Show the card working, how you really use it.</li><li>Give real numbers: prices, fees, limits, the $100 rule.</li><li>Remind people that nobody can recover a lost private key.</li></ul></div>
-  <div class="box dont rv" style="--d:.08s"><div class="ico">{ic('alert')}</div><h3 class="h3">Do not</h3><ul class="checks"><li>Promise income, or say "passive", "risk free" or "guaranteed".</li><li>Quote the biggest examples as if they are typical.</li><li>Pressure anyone to buy now or miss out.</li><li>Say Bellver is a bank, that money is insured, or that you work for Bellver.</li></ul></div>
+  <div class="box do rv">{ped(ic('check'), 'do')}<h3 class="h3">Do</h3><ul class="checks"><li>Say plainly that you earn a commission.</li><li>Show the card working, how you really use it.</li><li>Give real numbers: prices, fees, limits, the $100 rule.</li><li>Remind people that nobody can recover a lost private key.</li></ul></div>
+  <div class="box dont rv" style="--d:.08s">{ped(ic('alert'), 'dont')}<h3 class="h3">Do not</h3><ul class="checks"><li>Promise income, or say "passive", "risk free" or "guaranteed".</li><li>Quote the biggest examples as if they are typical.</li><li>Pressure anyone to buy now or miss out.</li><li>Say Bellver is a bank, that money is insured, or that you work for Bellver.</li></ul></div>
  </div>
 </div></section>'''
 
     tools = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">What you get <em>from me</em></h2><p class="lead">Everything on this guide is yours to point people to.</p></div>
  <div class="grid3">
-  <div class="box rv"><div class="ico">{ic('video')}</div><h3 class="h3">Videos</h3><p>The 3-minute overview, the 27-minute presentation and the launch webinar, plus short tutorials. <a class="inl" href="{L('videos/', H)}">Presentation videos</a></p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('book')}</div><h3 class="h3">Starter Checklist</h3><p>A free two-page checklist for new cardholders. Message me on WhatsApp and I will send it.</p><div class="btn-row" style="margin-top:12px"><a class="btn btn-ghost btn-sm" data-track="checklist" href="{CHECKLIST_MSG}" target="_blank" rel="noopener">Get the checklist</a></div></div>
-  <div class="box rv" style="--d:.12s"><div class="ico">{ic('wa')}</div><h3 class="h3">Questions? Ask me</h3><p>You do not need my permission to partner. If you get stuck on registration, funding or your first referral, you are welcome to message me.</p><div class="btn-row" style="margin-top:12px"><a class="btn btn-ghost btn-sm" data-track="partner-whatsapp" href="{PARTNER_MSG}" target="_blank" rel="noopener">Ask MTG a question</a></div></div>
+  <div class="box rv">{ped(ic('video'), '')}<h3 class="h3">Videos</h3><p>The 3-minute overview, the 27-minute presentation and the launch webinar, plus short tutorials. <a class="inl" href="{L('videos/', H)}">Presentation videos</a></p></div>
+  <div class="box rv" style="--d:.06s">{ped(ic('book'), '')}<h3 class="h3">Starter Checklist</h3><p>A free two-page checklist for new cardholders. Message me on WhatsApp and I will send it.</p><div class="btn-row" style="margin-top:12px"><a class="btn btn-ghost btn-sm" data-track="checklist" href="{CHECKLIST_MSG}" target="_blank" rel="noopener">Get the checklist</a></div></div>
+  <div class="box rv" style="--d:.12s">{ped(ic('wa'), '')}<h3 class="h3">Questions? Ask me</h3><p>You do not need my permission to partner. If you get stuck on registration, funding or your first referral, you are welcome to message me.</p><div class="btn-row" style="margin-top:12px"><a class="btn btn-ghost btn-sm" data-track="partner-whatsapp" href="{PARTNER_MSG}" target="_blank" rel="noopener">Ask MTG a question</a></div></div>
  </div>
 </div></section>'''
 
@@ -131,9 +131,9 @@ def partner(H='partner/'):
     mean = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">What "partner" <em>means</em></h2><p class="lead">No forms, no approval, no call with me.</p></div>
  <div class="grid3">
-  <div class="box rv"><div class="ico">{ic('card')}</div><h3 class="h3">1. Use the card, if you want to</h3><p>Buying a card is not a requirement. Owning one lets you show real use and is needed for monthly rewards.</p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('users')}</div><h3 class="h3">2. Share it</h3><p>Share your referral link with people who would value the card.</p></div>
-  <div class="box rv" style="--d:.12s"><div class="ico">{ic('check')}</div><h3 class="h3">3. You are a partner</h3><p>You are now an affiliate partner of Bellver Cards. Commissions follow the plan.</p></div>
+  <div class="box rv">{ped(ic('card'), '')}<h3 class="h3">1. Use the card, if you want to</h3><p>Buying a card is not a requirement. Owning one lets you show real use and is needed for monthly rewards.</p></div>
+  <div class="box rv" style="--d:.06s">{ped(ic('users'), '')}<h3 class="h3">2. Share it</h3><p>Share your referral link with people who would value the card.</p></div>
+  <div class="box rv" style="--d:.12s">{ped(ic('check'), '')}<h3 class="h3">3. You are a partner</h3><p>You are now an affiliate partner of Bellver Cards. Commissions follow the plan.</p></div>
  </div>
 </div></section>'''
     body = top + mean + reasons_band(H, 'compact', title='What people <em>say yes</em> to: 10 reasons', lead='When you share Bellver Card, these are the reasons people give for joining. More than 1,000 cards were sold in the testing phase alone (as reported at launch). Explain each reason honestly, and let people decide for themselves.') + audience_band(H, chips=False, cta=False) + who + earn + week + brules + honest + cbp_section(H) + tiktok + tools + checklist_band(H) + faqs + cta

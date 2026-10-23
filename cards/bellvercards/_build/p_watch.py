@@ -520,7 +520,7 @@ def learn(H='learn/'):
  </div></div></section>'''
     tiles = ''
     for i, (k, path, label, sub, icn, g) in enumerate([n for n in NAV if n[0] != 'learn']):
-        tiles += f'''<a class="gtile rv" href="{L(path, H)}" style="--d:{(i % 4) * 0.05:.2f}s"><span class="gic">{ic(icn)}</span><span class="gg">{g}</span><b>{label}</b><p>{MORE[k]}</p><span class="go">Open {ic('arrow')}</span></a>'''
+        tiles += f'''<a class="gtile rv" href="{L(path, H)}" style="--d:{(i % 4) * 0.05:.2f}s">{ped(ic(icn), cls="ped-sm")}<span class="gg">{g}</span><b>{label}</b><p>{MORE[k]}</p><span class="go">Open {ic('arrow')}</span></a>'''
     grid = f'''<section class="sec-tight"><div class="wrap"><div class="sec-head rv"><h2 class="h2">Everything <em>inside</em></h2></div><div class="ggrid">{tiles}</div></div></section>'''
     docs = f'''<section class="sec-tight"><div class="wrap"><div class="panel docband rv">
   <div><h2 class="h3" style="font-size:1.3rem">Official documents</h2><p class="muted" style="margin:4px 0 0">Version 08/2026, straight from Bellver. Save them or share them.</p></div>

@@ -19,7 +19,7 @@ def start(H='get-started/'):
      ('Get paid', '''<p>Your current month's commissions and rewards show in the green fields. On the 15th they move to <b>Earnings available</b>.</p><p>Open <span class="path">Withdraw</span>, enter the amount (minimum $100) and request it. It shows as pending, then arrives in My Wallet.</p>'''),
     ]
     TUT = ['01', '02', '04', '04', '06', None, None]
-    steps = ''.join(f'<article class="gstep rv" id="step-{i+1}"><span class="gn">{i+1}</span><div><h2>{t}</h2>{b}{(f'<p class="gtut"><a class="tlink" href="{L("tutorials/#tut-" + TUT[i], H)}">{ic("play-c")}Watch the tutorial</a></p>' if TUT[i] else '')}</div></article>' for i, (t, b) in enumerate(S))
+    steps = ''.join(f'<article class="gstep rv" id="step-{i+1}">{ped(str(i + 1), "num")}<div><h2>{t}</h2>{b}{(f'<p class="gtut"><a class="tlink" href="{L("tutorials/#tut-" + TUT[i], H)}">{ic("play-c")}Watch the tutorial</a></p>' if TUT[i] else '')}</div></article>' for i, (t, b) in enumerate(S))
     body = top + f'''<section class="sec-tight"><div class="wrap"><div class="split guide-split">
  <div class="guide">{steps}</div>
  <aside class="rv" style="position:sticky;top:96px;display:grid;gap:16px">

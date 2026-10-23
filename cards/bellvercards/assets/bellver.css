@@ -1632,10 +1632,26 @@ details.qa[hidden]{display:none}
 .ped-obj svg{width:30px;height:30px;stroke-width:2.1;color:#8ff0bd;filter:drop-shadow(0 0 6px rgba(123,224,168,.55))}
 .ped-gold .ped-obj{border-color:rgba(252,190,37,.55);background:linear-gradient(155deg,#3a4a22 0%,#15301f 45%,#0a2017 100%);box-shadow:inset 0 1px 0 rgba(255,236,170,.35),inset 0 -5px 10px rgba(0,0,0,.45),0 12px 16px -8px rgba(0,0,0,.9),0 0 22px rgba(252,190,37,.18)}
 .ped-gold .ped-obj svg{color:#ffd46a;filter:drop-shadow(0 0 6px rgba(252,190,37,.5))}
-.why-card:nth-child(2n) .ped-obj{animation-delay:-2.7s}
-.why-card:hover .ped-obj{transform:translateY(-5px) scale(1.04)}
-.why-card:hover .ped:before{border-color:#9ff5c8;box-shadow:0 6px 0 -1px #0a1d14,0 6px 0 0 rgba(123,224,168,.38),0 0 20px rgba(123,224,168,.6),0 0 48px rgba(52,176,112,.42),inset 0 0 12px rgba(123,224,168,.4)}
-.why-card:hover .ped:after{opacity:1}
+:is(.why-card,.gtile,.box):nth-child(2n) .ped-obj{animation-delay:-2.7s}
+:is(.why-card,.gtile,.box):nth-child(3n) .ped-obj{animation-delay:-1.4s}
+.gstep:nth-of-type(2n) .ped-obj{animation-delay:-2.7s}
+:is(.why-card,.gtile,.gstep,.box):hover .ped-obj{transform:translateY(-5px) scale(1.04)}
+:is(.why-card,.gtile,.gstep,.box):hover .ped:before{border-color:#9ff5c8;box-shadow:0 6px 0 -1px #0a1d14,0 6px 0 0 rgba(123,224,168,.38),0 0 20px rgba(123,224,168,.6),0 0 48px rgba(52,176,112,.42),inset 0 0 12px rgba(123,224,168,.4)}
+:is(.why-card,.gtile,.gstep,.box):hover .ped:after{opacity:1}
 @keyframes pedFloat{0%,100%{translate:0 0}50%{translate:0 -4px}}
 @media (max-width:760px){.ped{width:92px;height:82px}.ped-obj{width:50px;height:50px;margin-left:-25px;border-radius:15px}.ped-obj svg{width:27px;height:27px}}
-@media (prefers-reduced-motion:reduce){.ped-obj{animation:none}.why-card:hover .ped-obj{transform:none}}
+@media (prefers-reduced-motion:reduce){.ped-obj{animation:none}:is(.why-card,.gtile,.gstep,.box):hover .ped-obj{transform:none}}
+
+/* pedestal variants and placements */
+.ped-red .ped-obj{border-color:rgba(255,122,102,.55);background:linear-gradient(155deg,#4a2a22,#2a1712 45%,#160d0a 100%);box-shadow:inset 0 1px 0 rgba(255,200,190,.3),inset 0 -5px 10px rgba(0,0,0,.45),0 12px 16px -8px rgba(0,0,0,.9),0 0 22px rgba(255,110,90,.16)}
+.ped-red .ped-obj svg{color:#ff8f7c;filter:drop-shadow(0 0 6px rgba(255,110,90,.45))}
+.ped-num .ped-obj{font:400 1.9rem/1 var(--display);color:#fff;text-shadow:0 0 12px rgba(123,224,168,.55),0 2px 0 rgba(0,0,0,.4)}
+.ped-sm{width:88px;height:78px;margin:-6px 0 4px -6px}
+.ped-sm:before{left:8px;right:8px;bottom:8px;height:20px}
+.ped-sm:after{left:18px;right:18px;bottom:17px;height:48px}
+.ped-sm .ped-obj{width:48px;height:48px;margin-left:-24px;border-radius:14px}
+.ped-sm .ped-obj svg{width:24px;height:24px}
+.box .ped{margin:-10px 0 8px -8px}
+@media (min-width:641px){.gstep{grid-template-columns:104px minmax(0,1fr)}}
+.gstep .ped{margin:-8px 0 0 -8px}
+@media (max-width:760px){.gstep .ped{margin:-6px 0 -4px -6px}.ped-sm{width:84px;height:74px}}

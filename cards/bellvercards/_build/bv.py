@@ -500,6 +500,12 @@ REASONS_LEAD = ('More than 1,000 cards were sold in the testing phase alone, abo
                 'Here are the 10 reasons people keep choosing Bellver Card.')
 
 
+def ped(inner, kind='', cls=''):
+    """Roadmap-style object on a glowing glass pedestal. kind: '' (mint), 'gold', 'red', 'num' (a number instead of an icon)."""
+    k = {'warn': ' ped-gold', 'gold': ' ped-gold', 'dont': ' ped-red', 'red': ' ped-red', 'num': ' ped-num'}.get(kind.strip(), '')
+    return f'<span class="ped{k}{(" " + cls) if cls else ""}" aria-hidden="true"><span class="ped-obj">{inner}</span></span>'
+
+
 def reasons_band(here, variant='full', title=None, lead=None, sid='why'):
     """MTG's 10 reasons, explained. 'full': numbered cards with a short explanation each. 'compact': numbered list linking to the full version on the home page."""
     title = title or 'Bellver Card in numbers: <em>10 reasons</em> people are joining'
