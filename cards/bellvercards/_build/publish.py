@@ -66,9 +66,63 @@ def build():
     print(f'  done: {len(clones)} clone(s): ' + ', '.join(sorted(clones)))
 
 
+def verify():
+    """Safety checks on what was just built, BEFORE anything is pushed. Any problem stops the publish.
+    MTG (23 Oct 2026): never break anybody's website again."""
+    import re, glob
+    step('4. safety checks (nothing is pushed if any check fails)')
+    sys.path.insert(0, HERE); import team
+    problems = []
+    pages = glob.glob(os.path.join(BVA_REPO, '**', 'index.html'), recursive=True)
+    for f in pages:
+        h = open(f, encoding='utf-8').read(); rel = os.path.relpath(f, BVA_REPO)
+        if '/cards/bellvercards/' in h:
+            problems.append(f'{rel}: points to musathegiant.com paths (/cards/bellvercards/)')
+        if 'bellver.css' not in h and 'http-equiv="refresh"' not in h:
+            problems.append(f'{rel}: no stylesheet (page would show unstyled)')
+        for u in re.findall(r'(?:href|src|data-src)="(/[^"#?]*)', h):
+            path = u.lstrip('/'); path = os.path.join(path, 'index.html') if (u.endswith('/') or u == '/') else path
+            if not os.path.exists(os.path.join(BVA_REPO, path)):
+                problems.append(f'{rel}: broken link or file {u}')
+    members = team.members('bva')
+    for m in members:
+        home = os.path.join(BVA_REPO, m['slug'], 'index.html')
+        if not os.path.exists(home):
+            problems.append(f"{m['slug']}: home page missing"); continue
+        h = open(home, encoding='utf-8').read()
+        ref = m['ref'].split('ref=')[-1]
+        if f'ref={ref}' not in h:
+            problems.append(f"{m['slug']}: their referral link ref={ref} is missing")
+        for o in members:
+            oref = o['ref'].split('ref=')[-1]
+            if o is not m and f'ref={oref}"' in h:
+                problems.append(f"{m['slug']}: contains {o['slug']}'s referral link")
+        if 'ref=mtg' in h:
+            problems.append(f"{m['slug']}: contains MTG's referral link")
+    root = open(os.path.join(BVA_REPO, 'index.html'), encoding='utf-8').read()
+    if 'ref=mtg' not in root:
+        problems.append("bellveraffiliates.com home: MTG's referral link is missing")
+    problems = sorted(set(problems))
+    if problems:
+        print('  STOPPED. Nothing was pushed:'); [print('   -', x) for x in problems[:40]]
+        raise SystemExit(1)
+    print(f'  all good: {len(pages)} pages, {len(members)} clone(s), every link and file checked')
+    # what is about to change, per site, so MTG sees exactly whose pages are touched
+    for name, repo, _, paths in REPOS:
+        ch = sh(['git', 'status', '--porcelain', '--'] + paths, repo).splitlines()
+        if not ch:
+            continue
+        areas = {}
+        for l in ch:
+            f = l.split(None, 1)[1].strip('"').split('/')
+            key = f[0] if name == 'bellveraffiliates.com' else '/'.join(f[:2])
+            areas[key] = areas.get(key, 0) + 1
+        print(f'  {name} changes: ' + ', '.join(f'{k} ({v})' for k, v in sorted(areas.items())))
+
+
 def push(msg):
     pushed = []
-    step('4. committing and pushing')
+    step('5. committing and pushing')
     for name, repo, gh, paths in REPOS:
         sh(['git', 'add', '-A', '--'] + paths, repo)
         if not sh(['git', 'status', '--porcelain', '--'] + paths, repo):
@@ -83,7 +137,7 @@ def push(msg):
 def wait(pushed):
     if not pushed:
         return
-    step('5. waiting for GitHub Pages')
+    step('6. waiting for GitHub Pages')
     left = dict((sha, (name, gh)) for name, gh, sha in pushed)
     t0 = time.time()
     while left and time.time() - t0 < 600:
@@ -109,6 +163,7 @@ if __name__ == '__main__':
     ensure_bva()
     up_to_date()
     build()
+    verify()
     if o.build_only:
         print('\nBuilt both sites locally. Nothing committed or pushed.')
     else:
