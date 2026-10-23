@@ -402,7 +402,7 @@ def gc_snippet():
     return f'<script data-goatcounter="https://{ANALYTICS_GOATCOUNTER}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
 
 
-OG_V = '20261018'  # bump when the social preview images change, so WhatsApp and others fetch the new ones
+OG_V = '20261023'  # bump when the social preview images change, so WhatsApp and others fetch the new ones
 
 
 def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None, preload=None, robots='index,follow,max-image-preview:large,max-video-preview:-1', dash=True):
@@ -518,7 +518,7 @@ def reasons_band(here, variant='full', title=None, lead=None, sid='why'):
     return f'''<section class="sec-tight" id="{sid}"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">{title}</h2><p class="lead">{lead}</p></div>
  <ol class="why-list rv">{items}</ol>
- <p class="rv" style="margin-top:22px"><a class="tlink" href="{home_why}">Read all 10 reasons, explained {ic('arrow')}</a></p>
+ <p class="rv btn-row" style="margin-top:22px;gap:22px"><a class="tlink" href="{home_why}">Read all 10 reasons, explained {ic('arrow')}</a><a class="tlink" href="{L('explainers/#ten-reasons-explained', here)}">{ic('play')}Watch the 10 reasons explained</a></p>
 </div></section>'''
 
 

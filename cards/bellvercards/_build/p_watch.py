@@ -8,6 +8,7 @@ from topup_video import TOPUP, TOPUP_DATE, TOPUP_MOMENTS, TOPUP_TRANSCRIPT
 from ex1_video import EX1, EX1_DATE, EX1_MOMENTS, EX1_TRANSCRIPT
 from ex2_video import EX2, EX2_DATE, EX2_MOMENTS, EX2_TRANSCRIPT
 from ex3_video import EX3, EX3_DATE, EX3_MOMENTS, EX3_TRANSCRIPT
+from ex4_video import EX4, EX4_DATE, EX4_MOMENTS, EX4_TRANSCRIPT
 
 # (id, title, kind, duration label, type, source, thumb, description, iso duration)
 PRES = [
@@ -141,7 +142,7 @@ def pplayer(v, H, eager=False, more=None):
     load = '' if eager else ' loading="lazy"'
     pimg = live_thumb(v, H, '.webp', 1280, 720, load, title + ', video thumbnail') or (
         f'<img src="{L(img + "-640.webp", H)}" srcset="{L(img + "-640.webp", H)} 640w, {L(img + ".webp", H)} 1280w" sizes="(max-width:860px) 100vw, 820px" alt="{title}, video thumbnail" width="1280" height="720"{load}>')
-    pb = ' pb-low mfit' if vid == 'which-card-explained' else (' mfit pb-mid' if vid == 'first-week-explained' else (' mfit' if vid in ('money-explained', 'matrix-explained') else ''))
+    pb = ' pb-low mfit' if vid == 'which-card-explained' else (' mfit pb-mid' if vid in ('first-week-explained', 'ten-reasons-explained') else (' mfit' if vid in ('money-explained', 'matrix-explained') else ''))
     return f'''<div class="player{pb}" id="p-{vid}" role="button" tabindex="0" aria-label="Play: {title}" {data} data-title="{title}"{m}>
 {pimg}
  <span class="pbtn">{ic('play')}</span><span class="plabel">{dur}</span></div>'''
@@ -211,7 +212,7 @@ def videos(H='videos/'):
   <h3>The fees, openly</h3><p>Both speakers said the card's fees are higher than a normal bank card, because the top-up is the only place commissions can be funded. If you only want a cheap card, they said, your bank's card may suit you better.</p>
   <h3>Early numbers, as reported at launch</h3><p>Over 1,000 cards sold during testing, about half Business or Gold and 40% Premium, around $210,000 in pending commissions, and the first commissions already paid on 15 September.</p>
  </div>
- <div><h3 class="h3" style="margin-bottom:12px">Announced roadmap</h3><div class="tbl-wrap"><table class="tbl" style="min-width:0"><tbody>{rd}</tbody></table></div><p class="fine">Plans as presented at launch, plus Bellver's October 2026 update. Not promises. Dates may change.</p></div>
+ <div><h3 class="h3" style="margin-bottom:12px">Announced roadmap</h3><div class="tbl-wrap"><table class="tbl" style="min-width:0"><tbody>{rd}</tbody></table></div><p class="fine">Plans as presented at launch, plus Bellver's October 2026 update. Not promises. Dates may change.</p><p style="margin-top:10px"><a class="tlink" href="{L('explainers/#ten-reasons-explained', H)}">Watch the roadmap explained {ic('arrow')}</a></p></div>
 </div>'''
     s_matrix = f'''<div class="split vsum">
  <div class="prose">
@@ -444,6 +445,11 @@ EXPL = [
    'A simple 7-day plan, one small step a day', "Bellver's promotion rules and how to share honestly"],
   ('partner/', 'Open Become a Partner'),
   "Bellver partner, Bellver affiliate, Bellver referral link, Bellver commission, Bellver first week plan, how to share Bellver Card, Bellver promotion rules"),
+ (EX4, EX4_DATE, EX4_MOMENTS, EX4_TRANSCRIPT, 'rocket', '10 reasons, <em>and what comes next</em>', 'Why do people choose this card?',
+  ['Your keys, your crypto, and a virtual card you can use today', 'One-time prices, two ways to order and limits that grow with you', 'Commissions, a share of the fees, spillover and monthly rewards, with the $100 rule',
+   'The honest part: why the top-up fee is 3.9%', "Bellver's own roadmap for 2026 and 2027, from version 2.0 to a metal card and an app"],
+  ('#why', 'Read the 10 reasons'),
+  "why choose Bellver Card, Bellver Card benefits, Bellver Card reasons, Bellver roadmap, Bellver 2027, Bellver metal card, Bellver app, Bellver explainer video"),
 ]
 
 
@@ -458,7 +464,7 @@ def explainers(H='explainers/'):
         li = ''.join(f'<li>{x}</li>' for x in learn)
         panels += f'''<article class="vpanel" id="{vid}" data-panel="{vid}" aria-labelledby="t-{vid}">
   {pplayer(v, H, i == 0)}
-  <div class="vhead"><span class="badge green">{ic(icn)}Explainer, {dur}</span><h2 id="t-{vid}">{h2}</h2><p class="muted">{desc} Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L(rel, H)}">{rel_lab} {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">{ic(icn)}Explainer, {dur}</span><h2 id="t-{vid}">{h2}</h2><p class="muted">{desc} Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L(rel.partition('#')[0], H) + ('#' + rel.partition('#')[2] if '#' in rel else '')}">{rel_lab} {ic('arrow')}</a></p></div>
   <div class="split vsum"><div class="prose"><h3>What you will learn</h3><ul>{li}</ul></div>
   <div class="vsum-d"><details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{mm}</ul></div></details>
   <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{tt}</div></details></div></div>
@@ -479,8 +485,8 @@ def explainers(H='explainers/'):
  <p class="vnote" style="margin-top:16px">Explainers by MTG, narrated with his AI voice. More are on the way.</p>
 </div></section>'''
     body = top + lib + help_band(H, 'Want a topic explained?', 'Tell me which part of the guide is hard to follow, and I will turn it into an explainer, or walk you through it on WhatsApp.')
-    return page(H, 'explainers', 'Bellver Card Explainer Videos: Your Money, Which Card, the 2x2 Matrix and Your First Week | MTG',
-                'Short explainer videos by MTG: where your Bellver money really sits, which Bellver card is right for you, the 2x2 matrix rewards plan and your first week as a partner, with key moments and full transcripts.',
+    return page(H, 'explainers', 'Bellver Card Explainer Videos: Your Money, Which Card, the 2x2 Matrix, Your First Week and 10 Reasons | MTG',
+                'Short explainer videos by MTG: where your Bellver money really sits, which Bellver card is right for you, the 2x2 matrix rewards plan, your first week as a partner, and the 10 reasons people choose the card with Bellver\'s roadmap, with key moments and full transcripts.',
                 'images/og/og-bellver-explainers.jpg', 'Bellver Card explainer videos', body, ld_extra=lds, trail=trail)
 
 
@@ -495,7 +501,7 @@ MORE = {
  'pcalc': 'Pick your card and your referrals\' card, and see when the one-time commissions cover it.',
  'partner': 'Who it suits, what you earn, a first-week plan and the honest way to share the card.',
  'videos': 'Bellver\'s official videos: the 3-minute overview, the 27-minute presentation and the launch webinar, with summaries.',
- 'explainers': 'Where your money sits, which card to choose, the 2x2 matrix and your first week as a partner, each explained simply in a few minutes, with key moments and transcripts.',
+ 'explainers': 'Where your money sits, which card to choose, the 2x2 matrix, your first week as a partner and the 10 reasons with the roadmap, each explained simply in a few minutes, with key moments and transcripts.',
  'tutorials': 'Register, secure your account, back up your private key, fund your wallet, order your card and top it up, step by step.',
  'faq': 'Two dozen straight answers and a plain-words glossary.',
  'docs': 'The official price list, compensation plan and presentation slides as PDFs.',
