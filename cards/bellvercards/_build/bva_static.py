@@ -27,6 +27,12 @@ def copy(out):
     team._team_favicon(os.path.join(out, 'favicon.svg'))
     shutil.copy2(os.path.join(SITE_ROOT, 'images', 'mtg-profile.jpg'), os.path.join(out, 'images', 'mtg-profile.jpg'))
     open(os.path.join(out, '.nojekyll'), 'w').close()
+    # IndexNow: the key file Bing checks, and the GitHub workflow that tells Bing what changed after each publish
+    gh = os.path.join(HERE, 'bva_github'); key = open(os.path.join(gh, 'indexnow.py')).read().split("KEY = '")[1].split("'")[0]
+    open(os.path.join(out, key + '.txt'), 'w').write(key)
+    os.makedirs(os.path.join(out, '.github', 'workflows'), exist_ok=True)
+    shutil.copy2(os.path.join(gh, 'indexnow.py'), os.path.join(out, '.github', 'indexnow.py'))
+    shutil.copy2(os.path.join(gh, 'indexnow.yml'), os.path.join(out, '.github', 'workflows', 'indexnow.yml'))
     # social preview images that show bellveraffiliates.com instead of musathegiant.com
     sys.path.insert(0, HERE); import og
     for args in og.PAGES:
