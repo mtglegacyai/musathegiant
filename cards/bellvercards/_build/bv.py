@@ -18,6 +18,7 @@ UPDATED = '2026-10-09'
 # ---- where the guide is built for: 'mtg' = musathegiant.com/cards/bellvercards (default), 'bva' = bellveraffiliates.com (BV_TARGET=bva)
 TARGET = os.environ.get('BV_TARGET', 'mtg')
 MTG_SITE = 'https://www.musathegiant.com'
+BVA_SITE = 'https://bellveraffiliates.com'   # MTG's main Bellver site: every copy of his guide names it as the page search engines should rank
 BVA_LOCAL = ('/favicon.svg', '/images/')   # site files that exist on bellveraffiliates.com too; every other site path goes to musathegiant.com
 if TARGET == 'bva':
     SITE = 'https://bellveraffiliates.com'
@@ -426,15 +427,15 @@ def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None
     trail = trail or root_trail()
     if PARTNER:
         return team_page(here, key, title, desc, og_img, og_alt, body, ld_extra, trail, preload, dash)
-    graph = [{"@type": "WebPage", "@id": url + "#page", "url": url, "name": title, "description": desc, "inLanguage": "en",
-              "isPartOf": {"@id": SITE + "/#website"}, "author": {"@id": MTG_SITE + "/#mtg"}, "dateModified": UPDATED,
+    graph = [{"@type": "WebPage", "@id": BVA_SITE + "/" + here + "#page", "url": BVA_SITE + "/" + here, "name": title, "description": desc, "inLanguage": "en",
+              "isPartOf": {"@id": BVA_SITE + "/#website"}, "author": {"@id": MTG_SITE + "/#mtg"}, "dateModified": UPDATED,
               "primaryImageOfPage": {"@type": "ImageObject", "url": abs_url(og_img)}, "breadcrumb": crumbs_ld(trail)},
-             {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": ("Bellver Affiliates by MTG" if TARGET == "bva" else "MTG | Musa The Giant"), "publisher": {"@id": MTG_SITE + "/#mtg"}},
+             {"@type": "WebSite", "@id": BVA_SITE + "/#website", "url": BVA_SITE + "/", "name": "Bellver Affiliates by MTG", "alternateName": "Bellver Card guide by MTG", "publisher": {"@id": MTG_SITE + "/#mtg"}},
              PERSON]
     graph += (ld_extra or [])
     ld = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=1)
     pre = f'<link rel="preload" as="image" href="{L(preload, here)}" fetchpriority="high">' if preload else ''
-    canonical = url
+    canonical = BVA_SITE + '/' + here   # SEO: bellveraffiliates.com ranks; the musathegiant.com copy points here (MTG, 23 Oct 2026)
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -449,7 +450,7 @@ def page(here, key, title, desc, og_img, og_alt, body, ld_extra=None, trail=None
 <meta name="theme-color" content="#020c06">
 <link rel="icon" type="image/svg+xml" href="{L('/favicon.svg', here)}">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="MTG | Musa The Giant">
+<meta property="og:site_name" content="Bellver Affiliates by MTG">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
