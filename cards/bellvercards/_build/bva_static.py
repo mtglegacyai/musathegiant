@@ -183,6 +183,8 @@ def team_files(out, slug):
     dst = os.path.join(out, slug); os.makedirs(dst, exist_ok=True)
     for f in sorted(os.listdir(src)):
         s = os.path.join(src, f)
+        if f.endswith('.html'):
+            continue      # pages are always built, never copied (an older member's folder also holds their musathegiant.com pages)
         if os.path.isfile(s) and (not os.path.exists(os.path.join(dst, f)) or os.path.getsize(os.path.join(dst, f)) != os.path.getsize(s)):
             shutil.copy2(s, os.path.join(dst, f))
     if os.path.isdir(os.path.join(src, 'og')):
