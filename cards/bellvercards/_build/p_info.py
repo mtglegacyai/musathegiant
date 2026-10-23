@@ -42,9 +42,9 @@ def how(H='how-it-works/'):
     card = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">The <em>card</em></h2><p class="lead">A US dollar card account you fund with crypto and spend like any other card.</p></div>
  <div class="grid3">
-  <div class="box rv"><div class="ico">{ic('globe')}</div><h3 class="h3">Pay worldwide</h3><p>Pay in shops and online in any local currency. The card account itself is kept in US dollars.</p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('card')}</div><h3 class="h3">Physical or virtual</h3><p>The physical card is a Visa and the virtual card is a Mastercard. The physical card also works for cash at ATMs. The virtual card is ready as soon as you order.</p></div>
-  <div class="box rv" style="--d:.12s"><div class="ico">{ic('phone')}</div><h3 class="h3">Phone, ring or card</h3><p>Add it to Apple Pay or Google Pay, or connect an NFC ring or wristband for tap-to-pay.</p></div>
+  <div class="box rv">{ped(ic('globe'), 'rv', cls="ped-sm")}<h3 class="h3">Pay worldwide</h3><p>Pay in shops and online in any local currency. The card account itself is kept in US dollars.</p></div>
+  <div class="box rv" style="--d:.06s">{ped(ic('card'), 'rv', cls="ped-sm")}<h3 class="h3">Physical or virtual</h3><p>The physical card is a Visa and the virtual card is a Mastercard. The physical card also works for cash at ATMs. The virtual card is ready as soon as you order.</p></div>
+  <div class="box rv" style="--d:.12s">{ped(ic('phone'), 'rv', cls="ped-sm")}<h3 class="h3">Phone, ring or card</h3><p>Add it to Apple Pay or Google Pay, or connect an NFC ring or wristband for tap-to-pay.</p></div>
  </div>
 </div></section>'''
 
@@ -66,9 +66,9 @@ def how(H='how-it-works/'):
     fund = f'''<section class="sec-tight" id="funding"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Ways to <em>fund</em> it</h2><p class="lead">Card balances run on two stablecoins. Here is every way to get money in, from best to most expensive.</p></div>
  <div class="grid3">
-  <div class="box rv"><div class="ico">{ic('coins')}</div><h3 class="h3">Best: USDT or USDC</h3><p>Send from any wallet or exchange. BNB Smart Chain is the recommended network. Tron and Ethereum work too.</p><div class="chips"><span class="chip hi"><i></i>USDT</span><span class="chip hi"><i></i>USDC</span><span class="chip">BNB Smart Chain</span><span class="chip">Tron</span><span class="chip">Ethereum</span></div></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('swap')}</div><h3 class="h3">Other crypto</h3><p>Bitcoin, Ethereum, BNB, Solana and other major coins can be deposited, then swapped to USDT or USDC in your wallet before you top up.</p><div class="chips"><span class="chip">BTC</span><span class="chip">ETH</span><span class="chip">BNB</span><span class="chip">SOL</span></div></div>
-  <div class="box rv" style="--d:.12s"><div class="ico">{ic('card')}</div><h3 class="h3">No crypto yet?</h3><p>Use Buy crypto in the dashboard to pay by credit card. In Europe you can also pay by SEPA bank transfer or PayPal.</p><div class="chips"><span class="chip">Credit card</span><span class="chip">SEPA</span><span class="chip">PayPal</span></div></div>
+  <div class="box rv">{ped(ic('coins'), 'rv', cls="ped-sm")}<h3 class="h3">Best: USDT or USDC</h3><p>Send from any wallet or exchange. BNB Smart Chain is the recommended network. Tron and Ethereum work too.</p><div class="chips"><span class="chip hi"><i></i>USDT</span><span class="chip hi"><i></i>USDC</span><span class="chip">BNB Smart Chain</span><span class="chip">Tron</span><span class="chip">Ethereum</span></div></div>
+  <div class="box rv" style="--d:.06s">{ped(ic('swap'), 'rv', cls="ped-sm")}<h3 class="h3">Other crypto</h3><p>Bitcoin, Ethereum, BNB, Solana and other major coins can be deposited, then swapped to USDT or USDC in your wallet before you top up.</p><div class="chips"><span class="chip">BTC</span><span class="chip">ETH</span><span class="chip">BNB</span><span class="chip">SOL</span></div></div>
+  <div class="box rv" style="--d:.12s">{ped(ic('card'), 'rv', cls="ped-sm")}<h3 class="h3">No crypto yet?</h3><p>Use Buy crypto in the dashboard to pay by credit card. In Europe you can also pay by SEPA bank transfer or PayPal.</p><div class="chips"><span class="chip">Credit card</span><span class="chip">SEPA</span><span class="chip">PayPal</span></div></div>
  </div>
  {exch_note('margin-top:18px')}
  <div class="note g rv" style="margin-top:14px">{ic('info')}<span><b>Keep a little for network fees.</b> Sending tokens needs a small gas fee in the network's own coin: BNB on BNB Smart Chain, TRX on Tron. About $10 to $20 worth is plenty to start.</span></div>
@@ -112,7 +112,7 @@ def how(H='how-it-works/'):
    </ul>
   </div>
   <div class="box rv" style="--d:.1s">
-   <div class="ico">{ic('users')}</div>
+   {ped(ic('users'), 'rv', cls="ped-sm")}
    <h3 class="h3">Who the card suits</h3>
    <ul>
     <li>Anyone who wants a crypto card with high limits</li>
@@ -175,10 +175,10 @@ def prices(H='prices/'):
    <div class="note g" style="margin-top:20px">{ic('info')}<span><b>Example:</b> load $100 onto your card and $103.90 leaves your wallet, because the 3.9% fee is added on top. Pay $50 at a shop and the 1.75% transaction fee is about $0.88.</span></div>
   </div>
   <div class="grid2 rv" style="--d:.1s;align-content:start">
-   <div class="box"><div class="ico">{ic('wallet')}</div><p class="muted small" style="margin:0">Card top-up (deposit)</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">3.9%</p><p class="muted small" style="margin:4px 0 0">Added on top of the amount you load</p></div>
-   <div class="box"><div class="ico">{ic('card')}</div><p class="muted small" style="margin:0">Per transaction</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">1.75%</p></div>
-   <div class="box"><div class="ico">{ic('coins')}</div><p class="muted small" style="margin:0">ATM withdrawal</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">2%</p></div>
-   <div class="box"><div class="ico">{ic('calendar')}</div><p class="muted small" style="margin:0">Monthly or annual fee</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">None listed</p></div>
+   <div class="box">{ped(ic('wallet'), '', cls="ped-sm")}<p class="muted small" style="margin:0">Card top-up (deposit)</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">3.9%</p><p class="muted small" style="margin:4px 0 0">Added on top of the amount you load</p></div>
+   <div class="box">{ped(ic('card'), '', cls="ped-sm")}<p class="muted small" style="margin:0">Per transaction</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">1.75%</p></div>
+   <div class="box">{ped(ic('coins'), '', cls="ped-sm")}<p class="muted small" style="margin:0">ATM withdrawal</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">2%</p></div>
+   <div class="box">{ped(ic('calendar'), '', cls="ped-sm")}<p class="muted small" style="margin:0">Monthly or annual fee</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">None listed</p></div>
   </div>
  </div>
 </div></section>'''
@@ -186,9 +186,9 @@ def prices(H='prices/'):
     addons = f'''<section class="sec-tight" id="add-ons"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Add-ons and <em>shipping</em></h2></div>
  <div class="grid3">
-  <div class="box rv"><div class="ico">{ic('star')}</div><h3 class="h3">Special Edition, +$370</h3><p>Bellver's privacy-first version of any level, physical or virtual. Upgrading a regular card you already own costs $470. <a class="inl" href="{L('how-it-works/#special-edition', H)}">What it is</a></p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('tag')}</div><h3 class="h3">Your name on the card, +$49</h3><p>Optional. Have your name printed on your card.</p></div>
-  <div class="box rv" style="--d:.12s"><div class="ico">{ic('pin')}</div><h3 class="h3">Shipping, physical only</h3><p>$85 to Europe, $149 to the rest of the world. Virtual cards have no shipping fee.</p></div>
+  <div class="box rv">{ped(ic('star'), 'rv', cls="ped-sm")}<h3 class="h3">Special Edition, +$370</h3><p>Bellver's privacy-first version of any level, physical or virtual. Upgrading a regular card you already own costs $470. <a class="inl" href="{L('how-it-works/#special-edition', H)}">What it is</a></p></div>
+  <div class="box rv" style="--d:.06s">{ped(ic('tag'), 'rv', cls="ped-sm")}<h3 class="h3">Your name on the card, +$49</h3><p>Optional. Have your name printed on your card.</p></div>
+  <div class="box rv" style="--d:.12s">{ped(ic('pin'), 'rv', cls="ped-sm")}<h3 class="h3">Shipping, physical only</h3><p>$85 to Europe, $149 to the rest of the world. Virtual cards have no shipping fee.</p></div>
  </div>
 </div></section>'''
 
@@ -203,7 +203,7 @@ def prices(H='prices/'):
   </ul>
  </div>
  <div class="box warn rv" style="--d:.1s">
-  <div class="ico">{ic('help')}</div>
+  {ped(ic('help'), 'warn')}
   <h3 class="h3">Which level should you choose?</h3>
   <ul>
    <li><b>Basic, $99:</b> just the card.</li>
@@ -247,14 +247,14 @@ def rewards(H='rewards/'):
     ways = f'''<section class="sec-tight"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Two ways <em>to earn</em></h2></div>
  <div class="grid2">
-  <div class="box rv"><div class="ico">{ic('gift')}</div><h3 class="h3">Direct commissions, one-time</h3><p>For every card ordered through your link you earn a one-time commission based on the level they choose. Paid in USDT once their payment completes, within seven business days at the latest.</p><p>If they upgrade later, you earn an extra 50% of the commission for the level they move up to.</p>
+  <div class="box rv">{ped(ic('gift'), 'rv', cls="ped-sm")}<h3 class="h3">Direct commissions, one-time</h3><p>For every card ordered through your link you earn a one-time commission based on the level they choose. Paid in USDT once their payment completes, within seven business days at the latest.</p><p>If they upgrade later, you earn an extra 50% of the commission for the level they move up to.</p>
    <div class="comm" style="margin-bottom:0">
     <div style="--m1:var(--basic-1);--m2:var(--basic-2)"><span>Basic</span><b>$10</b></div>
     <div style="--m1:var(--prem-1);--m2:var(--prem-2)"><span>Premium</span><b>$100</b><small>SE $150</small></div>
     <div style="--m1:var(--biz-1);--m2:var(--biz-2)"><span>Business</span><b>$200</b><small>SE $300</small></div>
     <div style="--m1:var(--gold-1);--m2:var(--gold-2)"><span>Gold</span><b>$400</b><small>SE $500</small></div>
    </div></div>
-  <div class="box rv" style="--d:.08s"><div class="ico">{ic('coins')}</div><h3 class="h3">Monthly rewards, recurring</h3><p>You receive 0.1% of every completed card top-up made by cardholders in your 2x2 matrix, on every level you are qualified for. Rewards are paid in USDT and settled monthly.</p><p>Because the matrix fills from the top, people placed under you can come from your upline as well as from you.</p>
+  <div class="box rv" style="--d:.08s">{ped(ic('coins'), 'rv', cls="ped-sm")}<h3 class="h3">Monthly rewards, recurring</h3><p>You receive 0.1% of every completed card top-up made by cardholders in your 2x2 matrix, on every level you are qualified for. Rewards are paid in USDT and settled monthly.</p><p>Because the matrix fills from the top, people placed under you can come from your upline as well as from you.</p>
    <div class="note g" style="margin-top:16px">{ic('info')}<span>Rewards are based on top-ups (money loaded onto cards), not on card purchases.</span></div></div>
  </div>
 </div></section>'''
@@ -309,10 +309,10 @@ def rewards(H='rewards/'):
     rules = f'''<section class="sec" id="rules"><div class="wrap">
  <div class="sec-head rv"><h2 class="h2">Staying <em>qualified</em></h2><p class="lead">The terms that decide whether you are paid each month. Read these before anything else.</p></div>
  <div class="grid2">
-  <div class="box rv"><div class="ico">{ic('calendar')}</div><h3 class="h3">Load $100 a month. It stays yours.</h3><p>To receive rewards for a month, you must load at least $100 onto your own card that month. This is <b>not a subscription fee</b>. It is your own money, loaded onto your own card, and it is yours to spend however you like. Miss it and that month's rewards are forfeited in full.</p><p class="muted small" style="margin-top:12px">The only cost is the 3.9% top-up fee. <b>Why?</b> A profitable company is one that lasts. The fee helps Bellver cover its running costs, such as its team, offices and payment partners, so the card is still here for the long term.</p></div>
-  <div class="box warn rv" style="--d:.06s"><div class="ico">{ic('alert')}</div><h3 class="h3">Three misses and the position is gone</h3><p>Miss the $100 minimum three months in a row and you permanently lose your position in the matrix. Rewards built up until then are forfeited and roll up to the next qualified position. You cannot requalify for the old position.</p></div>
-  <div class="box rv"><div class="ico">{ic('coins')}</div><h3 class="h3">How and when you are paid</h3><p>Commissions and rewards are paid in USDT. Rewards settle monthly and payday is the 15th. Top-ups made in the final seven business days before settlement count toward the following month. The minimum withdrawal is $100.</p></div>
-  <div class="box rv" style="--d:.06s"><div class="ico">{ic('info')}</div><h3 class="h3">The fine print</h3><p>Basic cards earn direct commissions only. Rewards are not paid back-dated after an upgrade. Bellver Markets can change the plan with one month's notice, and payments made within four weeks count as on time.</p><p class="muted small" style="margin-top:12px">Participation in the Reward Program is entirely voluntary, and using a card never depends on referring anyone. Large-scale campaigns or public social media advertising need Bellver's prior approval, and false or misleading statements or income promises may result in suspension.</p></div>
+  <div class="box rv">{ped(ic('calendar'), 'rv', cls="ped-sm")}<h3 class="h3">Load $100 a month. It stays yours.</h3><p>To receive rewards for a month, you must load at least $100 onto your own card that month. This is <b>not a subscription fee</b>. It is your own money, loaded onto your own card, and it is yours to spend however you like. Miss it and that month's rewards are forfeited in full.</p><p class="muted small" style="margin-top:12px">The only cost is the 3.9% top-up fee. <b>Why?</b> A profitable company is one that lasts. The fee helps Bellver cover its running costs, such as its team, offices and payment partners, so the card is still here for the long term.</p></div>
+  <div class="box warn rv" style="--d:.06s">{ped(ic('alert'), 'warn')}<h3 class="h3">Three misses and the position is gone</h3><p>Miss the $100 minimum three months in a row and you permanently lose your position in the matrix. Rewards built up until then are forfeited and roll up to the next qualified position. You cannot requalify for the old position.</p></div>
+  <div class="box rv">{ped(ic('coins'), 'rv', cls="ped-sm")}<h3 class="h3">How and when you are paid</h3><p>Commissions and rewards are paid in USDT. Rewards settle monthly and payday is the 15th. Top-ups made in the final seven business days before settlement count toward the following month. The minimum withdrawal is $100.</p></div>
+  <div class="box rv" style="--d:.06s">{ped(ic('info'), 'rv', cls="ped-sm")}<h3 class="h3">The fine print</h3><p>Basic cards earn direct commissions only. Rewards are not paid back-dated after an upgrade. Bellver Markets can change the plan with one month's notice, and payments made within four weeks count as on time.</p><p class="muted small" style="margin-top:12px">Participation in the Reward Program is entirely voluntary, and using a card never depends on referring anyone. Large-scale campaigns or public social media advertising need Bellver's prior approval, and false or misleading statements or income promises may result in suspension.</p></div>
  </div>
 </div></section>'''
 
@@ -321,7 +321,7 @@ def rewards(H='rewards/'):
  <div class="split">
   {rewards_tool(H)}
   <div class="box warn rv" style="--d:.08s">
-   <div class="ico">{ic('alert')}</div>
+   {ped(ic('alert'), 'warn')}
    <h3 class="h3">What Bellver's big examples assume</h3>
    <p>The official slides show $2,457, $19,660 and $157,286 a month. Each assumes every place in the matrix is filled and every cardholder loads $300 a month.</p>
    <div class="tbl-wrap" style="margin-top:14px"><table class="tbl tbl-stack" style="min-width:0">
