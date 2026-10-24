@@ -57,6 +57,15 @@ if MEMBER:
 if bv.MODE == 'prod' and bv.TARGET == 'bva':
     import bva_static
     bva_static.copy(OUT)
+    # bellveraffiliates.com only: the own-domain guide MTG sends to clients (MTG, 24 Oct 2026), with its own video and thumbnail
+    import p_owndomain, shutil
+    write(p_owndomain.H0, p_owndomain.own_domain())
+    print('built', bv.BASE + p_owndomain.H0)
+    bo = os.path.join(HERE, 'bva_only')
+    for dp, dn, fn in os.walk(bo):
+        for f in fn:
+            s_ = os.path.join(dp, f); d_ = os.path.join(OUT, os.path.relpath(s_, bo)); os.makedirs(os.path.dirname(d_), exist_ok=True)
+            if not os.path.exists(d_) or os.path.getsize(d_) != os.path.getsize(s_): shutil.copy2(s_, d_)
 
 if bv.MODE == 'prod' and bv.TARGET != 'bva':
     for old, new in MOVED.items():
