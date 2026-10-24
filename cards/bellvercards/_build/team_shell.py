@@ -103,8 +103,14 @@ def socials():
 
 
 def photo_url(here=''):
+    """photo address with a version stamp from the file's contents, so a new photo shows at once (no old copy from browser caches)"""
     p = bv.PARTNER
-    return (bv.BASE + p['photo'] + '.webp') if p.get('photo') else ''
+    if not p.get('photo'):
+        return ''
+    import hashlib, os
+    f = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'team_media', p['slug'], p['photo'] + '.webp')
+    v = ('?v=' + hashlib.md5(open(f, 'rb').read()).hexdigest()[:8]) if os.path.exists(f) else ''
+    return bv.BASE + p['photo'] + '.webp' + v
 
 
 def person():
