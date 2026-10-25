@@ -33,7 +33,7 @@ def how(H='how-it-works/'):
                 order_btn('Order your card') + dl_btn('slides', H, 'Presentation (PDF)'))
 
     em = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in EX1_MOMENTS)
-    et = ''.join(f'<p>{p}</p>' for p in EX1_TRANSCRIPT)
+    et = fee_note(EX1_TRANSCRIPT) + ''.join(f'<p>{p}</p>' for p in EX1_TRANSCRIPT)
     vdet = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap"><div class="vsum-d">
  <details class="qa more"><summary>Key moments in the video<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{em}</ul></div></details>
  <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{et}</div></details>
@@ -172,10 +172,10 @@ def prices(H='prices/'):
    <p class="lead" style="margin-top:16px">No hidden extras. These are the fees on Bellver's official price list.</p>
    <p class="muted">Bellver is open that these fees are higher than a typical bank card. The top-up fee is what funds the commissions and monthly rewards, which is why this card can earn for you and an ordinary one cannot.</p>
    <div class="note g" style="margin-top:20px">{ic('shield')}<span><b>Why 3.9%?</b> The top-up fee can sound high next to a bank card, and it is what helps keep Bellver sustainable. A company has to pay for its team, offices, payment partners, security and support, and a profitable company is one that stays around for the long run. That is what you want from the company that holds your card.</span></div>
-   <div class="note g" style="margin-top:20px">{ic('info')}<span><b>Example:</b> load $100 onto your card and $103.90 leaves your wallet, because the 3.9% fee is added on top. Pay $50 at a shop and the 1.75% transaction fee is about $0.88.</span></div>
+   <div class="note g" style="margin-top:20px">{ic('info')}<span><b>Example:</b> load $100 onto your card and $96.10 reaches your card, because the 3.9% fee ($3.90) now comes out of the amount you load. Pay $50 at a shop and the 1.75% transaction fee is about $0.88.</span></div>
   </div>
   <div class="grid2 rv" style="--d:.1s;align-content:start">
-   <div class="box">{ped(ic('wallet'), '', cls="ped-sm")}<p class="muted small" style="margin:0">Card top-up (deposit)</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">3.9%</p><p class="muted small" style="margin:4px 0 0">Added on top of the amount you load</p></div>
+   <div class="box">{ped(ic('wallet'), '', cls="ped-sm")}<p class="muted small" style="margin:0">Card top-up (deposit)</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">3.9%</p><p class="muted small" style="margin:4px 0 0">Taken out of the amount you load</p></div>
    <div class="box">{ped(ic('card'), '', cls="ped-sm")}<p class="muted small" style="margin:0">Per transaction</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">1.75%</p></div>
    <div class="box">{ped(ic('coins'), '', cls="ped-sm")}<p class="muted small" style="margin:0">ATM withdrawal</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">2%</p></div>
    <div class="box">{ped(ic('calendar'), '', cls="ped-sm")}<p class="muted small" style="margin:0">Monthly or annual fee</p><p style="font:400 2.6rem/1.1 var(--display);color:#fff;margin:4px 0 0">None listed</p></div>

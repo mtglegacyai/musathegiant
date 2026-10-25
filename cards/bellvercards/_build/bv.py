@@ -269,6 +269,15 @@ def shell(here, key, body, dash):
 </div>{tail}'''
 
 
+FEE_NOTE = ('<p class="note g" style="margin:0 0 14px"><span><b>Update:</b> Bellver now takes the 3.9% top-up fee out of the amount you load. '
+            'Load $100 and $96.10 reaches your card. This video was recorded when the fee was still added on top.</span></p>')
+
+
+def fee_note(transcript):
+    """Update note above a transcript whose video still says the fee is added on top."""
+    return FEE_NOTE if any('on top' in p for p in transcript) else ''
+
+
 def help_band(here, title="Stuck? I'll walk you through it.", text="I'm MTG. Message me on WhatsApp and I'll help you register, fund your wallet and choose the right card for you."):
     if PARTNER:
         return team_help_band(here, title)
@@ -293,7 +302,7 @@ def checklist_band(here, title='Not ready to order yet? <em>Take the free checkl
 def news_band(here, compact=False):
     """Good to know before you start: the current fees and rules a newcomer needs (from Bellver's October 2026 update, stated as they apply today)."""
     items = [
-     ('coins', 'Top-up fee: 3.9%, added on top', 'The fee is added to the amount you load, so load $100 and $103.90 leaves your wallet. The minimum top-up is $10, so always keep a little extra in your wallet.'),
+     ('coins', 'Top-up fee: 3.9%, taken from what you load', 'The fee now comes out of the amount you load, so load $100 and $96.10 reaches your card. The minimum top-up is $10.'),
      ('star', 'Special Edition: $370', 'Choose it when you buy your card and it costs $370. Upgrading a regular card to the Special Edition later costs $470, so decide at the start.'),
      ('users', 'Your first star', 'Everyone starts as a Member. Your first star comes when you hold a Premium card and directly refer two new participants who each buy a Premium card.'),
      ('shield', 'Keep your account safe', 'Bellver never emails links to its login page. Use a strong password and switch on two-factor login or a passkey from day one.'),

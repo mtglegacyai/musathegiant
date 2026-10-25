@@ -236,7 +236,7 @@ def videos(H='videos/'):
    <li>Why your money lives in two places: your wallet and your card</li>
    <li>Your Dynamic Wallet as a safe that only your private key opens</li>
    <li>What goes in: USDT and USDC, the networks, and swapping other coins</li>
-   <li>The top-up and the 3.9% fee, added on top</li>
+   <li>The top-up and the 3.9% fee</li>
    <li>Who is behind the card: Malta, Singapore and Fireblocks</li>
   </ul>
  </div>
@@ -339,17 +339,15 @@ def tutorials(H='tutorials/'):
   <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{dt}</div></details></div>
  </article>'''
     um = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in TOPUP_MOMENTS)
-    ut = ''.join(f'<p>{p}</p>' for p in TOPUP_TRANSCRIPT)
+    ut = fee_note(TOPUP_TRANSCRIPT) + ''.join(f'<p>{p}</p>' for p in TOPUP_TRANSCRIPT)
     panels += f'''<article class="vpanel" id="tut-06" data-panel="tut-06" aria-labelledby="t-tut-06">
   {pplayer(TOPUP, H)}
   <div class="vhead"><span class="badge green">Tutorial 6, {TOPUP[3]}</span><h2 id="t-tut-06">How to <em>top up</em> your Bellver Card</h2><p class="muted">{TOPUP[7]} Wallet addresses, balances, codes and card details are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-5', H)}">Read the written steps {ic('arrow')}</a> &nbsp; <a class="tlink" href="{L('prices/', H)}">All fees and limits {ic('arrow')}</a></p></div>
   <div class="vsum-d"><details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{um}</ul></div></details>
   <details class="qa more"><summary>The top-up maths<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">
-   <p>The 3.9% top-up fee is <b>added on top</b> of the amount you load, so the wallet must hold the amount plus the fee. That is why Max fails.</p>
-   <ul><li><b>Max:</b> $15.60 + $0.61 fee = $16.21, more than the $15.60 in the wallet.</li>
-   <li><b>The fix:</b> take the fee off first. $15.60 minus $0.61 = $14.99.</li>
-   <li><b>Load $14.99:</b> fee $0.59 (Bellver rounds it up), total $15.58. It fits.</li></ul>
-   <p>Quick rule: the most you can load is roughly your wallet balance divided by 1.039. Figures from the recording on 17 October 2026; fees can change, so always read the breakdown before you tap Top up.</p>
+   <p><b>Now:</b> Bellver takes the 3.9% top-up fee out of the amount you load. Load $100 and $96.10 reaches your card. Load $15.60 and about $14.99 reaches your card, so you can load your whole balance.</p>
+   <p class="muted"><b>In the video</b> (recorded on 17 October 2026) the fee was still added on top, which is why Max failed there: $15.60 + $0.61 fee = $16.21, more than the $15.60 in the wallet. You no longer need that workaround.</p>
+   <p>Fees can change, so always read the breakdown before you tap Top up.</p>
   </div></details>
   <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{ut}</div></details></div>
  </article>'''
@@ -427,7 +425,7 @@ def tutorials(H='tutorials/'):
 EXPL = [
  (EX1, EX1_DATE, EX1_MOMENTS, EX1_TRANSCRIPT, 'lock', 'Where your money <em>really sits</em>', 'Is my money safe?',
   ['Your money lives in two places: your wallet and your card', 'Your Dynamic Wallet as a safe that only your private key opens', 'What goes in: USDT and USDC, the networks, and swapping other coins',
-   'The top-up and the 3.9% fee, added on top', 'Who is behind the card: Malta, Singapore and Fireblocks'],
+   'The top-up and the 3.9% fee', 'Who is behind the card: Malta, Singapore and Fireblocks'],
   ('how-it-works/', 'Open How It Works'),
   "Bellver wallet, Bellver Dynamic Wallet, non-custodial wallet, private key, Fireblocks, USDT, USDC, BNB Smart Chain, Bellver top-up fee, is Bellver safe"),
  (EX2, EX2_DATE, EX2_MOMENTS, EX2_TRANSCRIPT, 'card', 'Which card is <em>right for you?</em>', 'Which card should I choose?',
@@ -460,7 +458,7 @@ def explainers(H='explainers/'):
     for i, (v, date, moments, transcript, icn, h2, q, learn, (rel, rel_lab), kw) in enumerate(EXPL):
         vid, title, kind, dur, typ, src, img, desc, iso = v
         mm = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in moments)
-        tt = ''.join(f'<p>{p}</p>' for p in transcript)
+        tt = fee_note(transcript) + ''.join(f'<p>{p}</p>' for p in transcript)
         li = ''.join(f'<li>{x}</li>' for x in learn)
         panels += f'''<article class="vpanel" id="{vid}" data-panel="{vid}" aria-labelledby="t-{vid}">
   {pplayer(v, H, i == 0)}
