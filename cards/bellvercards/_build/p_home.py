@@ -237,4 +237,4 @@ def build(here=''):
                 'Bellver Card: The Crypto Card That Can Pay Your Bills | MTG',
                 'Order the Bellver Card from $99. A crypto-funded card (Visa physical, Mastercard virtual) with limits up to $250,000 a day, your own private-key wallet and monthly rewards when your referrals use their cards.',
                 'images/og/og-bellver-cards.jpg', 'Bellver Card, the card that can pay your bills', body,
-                ld_extra=[product, v3, v27, reasons_ld(abs_url(''))], preload='images/bellver-card-black-visa.webp', dash=False)
+                ld_extra=[product, v3, reasons_ld(abs_url(''))], preload='images/bellver-card-black-visa.webp', dash=False)

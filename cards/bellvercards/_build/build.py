@@ -5,7 +5,7 @@
    python3 build.py --member SLUG -> builds one team member's pages only
    BV_TARGET=bva python3 build.py -> the same for bellveraffiliates.com (MTG at the root, clones at /<slug>/)
    To publish, use publish.py: it builds BOTH sites and pushes both repositories in one go."""
-import os, sys, json, subprocess
+import os, re, sys, json, subprocess
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import bv
@@ -35,6 +35,7 @@ MOVED = {'downloads/': 'docs/', 'videos/bellver-card-explained/': 'videos/#expla
 def write(path, html):
     if MEMBER:
         html = team.finalize(html, MEMBER, path)
+    html = re.sub(r'"uploadDate": "(\d{4}-\d{2}-\d{2})"', r'"uploadDate": "\1T09:00:00+02:00"', html)
     if '—' in html or '–' in html:
         raise SystemExit(f'Dash found in {path or "home"}: MTG rule is no em or en dashes')
     d = os.path.join(OUT, path); os.makedirs(d, exist_ok=True)

@@ -152,7 +152,7 @@ def vld(v, page_path, date="2026-10-06", jpg=False):
     vid, title, kind, dur, typ, src, img, desc, iso = v
     d = {"@type": "VideoObject", "name": title, "description": desc, "thumbnailUrl": (f"https://i.ytimg.com/vi/{src}/maxresdefault.jpg" if vid == "webinar" else (abs_url(img + ".jpg") if jpg else abs_url(img + ".webp"))), "inLanguage": "en", "url": abs_url(page_path) + '#' + vid}
     if typ == 'yt':
-        d["embedUrl"] = f"https://www.youtube.com/embed/{src}"
+        return None   # YouTube videos: Google takes the upload date from YouTube; no markup here (Search Console, 25 Oct 2026)
     else:
         d["contentUrl"] = abs_url(src); d["uploadDate"] = date
     if iso:
@@ -269,7 +269,7 @@ def videos(H='videos/'):
     body = top + lib + help_band(H)
     return page(H, 'videos', 'Bellver Card Presentation Videos: 3 Minute, 27 Minute and Launch Webinar | MTG',
                 'Watch the official Bellver Card presentations in English: the 3-minute overview, the 27-minute presentation and the launch webinar, each with a short written summary.',
-                'images/og/og-bellver-videos.jpg', 'Bellver Card presentation videos', body, ld_extra=[vld(v, H) for v in PRES], trail=trail)
+                'images/og/og-bellver-videos.jpg', 'Bellver Card presentation videos', body, ld_extra=[x for x in (vld(v, H) for v in PRES) if x], trail=trail)
 
 
 # ------------------------------------------------------------------ TUTORIAL VIDEOS
