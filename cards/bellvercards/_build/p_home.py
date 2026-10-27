@@ -32,18 +32,28 @@ def payback_calc(here):
     return payback_tool(here)
 
 
+# MTG's own hero video on his home page (MTG, 27 Oct 2026: his Bellver ad, same place as William's). Never shown on team pages.
+MTG_HERO = {"file": "videos/mtg-bellver-card-ad.mp4", "poster": "images/mtg-bellver-card-ad-thumbnail", "duration": "0:36", "w": 1280, "h": 720,
+            "title": "Your bank card cannot do this! The Bellver Card, a video by MTG", "caption": "Watch my Bellver Card video", "date": "2026-10-24", "iso": "PT36S"}
+
+
 def hero_video(hv, H):
-    """A team member's own hero video (team.json "hero_video"), shown in place of the card art on their home page only."""
+    """A hero video shown in place of the card art on the home page: a team member's own (team.json "hero_video") or MTG's (MTG_HERO)."""
     import bv as _bv
-    base = _bv.BASE; name = _bv.PARTNER['short'] if _bv.PARTNER.get('short') else _bv.PARTNER['name']
     import hashlib, os as _os
+    here_dir = _os.path.dirname(_os.path.abspath(__file__))
+    if _bv.PARTNER:
+        name = _bv.PARTNER['short'] if _bv.PARTNER.get('short') else _bv.PARTNER['name']
+        url = lambda f: _bv.BASE + f; path = lambda f: _os.path.join(here_dir, 'team_media', _bv.PARTNER['slug'], f)
+    else:
+        name = 'MTG'; url = lambda f: L(f, H); path = lambda f: _os.path.join(here_dir, '..', f)
     def _v(f):   # content-hash stamp: a replaced video or poster shows immediately, never a cached old copy
-        p = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'team_media', _bv.PARTNER['slug'], f)
+        p = path(f)
         return ('?v=' + hashlib.md5(open(p, 'rb').read()).hexdigest()[:8]) if _os.path.exists(p) else ""
     t = hv.get('title') or f'A Bellver Card video by {name}'
     return f'''<div class="hero-vid rv">
-    <div class="player mx-video mx-herovid mfit" id="p-hero-video" role="button" tabindex="0" aria-label="Play: {t}" data-src="{base}{hv['file']}{_v(hv['file'])}" data-title="{t}">
-     <img src="{base}{hv['poster']}.webp{_v(hv['poster'] + '.webp')}" alt="{t}, video thumbnail" width="{hv.get('w', 720)}" height="{hv.get('h', 404)}" fetchpriority="high">
+    <div class="player mx-video mx-herovid mfit" id="p-hero-video" role="button" tabindex="0" aria-label="Play: {t}" data-src="{url(hv['file'])}{_v(hv['file'])}" data-title="{t}">
+     <img src="{url(hv['poster'] + '.webp')}{_v(hv['poster'] + '.webp')}" alt="{t}, video thumbnail" width="{hv.get('w', 720)}" height="{hv.get('h', 404)}" fetchpriority="high">
      <span class="pbtn">{ic('play')}</span><span class="plabel">{hv.get('duration', '')}</span>
     </div>
     <p class="mx-vcap">{ic('play-c')}{hv.get('caption') or 'Watch my Bellver Card video'}</p>
@@ -53,7 +63,7 @@ def hero_video(hv, H):
 def build(here=''):
     H = here
     import bv as _bv
-    hv = (_bv.PARTNER or {}).get('hero_video')
+    hv = _bv.PARTNER.get('hero_video') if _bv.PARTNER else MTG_HERO
     hero = f'''<section class="hero">
  <div class="wrap">
   <div class="hero-grid">
@@ -241,4 +251,5 @@ def build(here=''):
                 'Bellver Card: The Crypto Card That Can Pay Your Bills | MTG',
                 'Order the Bellver Card from $99. A crypto-funded card (Visa physical, Mastercard virtual) with limits up to $250,000 a day, your own private-key wallet and monthly rewards when your referrals use their cards.',
                 'images/og/og-bellver-cards.jpg', 'Bellver Card, the card that can pay your bills', body,
-                ld_extra=[product, v3, reasons_ld(abs_url(''))], preload='images/bellver-card-black-visa.webp', dash=False)
+                ld_extra=[product, v3] + ([] if _bv.PARTNER else [{"@type": "VideoObject", "name": MTG_HERO["title"], "description": "MTG shows what the Bellver Card can do: tap and pay with the card or a phone, cash at an ATM, a real receipt, loading with USDT or USDC, spending anywhere in the world, and your own wallet keys.",
+                          "thumbnailUrl": abs_url(MTG_HERO["poster"] + ".jpg"), "contentUrl": abs_url(MTG_HERO["file"]), "uploadDate": MTG_HERO["date"], "duration": MTG_HERO["iso"], "inLanguage": "en", "url": abs_url('') + "#p-hero-video"}]) + [reasons_ld(abs_url(''))], preload='images/bellver-card-black-visa.webp', dash=False)
