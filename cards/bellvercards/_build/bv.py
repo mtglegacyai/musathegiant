@@ -149,7 +149,8 @@ NAV = [
  ('explainers', 'explainers/', 'Explainer Videos', 'Big topics, explained simply', 'eye', 'Watch'),
  ('tutorials', 'tutorials/', 'Tutorial Videos', 'Short how-to guides', 'play-c', 'Watch'),
  ('faq', 'faq/', 'FAQ & Glossary', 'Straight answers, plain words', 'help', 'Help'),
- ('docs', 'docs/', 'Documents', 'Price list, plan, slides (PDF)', 'download', 'Help'),
+ ('docs', 'docs/', 'Documents', 'Price list, plan, slides (PDF)', 'book', 'Help'),
+ ('downloads', 'downloads/', 'Downloads', 'Videos, quick guide, share kit', 'download', 'Help'),
 ]
 DOCS_PDF = {'matrix': 'docs/bellver-2x2-matrix-explained-by-mtg.pdf', 'price': 'docs/bellver-card-price-list.pdf', 'plan': 'docs/bellver-card-compensation-plan.pdf', 'slides': 'docs/bellver-card-presentation.pdf'}
 
@@ -360,7 +361,7 @@ def footer(here):
     cols = [
      ('The card', [('Overview', 'learn/'), ('How It Works', 'how-it-works/'), ('Prices & Limits', 'prices/'), ('Rewards Program', 'rewards/'), ('2x2 Matrix Explained', 'matrix/'), ('Get Started', 'get-started/')]),
      ('Tools', [('Rewards Calculator', 'rewards-calculator/'), ('Payback Calculator', 'payback-calculator/')]),
-     ('Learn', [('Presentation Videos', 'videos/'), ('Explainer Videos', 'explainers/'), ('Tutorial Videos', 'tutorials/'), ('FAQ & Glossary', 'faq/'), ('Documents', 'docs/')]),
+     ('Learn', [('Presentation Videos', 'videos/'), ('Explainer Videos', 'explainers/'), ('Tutorial Videos', 'tutorials/'), ('FAQ & Glossary', 'faq/'), ('Documents', 'docs/'), ('Downloads', 'downloads/')]),
      ('MTG', [('All Crypto Cards', '/cards/'), ('About MTG', '/about.html')]),
     ]
     html = ''

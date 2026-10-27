@@ -57,6 +57,7 @@ PAGES=[
 ('og-bellver-guide.jpg','YOUR BELLVER','CARD GUIDE','Everything about the card in one place: prices, wallet, rewards, videos.','both'),
 ('og-bellver-faq.jpg','QUESTIONS,','ANSWERED','Fees, limits, wallet security, rewards and payouts, in plain words.'),
 ('og-bellver-downloads.jpg','OFFICIAL','DOCUMENTS','Price list, compensation plan and presentation slides as PDFs.','both'),
+('og-bellver-download-kit.jpg','DOWNLOADS','AND SHARE KIT','Every video as an MP4, a two-page quick guide PDF and a ready message for WhatsApp.','both'),
 ]
 if __name__=='__main__':
     for args in PAGES: make(*args)

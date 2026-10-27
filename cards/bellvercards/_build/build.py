@@ -21,14 +21,14 @@ elif len(sys.argv) > 2 and sys.argv[1] == '--member':
     MEMBER = team.member(sys.argv[2])
     team_shell.configure(MEMBER)
     OUT = os.path.join(ROOT, bv.BASE.strip('/'))
-import p_home, p_info, p_more, p_watch, p_partner, p_matrix, p_tools
+import p_home, p_info, p_more, p_watch, p_partner, p_matrix, p_tools, p_downloads
 
 PAGES = [('', p_home.build), ('learn/', p_watch.learn), ('get-started/', p_more.start), ('how-it-works/', p_info.how),
          ('prices/', p_info.prices), ('rewards/', p_info.rewards), ('matrix/', p_matrix.matrix), ('partner/', p_partner.partner), ('rewards-calculator/', p_tools.rewards_page), ('payback-calculator/', p_tools.payback_page), ('videos/', p_watch.videos), ('explainers/', p_watch.explainers), ('tutorials/', p_watch.tutorials),
-         ('faq/', p_more.faq), ('docs/', p_watch.docs)]
+         ('faq/', p_more.faq), ('docs/', p_watch.docs), ('downloads/', p_downloads.downloads)]
 
 # old addresses that now live elsewhere: small redirect pages so shared links keep working
-MOVED = {'downloads/': 'docs/', 'videos/bellver-card-explained/': 'videos/#explained',
+MOVED = {'videos/bellver-card-explained/': 'videos/#explained',
          'videos/dashboard-walkthrough/': 'tutorials/#walkthrough', 'videos/launch-webinar/': 'videos/#webinar'}
 
 
@@ -42,6 +42,10 @@ def write(path, html):
     with open(os.path.join(d, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(html)
 
+
+if not MEMBER:      # the Downloads page's quick guide PDFs (MTG's and one per team member): remade only when their details change
+    import quickguide
+    quickguide.ensure()
 
 for path, fn in PAGES:
     html = fn(path) if path else fn('')

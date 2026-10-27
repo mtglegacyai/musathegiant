@@ -503,6 +503,7 @@ MORE = {
  'tutorials': 'Register, secure your account, back up your private key, fund your wallet, order your card and top it up, step by step.',
  'faq': 'Two dozen straight answers and a plain-words glossary.',
  'docs': 'The official price list, compensation plan and presentation slides as PDFs.',
+ 'downloads': 'Every video as an MP4, the two-page quick guide PDF and a ready message to share on WhatsApp.',
 }
 
 
