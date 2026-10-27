@@ -36,10 +36,14 @@ def hero_video(hv, H):
     """A team member's own hero video (team.json "hero_video"), shown in place of the card art on their home page only."""
     import bv as _bv
     base = _bv.BASE; name = _bv.PARTNER['short'] if _bv.PARTNER.get('short') else _bv.PARTNER['name']
+    import hashlib, os as _os
+    def _v(f):   # content-hash stamp: a replaced video or poster shows immediately, never a cached old copy
+        p = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'team_media', _bv.PARTNER['slug'], f)
+        return ('?v=' + hashlib.md5(open(p, 'rb').read()).hexdigest()[:8]) if _os.path.exists(p) else ""
     t = hv.get('title') or f'A Bellver Card video by {name}'
     return f'''<div class="hero-vid rv">
-    <div class="player mx-video mx-herovid mfit" id="p-hero-video" role="button" tabindex="0" aria-label="Play: {t}" data-src="{base}{hv['file']}" data-title="{t}">
-     <img src="{base}{hv['poster']}.webp" alt="{t}, video thumbnail" width="{hv.get('w', 720)}" height="{hv.get('h', 404)}" fetchpriority="high">
+    <div class="player mx-video mx-herovid mfit" id="p-hero-video" role="button" tabindex="0" aria-label="Play: {t}" data-src="{base}{hv['file']}{_v(hv['file'])}" data-title="{t}">
+     <img src="{base}{hv['poster']}.webp{_v(hv['poster'] + '.webp')}" alt="{t}, video thumbnail" width="{hv.get('w', 720)}" height="{hv.get('h', 404)}" fetchpriority="high">
      <span class="pbtn">{ic('play')}</span><span class="plabel">{hv.get('duration', '')}</span>
     </div>
     <p class="mx-vcap">{ic('play-c')}{hv.get('caption') or 'Watch my Bellver Card video'}</p>
