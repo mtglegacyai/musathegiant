@@ -25,7 +25,7 @@ def own_domain(H=H0):
   <span class="pbtn">{ic('play')}</span><span class="plabel">5:09</span>
  </div><p class="mx-vcap">{ic('play-c')}Watch the step-by-step video first (5 minutes)</p>'''
     btns = (f'<a class="btn btn-go" href="#guide">{ic("book")}Read the step-by-step guide</a>'
-            f'<a class="btn btn-ghost" href="{WA_HELP}" target="_blank" rel="noopener">{ic("wa")}Ask MTG on WhatsApp</a>')
+            f'<a class="btn btn-ghost" href="{WA_HELP}" target="_blank" rel="noopener">{ic("wa")}Ask MTG on WhatsApp</a>' + tg_btn('Ask MTG on Telegram'))
     top = phero(H, trail, ['Your Bellver website,', 'on your own domain'],
                 'Host your Bellver affiliate website free on GitHub and connect your GoDaddy domain to it. No name server changes, about 30 minutes. Watch the video first, then follow the written guide below, click by click.',
                 art, btns)
@@ -121,8 +121,8 @@ def own_domain(H=H0):
 
     helpb = f'''<section class="sec-tight"><div class="wrap"><div class="panel help rv">
   <div class="face"><img src="{L('/images/mtg-profile.jpg', H)}" alt="MTG, Musa The Giant" width="88" height="88" loading="lazy"></div>
-  <div><h2>Stuck on a step? I'll help you.</h2><p>Send me two screenshots on WhatsApp: your GitHub Pages settings and your GoDaddy DNS records. I'll tell you exactly what to change.</p></div>
-  <a class="btn btn-wa" href="{WA_HELP}" target="_blank" rel="noopener">{ic('wa')}WhatsApp MTG</a>
+  <div><h2>Stuck on a step? I'll help you.</h2><p>Send me two screenshots on {wa_or_tg()}: your GitHub Pages settings and your GoDaddy DNS records. I'll tell you exactly what to change.</p></div>
+  <div class="help-btns"><a class="btn btn-wa" href="{WA_HELP}" target="_blank" rel="noopener">{ic('wa')}WhatsApp MTG</a>{tg_btn()}</div>
  </div></div></section>'''
 
     sig = f'''<section class="sec-tight od-sig-sec"><div class="wrap"><div class="od-sig rv">

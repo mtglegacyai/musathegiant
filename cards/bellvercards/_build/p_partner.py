@@ -109,7 +109,7 @@ def partner(H='partner/'):
  <div class="grid3">
   <div class="box rv">{ped(ic('video'), '')}<h3 class="h3">Videos</h3><p>The 3-minute overview, the 27-minute presentation and the launch webinar, plus short tutorials. <a class="inl" href="{L('videos/', H)}">Presentation videos</a></p></div>
   <div class="box rv" style="--d:.06s">{ped(ic('book'), '')}<h3 class="h3">Starter Checklist</h3><p>A free two-page checklist for new cardholders. Message me on WhatsApp and I will send it.</p><div class="btn-row" style="margin-top:12px"><a class="btn btn-ghost btn-sm" data-track="checklist" href="{CHECKLIST_MSG}" target="_blank" rel="noopener">Get the checklist</a></div></div>
-  <div class="box rv" style="--d:.12s">{ped(ic('wa'), '')}<h3 class="h3">Questions? Ask me</h3><p>You do not need my permission to partner. If you get stuck on registration, funding or your first referral, you are welcome to message me.</p><div class="btn-row" style="margin-top:12px"><a class="btn btn-ghost btn-sm" data-track="partner-whatsapp" href="{PARTNER_MSG}" target="_blank" rel="noopener">Ask MTG a question</a></div></div>
+  <div class="box rv" style="--d:.12s">{ped(ic('wa'), '')}<h3 class="h3">Questions? Ask me</h3><p>You do not need my permission to partner. If you get stuck on registration, funding or your first referral, you are welcome to message me.</p><div class="btn-row" style="margin-top:12px"><a class="btn btn-ghost btn-sm" data-track="partner-whatsapp" href="{PARTNER_MSG}" target="_blank" rel="noopener">Ask MTG a question</a>{tg_btn('Telegram MTG', 'partner-telegram').replace('btn btn-tg', 'btn btn-tg btn-sm')}</div></div>
  </div>
 </div></section>'''
 

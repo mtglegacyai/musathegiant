@@ -10,7 +10,8 @@ REF = 'https://app.bellvercards.com?ref=mtg'            # MTG affiliate link (ev
 LOGIN = 'https://app.bellvercards.com/login'            # member login
 WA = 'https://wa.me/27721714626'                        # MTG WhatsApp
 # MTG's socials (28 Oct 2026): shown on his bellveraffiliates.com pages only, never on musathegiant.com or team/client pages
-MTG_SOCIALS = [('wa', 'WhatsApp', 'https://wa.me/27721714626'), ('tiktok', 'TikTok', 'https://www.tiktok.com/@joinmtgtribe'), ('youtube', 'YouTube', 'https://www.youtube.com/@mtgtribe')]
+TG = 'https://t.me/MusaTheGiant_MTG'   # MTG's Telegram (28 Oct 2026, while his WhatsApp is blocked): same rule as the socials, bellveraffiliates.com MTG pages only
+MTG_SOCIALS = [('wa', 'WhatsApp', 'https://wa.me/27721714626'), ('telegram', 'Telegram', TG), ('tiktok', 'TikTok', 'https://www.tiktok.com/@joinmtgtribe'), ('youtube', 'YouTube', 'https://www.youtube.com/@mtgtribe')]
 WA_MSG = WA + '?text=' + 'Hi%20MTG%2C%20I%20am%20interested%20in%20the%20Bellver%20Card.%20Can%20you%20help%20me%20get%20started%3F'
 YT_27 = '_Ptm2Bj6gm4'
 YT_WEBINAR = 'jeB_kZinnCg'
@@ -144,7 +145,7 @@ def _soc_icon(k):
 
 
 def socials_row(cls='fsoc', label='Follow MTG'):
-    """MTG's WhatsApp, TikTok and YouTube as icon buttons (bellveraffiliates.com, MTG's own pages only)."""
+    """MTG's WhatsApp, Telegram, TikTok and YouTube as icon buttons (bellveraffiliates.com, MTG's own pages only)."""
     if not show_socials():
         return ''
     a = ''.join(f'<a href="{u}" target="_blank" rel="noopener me" aria-label="{lab}: MTG (opens in a new tab)">{_soc_icon(k)}<span>{lab}</span></a>' for k, lab, u in MTG_SOCIALS)
@@ -225,6 +226,7 @@ def sidebar(here, key):
    <a class="slink" href="{LOGIN}" target="_blank" rel="noopener">{ic('login')}Member Login</a>
    <a class="slink" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}WhatsApp MTG</a>
   </div>
+  {side_tg()}
   <div class="srow">
    <a class="slink" href="{REF}" target="_blank" rel="sponsored noopener">{ic('home')}Bellver Home</a>
    <a class="slink" href="{L('/cards/', here)}">{ic('card')}All Cards</a>
@@ -239,8 +241,27 @@ def sidebar(here, key):
 def side_socials():
     if not show_socials():
         return ''
-    t, y = MTG_SOCIALS[1], MTG_SOCIALS[2]
-    return f'<div class="srow">' + ''.join(f'<a class="slink" href="{u}" target="_blank" rel="noopener me">{_soc_icon(k)}{lab}</a>' for k, lab, u in (t, y)) + '</div>'
+    soc = {k: (k, lab, u) for k, lab, u in MTG_SOCIALS}
+    return f'<div class="srow">' + ''.join(f'<a class="slink" href="{u}" target="_blank" rel="noopener me">{_soc_icon(k)}{lab}</a>' for k, lab, u in (soc['tiktok'], soc['youtube'])) + '</div>'
+
+
+def side_tg():
+    """Telegram MTG, full width under WhatsApp MTG in the menu (bellveraffiliates.com, MTG's own pages only)."""
+    if not show_socials():
+        return ''
+    return f'<div class="srow"><a class="slink slink-wide slink-tg" href="{TG}" target="_blank" rel="noopener me">{_soc_icon("telegram")}Telegram MTG</a></div>'
+
+
+def tg_btn(label='Telegram MTG', track=''):
+    """Telegram button next to MTG's WhatsApp buttons (bellveraffiliates.com, MTG's own pages only)."""
+    if not show_socials():
+        return ''
+    t = f' data-track="{track}"' if track else ''
+    return f'<a class="btn btn-tg"{t} href="{TG}" target="_blank" rel="noopener">{_soc_icon("telegram")}{label}</a>'
+
+
+def wa_or_tg():
+    return 'WhatsApp or Telegram' if show_socials() else 'WhatsApp'
 
 
 def topbar(here, key):
@@ -309,24 +330,29 @@ def fee_note(transcript):
     return FEE_NOTE if any('on top' in p for p in transcript) else ''
 
 
-def help_band(here, title="Stuck? I'll walk you through it.", text="I'm MTG. Message me on WhatsApp and I'll help you register, fund your wallet and choose the right card for you."):
+def help_band(here, title="Stuck? I'll walk you through it.", text=None):
     if PARTNER:
         return team_help_band(here, title)
+    if text is None:
+        text = f"I'm MTG. Message me on {wa_or_tg()} and I'll help you register, fund your wallet and choose the right card for you."
+    elif show_socials():
+        text = text.replace('Send me a WhatsApp', 'Send me a WhatsApp or Telegram message').replace('on WhatsApp', 'on WhatsApp or Telegram')
     return f'''<section class="sec-tight"><div class="wrap"><div class="panel help rv">
   <div class="face"><img src="{L('/images/mtg-profile.jpg', here)}" alt="MTG, Musa The Giant" width="88" height="88" loading="lazy"></div>
   <div><h2>{title}</h2><p>{text}</p></div>
-  <a class="btn btn-wa" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}WhatsApp MTG</a>
+  <div class="help-btns"><a class="btn btn-wa" href="{WA_MSG}" target="_blank" rel="noopener">{ic('wa')}WhatsApp MTG</a>{tg_btn()}</div>
  </div></div></section>'''
 
 
-def checklist_band(here, title='Not ready to order yet? <em>Take the free checklist.</em>', text='A two-page Bellver Starter Checklist: what to prepare, how to secure your wallet, how to fund it, which level to pick and the rules that decide whether you get paid. Message me on WhatsApp and I will send it to you personally.'):
+def checklist_band(here, title='Not ready to order yet? <em>Take the free checklist.</em>', text='A two-page Bellver Starter Checklist: what to prepare, how to secure your wallet, how to fund it, which level to pick and the rules that decide whether you get paid. Message me on {via} and I will send it to you personally.'):
     if PARTNER:
         return ''   # MTG's personal checklist offer: not part of team pages
+    text = text.replace('{via}', wa_or_tg())
     return f'''<section class="sec-tight" id="checklist"><div class="wrap"><div class="panel checklist rv">
   {ped(ic('book'), cls='ck-ped')}
   <div class="ck-tx"><h2 class="h2">{title}</h2><p>{text}</p>
-   <ul class="ck-pts"><li>{ic('check')}Free, no obligation</li><li>{ic('check')}Plain words, two pages</li><li>{ic('check')}Sent to you on WhatsApp</li></ul></div>
-  <a class="btn btn-wa" data-track="checklist" href="{CHECKLIST_MSG}" target="_blank" rel="noopener">{ic('wa')}Get the checklist on WhatsApp</a>
+   <ul class="ck-pts"><li>{ic('check')}Free, no obligation</li><li>{ic('check')}Plain words, two pages</li><li>{ic('check')}Sent to you on {wa_or_tg()}</li></ul></div>
+  <div class="ck-btns"><a class="btn btn-wa" data-track="checklist" href="{CHECKLIST_MSG}" target="_blank" rel="noopener">{ic('wa')}Get the checklist on WhatsApp</a>{tg_btn('Ask for it on Telegram', 'checklist-telegram')}</div>
  </div></div></section>'''
 
 
