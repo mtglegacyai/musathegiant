@@ -89,13 +89,24 @@ def first():
     return bv.PARTNER.get('short') or bv.PARTNER['name'].split()[0]
 
 
+def group():
+    """(label, url) of the partner's community group: a Telegram group ("telegram_group") or a WhatsApp group ("whatsapp_group")."""
+    p = bv.PARTNER
+    if p.get('telegram_group'):
+        return ('Telegram group', p['telegram_group'])
+    if p.get('whatsapp_group'):
+        return ('WhatsApp group', p['whatsapp_group'])
+    return None
+
+
 def socials():
     """(key, label, url) for every link the partner actually gave, WhatsApp first."""
     p = bv.PARTNER; out = []
     if bv.WA != NOWA:
         out.append(('wa', 'WhatsApp ' + first(), bv.WA_MSG))
-    if p.get('whatsapp_group'):
-        out.append(('users', 'WhatsApp group', p['whatsapp_group']))
+    g = group()
+    if g:
+        out.append(('users', g[0], g[1]))
     for k, lab in SOCIAL_LABELS.items():
         if p.get(k):
             out.append((k, lab, p[k]))
@@ -227,18 +238,18 @@ def team_footer(here):
 
 def team_help_band(here, title="Stuck? I'll walk you through it."):
     ic = bv.ic; p = bv.PARTNER
-    has_wa = bv.WA != NOWA; grp = p.get('whatsapp_group')
+    has_wa = bv.WA != NOWA; g = group(); grp = g[1] if g else None; glab = g[0] if g else ''
     if not has_wa and not grp:
         return ''
     btns = ''
     if has_wa:
         btns += f'<a class="btn btn-wa" href="{bv.WA_MSG}" target="_blank" rel="noopener">{ic("wa")}WhatsApp {first()}</a>'
     if grp:
-        btns += f'<a class="btn btn-ghost" href="{grp}" target="_blank" rel="noopener">{ic("users")}Join my WhatsApp group</a>'
+        btns += f'<a class="btn btn-ghost" href="{grp}" target="_blank" rel="noopener">{ic("users")}Join my {glab}</a>'
     if has_wa:
         text = f"I'm {first()}. Message me on WhatsApp and I'll help you register, fund your wallet and choose the right card for you."
     else:
-        text = f"I'm {first()}. Join my WhatsApp group to ask questions and learn alongside other cardholders."
+        text = f"I'm {first()}. Join my {glab} to ask questions and learn alongside other cardholders."
     face = (f'<div class="face"><img src="{photo_url(here)}" alt="{p["name"]}" width="88" height="88" loading="lazy"></div>' if p.get('photo')
             else f'<div class="face team-initials" aria-hidden="true">{"".join(w[0] for w in p["name"].split()[:2]).upper()}</div>')
     return f'''<section class="sec-tight"><div class="wrap"><div class="panel help rv">

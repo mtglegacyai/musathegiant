@@ -41,7 +41,7 @@ def people():
                     'by': 'Independent guide shared by ' + m['name'], 'ref': m['ref'],
                     'site': 'https://bellveraffiliates.com/' + m['slug'] + '/',
                     'wa': ('+' + digits) if digits else '', 'wa_url': ('https://wa.me/' + digits) if digits else '',
-                    'telegram': m.get('telegram', ''), 'group': m.get('whatsapp_group', ''),
+                    'telegram': m.get('telegram', ''), 'group': m.get('telegram_group') or m.get('whatsapp_group', ''),
                     'pdf': member_pdf(m['slug']), 'preview': member_preview(m['slug'])})
     return out
 
