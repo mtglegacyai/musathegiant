@@ -9,6 +9,8 @@ BASE = '/cards/bellvercards/'
 REF = 'https://app.bellvercards.com?ref=mtg'            # MTG affiliate link (every order button)
 LOGIN = 'https://app.bellvercards.com/login'            # member login
 WA = 'https://wa.me/27721714626'                        # MTG WhatsApp
+# MTG's socials (28 Oct 2026): shown on his bellveraffiliates.com pages only, never on musathegiant.com or team/client pages
+MTG_SOCIALS = [('wa', 'WhatsApp', 'https://wa.me/27721714626'), ('tiktok', 'TikTok', 'https://www.tiktok.com/@joinmtgtribe'), ('youtube', 'YouTube', 'https://www.youtube.com/@mtgtribe')]
 WA_MSG = WA + '?text=' + 'Hi%20MTG%2C%20I%20am%20interested%20in%20the%20Bellver%20Card.%20Can%20you%20help%20me%20get%20started%3F'
 YT_27 = '_Ptm2Bj6gm4'
 YT_WEBINAR = 'jeB_kZinnCg'
@@ -130,6 +132,25 @@ def ic(name, cls=''):
     return f'<svg{c} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{I[name]}</svg>'
 
 
+def show_socials():
+    return TARGET == 'bva' and not PARTNER
+
+
+def _soc_icon(k):
+    if k not in I:
+        from team_shell import SOCIAL_ICONS
+        I.setdefault(k, SOCIAL_ICONS[k])
+    return ic(k)
+
+
+def socials_row(cls='fsoc', label='Follow MTG'):
+    """MTG's WhatsApp, TikTok and YouTube as icon buttons (bellveraffiliates.com, MTG's own pages only)."""
+    if not show_socials():
+        return ''
+    a = ''.join(f'<a href="{u}" target="_blank" rel="noopener me" aria-label="{lab}: MTG (opens in a new tab)">{_soc_icon(k)}<span>{lab}</span></a>' for k, lab, u in MTG_SOCIALS)
+    return f'<div class="{cls}"><span class="fsoc-l">{label}</span><div class="fsoc-a">{a}</div></div>'
+
+
 def order_btn(label='Order your card', cls='btn btn-go', here='', icon=True):
     return f'<a class="{cls}" href="{REF}" target="_blank" rel="sponsored noopener">{label}</a>'
 
@@ -208,10 +229,18 @@ def sidebar(here, key):
    <a class="slink" href="{REF}" target="_blank" rel="sponsored noopener">{ic('home')}Bellver Home</a>
    <a class="slink" href="{L('/cards/', here)}">{ic('card')}All Cards</a>
   </div>
+  {side_socials()}
  </div>
 </aside>
 <button class="side-toggle" type="button" aria-controls="bv-menu" aria-expanded="true" aria-label="Collapse menu" title="Collapse menu">{ic('chev-l')}</button>
 <div class="scrim" aria-hidden="true"></div>'''
+
+
+def side_socials():
+    if not show_socials():
+        return ''
+    t, y = MTG_SOCIALS[1], MTG_SOCIALS[2]
+    return f'<div class="srow">' + ''.join(f'<a class="slink" href="{u}" target="_blank" rel="noopener me">{_soc_icon(k)}{lab}</a>' for k, lab, u in (t, y)) + '</div>'
 
 
 def topbar(here, key):
@@ -240,6 +269,7 @@ def dash_footer(here):
     if PARTNER:
         return team_dash_footer(here)
     return f'''<footer class="dfoot"><div class="wrap">
+  {socials_row('fsoc dsoc')}
   <div class="disc">Bellver Card is a product of Bellver Markets Ltd. This guide is run independently by MTG and is not the official Bellver website or back office. Order buttons link to app.bellvercards.com with MTG's referral code, and the VALR, Binance and ClickBaitPays buttons are MTG's referral links too, so MTG may earn a commission at no extra cost to you. Prices, fees and the compensation plan come from Bellver's official documents (version 08/2026) and can change. Rewards depend on real card activity and are never guaranteed. Nothing here is financial, tax or legal advice. Read the <a href="{L('/affiliate-disclosure.html', here)}">Affiliate Disclosure</a>, <a href="{L('/earnings-disclaimer.html', here)}">Earnings Disclaimer</a> and <a href="{L('/risk-disclaimer.html', here)}">Risk Disclaimer</a>.</div>
   <div class="ftr-bot"><span>© <span data-year>2026</span> MTG | Musa The Giant. <a href="{L('/privacy-policy.html', here)}">Privacy</a> &nbsp; <a href="{L('/terms-of-use.html', here)}">Terms</a></span><span class="sig">Let's Get This Crypto! 💰 Crypto-Regards, MTG 👑</span></div>
  </div></footer>'''
@@ -374,6 +404,7 @@ def footer(here):
    <div class="logo"><img src="{L('images/bellver-cards-logo-white-360.webp', here)}" alt="Bellver Card logo" width="360" height="106" loading="lazy">
     <p class="tag">LET'S MAKE IT <em>HAPPEN</em></p>
     <p>An independent Bellver Card information site by MTG (Musa The Giant), Durban, South Africa. Clear facts, honest numbers and personal help to get you started.</p>
+    {socials_row()}
    </div>
    {html}
   </div>
@@ -388,6 +419,8 @@ def footer(here):
 
 PERSON = {"@type": "Person", "@id": MTG_SITE + "/#mtg", "name": "Musa The Giant", "alternateName": ["MTG", "Musa the Giant"], "url": MTG_SITE + "/", "image": MTG_SITE + "/images/mtg-profile.jpg",
           "sameAs": ["https://www.facebook.com/Musa.TheMTG", "https://www.tiktok.com/@musathegiant", "https://www.youtube.com/@MusaTheGiant"]}
+if TARGET == 'bva':
+    PERSON["sameAs"] = PERSON["sameAs"] + ["https://www.tiktok.com/@joinmtgtribe", "https://www.youtube.com/@mtgtribe"]
 
 
 def team_trail(trail):
