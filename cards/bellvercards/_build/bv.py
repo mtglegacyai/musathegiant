@@ -10,7 +10,7 @@ REF = 'https://app.bellvercards.com?ref=mtg'            # MTG affiliate link (ev
 LOGIN = 'https://app.bellvercards.com/login'            # member login
 WA = 'https://wa.me/27721714626'                        # MTG WhatsApp
 # MTG's socials (28 Oct 2026): shown on his bellveraffiliates.com pages only, never on musathegiant.com or team/client pages
-TG = 'https://t.me/MusaTheGiant_MTG'   # MTG's Telegram (28 Oct 2026, while his WhatsApp is blocked): same rule as the socials, bellveraffiliates.com MTG pages only
+TG = 'https://t.me/mtgtribe'   # MTG's Telegram (29 Oct 2026; was t.me/MusaTheGiant_MTG), for when WhatsApp blocks him: same rule as the socials, bellveraffiliates.com MTG pages only
 MTG_SOCIALS = [('wa', 'WhatsApp', 'https://wa.me/27721714626'), ('telegram', 'Telegram', TG), ('tiktok', 'TikTok', 'https://www.tiktok.com/@joinmtgtribe'), ('youtube', 'YouTube', 'https://www.youtube.com/@mtgtribe')]
 WA_MSG = WA + '?text=' + 'Hi%20MTG%2C%20I%20am%20interested%20in%20the%20Bellver%20Card.%20Can%20you%20help%20me%20get%20started%3F'
 YT_27 = '_Ptm2Bj6gm4'
@@ -260,6 +260,11 @@ def tg_btn(label='Telegram MTG', track=''):
     return f'<a class="btn btn-tg"{t} href="{TG}" target="_blank" rel="noopener">{_soc_icon("telegram")}{label}</a>'
 
 
+def tg_note():
+    """MTG, 29 Oct 2026: if people can't get hold of him on WhatsApp, they chat with him directly on Telegram."""
+    return " Can't reach me on WhatsApp? Chat with me directly on Telegram." if show_socials() else ''
+
+
 def wa_or_tg():
     return 'WhatsApp or Telegram' if show_socials() else 'WhatsApp'
 
@@ -337,6 +342,7 @@ def help_band(here, title="Stuck? I'll walk you through it.", text=None):
         text = f"I'm MTG. Message me on {wa_or_tg()} and I'll help you register, fund your wallet and choose the right card for you."
     elif show_socials():
         text = text.replace('Send me a WhatsApp', 'Send me a WhatsApp or Telegram message').replace('on WhatsApp', 'on WhatsApp or Telegram')
+    text += tg_note()
     return f'''<section class="sec-tight"><div class="wrap"><div class="panel help rv">
   <div class="face"><img src="{L('/images/mtg-profile.jpg', here)}" alt="MTG, Musa The Giant" width="88" height="88" loading="lazy"></div>
   <div><h2>{title}</h2><p>{text}</p></div>

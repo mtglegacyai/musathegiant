@@ -121,7 +121,7 @@ def own_domain(H=H0):
 
     helpb = f'''<section class="sec-tight"><div class="wrap"><div class="panel help rv">
   <div class="face"><img src="{L('/images/mtg-profile.jpg', H)}" alt="MTG, Musa The Giant" width="88" height="88" loading="lazy"></div>
-  <div><h2>Stuck on a step? I'll help you.</h2><p>Send me two screenshots on {wa_or_tg()}: your GitHub Pages settings and your GoDaddy DNS records. I'll tell you exactly what to change.</p></div>
+  <div><h2>Stuck on a step? I'll help you.</h2><p>Send me two screenshots on {wa_or_tg()}: your GitHub Pages settings and your GoDaddy DNS records. I'll tell you exactly what to change.{tg_note()}</p></div>
   <div class="help-btns"><a class="btn btn-wa" href="{WA_HELP}" target="_blank" rel="noopener">{ic('wa')}WhatsApp MTG</a>{tg_btn()}</div>
  </div></div></section>'''
 
