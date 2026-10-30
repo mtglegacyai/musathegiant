@@ -1,5 +1,5 @@
 {
- "_about": "MTG's team pages. One entry per business partner. Leave a link empty (\"\") if they did not give it: its icon and button are then left out. Run build.py to rebuild MTG's guide and every team page. Every section on a team page opens straight away; add \"open_all_sections\": false to a member to use the tap-to-open sections instead. \"sites\" lists where a member lives: \"bva\" = bellveraffiliates.com/<slug>, \"mtg\" = musathegiant.com/bellvercards/<slug> (default: bellveraffiliates.com only). Optional \"hero_video\" (file, poster, duration, w, h, title, caption): the member's own video in place of the card art on their home page; files live in _build/team_media/<slug>/. Optional \"telegram_group\": a Telegram group link, used in place of \"whatsapp_group\". Optional \"tagline\": the member's own tagline, shown exactly as written in place of \"The Card That Can Pay Your Bills\" (footer, quick guide, social images). Optional \"header_name\": the name after \"by Affiliate\" in the header (default: the first name).",
+ "_about": "MTG's team pages. One entry per business partner. Leave a link empty (\"\") if they did not give it: its icon and button are then left out. Run build.py to rebuild MTG's guide and every team page. Every section on a team page opens straight away; add \"open_all_sections\": false to a member to use the tap-to-open sections instead. \"sites\" lists where a member lives: \"bva\" = bellveraffiliates.com/<slug>, \"mtg\" = musathegiant.com/bellvercards/<slug> (default: bellveraffiliates.com only). Optional \"hero_video\" (file, poster, duration, w, h, title, caption): the member's own video in place of the card art on their home page; files live in _build/team_media/<slug>/. Optional \"telegram_group\": a Telegram group link, used in place of \"whatsapp_group\". Optional \"tagline\": the member's own tagline, shown exactly as written in place of \"The Card That Can Pay Your Bills\" (footer, quick guide, social images). Optional \"menu_after_overview\": menu items to show directly under Overview, e.g. [\"tutorials\"]. Optional \"header_name\": the name after \"by Affiliate\" in the header (default: the first name).",
  "members": [
   {
    "slug": "william",
@@ -92,7 +92,10 @@
     "bva"
    ],
    "header_name": "Dr RaShon",
-   "tagline": "…wealth for the rest of us"
+   "tagline": "…wealth for the rest of us",
+   "menu_after_overview": [
+    "tutorials"
+   ]
   }
  ]
 }
