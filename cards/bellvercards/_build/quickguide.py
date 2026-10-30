@@ -42,7 +42,7 @@ def people():
                     'site': 'https://bellveraffiliates.com/' + m['slug'] + '/',
                     'wa': ('+' + digits) if digits else '', 'wa_url': ('https://wa.me/' + digits) if digits else '',
                     'telegram': m.get('telegram', ''), 'group': m.get('telegram_group') or m.get('whatsapp_group', ''),
-                    'pdf': member_pdf(m['slug']), 'preview': member_preview(m['slug'])})
+                    'pdf': member_pdf(m['slug']), 'preview': member_preview(m['slug']), 'tagline': m.get('tagline', '')})
     return out
 
 
@@ -151,7 +151,7 @@ def html(p):
     if p['mtg']:
         sig = '<div class="sig"><span class="s1">Let\'s Get This Crypto! 💪</span><span class="s2">MTG 👑 | Your Digital Architect</span><span>bellveraffiliates.com</span></div>'
     else:
-        sig = f'<div class="sig"><span class="s1">The Card That Can Pay Your Bills</span><span class="s2">Shared by {p["name"]}</span><span>{site}</span></div>'
+        sig = f'<div class="sig"><span class="s1">{p.get('tagline') or 'The Card That Can Pay Your Bills'}</span><span class="s2">Shared by {p["name"]}</span><span>{site}</span></div>'
     contact = []
     if p['wa']:
         contact.append(('WhatsApp ' + who, p['wa']))

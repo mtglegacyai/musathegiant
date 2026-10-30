@@ -23,7 +23,7 @@ if len(sys.argv) > 2:
 
 pages = list(og.PAGES) + [('og-bellver-matrix.jpg', 'THE 2X2 MATRIX', 'MADE SIMPLE', 'Two seats, spillover, levels, the 0.1% and the $100 rule, in plain words.', 'both')]
 for args in pages:
-    foot = 'Your Bellver Card guide' if args[0] == 'og-bellver-cards.jpg' else SLOGAN
+    foot = 'Your Bellver Card guide' if args[0] == 'og-bellver-cards.jpg' else (m.get('tagline') or SLOGAN)
     og.make(*args[:4], *(args[4:] or ['card']), by='by Affiliate ' + m['name'], url=foot, out=os.path.join(out, 'og'))
 
 if 'mtg' in m.get('sites', ['bva']):      # this member also has pages on musathegiant.com/bellvercards/<slug>/

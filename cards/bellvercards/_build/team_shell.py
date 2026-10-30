@@ -193,8 +193,13 @@ def disclaimer(where='guide'):
             'Rewards depend on real card activity and are never guaranteed. Nothing here is financial, tax or legal advice.')
 
 
+def slogan():
+    """The member's own tagline (team.json "tagline", shown exactly as given), or the general team slogan."""
+    return (bv.PARTNER or {}).get('tagline') or SLOGAN
+
+
 def bottom():
-    return f'<div class="ftr-bot"><span>© <span data-year>2026</span> {bv.PARTNER["name"]}</span><span class="sig">{SLOGAN}</span></div>'
+    return f'<div class="ftr-bot"><span>© <span data-year>2026</span> {bv.PARTNER["name"]}</span><span class="sig">{slogan()}</span></div>'
 
 
 def team_dash_footer(here):
@@ -222,7 +227,7 @@ def team_footer(here):
  <div class="wrap">
   <div class="ftr-top">
    <div class="logo"><img src="{L('images/bellver-cards-logo-white-360.webp', here)}" alt="Bellver Card logo" width="360" height="106" loading="lazy">
-    <p class="tag">THE CARD THAT CAN <em>PAY YOUR BILLS</em></p>
+    {(f'<p class="tag own-tag"><em>{bv.PARTNER["tagline"]}</em></p>') if bv.PARTNER.get('tagline') else '<p class="tag">THE CARD THAT CAN <em>PAY YOUR BILLS</em></p>'}
     <p>An independent Bellver Card guide shared by {bv.PARTNER['name']}. Clear facts, honest numbers and personal help to get you started.</p>
    </div>
    {html}
