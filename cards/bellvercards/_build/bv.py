@@ -269,12 +269,19 @@ def wa_or_tg():
     return 'WhatsApp or Telegram' if show_socials() else 'WhatsApp'
 
 
+def _team_contact():
+    if not PARTNER:
+        return ''
+    from team_shell import contact_btn
+    return contact_btn()
+
+
 def topbar(here, key):
     label = next(n[2] for n in NAV if n[0] == key)
     return f'''<header class="dtop">
  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="bv-menu"><span class="bars" aria-hidden="true"></span><span class="lbl">Menu</span></button>
  <nav class="dcrumb" aria-label="You are here"><a href="{L('learn/', here)}">Card guide</a>{ic('chev-r')}<span aria-current="page">{label}</span></nav>
- <div class="dtop-act"><a class="btn btn-ghost btn-sm gohome" href="{L('', here)}" aria-label="Go Home: back to the Bellver Cards home page"><span class="emo" aria-hidden="true">🏡</span>Go Home</a>{order_btn('Order your card', 'btn btn-go btn-sm orderbtn')}</div>
+ <div class="dtop-act"><a class="btn btn-ghost btn-sm gohome" href="{L('', here)}" aria-label="Go Home: back to the Bellver Cards home page"><span class="emo" aria-hidden="true">🏡</span>Go Home</a>{_team_contact()}{order_btn('Order your card', 'btn btn-go btn-sm orderbtn')}</div>
 </header>'''
 
 

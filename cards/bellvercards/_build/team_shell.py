@@ -146,6 +146,15 @@ def person():
     return d
 
 
+def contact_btn():
+    """Optional "Contact me" WhatsApp button at the top of a member's pages (team.json "header_contact": true; Ron's request, 31 Oct 2026)."""
+    p = bv.PARTNER
+    if not p or not p.get('header_contact') or bv.WA == NOWA:
+        return ''
+    return (f'<a class="btn btn-ghost btn-sm contact-btn" href="{bv.WA_MSG}" target="_blank" rel="noopener" '
+            f'aria-label="Contact {first()} on WhatsApp">{bv.ic("wa")}<span class="lbl">Contact me</span></a>')
+
+
 def team_header(here, key):
     L, ic, order_btn = bv.L, bv.ic, bv.order_btn
     return f'''<a class="skip" href="#main">Skip to content</a>
@@ -158,6 +167,7 @@ def team_header(here, key):
   </a>
   <div class="hdr-act">
    <a class="btn btn-ghost btn-sm learn-btn" href="{L('learn/', here)}">{ic('book')}Learn more</a>
+   {contact_btn()}
    {order_btn('Order your card', 'btn btn-go btn-sm')}
   </div>
  </div>
