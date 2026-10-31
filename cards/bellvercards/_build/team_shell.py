@@ -146,6 +146,12 @@ def person():
     return d
 
 
+def body_class(dash):
+    """is-dash on guide pages; phone-readable when the member has the larger phone text (team.json "phone_readable": true; trial on Ron's pages, 31 Oct 2026)."""
+    c = (['is-dash'] if dash else []) + (['phone-readable'] if (bv.PARTNER or {}).get('phone_readable') else [])
+    return f' class="{" ".join(c)}"' if c else ''
+
+
 def contact_btn():
     """Optional "Contact me" WhatsApp button at the top of a member's pages (team.json "header_contact": true; Ron's request, 31 Oct 2026)."""
     p = bv.PARTNER
@@ -345,7 +351,7 @@ def team_page(here, key, title, desc, og_img, og_alt, body, ld_extra, trail, pre
 {TEAM_CSS}
 {team_clean_url()}
 </head>
-<body{' class="is-dash"' if dash else ''}>
+<body{body_class(dash)}>
 {_open_all(bv.shell(here, key, body, dash))}
 </body>
 </html>
