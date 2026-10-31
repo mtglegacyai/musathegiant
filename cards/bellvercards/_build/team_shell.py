@@ -83,14 +83,16 @@ def configure(p):
     else:
         bv.WA = bv.WA_MSG = bv.PARTNER_MSG = bv.CHECKLIST_MSG = NOWA
     bv.PERSON = person()
-    # optional: menu items a member wants directly under Overview (team.json "menu_after_overview", e.g. ["tutorials"]); the menu,
-    # Previous/Next buttons and Overview tiles all follow this order on that member's pages only
-    want = p.get('menu_after_overview') or []
-    if want:
+    # optional: menu items a member wants moved (team.json "menu_move": {"after": "start", "items": ["tutorials"]} puts Tutorial Videos
+    # directly under Get Started). The menu, Previous/Next buttons and Overview tiles all follow this order on that member's pages only.
+    # The older "menu_after_overview": [...] still works (same as "after": "learn").
+    mv = p.get('menu_move') or ({'after': 'learn', 'items': p['menu_after_overview']} if p.get('menu_after_overview') else None)
+    if mv and mv.get('items'):
+        want = mv['items']
         nav = [n for n in bv.NAV if n[0] not in want]
-        i = next(j for j, n in enumerate(nav) if n[0] == 'learn') + 1
-        start = nav[i - 1][5]
-        moved = [(k, path, label, sub, icn, start) for k in want for (k2, path, label, sub, icn, g) in bv.NAV if k2 == k]
+        i = next(j for j, n in enumerate(nav) if n[0] == mv.get('after', 'learn')) + 1
+        group = nav[i - 1][5]
+        moved = [(k, path, label, sub, icn, group) for k in want for (k2, path, label, sub, icn, g) in bv.NAV if k2 == k]
         bv.NAV = nav[:i] + moved + nav[i:]
 
 
