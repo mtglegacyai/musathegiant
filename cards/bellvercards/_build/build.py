@@ -57,6 +57,7 @@ if MEMBER:
     if bv.TARGET == 'bva':
         import bva_static
         bva_static.team_files(ROOT, MEMBER['slug'])
+        bva_static.old_address(ROOT, MEMBER, [pth for pth, fn in PAGES])
     sys.exit(0)
 
 if bv.MODE == 'prod' and bv.TARGET == 'bva':

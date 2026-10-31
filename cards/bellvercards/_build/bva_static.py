@@ -121,7 +121,7 @@ def _seo(out):
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
         'xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n' + ''.join(rows) + '</urlset>\n')
     # ---- robots.txt: everyone welcome on MTG's pages; AI crawlers skip the clones (search engines read their noindex instead)
-    clone_rules = ''.join(f'Disallow: /{s}/\n' for s in slugs)
+    clone_rules = ''.join(f'Disallow: /{s}/\n' for s in slugs + sorted(o for m in team.members('bva') for o in m.get('old_slugs', [])))
     robots = ('# bellveraffiliates.com: the Bellver Card guide by MTG\n'
               '# Search engines and AI assistants are welcome on every page of the guide.\n'
               '# Team copies (/name/) are personal pages for MTG\'s partners: they are noindex for search engines, and AI crawlers skip them.\n\n'
@@ -164,9 +164,17 @@ def _seo(out):
     lines += ['', '## Optional', '', f'- [About MTG]({bv.MTG_SITE}/about.html): who writes this guide',
               f'- [Earnings disclaimer]({bv.MTG_SITE}/earnings-disclaimer.html)', '']
     open(os.path.join(out, 'llms.txt'), 'w', encoding='utf-8').write('\n'.join(lines))
-    # ---- friendly 404
+    # ---- friendly 404. Team addresses work in any capitalisation (bellveraffiliates.com/drrashon opens /DrRaShon/), and old addresses forward.
+    import json as _json
+    fix = {}
+    for m in team.members('bva'):
+        fix[m['slug'].lower()] = m['slug']
+        for o in m.get('old_slugs', []):
+            fix[o.lower()] = m['slug']
+    fixjs = ('<script>(function(){var M=' + _json.dumps(fix) + ',p=location.pathname.split("/"),s=p[1]||"",t=M[s.toLowerCase()];'
+             'if(t&&t!==s){p[1]=t;location.replace(p.join("/")+location.search+location.hash);}})();</script>')
     open(os.path.join(out, '404.html'), 'w', encoding='utf-8').write('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Page not found | Bellver Cards</title><meta name="robots" content="noindex"><link rel="icon" type="image/svg+xml" href="/team-favicon.svg"></head>
+<title>Page not found | Bellver Cards</title><meta name="robots" content="noindex"><link rel="icon" type="image/svg+xml" href="/team-favicon.svg">''' + fixjs + '''</head>
 <body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#020c06;color:#eef5f1;font:16px/1.6 system-ui,sans-serif;text-align:center;padding:24px">
 <div><p style="font-size:3rem;margin:0">404</p><h1 style="font-size:1.4rem;margin:8px 0 12px">This page does not exist</h1>
 <p style="color:#8ea39a;margin:0 0 22px">The link may be old or mistyped.</p>
@@ -189,3 +197,24 @@ def team_files(out, slug):
             shutil.copy2(s, os.path.join(dst, f))
     if os.path.isdir(os.path.join(src, 'og')):
         _sync(os.path.join(src, 'og'), os.path.join(dst, 'og'))
+
+
+def old_address(out, m, paths):
+    """A member who changed address (team.json "old_slugs"): every page at the old address forwards to the same page at the new one,
+    so links already shared keep working. The old folder holds only these small forwarding pages."""
+    for old in m.get('old_slugs', []):
+        if old.lower() == m['slug'].lower():
+            continue     # same name in other capitals: handled by the 404 page, so no clashing folders
+        d0 = os.path.join(out, old)
+        if os.path.isdir(d0):
+            shutil.rmtree(d0)
+        for pth in paths:
+            to = '/' + m['slug'] + '/' + pth
+            d = os.path.join(d0, pth); os.makedirs(d, exist_ok=True)
+            with open(os.path.join(d, 'index.html'), 'w', encoding='utf-8') as f:
+                f.write(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved | Bellver Cards</title>
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="https://bellveraffiliates.com{to}">
+<meta http-equiv="refresh" content="0; url={to}"><script>location.replace("{to}"+location.search+location.hash)</script></head>
+<body style="background:#020c06;color:#eef5f1;font-family:system-ui,sans-serif;padding:40px">This page has a new address. <a style="color:#34cc88" href="{to}">Continue</a>.</body></html>
+''')
+        print('forwarding', '/' + old + '/', '->', '/' + m['slug'] + '/')
