@@ -99,6 +99,34 @@
      "tutorials"
     ]
    }
+  },
+  {
+   "slug": "ronsantoro",
+   "name": "Ron Santoro",
+   "short": "Ron",
+   "ref": "https://app.bellvercards.com?ref=myfintechbiz",
+   "photo": "photo",
+   "whatsapp": "+15404713498",
+   "whatsapp_group": "",
+   "telegram": "https://t.me/rockres",
+   "tiktok": "",
+   "facebook": "https://www.facebook.com/ronsantoro2",
+   "instagram": "",
+   "youtube": "",
+   "x": "",
+   "sites": [
+    "bva"
+   ],
+   "hero_video": {
+    "file": "hero-video.mp4",
+    "poster": "hero-video",
+    "duration": "0:51",
+    "w": 1024,
+    "h": 576,
+    "title": "The Bellver Card lifestyle, a video by Ron",
+    "caption": "Watch my Bellver Card video"
+   },
+   "header_name": "Ron Santoro"
   }
  ]
 }
