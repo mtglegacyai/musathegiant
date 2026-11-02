@@ -165,6 +165,24 @@ def prices(H='prices/'):
  </table></div>
 </div></section>'''
 
+    top_pick = f'''<section class="sec-tight" id="most-benefits"><div class="wrap"><div class="panel se toppick rv">
+ <div class="art" data-tilt="img" data-max="10"><img src="{L('images/bellver-card-special-edition-700.webp', H)}" srcset="{L('images/bellver-card-special-edition-700.webp', H)} 700w, {L('images/bellver-card-special-edition.webp', H)} 1400w" sizes="(max-width:860px) 90vw, 520px" alt="Bellver Card Special Edition" width="1400" height="831" loading="lazy"></div>
+ <div>
+  <span class="badge gold">{ic('star')}Most benefits</span>
+  <h2 class="h2" style="margin-top:14px">Gold <em>Special Edition</em></h2>
+  <p class="lead" style="margin-top:14px">Want everything the card offers? Choose the Gold level and add the Special Edition when you buy.</p>
+  <ul class="checks">
+   <li><b>The highest limits:</b> $250,000 a day and $20,000 per transaction.</li>
+   <li><b>The deepest monthly rewards:</b> paid on up to 20 levels as your stars grow (18 levels at 3 Stars, 20 at 5 Stars).</li>
+   <li><b>Bellver's highest security and privacy,</b> from the Special Edition.</li>
+   <li><b>Physical or virtual,</b> same price.</li>
+  </ul>
+  <div class="tp-cost"><span>One-time price</span><b>$1,360</b><small>$990 Gold + $370 Special Edition. Physical cards add shipping. Adding the Special Edition later costs $470.</small></div>
+  <div class="btn-row">{order_btn('Order your card')}<a class="btn btn-ghost" href="#compare">Compare levels</a></div>
+  <p class="fine">Good to know: the limits and the 20 levels come from Gold itself. The Special Edition adds security and privacy, not extra limits or levels. Monthly rewards need your stars and at least $100 loaded onto your card that month, and are never guaranteed. Not sure you need it all? Business is the most popular choice, and you can upgrade later by paying the difference.</p>
+ </div>
+</div></div></section>'''
+
     fees = f'''<section class="sec" id="fees"><div class="wrap">
  <div class="split">
   <div class="rv">
@@ -209,7 +227,7 @@ def prices(H='prices/'):
    <li><b>Basic, $99:</b> just the card.</li>
    <li><b>Premium, $270:</b> the minimum for monthly rewards.</li>
    <li><b>Business, $490:</b> the most popular choice.</li>
-   <li><b>Gold, $990:</b> the highest limits and deepest rewards.</li>
+   <li><b>Gold, $990:</b> the highest limits and deepest rewards. <a class="inl" href="#most-benefits">Add the Special Edition</a> for the most benefits.</li>
   </ul>
   <p style="margin:12px 0 0"><a class="tlink" href="{L('explainers/#which-card-explained', H)}">{ic('play-c')}Watch it explained {ic('arrow')}</a></p>
  </div>
@@ -220,7 +238,7 @@ def prices(H='prices/'):
  {payback_calc(H)}
 </div></section>'''
 
-    body = top + levels + compare + fees + addons + upgrade + calc + checklist_band(H) + help_band(H)
+    body = top + levels + compare + top_pick + fees + addons + upgrade + calc + checklist_band(H) + help_band(H)
     offers = [{"@type": "Offer", "name": f"Bellver Card {n}", "price": str(p), "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": REF}
               for n, p in [('Basic', 99), ('Premium', 270), ('Business', 490), ('Gold', 990)]]
     product = {"@type": "Product", "name": "Bellver Card", "brand": {"@type": "Brand", "name": "Bellver"}, "image": abs_url('images/bellver-card-black-visa.webp'),
