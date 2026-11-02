@@ -272,8 +272,8 @@ def wa_or_tg():
 def _team_contact():
     if not PARTNER:
         return ''
-    from team_shell import contact_btn
-    return contact_btn()
+    from team_shell import contact_btn, ts_btn
+    return ts_btn() + contact_btn()
 
 
 def topbar(here, key):

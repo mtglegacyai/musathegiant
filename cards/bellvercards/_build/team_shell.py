@@ -152,6 +152,15 @@ def body_class(dash):
     return f' class="{" ".join(c)}"' if c else ''
 
 
+def ts_btn():
+    """Text size button (Aa) in the top bar, phones only, on members with the larger phone text (team.json "phone_readable").
+    Each tap steps the text size: Normal, Larger, Largest. Added 2 Nov 2026 after Ron's visitors still found the text small."""
+    if not (bv.PARTNER or {}).get('phone_readable'):
+        return ''
+    return ('<button class="btn btn-ghost btn-sm ts-btn" type="button" data-ts-btn aria-label="Text size: Normal. Tap to change">'
+            '<span class="a1" aria-hidden="true">A</span><span class="a2" aria-hidden="true">A</span></button>')
+
+
 def contact_btn():
     """Optional "Contact me" WhatsApp button at the top of a member's pages (team.json "header_contact": true; Ron's request, 31 Oct 2026)."""
     p = bv.PARTNER
@@ -173,7 +182,7 @@ def team_header(here, key):
   </a>
   <div class="hdr-act">
    <a class="btn btn-ghost btn-sm learn-btn" href="{L('learn/', here)}">{ic('book')}Learn more</a>
-   {contact_btn()}
+   {ts_btn()}{contact_btn()}
    {order_btn('Order your card', 'btn btn-go btn-sm')}
   </div>
  </div>
