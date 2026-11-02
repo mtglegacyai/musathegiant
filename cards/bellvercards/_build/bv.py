@@ -152,8 +152,27 @@ def socials_row(cls='fsoc', label='Follow MTG'):
     return f'<div class="{cls}"><span class="fsoc-l">{label}</span><div class="fsoc-a">{a}</div></div>'
 
 
+GENERIC_ORDER = ('order your card', 'order your bellver card')
+
+
+def own_order_label(label, small=False):
+    """A member's own wording for the plain "Order your card" buttons (team.json "order_label", and "order_label_short" for the
+    small top-bar and menu buttons). Ron's request, 2 Nov 2026. Same link, only the words change. Returns (html, extra class)."""
+    P = PARTNER or {}
+    if not P.get('order_label') or label.strip().lower() not in GENERIC_ORDER:
+        return label, ''
+    t = (P.get('order_label_short') if small else '') or P['order_label']
+    words, emo = (t.rsplit(' ', 1) + [''])[:2] if t and not t[-1].isascii() else (t, '')
+    words = words.replace('&', '&amp;').replace('Sign Up', 'Sign&nbsp;Up')
+    head, _, last = words.rpartition(' ')
+    words = (head + ' ' if head else '') + last          # keep the last word and the emoji together
+    html = '<span class="ol">' + words + (f'&nbsp;<span aria-hidden="true">{emo}</span>' if emo else '') + '</span>'
+    return html, ' ord-long'
+
+
 def order_btn(label='Order your card', cls='btn btn-go', here='', icon=True):
-    return f'<a class="{cls}" href="{REF}" target="_blank" rel="sponsored noopener">{label}</a>'
+    label, extra = own_order_label(label, 'btn-sm' in cls)
+    return f'<a class="{cls}{extra}" href="{REF}" target="_blank" rel="sponsored noopener">{label}</a>'
 
 
 # guide pages: (key, path, label, sub, icon, group). Sidebar and Previous/Next follow this order.
@@ -451,7 +470,7 @@ def footer(here):
   <div class="ftr-bot"><span>© <span data-year>2026</span> MTG | Musa The Giant. <a href="{L('/privacy-policy.html', here)}">Privacy</a> &nbsp; <a href="{L('/terms-of-use.html', here)}">Terms</a></span><span class="sig">Let's Get This Crypto! 💰 Crypto-Regards, MTG 👑</span></div>
  </div>
 </footer>
-<a class="mobile-cta" href="{REF}" target="_blank" rel="sponsored noopener" aria-hidden="true" tabindex="-1"><span class="btn btn-go">Order your Bellver Card</span></a>
+<a class="mobile-cta" href="{REF}" target="_blank" rel="sponsored noopener" aria-hidden="true" tabindex="-1"><span class="btn btn-go{own_order_label('Order your Bellver Card')[1]}">{own_order_label('Order your Bellver Card')[0]}</span></a>
 <button class="totop" type="button" aria-label="Back to top"><svg class="ring" viewBox="0 0 54 54" aria-hidden="true"><circle class="bg" cx="27" cy="27" r="25"/><circle class="fg" cx="27" cy="27" r="25"/></svg>{ic('up','arr')}</button>
 <script src="{asset('assets/bellver.js', here)}" defer></script>'''
 

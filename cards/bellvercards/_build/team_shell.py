@@ -272,7 +272,7 @@ def team_footer(here):
   {bottom()}
  </div>
 </footer>
-<a class="mobile-cta" href="{bv.REF}" target="_blank" rel="sponsored noopener" aria-hidden="true" tabindex="-1"><span class="btn btn-go">Order your Bellver Card</span></a>
+<a class="mobile-cta" href="{bv.REF}" target="_blank" rel="sponsored noopener" aria-hidden="true" tabindex="-1"><span class="btn btn-go{bv.own_order_label('Order your Bellver Card')[1]}">{bv.own_order_label('Order your Bellver Card')[0]}</span></a>
 <button class="totop" type="button" aria-label="Back to top"><svg class="ring" viewBox="0 0 54 54" aria-hidden="true"><circle class="bg" cx="27" cy="27" r="25"/><circle class="fg" cx="27" cy="27" r="25"/></svg>{ic('up','arr')}</button>
 <script src="{bv.asset('assets/bellver.js', here)}" defer></script>'''
 

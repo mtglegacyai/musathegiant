@@ -128,7 +128,9 @@
    },
    "header_name": "Ron Santoro",
    "header_contact": true,
-   "phone_readable": true
+   "phone_readable": true,
+   "order_label": "Click Here to Sign Up & Order Card 🤑",
+   "order_label_short": "Sign Up & Order 🤑"
   }
  ]
 }
