@@ -1,14 +1,34 @@
 # -*- coding: utf-8 -*-
 """Get started, Videos (hub + 3 pages), FAQ, Downloads."""
 from bv import *  # noqa
+import bv
 from p_info import phero, T
 
 
 # ------------------------------------------------------------------ GET STARTED
+def _via_guide():
+    return bool((bv.PARTNER or {}).get('order_via_guide'))
+
+
+def _reg_label():
+    """Members whose order buttons open this page first (team.json "order_via_guide"): the first button says plainly where it goes."""
+    return f"Open Bellver Sign Up ({bv.PARTNER.get('short') or bv.PARTNER['name'].split()[0]}'s link)" if _via_guide() else 'Open the registration page'
+
+
+def _ready_note():
+    if not _via_guide():
+        return ''
+    code = bv.REF.split('ref=')[-1]
+    return (f'<section class="sec-tight" style="padding-top:0"><div class="wrap"><div class="note g rv">{ic("check")}<span><b>Ready now?</b> '
+            f'Tap the green button above. It opens Bellver with {bv.PARTNER.get("short") or bv.PARTNER["name"].split()[0]}\'s referral code: tap <b>Sign Up</b>, then check that <b>Referred by</b> shows '
+            f'<b>{code}</b> before you tap Create Account. New to it? Follow the seven steps below.</span></div></div></section>')
+
+
 def start(H='get-started/'):
     trail = T(('Get Started', abs_url(H)))
     top = phero(H, trail, ['Order your card,', 'step by step'], 'From sign-up to your first payment in seven short steps. Keep this page open next to your dashboard and follow along.', None,
-                order_btn('Open the registration page') + f'<a class="btn btn-ghost" href="{L("tutorials/#tut-01", H)}"><span class="play">{ic("play")}</span>Watch how to register</a>')
+                order_btn(_reg_label()) + f'<a class="btn btn-ghost" href="{L("tutorials/#tut-01", H)}"><span class="play">{ic("play")}</span>Watch how to register</a>')
+    top += _ready_note()
     S = [
      ('Register with MTG\'s link', f'''<p>Open <a class="inl" href="{REF}" target="_blank" rel="sponsored noopener">the registration page</a> and create your account. Using this link places you in my team, so I can see your sign-up and help you if you get stuck.</p><p>Your dashboard opens with a Fireblocks wallet already set up for you.</p>'''),
      ('Secure your account first', '''<ul><li>Go to <span class="path">Settings</span> and switch on the <b>authenticator app</b> for two-factor login.</li><li>Go to <span class="path">My Wallet › Settings › Account and security</span>, set a <b>transaction password</b>, then use <b>Export private key</b>.</li><li>Write the key down, store it offline and never share it. If you lose it, nobody can recover your funds.</li><li>Change your password today and switch on <b>two-factor login or a passkey</b>. Bellver never emails links to its login page, so ignore any message that sends you to one. Type app.bellvercards.com yourself or use your bookmark.</li><li>You may see an extra access code on <span class="path">My Wallet</span> and <span class="path">My Cards</span>. Bellver added it temporarily after three phishing incidents and said it would be removed in 7 days.</li></ul>'''),

@@ -224,7 +224,9 @@ def team_sidebar(here, key):
 def disclaimer(where='guide'):
     n = bv.PARTNER['name']
     return (f'Bellver Card is a product of Bellver Markets Ltd. This {where} is shared independently by {n} and is not the official Bellver website or back office. '
-            f'Order buttons link to app.bellvercards.com with {first()}\'s referral code, so {first()} may earn a commission if you order, at no extra cost to you. '
+            + (f'Order buttons open the Get Started guide, and its sign-up buttons link to app.bellvercards.com with {first()}\'s referral code, '
+               if bv.PARTNER.get('order_via_guide') else f'Order buttons link to app.bellvercards.com with {first()}\'s referral code, ')
+            + f'so {first()} may earn a commission if you order, at no extra cost to you. '
             'Prices, fees and the compensation plan come from Bellver\'s official documents (version 08/2026) and can change. '
             'Rewards depend on real card activity and are never guaranteed. Nothing here is financial, tax or legal advice.')
 

@@ -130,6 +130,10 @@ def finalize(html, m, path):
             html = html.replace(old, new.format(n=n, f=f, site=bv.SITE, base=bv.BASE))
     html = _swap_checklist(html)
     html = _remove_no_whatsapp(html, f)
+    if m.get('order_via_guide') and not path.startswith('get-started'):
+        # Ron's idea (3 Nov 2026): order, choose and sign-up buttons open his Get Started steps first; only the buttons on
+        # Get Started itself go to Bellver with his referral link. Member Login and the data in the page head are unchanged.
+        html = html.replace(f'href="{bv.REF}" target="_blank" rel="sponsored noopener"', f'href="{bv.BASE}get-started/"')
     problems = scan(html, m)
     if problems:
         where = TEAM_DIR + m['slug'] + '/' + path
