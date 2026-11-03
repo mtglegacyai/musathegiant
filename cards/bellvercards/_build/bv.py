@@ -11,7 +11,8 @@ LOGIN = 'https://app.bellvercards.com/login'            # member login
 WA = 'https://wa.me/27721714626'                        # MTG WhatsApp
 # MTG's socials (28 Oct 2026): shown on his bellveraffiliates.com pages only, never on musathegiant.com or team/client pages
 TG = 'https://t.me/mtgtribe'   # MTG's Telegram (29 Oct 2026; was t.me/MusaTheGiant_MTG), for when WhatsApp blocks him: same rule as the socials, bellveraffiliates.com MTG pages only
-MTG_SOCIALS = [('wa', 'WhatsApp', 'https://wa.me/27721714626'), ('telegram', 'Telegram', TG), ('tiktok', 'TikTok', 'https://www.tiktok.com/@joinmtgtribe'), ('youtube', 'YouTube', 'https://www.youtube.com/@mtgtribe')]
+TRIBE_GROUP = 'https://mtgtribe.com/group'   # MTG TRIBE WhatsApp group (3 Nov 2026): a redirect page, so a reset invite only needs mtgtribe.com/group/ updated
+MTG_SOCIALS = [('wa', 'WhatsApp', 'https://wa.me/27721714626'), ('group', 'MTG TRIBE', TRIBE_GROUP), ('telegram', 'Telegram', TG), ('tiktok', 'TikTok', 'https://www.tiktok.com/@joinmtgtribe'), ('youtube', 'YouTube', 'https://www.youtube.com/@mtgtribe')]
 WA_MSG = WA + '?text=' + 'Hi%20MTG%2C%20I%20am%20interested%20in%20the%20Bellver%20Card.%20Can%20you%20help%20me%20get%20started%3F'
 YT_27 = '_Ptm2Bj6gm4'
 YT_WEBINAR = 'jeB_kZinnCg'
@@ -150,7 +151,8 @@ def socials_row(cls='fsoc', label='Follow MTG'):
     """MTG's WhatsApp, Telegram, TikTok and YouTube as icon buttons (bellveraffiliates.com, MTG's own pages only)."""
     if not show_socials():
         return ''
-    a = ''.join(f'<a href="{u}" target="_blank" rel="noopener me" aria-label="{lab}: MTG (opens in a new tab)">{_soc_icon(k)}<span>{lab}</span></a>' for k, lab, u in MTG_SOCIALS)
+    aria = {'group': 'Join the MTG TRIBE WhatsApp group (opens in a new tab)'}
+    a = ''.join(f'<a href="{u}" target="_blank" rel="noopener me" aria-label="{aria.get(k, lab + ": MTG (opens in a new tab)")}">{_soc_icon(k)}<span>{lab}</span></a>' for k, lab, u in MTG_SOCIALS)
     return f'<div class="{cls}"><span class="fsoc-l">{label}</span><div class="fsoc-a">{a}</div></div>'
 
 
