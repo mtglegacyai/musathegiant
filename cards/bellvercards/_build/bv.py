@@ -78,6 +78,8 @@ def _is_page(target):
 
 
 def abs_url(target):
+    if target.startswith(('http://', 'https://')):
+        return target          # already a full address (e.g. a team member's own video file)
     return SITE + (BASE if _is_page(target) else ASSET_BASE) + target
 
 

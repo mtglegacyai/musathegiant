@@ -47,6 +47,19 @@ REG_TRANSCRIPT = [
  "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!",
 ]
 
+# A team member can have their own copy of a tutorial (team.json "videos", e.g. in their own voice): their file, thumbnail,
+# length, key moments and transcript replace MTG's on their pages only. Files live in _build/team_media/<slug>/.
+import bv as _bv
+def member_video(key, v, moments, transcript, date):
+    P = _bv.PARTNER
+    o = P.get('videos', {}).get(key) if P else None
+    if not o:
+        return v, moments, transcript, date, None
+    url = lambda f: _bv.SITE + _bv.BASE + f
+    v = (v[0], v[1], v[2], o['duration'], 'mp4', url(o['file']), url(o['poster']), v[7], o['iso'])
+    return v, [tuple(m) for m in o['moments']], o['transcript'], o.get('date', date), o
+REG, REG_MOMENTS, REG_TRANSCRIPT, REG_DATE, REG_OWN = member_video('tut-01', REG, REG_MOMENTS, REG_TRANSCRIPT, REG_DATE)
+
 # Tutorial 2: log in and secure your account with 2FA (MTG, 9 Oct 2026). Plays second, right after registration.
 SEC = ('tut-02', 'How to log in and secure your Bellver account with 2FA', 'Tutorial 2', '3:04', 'mp4', 'videos/tutorials/02-log-in-and-secure-your-account.mp4',
        'images/bellver-card-2fa-login-security-tutorial-thumbnail',
@@ -311,7 +324,7 @@ def tutorials(H='tutorials/'):
   <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{ft}</div></details>'''
     panels = f'''<article class="vpanel" id="tut-01" data-panel="tut-01" aria-labelledby="t-tut-01">
   {pplayer(REG, H, True)}
-  <div class="vhead"><span class="badge green">{ic('star')}Start here, Tutorial 1, {REG[3]}</span><h2 id="t-tut-01">How to <em>register</em> your BellverCard account</h2><p class="muted">{REG[7]} Personal details are blurred. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-1', H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">{ic('star')}Start here, Tutorial 1, {REG[3]}</span><h2 id="t-tut-01">How to <em>register</em> your BellverCard account</h2><p class="muted">{REG[7]} Personal details are blurred. {REG_OWN['narrator'] if REG_OWN else 'Narrated by MTG with his AI voice.'}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-1', H)}">Read the written steps {ic('arrow')}</a></p></div>
   <div class="vsum-d">{reg_det}</div>
  </article>'''
     panels += f'''<article class="vpanel" id="tut-02" data-panel="tut-02" aria-labelledby="t-tut-02">
@@ -394,27 +407,30 @@ def tutorials(H='tutorials/'):
     body = top + lib + exch + help_band(H, 'Need a tutorial that is not here?', 'Tell me what you are stuck on and I will make a video for it, or walk you through it on WhatsApp.')
     reg_ld = vld(REG, H, REG_DATE, jpg=True)
     reg_ld["transcript"] = ' '.join(REG_TRANSCRIPT)
-    reg_ld["author"] = {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"}
+    MTG_AUTHOR = {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"}
+    reg_ld["author"] = MTG_AUTHOR
     reg_ld["keywords"] = "BellverCard registration, Bellver Card sign up, how to register Bellver account, Bellver referral code, Bellver tutorial"
     sec_ld = vld(SEC, H, SEC_DATE, jpg=True)
     sec_ld["transcript"] = ' '.join(SEC_TRANSCRIPT)
-    sec_ld["author"] = reg_ld["author"]
+    sec_ld["author"] = MTG_AUTHOR
     sec_ld["keywords"] = "Bellver login, BellverCard 2FA, two-factor authentication, Google Authenticator, Bellver recovery codes, Bellver security code, Bellver tutorial"
     key_ld = vld(KEY, H, KEY_DATE, jpg=True)
     key_ld["transcript"] = ' '.join(KEY_TRANSCRIPT)
-    key_ld["author"] = reg_ld["author"]
+    key_ld["author"] = MTG_AUTHOR
     key_ld["keywords"] = "Bellver private key, export private key, back up Web3 wallet, Bellver My Wallet, non-custodial wallet, BNB Chain, Bellver tutorial"
     fund_ld = vld(FUND, H, FUND_DATE, jpg=True)
     fund_ld["transcript"] = ' '.join(FUND_TRANSCRIPT)
-    fund_ld["author"] = reg_ld["author"]
+    fund_ld["author"] = MTG_AUTHOR
     fund_ld["keywords"] = "fund Bellver wallet, BNB network fees, USDT BEP-20, order Bellver Card, Bellver virtual card, Bellver KYC, Bellver Google Pay, Bellver tutorial"
     dash_ld = vld(DASH, H, DASH_DATE, jpg=True)
     dash_ld["transcript"] = ' '.join(DASH_TRANSCRIPT)
-    dash_ld["author"] = reg_ld["author"]
+    dash_ld["author"] = MTG_AUTHOR
     dash_ld["keywords"] = "Bellver dashboard walkthrough, Bellver back office, Bellver $100 a month not a subscription, Bellver withdraw, Bellver statement, Bellver referral, Bellver tutorial"
     up_ld = vld(TOPUP, H, TOPUP_DATE, jpg=True)
     up_ld["transcript"] = ' '.join(TOPUP_TRANSCRIPT)
-    up_ld["author"] = reg_ld["author"]
+    up_ld["author"] = MTG_AUTHOR
+    if REG_OWN:
+        reg_ld["author"] = {"@id": _bv.SITE + _bv.BASE + "#partner"}
     up_ld["keywords"] = "top up Bellver Card, Bellver Dynamic Wallet deposit, USDT BEP20 BNB Chain, Bellver 3.9% top-up fee, Not enough USDT, Bellver tutorial"
     return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Register, Secure, Fund, Order, Your Dashboard and Top Up | MTG',
                 'Step-by-step Bellver Card tutorials by MTG: register, secure your account with 2FA, back up your Web3 wallet private key, fund your wallet and order your card, a full tour of your dashboard, then top up your card with the 3.9% fee explained. Click by click, with transcripts.',

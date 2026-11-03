@@ -1,5 +1,5 @@
 {
- "_about": "MTG's team pages. One entry per business partner. Leave a link empty (\"\") if they did not give it: its icon and button are then left out. Run build.py to rebuild MTG's guide and every team page. Every section on a team page opens straight away; add \"open_all_sections\": false to a member to use the tap-to-open sections instead. \"sites\" lists where a member lives: \"bva\" = bellveraffiliates.com/<slug>, \"mtg\" = musathegiant.com/bellvercards/<slug> (default: bellveraffiliates.com only). Optional \"hero_video\" (file, poster, duration, w, h, title, caption): the member's own video in place of the card art on their home page; files live in _build/team_media/<slug>/. Optional \"telegram_group\": a Telegram group link, used in place of \"whatsapp_group\". Optional \"tagline\": the member's own tagline, shown exactly as written in place of \"The Card That Can Pay Your Bills\" (footer, quick guide, social images). Optional \"menu_move\": move menu items to sit directly under another item, e.g. {\"after\": \"start\", \"items\": [\"tutorials\"]} puts Tutorial Videos under Get Started. Optional \"header_contact\": true adds a \"Contact me\" WhatsApp button at the top of every page. Optional \"phone_readable\": true gives larger fine print and labels on phones. Optional \"old_slugs\": earlier addresses of the member; their links forward to the current address (any capitalisation of the current address also works). Optional \"header_name\": the name after \"by Affiliate\" in the header (default: the first name).",
+ "_about": "MTG's team pages. One entry per business partner. Leave a link empty (\"\") if they did not give it: its icon and button are then left out. Run build.py to rebuild MTG's guide and every team page. Every section on a team page opens straight away; add \"open_all_sections\": false to a member to use the tap-to-open sections instead. \"sites\" lists where a member lives: \"bva\" = bellveraffiliates.com/<slug>, \"mtg\" = musathegiant.com/bellvercards/<slug> (default: bellveraffiliates.com only). Optional \"hero_video\" (file, poster, duration, w, h, title, caption): the member's own video in place of the card art on their home page; files live in _build/team_media/<slug>/. Optional \"telegram_group\": a Telegram group link, used in place of \"whatsapp_group\". Optional \"tagline\": the member's own tagline, shown exactly as written in place of \"The Card That Can Pay Your Bills\" (footer, quick guide, social images). Optional \"menu_move\": move menu items to sit directly under another item, e.g. {\"after\": \"start\", \"items\": [\"tutorials\"]} puts Tutorial Videos under Get Started. Optional \"header_contact\": true adds a \"Contact me\" WhatsApp button at the top of every page. Optional \"phone_readable\": true gives larger fine print and labels on phones. Optional \"old_slugs\": earlier addresses of the member; their links forward to the current address (any capitalisation of the current address also works). Optional \"header_name\": the name after \"by Affiliate\" in the header (default: the first name). Optional \"videos\": a member's own copy of a tutorial, e.g. {\"tut-01\": {file, poster, duration, iso, date, narrator, moments, transcript}}; files live in _build/team_media/<slug>/.",
  "members": [
   {
    "slug": "william",
@@ -98,6 +98,77 @@
     "items": [
      "tutorials"
     ]
+   },
+   "videos": {
+    "tut-01": {
+     "file": "tutorial-01-register-dr-rashon.mp4",
+     "poster": "bellver-card-registration-tutorial-thumbnail",
+     "duration": "3:12",
+     "iso": "PT3M12S",
+     "date": "2026-11-03",
+     "narrator": "Narrated by Dr RaShon with her AI voice.",
+     "moments": [
+      [
+       "0:00",
+       "Welcome and what you will learn"
+      ],
+      [
+       "0:15",
+       "Use the referral link and tap Order Your Card"
+      ],
+      [
+       "0:27",
+       "Check the referral code in the address bar, then Sign Up"
+      ],
+      [
+       "0:37",
+       "First name, last name and username"
+      ],
+      [
+       "0:49",
+       "The email warning: use an email never used for another card"
+      ],
+      [
+       "1:03",
+       "Email, country code, mobile number, password and Referred by"
+      ],
+      [
+       "1:19",
+       "Verify your email with the six-digit code"
+      ],
+      [
+       "1:31",
+       "Read the welcome notice and go to your dashboard"
+      ],
+      [
+       "1:48",
+       "Your dashboard"
+      ],
+      [
+       "1:52",
+       "The welcome email and its Open your dashboard button"
+      ],
+      [
+       "2:23",
+       "Your turn, and what comes next"
+      ]
+     ],
+     "transcript": [
+      "This is Dr RaShon, Your Digital Architect. Thank you for taking the time to watch this video. In the next two minutes, I'll show you exactly how to register your Bellver Card account, step by step. Let's get started.",
+      "Always use the referral link of the person who shared this video with you. If that's me, start on my guide page and tap Order Your Card. It opens Bellver's official site.",
+      "Check the address bar. It ends with the referral code of the person who invited you. Mine is SiriusMoney. Then tap Sign Up.",
+      "Enter your first name, last name and a username. Your username is also your referral code, so choose one you're happy to share. The details in this example are blurred.",
+      "Read this warning. If your email was ever used for another Visa or Mastercard account, use a different email. Your email can't be changed later, and it links to your wallet and your cards. Tap Got It.",
+      "Enter your email, choose your country code and add your mobile number. Set a strong password of at least twelve characters. Referred By shows the code of the person who invited you, and it can't be changed. Tap Create Account.",
+      "Bellver emails you a six digit code. It expires in five minutes. Never share it. Bellver will never ask you for it. Type it in and tap Verify.",
+      "Read the notice. Large campaigns and public ads need Bellver's approval first, and income promises can get an account suspended. Using a card never depends on referring anyone. Tick the box and tap Go To My Dashboard.",
+      "You're in. This is your dashboard.",
+      "Bellver also sends you a welcome email. It says buying a card places you in the matrix. That's for members who want the two by two reward matrix. Referral commission is paid even without a card, but without one you miss card based rewards, like a share of transaction fees. Rewards depend on real card activity. Not guaranteed. Keep this email. The Open Your Dashboard button takes you straight to your login.",
+      "Well done. You just watched the full registration, step by step. Now it's your turn, and it's easier than it looks. Once you're in, share this video with the people you'd like to bring along, because we learn best by helping others. Still stuck after watching a few times? Contact me, or the person who shared this video with you.",
+      "Next video: how to log in, and secure your account with two-factor authentication.",
+      "Quick reminder: none of this is financial advice. Always do your own research. Thank you for watching, and for every like, share and comment. This is Dr RaShon, Your Digital Architect. Wealth for the rest of us."
+     ]
+    }
    }
   },
   {

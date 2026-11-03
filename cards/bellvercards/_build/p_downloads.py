@@ -21,6 +21,8 @@ MTG_AD = ('ad', 'My Bellver Card ad', '', '0:36', 'mp4', 'videos/mtg-bellver-car
 
 
 def _mb(rel, team_file=None):
+    if not team_file and rel.startswith(('http://', 'https://')) and bv.PARTNER:     # a member's own video: size of their file
+        team_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'team_media', bv.PARTNER['slug'], rel.rsplit('/', 1)[-1])
     f = team_file or os.path.join(SRC, rel)
     return f'{os.path.getsize(f) / 1048576:.0f} MB' if os.path.exists(f) else ''
 
