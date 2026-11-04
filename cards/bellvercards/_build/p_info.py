@@ -3,9 +3,10 @@
 from bv import *  # noqa
 from p_home import tiers_html, payback_calc
 from p_tools import rewards_tool
-from ex1_video import EX1, EX1_DATE, EX1_MOMENTS, EX1_TRANSCRIPT
+from ex1_video import EX1, EX1_DATE, EX1_MOMENTS, EX1_TRANSCRIPT, EX1_OWN
 from mx_video import MXV
-from ex2_video import EX2, EX2_DATE, EX2_MOMENTS, EX2_TRANSCRIPT
+from ex2_video import EX2, EX2_DATE, EX2_MOMENTS, EX2_TRANSCRIPT, EX2_OWN
+from member_vid import author as v_author, under
 
 
 def phero(H, trail, lines, lead, art=None, btns=None):
@@ -28,7 +29,7 @@ def how(H='how-it-works/'):
     art = f'''<div class="player mx-video mx-herovid mfit" id="p-money-explained" role="button" tabindex="0" aria-label="Play: {EX1[1]}" data-src="{L(EX1[5], H)}" data-title="{EX1[1]}">
   <img src="{L(vimg + '-640.webp', H)}" srcset="{L(vimg + '-640.webp', H)} 640w, {L(vimg + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="Where your money really sits: explainer video thumbnail" width="1280" height="720" fetchpriority="high">
   <span class="pbtn">{ic('play')}</span><span class="plabel">{EX1[3]}</span>
- </div><p class="mx-vcap">{ic('play-c')}Watch it explained in under 5 minutes</p>'''
+ </div><p class="mx-vcap">{ic('play-c')}Watch it explained in under {under(EX1[3])} minutes</p>'''
     top = phero(H, trail, ['How the', 'card works'], 'One card with your own wallet behind it. Press play to see where your money sits, who holds the key and how it reaches your card. The short version is below.', art,
                 order_btn('Order your card') + dl_btn('slides', H, 'Presentation (PDF)'))
 
@@ -128,7 +129,7 @@ def how(H='how-it-works/'):
     body = top + vdet + card + wallet + fund + pv + se + who + checklist_band(H) + help_band(H)
     vld_ex1 = {"@type": "VideoObject", "name": EX1[1], "description": EX1[7], "thumbnailUrl": abs_url(EX1[6] + ".jpg"), "inLanguage": "en", "url": abs_url(H),
                "contentUrl": abs_url(EX1[5]), "uploadDate": EX1_DATE, "duration": EX1[8], "transcript": ' '.join(EX1_TRANSCRIPT),
-               "author": {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"},
+               "author": v_author(EX1_OWN),
                "keywords": "Bellver wallet, Bellver Dynamic Wallet, non-custodial wallet, private key, Fireblocks, USDT, USDC, BNB Smart Chain, Bellver top-up fee, is Bellver safe, who is behind Bellver"}
     howto = {"@type": "HowTo", "name": "How to fund and use the Bellver Card", "step": [
         {"@type": "HowToStep", "position": 1, "name": "Send USDT or USDC", "text": "Send USDT or USDC from any external wallet or exchange, ideally on BNB Smart Chain, plus a little BNB or TRX for gas."},
@@ -145,7 +146,7 @@ def prices(H='prices/'):
     art3 = f'''<div class="player mx-video mx-herovid pb-low mfit" id="p-which-card" role="button" tabindex="0" aria-label="Play: {EX2[1]}" data-src="{L(EX2[5], H)}?v=2" data-title="{EX2[1]}" data-more="{L('explainers/#which-card-explained', H)}">
   <img src="{L(EX2[6] + '-640.webp', H)}" srcset="{L(EX2[6] + '-640.webp', H)} 640w, {L(EX2[6] + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="Which card is right for you: explainer video thumbnail" width="1280" height="720" fetchpriority="high">
   <span class="pbtn">{ic('play')}</span><span class="plabel">{EX2[3]}</span>
- </div><p class="mx-vcap">{ic('play-c')}Not sure which level? Watch it explained in under 5 minutes</p>'''
+ </div><p class="mx-vcap">{ic('play-c')}Not sure which level? Watch it explained in under {under(EX2[3])} minutes</p>'''
     trail = T(('Prices & Limits', abs_url(H)))
     top = phero(H, trail, ['Prices,', 'fees & limits'], 'One-time card price, clear limits, published fees. Everything below comes from Bellver\'s official price list and compensation plan, version 08/2026.', art3,
                 order_btn('Order your card') + dl_btn('price', H, 'Price list (PDF)'))
@@ -245,7 +246,7 @@ def prices(H='prices/'):
                "description": "Crypto-funded card (Visa physical, Mastercard virtual) in four levels with daily limits from $1,000 to $250,000.", "offers": offers}
     vld_ex2 = {"@type": "VideoObject", "name": EX2[1], "description": EX2[7], "thumbnailUrl": abs_url(EX2[6] + ".jpg"), "inLanguage": "en", "url": abs_url(H),
                "contentUrl": abs_url(EX2[5]), "uploadDate": EX2_DATE, "duration": EX2[8], "transcript": ' '.join(EX2_TRANSCRIPT),
-               "author": {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"},
+               "author": v_author(EX2_OWN),
                "keywords": "which Bellver card, Bellver Basic Premium Business Gold, Bellver card limits, Bellver physical or virtual card, Bellver Special Edition, Bellver upgrade"}
     return page(H, 'prices', 'Bellver Card Prices, Fees and Limits (2026) | MTG',
                 'Bellver Card prices: Basic $99, Premium $270, Business $490, Gold $990. Daily limits up to $250,000, fees of 3.9% top-up, 1.75% per transaction, 2% ATM, plus add-ons and upgrades.',
@@ -281,7 +282,7 @@ def rewards(H='rewards/'):
  <div class="rv"><div class="player mx-video mx-herovid mfit" id="p-rewards-matrix" role="button" tabindex="0" aria-label="Play: {MXV[1]}" data-src="{L(MXV[5], H)}" data-title="{MXV[1]}" data-more="{L('explainers/#matrix-explained', H)}">
   <img src="{L(MXV[6] + '-640.webp', H)}" srcset="{L(MXV[6] + '-640.webp', H)} 640w, {L(MXV[6] + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="The 2x2 matrix made simple: explainer video thumbnail" width="1280" height="720" loading="lazy">
   <span class="pbtn">{ic('play')}</span><span class="plabel">{MXV[3]}</span>
- </div><p class="mx-vcap">{ic('play-c')}Watch it explained in under 9 minutes</p></div>
+ </div><p class="mx-vcap">{ic('play-c')}Watch it explained in under {under(MXV[3])} minutes</p></div>
  <div class="rv" style="--d:.1s">
   <h2 class="h2">How the <em>2x2 matrix</em> fills</h2>
   <ul class="checks">

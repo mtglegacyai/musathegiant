@@ -18,3 +18,7 @@ EX4_TRANSCRIPT = [
  "Well done. Now you know why people choose the Bellver Card. It's your turn. Read the reasons again on my guide, check the official documents, then decide for yourself. And when you're ready, share this video with someone who needs a card that can pay their bills. If you still have questions after watching this, contact me, or the business partner who shared this video with you.",
  "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!"
 ]
+
+# a team member's own copy (team.json "videos" -> "ten-reasons-explained"), e.g. in their own voice; MTG's pages are unchanged
+from member_vid import member_video as _mv
+EX4, EX4_MOMENTS, EX4_TRANSCRIPT, EX4_DATE, EX4_OWN = _mv('ten-reasons-explained', EX4, EX4_MOMENTS, EX4_TRANSCRIPT, EX4_DATE)

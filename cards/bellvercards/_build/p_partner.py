@@ -2,7 +2,8 @@
 """Become a partner: the page for people who want to share the card and earn commissions."""
 from bv import *  # noqa
 from p_info import phero, T
-from ex3_video import EX3, EX3_DATE, EX3_TRANSCRIPT
+from ex3_video import EX3, EX3_DATE, EX3_TRANSCRIPT, EX3_OWN
+from member_vid import author as v_author, under
 
 
 def partner(H='partner/'):
@@ -10,7 +11,7 @@ def partner(H='partner/'):
     art = f'''<div class="player mx-video mx-herovid mfit pb-mid" id="p-first-week" role="button" tabindex="0" aria-label="Play: {EX3[1]}" data-src="{L(EX3[5], H)}" data-title="{EX3[1]}" data-more="{L('explainers/#first-week-explained', H)}">
   <img src="{L(EX3[6] + '-640.webp', H)}" srcset="{L(EX3[6] + '-640.webp', H)} 640w, {L(EX3[6] + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="Your first week as a partner: explainer video thumbnail" width="1280" height="720" fetchpriority="high">
   <span class="pbtn">{ic('play')}</span><span class="plabel">{EX3[3]}</span>
- </div><p class="mx-vcap">{ic('play-c')}New partner? Watch your first week explained in under 5 minutes</p>'''
+ </div><p class="mx-vcap">{ic('play-c')}New partner? Watch your first week explained in under {under(EX3[3])} minutes</p>'''
     top = phero(H, trail, ['Share the card,', 'the honest way'],
                 'You become a Bellver affiliate partner when you share the card through your referral link. There is nothing to apply for and nobody to sign up with: your referral link is your partnership. Bellver pays a referral commission on your personal referrals whether or not you own a card yourself. It suits TikTok LIVE hosts and other creators whose audiences already trust them.',
                 art,
@@ -139,7 +140,7 @@ def partner(H='partner/'):
     body = top + mean + reasons_band(H, 'compact', title='What people <em>say yes</em> to: 10 reasons', lead='When you share Bellver Card, these are the reasons people give for joining. More than 1,000 cards were sold in the testing phase alone (as reported at launch). Explain each reason honestly, and let people decide for themselves.') + audience_band(H, chips=False, cta=False) + who + earn + week + brules + honest + cbp_section(H) + tiktok + tools + checklist_band(H) + faqs + cta
     vld_ex3 = {"@type": "VideoObject", "name": EX3[1], "description": EX3[7], "thumbnailUrl": abs_url(EX3[6] + ".jpg"), "inLanguage": "en", "url": abs_url(H),
                "contentUrl": abs_url(EX3[5]), "uploadDate": EX3_DATE, "duration": EX3[8], "transcript": ' '.join(EX3_TRANSCRIPT),
-               "author": {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"},
+               "author": v_author(EX3_OWN),
                "keywords": "Bellver partner, Bellver affiliate, Bellver referral link, Bellver commission, Bellver first week plan, how to share Bellver Card"}
     faq_ld = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
     return page(H, 'partner', 'Become a Bellver Card Partner: How to Share It and Earn | MTG',

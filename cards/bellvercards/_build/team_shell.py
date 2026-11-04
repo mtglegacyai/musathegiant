@@ -233,8 +233,11 @@ def disclaimer(where='guide'):
 
 
 def slogan():
-    """The member's own tagline (team.json "tagline", shown exactly as given), or the general team slogan."""
-    return (bv.PARTNER or {}).get('tagline') or SLOGAN
+    """The member's own tagline (team.json "tagline", shown exactly as given, in italics if "tagline_italic"), or the general team slogan."""
+    P = bv.PARTNER or {}
+    if P.get('tagline'):
+        return f'<em style="font-style:italic">{P["tagline"]}</em>' if P.get('tagline_italic') else P['tagline']
+    return SLOGAN
 
 
 def bottom():
@@ -266,7 +269,7 @@ def team_footer(here):
  <div class="wrap">
   <div class="ftr-top">
    <div class="logo"><img src="{L('images/bellver-cards-logo-white-360.webp', here)}" alt="Bellver Card logo" width="360" height="106" loading="lazy">
-    {(f'<p class="tag own-tag"><em>{bv.PARTNER["tagline"]}</em></p>') if bv.PARTNER.get('tagline') else '<p class="tag">THE CARD THAT CAN <em>PAY YOUR BILLS</em></p>'}
+    {(f'<p class="tag own-tag"><em{" style=&quot;font-style:italic&quot;" if bv.PARTNER.get("tagline_italic") else ""}>{bv.PARTNER["tagline"]}</em></p>') if bv.PARTNER.get('tagline') else '<p class="tag">THE CARD THAT CAN <em>PAY YOUR BILLS</em></p>'}
     <p>An independent Bellver Card guide shared by {bv.PARTNER['name']}. Clear facts, honest numbers and personal help to get you started.</p>
    </div>
    {html}

@@ -17,7 +17,7 @@ def shadowed(im,blur=26,off=(0,24),alpha=170):
     pad=80; sh=Image.new('RGBA',(im.width+pad*2,im.height+pad*2),(0,0,0,0))
     a=im.split()[3].point(lambda v:v*alpha//255); blk=Image.new('RGBA',im.size,(0,0,0,255)); blk.putalpha(a)
     sh.alpha_composite(blk,(pad+off[0],pad+off[1])); sh=sh.filter(ImageFilter.GaussianBlur(blur)); sh.alpha_composite(im,(pad,pad)); return sh
-def make(name,l1,l2,sub,art='card',green=2,by='by Affiliate MTG',url='musathegiant.com/cards/bellvercards',out=None):
+def make(name,l1,l2,sub,art='card',green=2,by='by Affiliate MTG',url='musathegiant.com/cards/bellvercards',out=None,url_italic=False):
     im=base().convert('RGBA'); d=ImageDraw.Draw(im)
     lg=logo.resize((250,round(250*logo.height/logo.width)),Image.LANCZOS); im.alpha_composite(lg,(64,54))
     fm=ImageFont.truetype(FM.format(700),24); d.text((64+262,82),by,font=fm,fill=(195,210,202))
@@ -39,7 +39,12 @@ def make(name,l1,l2,sub,art='card',green=2,by='by Affiliate MTG',url='musathegia
         else: line=(line+' '+w).strip()
     d.text((64,ys),line,font=fs,fill=(195,210,202))
     d.rounded_rectangle((64,H-74,64+12,H-62),3,fill=(252,190,37))
-    d.text((86,H-82),url,font=ImageFont.truetype(FM.format(700),22),fill=(142,163,154))
+    uf=ImageFont.truetype(FM.format(700),22)
+    if url_italic:   # Manrope has no italic: slant the line (about 11 degrees) like a browser does
+        lay=Image.new('RGBA',(int(uf.getlength(url))+60,40),(0,0,0,0)); ImageDraw.Draw(lay).text((20,4),url,font=uf,fill=(142,163,154,255))
+        lay=lay.transform(lay.size,Image.AFFINE,(1,0.2,-6,0,1,0),resample=Image.BICUBIC); im.alpha_composite(lay,(66,H-86))
+    else:
+        d.text((86,H-82),url,font=uf,fill=(142,163,154))
     im.convert('RGB').save(os.path.join(out or os.path.join(IMG,'og'),name),'JPEG',quality=86,optimize=True,progressive=True); print(name)
 # MTG's own images, with the title lines for every page (team_assets.py reuses this list for team pages)
 PAGES=[

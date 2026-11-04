@@ -17,3 +17,7 @@ EX3_TRANSCRIPT = [
  "Well done. You now know exactly how to start. It's your turn. Open the partner page on my guide, find your link, and pick your first 2 people. And once they're set up, teach them to do the same. We learn best by teaching. If you still have questions after watching this, contact me, or the business partner who shared this video with you.",
  "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!"
 ]
+
+# a team member's own copy (team.json "videos" -> "first-week-explained"), e.g. in their own voice; MTG's pages are unchanged
+from member_vid import member_video as _mv
+EX3, EX3_MOMENTS, EX3_TRANSCRIPT, EX3_DATE, EX3_OWN = _mv('first-week-explained', EX3, EX3_MOMENTS, EX3_TRANSCRIPT, EX3_DATE)

@@ -19,3 +19,7 @@ EX2_TRANSCRIPT = [
  "Well done. Now you can choose your card with confidence. It's your turn. Open the Payback Calculator on my guide, pick a level, and see how many referrals would cover it. And once you've chosen, help someone else choose theirs. If you still have questions after watching this, contact me, or the business partner who shared this video with you.",
  "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!"
 ]
+
+# a team member's own copy (team.json "videos" -> "which-card-explained"), e.g. in their own voice; MTG's pages are unchanged
+from member_vid import member_video as _mv
+EX2, EX2_MOMENTS, EX2_TRANSCRIPT, EX2_DATE, EX2_OWN = _mv('which-card-explained', EX2, EX2_MOMENTS, EX2_TRANSCRIPT, EX2_DATE)

@@ -19,3 +19,7 @@ EX1_TRANSCRIPT = [
  "Well done. Now you know exactly where your money sits, and that puts you ahead of most people who ask. It's your turn. Open your dashboard, find your Dynamic Wallet, and check that your private key is backed up safely. And once you understand it, explain it to someone else. That's how we learn best. If you still have questions after watching this, contact me, or the business partner who shared this video with you.",
  "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!"
 ]
+
+# a team member's own copy (team.json "videos" -> "money-explained"), e.g. in their own voice; MTG's pages are unchanged
+from member_vid import member_video as _mv
+EX1, EX1_MOMENTS, EX1_TRANSCRIPT, EX1_DATE, EX1_OWN = _mv('money-explained', EX1, EX1_MOMENTS, EX1_TRANSCRIPT, EX1_DATE)

@@ -1,5 +1,5 @@
 {
- "_about": "MTG's team pages. One entry per business partner. Leave a link empty (\"\") if they did not give it: its icon and button are then left out. Run build.py to rebuild MTG's guide and every team page. Every section on a team page opens straight away; add \"open_all_sections\": false to a member to use the tap-to-open sections instead. \"sites\" lists where a member lives: \"bva\" = bellveraffiliates.com/<slug>, \"mtg\" = musathegiant.com/bellvercards/<slug> (default: bellveraffiliates.com only). Optional \"hero_video\" (file, poster, duration, w, h, title, caption): the member's own video in place of the card art on their home page; files live in _build/team_media/<slug>/. Optional \"telegram_group\": a Telegram group link, used in place of \"whatsapp_group\". Optional \"tagline\": the member's own tagline, shown exactly as written in place of \"The Card That Can Pay Your Bills\" (footer, quick guide, social images). Optional \"menu_move\": move menu items to sit directly under another item, e.g. {\"after\": \"start\", \"items\": [\"tutorials\"]} puts Tutorial Videos under Get Started. Optional \"header_contact\": true adds a \"Contact me\" WhatsApp button at the top of every page. Optional \"phone_readable\": true gives larger fine print and labels on phones. Optional \"old_slugs\": earlier addresses of the member; their links forward to the current address (any capitalisation of the current address also works). Optional \"header_name\": the name after \"by Affiliate\" in the header (default: the first name). Optional \"videos\": a member's own copy of a tutorial, e.g. {\"tut-01\": {file, poster, duration, iso, date, narrator, moments, transcript}}; files live in _build/team_media/<slug>/.",
+ "_about": "MTG's team pages. One entry per business partner. Leave a link empty (\"\") if they did not give it: its icon and button are then left out. Run build.py to rebuild MTG's guide and every team page. Every section on a team page opens straight away; add \"open_all_sections\": false to a member to use the tap-to-open sections instead. \"sites\" lists where a member lives: \"bva\" = bellveraffiliates.com/<slug>, \"mtg\" = musathegiant.com/bellvercards/<slug> (default: bellveraffiliates.com only). Optional \"hero_video\" (file, poster, duration, w, h, title, caption): the member's own video in place of the card art on their home page; files live in _build/team_media/<slug>/. Optional \"telegram_group\": a Telegram group link, used in place of \"whatsapp_group\". Optional \"tagline\": the member's own tagline, shown exactly as written in place of \"The Card That Can Pay Your Bills\" (footer, quick guide, social images). Optional \"menu_move\": move menu items to sit directly under another item, e.g. {\"after\": \"start\", \"items\": [\"tutorials\"]} puts Tutorial Videos under Get Started. Optional \"header_contact\": true adds a \"Contact me\" WhatsApp button at the top of every page. Optional \"phone_readable\": true gives larger fine print and labels on phones. Optional \"old_slugs\": earlier addresses of the member; their links forward to the current address (any capitalisation of the current address also works). Optional \"header_name\": the name after \"by Affiliate\" in the header (default: the first name). Optional \"videos\": a member's own copy of a tutorial, e.g. {\"tut-01\": {file, poster, duration, iso, date, narrator, moments, transcript}}; files live in _build/team_media/<slug>/. Optional \"tagline_italic\": true shows the member's tagline in italics everywhere it appears.",
  "members": [
   {
    "slug": "william",
@@ -92,7 +92,7 @@
     "bva"
    ],
    "header_name": "Dr RaShon",
-   "tagline": "…wealth for the rest of us",
+   "tagline": "“…wealth for the rest of us”",
    "menu_move": {
     "after": "start",
     "items": [
@@ -168,8 +168,818 @@
       "Next video: how to log in, and secure your account with two-factor authentication.",
       "Quick reminder: none of this is financial advice. Always do your own research. Thank you for watching, and for every like, share and comment. This is Dr RaShon, Your Digital Architect. Wealth for the rest of us."
      ]
+    },
+    "tut-02": {
+     "file": "tutorial-02-log-in-and-secure-dr-rashon.mp4",
+     "poster": "bellver-card-2fa-login-security-tutorial-thumbnail",
+     "duration": "3:33",
+     "iso": "PT3M33S",
+     "date": "2026-11-04",
+     "narrator": "Narrated by Dr RaShon with her AI voice.",
+     "moments": [
+      [
+       "0:00",
+       "Welcome and what you will learn"
+      ],
+      [
+       "0:20",
+       "Open your dashboard from the welcome email"
+      ],
+      [
+       "0:28",
+       "Log in with your username and password"
+      ],
+      [
+       "0:35",
+       "Your dashboard, username and referral link"
+      ],
+      [
+       "0:49",
+       "Settings: check your email is verified and your username"
+      ],
+      [
+       "0:58",
+       "Edit your profile"
+      ],
+      [
+       "1:08",
+       "Set up the authenticator app"
+      ],
+      [
+       "1:15",
+       "Scan the QR code with Google Authenticator"
+      ],
+      [
+       "1:27",
+       "Enter the 6-digit code and turn on 2FA"
+      ],
+      [
+       "1:32",
+       "Save your recovery codes"
+      ],
+      [
+       "1:47",
+       "Passkeys"
+      ],
+      [
+       "1:58",
+       "Set your security code"
+      ],
+      [
+       "2:17",
+       "Change your password"
+      ],
+      [
+       "2:21",
+       "Log out and test your login"
+      ],
+      [
+       "2:29",
+       "Log in with your 2FA code"
+      ],
+      [
+       "2:38",
+       "Protected with two-factor authentication"
+      ],
+      [
+       "2:44",
+       "Your turn, and what comes next"
+      ]
+     ],
+     "transcript": [
+      "This is Dr RaShon, Your Digital Architect. Thank you for taking the time to watch this video. In the next few minutes, I'll show you how to log in, find your referral link, and secure your Bellver account with 2FA, two-factor authentication. Let's get started.",
+      "Open your welcome email and tap Open Your Dashboard. You can also go straight to app.bellvercards.com. Enter your username, then your password, and tap Login. Close the news window.",
+      "This is your dashboard. Your username sits at the top. Right below it is your referral link. If you plan to share BellverCard, tap the copy icon to copy it. Sharing is always optional.",
+      "Now scroll down the menu and open Settings. Check that your email shows Verified, and that your username is correct.",
+      "To update your name or mobile number, tap Edit Profile. Your email can't be changed here. Make your changes and tap Save.",
+      "Now the most important step. Under Authenticator app, tap Set Up. Open Google Authenticator on your phone and scan the QR code. If you can't scan it, type in the setup key instead. Never share this code or key with anyone. Enter the six digit code the app shows, and tap Turn On.",
+      "Save these recovery codes now. They're your only way back in if you lose your phone. Each code works once, and this is the only time they're shown. Tap Copy All, and keep them somewhere safe, offline.",
+      "A passkey lets you sign in with your fingerprint, face or device PIN. It only works on bellvercards.com, so a fake site can't trick it out of you. Next, tap Set Code Now. Your security code is six digits, and it opens My Wallet and My Cards. Keep it safe and never forget it. Enter it, tap Continue, enter it again, and tap Set Security Code.",
+      "You can also change your password here at any time.",
+      "Now let's test it. Open your profile menu and tap Log Out. Log in again with your username and password. Bellver now asks for a code. Open Google Authenticator, type the six digit code, and tap Confirm.",
+      "You're in. Your account is now protected with two-factor authentication.",
+      "Well done. You just secured your Bellver account, step by step. Now it's your turn, and it only takes a few minutes. Share this video with your potential business partners, because a safe team is a strong team. Still stuck after watching a few times? Contact me, or the business partner who shared this video with you.",
+      "Next video: how to export and back up your Web3 wallet's private key, so you always stay in control of your crypto.",
+      "Quick reminder: none of this is financial advice. Always do your own research. Thank you for watching, and for every like, share and comment. This is Dr RaShon, Your Digital Architect. Wealth for the rest of us."
+     ]
+    },
+    "tut-03": {
+     "file": "tutorial-03-private-key-dr-rashon.mp4",
+     "poster": "bellver-card-web3-wallet-private-key-backup-tutorial-thumbnail",
+     "duration": "4:31",
+     "iso": "PT4M31S",
+     "date": "2026-11-04",
+     "narrator": "Narrated by Dr RaShon with her AI voice.",
+     "moments": [
+      [
+       "0:00",
+       "Welcome and what you will learn"
+      ],
+      [
+       "0:19",
+       "Log in with your username and password"
+      ],
+      [
+       "0:27",
+       "If your login details do not match"
+      ],
+      [
+       "0:38",
+       "Enter your two-factor authentication code"
+      ],
+      [
+       "0:53",
+       "Open My Wallet with your security code"
+      ],
+      [
+       "1:03",
+       "The two-minute wallet video"
+      ],
+      [
+       "1:11",
+       "Your wallet, with BNB Chain selected by default"
+      ],
+      [
+       "1:23",
+       "Open the wallet Settings"
+      ],
+      [
+       "1:26",
+       "Read the warning"
+      ],
+      [
+       "1:49",
+       "Account and Security"
+      ],
+      [
+       "1:54",
+       "Export Private Key"
+      ],
+      [
+       "2:01",
+       "Read the agree screen"
+      ],
+      [
+       "2:17",
+       "Tick the box and tap Reveal"
+      ],
+      [
+       "2:26",
+       "Highlight and copy your private key"
+      ],
+      [
+       "2:41",
+       "Back it up on paper, offline"
+      ],
+      [
+       "3:05",
+       "Tap I'm Done"
+      ],
+      [
+       "3:08",
+       "Log out to keep your account safe"
+      ],
+      [
+       "3:20",
+       "Quick recap"
+      ],
+      [
+       "3:35",
+       "Your turn, and what comes next"
+      ]
+     ],
+     "transcript": [
+      "This is Dr RaShon, Your Digital Architect. Thank you for taking the time to watch this video. In the next few minutes, I'll show you how to open your Web3 wallet inside your Bellver dashboard, and how to export and back up your private key, safely. Let's get started.",
+      "Go to app.bellvercards.com. Enter your username, then your password, and tap Login.",
+      "If you see \"These credentials do not match our records\", don't panic. Check your username and password carefully, type them again, and tap Login.",
+      "Your account is protected with two-factor authentication, so Bellver asks for a code. Open Google Authenticator, type the six digit code, and tap Confirm. Close the news window.",
+      "In the menu, tap My Wallet. Enter the six digit security code you set up in the previous video. It unlocks automatically.",
+      "This is My Wallet. There's a short two minute video here about your wallet password and private key. Watch it when you have time. Now scroll down. Here is your wallet, with BNB Chain selected by default. BNB Chain is the network we'll use to fund your wallet in the next video.",
+      "Scroll down a little, and tap Settings.",
+      "Stop, and read this warning carefully. If you lose or forget your private key or password, you lose everything. Your balance, and your position in the matrix, no matter how many team members you've already built. Bellver has no control over your wallet, and can never fix it for you. You alone are responsible.",
+      "Under General, tap Account and Security. Here you can set a wallet password. Today, we export the private key. Tap Export Private Key.",
+      "Read this screen. Your wallet is ready. Back up your key to protect your assets. This is a non-custodial wallet, so you are always in control. Keep your key private. It controls your account and your assets. Tick the box: I am responsible for safeguarding and using my wallet key information. Then tap Reveal.",
+      "This is your private key. In this video it stays hidden, and yours should too. Anyone who has this key can empty your wallet. Highlight the whole key carefully, from the very first character to the very last, and copy it.",
+      "Now back it up, offline. Write it down on paper, check every character twice, and keep it somewhere safe. Never save it in a screenshot, an email, cloud notes, or WhatsApp. And never share it with anyone. Not a friend. Not a business partner. Not even Bellver support. No one. It's called a private key for a reason. Then tap I'm Done.",
+      "Tap Dashboard to go back. When you're finished, always log out. Open your profile menu, and tap Log Out. It keeps your account safe.",
+      "Quick recap. In this video, we logged in with two-factor authentication. We opened My Wallet with the security code. We read the warning. We exported the private key, backed it up on paper, and logged out.",
+      "Well done. You now hold the key to your own wallet, and you know how to protect it. Now it's your turn, and it takes less than five minutes. Share this video with your potential business partners, because everyone deserves to keep what they build. Still stuck after watching a few times? Contact me, or the business partner who shared this video with you.",
+      "Next video: how to fund your wallet with a little BNB for network fees, add USDT for your card, and order your Bellver Card, step by step.",
+      "Quick reminder: none of this is financial advice. Always do your own research. Thank you for watching, and for every like, share and comment. This is Dr RaShon, Your Digital Architect. Wealth for the rest of us."
+     ]
+    },
+    "money-explained": {
+     "file": "explainer-where-your-money-sits-dr-rashon.mp4",
+     "poster": "bellver-where-your-money-sits-explainer-thumbnail",
+     "duration": "5:48",
+     "iso": "PT5M48S",
+     "date": "2026-11-04",
+     "narrator": "Narrated by Dr RaShon with her AI voice.",
+     "moments": [
+      [
+       "0:00",
+       "Welcome: where does my money sit, and is it safe?"
+      ],
+      [
+       "0:26",
+       "Two places: the safe at home and the card in your pocket"
+      ],
+      [
+       "0:49",
+       "Your Dynamic Wallet is yours: non-custodial, on Fireblocks"
+      ],
+      [
+       "1:11",
+       "Only you hold the key: export it, write it down, never share it"
+      ],
+      [
+       "1:52",
+       "What goes in the safe: USDT and USDC stablecoins"
+      ],
+      [
+       "2:08",
+       "Networks: BNB Smart Chain, Tron and Ethereum, and swapping other coins"
+      ],
+      [
+       "2:28",
+       "No crypto yet? VALR or Binance, and BNB for network fees"
+      ],
+      [
+       "2:42",
+       "Your card: a US dollar card account you can use anywhere"
+      ],
+      [
+       "2:58",
+       "The top-up and the 3.9% fee"
+      ],
+      [
+       "3:12",
+       "Where card money sits, and why you move only what you spend"
+      ],
+      [
+       "3:29",
+       "Who is behind it: Malta, Singapore and Fireblocks"
+      ],
+      [
+       "4:18",
+       "The whole flow, from exchange to payment"
+      ],
+      [
+       "4:36",
+       "Quick recap"
+      ],
+      [
+       "5:01",
+       "Your turn"
+      ],
+      [
+       "5:30",
+       "Thank you"
+      ]
+     ],
+     "transcript": [
+      "This is Dr RaShon, Your Digital Architect. Thank you for taking the time to watch this training. The first question almost everyone asks me about the Bellver Card is a good one. Where does my money actually sit? And is it safe? In the next few minutes, I'll show you exactly where your money lives, who holds the key, and how it moves from your wallet to your card. Let's get started.",
+      "Here's the big picture. Your money lives in two places. Place one: your Dynamic Wallet. Place two: your card. Think of your home. You keep your savings in a safe at home, and you only carry what you need for the week in your pocket. Your Dynamic Wallet is the safe. Your card is your pocket.",
+      "Let's open the safe. When you register, Bellver automatically creates a Dynamic Wallet for you. It runs on Fireblocks wallet technology. And it's non-custodial. That means the wallet belongs to you, not to Bellver. Bellver says it cannot freeze your wallet, and cannot touch your funds.",
+      "So what opens the safe? Your private key. Only you hold it. You can export it any time, and move your funds to another wallet if you ever want to. But here's where the safe example stops. A real safe has a locksmith. Your wallet does not. There's no bank to call if you lose your private key. So write it down, keep it offline, and never share it. Not with support, not with me, not with anyone. Then add a transaction password, and two-factor authentication, or a passkey. Tutorials 2 and 3 show you exactly how.",
+      "What goes into the safe? Stablecoins: USDT or USDC. A stablecoin is designed to stay worth about 1 US dollar, so your balance doesn't jump up and down like Bitcoin. Send them from any exchange or wallet. BNB Smart Chain is the recommended network, because it's cheap. Tron and Ethereum work too. Already hold Bitcoin, Ethereum or Solana? Deposit them, then swap to USDT or USDC inside your wallet. No crypto yet? Open an exchange account, like VALR in South Africa, or Binance in most other countries. And keep about $10 of BNB in your wallet, for network fees.",
+      "Now your pocket: the card. Your card is a US dollar card account. You can pay in shops and online, anywhere in the world, in the local currency. Money only reaches your card when you move it there. That's called a top-up. Each top-up has a 3.9% fee, added on top. Load $100, and $103.90 leaves your wallet. The minimum top-up is $10. Once money is on your card, it sits in your card account, with Bellver's card provider. So move only what you plan to spend, just like taking cash out of the safe for the week. Everything else stays in your wallet, under your own key.",
+      "So who's behind all this? Bellver Markets Limited, based in Malta, runs the program and the rewards. Bellver describes itself as the marketing company. It does not hold your money. The card is registered in Singapore, one of Asia's leading financial centres. At the launch webinar, Bellver's head of operations in Singapore said the card provider is licensed by the Monetary Authority of Singapore, and that the wallets run on Fireblocks. The platform launched as version 1.0 in September 2026, and improvements are still rolling out. Don't just trust me. Check the official documents and the launch webinar on my guide, then decide for yourself.",
+      "Let's put it all together. Your exchange sends USDT, on BNB Smart Chain, to your Dynamic Wallet. Your safe, your key. When you want to spend, you top up your card. Then you pay, with your card, your phone, or a ring.",
+      "Quick recap. Your money lives in two places: your wallet, and your card. Your wallet is yours alone, and only you hold the key. Fund it with USDT or USDC on BNB Smart Chain. Move to your card only what you plan to spend. And protect your private key like the keys to your house.",
+      "Well done. Now you know exactly where your money sits, and that puts you ahead of most people who ask. It's your turn. Open your dashboard, find your Dynamic Wallet, and check that your private key is backed up safely. And once you understand it, explain it to someone else. That's how we learn best. If you still have questions after watching this, contact me, or the business partner who shared this video with you.",
+      "Quick reminder: none of this is financial advice. Always do your own research. Thank you for watching, and for every like, share and comment. This is Dr RaShon, Your Digital Architect. Wealth for the rest of us."
+     ],
+     "kind": "Explainer"
+    },
+    "which-card-explained": {
+     "file": "explainer-which-card-is-right-for-me-dr-rashon.mp4",
+     "poster": "bellver-which-card-is-right-for-me-explainer-thumbnail",
+     "duration": "5:30",
+     "iso": "PT5M30S",
+     "date": "2026-11-04",
+     "narrator": "Narrated by Dr RaShon with her AI voice.",
+     "moments": [
+      [
+       "0:00",
+       "Welcome: which level, physical or virtual, and the extras"
+      ],
+      [
+       "0:23",
+       "Same card, four sizes: one-time price, no monthly card fee listed"
+      ],
+      [
+       "0:47",
+       "Spending limits, shown as shopping trolleys"
+      ],
+      [
+       "1:25",
+       "Rewards depth, shown as a lift: Premium 12, Business 15, Gold 20"
+      ],
+      [
+       "1:51",
+       "The $100 a month rule: not a subscription, your own money"
+      ],
+      [
+       "2:06",
+       "Which level is for you, and when referrals cover your card"
+      ],
+      [
+       "2:43",
+       "Upgrading later: pay only the difference"
+      ],
+      [
+       "3:05",
+       "Physical or virtual: Visa or Mastercard, ATMs, shipping and delivery"
+      ],
+      [
+       "3:53",
+       "Extras: the Special Edition and your name on the card"
+      ],
+      [
+       "4:13",
+       "The usage fees on every level"
+      ],
+      [
+       "4:27",
+       "Quick recap"
+      ],
+      [
+       "4:47",
+       "Your turn: the Payback Calculator"
+      ],
+      [
+       "5:11",
+       "Thank you"
+      ]
+     ],
+     "transcript": [
+      "This is Dr RaShon, Your Digital Architect. Thank you for taking the time to watch this training. Basic, Premium, Business or Gold? Physical or virtual? And what is the Special Edition? In the next few minutes, I'll help you choose the right Bellver Card for you, without guessing. Let's get started.",
+      "First, the good news. All four levels are the same card, with the same app and the same wallet behind it. You pay once, when you buy it. Bellver's price list shows no monthly or annual card fee. Only three things change between the levels: how much you can spend, how deep your rewards can go, and the price.",
+      "Let's start with spending. Think of a shopping trolley. A bigger trolley carries more. Basic lets you spend $1,000 a day, and $500 in one payment. Premium: $10,000 a day, $5,000 per payment. Business: $50,000 a day, $10,000 per payment. And Gold: $250,000 a day, and $20,000 in one payment. So ask yourself: what is the biggest payment I will ever make in one go? Choose a trolley that fits it.",
+      "Now, rewards. Think of a lift in a tall building. Your card decides how high the lift can go. Basic has no lift. It earns direct commissions only, when people order through your link. Premium can go up to level 12. Business up to level 15. And Gold up to level 20. Your stars decide how many of those floors you have unlocked. And to be paid each month, you load at least $100 onto your own card that month. That is not a subscription, and it is not a fee. It is your own money, on your own card, ready for you to spend.",
+      "So which one is for you? If you just want a good card, Basic, at $99, does the job. If you want monthly rewards, Premium, at $270, is the minimum Bellver recommends. Business, at $490, is the most popular choice. Refer 3 people who also choose Business, and the $200 commissions cover your card, with $110 to spare. Gold, at $990, gives you the highest limits and the deepest rewards. Not sure yet? Start where you are comfortable. You can upgrade later and pay only the difference. Basic to Business costs $391, and you keep the same card. Just remember: rewards are not back-dated. What you could have earned before upgrading is not paid later.",
+      "Next: physical or virtual? Both carry the same limits and the same rewards. The virtual card is a Mastercard. It's ready as soon as it's issued, there's no shipping, and you can add it to Apple Pay or Google Pay, or an NFC ring, and pay with a tap. The physical card is a Visa. It works for cash at ATMs, with a 2% fee. Shipping is $85 to Europe, or $149 to the rest of the world, and Bellver's terms allow up to 4 weeks for delivery. When you order one, give a complete shipping address, and a valid mobile number from the country where it will be delivered. Without them, the courier can't deliver your card.",
+      "Two optional extras. The Special Edition is Bellver's privacy-first version of any level. It costs $370 when you buy your card, or $470 if you upgrade later, so decide at the start. And for $49, you can have your name printed on your card.",
+      "And the usage fees, the same on every level: 3.9% when you top up, added on top. 1.75% per payment. And 2% at an ATM.",
+      "Quick recap. Same card, four sizes. Bigger levels mean bigger limits and deeper rewards. Want rewards? Start at Premium. Want to start paying today? Go virtual. Need cash from ATMs? Add a physical card. And you can always upgrade later, paying only the difference.",
+      "Well done. Now you can choose your card with confidence. It's your turn. Open the Payback Calculator on my guide, pick a level, and see how many referrals would cover it. And once you've chosen, help someone else choose theirs. If you still have questions after watching this, contact me, or the business partner who shared this video with you.",
+      "Quick reminder: none of this is financial advice. Always do your own research. Thank you for watching, and for every like, share and comment. This is Dr RaShon, Your Digital Architect. Wealth for the rest of us."
+     ],
+     "kind": "Explainer"
+    },
+    "tut-04": {
+     "file": "tutorial-04-fund-and-order-dr-rashon.mp4",
+     "poster": "bellver-card-fund-wallet-bnb-usdt-order-card-tutorial-thumbnail",
+     "duration": "8:43",
+     "iso": "PT8M43S",
+     "date": "2026-11-04",
+     "narrator": "Narrated by Dr RaShon with her AI voice.",
+     "moments": [
+      [
+       "0:00",
+       "Welcome and what you will learn"
+      ],
+      [
+       "0:19",
+       "Before you start: what to have ready"
+      ],
+      [
+       "0:46",
+       "Why BNB first"
+      ],
+      [
+       "1:03",
+       "The deposit page and its warnings"
+      ],
+      [
+       "1:36",
+       "Copy your wallet address"
+      ],
+      [
+       "1:49",
+       "Send BNB from your exchange on BNB Smart Chain"
+      ],
+      [
+       "2:20",
+       "Your amount and a small test first"
+      ],
+      [
+       "2:30",
+       "Confirm the network and submit"
+      ],
+      [
+       "2:53",
+       "Security checks"
+      ],
+      [
+       "3:04",
+       "Gas received"
+      ],
+      [
+       "3:19",
+       "Part two: USDT for your card"
+      ],
+      [
+       "3:29",
+       "Choose your card level"
+      ],
+      [
+       "3:49",
+       "Send the card price plus $10 in USDT"
+      ],
+      [
+       "4:16",
+       "My Cards and the 2x2 matrix"
+      ],
+      [
+       "4:29",
+       "Choose your package"
+      ],
+      [
+       "4:41",
+       "Virtual or physical card"
+      ],
+      [
+       "5:00",
+       "The identity check (KYC)"
+      ],
+      [
+       "5:35",
+       "Personalize your card"
+      ],
+      [
+       "5:41",
+       "Features and fees"
+      ],
+      [
+       "5:58",
+       "Pay: the $10 opening balance"
+      ],
+      [
+       "6:23",
+       "Unlock your wallet and pay"
+      ],
+      [
+       "6:33",
+       "Your card is ready"
+      ],
+      [
+       "6:46",
+       "Add it to Google Pay"
+      ],
+      [
+       "7:31",
+       "Quick recap"
+      ],
+      [
+       "7:49",
+       "Your turn, and what comes next"
+      ]
+     ],
+     "transcript": [
+      "This is Dr RaShon, Your Digital Architect. Thank you for taking the time to watch this training. In the next few minutes, I'll show you how to fund your Bellver wallet with BNB and USDT, and how to order your first card, step by step. Let's get started.",
+      "Before you start, have four things ready. One: a little BNB, about $10 worth, for network fees. Two: USDT for your card, plus $10 extra. For Premium, that's $280. Three: your ID, for the identity check. Four: your security code and wallet password.",
+      "Why BNB first? Every transfer on BNB Chain pays a small network fee, and that fee is paid in BNB. Without a little BNB in your wallet, your USDT can't move, and your card payment can't go through.",
+      "On your dashboard, tap Deposit. This is your embedded wallet. Stay on Receive. Read the red message: only send USDT or USDC, on BNB Chain or Tron. BNB Chain is already selected. Read this warning too: only send USDT or USDC, BEP-20, on BNB Chain, plus a little BNB for network fees. Anything else, or the wrong network, means permanent loss.",
+      "Network fee covered means the BNB in this wallet pays your network fees. Scroll down to your wallet address. Scan the QR code with your phone, or tap Copy Wallet Address.",
+      "Now open the wallet or exchange you send from. This training uses Binance, but any wallet you know well works. Tap Withdraw, and choose BNB. Paste your Bellver address. Now the most important part: the network. Choose BSC, BNB Smart Chain, BEP-20. Read this: make sure the address supports BNB Smart Chain, or your assets could be lost.",
+      "Enter your amount, or tap Max. Sending to a new address for the first time? Send a small test amount first. Tap Withdraw.",
+      "Confirm the network. Who are you sending to? Yourself. Tap Next. It's a self-hosted wallet, your own Web3 wallet. Tick the declaration, and tap Submit.",
+      "Check the address and the network one last time. Crypto transactions can't be cancelled. Tap Continue.",
+      "Complete Binance's security checks. No passkey? Choose another method, then enter your authenticator code and your email code.",
+      "Sent. Back in Bellver, if you were logged out while you were away, just log in again. And there it is: gas received. This BNB pays your network fees on BNB Chain. Tap Awesome.",
+      "Part two: USDT, to pay for your card. Tap Deposit again, check BNB Chain, and copy your address.",
+      "First, decide which card you want. Premium is $270, with $10,000 a day. If you can, look at Business, Bellver's most popular card, or Gold, for higher limits. This training uses Premium, on a training account.",
+      "In Binance, withdraw USDT to the same address, on BSC again. Send your card price plus $10. In this training, 271 was typed. Don't repeat that: for Premium, send $280. Confirm, submit, and verify, just like before.",
+      "Deposit received. Tap Awesome.",
+      "Now open My Cards, and enter your security code. No cards yet. Want to take part in the 2x2 matrix? You'll need at least Premium. The matrix is optional.",
+      "Tap Order a Card. Choose your package. Prices differ because of the daily, monthly and per transaction limits, and matrix access. Choose Premium.",
+      "A virtual card is a Mastercard, issued instantly, for online payments, Apple Pay and Google Pay. A physical card is a Visa, with an $85 postage fee, and it can take up to four weeks. In this training, we order the virtual card.",
+      "The regular card needs a completed identity check. Tap Start Your Check, fill in your details, and upload your ID. The ID in this training stays hidden. Then wait until your identity is verified. If your ID has no expiry date, ask Bellver support before you submit. Bellver emails you once you're verified, and verified members skip the surcharge on cards ordered without a check.",
+      "Back to Premium, Virtual, Regular. You're verified. Nothing to add. Tap Continue.",
+      "Give your card a nickname, pick a colour, and tap Save and Continue.",
+      "Features and fees. Issuance: $270. Minimum fund: $10. $10,000 a day, $5,000 per transaction, and $20,000 a month. Tap Accept and Continue to Payment.",
+      "Here's a surprise that catches many people out. Your card starts with an opening balance of at least $10. $10 plus $270: the total is $280. In this training, $10 more had to be added. Add it from the start, and you won't get stuck here. Tick both boxes, and tap Pay.",
+      "Enter your wallet password, and tap Unlock and Pay. Wait for the network to confirm. Your card is issued! Tap View My Cards.",
+      "Top up received: that's your $10, now on your card. Tap Awesome. From here you can top up, freeze your card if anything feels wrong, and add it to a digital wallet.",
+      "This phone is an Android, so we choose Google Pay. Follow the six steps. Open Google Wallet, tap Add to Wallet, and choose New Credit or Debit Card. There's nothing to scan, so enter your details manually. Tap Reveal Card Number, and type the number, the expiry month and year, and the CVV. Never share these. Accept the terms, and enter the verification code. In this training, it came by email. Ready to pay contactless!",
+      "Back on the dashboard, the wallet is almost empty. Everything went to the card. And this Premium account now qualifies for 10 levels.",
+      "Quick recap. In this video, we prepared what you need. We funded the wallet with BNB for network fees. We added USDT for the card. We completed the identity check. We ordered a virtual Premium card, and added it to Google Pay.",
+      "Well done. You just ordered your Bellver Card, step by step. Now it's your turn. Get your BNB, your USDT plus $10, and your ID ready, and it goes smoothly. Share this video with your potential business partners, because every new cardholder deserves an easy start. Still stuck after watching a few times? Contact me, or the business partner who shared this video with you.",
+      "Next video: a full walkthrough of your Bellver dashboard, so you always know where everything is.",
+      "Quick reminder: none of this is financial advice. Always do your own research. Thank you for watching, and for every like, share and comment. This is Dr RaShon, Your Digital Architect. Wealth for the rest of us."
+     ]
+    },
+    "walkthrough": {
+     "file": "tutorial-05-dashboard-walkthrough-dr-rashon.mp4",
+     "poster": "bellver-card-dashboard-walkthrough-tutorial-5-thumbnail",
+     "duration": "11:17",
+     "iso": "PT11M17S",
+     "date": "2026-11-04",
+     "narrator": "Narrated by Dr RaShon with her AI voice.",
+     "moments": [
+      [
+       "0:00",
+       "Welcome and what you will learn"
+      ],
+      [
+       "0:23",
+       "Log in"
+      ],
+      [
+       "0:38",
+       "Your username and the eye icon"
+      ],
+      [
+       "0:51",
+       "Your rank and referral link"
+      ],
+      [
+       "1:35",
+       "Direct members and monthly qualification: the $100 a month"
+      ],
+      [
+       "2:24",
+       "Follow Bellver's official WhatsApp channels"
+      ],
+      [
+       "2:52",
+       "Your Dynamic Wallet balance"
+      ],
+      [
+       "3:16",
+       "Commissions, rewards and missing rewards"
+      ],
+      [
+       "3:45",
+       "Card balance and lifetime totals"
+      ],
+      [
+       "4:14",
+       "Active cards, deposits, spending and the chart"
+      ],
+      [
+       "4:41",
+       "Recent activity and your cards"
+      ],
+      [
+       "4:58",
+       "My Wallet"
+      ],
+      [
+       "5:14",
+       "Deposit and Buy Crypto"
+      ],
+      [
+       "5:36",
+       "Withdraw: the $100 minimum payout"
+      ],
+      [
+       "6:25",
+       "My Cards"
+      ],
+      [
+       "6:48",
+       "Transactions"
+      ],
+      [
+       "7:01",
+       "Statement: your monthly qualification cycle"
+      ],
+      [
+       "7:47",
+       "Referral and the matrix view"
+      ],
+      [
+       "8:16",
+       "Tutorials"
+      ],
+      [
+       "8:30",
+       "Videos"
+      ],
+      [
+       "8:47",
+       "News channel"
+      ],
+      [
+       "8:58",
+       "PDFs"
+      ],
+      [
+       "9:13",
+       "Support"
+      ],
+      [
+       "9:36",
+       "Notifications"
+      ],
+      [
+       "9:43",
+       "Settings and Log Out"
+      ],
+      [
+       "10:02",
+       "Quick recap"
+      ],
+      [
+       "10:33",
+       "Your turn, and what comes next"
+      ]
+     ],
+     "transcript": [
+      "This is Dr RaShon, Your Digital Architect. Thank you for taking the time to watch this training. As promised, this is the full walkthrough of your Bellver dashboard. In the next few minutes, I'll show you where everything is, what every number means, and where to find the official company channels and documents. Let's get started.",
+      "To log in, go to app dot bellvercards dot com, forward slash login, or tap any Login button, like the one on my guide. When you log in, Dashboard is already selected.",
+      "At the top, you see the username you registered with. Next to it is the eye icon. Tap it to hide or show your balances across the dashboard. Tap it again to show them.",
+      "Below that is My Rank. This training account says Member. Then My Referral Link. Tap the copy icon to copy it, and share it with your potential business partners, if you decide to take part in the matrix program. Remember, the matrix program is one hundred percent optional.",
+      "On the right, Qualified for levels shows how many levels you qualify for. Here it's ten. Number of team members in total is still zero on this new account. And Team card top-ups this month in total shows what your team loaded onto their cards this month. These numbers grow with your team.",
+      "On the far right, Qualification direct members lists the people who registered directly under you. Tap See all direct members for the details. Below it, Monthly qualification shows your card spending this month. Your first month is free. After that, load at least one hundred dollars onto your own card every month. Now, please don't let this scare you. It scares many people at first. This one hundred dollars is not a monthly subscription, and it's not a fee. Bellver doesn't take it from you. It stays your own money, on your own card, ready for things you already buy, like groceries, fuel, data or your bills. It simply keeps you qualified for the monthly matrix rewards.",
+      "Now, this is important. Follow Bellver's official WhatsApp channels, so you're always updated. Tap Connect next to the English channel, and follow it. The second one is the German channel. Always follow the company's official socials, including Bellver's official YouTube channel. Can't find them? Ask me, or the business partner who shared this video with you.",
+      "Now the first block: Current balance in my Dynamic Wallet. This is the wallet you created and secured in Tutorial 3. It's provided and secured by Fireblocks, a non-custodial wallet, protected by your private key. Haven't watched Tutorial 3 yet? Watch it now. Watched it already? Watch it again, as a quick refresher.",
+      "Commissions in 24 hours: what you earned in the last twenty four hours, still clearing. Rewards current month: your rewards for the current reward period. And Missing Rewards: rewards your card level would make you miss. This one reads: your card already earns you every level your partners qualify you for. If anything ever shows here, the Deposit and Upgrade buttons are right there.",
+      "Current balance on all of my cards: the total on every card you bought from Bellver. Here it's ten dollars. Lifetime Direct Commissions in total: all your cleared commissions for your personal referrals. Lifetime Rewards in total: all the rewards you ever received. And Earnings Available: the total of your earnings available for withdrawal. All these numbers update as you build your business.",
+      "My active cards shows your cards. This one is a Premium virtual card. More cards would show here too, and you can tap Upgrade at any time. Next, Lifetime deposits in total, and Lifetime spendings in total on all your cards. This card hasn't been used yet, so it shows zero. Below that, the chart shows your money in and out over the last fourteen days.",
+      "Recent activity shows your latest moves. Tap View all to see everything. And My Cards lists every card you own, the type, virtual or physical, and the status, active or not. Tap New card to add another one.",
+      "Now the menu on the left. My Wallet. It may ask for the security code you created. Tutorial 3 shows you how to set up everything on this page, step by step, and there's an official two minute video right here too.",
+      "Deposit. This funds your embedded wallet, the one you hold the private key for. Tutorial 4 shows you exactly how. Receive is for funding. History shows your deposits. And Buy Crypto: to buy crypto with a card through Banxa, watch the one minute video right here in the dashboard.",
+      "Withdraw. At the top, you see what's available to withdraw. The minimum payout is one hundred dollars. This is a different one hundred dollars. It's not the one hundred dollars you load every month, and it's not a subscription or a fee. It's simply the smallest payout you can request. Earnings by type shows your referral, upgrade and reward earnings, pending, available and forfeited. How payouts work explains it: earnings mature from pending to available, you request any amount from the minimum up to your available balance, and an admin reviews and pays it out manually. Commissions become claimable twenty four hours after the purchase. Your payout requests show at the bottom.",
+      "My Cards. Tutorial 4 shows you how to order your card, step by step. Here you see your card and its balance, with Details, Top Up, Freeze and Settings. The Top Up button loads money onto your card. Below are your card transactions, and the steps to add your card to Apple Pay or Google Pay.",
+      "Transactions. Every movement on your account, in one place: deposits, cards, earnings and swaps. Use the filters at the top to show only what you need.",
+      "Statement. This is your monthly qualification cycle, the requirement for receiving any reward at all. Your first cycle is free. After that, load at least one hundred dollars onto your card each cycle, and use your card for things you already buy. Let me remind you again: this one hundred dollars is not a monthly subscription, and it's not a fee. It stays your own money, on your own card. The cycle runs from the sixteenth of one month to the fifteenth of the next. Miss a cycle, and that cycle's rewards are forfeited. Miss three in a row, and you lose your matrix position. Your direct commissions are never affected.",
+      "Referral. Here's your username and your referral link again, another chance to copy and share it. My direct referrals lists the people who joined through your link. Levels shows your team on every level, and your rank pays rewards up to ten levels deep. Scroll down to the matrix view. It shows the two seats right under you, left and right, and how your team fills them, level by level.",
+      "Tutorials. The official dashboard has short how-to videos, like this one minute and this two minute video. You'll find many more step by step tutorials on my guide, on the Tutorial Videos page.",
+      "Videos. You may already know the three minute and the twenty seven minute videos from my guide. Here you'll find more, like the ten minute dashboard video and the launch webinar. Watch them right here, in the official dashboard.",
+      "News channel. This is where you'll find Bellver's official news videos, in English and in German, from the company's official YouTube channel. Follow these channels.",
+      "PDFs. Open or download all the official company documents: the compensation plan, the price list and the presentation. Make it a habit to visit your dashboard, and go through them.",
+      "Support. Have a question? Open a new ticket. Your tickets show here, with their status, open or closed. This training account has a question here about the one hundred dollar monthly requirement. And remember, that one hundred dollars is not a subscription. It stays your own money, on your own card.",
+      "Notifications shows every update on your account, like deposits credited and your identity check.",
+      "Settings. Tutorial 2 shows you how to secure your account here, so watch it if you haven't yet. The last item is Log Out. You can also log out from the menu at the top right, which also opens your account settings, to fix your details or reset your password.",
+      "Quick recap. Your dashboard shows your balances, rank, referral link and team at a glance. The eye icon hides your balances. The menu takes you to your wallet, deposits, withdrawals, cards, referrals, videos and the official documents. The one hundred dollars you load every month is not a subscription: it stays your own money, on your own card. And always follow Bellver's official channels.",
+      "Well done. Now you know your Bellver dashboard inside out. Log in regularly, check your numbers, and keep an eye on the official news. Share this video with your potential business partners, because every new cardholder deserves an easy start. Still stuck after watching a few times? Contact me, or the business partner who shared this video with you.",
+      "Quick reminder: none of this is financial advice. Always do your own research. Thank you for watching, and for every like, share and comment. This is Dr RaShon, Your Digital Architect. Wealth for the rest of us."
+     ]
+    },
+    "tut-06": {
+     "file": "tutorial-06-top-up-dr-rashon.mp4",
+     "poster": "bellver-card-top-up-tutorial-6-thumbnail",
+     "duration": "10:02",
+     "iso": "PT10M2S",
+     "date": "2026-11-04",
+     "narrator": "Narrated by Dr RaShon with her AI voice.",
+     "moments": [
+      [
+       "0:00",
+       "Welcome and what you will learn"
+      ],
+      [
+       "0:28",
+       "Starting point: card $10, Dynamic Wallet $0.61"
+      ],
+      [
+       "0:42",
+       "The two steps"
+      ],
+      [
+       "1:01",
+       "Before you start: the $10 minimum and the 3.9% fee, so send a little extra"
+      ],
+      [
+       "1:22",
+       "Step one: Deposit, and the notice to read"
+      ],
+      [
+       "1:35",
+       "Select network: BNB Chain"
+      ],
+      [
+       "1:52",
+       "Copy your wallet address"
+      ],
+      [
+       "2:05",
+       "Withdraw USDT from your exchange"
+      ],
+      [
+       "2:30",
+       "Check the first and last three characters"
+      ],
+      [
+       "2:43",
+       "Network: BSC, BNB Smart Chain (BEP20)"
+      ],
+      [
+       "3:01",
+       "Amount, and what you receive"
+      ],
+      [
+       "3:12",
+       "Read the network warning"
+      ],
+      [
+       "3:41",
+       "Sending to yourself: your self-hosted wallet"
+      ],
+      [
+       "3:59",
+       "The withdrawal summary"
+      ],
+      [
+       "4:28",
+       "Verify with your authenticator and email codes"
+      ],
+      [
+       "4:49",
+       "Review and approval"
+      ],
+      [
+       "5:03",
+       "Deposit received on Bellver"
+      ],
+      [
+       "5:28",
+       "Refresh: Dynamic Wallet $15.60"
+      ],
+      [
+       "5:40",
+       "Step two: My Cards, Top Up"
+      ],
+      [
+       "5:49",
+       "Max, and the fine print"
+      ],
+      [
+       "6:09",
+       "Network fee paid for you"
+      ],
+      [
+       "6:27",
+       "Why Max shows \"Not enough USDT\""
+      ],
+      [
+       "6:51",
+       "The maths: take the 3.9% off first"
+      ],
+      [
+       "7:23",
+       "Top up $14.99"
+      ],
+      [
+       "7:44",
+       "Approve in your wallet and unlock"
+      ],
+      [
+       "8:03",
+       "Payment sent: card $24.99"
+      ],
+      [
+       "8:17",
+       "Refresh: top-up received"
+      ],
+      [
+       "8:31",
+       "Your card transactions"
+      ],
+      [
+       "8:39",
+       "Dashboard, and log out"
+      ],
+      [
+       "8:52",
+       "Quick recap"
+      ],
+      [
+       "9:15",
+       "Your turn"
+      ],
+      [
+       "9:48",
+       "Thank you"
+      ]
+     ],
+     "transcript": [
+      "This is Dr RaShon, Your Digital Architect. Thank you for taking the time to watch this training. In this video, I'll show you exactly how to top up your Bellver card, step by step. First, we fund your Dynamic Wallet from an exchange. Then we move that money from your wallet onto your card, so you can pay with it anywhere. Take your time, and pause whenever you need to. Let's get started.",
+      "Here's the starting point. The card balance shows $10, and we want to add another $10. Now look at the Dynamic Wallet: only $0.61. That's not enough to top up the card. So there are two steps. Step one: top up the Dynamic Wallet, from an outside wallet or exchange. Step two: move the money from the wallet onto the card. If your Dynamic Wallet already has enough, for example from commissions, you can skip straight to step two.",
+      "Before we start, remember two things. The minimum card top-up is $10. And there's a 3.9% top-up fee, which is added on top. So never send the exact amount. To add $10, send $15, to cover the fee and leave a little room.",
+      "Step one. In the side menu, tap Deposit. Read the notice at the top: please only send USDT or USDC, and select BNB Chain or TRON. Scroll down a bit, to Select network. You can deposit USDT or USDC on the networks listed. BNB Chain is the better choice, because it's cheaper. It's already selected. See the check mark, and the border around it. Now scroll all the way down, to your wallet address. You can scan the QR code with your phone, or tap Copy wallet address. Tap Copy wallet address.",
+      "Next, go to the exchange or wallet you're sending from. Any exchange works, centralized or decentralized. This training uses Binance. Under Holding, you can see the USDT. We'll withdraw $15 of it. Tap Withdraw. Under Select Asset, choose USDT. Then paste the wallet address you copied from Bellver. Before you send anything, check the first three and the last three characters of the address, against your Bellver deposit page. Crypto transactions cannot be reversed.",
+      "Now select the network. Choose BSC, BNB Smart Chain, BEP20. It must match the network you chose on Bellver: BNB Chain. The network fee here is only one cent, at the time of recording. It's the cheapest option. Enter the amount. Type 15. Because of the one cent network fee, you'll receive $14.99. Tap Withdraw.",
+      "A warning pops up. Read it, every time. It says: The network you selected is BNB Smart Chain. Please confirm that your withdrawal address supports the BNB Smart Chain network. If the other platform does not support it, your assets may be lost. The Bellver wallet is on BNB Chain, so tap Confirm. Never tap Confirm or OK without reading and understanding it.",
+      "Who are you sending this withdrawal to? Choose Myself, because this is your own Dynamic Wallet. Tap Next. Address type: the address owner's self-hosted wallet, because you hold the private key. Tick the declaration, and tap Submit.",
+      "Now the withdrawal summary. Double check everything. Binance highlights the first and last characters of the address. They must match exactly. Network: BNB Smart Chain. Amount: 15 USDT. You receive 14.99, after the one cent fee. Ensure the address is correct, and on the same network. Transactions cannot be cancelled. Tap Continue.",
+      "Now verify it's really you. Tap My Passkeys Are Not Available, to use your authenticator app instead. Choose Authenticator App, enter the six digit code, and tap Submit. Then the email verification code, sent to your email. Enter it, and tap Submit. Binance may review a withdrawal. Reviews can take up to 12 hours. This one was approved in seconds. Recipient amount: 14.99 USDT. Tap OK.",
+      "Back on Bellver, open your Dashboard. The wallet still shows $0.61, while the blockchain confirms. And there it is: Deposit received. Plus 14.99 USDT, on BNB Chain. Your wallet has been topped up. Remember, so far only the wallet is topped up, not the card. Tap Awesome. If the balance doesn't update, refresh the page. Now the Dynamic Wallet shows $15.60. That's more than $10, so we're ready for step two.",
+      "Step two. In the side menu, tap My Cards. Then tap Top Up. Here's the card balance: $10. Wallet available: 15.60. You can type an amount, or tap Max. Tap Max. Now read the fine print: minimum $10, maximum $100,000 on this Premium card. This is the amount that lands on your card. Scroll down. Network: BNB Chain. Token: USDT. And good news: Network fee paid for you. This top-up shows Free. Still, it's smart to keep a little BNB in your wallet, for network fees.",
+      "Now look at the breakdown. Added to card: $15.60. Top-up fee, 3.9%: plus $0.61. Total to send: 16.21. And a warning: Not enough USDT on BNB Chain. You need 16.21, and you hold 15.60. Here's why. The 3.9% fee is added on top of your amount. It's not taken out of Max. This fee keeps Bellver running for the long term, and it's also where the monthly rewards are paid from. So let's do the maths. 3.9% of $15.60 is about $0.61. $15.60 minus $0.61 is $14.99. So we'll top up $14.99.",
+      "Scroll up, and type 14.99 in the amount. Scroll down. The warning is gone. Added to card: $14.99. Fee: $0.59. Total to send: 15.58. That fits in the wallet. Tap Top up. Approve in your wallet. Nothing leaves your wallet until it's signed. Your wallet is protected with a password. Enter it once, to unlock signing for this session. Type the wallet password you created, and tap Unlock and pay.",
+      "Payment sent, from the Dynamic Wallet to the card. Done: plus $14.99. New card balance: $24.99. All four steps are ticked. Tap Done. The card still shows $10, so refresh the page. Top up received. It's on your card, and ready to spend. Tap Awesome. The card now shows $25. Scroll down to see your card transactions: every top-up, with the amount and the date. Back on the Dashboard. The Dynamic Wallet is nearly empty, because the money is now on the card: $25. Finally, always log out, to keep your account safe.",
+      "Quick recap. Deposit: copy your Bellver wallet address, on BNB Chain. Send USDT from your exchange, on BSC, BEP20. Then My Cards, Top Up. The 3.9% fee is added on top, so take it off your balance first. And always log out.",
+      "Well done. You just topped up your Bellver card. Now you can pay for goods and services, anywhere in the world. It's your turn. Try it, step by step. It's easier than it looks. And once you've done it, teach someone else, because we learn best by teaching. If you still get stuck after watching this a few times, contact me, or the business partner who shared this video with you. And remember, this is an independent guide, not financial advice.",
+      "Thank you for watching. Please like, share, and comment, and share this video with your potential business partners. This is Dr RaShon, Your Digital Architect. Wealth for the rest of us."
+     ]
     }
-   }
+   },
+   "tagline_italic": true
   },
   {
    "slug": "ronsantoro",

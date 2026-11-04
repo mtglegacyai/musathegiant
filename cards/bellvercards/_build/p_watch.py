@@ -2,13 +2,13 @@
 """Overview (learn/), Presentation Videos, Tutorial Videos, Documents."""
 from bv import *  # noqa
 from p_info import phero, T
-from mx_video import MXV, MXV_DATE, MXV_MOMENTS, MXV_TRANSCRIPT
+from mx_video import MXV, MXV_DATE, MXV_MOMENTS, MXV_TRANSCRIPT, MXV_OWN
 from dash_video import DASH, DASH_DATE, DASH_MOMENTS, DASH_TRANSCRIPT
 from topup_video import TOPUP, TOPUP_DATE, TOPUP_MOMENTS, TOPUP_TRANSCRIPT
-from ex1_video import EX1, EX1_DATE, EX1_MOMENTS, EX1_TRANSCRIPT
-from ex2_video import EX2, EX2_DATE, EX2_MOMENTS, EX2_TRANSCRIPT
-from ex3_video import EX3, EX3_DATE, EX3_MOMENTS, EX3_TRANSCRIPT
-from ex4_video import EX4, EX4_DATE, EX4_MOMENTS, EX4_TRANSCRIPT
+from ex1_video import EX1, EX1_DATE, EX1_MOMENTS, EX1_TRANSCRIPT, EX1_OWN
+from ex2_video import EX2, EX2_DATE, EX2_MOMENTS, EX2_TRANSCRIPT, EX2_OWN
+from ex3_video import EX3, EX3_DATE, EX3_MOMENTS, EX3_TRANSCRIPT, EX3_OWN
+from ex4_video import EX4, EX4_DATE, EX4_MOMENTS, EX4_TRANSCRIPT, EX4_OWN
 
 # (id, title, kind, duration label, type, source, thumb, description, iso duration)
 PRES = [
@@ -50,14 +50,7 @@ REG_TRANSCRIPT = [
 # A team member can have their own copy of a tutorial (team.json "videos", e.g. in their own voice): their file, thumbnail,
 # length, key moments and transcript replace MTG's on their pages only. Files live in _build/team_media/<slug>/.
 import bv as _bv
-def member_video(key, v, moments, transcript, date):
-    P = _bv.PARTNER
-    o = P.get('videos', {}).get(key) if P else None
-    if not o:
-        return v, moments, transcript, date, None
-    url = lambda f: _bv.SITE + _bv.BASE + f
-    v = (v[0], v[1], v[2], o['duration'], 'mp4', url(o['file']), url(o['poster']), v[7], o['iso'])
-    return v, [tuple(m) for m in o['moments']], o['transcript'], o.get('date', date), o
+from member_vid import member_video, author as v_author
 REG, REG_MOMENTS, REG_TRANSCRIPT, REG_DATE, REG_OWN = member_video('tut-01', REG, REG_MOMENTS, REG_TRANSCRIPT, REG_DATE)
 
 # Tutorial 2: log in and secure your account with 2FA (MTG, 9 Oct 2026). Plays second, right after registration.
@@ -129,6 +122,15 @@ FUND = ('tut-04', 'How to fund your wallet with BNB and USDT and order your Bell
 FUND_DATE = '2026-10-10'
 FUND_MOMENTS = [('0:00', 'Welcome and what you will learn'), ('0:17', 'Before you start: what to have ready'), ('0:37', 'Why BNB first'), ('0:50', 'The deposit page and its warnings'), ('1:16', 'Copy your wallet address'), ('1:27', 'Send BNB from your exchange on BNB Smart Chain'), ('1:50', 'Your amount and a small test first'), ('1:58', 'Confirm the network and submit'), ('2:16', 'Security checks'), ('2:25', 'Gas received'), ('2:37', 'Part two: USDT for your card'), ('2:45', 'Choose your card level'), ('3:01', 'Send the card price plus $10 in USDT'), ('3:21', 'My Cards and the 2x2 matrix'), ('3:32', 'Choose your package'), ('3:43', 'Virtual or physical card'), ('3:58', 'The identity check (KYC)'), ('4:27', 'Personalize your card'), ('4:32', 'Features and fees'), ('4:46', 'Pay: the $10 opening balance'), ('5:03', 'Unlock your wallet and pay'), ('5:12', 'Your card is ready'), ('5:24', 'Add it to Google Pay'), ('6:00', 'Quick recap'), ('6:16', 'Your turn, and what comes next')]
 FUND_TRANSCRIPT = ["Hi, my name is MTG, Your Digital Architect. Thank you for taking the time to watch this training. In the next few minutes, I'll show you how to fund your Bellver wallet with BNB and USDT, and how to order your first card, step by step. Let's get started.", "Before you start, have four things ready. One: a little BNB, about $10 worth, for network fees. Two: USDT for your card, plus $10 extra. For Premium, that's $280. Three: your ID, for the identity check. Four: your security code and wallet password.", "Why BNB first? Every transfer on BNB Chain pays a small network fee, and that fee is paid in BNB. Without a little BNB in your wallet, your USDT can't move, and your card payment can't go through.", 'On your dashboard, tap Deposit. This is your embedded wallet. Stay on Receive. Read the red message: only send USDT or USDC, on BNB Chain or Tron. BNB Chain is already selected. Read this warning too: only send USDT or USDC, BEP-20, on BNB Chain, plus a little BNB for network fees. Anything else, or the wrong network, means permanent loss.', 'Network fee covered means the BNB in this wallet pays your network fees. Scroll down to your wallet address. Scan the QR code with your phone, or tap Copy Wallet Address.', "Now open the wallet or exchange you send from. I'm using Binance, but any wallet you know well works. Tap Withdraw, and choose BNB. Paste your Bellver address. Now the most important part: the network. Choose BSC, BNB Smart Chain, BEP-20. Read this: make sure the address supports BNB Smart Chain, or your assets could be lost.", 'Enter your amount. I tap Max. Sending to a new address for the first time? Send a small test amount first. Tap Withdraw.', "Confirm the network. Who are you sending to? Yourself. Tap Next. It's a self-hosted wallet, your own Web3 wallet. Tick the declaration, and tap Submit.", "Check the address and the network one last time. Crypto transactions can't be cancelled. Tap Continue.", "Complete Binance's security checks. No passkey? Choose another method, then enter your authenticator code and your email code.", 'Sent. Back in Bellver, if you were logged out while you were away, just log in again. And there it is: gas received. This BNB pays your network fees on BNB Chain. Tap Awesome.', 'Part two: USDT, to pay for your card. Tap Deposit again, check BNB Chain, and copy your address.', "First, decide which card you want. Premium is $270, with $10,000 a day. If you can, look at Business, Bellver's most popular card, or Gold, for higher limits. I'm using Premium here because this is a training account.", 'In Binance, withdraw USDT to the same address, on BSC again. Send your card price plus $10. I typed 271 here. Learn from me: for Premium, send $280. Confirm, submit, and verify, just like before.', 'Deposit received. Tap Awesome.', "Now open My Cards, and enter your security code. No cards yet. Want to take part in the 2x2 matrix? You'll need at least Premium. The matrix is optional.", 'Tap Order a Card. Choose your package. Prices differ because of the daily, monthly and per transaction limits, and matrix access. Choose Premium.', 'A virtual card is a Mastercard, issued instantly, for online payments, Apple Pay and Google Pay. A physical card is a Visa, with an $85 postage fee, and it can take up to four weeks. In this training, we order the virtual card.', "The regular card needs a completed identity check. Tap Start Your Check, fill in your details, and upload your ID. I won't show mine. Then wait until your identity is verified. If your ID has no expiry date, ask Bellver support before you submit. Bellver emails you once you're verified, and verified members skip the surcharge on cards ordered without a check.", "Back to Premium, Virtual, Regular. You're verified. Nothing to add. Tap Continue.", 'Give your card a nickname, pick a colour, and tap Save and Continue.', 'Features and fees. Issuance: $270. Minimum fund: $10. $10,000 a day, $5,000 per transaction, and $20,000 a month. Tap Accept and Continue to Payment.', "Here's the surprise I didn't see coming. Your card starts with an opening balance of at least $10. $10 plus $270: the total is $280. I had to add $10 more. Add it from the start, and you won't get stuck here. Tick both boxes, and tap Pay.", 'Enter your wallet password, and tap Unlock and Pay. Wait for the network to confirm. Your card is issued! Tap View My Cards.', "Top up received: that's your $10, now on your card. Tap Awesome. From here you can top up, freeze your card if anything feels wrong, and add it to a digital wallet.", "I'm on Android, so I choose Google Pay. Follow the six steps. Open Google Wallet, tap Add to Wallet, and choose New Credit or Debit Card. There's nothing to scan, so enter your details manually. Tap Reveal Card Number, and type the number, the expiry month and year, and the CVV. Never share these. Accept the terms, and enter the verification code. Mine came by email. Ready to pay contactless!", 'Back on the dashboard, my wallet is almost empty. Everything went to my card. And this Premium account now qualifies for 10 levels.', 'Quick recap. In this video, we prepared what you need. We funded the wallet with BNB for network fees. We added USDT for the card. We completed the identity check. We ordered a virtual Premium card, and added it to Google Pay.', "Well done. You just ordered your Bellver Card, step by step. Now it's your turn. Get your BNB, your USDT plus $10, and your ID ready, and it goes smoothly. Share this video with your potential business partners, because every new cardholder deserves an easy start. Still stuck after watching a few times? Contact me, or the business partner who shared this video with you.", 'Next video: a full walkthrough of your Bellver dashboard, so you always know where everything is.', "Quick reminder: none of this is financial advice. Always do your own research. Thank you for tuning in, and for every like, share, and comment. Your support means everything. And thank yourself for taking massive action today to change your future! I wish you nothing but the best, because YOU are the best. I'm MTG, Your Digital Architect. See you on the next one. Let's Get This Crypto!"]
+
+# a member's own copies of tutorials 2 to 6 (same rules as tutorial 1 above)
+SEC, SEC_MOMENTS, SEC_TRANSCRIPT, SEC_DATE, SEC_OWN = member_video('tut-02', SEC, SEC_MOMENTS, SEC_TRANSCRIPT, SEC_DATE)
+KEY, KEY_MOMENTS, KEY_TRANSCRIPT, KEY_DATE, KEY_OWN = member_video('tut-03', KEY, KEY_MOMENTS, KEY_TRANSCRIPT, KEY_DATE)
+FUND, FUND_MOMENTS, FUND_TRANSCRIPT, FUND_DATE, FUND_OWN = member_video('tut-04', FUND, FUND_MOMENTS, FUND_TRANSCRIPT, FUND_DATE)
+DASH, DASH_MOMENTS, DASH_TRANSCRIPT, DASH_DATE, DASH_OWN = member_video('walkthrough', DASH, DASH_MOMENTS, DASH_TRANSCRIPT, DASH_DATE)
+TOPUP, TOPUP_MOMENTS, TOPUP_TRANSCRIPT, TOPUP_DATE, TOPUP_OWN = member_video('tut-06', TOPUP, TOPUP_MOMENTS, TOPUP_TRANSCRIPT, TOPUP_DATE)
+def narr(own):
+    return own['narrator'] if own else 'Narrated by MTG with his AI voice.'
 
 # Tutorial placeholders. Upload an MP4 with exactly this name into cards/bellvercards/videos/tutorials/
 # and the matching tile switches from "Coming soon" to a playable video by itself.
@@ -329,24 +331,24 @@ def tutorials(H='tutorials/'):
  </article>'''
     panels += f'''<article class="vpanel" id="tut-02" data-panel="tut-02" aria-labelledby="t-tut-02">
   {pplayer(SEC, H)}
-  <div class="vhead"><span class="badge green">Tutorial 2, {SEC[3]}</span><h2 id="t-tut-02">How to log in and <em>secure</em> your account with 2FA</h2><p class="muted">{SEC[7]} Personal details and every code are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-2', H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">Tutorial 2, {SEC[3]}</span><h2 id="t-tut-02">How to log in and <em>secure</em> your account with 2FA</h2><p class="muted">{SEC[7]} Personal details and every code are hidden. {narr(SEC_OWN)}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-2', H)}">Read the written steps {ic('arrow')}</a></p></div>
   <div class="vsum-d">{sec_det}</div>
  </article>'''
     panels += f'''<article class="vpanel" id="tut-03" data-panel="tut-03" aria-labelledby="t-tut-03">
   {pplayer(KEY, H)}
-  <div class="vhead"><span class="badge green">Tutorial 3, {KEY[3]}</span><h2 id="t-tut-03">How to export and back up your Web3 wallet <em>private key</em></h2><p class="muted">{KEY[7]} Your private key, personal details and every code are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-2', H)}">Read the written steps {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">Tutorial 3, {KEY[3]}</span><h2 id="t-tut-03">How to export and back up your Web3 wallet <em>private key</em></h2><p class="muted">{KEY[7]} Your private key, personal details and every code are hidden. {narr(KEY_OWN)}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-2', H)}">Read the written steps {ic('arrow')}</a></p></div>
   <div class="vsum-d">{key_det}</div>
  </article>'''
     panels += f'''<article class="vpanel" id="tut-04" data-panel="tut-04" aria-labelledby="t-tut-04">
   {pplayer(FUND, H)}
-  <div class="vhead"><span class="badge green">Tutorial 4, {FUND[3]}</span><h2 id="t-tut-04">How to fund your wallet and <em>order your card</em></h2><p class="muted">{FUND[7]} Wallet addresses, balances, codes and card details are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-3', H)}">Read the written steps {ic('arrow')}</a> &nbsp; <a class="tlink" href="{L('matrix/', H)}">How the 2x2 matrix works {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">Tutorial 4, {FUND[3]}</span><h2 id="t-tut-04">How to fund your wallet and <em>order your card</em></h2><p class="muted">{FUND[7]} Wallet addresses, balances, codes and card details are hidden. {narr(FUND_OWN)}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-3', H)}">Read the written steps {ic('arrow')}</a> &nbsp; <a class="tlink" href="{L('matrix/', H)}">How the 2x2 matrix works {ic('arrow')}</a></p></div>
   <div class="vsum-d">{fund_det}</div>
  </article>'''
     dm = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in DASH_MOMENTS)
     dt = ''.join(f'<p>{p}</p>' for p in DASH_TRANSCRIPT)
     panels += f'''<article class="vpanel" id="walkthrough" data-panel="walkthrough" aria-labelledby="t-walkthrough">
   {pplayer(DASH, H)}
-  <div class="vhead"><span class="badge green">Tutorial 5, {DASH[3]}</span><h2 id="t-walkthrough">Your Bellver dashboard, <em>fully explained</em></h2><p class="muted">{DASH[7]} Personal details are blurred. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('matrix/#step7', H)}">The $100 rule explained {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">Tutorial 5, {DASH[3]}</span><h2 id="t-walkthrough">Your Bellver dashboard, <em>fully explained</em></h2><p class="muted">{DASH[7]} Personal details are blurred. {narr(DASH_OWN)}</p><p class="vwait"><a class="tlink" href="{L('matrix/#step7', H)}">The $100 rule explained {ic('arrow')}</a></p></div>
   <div class="vsum-d"><details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{dm}</ul></div></details>
   {walk_det}
   <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{dt}</div></details></div>
@@ -355,7 +357,7 @@ def tutorials(H='tutorials/'):
     ut = fee_note(TOPUP_TRANSCRIPT) + ''.join(f'<p>{p}</p>' for p in TOPUP_TRANSCRIPT)
     panels += f'''<article class="vpanel" id="tut-06" data-panel="tut-06" aria-labelledby="t-tut-06">
   {pplayer(TOPUP, H)}
-  <div class="vhead"><span class="badge green">Tutorial 6, {TOPUP[3]}</span><h2 id="t-tut-06">How to <em>top up</em> your Bellver Card</h2><p class="muted">{TOPUP[7]} Wallet addresses, balances, codes and card details are hidden. Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-5', H)}">Read the written steps {ic('arrow')}</a> &nbsp; <a class="tlink" href="{L('prices/', H)}">All fees and limits {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">Tutorial 6, {TOPUP[3]}</span><h2 id="t-tut-06">How to <em>top up</em> your Bellver Card</h2><p class="muted">{TOPUP[7]} Wallet addresses, balances, codes and card details are hidden. {narr(TOPUP_OWN)}</p><p class="vwait"><a class="tlink" href="{L('get-started/#step-5', H)}">Read the written steps {ic('arrow')}</a> &nbsp; <a class="tlink" href="{L('prices/', H)}">All fees and limits {ic('arrow')}</a></p></div>
   <div class="vsum-d"><details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{um}</ul></div></details>
   <details class="qa more"><summary>The top-up maths<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">
    <p><b>Now:</b> Bellver takes the 3.9% top-up fee out of the amount you load. Load $100 and $96.10 reaches your card. Load $15.60 and about $14.99 reaches your card, so you can load your whole balance.</p>
@@ -429,8 +431,9 @@ def tutorials(H='tutorials/'):
     up_ld = vld(TOPUP, H, TOPUP_DATE, jpg=True)
     up_ld["transcript"] = ' '.join(TOPUP_TRANSCRIPT)
     up_ld["author"] = MTG_AUTHOR
-    if REG_OWN:
-        reg_ld["author"] = {"@id": _bv.SITE + _bv.BASE + "#partner"}
+    for _ld, _own in ((reg_ld, REG_OWN), (sec_ld, SEC_OWN), (key_ld, KEY_OWN), (fund_ld, FUND_OWN), (dash_ld, DASH_OWN), (up_ld, TOPUP_OWN)):
+        if _own:
+            _ld["author"] = {"@id": _bv.SITE + _bv.BASE + "#partner"}
     up_ld["keywords"] = "top up Bellver Card, Bellver Dynamic Wallet deposit, USDT BEP20 BNB Chain, Bellver 3.9% top-up fee, Not enough USDT, Bellver tutorial"
     return page(H, 'tutorials', 'Bellver Card Tutorial Videos: Register, Secure, Fund, Order, Your Dashboard and Top Up | MTG',
                 'Step-by-step Bellver Card tutorials by MTG: register, secure your account with 2FA, back up your Web3 wallet private key, fund your wallet and order your card, a full tour of your dashboard, then top up your card with the 3.9% fee explained. Click by click, with transcripts.',
@@ -471,14 +474,17 @@ def explainers(H='explainers/'):
     trail = T(('Explainer Videos', abs_url(H)))
     top = phero(H, trail, ['Explainer', 'videos'], 'The bigger topics, explained simply in a few minutes, with pictures instead of long text. Pick a video, press play, and open the key moments or the transcript if you prefer to read.')
     panels = ''; items = ''; lds = []
+    OWNS = {'money-explained': EX1_OWN, 'which-card-explained': EX2_OWN, 'matrix-explained': MXV_OWN, 'first-week-explained': EX3_OWN, 'ten-reasons-explained': EX4_OWN}
+    all_own = all(OWNS.values())
     for i, (v, date, moments, transcript, icn, h2, q, learn, (rel, rel_lab), kw) in enumerate(EXPL):
         vid, title, kind, dur, typ, src, img, desc, iso = v
+        own = OWNS.get(vid)
         mm = ''.join(f'<li><b>{t}</b> {m}</li>' for t, m in moments)
         tt = fee_note(transcript) + ''.join(f'<p>{p}</p>' for p in transcript)
         li = ''.join(f'<li>{x}</li>' for x in learn)
         panels += f'''<article class="vpanel" id="{vid}" data-panel="{vid}" aria-labelledby="t-{vid}">
   {pplayer(v, H, i == 0)}
-  <div class="vhead"><span class="badge green">{ic(icn)}Explainer, {dur}</span><h2 id="t-{vid}">{h2}</h2><p class="muted">{desc} Narrated by MTG with his AI voice.</p><p class="vwait"><a class="tlink" href="{L(rel.partition('#')[0], H) + ('#' + rel.partition('#')[2] if '#' in rel else '')}">{rel_lab} {ic('arrow')}</a></p></div>
+  <div class="vhead"><span class="badge green">{ic(icn)}Explainer, {dur}</span><h2 id="t-{vid}">{h2}</h2><p class="muted">{desc} {narr(own)}</p><p class="vwait"><a class="tlink" href="{L(rel.partition('#')[0], H) + ('#' + rel.partition('#')[2] if '#' in rel else '')}">{rel_lab} {ic('arrow')}</a></p></div>
   <div class="split vsum"><div class="prose"><h3>What you will learn</h3><ul>{li}</ul></div>
   <div class="vsum-d"><details class="qa more"><summary>Key moments<span class="pm" aria-hidden="true"></span></summary><div class="ans prose"><ul>{mm}</ul></div></details>
   <details class="qa more"><summary>Read the transcript<span class="pm" aria-hidden="true"></span></summary><div class="ans prose">{tt}</div></details></div></div>
@@ -487,7 +493,7 @@ def explainers(H='explainers/'):
   <span class="vthumb"><img src="{L(img + "-640.webp", H)}" alt="" width="640" height="360" loading="lazy"><span class="vdur">{dur}</span></span>
   <span class="vtx"><b>{q}</b><small>{title}</small></span></button>'''
         ld = vld(v, H, date, jpg=True); ld["transcript"] = ' '.join(transcript); ld["keywords"] = kw
-        ld["author"] = {"@type": "Person", "name": "MTG", "jobTitle": "Your Digital Architect", "url": "https://www.musathegiant.com/"}; lds.append(ld)
+        ld["author"] = v_author(own); lds.append(ld)
     lib = f'''<section class="sec-tight" style="padding-top:0"><div class="wrap">
  <div class="vlib">
   <div class="vstage">{panels}</div>
@@ -496,11 +502,11 @@ def explainers(H='explainers/'):
    <a class="vtut" href="{L('videos/', H)}">{ic('video')}<span><b>Bellver's own videos</b><small>Open the presentation videos</small></span></a>
   </aside>
  </div>
- <p class="vnote" style="margin-top:16px">Explainers by MTG, narrated with his AI voice. More are on the way.</p>
+ <p class="vnote" style="margin-top:16px">{'More explainers are on the way.' if all_own else 'Explainers by MTG, narrated with his AI voice. More are on the way.'}</p>
 </div></section>'''
     body = top + lib + help_band(H, 'Want a topic explained?', 'Tell me which part of the guide is hard to follow, and I will turn it into an explainer, or walk you through it on WhatsApp.')
     return page(H, 'explainers', 'Bellver Card Explainer Videos: Your Money, Which Card, the 2x2 Matrix, Your First Week and 10 Reasons | MTG',
-                'Short explainer videos by MTG: where your Bellver money really sits, which Bellver card is right for you, the 2x2 matrix rewards plan, your first week as a partner, and the 10 reasons people choose the card with Bellver\'s roadmap, with key moments and full transcripts.',
+                ('Short explainer videos: ' if all_own else 'Short explainer videos by MTG: ') + 'where your Bellver money really sits, which Bellver card is right for you, the 2x2 matrix rewards plan, your first week as a partner, and the 10 reasons people choose the card with Bellver\'s roadmap, with key moments and full transcripts.',
                 'images/og/og-bellver-explainers.jpg', 'Bellver Card explainer videos', body, ld_extra=lds, trail=trail)
 
 

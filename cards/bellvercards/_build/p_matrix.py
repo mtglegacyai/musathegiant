@@ -6,6 +6,8 @@ import json
 from bv import *  # noqa
 from p_info import phero, T
 from p_tools import rewards_tool
+from mx_video import MXV, MXV_OWN
+from member_vid import narrator as v_narr, under
 
 GUIDE_PDF = 'docs/bellver-2x2-matrix-explained-by-mtg.pdf'
 VIDEO = 'videos/bellver-2x2-matrix-explained.mp4'
@@ -94,10 +96,15 @@ def hero_svg():
 # ---------------------------------------------------------------- page
 def matrix(H='matrix/'):
     trail = T(('Rewards Program', abs_url('rewards/')), ('2x2 Matrix Explained', abs_url(H)))
-    art = f'''<div class="player mx-video mx-herovid mfit" id="p-matrix-explained" role="button" tabindex="0" aria-label="Play: the Bellver 2x2 matrix explained" data-src="{L(VIDEO, H)}" data-title="The Bellver 2x2 matrix, made simple">
-  <img src="{L('images/bellver-2x2-matrix-explainer-thumbnail-640.webp', H)}" srcset="{L('images/bellver-2x2-matrix-explainer-thumbnail-640.webp', H)} 640w, {L('images/bellver-2x2-matrix-explainer-thumbnail.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="The 2x2 matrix made simple: explainer video by MTG" width="1280" height="720" fetchpriority="high">
-  <span class="pbtn">{ic('play')}</span><span class="plabel">8:46</span>
- </div><p class="mx-vcap">{ic('play-c')}Watch it explained in under 9 minutes, in my own voice</p>'''
+    if MXV_OWN:   # the member's own narration: say so, and tell team.py the MTG-voice caption is intentionally absent
+        cap = f"Watch it explained in under {under(MXV[3])} minutes. {v_narr(MXV_OWN)}"
+        import team; team.USED.add('Watch it explained in under 9 minutes, in my own voice')
+    else:
+        cap = 'Watch it explained in under 9 minutes, in my own voice'
+    art = f'''<div class="player mx-video mx-herovid mfit" id="p-matrix-explained" role="button" tabindex="0" aria-label="Play: the Bellver 2x2 matrix explained" data-src="{L(MXV[5], H)}" data-title="The Bellver 2x2 matrix, made simple">
+  <img src="{L(MXV[6] + '-640.webp', H)}" srcset="{L(MXV[6] + '-640.webp', H)} 640w, {L(MXV[6] + '.webp', H)} 1280w" sizes="(max-width:860px) 100vw, 560px" alt="The 2x2 matrix made simple: explainer video by MTG" width="1280" height="720" fetchpriority="high">
+  <span class="pbtn">{ic('play')}</span><span class="plabel">{MXV[3]}</span>
+ </div><p class="mx-vcap">{ic('play-c')}{cap}</p>'''
     top = phero(H, trail, ['The 2x2 matrix', 'made simple'],
                 'Press play and watch it explained in under nine minutes. Prefer to read? Seven short steps below, pictures you can play with and honest numbers. No jargon, no hype.', art,
                 order_btn('Order your card') + f'<a class="btn btn-ghost" href="{L(GUIDE_PDF, H)}" download>{ic("download")}Download the PDF guide</a>')
@@ -374,6 +381,9 @@ def matrix(H='matrix/'):
                 "url": abs_url(H), "hasPart": {"@type": "DigitalDocument", "name": "Bellver 2x2 Matrix Explained (PDF)", "encodingFormat": "application/pdf", "url": abs_url(GUIDE_PDF)}}
     vid_ld = {"@type": "VideoObject", "name": "The Bellver 2x2 Matrix, Made Simple", "description": "An animated explainer in MTG's own voice: two seats under everyone, reading-order filling, spillover, doubling levels, the 0.1% reward, why a 2x2 matrix, star ranks and the $100 monthly rule.",
               "thumbnailUrl": abs_url('images/bellver-2x2-matrix-explainer-thumbnail.jpg'), "contentUrl": abs_url(VIDEO), "uploadDate": "2026-10-11", "duration": "PT8M45S", "inLanguage": "en", "author": {"@id": MTG_SITE + "/#mtg"}}
+    if MXV_OWN:
+        vid_ld.update({"description": MXV[7], "thumbnailUrl": abs_url(MXV[6] + '.jpg'), "contentUrl": abs_url(MXV[5]), "duration": MXV[8],
+                       "uploadDate": MXV_OWN.get('date', vid_ld["uploadDate"]), "author": {"@id": SITE + BASE + "#partner"}})
     return page(H, 'matrix', 'Bellver 2x2 Matrix Explained Simply: Spillover, Levels, 0.1% Rewards | MTG',
                 'The Bellver Card 2x2 matrix in plain words: two seats under everyone, reading-order filling, spillover, doubling levels, 0.1% rewards, star ranks and the $100 rule. With a playable diagram, calculator, quiz and free PDF.',
                 'images/og/og-bellver-matrix.jpg', 'The Bellver 2x2 matrix explained simply', body, ld_extra=[faq_ld, learn_ld, vid_ld], trail=trail)
