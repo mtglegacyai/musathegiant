@@ -99,11 +99,14 @@ def _remove_no_whatsapp(html, f):
 
 
 USED = set()
+# phrases that only exist while a member still shows one of MTG's own videos: a member whose every video is their own copy
+# (team.json "videos") legitimately has none of them
+OPTIONAL = {'"name": "MTG",\n    "jobTitle": "Your Digital Architect",\n    "url": "https://www.musathegiant.com/"'}
 
 
 def check_all_used():
     """After a member's pages are built: every rewrite must have found its phrase. If MTG's wording changed, update TEXT."""
-    missing = [old for old, new in TEXT if old not in USED]
+    missing = [old for old, new in TEXT if old not in USED and old not in OPTIONAL]
     if missing:
         raise SystemExit('team.py TEXT phrases no longer found on MTG\'s pages (update them):\n  ' + '\n  '.join(missing))
 
