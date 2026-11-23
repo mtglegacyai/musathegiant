@@ -89,3 +89,4 @@ if bv.MODE == 'prod':
     for m in team.members():
         subprocess.run([sys.executable, os.path.abspath(__file__), '--member', m['slug']], check=True)
     team.write_index(ROOT)
+    team.moved_to_bva(ROOT, [pth for pth, fn in PAGES])

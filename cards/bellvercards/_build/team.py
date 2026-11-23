@@ -183,6 +183,32 @@ def strip_transcripts(html):
     return html
 
 
+def moved_to_bva(root, paths):
+    """musathegiant.com only: a member whose pages moved to bellveraffiliates.com (no 'mtg' in their team.json "sites")
+    but still has an old folder at /bellvercards/<slug>/. The old pages, videos and images are removed and every page
+    address forwards to the same page at bellveraffiliates.com/<slug>/, so links already shared keep working (MTG, 23 Nov 2026)."""
+    import shutil
+    if bv.TARGET == 'bva':
+        return
+    for m in _all():
+        if 'mtg' in m.get('sites', ['bva']):
+            continue
+        d0 = os.path.join(root, TEAM_DIR.strip('/'), m['slug'])
+        if not os.path.isdir(d0):
+            continue
+        shutil.rmtree(d0)
+        for pth in paths:
+            to = 'https://bellveraffiliates.com/' + m['slug'] + '/' + pth
+            d = os.path.join(d0, pth); os.makedirs(d, exist_ok=True)
+            with open(os.path.join(d, 'index.html'), 'w', encoding='utf-8') as f:
+                f.write(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved | Bellver Cards</title>
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="{to}">
+<meta http-equiv="refresh" content="0; url={to}"><script>location.replace("{to}"+location.search+location.hash)</script></head>
+<body style="background:#020c06;color:#eef5f1;font-family:system-ui,sans-serif;padding:40px">This page has a new address. <a style="color:#34cc88" href="{to}">Continue</a>.</body></html>
+''')
+        print('forwarding', TEAM_DIR + m['slug'] + '/', '->', 'https://bellveraffiliates.com/' + m['slug'] + '/')
+
+
 def write_index(root):
     """/bellvercards/ itself: forwards to MTG's guide, so nobody lands on an empty folder.
     On bellveraffiliates.com MTG's guide is the root itself, so only the team tab icon is written."""
