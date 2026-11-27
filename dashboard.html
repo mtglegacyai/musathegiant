@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Income Streams Dashboard | Crypto Cards, PRENET, Aureus Alliance & More | MTG</title>
-<meta name="description" content="Explore the income streams MTG (Musa The Giant) is using and sharing right now: Crypto Cards (Bellver), PRENET, Aureus Alliance, ClickBaitPays, Bitcoin Wealth and JetUp with TAG Markets. Learn how each works before you decide.">
+<title>Income Streams Dashboard | Bellver Cards, ClickBaitPays, PRENET & More | MTG</title>
+<meta name="description" content="Explore the income streams MTG (Musa The Giant) is using and sharing right now: Bellver Cards, ClickBaitPays, PRENET, Bitcoin Wealth, JetUp with TAG Markets and Aureus Alliance. Learn how each works before you decide.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://www.musathegiant.com/dashboard.html">
@@ -73,14 +73,14 @@
    "@id": "https://www.musathegiant.com/dashboard.html#page",
    "url": "https://www.musathegiant.com/dashboard.html",
    "name": "Income Streams Dashboard",
-   "description": "Explore the income streams MTG (Musa The Giant) is using and sharing right now: Crypto Cards (Bellver), PRENET, Aureus Alliance, ClickBaitPays, Bitcoin Wealth and JetUp with TAG Markets. Learn how each works before you decide.",
+   "description": "Explore the income streams MTG (Musa The Giant) is using and sharing right now: Bellver Cards, ClickBaitPays, PRENET, Bitcoin Wealth, JetUp with TAG Markets and Aureus Alliance. Learn how each works before you decide.",
    "isPartOf": {
     "@id": "https://www.musathegiant.com/#website"
    },
    "author": {
     "@id": "https://www.musathegiant.com/#mtg"
    },
-   "dateModified": "2026-11-26",
+   "dateModified": "2026-11-27",
    "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
@@ -105,44 +105,44 @@
      {
       "@type": "ListItem",
       "position": 1,
-      "name": "Crypto Cards",
+      "name": "Bellver Cards",
       "url": "https://www.musathegiant.com/dashboard.html#cryptocards",
-      "description": "Crypto debit cards reviewed side by side: fees, limits and supported coins, with a commission earned on cards ordered through MTG's links. Card #1: Bellver Card."
+      "description": "Bellver crypto cards: spend your crypto like cash and earn monthly rewards when the people you refer use theirs. MTG's full guide is on MusaTheGiant.com."
      },
      {
       "@type": "ListItem",
       "position": 2,
+      "name": "ClickBaitPays",
+      "url": "https://www.musathegiant.com/dashboard.html#clickbait",
+      "description": "An advertising platform where members advertise, view ads and earn, and MTG's main traffic source. Starts from $14."
+     },
+     {
+      "@type": "ListItem",
+      "position": 3,
       "name": "PRENET",
       "url": "https://www.musathegiant.com/dashboard.html#prenet",
       "description": "MTG's newest income stream. His full guide is coming soon; join with his referral link."
      },
      {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Aureus Alliance",
-      "url": "https://www.musathegiant.com/dashboard.html#aureus",
-      "description": "Aureus Alliance Holdings runs Aureus Africa, a South African platform for owning shares in gold mining."
-     },
-     {
-      "@type": "ListItem",
       "position": 4,
-      "name": "ClickBaitPays",
-      "url": "https://www.musathegiant.com/dashboard.html#clickbait",
-      "description": "An advertising platform where members advertise, view ads and earn. Starts from $14."
-     },
-     {
-      "@type": "ListItem",
-      "position": 5,
       "name": "Bitcoin Wealth",
       "url": "https://www.musathegiant.com/dashboard.html#bitcoin",
       "description": "A community-driven system for accumulating Bitcoin. Entry point 0.001 BTC."
      },
      {
       "@type": "ListItem",
-      "position": 6,
+      "position": 5,
       "name": "JetUp and TAG Markets",
       "url": "https://www.musathegiant.com/dashboard.html#jetup",
       "description": "Copy trading with Sonic AI and an account in your own name at TAG Markets, explained in MTG's free guide at mtgtribe.com/jetup."
+     },
+     {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "Aureus Alliance",
+      "url": "https://www.musathegiant.com/dashboard.html#aureus",
+      "description": "Aureus Alliance Holdings runs Aureus Africa, a South African platform for owning shares in gold mining."
      }
     ]
    }
@@ -260,7 +260,8 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.card-inner:after,.sidebar,.cta,.social-links a{transition:none!important}.card,.cta:hover,.cta:active,.social-links a:hover,.social-links a:active{transform:none!important}}
 
 /* MTG's income streams, his order (26 Nov 2026): Crypto Cards, PRENET, Aureus Alliance, ClickBaitPays, Bitcoin Wealth, JetUp */
-.pn{grid-column:1/-1;min-height:0}
+.pn{min-height:0}
+.cbp{grid-column:1/-1;min-height:0}   /* #2 ClickBaitPays: full width under #1 (MTG, 27 Nov 2026) */
 .pn:before{background:radial-gradient(circle,rgba(242,173,60,.24),transparent 45%)}
 .pn .stream-no .pill{border:1px solid rgba(242,173,60,.42);background:rgba(242,173,60,.08);color:#ffd98e}
 .pn .stream-no .pill b{background:linear-gradient(135deg,#ffe3a3,#f2ad3c);color:#1a1002;box-shadow:0 0 16px rgba(242,173,60,.4)}
@@ -306,12 +307,12 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
   </div>
   <p class="md-label">Income streams</p>
   <a class="md-nav is-on" href="#opportunities"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg></span><span class="tx"><b>All Income Streams</b><small>Everything in one place</small></span></a>
-  <a class="md-nav" href="#cryptocards"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg></span><span class="tx"><b>Crypto Cards</b><small>Stream #1: spend, compare, earn</small></span></a>
-  <a class="md-nav" href="#prenet"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/></svg></span><span class="tx"><b>PRENET</b><small>Stream #2: new, guide coming soon</small></span></a>
-  <a class="md-nav" href="#aureus"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.531 12.469 6.619 20.38a1 1 0 1 1-3-3l7.912-7.912"/><path d="M15.686 4.314A12.5 12.5 0 0 0 5.461 2.958 1 1 0 0 0 5.58 4.71a22 22 0 0 1 6.318 3.393"/><path d="M17.7 3.7a1 1 0 0 0-1.4 0l-4.6 4.6a1 1 0 0 0 0 1.4l2.6 2.6a1 1 0 0 0 1.4 0l4.6-4.6a1 1 0 0 0 0-1.4z"/><path d="M19.686 8.314a12.501 12.501 0 0 1 1.356 10.225 1 1 0 0 1-1.751-.119 22 22 0 0 0-3.393-6.319"/></svg></span><span class="tx"><b>Aureus Alliance</b><small>Stream #3: gold mining shares</small></span></a>
-  <a class="md-nav" href="#clickbait"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3.5v3M3.5 9h3M5 5l2 2M13 5l-1.5 1.5"/><path d="M9.5 9.5l10 3.8-4.3 1.6-1.7 4.4z"/></svg></span><span class="tx"><b>ClickBaitPays</b><small>Stream #4: advertise, view, earn</small></span></a>
-  <a class="md-nav" href="#bitcoin"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 7.5h3.8a2.2 2.2 0 0 1 0 4.4H9.5zM9.5 11.9h4.4a2.3 2.3 0 0 1 0 4.6H9.5zM9.5 7.5v9M11 6v1.5M11 16.5V18"/></svg></span><span class="tx"><b>Bitcoin Wealth</b><small>Stream #5: accumulate Bitcoin</small></span></a>
-  <a class="md-nav" href="#jetup"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 22h20"/><path d="M6.36 17.4 4 17l-2-4 1.1-.55a2 2 0 0 1 1.8 0l.17.1a2 2 0 0 0 1.8 0L8 12 5 6l.9-.45a2 2 0 0 1 2.09.2l4.02 3a2 2 0 0 0 2.1.2l4.19-2.06a2.41 2.41 0 0 1 1.73-.17L21 7a1.4 1.4 0 0 1 .87 1.99l-.38.76c-.23.46-.6.84-1.07 1.08L7.58 17.2a2 2 0 0 1-1.22.18Z"/></svg></span><span class="tx"><b>JetUp · TAG Markets</b><small>Stream #6: AI copy trading</small></span></a>
+  <a class="md-nav" href="#cryptocards"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg></span><span class="tx"><b>Bellver Cards</b><small>Stream #1: spend your crypto like cash</small></span></a>
+  <a class="md-nav" href="#clickbait"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3.5v3M3.5 9h3M5 5l2 2M13 5l-1.5 1.5"/><path d="M9.5 9.5l10 3.8-4.3 1.6-1.7 4.4z"/></svg></span><span class="tx"><b>ClickBaitPays</b><small>Stream #2: advertise, view, earn</small></span></a>
+  <a class="md-nav" href="#prenet"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/></svg></span><span class="tx"><b>PRENET</b><small>Stream #3: new, guide coming soon</small></span></a>
+  <a class="md-nav" href="#bitcoin"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 7.5h3.8a2.2 2.2 0 0 1 0 4.4H9.5zM9.5 11.9h4.4a2.3 2.3 0 0 1 0 4.6H9.5zM9.5 7.5v9M11 6v1.5M11 16.5V18"/></svg></span><span class="tx"><b>Bitcoin Wealth</b><small>Stream #4: accumulate Bitcoin</small></span></a>
+  <a class="md-nav" href="#jetup"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 22h20"/><path d="M6.36 17.4 4 17l-2-4 1.1-.55a2 2 0 0 1 1.8 0l.17.1a2 2 0 0 0 1.8 0L8 12 5 6l.9-.45a2 2 0 0 1 2.09.2l4.02 3a2 2 0 0 0 2.1.2l4.19-2.06a2.41 2.41 0 0 1 1.73-.17L21 7a1.4 1.4 0 0 1 .87 1.99l-.38.76c-.23.46-.6.84-1.07 1.08L7.58 17.2a2 2 0 0 1-1.22.18Z"/></svg></span><span class="tx"><b>JetUp · TAG Markets</b><small>Stream #5: AI copy trading</small></span></a>
+  <a class="md-nav" href="#aureus"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.531 12.469 6.619 20.38a1 1 0 1 1-3-3l7.912-7.912"/><path d="M15.686 4.314A12.5 12.5 0 0 0 5.461 2.958 1 1 0 0 0 5.58 4.71a22 22 0 0 1 6.318 3.393"/><path d="M17.7 3.7a1 1 0 0 0-1.4 0l-4.6 4.6a1 1 0 0 0 0 1.4l2.6 2.6a1 1 0 0 0 1.4 0l4.6-4.6a1 1 0 0 0 0-1.4z"/><path d="M19.686 8.314a12.501 12.501 0 0 1 1.356 10.225 1 1 0 0 1-1.751-.119 22 22 0 0 0-3.393-6.319"/></svg></span><span class="tx"><b>Aureus Alliance</b><small>Stream #6: gold mining shares</small></span></a>
   <p class="md-label">Tools</p>
   <a class="md-nav" href="/tools/"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5l-8.9 8.9a2.1 2.1 0 0 1-3-3z"/><path d="M14.7 6.3l2.4-2.4a5 5 0 0 1-2.4 2.4z"/></svg></span><span class="tx"><b>All Tools</b><small>Calculators, converters, guides</small></span></a>
   <div class="md-bot">
@@ -352,40 +353,18 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
       <article class="card cc" id="cryptocards">
         <div class="card-inner">
           <span class="stream-big" aria-hidden="true">#1</span>
-          <div class="stream-no"><span class="pill"><b>#1</b>Income Stream</span><span class="tag">Spend · Compare · Earn</span></div>
-          <div class="card-head"><div class="logo"><span class="mark">CC</span><strong>Crypto Cards</strong></div></div>
+          <div class="stream-no"><span class="pill"><b>#1</b>Income Stream</span><span class="tag">Spend · Earn · Refer</span></div>
+          <div class="card-head"><div class="logo"><span class="mark">BC</span><strong>Bellver Cards</strong></div></div>
           <h3>Spend your crypto <em>like cash.</em></h3>
-          <p>Crypto debit cards reviewed side by side: fees, limits, supported coins and who each card suits. Order through my links and I earn a commission at no extra cost to you.</p>
-          <div class="facts"><span><b>Fees and limits</b> compared</span><span>Honest reviews</span><span>Card #1: Bellver Card</span></div>
-          <a class="cta" href="cards/">Explore Crypto Cards <span class="arr" aria-hidden="true">→</span></a>
-        </div>
-      </article>
-      <article class="card pn" id="prenet">
-        <div class="card-inner">
-          <span class="stream-big" aria-hidden="true">#2</span>
-          <div class="stream-no"><span class="pill"><b>#2</b>Income Stream</span><span class="tag">New · Guide coming soon</span></div>
-          <div class="card-head"><div class="logo"><span class="mark">PN</span><strong>PRENET</strong></div></div>
-          <h3>My newest income stream. <em>Join it today.</em></h3>
-          <p>My full plain-English PRENET guide, with videos and every step, is being built on mtgtribe.com. Until it is ready, you can join with my link and read every detail on PRENET's own site before you decide. Launch news lands in the MTG TRIBE WhatsApp group first.</p>
-          <div class="facts"><span><b>Newest</b> income stream</span><span>Full guide coming soon</span><span>Launch news on WhatsApp</span></div>
-          <a class="cta" href="https://prenet.world/ref/mtg" target="_blank" rel="sponsored noopener">Join PRENET with MTG <span class="arr" aria-hidden="true">→</span></a>
-        </div>
-      </article>
-      <article class="card au" id="aureus">
-        <div class="card-inner">
-          <span class="stream-big" aria-hidden="true">#3</span>
-          <div class="stream-no"><span class="pill"><b>#3</b>Income Stream</span><span class="tag">Gold mining shares</span></div>
-          <div class="card-head"><div class="logo"><span class="mark">AU</span><strong>Aureus Alliance</strong></div></div>
-          <h3>Own shares in <em>gold mining.</em></h3>
-          <p>Aureus Alliance Holdings runs Aureus Africa, a South African platform for owning shares in gold mining, with your own client account. Read every detail on its official site before you decide.</p>
-          <div class="facts"><span>South African company</span><span>Shares in <b>gold mining</b></span><span>Your own client account</span></div>
-          <a class="cta" href="https://www.aureus.africa/mtglegacy" target="_blank" rel="sponsored noopener">Visit Aureus Alliance <span class="arr" aria-hidden="true">→</span></a>
+          <p>Bellver offers different crypto cards, so you can spend your crypto like cash with your own card, and earn monthly rewards when the people you refer use theirs. My full Bellver guide, with videos and calculators, is right here on MusaTheGiant.com.</p>
+          <div class="facts"><span>Order from <b>$99</b></span><span>Visa physical, Mastercard virtual</span><span>Your own private-key wallet</span></div>
+          <a class="cta" href="cards/bellvercards/">Explore Bellver Cards <span class="arr" aria-hidden="true">→</span></a>
         </div>
       </article>
       <article class="card cbp" id="clickbait">
         <div class="card-inner">
-          <span class="stream-big" aria-hidden="true">#4</span>
-          <div class="stream-no"><span class="pill"><b>#4</b>Income Stream</span><span class="tag">Advertise · View · Earn</span></div>
+          <span class="stream-big" aria-hidden="true">#2</span>
+          <div class="stream-no"><span class="pill"><b>#2</b>Income Stream</span><span class="tag">Advertise · View · Earn</span></div>
           <div class="card-head"><div class="logo"><span class="mark">CBP</span><strong>ClickBaitPays</strong></div></div>
           <h3>What if your ads could <em>work harder?</em></h3>
           <p>Advertise. Watch. Earn. One platform connects all three. See the model, the daily activity, and why this approach is getting attention globally.</p>
@@ -393,10 +372,21 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
           <a class="cta" href="https://clickbaitpaysus.com/" target="_blank" rel="noopener">Explore ClickBaitPays <span class="arr" aria-hidden="true">→</span></a>
         </div>
       </article>
+      <article class="card pn" id="prenet">
+        <div class="card-inner">
+          <span class="stream-big" aria-hidden="true">#3</span>
+          <div class="stream-no"><span class="pill"><b>#3</b>Income Stream</span><span class="tag">New · Guide coming soon</span></div>
+          <div class="card-head"><div class="logo"><span class="mark">PN</span><strong>PRENET</strong></div></div>
+          <h3>My newest income stream. <em>Join it today.</em></h3>
+          <p>My full plain-English PRENET guide, with videos and every step, is being built on mtgtribe.com. Until it is ready, you can join with my link and read every detail on PRENET's own site before you decide. Launch news lands in the MTG TRIBE WhatsApp group first.</p>
+          <div class="facts"><span><b>Newest</b> income stream</span><span>Full guide coming soon</span><span>Launch news on WhatsApp</span></div>
+          <a class="cta" href="https://prenet.world/ref/mtg" target="_blank" rel="sponsored noopener">Join PRENET with MTG <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </article>
       <article class="card bw" id="bitcoin">
         <div class="card-inner">
-          <span class="stream-big" aria-hidden="true">#5</span>
-          <div class="stream-no"><span class="pill"><b>#5</b>Income Stream</span><span class="tag">Community-driven</span></div>
+          <span class="stream-big" aria-hidden="true">#4</span>
+          <div class="stream-no"><span class="pill"><b>#4</b>Income Stream</span><span class="tag">Community-driven</span></div>
           <div class="card-head"><div class="logo"><span class="mark">BW</span><span><span class="a">Bitcoin</span> <span class="g">Wealth</span></span></div></div>
           <h3>A different way to <em>accumulate Bitcoin.</em></h3>
           <p>A community-driven system that’s making people rethink how they accumulate Bitcoin. See how it works, where the money moves, and why Bitcoin Wealth community members are so excited.</p>
@@ -406,13 +396,24 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-
       </article>
       <article class="card ju" id="jetup">
         <div class="card-inner">
-          <span class="stream-big" aria-hidden="true">#6</span>
-          <div class="stream-no"><span class="pill"><b>#6</b>Income Stream</span><span class="tag">AI copy trading</span></div>
+          <span class="stream-big" aria-hidden="true">#5</span>
+          <div class="stream-no"><span class="pill"><b>#5</b>Income Stream</span><span class="tag">AI copy trading</span></div>
           <div class="card-head"><div class="logo"><span class="mark">JU</span><strong>JetUp · TAG Markets</strong></div></div>
           <h3>Copy trading, <em>explained before you commit.</em></h3>
           <p>Copy trading with Sonic AI, an account opened in your own name at TAG Markets, and the JetUP community and partner plan, every rule in plain English in my free guide.</p>
           <div class="facts"><span>Sonic AI copy trading</span><span>Your account, <b>in your own name</b></span><span>17 videos, 6-part training</span></div>
           <a class="cta" href="https://mtgtribe.com/jetup/" target="_blank" rel="noopener">Explore the JetUP guide <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="card au" id="aureus">
+        <div class="card-inner">
+          <span class="stream-big" aria-hidden="true">#6</span>
+          <div class="stream-no"><span class="pill"><b>#6</b>Income Stream</span><span class="tag">Gold mining shares</span></div>
+          <div class="card-head"><div class="logo"><span class="mark">AU</span><strong>Aureus Alliance</strong></div></div>
+          <h3>Own shares in <em>gold mining.</em></h3>
+          <p>Aureus Alliance Holdings runs Aureus Africa, a South African platform for owning shares in gold mining, with your own client account. Read every detail on its official site before you decide.</p>
+          <div class="facts"><span>South African company</span><span>Shares in <b>gold mining</b></span><span>Your own client account</span></div>
+          <a class="cta" href="https://www.aureus.africa/mtglegacy" target="_blank" rel="sponsored noopener">Visit Aureus Alliance <span class="arr" aria-hidden="true">→</span></a>
         </div>
       </article>
     </section>
