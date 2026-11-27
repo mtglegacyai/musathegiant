@@ -158,6 +158,15 @@ if __name__ == '__main__':
     a.add_argument('-m', '--message', help='commit message (required to publish)')
     a.add_argument('--build-only', action='store_true', help='build both sites locally, no commit or push')
     o = a.parse_args()
+    # SAFETY STOP (27 Nov 2026): this source stops at 4 Nov 2026. Bellver's November 2026 prices, the affiliate program
+    # explainer, the Cloudflare R2 videos, the 35-slide presentation and the ClickBaitPays pages were published straight to
+    # bellveraffiliates.com and their source never came back here. Building from this folder would put the old pages back
+    # on bellveraffiliates.com. musathegiant.com/cards/bellvercards now copies bellveraffiliates.com every hour
+    # (.github/sync/bellver.py), so it never needs this build. Only run it after bringing this source up to date with the
+    # live bellveraffiliates.com, then set BV_SOURCE_OK=1.
+    if os.environ.get('BV_SOURCE_OK') != '1':
+        raise SystemExit('Stopped: this Bellver source is older than the live bellveraffiliates.com (see the note above). '
+                         'Bring it up to date first, then run again with BV_SOURCE_OK=1.')
     if not o.build_only and not o.message:
         raise SystemExit('Give a commit message with -m, or use --build-only for a preview.')
     ensure_bva()
