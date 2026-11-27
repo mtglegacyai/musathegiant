@@ -95,7 +95,7 @@ ol.steps h3{margin:6px 0 8px}
 
 /* footer */
 .site-foot{margin-top:70px;border-top:1px solid var(--line);background:linear-gradient(180deg,#07080a,#040506);color:#858c96;font-size:.86rem}
-.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px;padding:42px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px;padding:42px 0 30px}
 .foot-grid h2{margin:0 0 12px;color:#d9dce0;font:700 .95rem var(--f-display)}
 .foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
 .foot-grid a{color:#a9b0ba}.foot-grid a:hover{color:#fff}
@@ -132,3 +132,20 @@ ol.steps h3{margin:6px 0 8px}
 @keyframes mdBreathe{0%,100%{opacity:.2}50%{opacity:.45}}
 @media (prefers-reduced-motion:reduce){.mtg-ring:before,.mtg-ring:after{animation:none!important}.mtg-ring:before{--md-ang:200deg}.mtg-ring:hover .emo{transform:none}}
 .navlinks a.box{--ring-r:12px;text-transform:uppercase;letter-spacing:.1em;font-size:.72rem}
+/* small phones (MTG, 27 Nov 2026: nothing scrolls sideways): the top menu keeps Dashboard, Contact moves to the footer;
+   glow rings and light beams never widen the page */
+html,body{overflow-x:clip}
+@media(max-width:400px){.navlinks a:not(.box){display:none}.navlinks a.box{margin-left:0}}
+@media(max-width:400px){.navlinks a.box .emo{display:none}.navlinks a.box{padding:8px 10px;letter-spacing:.06em}}
+/* tables on phones: each row becomes a card, every cell keeps its column name (pages.js copies the names) */
+@media(max-width:640px){
+  .prose .tbl{overflow:visible}
+  .prose .tbl table,.prose .tbl tbody,.prose .tbl tr,.prose .tbl td{display:block;width:auto}
+  .prose .tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .prose .tbl tr{margin:0 0 12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px}
+  .prose .tbl table{min-width:0}
+  .prose .tbl td{padding:6px 0;border:0;overflow-wrap:anywhere}
+  .prose .tbl td code{white-space:normal}
+  .prose .tbl td[data-label]:before{content:attr(data-label);display:block;margin-bottom:2px;color:var(--dim);font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+  .prose td code,.prose pre{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+}

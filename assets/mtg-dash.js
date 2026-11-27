@@ -39,3 +39,9 @@ side.querySelectorAll('a').forEach(function(a){a.addEventListener('click',functi
 /* let the page draw before animations are switched on, so a remembered collapsed panel does not slide on load */
 requestAnimationFrame(function(){requestAnimationFrame(function(){document.documentElement.classList.add('md-ready')})});
 })();
+
+/* Up and Down buttons on long pages (MTG, 27 Nov 2026): loads /assets/updown.js once. */
+;(function(){if(window.__mtgUD||document.querySelector('script[src*="updown.js"]'))return;var s=document.createElement("script");s.src="/assets/updown.js?v=1";s.defer=true;document.head.appendChild(s)})();
+
+/* The MTG TRIBE quick bar at the bottom of phones (same as mtgtribe.com), on every musathegiant.com page. */
+;(function(){if(document.getElementById("tbar")||document.querySelector('script[src*="bottom-nav.js"]'))return;var s=document.createElement("script");s.src="/assets/tribe/bottom-nav.js?v=1";s.defer=true;document.head.appendChild(s)})();

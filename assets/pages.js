@@ -44,3 +44,12 @@ document.addEventListener('visibilitychange',function(){if(!document.hidden&&!re
 var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){init();if(reduce)draw()},150)});
 init();requestAnimationFrame(draw);
 })();
+
+/* Up and Down buttons on long pages (MTG, 27 Nov 2026): loads /assets/updown.js once. */
+;(function(){if(window.__mtgUD||document.querySelector('script[src*="updown.js"]'))return;var s=document.createElement("script");s.src="/assets/updown.js?v=1";s.defer=true;document.head.appendChild(s)})();
+
+/* The MTG TRIBE quick bar at the bottom of phones (same as mtgtribe.com), on every musathegiant.com page. */
+;(function(){if(document.getElementById("tbar")||document.querySelector('script[src*="bottom-nav.js"]'))return;var s=document.createElement("script");s.src="/assets/tribe/bottom-nav.js?v=1";s.defer=true;document.head.appendChild(s)})();
+
+/* table column names on every cell, for the phone card layout in pages.css */
+;(function(){var ts=document.querySelectorAll('.prose .tbl table');Array.prototype.forEach.call(ts,function(t){var h=Array.prototype.map.call(t.querySelectorAll('thead th'),function(x){return x.textContent.trim()});if(!h.length)return;Array.prototype.forEach.call(t.querySelectorAll('tbody tr'),function(r){Array.prototype.forEach.call(r.children,function(c,i){if(h[i]&&!c.hasAttribute('data-label'))c.setAttribute('data-label',h[i])})})})})();

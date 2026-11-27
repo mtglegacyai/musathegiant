@@ -480,7 +480,7 @@ def footer(here):
 
 
 PERSON = {"@type": "Person", "@id": MTG_SITE + "/#mtg", "name": "Musa The Giant", "alternateName": ["MTG", "Musa the Giant"], "url": MTG_SITE + "/", "image": MTG_SITE + "/images/mtg-profile.jpg",
-          "sameAs": ["https://www.facebook.com/Musa.TheMTG", "https://www.tiktok.com/@musathegiant", "https://www.youtube.com/@MusaTheGiant"]}
+          "sameAs": ["https://www.facebook.com/mtgtribe", "https://www.tiktok.com/@joinmtgtribe", "https://www.youtube.com/@mtgtribe", "https://t.me/mtgtribe"]}
 if TARGET == 'bva':
     PERSON["sameAs"] = PERSON["sameAs"] + ["https://www.tiktok.com/@joinmtgtribe", "https://www.youtube.com/@mtgtribe"]
 
