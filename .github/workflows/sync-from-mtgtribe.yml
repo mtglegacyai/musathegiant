@@ -1,0 +1,40 @@
+# musathegiant.com follows mtgtribe.com automatically (MTG, 27 Nov 2026).
+# Every hour (and on demand from the Actions tab) it runs .github/sync/sync.py against the live mtgtribe.com:
+# the home page in the mtgtribe.com design, the shared design files, and every list of MTG's income streams.
+# When something changed it commits to main and starts the Pages deployment (a push made by this job does not start
+# it by itself). If mtgtribe.com changed so much that a step cannot be done safely, the script stops, nothing is
+# written, and this job fails, so GitHub emails the owner.
+name: Sync from mtgtribe.com
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: sync-from-mtgtribe
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Read mtgtribe.com and update musathegiant.com
+        run: python3 .github/sync/sync.py
+      - name: Commit and publish if anything changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then echo "Already in sync."; exit 0; fi
+          git config user.name "musathegiant-sync"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Sync from mtgtribe.com: home page, design files and income streams"
+          git push
+          gh workflow run static.yml --ref main
