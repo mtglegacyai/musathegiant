@@ -193,8 +193,10 @@ s = sub(s, r'(<a class="brand" href="/") aria-label="[^"]*">(<img[^>]*>)MTG TRIB
 s = soft(s, '<span class="word gold-text">MTG TRIBE</span>', '<span class="word gold-text">MTG</span>', 'intro word')
 s = soft(s, '<i class="dot" aria-hidden="true"></i>A tribe of action takers</p>',
          '<i class="dot" aria-hidden="true"></i>MTG 👑 Your Digital Architect</p>', 'hero pill')
-s = soft(s, 'Multiple streams of income. A diversified crypto portfolio. AI tutorials that walk you through every step. One tribe, building generational wealth together.',
-         f'{len(streams)} income streams, explained step by step. A diversified crypto portfolio. Free tools and AI tutorials that walk you through every click. Learn first, then decide.', 'hero words')
+# MTG, 28 Nov 2026: no "AI tutorials" (he makes the step-by-step tutorials himself); mtgtribe.com's hero says
+# "Step-by-step videos that show you every tap", and musathegiant.com's own line says it the same way
+s = soft(s, 'Multiple streams of income. A diversified crypto portfolio. Step-by-step videos that show you every tap. One tribe, building generational wealth together.',
+         f'{len(streams)} income streams, explained in plain English. A diversified crypto portfolio. Free tools, and step-by-step videos that show you every tap. Learn first, then decide.', 'hero words')
 s = soft(s, '>Enter the dashboard<', '>See my income streams<', 'dashboard button words')
 s = s.replace('<a href="#code">The code</a><a href="#engine">The engine</a>', '<a href="#streams">Income streams</a><a href="#tools">Free tools</a>')
 s = re.sub(r'<a href="#code"><span>02 The code</span><i></i></a>', '<a href="#streams"><span>02 Income streams</span><i></i></a>', s)
